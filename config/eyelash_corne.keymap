@@ -112,10 +112,10 @@
 
         Gaming {
             bindings = <
-&kp TAB    &kp Q  &kp W  &kp E   &kp R   &kp T                         &kp UP               &kp Y    &kp U   &kp I      &kp O    &kp P     &kp BACKSPACE
-&kp LSHFT  &kp A  &kp S  &kp D   &kp F   &kp G               &kp LEFT  &trans    &kp RIGHT  &kp H    &kp J   &kp K      &kp L    &kp SEMI  &trans
-&kp LCTRL  &kp Z  &kp X  &kp C   &kp V   &kp B      &to 0              &kp DOWN             &kp N    &kp M   &kp COMMA  &kp DOT  &kp FSLH  &trans
-                         &trans  &tog 5  &kp SPACE                                          &kp RET  &trans  &trans
+&kp TAB    &kp Q  &kp W  &kp E   &kp R  &kp T                         &kp UP               &kp Y    &kp U   &kp I      &kp O    &kp P     &kp BACKSPACE
+&kp LSHFT  &kp A  &kp S  &kp D   &kp F  &kp G               &kp LEFT  &trans    &kp RIGHT  &kp H    &kp J   &kp K      &kp L    &kp SEMI  &trans
+&kp LCTRL  &kp Z  &kp X  &kp C   &kp V  &kp B      &to 0              &kp DOWN             &kp N    &kp M   &kp COMMA  &kp DOT  &kp FSLH  &trans
+                         &trans  &mo 5  &kp SPACE                                          &kp RET  &trans  &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
