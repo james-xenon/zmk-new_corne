@@ -42,7 +42,6 @@
             bindings = <&kp LEFT_ALT>, <&kp LEFT_GUI>;
 
             label = "NEW_BEHAVIOR";
-            tapping-term-ms = <100>;
         };
 
         Gaming_5_3: Gaming_5_3 {
