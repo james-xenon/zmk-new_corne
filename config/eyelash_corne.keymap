@@ -42,6 +42,7 @@
             bindings = <&kp LEFT_ALT>, <&kp LEFT_GUI>;
 
             label = "NEW_BEHAVIOR";
+            tapping-term-ms = <10>;
         };
 
         Gaming_5_3: Gaming_5_3 {
@@ -136,6 +137,15 @@
 &kp U    &kp N6  &kp N7  &kp N8  &kp N9  &kp N0            &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &kp K    &kp L   &kp P   &kp J   &kp I   &kp M   &trans            &trans          &trans  &trans  &trans  &trans  &trans  &trans
                          &trans  &trans  &trans                                    &trans  &trans  &trans
+            >;
+        };
+
+        layer_6 {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans                    &trans          &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans            &trans          &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans                                    &trans  &trans  &trans
             >;
         };
     };
