@@ -39,9 +39,18 @@
             compatible = "zmk,behavior-tap-dance";
             display-name = "Shift/Caps Lock Tap Dance";
             #binding-cells = <0>;
-            bindings = <&kp RALT>, <&kp LEFT_GUI>;
+            bindings = <&kp LEFT_ALT>, <&kp LEFT_GUI>;
 
             label = "NEW_BEHAVIOR";
+        };
+
+        Gaming_5_3: Gaming_5_3 {
+            compatible = "zmk,behavior-tap-dance";
+            display-name = "Shift/Caps Lock Tap Dance";
+            #binding-cells = <0>;
+            bindings = <&mo 5>, <&mo 3>;
+
+            label = "GAMING_5_3";
         };
     };
 
@@ -77,10 +86,10 @@
         lower_layer {
             display-name = "NUMBER";
             bindings = <
-&kp ESC  &kp N1           &kp N2          &kp N3        &kp N4        &kp N5                                         &msc SCRL_UP                     &kp N6           &kp N7           &kp N8           &kp N9           &kp N0    &kp BSPC
-&trans   &bt BT_CLR_ALL   &bt BT_SEL 0    &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3                   &msc SCRL_LEFT  &mkp LCLK       &msc SCRL_RIGHT  &kp LEFT         &kp DOWN         &kp UP           &kp RIGHT        &kp HOME  &kp PG_UP
-&trans   &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &trans        &trans        &rgb_ug RGB_EFF  &kp C_MUTE                    &msc SCRL_DOWN                   &rgb_ug RGB_EFR  &rgb_ug RGB_SPI  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp END   &kp PG_DN
-                                          &trans        &trans        &trans                                                                          &kp INS          &kp DEL          &trans
+&kp ESC  &kp N1           &kp N2          &kp N3           &kp N4           &kp N5                                         &msc SCRL_UP                     &kp N6           &kp N7           &kp N8           &kp N9           &kp N0    &kp BSPC
+&trans   &bt BT_CLR_ALL   &bt BT_SEL 0    &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3                   &msc SCRL_LEFT  &mkp LCLK       &msc SCRL_RIGHT  &kp LEFT         &kp DOWN         &kp UP           &kp RIGHT        &kp HOME  &kp PG_UP
+&trans   &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &rgb_ug RGB_HUI  &rgb_ug RGB_HUD  &rgb_ug RGB_EFF  &kp C_MUTE                    &msc SCRL_DOWN                   &rgb_ug RGB_EFR  &rgb_ug RGB_SPI  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp END   &kp PG_DN
+                                          &trans           &trans           &trans                                                                          &kp INS          &kp DEL          &trans
             >;
 
             sensor-bindings = <&scroll_encoder>;
@@ -112,10 +121,10 @@
 
         Gaming {
             bindings = <
-&kp TAB    &kp Q  &kp W  &kp E   &kp R  &kp T                         &kp UP               &kp Y    &kp U   &kp I      &kp O    &kp P     &kp BACKSPACE
-&kp LSHFT  &kp A  &kp S  &kp D   &kp F  &kp G               &kp LEFT  &trans    &kp RIGHT  &kp H    &kp J   &kp K      &kp L    &kp SEMI  &trans
-&kp LCTRL  &kp Z  &kp X  &kp C   &kp V  &kp B      &to 0              &kp DOWN             &kp N    &kp M   &kp COMMA  &kp DOT  &kp FSLH  &trans
-                         &trans  &mo 5  &kp SPACE                                          &kp RET  &trans  &trans
+&kp TAB    &kp Q  &kp W  &kp E   &kp R        &kp T                         &kp UP               &kp Y    &kp U   &kp I      &kp O    &kp P     &kp BACKSPACE
+&kp LSHFT  &kp A  &kp S  &kp D   &kp F        &kp G               &kp LEFT  &trans    &kp RIGHT  &kp H    &kp J   &kp K      &kp L    &kp SEMI  &trans
+&kp LCTRL  &kp Z  &kp X  &kp C   &kp V        &kp B      &to 0              &kp DOWN             &kp N    &kp M   &kp COMMA  &kp DOT  &kp FSLH  &trans
+                         &trans  &Gaming_5_3  &kp SPACE                                          &kp RET  &trans  &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
