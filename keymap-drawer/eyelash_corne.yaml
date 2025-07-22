@@ -47,8 +47,8 @@ layers:
   - NUMBER
   - {t: '$$mdi:keyboard-space$$', h: Fn}
   - {t: '$$mdi:keyboard-return$$', h: mouse}
-  - {t: '$$mdi:backspace$$', h: SYMBOL}
-  - $$mdi:apple-keyboard-command$$
+  - SYMBOL
+  - Alt+$$mdi:apple-keyboard-shift$$
   NUMBER:
   - $$mdi:keyboard-esc$$
   - {t: '1', s: '!'}
@@ -392,3 +392,8 @@ layers:
   - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
+combos:
+- p: [24, 23]
+  k: {t: '$$mdi:backspace$$', type: backspace}
+- p: [24, 25]
+  k: $$mdi:backspace-reverse-outline$$
