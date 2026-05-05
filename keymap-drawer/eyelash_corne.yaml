@@ -73,10 +73,10 @@ layers:
   - $$mdi:mouse-left-click-outline$$
   - $$mdi:pan-right$$
   - $$mdi:arrow-left-bold$$
-  - $$mdi:arrow-down-bold$$
-  - $$mdi:arrow-up-bold$$
-  - $$mdi:arrow-right-bold$$
-  - HOME
+  - {t: '4', s: $}
+  - {t: '5', s: '%'}
+  - {t: '6', s: ^}
+  - {t: '0', s: )}
   - PG UP
   - {t: '$$mdi:transfer$$', type: trans}
   - RGB OFF
@@ -87,9 +87,9 @@ layers:
   - $$mdi:volume-off$$
   - $$mdi:pan-down$$
   - RGB EFR
-  - RGB SPI
-  - RGB BRI
-  - RGB BRD
+  - {t: '1', s: '!'}
+  - {t: '2', s: '@'}
+  - {t: '3', s: '#'}
   - END
   - PG DN
   - {t: '$$mdi:transfer$$', type: trans}
