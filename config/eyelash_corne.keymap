@@ -47,6 +47,13 @@
     combos {
         compatible = "zmk,combos";
 
+        combo_fd_nav_mouse {
+            timeout-ms = <50>;
+            key-positions = <16 17>;
+            bindings = <&mo 1>;
+            layers = <0>;
+        };
+
         combo_jk_backspace {
             timeout-ms = <50>;
             key-positions = <23 24>;
@@ -84,10 +91,22 @@
 &kp TAB    &kp Q  &kp W  &kp E          &kp R  &kp T                               &kp UP                &kp Y        &kp U  &kp I      &kp O    &kp P     &kp LBKT
 &td0       &kp A  &kp S  &kp D          &kp F  &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT  &kp H        &kp J  &kp K      &kp L    &kp SEMI  &mt LSHFT SQT
 &kp LCTRL  &kp Z  &kp X  &kp C          &kp V  &kp B        &kp C_MUTE            &kp DOWN              &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
-                         &new_behavior  &mo 1  &lt 3 SPACE                                               &lt 3 ENTER  &mo 2  &kp LG(SPC)
+                         &new_behavior  &mo 2  &lt 4 SPACE                                               &lt 4 ENTER  &mo 3  &kp LG(SPC)
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
+        nav_mouse_layer {
+            display-name = "NAV_MOUSE";
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans                       &trans             &trans  &mkp LCLK  &kp UP    &mkp RCLK  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans             &trans    &trans  &trans       &msc SCRL_DOWN  &kp LEFT   &kp DOWN  &kp RIGHT  &msc SCRL_UP  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans               &trans             &trans  &trans     &mkp MCLK  &trans    &trans     &trans
+                        &trans  &trans  &trans                                                        &trans     &trans    &trans
+            >;
+
+            sensor-bindings = <&scroll_encoder>;
         };
 
         lower_layer {
@@ -114,7 +133,7 @@
             sensor-bindings = <&scroll_encoder>;
         };
 
-        layer_3 {
+        layer_4 {
             display-name = "Fn";
             bindings = <
 &studio_unlock  &kp F1      &kp F2     &kp F3       &kp F4     &kp F5                                  &mmv MOVE_UP                     &kp F6       &kp F7     &kp F8       &kp F9      &kp F10          &kp F11
