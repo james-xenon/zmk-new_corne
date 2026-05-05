@@ -90,20 +90,20 @@
             bindings = <
 &kp TAB    &kp Q  &kp W  &kp E          &kp R  &kp T                               &kp UP                &kp Y        &kp U  &kp I      &kp O    &kp P     &kp LBKT
 &td0       &kp A  &kp S  &kp D          &kp F  &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT  &kp H        &kp J  &kp K      &kp L    &kp SEMI  &mt LSHFT SQT
-&kp LCTRL  &kp Z  &kp X  &kp C          &kp V  &kp B        &kp C_MUTE            &kp DOWN              &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
+&kp LCTRL  &kp Z  &kp X  &kp C          &kp V  &kp B        &kp C_MUTE             &kp DOWN              &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
                          &new_behavior  &mo 2  &lt 4 SPACE                                               &lt 4 ENTER  &mo 3  &kp LG(SPC)
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        nav_mouse_layer {
-            display-name = "NAV_MOUSE";
+        nav_layer {
+            display-name = "NAV";
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans                       &trans             &trans  &mkp LCLK  &kp UP    &mkp RCLK  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans             &trans    &trans  &trans       &msc SCRL_DOWN  &kp LEFT   &kp DOWN  &kp RIGHT  &msc SCRL_UP  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans               &trans             &trans  &trans     &mkp MCLK  &trans    &trans     &trans
-                        &trans  &trans  &trans                                                        &trans     &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans                       &trans             &trans          &mkp LCLK  &kp UP     &mkp RCLK  &trans        &trans
+&trans  &trans  &trans  &trans  &trans  &trans             &trans    &trans  &trans     &msc SCRL_DOWN  &kp LEFT   &kp DOWN   &kp RIGHT  &msc SCRL_UP  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans               &trans             &trans          &trans     &mkp MCLK  &trans     &trans        &trans
+                        &trans  &trans  &trans                                          &trans          &trans     &trans
             >;
 
             sensor-bindings = <&scroll_encoder>;
@@ -112,10 +112,10 @@
         lower_layer {
             display-name = "NUMBER";
             bindings = <
-&kp ESC  &kp N1           &kp N2          &kp N3        &kp N4        &kp N5                                         &msc SCRL_UP                     &kp N6           &kp N7        &kp N8        &kp N9           &kp N0    &kp BSPC
-&trans   &bt BT_CLR_ALL   &bt BT_SEL 0    &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3                   &msc SCRL_LEFT  &mkp LCLK       &msc SCRL_RIGHT  &kp LEFT         &kp N4        &kp N5        &kp N6           &kp N0  &kp PG_UP
-&trans   &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &trans        &trans        &rgb_ug RGB_EFF  &kp C_MUTE                    &msc SCRL_DOWN                   &rgb_ug RGB_EFR  &kp N1        &kp N2        &kp N3  &kp END   &kp PG_DN
-                                          &trans        &trans        &trans                                                                          &kp INS          &kp DEL        &trans
+&kp ESC  &trans   &trans   &trans   &trans    &trans                                         &msc SCRL_UP                            &kp N6             &kp N7        &kp N8        &kp N9     &kp N0    &kp BSPC
+&trans   &trans   &trans   &trans   &trans    &trans                   &msc SCRL_LEFT  &mkp LCLK       &msc SCRL_RIGHT  &kp LEFT     &kp N4             &kp N5        &kp N6        &kp N0     &kp PG_UP
+&trans   &trans   &trans   &trans   &trans    &trans          &kp C_MUTE                    &msc SCRL_DOWN                           &rgb_ug RGB_EFR    &kp N1        &kp N2        &kp N3     &kp END   &kp PG_DN
+                        &trans        &trans        &trans                                                                           &kp INS            &kp DEL       &trans
             >;
 
             sensor-bindings = <&scroll_encoder>;
@@ -143,6 +143,18 @@
             >;
 
             sensor-bindings = <&scroll_encoder>;
+
+        layer_400 {
+            display-name = "SERVICE";
+            bindings = <
+&kp ESC  &kp N1           &kp N2          &kp N3        &kp N4        &kp N5                                         &trans                     &trans     &trans      &trans     &trans    &trans     &trans          
+&trans   &bt BT_CLR_ALL   &bt BT_SEL 0    &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3                           &trans  &trans   &trans            &trans     &trans      &trans     &trans    &trans     &trans 
+&trans   &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &trans        &trans        &rgb_ug RGB_EFF  &kp C_MUTE                    &trans                     &trans     &trans      &trans     &trans    &trans     &trans
+                                          &trans        &trans        &trans                                                                    &trans     &trans      &trans
+            >;
+
+            sensor-bindings = <&scroll_encoder>;
+        };
         };
     };
 };
