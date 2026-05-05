@@ -42,6 +42,14 @@
             bindings = <&kp RALT>, <&kp LEFT_GUI>;
             label = "NEW_BEHAVIOR";
         };
+
+        td_space_service: td_space_service {
+            compatible = "zmk,behavior-tap-dance";
+            display-name = "Space/Service Tap Dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp SPACE>, <&tog 5>;
+        };
     };
 
     combos {
@@ -91,7 +99,7 @@
 &kp TAB    &kp Q  &kp W  &kp E          &kp R  &kp T                               &kp UP                &kp Y        &kp U  &kp I      &kp O    &kp P     &kp LBKT
 &td0       &kp A  &kp S  &kp D          &kp F  &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT  &kp H        &kp J  &kp K      &kp L    &kp SEMI  &mt LSHFT SQT
 &kp LCTRL  &kp Z  &kp X  &kp C          &kp V  &kp B        &kp C_MUTE             &kp DOWN              &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
-                         &new_behavior  &mo 2  &lt 4 SPACE                                               &lt 4 ENTER  &mo 3  &kp LG(SPC)
+                         &new_behavior  &mo 2  &td_space_service                                          &lt 4 ENTER  &mo 3  &kp LG(SPC)
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
