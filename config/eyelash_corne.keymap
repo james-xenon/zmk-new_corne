@@ -59,16 +59,6 @@
                 <&macro_tap &kp LSHFT>,
                 <&macro_release &kp LALT>;
         };
-
-        bs_nav_td: bs_nav_td {
-            compatible = "zmk,behavior-tap-dance";
-            display-name = "Backslash / NAV Layer";
-            #binding-cells = <0>;
-            tapping-term-ms = <250>;
-            bindings = <&kp BSLH>, <&tog 7>;
-
-            label = "BS_NAV_TD";
-        };
     };
 
     rgb_encoder: rgb_encoder {
@@ -105,8 +95,8 @@
         default_layer {
             display-name = "QWERTY";
             bindings = <
-&kp TAB    &kp Q  &kp W  &kp E          &kp R  &kp T                                &kp UP                &kp Y        &kp U  &kp I               &kp O    &kp P     &bs_nav_td
-&td0       &kp A  &kp S  &kp D          &kp F  &kp G                      &kp LEFT  &kp ENTER  &kp RIGHT  &kp H        &kp J  &kp K               &kp L    &kp SEMI  &mt LSHFT SQT
+&kp TAB    &kp Q  &kp W  &kp E          &kp R  &kp T                                &kp UP                &kp Y        &kp U  &kp I               &kp O    &kp P     &kp BSLH
+&td0       &kp A  &kp S  &kp D          &kp F  &kp G                      &kp LEFT  &kp ENTER  &kp RIGHT  &kp H        &kp J  &kp K               &kp L    &kp SEMI  &kp SQT
 &kp LCTRL  &kp Z  &kp X  &kp C          &kp V  &kp B        &kp C_MUTE              &kp DOWN              &kp N        &kp M  &kp COMMA           &kp DOT  &kp FSLH  &kp ESC
                          &new_behavior  &mo 1  &lt 3 SPACE                                                &lt 7 ENTER  &mo 2  &lang_switch
             >;
@@ -171,12 +161,11 @@
         };
 
         layer_7 {
-            display-name = "NAV";
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans                    &trans          &trans  &trans  &trans     &trans    &trans     &tog 7
-&trans  &trans  &trans  &trans  &trans  &trans             &trans  &trans  &trans  &trans  &trans  &trans     &kp UP    &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans   &trans           &trans          &trans  &trans  &kp LEFT   &kp DOWN   &kp RIGHT  &trans
-                        &trans  &trans  &trans                                   &trans  &trans   &trans
+&trans  &kp P   &kp O   &kp I   &kp U   &kp Y                    &trans          &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &kp L   &kp K   &kp J   &kp H             &kp A  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &kp M   &kp N   &trans           &trans          &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans                                   &trans  &trans  &trans
             >;
         };
 
