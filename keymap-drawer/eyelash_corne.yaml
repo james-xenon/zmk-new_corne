@@ -45,7 +45,7 @@ layers:
   - $$mdi:keyboard-esc$$
   - '&new_behavior'
   - NUMBER
-  - {t: '$$mdi:keyboard-space$$', h: Fn}
+  - '&td_space_service'
   - {t: '$$mdi:keyboard-return$$', h: Fn}
   - SYMBOL
   - Gui+SPC
@@ -241,8 +241,8 @@ layers:
   - PAUSE BREAK
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
-  - {type: held alternate}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   SERVICE:
