@@ -37,10 +37,9 @@
 
         new_behavior: new_behavior {
             compatible = "zmk,behavior-tap-dance";
-            display-name = "Shift/Caps Lock Tap Dance";
+            display-name = "RAlt/Win Tap Dance";
             #binding-cells = <0>;
             bindings = <&kp RALT>, <&kp LEFT_GUI>;
-
             label = "NEW_BEHAVIOR";
         };
     };
@@ -73,7 +72,6 @@
         compatible = "zmk,behavior-sensor-rotate";
         #sensor-binding-cells = <0>;
         bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
-
         tap-ms = <100>;
     };
 
@@ -85,8 +83,8 @@
             bindings = <
 &kp TAB    &kp Q  &kp W  &kp E          &kp R  &kp T                               &kp UP                &kp Y        &kp U  &kp I      &kp O    &kp P     &kp LBKT
 &td0       &kp A  &kp S  &kp D          &kp F  &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT  &kp H        &kp J  &kp K      &kp L    &kp SEMI  &mt LSHFT SQT
-&kp LCTRL  &kp Z  &kp X  &kp C          &kp V  &kp B        &kp MUTE              &kp DOWN              &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
-                         &new_behavior  &mo 1  &lt 3 SPACE                                               &lt 3 ENTER  &mo 2  &kp LG(SPACE)
+&kp LCTRL  &kp Z  &kp X  &kp C          &kp V  &kp B        &kp C_MUTE            &kp DOWN              &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
+                         &new_behavior  &mo 1  &lt 3 SPACE                                               &lt 3 ENTER  &mo 2  &kp LG(SPC)
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -108,7 +106,7 @@
             display-name = "SYMBOL";
             bindings = <
 &trans  &kp EXCL      &kp AT        &kp HASH   &kp DLLR   &kp PRCNT                            &mmv MOVE_UP                     &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR  &kp BSPC
-&trans  &kp SLASH     &mkp LCLK     &mkp MCLK  &mkp RCLK  &mkp MB4             &mmv MOVE_LEFT  &mt LCLK RCLK   &mmv MOVE_RIGHT  &kp MINUS  &kp LBKT   &kp RBKT   &kp RBKT  &kp BSLH  &kp GRAVE
+&trans  &kp SLASH     &mkp LCLK     &mkp MCLK  &mkp RCLK  &mkp MB4             &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &kp MINUS  &kp LBKT   &kp RBKT   &kp RBKT  &kp BSLH  &kp GRAVE
 &trans  &out OUT_USB  &out OUT_BLE  &none      &none      &mkp MB5   &trans                    &mmv MOVE_DOWN                   &kp UNDER  &kp PLUS   &kp LBRC   &kp RBRC  &kp PIPE  &kp TILDE
                                     &trans     &trans     &kp SPACE                                                             &kp RET    &trans     &trans
             >;
