@@ -1,5 +1,5 @@
-#define ZMK_POINTING_DEFAULT_MOVE_VAL 1200  // 600
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 25   // 10
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 1200
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 25
 
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
@@ -11,7 +11,6 @@
 #include <dt-bindings/zmk/rgb.h>
 
 &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
-
 &msc_input_listener { input-processors = <&zip_scroll_scaler 2 1>; };
 
 &msc {
@@ -41,51 +40,39 @@
         };
     };
 
- rgb_encoder: rgb_encoder {
-        compatible = "zmk,behavior-sensor-rotate";
-        #sensor-binding-cells = <0>;
-        bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
+    combos {
+        compatible = "zmk,combos";
+
+        // ✔ F + D → NAV
+        combo_fd_nav {
+            timeout-ms = <50>;
+            key-positions = <16 17>;
+            bindings = <&mo 1>;
+            layers = <0>;
+        };
+
+        // ✔ НИЖНИЕ 2 КНОПКИ → SERVICE
+        combo_service {
+            timeout-ms = <50>;
+            key-positions = <31 32>;   // ← ИСПРАВЛЕНО ПОД ТВОЙ СКРИН
+            bindings = <&mo 5>;
+            layers = <0>;
+        };
+
+        combo_jk_backspace {
+            timeout-ms = <50>;
+            key-positions = <23 24>;
+            bindings = <&kp BSPC>;
+            layers = <0>;
+        };
+
+        combo_kl_delete {
+            timeout-ms = <50>;
+            key-positions = <24 25>;
+            bindings = <&kp DEL>;
+            layers = <0>;
+        };
     };
-
-    scroll_encoder: scroll_encoder {
-        compatible = "zmk,behavior-sensor-rotate";
-        #sensor-binding-cells = <0>;
-        bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
-
-        tap-ms = <100>;
-    };
-
-combos {
-    compatible = "zmk,combos";
-
-    combo_fd_numbers {
-        timeout-ms = <50>;
-        key-positions = <16 17>;
-        bindings = <&mo 2>;   // теперь цифры
-        layers = <0>;
-    };
-
-    combo_service_layer {
-        timeout-ms = <50>;
-        key-positions = <30 31>;
-        bindings = <&mo 5>;
-        layers = <0>;
-    };
-
-    combo_jk_backspace {
-        timeout-ms = <50>;
-        key-positions = <23 24>;
-        bindings = <&kp BSPC>;
-        layers = <0>;
-    };
-
-    combo_kl_delete {
-        timeout-ms = <50>;
-        key-positions = <24 25>;
-        bindings = <&kp DEL>;
-        layers = <0>;
-    };
-};
 
     keymap {
         compatible = "zmk,keymap";
@@ -97,6 +84,8 @@ combos {
 &kp LCTRL  &kp Z  &kp X  &kp C          &kp V  &kp B        &kp C_MUTE             &kp DOWN               &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
                          &new_behavior  &mo 2  &kp SPC                                                    &lt 4 ENTER  &mo 3  &kp LG(SPC)
             >;
+
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         nav_layer {
@@ -111,7 +100,7 @@ combos {
         numb_layer {
             bindings = <
 &kp ESC  &trans  &trans  &trans  &trans  &trans                                   &msc SCRL_UP                     &trans           &kp N7    &kp N8    &kp N9    &trans    &kp BSPC
-&trans   &trans  &trans  &trans  &trans  &trans                 &msc SCRL_LEFT    &mkp LCLK     &msc SCRL_RIGHT    &kp ENTER         &kp N4    &kp N5    &kp N6    &kp N0    &kp PG_UP
+&trans   &trans  &trans  &trans  &trans  &trans                 &msc SCRL_LEFT    &mkp LCLK     &msc SCRL_RIGHT    &kp ENTER        &kp N4    &kp N5    &kp N6    &kp N0    &kp PG_UP
 &trans   &trans  &trans  &trans  &trans  &trans   &kp C_MUTE                      &msc SCRL_DOWN                   &trans          &kp N1    &kp N2    &kp N3    &kp END   &kp PG_DN
                          &trans  &trans  &trans                                                                    &kp INS          &kp DEL   &trans
             >;
