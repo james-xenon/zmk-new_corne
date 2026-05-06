@@ -33,11 +33,11 @@
             bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
         };
 
-        new_behavior: new_behavior {
+        symb_fn_td: symb_fn_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <250>;
-            bindings = <&kp RALT>, <&mo 4>;
+            tapping-term-ms = <300>;
+            bindings = <&mo 2>, <&mo 4>;
         };
 
         nav2_double_tap: nav2_double_tap {
@@ -45,6 +45,52 @@
             #binding-cells = <0>;
             tapping-term-ms = <300>;
             bindings = <&none>, <&tog 6>;
+        };
+
+        edit_ht: edit_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <220>;
+            quick-tap-ms = <150>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        lbkt_screenshot: lbkt_screenshot {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <0>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <220>;
+            quick-tap-ms = <150>;
+            bindings = <&screenshot_win_shift_s>, <&kp LBKT>;
+        };
+
+        y_media_td: y_media_td {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&edit_ht LC(Y) Y>, <&kp C_PP>;
+        };
+
+        u_media_td: u_media_td {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&kp U>, <&kp C_PREV>;
+        };
+
+        i_media_td: i_media_td {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&kp I>, <&kp C_NEXT>;
+        };
+
+        o_media_td: o_media_td {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&kp O>, <&kp C_STOP>;
         };
 
         vol_up2: vol_up2 {
@@ -73,6 +119,19 @@
                 <&macro_tap &kp SPACE>,
                 <&macro_release &kp LGUI>;
         };
+
+        screenshot_win_shift_s: screenshot_win_shift_s {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <30>;
+            bindings =
+                <&macro_press &kp LGUI>,
+                <&macro_press &kp LSHIFT>,
+                <&macro_tap &kp S>,
+                <&macro_release &kp LSHIFT>,
+                <&macro_release &kp LGUI>;
+        };
     };
 
     volume_encoder: volume_encoder {
@@ -93,7 +152,7 @@
             layers = <0>;
         };
 
-        // new_behavior + mo 2 → SERVICE while held
+        // RALT + symb_fn_td → SERVICE while held
         combo_service {
             timeout-ms = <50>;
             key-positions = <42 43>;
@@ -129,10 +188,10 @@
 
         default_layer {
             bindings = <
-&kp TAB    &kp Q  &kp W  &kp E          &kp R  &kp T                               &kp UP                 &kp Y           &kp U  &kp I      &kp O    &kp P     &kp LBKT
-&td0       &kp A  &kp S  &kp D          &kp F  &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT   &kp H           &kp J  &kp K      &kp L    &kp SEMI  &mt LSHFT SQT
-&kp LCTRL  &kp Z  &kp X  &kp C          &kp V  &kp B      &kp C_MUTE               &kp DOWN               &kp N           &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
-                         &new_behavior  &mo 2  &kp SPC                                                    &mt LGUI ENTER  &mo 3  &win_space
+&kp TAB    &kp Q          &kp W          &kp E          &kp R          &kp T                               &kp UP                 &y_media_td     &u_media_td  &i_media_td  &o_media_td  &kp P     &lbkt_screenshot
+&td0       &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D      &edit_ht LC(F) F  &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT   &kp H           &kp J       &kp K        &kp L        &kp SEMI  &mt LSHFT SQT
+&kp LCTRL  &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C  &edit_ht LC(V) V  &kp B      &kp C_MUTE               &kp DOWN               &kp N           &kp M       &kp COMMA    &kp DOT      &kp FSLH     &kp ESC
+                                  &kp RALT       &symb_fn_td      &kp SPC                                                    &mt LGUI ENTER  &mo 3       &win_space
             >;
 
             sensor-bindings = <&volume_encoder>;
@@ -184,10 +243,10 @@
 
         service_layer {
             bindings = <
-&kp ESC  &trans  &trans  &trans    &trans           &studio_unlock                           &trans                   &bt BT_CLR_ALL    &trans           &bt BT_SEL 0      &bt BT_SEL 1      &bt BT_SEL 2         &bt BT_SEL 3
-&trans   &trans  &trans  &trans    &trans           &out OUT_BLE                     &trans  &trans    &trans         &trans            &trans           &trans            &trans            &trans               &trans
-&trans   &trans  &trans  &trans    &trans           &out OUT_USB    &kp C_MUTE               &trans                   &rgb_ug RGB_EFR   &rgb_ug RGB_EFF  &rgb_ug RGB_SPI   &rgb_ug RGB_SPD   &rgb_ug RGB_BRI      &rgb_ug RGB_BRD
-                         &trans    &trans           &trans                                                            &rgb_ug RGB_ON    &trans           &rgb_ug RGB_OFF
+&kp ESC  &trans  &trans  &trans    &mkp RCLK      &studio_unlock                           &trans                   &bt BT_CLR_ALL    &trans           &bt BT_SEL 0      &bt BT_SEL 1      &bt BT_SEL 2         &bt BT_SEL 3
+&trans   &trans  &trans  &trans    &trans         &out OUT_BLE                     &trans  &trans    &trans         &trans            &trans           &trans            &trans            &trans               &trans
+&trans   &trans  &trans  &trans    &trans         &out OUT_USB    &kp C_MUTE               &trans                   &rgb_ug RGB_EFR   &rgb_ug RGB_EFF  &rgb_ug RGB_SPI   &rgb_ug RGB_SPD   &rgb_ug RGB_BRI      &rgb_ug RGB_BRD
+                         &trans    &trans         &trans                                                            &rgb_ug RGB_ON    &trans           &rgb_ug RGB_OFF
             >;
 
             sensor-bindings = <&volume_encoder>;
@@ -195,7 +254,7 @@
 
         nav2_layer {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans                        &trans           &trans  &trans  &trans  &trans    &trans    &trans
+&kp ESC &trans  &trans  &trans  &trans  &trans                        &trans           &trans  &trans  &trans  &trans    &kp DEL   &kp BSPC
 &trans  &trans  &trans  &trans  &trans  &trans              &trans    &trans  &trans   &trans  &trans  &trans  &kp ESC   &kp UP    &kp ENTER
 &trans  &trans  &trans  &trans  &trans  &trans  &kp C_MUTE            &trans           &trans  &trans  &trans  &kp LEFT  &kp DOWN  &kp RIGHT
                         &trans  &trans  &trans                                         &trans  &trans  &trans
