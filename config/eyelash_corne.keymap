@@ -44,7 +44,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
-            bindings = <&none>, <&tog 6>;
+            bindings = <&trans>, <&tog 6>;
         };
 
         edit_ht: edit_ht {
@@ -53,7 +53,28 @@
             flavor = "tap-preferred";
             tapping-term-ms = <220>;
             quick-tap-ms = <150>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&kp &kp>;
+        };
+
+        tap_lbkt: tap_lbkt {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <30>;
+            bindings = <&kp LBKT>;
+        };
+
+        screenshot_win_shift_s: screenshot_win_shift_s {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <30>;
+            bindings =
+                <&macro_press &kp LGUI>,
+                <&macro_press &kp LSHIFT>,
+                <&macro_tap &kp S>,
+                <&macro_release &kp LSHIFT>,
+                <&macro_release &kp LGUI>;
         };
 
         lbkt_screenshot: lbkt_screenshot {
@@ -62,7 +83,7 @@
             flavor = "tap-preferred";
             tapping-term-ms = <220>;
             quick-tap-ms = <150>;
-            bindings = <&screenshot_win_shift_s>, <&kp LBKT>;
+            bindings = <&screenshot_win_shift_s &tap_lbkt>;
         };
 
         y_media_td: y_media_td {
@@ -117,19 +138,6 @@
             bindings =
                 <&macro_press &kp LGUI>,
                 <&macro_tap &kp SPACE>,
-                <&macro_release &kp LGUI>;
-        };
-
-        screenshot_win_shift_s: screenshot_win_shift_s {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <30>;
-            bindings =
-                <&macro_press &kp LGUI>,
-                <&macro_press &kp LSHIFT>,
-                <&macro_tap &kp S>,
-                <&macro_release &kp LSHIFT>,
                 <&macro_release &kp LGUI>;
         };
     };
@@ -188,8 +196,8 @@
 
         default_layer {
             bindings = <
-&kp TAB    &kp Q          &kp W          &kp E          &kp R          &kp T                               &kp UP                 &y_media_td     &u_media_td  &i_media_td  &o_media_td  &kp P     &lbkt_screenshot
-&td0       &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D      &edit_ht LC(F) F  &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT   &kp H           &kp J       &kp K        &kp L        &kp SEMI  &mt LSHFT SQT
+&kp TAB    &kp Q             &kp W             &kp E             &kp R             &kp T                               &kp UP                 &y_media_td     &u_media_td  &i_media_td  &o_media_td  &kp P     &lbkt_screenshot
+&td0       &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D             &edit_ht LC(F) F  &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT   &kp H           &kp J       &kp K        &kp L        &kp SEMI  &mt LSHFT SQT
 &kp LCTRL  &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C  &edit_ht LC(V) V  &kp B      &kp C_MUTE               &kp DOWN               &kp N           &kp M       &kp COMMA    &kp DOT      &kp FSLH     &kp ESC
                                   &kp RALT       &symb_fn_td      &kp SPC                                                    &mt LGUI ENTER  &mo 3       &win_space
             >;
