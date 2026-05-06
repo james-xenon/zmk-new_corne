@@ -11,6 +11,7 @@
 #include <dt-bindings/zmk/rgb.h>
 
 &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
+
 &msc_input_listener { input-processors = <&zip_scroll_scaler 2 1>; };
 
 &msc {
@@ -38,39 +39,39 @@
             #binding-cells = <0>;
             bindings = <&kp RALT>, <&kp LEFT_GUI>;
         };
-
-        td_space_service: td_space_service {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp SPC>, <&tog 5>;
-        };
     };
 
-    combos {
-        compatible = "zmk,combos";
+combos {
+    compatible = "zmk,combos";
 
-        combo_fd_nav_mouse {
-            timeout-ms = <50>;
-            key-positions = <16 17>;
-            bindings = <&mo 1>;
-            layers = <0>;
-        };
-
-        combo_jk_backspace {
-            timeout-ms = <50>;
-            key-positions = <23 24>;
-            bindings = <&kp BSPC>;
-            layers = <0>;
-        };
-
-        combo_kl_delete {
-            timeout-ms = <50>;
-            key-positions = <24 25>;
-            bindings = <&kp DEL>;
-            layers = <0>;
-        };
+    combo_fd_numbers {
+        timeout-ms = <50>;
+        key-positions = <16 17>;
+        bindings = <&mo 2>;   // теперь цифры
+        layers = <0>;
     };
+
+    combo_service_layer {
+        timeout-ms = <50>;
+        key-positions = <30 31>;
+        bindings = <&mo 5>;
+        layers = <0>;
+    };
+
+    combo_jk_backspace {
+        timeout-ms = <50>;
+        key-positions = <23 24>;
+        bindings = <&kp BSPC>;
+        layers = <0>;
+    };
+
+    combo_kl_delete {
+        timeout-ms = <50>;
+        key-positions = <24 25>;
+        bindings = <&kp DEL>;
+        layers = <0>;
+    };
+};
 
     keymap {
         compatible = "zmk,keymap";
@@ -80,7 +81,7 @@
 &kp TAB    &kp Q  &kp W  &kp E          &kp R  &kp T                               &kp UP                 &kp Y        &kp U  &kp I      &kp O    &kp P     &kp LBKT
 &td0       &kp A  &kp S  &kp D          &kp F  &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT   &kp H        &kp J  &kp K      &kp L    &kp SEMI  &mt LSHFT SQT
 &kp LCTRL  &kp Z  &kp X  &kp C          &kp V  &kp B        &kp C_MUTE             &kp DOWN               &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
-                         &new_behavior  &mo 2  &td_space_service                                          &lt 4 ENTER  &mo 3  &kp LG(SPC)
+                         &new_behavior  &mo 1  &kp SPC                                                    &lt 4 ENTER  &mo 3  &kp LG(SPC)
             >;
         };
 
@@ -93,11 +94,11 @@
             >;
         };
 
-        lower_layer {
+        numb_layer {
             bindings = <
-&kp ESC  &trans  &trans  &trans  &trans  &trans                                   &msc SCRL_UP                     &kp N6           &kp N7    &kp N8    &kp N9    &kp N0    &kp BSPC
-&trans   &trans  &trans  &trans  &trans  &trans                 &msc SCRL_LEFT    &mkp LCLK     &msc SCRL_RIGHT    &kp LEFT         &kp N4    &kp N5    &kp N6    &kp N0    &kp PG_UP
-&trans   &trans  &trans  &trans  &trans  &trans   &kp C_MUTE                      &msc SCRL_DOWN                   &rgb_ug RGB_EFR  &kp N1    &kp N2    &kp N3    &kp END   &kp PG_DN
+&kp ESC  &trans  &trans  &trans  &trans  &trans                                   &msc SCRL_UP                     &trans           &kp N7    &kp N8    &kp N9    &trans    &kp BSPC
+&trans   &trans  &trans  &trans  &trans  &trans                 &msc SCRL_LEFT    &mkp LCLK     &msc SCRL_RIGHT    &ENTER         &kp N4    &kp N5    &kp N6    &kp N0    &kp PG_UP
+&trans   &trans  &trans  &trans  &trans  &trans   &kp C_MUTE                      &msc SCRL_DOWN                   &trans          &kp N1    &kp N2    &kp N3    &kp END   &kp PG_DN
                          &trans  &trans  &trans                                                                    &kp INS          &kp DEL   &trans
             >;
         };
