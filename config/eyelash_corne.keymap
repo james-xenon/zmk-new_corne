@@ -14,8 +14,8 @@
 &msc_input_listener { input-processors = <&zip_scroll_scaler 2 1>; };
 
 &msc {
-    acceleration-exponent = <1>;
-    time-to-max-speed-ms = <100>;
+    acceleration-exponent = <0>;
+    time-to-max-speed-ms = <0>;
     delay-ms = <0>;
 };
 
@@ -27,6 +27,7 @@
 
 / {
     behaviors {
+
         td0: td0 {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -38,12 +39,24 @@
             #binding-cells = <0>;
             bindings = <&kp RALT>, <&kp LEFT_GUI>;
         };
+
+        // 🔥 ДВОЙНОЙ ШАГ ГРОМКОСТИ
+        vol_up2: vol_up2 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp C_VOLUME_UP &kp C_VOLUME_UP>;
+        };
+
+        vol_down2: vol_down2 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp C_VOLUME_DOWN &kp C_VOLUME_DOWN>;
+        };
     };
 
     combos {
         compatible = "zmk,combos";
 
-        // F + D → NAV
         combo_fd_nav {
             timeout-ms = <50>;
             key-positions = <16 17>;
@@ -51,11 +64,10 @@
             layers = <0>;
         };
 
-        // НИЖНИЕ 2 СЛЕВА → SERVICE (исправлено)
         combo_service {
             timeout-ms = <50>;
             key-positions = <28 29>;
-            bindings = <&mo 5>;
+            bindings = <&mo 4>;
             layers = <0>;
         };
 
@@ -63,14 +75,14 @@
             timeout-ms = <50>;
             key-positions = <23 24>;
             bindings = <&kp BSPC>;
-            layers = <0>;
+            layers = <0 1 2 3 4>;
         };
 
         combo_kl_delete {
             timeout-ms = <50>;
             key-positions = <24 25>;
             bindings = <&kp DEL>;
-            layers = <0>;
+            layers = <0 1 2 3 4>;
         };
     };
 
@@ -82,11 +94,11 @@
 &kp TAB    &kp Q  &kp W  &kp E          &kp R  &kp T                               &kp UP                 &kp Y        &kp U  &kp I      &kp O    &kp P     &kp LBKT
 &td0       &kp A  &kp S  &kp D          &kp F  &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT   &kp H        &kp J  &kp K      &kp L    &kp SEMI  &mt LSHFT SQT
 &kp LCTRL  &kp Z  &kp X  &kp C          &kp V  &kp B        &kp C_MUTE             &kp DOWN               &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
-                         &new_behavior  &mo 2  &kp SPC            &none            &lt 4 ENTER  &mo 3  &kp LG(SPC)
+                         &new_behavior  &mo 2  &kp SPC                                                    &lt 4 ENTER  &mo 3  &kp LG(SPC)
             >;
 
-            // ВАЖНО: колесо громкости
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+            // 🔥 фикс колеса
+            sensor-bindings = <&inc_dec_kp &vol_up2 &vol_down2>;
         };
 
         nav_layer {
@@ -94,44 +106,43 @@
 &trans  &trans  &trans  &trans  &trans  &trans                       &trans             &trans          &mkp LCLK  &kp UP     &mkp RCLK  &trans        &trans
 &trans  &trans  &trans  &trans  &trans  &trans             &trans    &trans  &trans     &msc SCRL_DOWN  &kp LEFT   &kp DOWN   &kp RIGHT  &msc SCRL_UP  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans               &trans             &trans          &trans     &mkp MCLK  &trans     &trans        &trans
-                        &trans  &trans  &trans            &none      &trans  &trans     &trans
+                        &trans  &trans  &trans                                          &trans          &trans     &trans
             >;
+
+            sensor-bindings = <&inc_dec_kp &vol_up2 &vol_down2>;
         };
 
         numb_layer {
             bindings = <
 &kp ESC  &trans  &trans  &trans  &trans  &trans                                   &msc SCRL_UP                     &trans           &kp N7    &kp N8    &kp N9    &trans    &kp BSPC
 &trans   &trans  &trans  &trans  &trans  &trans                 &msc SCRL_LEFT    &mkp LCLK     &msc SCRL_RIGHT    &kp ENTER        &kp N4    &kp N5    &kp N6    &kp N0    &kp PG_UP
-&trans   &trans  &trans  &trans  &trans  &trans   &kp C_MUTE                      &msc SCRL_DOWN                   &trans          &kp N1    &kp N2    &kp N3    &kp END   &kp PG_DN
-                         &trans  &trans  &trans            &none                  &kp INS          &kp DEL   &trans
+&trans   &trans  &trans  &trans  &trans  &trans   &kp C_MUTE                      &msc SCRL_DOWN                   &trans           &kp N1    &kp N2    &kp N3    &kp END   &kp PG_DN
+                         &trans  &trans  &trans                                                                    &kp INS          &trans    &trans
             >;
+
+            sensor-bindings = <&inc_dec_kp &vol_up2 &vol_down2>;
         };
 
-        raise_layer {
+        symb_layer {
             bindings = <
-&trans  &kp EXCL         &kp AT            &kp HASH     &kp DLLR   &kp PRCNT                            &mmv MOVE_UP          &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp BSPC
-&trans  &kp SLASH        &mkp LCLK         &mkp MCLK    &mkp RCLK  &mkp MB4             &mmv MOVE_LEFT  &mkp LCLK             &mmv MOVE_RIGHT   &kp MINUS  &kp LBKT   &kp RBKT   &kp RBKT   &kp BSLH   &kp GRAVE
-&trans  &out OUT_USB     &out OUT_BLE      &none        &none      &mkp MB5   &trans                    &mmv MOVE_DOWN        &kp UNDER  &kp PLUS   &kp LBRC   &kp RBRC   &kp PIPE   &kp TILDE
-                                           &trans       &trans     &kp SPC        &none               &kp RET    &trans     &trans
+&trans  &kp EXCL         &kp AT            &kp HASH     &kp DLLR   &kp PRCNT                            &mmv MOVE_UP                   &kp CARET         &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp BSPC
+&trans  &kp SLASH        &mkp LCLK         &mkp MCLK    &mkp RCLK  &mkp MB4             &mmv MOVE_LEFT  &mkp LCLK  &mmv MOVE_RIGHT    &kp MINUS         &kp LBKT   &kp RBKT   &kp RBKT   &kp BSLH   &kp GRAVE
+&trans  &out OUT_USB     &out OUT_BLE      &trans       &trans     &mkp MB5   &trans                    &mmv MOVE_DOWN                &kp UNDER         &kp PLUS   &kp LBRC   &kp RBRC   &kp PIPE   &kp TILDE
+                                           &trans       &trans     &kp SPC                                                            &kp RET           &trans     &trans
             >;
+
+            sensor-bindings = <&inc_dec_kp &vol_up2 &vol_down2>;
         };
 
         layer_4 {
             bindings = <
-&studio_unlock  &kp F1       &kp F2      &kp F3        &kp F4      &kp F5                                 &mmv MOVE_UP                       &kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &mo 5
-&trans          &trans       &mkp LCLK   &mkp MCLK     &mkp RCLK   &mkp MB4                 &mmv MOVE_LEFT   &mkp LCLK  &mmv MOVE_RIGHT   &bootloader &mkp LCLK &mkp MCLK &mkp RCLK &kp PRINTSCREEN &kp F12
-&trans          &sys_reset   &trans      &bootloader   &trans      &mkp MB5   &kp C_MUTE                  &mmv MOVE_DOWN                  &trans  &trans  &bootloader &sys_reset &kp SCROLLLOCK &kp PAUSE_BREAK
-                             &trans      &trans        &trans              &none                         &trans     &trans     &trans
+&studio_unlock  &kp F1       &kp F2      &kp F3        &kp F4      &kp F5                                     &mmv MOVE_UP                       &kp F6        &kp F7     &kp F8       &kp F9     &kp F10          &trans
+&trans          &trans       &mkp LCLK   &mkp MCLK     &mkp RCLK   &mkp MB4                 &mmv MOVE_LEFT   &mkp LCLK  &mmv MOVE_RIGHT         &bootloader    &mkp LCLK  &mkp MCLK    &mkp RCLK  &kp PRINTSCREEN  &kp F12
+&trans          &sys_reset   &trans      &bootloader   &trans      &mkp MB5   &kp C_MUTE                       &mmv MOVE_DOWN                    &trans        &trans     &bootloader  &sys_reset &kp SCROLLLOCK   &kp PAUSE_BREAK
+                                         &trans      &trans        &trans                                                                        &trans        &trans     &trans
             >;
-        };
 
-        service_layer {
-            bindings = <
-&kp ESC  &trans  &trans  &trans    &trans           &trans                                   &trans                  &bt BT_CLR_ALL    &trans          &bt BT_SEL 0     &bt BT_SEL 1      &bt BT_SEL 2         &bt BT_SEL 3
-&trans   &trans  &trans  &trans    &trans           &trans                           &trans   &trans        &trans   &trans          &trans           &trans            &trans               &trans       &trans
-&trans   &trans  &trans  &trans    &rgb_ug RGB_OFF  &rgb_ug RGB_ON    &kp C_MUTE             &trans                  &rgb_ug RGB_EFR   &rgb_ug RGB_EFF &rgb_ug RGB_SPI  &rgb_ug RGB_SPD   &rgb_ug RGB_BRI      &rgb_ug RGB_BRD
-                         &trans    &trans           &trans              &none                 &trans            &trans          &trans
-            >;
+            sensor-bindings = <&inc_dec_kp &vol_up2 &vol_down2>;
         };
     };
 };
