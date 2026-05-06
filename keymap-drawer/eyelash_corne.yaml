@@ -48,7 +48,7 @@ layers:
   - SPC
   - {t: '$$mdi:keyboard-return$$', h: LGUI}
   - numb
-  - '&win_space'
+  - {t: Gui+SPC, h: '$$mdi:apple-keyboard-option$$'}
   nav1:
   - $$mdi:keyboard-esc$$
   - {t: '$$mdi:transfer$$', type: trans}
