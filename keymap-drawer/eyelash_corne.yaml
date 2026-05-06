@@ -8,10 +8,10 @@ layers:
   - R
   - T
   - $$mdi:arrow-up-bold$$
-  - '&y_media_td'
-  - '&u_media_td'
-  - '&i_media_td'
-  - '&o_media_td'
+  - {t: Y, h: '$$mdi:play-pause$$'}
+  - {t: U, h: '$$mdi:skip-previous$$'}
+  - {t: I, h: '$$mdi:skip-next$$'}
+  - {t: O, h: STOP}
   - P
   - {t: '[', h: '&screenshot_win_shift_s', s: '{'}
   - '&td0'
