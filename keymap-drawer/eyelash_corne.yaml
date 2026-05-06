@@ -13,7 +13,7 @@ layers:
   - '&i_media_td'
   - '&o_media_td'
   - P
-  - '&lbkt_screenshot'
+  - {t: '[', h: '&screenshot_win_shift_s', s: '{'}
   - '&td0'
   - {t: A, h: Ctl+A}
   - {t: S, h: Ctl+S}
