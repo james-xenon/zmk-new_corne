@@ -36,7 +36,7 @@
         new_behavior: new_behavior {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            bindings = <&kp RALT>, <&kp LEFT_GUI>;
+            bindings = <&kp RALT>, <&mo 4>;
         };
 
         vol_up2: vol_up2 {
@@ -105,7 +105,7 @@
 &kp TAB    &kp Q  &kp W  &kp E          &kp R  &kp T                               &kp UP                 &kp Y        &kp U  &kp I      &kp O    &kp P     &kp LBKT
 &td0       &kp A  &kp S  &kp D          &kp F  &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT   &kp H        &kp J  &kp K      &kp L    &kp SEMI  &mt LSHFT SQT
 &kp LCTRL  &kp Z  &kp X  &kp C          &kp V  &kp B        &kp C_MUTE             &kp DOWN               &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
-                         &new_behavior  &mo 2  &kp SPC                                                    &lt 4 ENTER  &mo 3  &kp LG(SPC)
+                         &new_behavior  &mo 2  &kp SPC                                                    &mt LGUI ENTER  &mo 3  &kp LG(SPC)
             >;
 
             sensor-bindings = <&volume_encoder>;
@@ -166,4 +166,4 @@
             sensor-bindings = <&volume_encoder>;
         };
     };
-};
+}
