@@ -41,6 +41,20 @@
         };
     };
 
+ rgb_encoder: rgb_encoder {
+        compatible = "zmk,behavior-sensor-rotate";
+        #sensor-binding-cells = <0>;
+        bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
+    };
+
+    scroll_encoder: scroll_encoder {
+        compatible = "zmk,behavior-sensor-rotate";
+        #sensor-binding-cells = <0>;
+        bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+
+        tap-ms = <100>;
+    };
+
 combos {
     compatible = "zmk,combos";
 
@@ -81,7 +95,7 @@ combos {
 &kp TAB    &kp Q  &kp W  &kp E          &kp R  &kp T                               &kp UP                 &kp Y        &kp U  &kp I      &kp O    &kp P     &kp LBKT
 &td0       &kp A  &kp S  &kp D          &kp F  &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT   &kp H        &kp J  &kp K      &kp L    &kp SEMI  &mt LSHFT SQT
 &kp LCTRL  &kp Z  &kp X  &kp C          &kp V  &kp B        &kp C_MUTE             &kp DOWN               &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
-                         &new_behavior  &mo 1  &kp SPC                                                    &lt 4 ENTER  &mo 3  &kp LG(SPC)
+                         &new_behavior  &mo 2  &kp SPC                                                    &lt 4 ENTER  &mo 3  &kp LG(SPC)
             >;
         };
 
@@ -97,7 +111,7 @@ combos {
         numb_layer {
             bindings = <
 &kp ESC  &trans  &trans  &trans  &trans  &trans                                   &msc SCRL_UP                     &trans           &kp N7    &kp N8    &kp N9    &trans    &kp BSPC
-&trans   &trans  &trans  &trans  &trans  &trans                 &msc SCRL_LEFT    &mkp LCLK     &msc SCRL_RIGHT    &ENTER         &kp N4    &kp N5    &kp N6    &kp N0    &kp PG_UP
+&trans   &trans  &trans  &trans  &trans  &trans                 &msc SCRL_LEFT    &mkp LCLK     &msc SCRL_RIGHT    &kp ENTER         &kp N4    &kp N5    &kp N6    &kp N0    &kp PG_UP
 &trans   &trans  &trans  &trans  &trans  &trans   &kp C_MUTE                      &msc SCRL_DOWN                   &trans          &kp N1    &kp N2    &kp N3    &kp END   &kp PG_DN
                          &trans  &trans  &trans                                                                    &kp INS          &kp DEL   &trans
             >;
