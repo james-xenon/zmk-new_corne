@@ -43,7 +43,6 @@
     combos {
         compatible = "zmk,combos";
 
-        // ✔ F + D → NAV
         combo_fd_nav {
             timeout-ms = <50>;
             key-positions = <16 17>;
@@ -51,10 +50,9 @@
             layers = <0>;
         };
 
-        // ✔ НИЖНИЕ 2 КНОПКИ → SERVICE
         combo_service {
             timeout-ms = <50>;
-            key-positions = <31 32>;   // ← ИСПРАВЛЕНО ПОД ТВОЙ СКРИН
+            key-positions = <31 32>;
             bindings = <&mo 5>;
             layers = <0>;
         };
@@ -121,7 +119,7 @@
 &trans          &trans       &mkp LCLK   &mkp MCLK     &mkp RCLK   &mkp MB4                 &mmv MOVE_LEFT   &mkp LCLK  &mmv MOVE_RIGHT   &bootloader &mkp LCLK &mkp MCLK &mkp RCLK &kp PRINTSCREEN &kp F12
 &trans          &sys_reset   &trans      &bootloader   &trans      &mkp MB5   &kp C_MUTE                  &mmv MOVE_DOWN                  &trans  &trans  &bootloader &sys_reset &kp SCROLLLOCK &kp PAUSE_BREAK
                              &trans      &trans        &trans                                                                             &trans     &trans     &trans
-            >;  
+            >;
         };
 
         service_layer {
