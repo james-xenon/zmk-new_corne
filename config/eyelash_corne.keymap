@@ -166,4 +166,4 @@
             sensor-bindings = <&volume_encoder>;
         };
     };
-}
+};
