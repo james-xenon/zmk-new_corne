@@ -5,6 +5,7 @@
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/ext_power.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/pointing.h>
@@ -12,18 +13,6 @@
 
 &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
 &msc_input_listener { input-processors = <&zip_scroll_scaler 2 1>; };
-
-&msc {
-    acceleration-exponent = <1>;
-    time-to-max-speed-ms = <100>;
-    delay-ms = <0>;
-};
-
-&mmv {
-    time-to-max-speed-ms = <500>;
-    acceleration-exponent = <1>;
-    trigger-period-ms = <16>;
-};
 
 / {
     behaviors {
@@ -36,7 +25,7 @@
         new_behavior: new_behavior {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            bindings = <&kp RALT>, <&kp LEFT_GUI>;
+            bindings = <&kp LEFT_ALT>, <&kp LEFT_GUI>;
         };
     };
 
@@ -51,11 +40,11 @@
             layers = <0>;
         };
 
-        // нижние 2 кнопки → SERVICE
+        // 2 нижние слева → SERVICE
         combo_service {
             timeout-ms = <50>;
-            key-positions = <30 31>;
-            bindings = <&mo 5>;
+            key-positions = <28 29>;
+            bindings = <&mo 4>;
             layers = <0>;
         };
 
@@ -74,28 +63,15 @@
         };
     };
 
-    rgb_encoder: rgb_encoder {
-        compatible = "zmk,behavior-sensor-rotate";
-        #sensor-binding-cells = <0>;
-        bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
-    };
-
-    scroll_encoder: scroll_encoder {
-        compatible = "zmk,behavior-sensor-rotate";
-        #sensor-binding-cells = <0>;
-        bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
-        tap-ms = <100>;
-    };
-
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             bindings = <
-&kp TAB    &kp Q  &kp W  &kp E          &kp R  &kp T                               &kp UP                 &kp Y        &kp U  &kp I      &kp O    &kp P     &kp LBKT
-&td0       &kp A  &kp S  &kp D          &kp F  &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT   &kp H        &kp J  &kp K      &kp L    &kp SEMI  &mt LSHFT SQT
-&kp LCTRL  &kp Z  &kp X  &kp C          &kp V  &kp B        &kp C_MUTE             &kp DOWN               &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
-                         &new_behavior  &mo 2  &kp SPC                                                    &lt 4 ENTER  &mo 3  &kp LG(SPC)
+&kp TAB    &kp Q  &kp W  &kp E          &kp R  &kp T                                &kp UP                &kp Y        &kp U  &kp I      &kp O    &kp P     &kp LBKT
+&td0       &kp A  &kp S  &kp D          &kp F  &kp G                      &kp LEFT  &kp ENTER  &kp RIGHT  &kp H        &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
+&kp LCTRL  &kp Z  &kp X  &kp C          &kp V  &kp B        &kp C_MUTE              &kp DOWN              &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
+                         &new_behavior  &mo 2  &lt 3 SPACE                             &lt 4 ENTER  &mo 3  &kp LALT
             >;
 
             // колесо громкости
@@ -107,43 +83,34 @@
 &trans  &trans  &trans  &trans  &trans  &trans                       &trans             &trans          &mkp LCLK  &kp UP     &mkp RCLK  &trans        &trans
 &trans  &trans  &trans  &trans  &trans  &trans             &trans    &trans  &trans     &msc SCRL_DOWN  &kp LEFT   &kp DOWN   &kp RIGHT  &msc SCRL_UP  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans               &trans             &trans          &trans     &mkp MCLK  &trans     &trans        &trans
-                        &trans  &trans  &trans                                          &trans          &trans     &trans
+                        &trans  &trans  &trans                                           &trans          &trans     &trans
             >;
         };
 
         numb_layer {
             bindings = <
-&kp ESC  &trans  &trans  &trans  &trans  &trans                                   &msc SCRL_UP                     &trans           &kp N7    &kp N8    &kp N9    &trans    &kp BSPC
-&trans   &trans  &trans  &trans  &trans  &trans                 &msc SCRL_LEFT    &mkp LCLK     &msc SCRL_RIGHT    &kp ENTER        &kp N4    &kp N5    &kp N6    &kp N0    &kp PG_UP
-&trans   &trans  &trans  &trans  &trans  &trans   &kp C_MUTE                      &msc SCRL_DOWN                   &trans          &kp N1    &kp N2    &kp N3    &kp END   &kp PG_DN
-                         &trans  &trans  &trans                                                                    &kp INS          &kp DEL   &trans
+&kp ESC  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5                      &msc SCRL_UP      &kp N6  &kp N7  &kp N8  &kp N9  &kp N0  &kp BSPC
+&trans   &trans  &trans  &trans  &trans  &trans              &msc SCRL_LEFT  &mkp LCLK  &msc SCRL_RIGHT  &kp ENTER  &kp N4  &kp N5  &kp N6  &kp N0  &kp PG_UP
+&trans   &trans  &trans  &trans  &trans  &trans  &kp C_MUTE           &msc SCRL_DOWN   &trans  &kp N1  &kp N2  &kp N3  &kp END  &kp PG_DN
+                         &trans  &trans  &trans                                  &kp INS  &kp DEL  &trans
             >;
         };
 
         raise_layer {
             bindings = <
-&trans  &kp EXCL         &kp AT            &kp HASH     &kp DLLR   &kp PRCNT                            &mmv MOVE_UP          &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp BSPC
-&trans  &kp SLASH        &mkp LCLK         &mkp MCLK    &mkp RCLK  &mkp MB4             &mmv MOVE_LEFT  &mkp LCLK             &mmv MOVE_RIGHT   &kp MINUS  &kp LBKT   &kp RBKT   &kp RBKT   &kp BSLH   &kp GRAVE
-&trans  &out OUT_USB     &out OUT_BLE      &none        &none      &mkp MB5   &trans                    &mmv MOVE_DOWN        &kp UNDER  &kp PLUS   &kp LBRC   &kp RBRC   &kp PIPE   &kp TILDE
-                                           &trans       &trans     &kp SPC                                        &kp RET    &trans     &trans
-            >;
-        };
-
-        layer_4 {
-            bindings = <
-&studio_unlock  &kp F1       &kp F2      &kp F3        &kp F4      &kp F5                                 &mmv MOVE_UP                       &kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &mo 5
-&trans          &trans       &mkp LCLK   &mkp MCLK     &mkp RCLK   &mkp MB4                 &mmv MOVE_LEFT   &mkp LCLK  &mmv MOVE_RIGHT   &bootloader &mkp LCLK &mkp MCLK &mkp RCLK &kp PRINTSCREEN &kp F12
-&trans          &sys_reset   &trans      &bootloader   &trans      &mkp MB5   &kp C_MUTE                  &mmv MOVE_DOWN                  &trans  &trans  &bootloader &sys_reset &kp SCROLLLOCK &kp PAUSE_BREAK
-                             &trans      &trans        &trans                                                                             &trans     &trans     &trans
+&trans  &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT      &mmv MOVE_UP      &kp CARET  &kp AMPS  &kp ASTRK  &kp LPAR  &kp RPAR  &kp BSPC
+&trans  &kp SLASH &none   &none     &none     &none   &mmv MOVE_LEFT  &mkp LCLK  &mmv MOVE_RIGHT  &kp MINUS  &kp EQUAL  &kp LBKT  &kp RBKT  &kp BSLH  &kp GRAVE
+&trans  &out OUT_USB &out OUT_BLE &none &none &none &trans   &mmv MOVE_DOWN   &kp UNDER  &kp PLUS  &kp LBRC  &kp RBRC  &kp PIPE  &kp TILDE
+                &trans &trans &kp SPACE      &kp RET  &trans &trans
             >;
         };
 
         service_layer {
             bindings = <
-&kp ESC  &trans  &trans  &trans    &trans           &trans                                   &trans                  &bt BT_CLR_ALL    &trans          &bt BT_SEL 0     &bt BT_SEL 1      &bt BT_SEL 2         &bt BT_SEL 3
-&trans   &trans  &trans  &trans    &trans           &trans                           &trans   &trans        &trans   &trans          &trans           &trans            &trans               &trans       &trans
-&trans   &trans  &trans  &trans    &rgb_ug RGB_OFF  &rgb_ug RGB_ON    &kp C_MUTE             &trans                  &rgb_ug RGB_EFR   &rgb_ug RGB_EFF &rgb_ug RGB_SPI  &rgb_ug RGB_SPD   &rgb_ug RGB_BRI      &rgb_ug RGB_BRD
-                         &trans    &trans           &trans                                                           &trans            &trans          &trans
+&kp ESC  &trans  &trans  &trans    &trans           &trans                              &trans      &bt BT_CLR_ALL  &trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3
+&trans   &trans  &trans  &trans    &trans           &trans                    &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans   &trans  &trans  &trans    &rgb_ug RGB_OFF  &rgb_ug RGB_ON &kp C_MUTE   &trans  &rgb_ug RGB_EFR  &rgb_ug RGB_EFF  &rgb_ug RGB_SPI  &rgb_ug RGB_SPD  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD
+                         &trans    &trans           &trans                    &trans  &trans  &trans
             >;
         };
     };
