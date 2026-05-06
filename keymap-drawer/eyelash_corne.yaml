@@ -8,17 +8,17 @@ layers:
   - R
   - T
   - $$mdi:arrow-up-bold$$
-  - Y
-  - U
-  - I
-  - O
+  - '&y_media_td'
+  - '&u_media_td'
+  - '&i_media_td'
+  - '&o_media_td'
   - P
-  - {t: '[', s: '{'}
+  - '&lbkt_screenshot'
   - '&td0'
-  - A
-  - S
+  - {t: A, h: Ctl+A}
+  - {t: S, h: Ctl+S}
   - D
-  - F
+  - {t: F, h: Ctl+F}
   - G
   - $$mdi:arrow-left-bold$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
@@ -30,10 +30,10 @@ layers:
   - {t: ;, s: ':'}
   - {t: '''', h: '$$mdi:apple-keyboard-shift$$', s: '"'}
   - $$mdi:apple-keyboard-control$$
-  - Z
-  - X
-  - C
-  - V
+  - {t: Z, h: Ctl+Z}
+  - {t: X, h: Ctl+X}
+  - {t: C, h: Ctl+C}
+  - {t: V, h: Ctl+V}
   - B
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
@@ -43,8 +43,8 @@ layers:
   - {t: ., s: '>'}
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
-  - '&new_behavior'
-  - symb
+  - $$mdi:apple-keyboard-option$$
+  - '&symb_fn_td'
   - SPC
   - {t: '$$mdi:keyboard-return$$', h: LGUI}
   - numb
@@ -142,7 +142,7 @@ layers:
   - '|'
   - '~'
   - {t: '$$mdi:transfer$$', type: trans}
-  - {type: held}
+  - {t: '$$mdi:transfer$$', type: trans}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -250,7 +250,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:mouse-right-click-outline$$
   - '&studio_unlock'
   - {t: '$$mdi:transfer$$', type: trans}
   - BT CLR ALL
@@ -295,6 +295,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - RGB OFF
   nav2:
+  - $$mdi:keyboard-esc$$
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -305,9 +306,8 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:backspace-reverse-outline$$
+  - {t: '$$mdi:backspace$$', type: backspace}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
