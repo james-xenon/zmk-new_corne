@@ -40,6 +40,13 @@
             bindings = <&kp RALT>, <&mo 4>;
         };
 
+        nav2_double_tap: nav2_double_tap {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&none>, <&tog 6>;
+        };
+
         vol_up2: vol_up2 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -78,7 +85,7 @@
     combos {
         compatible = "zmk,combos";
 
-        // F + D → NAV
+        // F + D → NAV1 while held
         combo_fd_nav {
             timeout-ms = <50>;
             key-positions = <16 17>;
@@ -86,12 +93,20 @@
             layers = <0>;
         };
 
-        // new_behavior + mo 2 → SERVICE
+        // new_behavior + mo 2 → SERVICE while held
         combo_service {
             timeout-ms = <50>;
             key-positions = <42 43>;
             bindings = <&mo 5>;
             layers = <0>;
+        };
+
+        // Y + U double tap → toggle NAV2 permanently
+        combo_yu_nav2_double_tap {
+            timeout-ms = <50>;
+            key-positions = <7 8>;
+            bindings = <&nav2_double_tap>;
+            layers = <0 1 2 3 4 5 6>;
         };
 
         combo_jk_backspace {
@@ -116,14 +131,14 @@
             bindings = <
 &kp TAB    &kp Q  &kp W  &kp E          &kp R  &kp T                               &kp UP                 &kp Y           &kp U  &kp I      &kp O    &kp P     &kp LBKT
 &td0       &kp A  &kp S  &kp D          &kp F  &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT   &kp H           &kp J  &kp K      &kp L    &kp SEMI  &mt LSHFT SQT
-&kp LCTRL  &kp Z  &kp X  &kp C          &kp V  &kp B        &kp C_MUTE             &kp DOWN               &kp N           &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
+&kp LCTRL  &kp Z  &kp X  &kp C          &kp V  &kp B      &kp C_MUTE               &kp DOWN               &kp N           &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
                          &new_behavior  &mo 2  &kp SPC                                                    &mt LGUI ENTER  &mo 3  &win_space
             >;
 
             sensor-bindings = <&volume_encoder>;
         };
 
-        nav_layer {
+        nav1_layer {
             bindings = <
 &kp ESC  &trans  &trans  &trans  &trans  &trans                       &trans             &kp HOME          &mkp LCLK  &kp UP     &mkp RCLK  &trans        &kp BSPC
 &trans   &trans  &trans  &trans  &trans  &trans             &trans    &trans  &trans     &msc SCRL_DOWN    &kp LEFT   &kp DOWN   &kp RIGHT  &msc SCRL_UP  &kp PG_UP
@@ -136,18 +151,18 @@
 
         symb_layer {
             bindings = <
-&trans  &kp EXCL         &kp AT            &kp HASH     &kp DLLR   &kp PRCNT                            &mmv MOVE_UP                  &kp CARET         &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp BSPC
-&trans  &trans           &trans            &trans       &trans     &mkp MB4             &mmv MOVE_LEFT  &mkp LCLK  &mmv MOVE_RIGHT    &kp MINUS         &kp LBKT   &kp RBKT   &kp RBKT   &kp BSLH   &kp GRAVE
-&trans  &out OUT_USB     &out OUT_BLE      &trans       &trans     &mkp MB5   &trans                    &mmv MOVE_DOWN                &kp UNDER         &kp PLUS   &kp LBRC   &kp RBRC   &kp PIPE   &kp TILDE
-                                           &trans       &trans     &kp SPC                                                            &kp RET           &trans     &trans
-            >;
+&trans  &kp EXCL   &kp AT      &kp HASH     &kp DLLR   &kp PRCNT                            &mmv MOVE_UP                      &kp CARET         &kp AMPS    &kp ASTRK  &kp LPAR   &kp RPAR   &kp BSPC
+&trans  &trans     &trans      &trans       &trans     &mkp MB4             &mmv MOVE_LEFT  &mkp LCLK      &mmv MOVE_RIGHT    &kp MINUS         &kp RBKT    &kp LBKT   &kp EQUAL  &kp BSLH   &kp GRAVE
+&trans  &trans     &trans      &trans       &trans     &mkp MB5   &trans                    &mmv MOVE_DOWN                    &kp UNDER         &kp PLUS    &kp LBRC   &kp RBRC   &kp PIPE   &kp TILDE
+                               &trans       &trans     &kp SPC                                                                &kp RET           &trans      &trans
+            >;   
 
             sensor-bindings = <&volume_encoder>;
         };
 
         numb_layer {
             bindings = <
-&kp ESC  &trans  &trans  &trans  &trans  &trans                                   &msc SCRL_UP                       &kp HOME         &kp N7    &kp N8    &kp N9    &trans    &kp BSPC
+&kp ESC  &trans  &trans  &trans  &trans  &trans                                     &msc SCRL_UP                     &kp HOME         &kp N7    &kp N8    &kp N9    &trans    &kp BSPC
 &trans   &trans  &trans  &trans  &trans  &mkp MB4                 &msc SCRL_LEFT    &mkp LCLK     &msc SCRL_RIGHT    &kp ENTER        &kp N4    &kp N5    &kp N6    &kp N0    &kp PG_UP
 &trans   &trans  &trans  &trans  &trans  &mkp MB5   &kp C_MUTE                      &msc SCRL_DOWN                   &kp END          &kp N1    &kp N2    &kp N3    &trans    &kp PG_DN
                          &trans  &trans  &trans                                                                      &kp INS          &trans    &trans
@@ -159,8 +174,8 @@
         fn_layer {
             bindings = <
 &kp ESC  &kp F1  &kp F2  &kp F3  &kp F4    &kp F5                                     &mmv MOVE_UP                       &kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &kp F11
-&trans   &trans  &trans  &trans  &mkp MB4  &mkp MB4                 &mmv MOVE_LEFT    &mkp LCLK       &mmv MOVE_RIGHT    &trans  &trans  &trans  &trans  &trans   &kp F12
-&trans   &trans  &trans  &trans  &mkp MB5  &mkp MB5  &kp C_MUTE                      &mmv MOVE_DOWN                     &trans  &trans  &trans  &trans  &trans   &trans
+&trans   &trans  &trans  &trans  &trans    &mkp MB4                 &mmv MOVE_LEFT    &mkp LCLK       &mmv MOVE_RIGHT    &trans  &trans  &trans  &trans  &trans   &kp F12
+&trans   &trans  &trans  &trans  &trans    &mkp MB5  &kp C_MUTE                       &mmv MOVE_DOWN                     &trans  &trans  &trans  &trans  &trans   &kp ESC
                          &trans  &trans    &trans                                                                        &trans  &trans  &trans
             >;
 
@@ -170,21 +185,20 @@
         service_layer {
             bindings = <
 &kp ESC  &trans  &trans  &trans    &trans           &studio_unlock                           &trans                   &bt BT_CLR_ALL    &trans           &bt BT_SEL 0      &bt BT_SEL 1      &bt BT_SEL 2         &bt BT_SEL 3
-&trans   &trans  &trans  &trans    &trans           &trans                           &trans  &trans    &trans         &trans            &trans           &trans            &trans            &trans               &trans
+&trans   &trans  &trans  &trans    &trans           &out OUT_BLE                     &trans  &trans    &trans         &trans            &trans           &trans            &trans            &trans               &trans
 &trans   &trans  &trans  &trans    &trans           &out OUT_USB    &kp C_MUTE               &trans                   &rgb_ug RGB_EFR   &rgb_ug RGB_EFF  &rgb_ug RGB_SPI   &rgb_ug RGB_SPD   &rgb_ug RGB_BRI      &rgb_ug RGB_BRD
-                         &trans    &trans           &out OUT_BLE                                                      &rgb_ug RGB_ON    &trans           &rgb_ug RGB_OFF
+                         &trans    &trans           &trans                                                            &rgb_ug RGB_ON    &trans           &rgb_ug RGB_OFF
             >;
 
             sensor-bindings = <&volume_encoder>;
         };
 
-        // цифра 1
-        digit_1_layer {
+        nav2_layer {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans                     &trans           &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans           &trans    &trans  &trans     &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans             &trans           &trans  &trans  &trans  &trans  &trans  &trans
-                        &trans  &trans  &trans                                      &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                        &trans           &trans  &trans  &trans  &trans    &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans              &trans    &trans  &trans   &trans  &trans  &trans  &kp ESC   &kp UP    &kp ENTER
+&trans  &trans  &trans  &trans  &trans  &trans  &kp C_MUTE            &trans           &trans  &trans  &trans  &kp LEFT  &kp DOWN  &kp RIGHT
+                        &trans  &trans  &trans                                         &trans  &trans  &trans
             >;
 
             sensor-bindings = <&volume_encoder>;
