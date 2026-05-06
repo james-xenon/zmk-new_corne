@@ -46,7 +46,7 @@ layers:
   - '&new_behavior'
   - symb
   - SPC
-  - {t: '$$mdi:keyboard-return$$', h: fn}
+  - {t: '$$mdi:keyboard-return$$', h: LGUI}
   - numb
   - Gui+SPC
   nav:
@@ -242,7 +242,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {type: held}
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   service:
