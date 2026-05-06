@@ -57,12 +57,12 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - HOME
   - $$mdi:mouse-left-click-outline$$
   - $$mdi:arrow-up-bold$$
   - $$mdi:mouse-right-click-outline$$
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:backspace$$', type: backspace}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -77,6 +77,7 @@ layers:
   - $$mdi:arrow-down-bold$$
   - $$mdi:arrow-right-bold$$
   - $$mdi:pan-up$$
+  - PG UP
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -85,13 +86,12 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - END
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:mouse-scroll-wheel$$
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - PG DN
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -155,7 +155,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:pan-up$$
-  - {t: '$$mdi:transfer$$', type: trans}
+  - HOME
   - {t: '7', s: '&'}
   - {t: '8', s: '*'}
   - {t: '9', s: (}
@@ -184,11 +184,11 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:volume-off$$
   - $$mdi:pan-down$$
-  - {t: '$$mdi:transfer$$', type: trans}
+  - END
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
   - {t: '3', s: '#'}
-  - END
+  - {t: '$$mdi:transfer$$', type: trans}
   - PG DN
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
