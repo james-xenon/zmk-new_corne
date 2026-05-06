@@ -115,22 +115,6 @@
             bindings = <&kp O>, <&kp C_STOP>;
         };
 
-        vol_up2: vol_up2 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&kp C_VOLUME_UP &kp C_VOLUME_UP>;
-        };
-
-        vol_down2: vol_down2 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&kp C_VOLUME_DOWN &kp C_VOLUME_DOWN>;
-        };
-
         win_space: win_space {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -141,13 +125,6 @@
                 <&macro_tap &kp SPACE>,
                 <&macro_release &kp LGUI>;
         };
-    };
-
-    volume_encoder: volume_encoder {
-        compatible = "zmk,behavior-sensor-rotate";
-        #sensor-binding-cells = <0>;
-        bindings = <&vol_up2>, <&vol_down2>;
-        tap-ms = <100>;
     };
 
     combos {
@@ -203,7 +180,7 @@
                                   &kp RALT       &symb_fn_td      &kp SPC                                                    &mt LGUI ENTER  &mo 3       &lang_alt LALT LG(SPC)
             >;
 
-            sensor-bindings = <&volume_encoder>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         nav1_layer {
@@ -214,7 +191,7 @@
                          &trans  &trans  &trans                                          &trans            &trans     &trans
             >;
 
-            sensor-bindings = <&volume_encoder>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         symb_layer {
@@ -225,7 +202,7 @@
                                &trans       &trans     &kp SPC                                                                &kp RET           &trans      &trans
             >;   
 
-            sensor-bindings = <&volume_encoder>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         numb_layer {
@@ -236,7 +213,7 @@
                          &trans  &trans  &trans                                                                      &kp INS          &trans    &trans
             >;
 
-            sensor-bindings = <&volume_encoder>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         fn_layer {
@@ -247,7 +224,7 @@
                          &trans  &trans    &trans                                                                        &trans  &trans  &trans
             >;
 
-            sensor-bindings = <&volume_encoder>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         service_layer {
@@ -258,7 +235,7 @@
                          &trans    &trans         &trans                                                            &rgb_ug RGB_ON    &trans           &rgb_ug RGB_OFF
             >;
 
-            sensor-bindings = <&volume_encoder>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         nav2_layer {
@@ -269,7 +246,7 @@
                         &trans  &trans  &trans                                         &trans  &trans  &trans
             >;
 
-            sensor-bindings = <&volume_encoder>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
     };
 };
