@@ -90,28 +90,28 @@
         y_media_td: y_media_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <300>;
+            tapping-term-ms = <180>;
             bindings = <&edit_ht LC(Y) Y>, <&kp C_PP>;
         };
 
         u_media_td: u_media_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <300>;
+            tapping-term-ms = <180>;
             bindings = <&kp U>, <&kp C_PREV>;
         };
 
         i_media_td: i_media_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <300>;
+            tapping-term-ms = <180>;
             bindings = <&kp I>, <&kp C_NEXT>;
         };
 
         o_media_td: o_media_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <300>;
+            tapping-term-ms = <180>;
             bindings = <&kp O>, <&kp C_STOP>;
         };
 
@@ -129,6 +129,14 @@
 
     combos {
         compatible = "zmk,combos";
+
+        // W + E + R + T → toggle GAMING1 permanently
+        combo_wert_gaming_toggle {
+            timeout-ms = <70>;
+            key-positions = <2 3 4 5>;
+            bindings = <&tog 7>;
+            layers = <0 7>;
+        };
 
         // F + D → NAV1 while held
         combo_fd_nav {
@@ -244,6 +252,39 @@
 &trans  &trans  &trans  &trans  &trans  &trans              &trans    &trans  &trans   &trans  &trans  &trans  &kp ESC   &kp UP    &kp ENTER
 &trans  &trans  &trans  &trans  &trans  &trans  &kp C_MUTE            &trans           &trans  &trans  &trans  &kp LEFT  &kp DOWN  &kp RIGHT
                         &trans  &trans  &trans                                         &trans  &trans  &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
+        gaming1_layer {
+            bindings = <
+&kp TAB    &kp Q      &kp W      &kp E      &kp R      &kp T                         &kp UP               &kp Y    &kp U   &kp I      &kp O    &kp P     &kp BACKSPACE
+&kp LSHFT  &kp A      &kp S      &kp D      &kp F      &kp G               &kp LEFT  &none    &kp RIGHT  &kp H    &kp J   &kp K      &kp L    &kp SEMI  &none
+&kp LCTRL  &kp Z      &kp X      &kp C      &kp V      &kp B      &none              &kp DOWN             &kp N    &kp M   &kp COMMA  &kp DOT  &kp FSLH  &none
+                                &mo 9      &mo 8      &kp SPACE                                          &kp RET  &none   &none
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
+        gaming2_layer {
+            bindings = <
+&kp ESC  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5                    &none          &kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &none
+&kp U    &kp N6  &kp N7  &kp N8  &kp N9  &kp N0            &none  &none  &none  &kp F8  &none   &none   &none   &none   &none
+&kp K    &kp L   &kp P   &kp J   &kp I   &kp M   &none            &none          &none   &none   &none   &none   &none   &none
+                         &none   &none   &none                                    &none   &none   &none
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
+        gaming3_layer {
+            bindings = <
+&none  &kp P   &kp O   &kp I   &kp U   &kp Y                    &none          &none  &none  &none  &none  &none  &none
+&none  &none   &kp L   &kp K   &kp J   &kp H             &kp A  &none  &none  &none  &none  &none  &none  &none  &none
+&none  &none   &none   &none   &kp M   &kp N   &none           &none          &none  &none  &none  &none  &none  &none
+                       &none   &none   &none                                   &none  &none  &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
