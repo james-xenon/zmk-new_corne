@@ -1,19 +1,25 @@
----
-include:
-#  - board: eyelash_corne_left
-#    shield: nice_view
-#    #snippet: zmk-usb-logging
+manifest:
+  remotes:
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
 
-  - board: eyelash_corne_right
-    shield: nice_view
-    #snippet: zmk-usb-logging
+    - name: gohanda11
+      url-base: https://github.com/gohanda11
 
-  - board: eyelash_corne_left
-    shield: nice_view
-    snippet: studio-rpc-usb-uart
-    cmake-args: -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_STUDIO_LOCKING=n
-    artifact-name: eyelash_corne_studio_left
+  projects:
+    - name: eyelash_corne
+      url: https://github.com/a741725193/zmk-new_corne
+      revision: main
 
-  - board: eyelash_corne_left
-    shield: settings_reset
-    #snippet: zmk-usb-logging
+    - name: zmk-ws2812-driver
+      remote: gohanda11
+      revision: 03cdb21
+      path: modules/zmk-ws2812-driver
+
+    - name: zmk
+      remote: zmkfirmware
+      revision: v0.3.0
+      import: app/west.yml
+
+  self:
+    path: config
