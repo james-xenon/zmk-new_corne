@@ -247,7 +247,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   service:
   - $$mdi:keyboard-esc$$
-  - {t: '$$mdi:transfer$$', type: trans}
+  - '&ws2812_wdg'
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:mouse-right-click-outline$$
@@ -590,7 +590,7 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
 combos:
 - p: [2, 3, 4, 5]
-  k: '&gaming1_toggle_blink'
+  k: {t: gaming1, h: toggle}
   l: [default, gaming1]
 - p: [3, 4]
   k: nav3
