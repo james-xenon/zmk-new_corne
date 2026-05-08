@@ -47,10 +47,10 @@
             tap-ms = <20>;
             bindings =
                 <&macro_tap &tog 6>,
+                <&macro_tap &rgb_ug RGB_COLOR_HSB(120,100,15)>,
                 <&macro_tap &rgb_ug RGB_ON>,
-                <&macro_tap &rgb_ug RGB_COLOR_HSB(120,100,12)>,
-                <&macro_wait_time 220>,
-                <&macro_tap &rgb_ug RGB_COLOR_HSB(0,0,0)>;
+                <&macro_wait_time 180>,
+                <&macro_tap &rgb_ug RGB_OFF>;
         };
 
         gaming1_toggle_blink: gaming1_toggle_blink {
@@ -60,10 +60,10 @@
             tap-ms = <20>;
             bindings =
                 <&macro_tap &tog 7>,
+                <&macro_tap &rgb_ug RGB_COLOR_HSB(120,100,15)>,
                 <&macro_tap &rgb_ug RGB_ON>,
-                <&macro_tap &rgb_ug RGB_COLOR_HSB(120,100,12)>,
-                <&macro_wait_time 220>,
-                <&macro_tap &rgb_ug RGB_COLOR_HSB(0,0,0)>;
+                <&macro_wait_time 180>,
+                <&macro_tap &rgb_ug RGB_OFF>;
         };
 
         speedtype_toggle_blink: speedtype_toggle_blink {
@@ -73,10 +73,10 @@
             tap-ms = <20>;
             bindings =
                 <&macro_tap &tog 11>,
+                <&macro_tap &rgb_ug RGB_COLOR_HSB(120,100,15)>,
                 <&macro_tap &rgb_ug RGB_ON>,
-                <&macro_tap &rgb_ug RGB_COLOR_HSB(120,100,12)>,
-                <&macro_wait_time 220>,
-                <&macro_tap &rgb_ug RGB_COLOR_HSB(0,0,0)>;
+                <&macro_wait_time 180>,
+                <&macro_tap &rgb_ug RGB_OFF>;
         };
 
         nav2_double_tap: nav2_double_tap {
