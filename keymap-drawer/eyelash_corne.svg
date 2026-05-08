@@ -598,7 +598,7 @@ rect.held, rect.combo.held {
 </a></g>
 <g class="combo combopos-5">
 <rect rx="6" ry="6" x="686" y="25" width="28" height="26" class="combo"/>
-<text x="700" y="38" class="combo tap"><tspan style="font-size: 60%">&amp;nav2_dou…</tspan></text>
+<text x="700" y="38" class="combo tap"><tspan style="font-size: 60%">&amp;nav2_on_…</tspan></text>
 </g>
 <g class="combo backspace combopos-6">
 <rect rx="6" ry="6" x="742" y="74" width="28" height="26" class="combo backspace"/>
@@ -867,7 +867,7 @@ rect.held, rect.combo.held {
 </g>
 <g class="combo combopos-0">
 <rect rx="6" ry="6" x="686" y="25" width="28" height="26" class="combo"/>
-<text x="700" y="38" class="combo tap"><tspan style="font-size: 60%">&amp;nav2_dou…</tspan></text>
+<text x="700" y="38" class="combo tap"><tspan style="font-size: 60%">&amp;nav2_on_…</tspan></text>
 </g>
 <g class="combo backspace combopos-1">
 <rect rx="6" ry="6" x="742" y="74" width="28" height="26" class="combo backspace"/>
@@ -1134,7 +1134,7 @@ rect.held, rect.combo.held {
 </g>
 <g class="combo combopos-0">
 <rect rx="6" ry="6" x="686" y="25" width="28" height="26" class="combo"/>
-<text x="700" y="38" class="combo tap"><tspan style="font-size: 60%">&amp;nav2_dou…</tspan></text>
+<text x="700" y="38" class="combo tap"><tspan style="font-size: 60%">&amp;nav2_on_…</tspan></text>
 </g>
 <g class="combo backspace combopos-1">
 <rect rx="6" ry="6" x="742" y="74" width="28" height="26" class="combo backspace"/>
@@ -1410,7 +1410,7 @@ rect.held, rect.combo.held {
 </g>
 <g class="combo combopos-0">
 <rect rx="6" ry="6" x="686" y="25" width="28" height="26" class="combo"/>
-<text x="700" y="38" class="combo tap"><tspan style="font-size: 60%">&amp;nav2_dou…</tspan></text>
+<text x="700" y="38" class="combo tap"><tspan style="font-size: 60%">&amp;nav2_on_…</tspan></text>
 </g>
 <g class="combo backspace combopos-1">
 <rect rx="6" ry="6" x="742" y="74" width="28" height="26" class="combo backspace"/>
@@ -1675,7 +1675,7 @@ rect.held, rect.combo.held {
 </g>
 <g class="combo combopos-0">
 <rect rx="6" ry="6" x="686" y="25" width="28" height="26" class="combo"/>
-<text x="700" y="38" class="combo tap"><tspan style="font-size: 60%">&amp;nav2_dou…</tspan></text>
+<text x="700" y="38" class="combo tap"><tspan style="font-size: 60%">&amp;nav2_on_…</tspan></text>
 </g>
 <g class="combo backspace combopos-1">
 <rect rx="6" ry="6" x="742" y="74" width="28" height="26" class="combo backspace"/>
@@ -1956,7 +1956,7 @@ rect.held, rect.combo.held {
 </g>
 <g class="combo combopos-0">
 <rect rx="6" ry="6" x="686" y="25" width="28" height="26" class="combo"/>
-<text x="700" y="38" class="combo tap"><tspan style="font-size: 60%">&amp;nav2_dou…</tspan></text>
+<text x="700" y="38" class="combo tap"><tspan style="font-size: 60%">&amp;nav2_on_…</tspan></text>
 </g>
 <g class="combo backspace combopos-1">
 <rect rx="6" ry="6" x="742" y="74" width="28" height="26" class="combo backspace"/>
@@ -2212,7 +2212,7 @@ rect.held, rect.combo.held {
 </g>
 <g class="combo combopos-0">
 <rect rx="6" ry="6" x="686" y="25" width="28" height="26" class="combo"/>
-<text x="700" y="38" class="combo tap"><tspan style="font-size: 60%">&amp;nav2_dou…</tspan></text>
+<text x="700" y="38" class="combo tap"><tspan style="font-size: 60%">&amp;nav2_off…</tspan></text>
 </g>
 <g class="combo backspace combopos-1">
 <rect rx="6" ry="6" x="742" y="74" width="28" height="26" class="combo backspace"/>
@@ -3498,7 +3498,7 @@ rect.held, rect.combo.held {
 </a></g>
 <g class="combo combopos-2">
 <rect rx="6" ry="6" x="686" y="25" width="28" height="26" class="combo"/>
-<text x="700" y="38" class="combo tap"><tspan style="font-size: 60%">&amp;nav2_dou…</tspan></text>
+<text x="700" y="38" class="combo tap"><tspan style="font-size: 60%">&amp;nav2_on_…</tspan></text>
 </g>
 <g class="combo backspace combopos-3">
 <rect rx="6" ry="6" x="742" y="74" width="28" height="26" class="combo backspace"/>
