@@ -590,20 +590,14 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
 combos:
 - p: [2, 3, 4, 5]
-  k: '&gaming1_on_blink'
-  l: [default]
-- p: [2, 3, 4, 5]
-  k: '&gaming1_off_blink'
-  l: [gaming1]
+  k: {t: gaming1, h: toggle}
+  l: [default, gaming1]
 - p: [3, 4]
   k: nav3
   l: [default]
 - p: [27, 41]
-  k: '&speedtype_on_double_tap'
-  l: [default]
-- p: [27, 41]
-  k: '&speedtype_off_double_tap'
-  l: [speedtype]
+  k: '&speedtype_double_tap'
+  l: [default, speedtype]
 - p: [16, 17]
   k: nav1
   l: [default, speedtype]
@@ -611,11 +605,8 @@ combos:
   k: service
   l: [default]
 - p: [7, 8]
-  k: '&nav2_on_double_tap'
-  l: [default, nav1, symb, numb, fn, service, speedtype]
-- p: [7, 8]
-  k: '&nav2_off_double_tap'
-  l: [nav2]
+  k: '&nav2_double_tap'
+  l: [default, nav1, symb, numb, fn, service, nav2, speedtype]
 - p: [23, 24]
   k: {t: '$$mdi:backspace$$', type: backspace}
   l: [default, nav1, symb, numb, fn, service, nav2, speedtype]
