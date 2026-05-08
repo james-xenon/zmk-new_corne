@@ -197,7 +197,7 @@
         default_layer {
             bindings = <
 &kp TAB    &kp Q             &kp W             &kp E             &kp R             &kp T                               &kp UP                 &media_ht C_PP Y    &media_ht C_PREV U  &media_ht C_NEXT I      &media_ht C_STOP O   &kp P       &lbkt_screenshot 0 LBKT
-&td0       &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D             &edit_ht LC(F) F  &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT   &kp H               &kp J               &kp K                   &kp L                &kp SEMI    &mt LSHFT SQT
+&td0       &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D             &edit_ht LC(F) F  &kp G                     &kp LEFT  &kp SPC  &kp RIGHT     &kp H               &kp J               &kp K                   &kp L                &kp SEMI    &mt LSHFT SQT
 &kp LCTRL  &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C  &edit_ht LC(V) V  &kp B      &kp C_MUTE               &kp DOWN               &lang_alt LALT N    &kp M               &kp COMMA               &kp DOT              &kp FSLH    &kp ESC
                                                &kp RALT          &symb_fn_td       &kp SPC                                                    &mt LGUI ENTER      &mo 3               &lang_nav2 6 0
             >;
@@ -207,10 +207,10 @@
 
         nav1_layer {
             bindings = <
-&kp ESC  &trans  &trans  &trans  &trans  &trans                       &trans             &kp HOME          &mkp LCLK  &kp UP     &mkp RCLK  &kp COMMA       &kp BSPC
-&trans   &trans  &trans  &trans  &trans  &trans             &trans    &trans  &trans     &msc SCRL_DOWN    &kp LEFT   &kp DOWN   &kp RIGHT  &msc SCRL_UP    &kp PG_UP
-&trans   &trans  &trans  &trans  &trans  &trans  &trans               &trans             &kp END           &trans     &mkp MCLK  &trans     &kp DOT         &kp PG_DN
-                         &trans  &trans  &trans                                          &trans            &trans     &trans
+&kp ESC  &trans  &trans  &trans  &trans  &trans                             &mmv MOVE_UP                       &kp HOME          &mkp LCLK         &kp UP     &mkp RCLK           &kp COMMA       &kp BSPC
+&trans   &trans  &trans  &trans  &trans  &trans             &mmv MOVE_LEFT  &mkp LCLK      &mmv MOVE_RIGHT     &msc SCRL_DOWN    &kp LEFT          &kp DOWN   &kp RIGHT           &msc SCRL_UP    &kp PG_UP
+&trans   &trans  &trans  &trans  &trans  &trans  &trans                     &mmv MOVE_DOWN                     &kp END           &msc MOVE_Y(-80)  &mkp MCLK  &msc MOVE_Y(80)     &kp DOT         &kp PG_DN
+                         &trans  &trans  &trans                                                                &trans            &trans            &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -218,10 +218,10 @@
 
         symb_layer {
             bindings = <
-&trans  &kp EXCL   &kp AT      &kp HASH     &kp DLLR   &kp PRCNT                            &mmv MOVE_UP                      &kp CARET         &kp AMPS    &kp ASTRK  &kp LPAR   &kp RPAR   &kp BSPC
-&trans  &trans     &trans      &trans       &trans     &mkp MB4             &mmv MOVE_LEFT  &mkp LCLK      &mmv MOVE_RIGHT    &kp MINUS         &kp RBKT    &kp LBKT   &kp EQUAL  &kp BSLH   &kp GRAVE
-&trans  &trans     &trans      &trans       &trans     &mkp MB5   &trans                    &mmv MOVE_DOWN                    &kp UNDER         &kp PLUS    &kp LBRC   &kp RBRC   &kp PIPE   &kp TILDE
-                               &trans       &trans     &kp SPC                                                                &kp RET           &trans      &trans
+&trans  &kp EXCL   &kp AT      &kp HASH     &kp DLLR   &kp PRCNT                               &kp UP                      &kp CARET         &kp AMPS    &kp ASTRK  &kp LPAR   &kp RPAR   &kp BSPC
+&trans  &trans     &trans      &trans       &trans     &mkp MB4                      &kp LEFT  &kp SPC  &kp RIGHT          &kp MINUS         &kp RBKT    &kp LBKT   &kp EQUAL  &kp BSLH   &kp GRAVE
+&trans  &trans     &trans      &trans       &trans     &mkp MB5   &trans                       &kp DOWN                    &kp UNDER         &kp PLUS    &kp LBRC   &kp RBRC   &kp PIPE   &kp TILDE
+                               &trans       &trans     &kp SPC                                                             &kp RET           &trans      &trans
             >;   
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -306,10 +306,10 @@
 
         nav3_layer {
             bindings = <
-&kp ESC &trans  &trans  &trans  &trans  &trans                        &trans           &kp HOME        &mkp LCLK       &mmv MOVE_UP    &mkp RCLK         &kp COMMA      &kp BSPC
-&trans  &trans  &trans  &trans  &trans  &trans              &trans    &trans  &trans   &msc SCRL_DOWN  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT   &msc SCRL_UP   &kp PG_UP
-&trans  &trans  &trans  &trans  &trans  &trans  &kp C_MUTE            &trans           &kp END         &trans          &mkp MCLK       &trans            &kp DOT        &kp PG_DN
-                        &trans  &trans  &trans                                         &trans          &trans          &trans
+&kp ESC &trans  &trans  &trans  &trans  &trans                        &kp UP                 &kp HOME        &mkp LCLK           &mmv MOVE_UP    &mkp RCLK         &kp COMMA      &kp BSPC
+&trans  &trans  &trans  &trans  &trans  &trans              &kp LEFT  &kp ENTER  &kp RIGHT   &msc SCRL_DOWN  &mmv MOVE_LEFT      &mmv MOVE_DOWN  &mmv MOVE_RIGHT   &msc SCRL_UP   &kp PG_UP
+&trans  &trans  &trans  &trans  &trans  &trans  &kp C_MUTE            &kp DOWN               &kp END         &msc MOVE_Y(-80)    &mkp MCLK       &msc MOVE_Y(80)   &kp DOT        &kp PG_DN
+                        &trans  &trans  &trans                                               &trans          &trans              &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
