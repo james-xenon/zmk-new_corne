@@ -13,7 +13,7 @@ manifest:
 
     - name: zmk-ws2812-driver
       remote: gohanda11
-      revision: main
+      revision: 03cdb21
       path: modules/zmk-ws2812-driver
 
     - name: zmk
