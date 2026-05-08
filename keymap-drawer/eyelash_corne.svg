@@ -575,9 +575,7 @@ rect.held, rect.combo.held {
 <path d="M224,35 l-65,0" class="combo"/>
 <path d="M224,35 l65,5" class="combo"/>
 <rect rx="6" ry="6" x="210" y="22" width="28" height="26" class="combo"/>
-<a href="#gaming1">
-<text x="224" y="35" class="combo tap layer-activator"><tspan style="font-size: 86%">gaming1</tspan></text>
-</a><text x="224" y="46" class="combo hold">toggle</text>
+<text x="224" y="35" class="combo tap"><tspan style="font-size: 60%">&amp;gaming1_…</tspan></text>
 </g>
 <g class="combo combopos-1">
 <rect rx="6" ry="6" x="210" y="18" width="28" height="26" class="combo"/>
@@ -809,7 +807,7 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">
-<tspan x="0" dy="-1.2em">&amp;msc</tspan><tspan x="0" dy="1.2em">MOVE_Y</tspan><tspan x="0" dy="1.2em">(-80)</tspan>
+<tspan x="0" dy="-1.2em">&amp;msc</tspan><tspan x="0" dy="1.2em">MOVE_Y</tspan><tspan x="0" dy="1.2em">(-100)</tspan>
 </text>
 </g>
 <g transform="translate(784, 140)" class="key keypos-38">
@@ -821,7 +819,7 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">
-<tspan x="0" dy="-1.2em">&amp;msc</tspan><tspan x="0" dy="1.2em">MOVE_Y</tspan><tspan x="0" dy="1.2em">(80)</tspan>
+<tspan x="0" dy="-1.2em">&amp;msc</tspan><tspan x="0" dy="1.2em">MOVE_Y</tspan><tspan x="0" dy="1.2em">(100)</tspan>
 </text>
 </g>
 <g transform="translate(896, 161)" class="key keypos-40">
@@ -2479,9 +2477,7 @@ rect.held, rect.combo.held {
 <path d="M224,35 l-65,0" class="combo"/>
 <path d="M224,35 l65,5" class="combo"/>
 <rect rx="6" ry="6" x="210" y="22" width="28" height="26" class="combo"/>
-<a href="#gaming1">
-<text x="224" y="35" class="combo tap layer-activator"><tspan style="font-size: 86%">gaming1</tspan></text>
-</a><text x="224" y="46" class="combo hold">toggle</text>
+<text x="224" y="35" class="combo tap"><tspan style="font-size: 60%">&amp;gaming1_…</tspan></text>
 </g>
 </g>
 </g>
@@ -3182,7 +3178,7 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">
-<tspan x="0" dy="-1.2em">&amp;msc</tspan><tspan x="0" dy="1.2em">MOVE_Y</tspan><tspan x="0" dy="1.2em">(-80)</tspan>
+<tspan x="0" dy="-1.2em">&amp;msc</tspan><tspan x="0" dy="1.2em">MOVE_Y</tspan><tspan x="0" dy="1.2em">(-100)</tspan>
 </text>
 </g>
 <g transform="translate(784, 140)" class="key keypos-38">
@@ -3194,7 +3190,7 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">
-<tspan x="0" dy="-1.2em">&amp;msc</tspan><tspan x="0" dy="1.2em">MOVE_Y</tspan><tspan x="0" dy="1.2em">(80)</tspan>
+<tspan x="0" dy="-1.2em">&amp;msc</tspan><tspan x="0" dy="1.2em">MOVE_Y</tspan><tspan x="0" dy="1.2em">(100)</tspan>
 </text>
 </g>
 <g transform="translate(896, 161)" class="key keypos-40">
