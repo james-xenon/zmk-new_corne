@@ -40,18 +40,54 @@
             bindings = <&mo 2>, <&mo 4>;
         };
 
+        nav2_toggle_blink: nav2_toggle_blink {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <30>;
+            bindings =
+                <&macro_tap &tog 6>,
+                <&macro_tap &rgb_ug RGB_ON>,
+                <&macro_wait_time 120>,
+                <&macro_tap &rgb_ug RGB_OFF>;
+        };
+
+        gaming1_toggle_blink: gaming1_toggle_blink {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <30>;
+            bindings =
+                <&macro_tap &tog 7>,
+                <&macro_tap &rgb_ug RGB_ON>,
+                <&macro_wait_time 120>,
+                <&macro_tap &rgb_ug RGB_OFF>;
+        };
+
+        speedtype_toggle_blink: speedtype_toggle_blink {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <30>;
+            bindings =
+                <&macro_tap &tog 11>,
+                <&macro_tap &rgb_ug RGB_ON>,
+                <&macro_wait_time 120>,
+                <&macro_tap &rgb_ug RGB_OFF>;
+        };
+
         nav2_double_tap: nav2_double_tap {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
-            bindings = <&trans>, <&tog 6>;
+            bindings = <&trans>, <&nav2_toggle_blink>;
         };
 
         speedtype_double_tap: speedtype_double_tap {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
-            bindings = <&trans>, <&tog 11>;
+            bindings = <&trans>, <&speedtype_toggle_blink>;
         };
 
         edit_ht: edit_ht {
@@ -127,12 +163,12 @@
     combos {
         compatible = "zmk,combos";
 
-        // W + E + R + T → toggle GAMING1 permanently
+        // W + E + R + T → toggle GAMING1 permanently + RGB blink
         combo_wert_gaming_toggle {
             timeout-ms = <120>;
             require-prior-idle-ms = <250>;
             key-positions = <2 3 4 5>;
-            bindings = <&tog 7>;
+            bindings = <&gaming1_toggle_blink>;
             layers = <0 7>;
         };
 
@@ -144,7 +180,7 @@
             layers = <0>;
         };
 
-        // Right Shift/Quote + Esc double tap → toggle SPEEDTYPE permanently
+        // Right Shift/Quote + Esc double tap → toggle SPEEDTYPE permanently + RGB blink
         combo_sqt_esc_speedtype {
             timeout-ms = <70>;
             key-positions = <27 41>;
@@ -168,7 +204,7 @@
             layers = <0>;
         };
 
-        // Y + U double tap → toggle NAV2 permanently
+        // Y + U double tap → toggle NAV2 permanently + RGB blink
         combo_yu_nav2_double_tap {
             timeout-ms = <50>;
             key-positions = <7 8>;
@@ -206,11 +242,11 @@
         };
 
         nav1_layer {
-            bindings = <
-&kp ESC  &trans  &trans  &trans  &trans  &trans                             &mmv MOVE_UP                       &kp HOME          &mkp LCLK         &kp UP     &mkp RCLK           &kp COMMA       &kp BSPC
-&trans   &trans  &trans  &trans  &trans  &trans             &mmv MOVE_LEFT  &mkp LCLK      &mmv MOVE_RIGHT     &msc SCRL_DOWN    &kp LEFT          &kp DOWN   &kp RIGHT           &msc SCRL_UP    &kp PG_UP
-&trans   &trans  &trans  &trans  &trans  &trans  &trans                     &mmv MOVE_DOWN                     &kp END           &msc MOVE_Y(-80)  &mkp MCLK  &msc MOVE_Y(80)     &kp DOT         &kp PG_DN
-                         &trans  &trans  &trans                                                                &trans            &trans            &trans
+            bindings = < 
+&kp ESC  &trans  &trans  &trans  &trans  &trans                             &mmv MOVE_UP                       &kp HOME          &mkp LCLK          &kp UP     &mkp RCLK            &kp COMMA       &kp BSPC
+&trans   &trans  &trans  &trans  &trans  &trans             &mmv MOVE_LEFT  &mkp LCLK      &mmv MOVE_RIGHT     &msc SCRL_DOWN    &kp LEFT           &kp DOWN   &kp RIGHT            &msc SCRL_UP    &kp PG_UP
+&trans   &trans  &trans  &trans  &trans  &trans  &trans                     &mmv MOVE_DOWN                     &kp END           &msc MOVE_Y(-100)  &mkp MCLK  &msc MOVE_Y(100)     &kp DOT         &kp PG_DN
+                         &trans  &trans  &trans                                                                &trans            &trans             &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -306,10 +342,10 @@
 
         nav3_layer {
             bindings = <
-&kp ESC &trans  &trans  &trans  &trans  &trans                        &kp UP                 &kp HOME        &mkp LCLK           &mmv MOVE_UP    &mkp RCLK         &kp COMMA      &kp BSPC
-&trans  &trans  &trans  &trans  &trans  &trans              &kp LEFT  &kp ENTER  &kp RIGHT   &msc SCRL_DOWN  &mmv MOVE_LEFT      &mmv MOVE_DOWN  &mmv MOVE_RIGHT   &msc SCRL_UP   &kp PG_UP
-&trans  &trans  &trans  &trans  &trans  &trans  &kp C_MUTE            &kp DOWN               &kp END         &msc MOVE_Y(-80)    &mkp MCLK       &msc MOVE_Y(80)   &kp DOT        &kp PG_DN
-                        &trans  &trans  &trans                                               &trans          &trans              &trans
+&kp ESC &trans  &trans  &trans  &trans  &trans                        &kp UP                 &kp HOME        &mkp LCLK            &mmv MOVE_UP    &mkp RCLK          &kp COMMA      &kp BSPC
+&trans  &trans  &trans  &trans  &trans  &trans              &kp LEFT  &kp ENTER  &kp RIGHT   &msc SCRL_DOWN  &mmv MOVE_LEFT       &mmv MOVE_DOWN  &mmv MOVE_RIGHT    &msc SCRL_UP   &kp PG_UP
+&trans  &trans  &trans  &trans  &trans  &trans  &kp C_MUTE            &kp DOWN               &kp END         &msc MOVE_Y(-100)    &mkp MCLK       &msc MOVE_Y(100)   &kp DOT        &kp PG_DN
+                        &trans  &trans  &trans                                               &trans          &trans               &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
