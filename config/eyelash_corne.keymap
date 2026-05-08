@@ -4,7 +4,6 @@
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 #include <behaviors.dtsi>
-#include <dt-bindings/zmk/backlight.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
@@ -41,122 +40,18 @@
             bindings = <&mo 2>, <&mo 4>;
         };
 
-        nav2_on_blink: nav2_on_blink {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <20>;
-            bindings =
-                <&macro_tap &tog 6>,
-                <&macro_tap &rgb_ug RGB_COLOR_HSB(0,0,100)>,
-                <&macro_tap &rgb_ug RGB_ON>,
-                <&macro_tap &bl BL_SET 100>,
-                <&macro_tap &bl BL_ON>,
-                <&macro_wait_time 400>,
-                <&macro_tap &rgb_ug RGB_OFF>,
-                <&macro_tap &bl BL_OFF>;
-        };
-
-        nav2_off_blink: nav2_off_blink {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <20>;
-            bindings =
-                <&macro_tap &tog 6>,
-                <&macro_tap &bl BL_OFF>,
-                <&macro_tap &rgb_ug RGB_COLOR_HSB(0,100,100)>,
-                <&macro_tap &rgb_ug RGB_ON>,
-                <&macro_wait_time 400>,
-                <&macro_tap &rgb_ug RGB_OFF>;
-        };
-
-        gaming1_on_blink: gaming1_on_blink {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <20>;
-            bindings =
-                <&macro_tap &tog 7>,
-                <&macro_tap &rgb_ug RGB_COLOR_HSB(0,0,100)>,
-                <&macro_tap &rgb_ug RGB_ON>,
-                <&macro_tap &bl BL_SET 100>,
-                <&macro_tap &bl BL_ON>,
-                <&macro_wait_time 400>,
-                <&macro_tap &rgb_ug RGB_OFF>,
-                <&macro_tap &bl BL_OFF>;
-        };
-
-        gaming1_off_blink: gaming1_off_blink {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <20>;
-            bindings =
-                <&macro_tap &tog 7>,
-                <&macro_tap &bl BL_OFF>,
-                <&macro_tap &rgb_ug RGB_COLOR_HSB(0,100,100)>,
-                <&macro_tap &rgb_ug RGB_ON>,
-                <&macro_wait_time 400>,
-                <&macro_tap &rgb_ug RGB_OFF>;
-        };
-
-        speedtype_on_blink: speedtype_on_blink {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <20>;
-            bindings =
-                <&macro_tap &tog 11>,
-                <&macro_tap &rgb_ug RGB_COLOR_HSB(0,0,100)>,
-                <&macro_tap &rgb_ug RGB_ON>,
-                <&macro_tap &bl BL_SET 100>,
-                <&macro_tap &bl BL_ON>,
-                <&macro_wait_time 400>,
-                <&macro_tap &rgb_ug RGB_OFF>,
-                <&macro_tap &bl BL_OFF>;
-        };
-
-        speedtype_off_blink: speedtype_off_blink {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <20>;
-            bindings =
-                <&macro_tap &tog 11>,
-                <&macro_tap &bl BL_OFF>,
-                <&macro_tap &rgb_ug RGB_COLOR_HSB(0,100,100)>,
-                <&macro_tap &rgb_ug RGB_ON>,
-                <&macro_wait_time 400>,
-                <&macro_tap &rgb_ug RGB_OFF>;
-        };
-
-        nav2_on_double_tap: nav2_on_double_tap {
+        nav2_double_tap: nav2_double_tap {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
-            bindings = <&trans>, <&nav2_on_blink>;
+            bindings = <&trans>, <&tog 6>;
         };
 
-        nav2_off_double_tap: nav2_off_double_tap {
+        speedtype_double_tap: speedtype_double_tap {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
-            bindings = <&trans>, <&nav2_off_blink>;
-        };
-
-        speedtype_on_double_tap: speedtype_on_double_tap {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <300>;
-            bindings = <&trans>, <&speedtype_on_blink>;
-        };
-
-        speedtype_off_double_tap: speedtype_off_double_tap {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <300>;
-            bindings = <&trans>, <&speedtype_off_blink>;
+            bindings = <&trans>, <&tog 11>;
         };
 
         edit_ht: edit_ht {
@@ -232,22 +127,16 @@
     combos {
         compatible = "zmk,combos";
 
-        combo_wert_gaming_on {
+        // W + E + R + T → toggle GAMING1 permanently
+        combo_wert_gaming_toggle {
             timeout-ms = <120>;
             require-prior-idle-ms = <250>;
             key-positions = <2 3 4 5>;
-            bindings = <&gaming1_on_blink>;
-            layers = <0>;
+            bindings = <&tog 7>;
+            layers = <0 7>;
         };
 
-        combo_wert_gaming_off {
-            timeout-ms = <120>;
-            require-prior-idle-ms = <250>;
-            key-positions = <2 3 4 5>;
-            bindings = <&gaming1_off_blink>;
-            layers = <7>;
-        };
-
+        // E + R → NAV3 while held
         combo_er_nav3 {
             timeout-ms = <50>;
             key-positions = <3 4>;
@@ -255,20 +144,15 @@
             layers = <0>;
         };
 
-        combo_sqt_esc_speedtype_on {
+        // Right Shift/Quote + Esc double tap → toggle SPEEDTYPE permanently
+        combo_sqt_esc_speedtype {
             timeout-ms = <70>;
             key-positions = <27 41>;
-            bindings = <&speedtype_on_double_tap>;
-            layers = <0>;
+            bindings = <&speedtype_double_tap>;
+            layers = <0 11>;
         };
 
-        combo_sqt_esc_speedtype_off {
-            timeout-ms = <70>;
-            key-positions = <27 41>;
-            bindings = <&speedtype_off_double_tap>;
-            layers = <11>;
-        };
-
+        // F + D → NAV1 while held
         combo_fd_nav {
             timeout-ms = <50>;
             key-positions = <16 17>;
@@ -276,6 +160,7 @@
             layers = <0 11>;
         };
 
+        // RALT + symb_fn_td → SERVICE while held
         combo_service {
             timeout-ms = <50>;
             key-positions = <42 43>;
@@ -283,18 +168,12 @@
             layers = <0>;
         };
 
-        combo_yu_nav2_on {
+        // Y + U double tap → toggle NAV2 permanently
+        combo_yu_nav2_double_tap {
             timeout-ms = <50>;
             key-positions = <7 8>;
-            bindings = <&nav2_on_double_tap>;
-            layers = <0 1 2 3 4 5 11>;
-        };
-
-        combo_yu_nav2_off {
-            timeout-ms = <50>;
-            key-positions = <7 8>;
-            bindings = <&nav2_off_double_tap>;
-            layers = <6>;
+            bindings = <&nav2_double_tap>;
+            layers = <0 1 2 3 4 5 6 11>;
         };
 
         combo_jk_backspace {
