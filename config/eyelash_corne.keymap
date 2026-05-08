@@ -4,7 +4,7 @@
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 #include <behaviors.dtsi>
-#include <dt-bindings/zmk/backlight.h>
+#include <behaviors/ws2812_widget.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
@@ -27,6 +27,10 @@
 };
 
 / {
+    chosen {
+        zmk,ws2812-widget = &led_strip;
+    };
+
     behaviors {
         td0: td0 {
             compatible = "zmk,behavior-tap-dance";
@@ -41,57 +45,18 @@
             bindings = <&mo 2>, <&mo 4>;
         };
 
-        nav2_toggle_blink: nav2_toggle_blink {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <20>;
-            bindings =
-                <&macro_tap &tog 6>,
-                <&macro_tap &bl BL_SET 100>,
-                <&macro_tap &bl BL_ON>,
-                <&macro_wait_time 220>,
-                <&macro_tap &bl BL_OFF>;
-        };
-
-        gaming1_toggle_blink: gaming1_toggle_blink {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <20>;
-            bindings =
-                <&macro_tap &tog 7>,
-                <&macro_tap &bl BL_SET 100>,
-                <&macro_tap &bl BL_ON>,
-                <&macro_wait_time 220>,
-                <&macro_tap &bl BL_OFF>;
-        };
-
-        speedtype_toggle_blink: speedtype_toggle_blink {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <20>;
-            bindings =
-                <&macro_tap &tog 11>,
-                <&macro_tap &bl BL_SET 100>,
-                <&macro_tap &bl BL_ON>,
-                <&macro_wait_time 220>,
-                <&macro_tap &bl BL_OFF>;
-        };
-
         nav2_double_tap: nav2_double_tap {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
-            bindings = <&trans>, <&nav2_toggle_blink>;
+            bindings = <&trans>, <&tog 6>;
         };
 
         speedtype_double_tap: speedtype_double_tap {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
-            bindings = <&trans>, <&speedtype_toggle_blink>;
+            bindings = <&trans>, <&tog 11>;
         };
 
         edit_ht: edit_ht {
@@ -167,12 +132,12 @@
     combos {
         compatible = "zmk,combos";
 
-        // W + E + R + T → toggle GAMING1 permanently + backlight blink
+        // W + E + R + T → toggle GAMING1 permanently
         combo_wert_gaming_toggle {
             timeout-ms = <120>;
             require-prior-idle-ms = <250>;
             key-positions = <2 3 4 5>;
-            bindings = <&gaming1_toggle_blink>;
+            bindings = <&tog 7>;
             layers = <0 7>;
         };
 
@@ -184,7 +149,7 @@
             layers = <0>;
         };
 
-        // Right Shift/Quote + Esc double tap → toggle SPEEDTYPE permanently + backlight blink
+        // Right Shift/Quote + Esc double tap → toggle SPEEDTYPE permanently
         combo_sqt_esc_speedtype {
             timeout-ms = <70>;
             key-positions = <27 41>;
@@ -208,7 +173,7 @@
             layers = <0>;
         };
 
-        // Y + U double tap → toggle NAV2 permanently + backlight blink
+        // Y + U double tap → toggle NAV2 permanently
         combo_yu_nav2_double_tap {
             timeout-ms = <50>;
             key-positions = <7 8>;
@@ -291,10 +256,10 @@
 
         service_layer {
             bindings = <
-&kp ESC          &trans  &trans    &trans    &mkp RCLK      &studio_unlock                           &trans                   &bt BT_CLR        &trans           &bt BT_SEL 0      &bt BT_SEL 1      &bt BT_SEL 2         &bt BT_SEL 3
-&trans           &trans  &trans    &trans    &trans         &out OUT_BLE                     &trans  &trans    &trans         &trans            &trans           &trans            &trans            &trans               &trans
-&bt BT_CLR_ALL   &trans  &trans    &trans    &trans         &out OUT_USB    &kp C_MUTE               &trans                   &rgb_ug RGB_EFR   &rgb_ug RGB_EFF  &rgb_ug RGB_SPI   &rgb_ug RGB_SPD   &rgb_ug RGB_BRI      &rgb_ug RGB_BRD
-                                   &trans    &trans         &trans                                                            &rgb_ug RGB_ON    &trans           &rgb_ug RGB_OFF
+&kp ESC          &ws2812_wdg  &trans    &trans    &mkp RCLK      &studio_unlock                           &trans                   &bt BT_CLR        &trans           &bt BT_SEL 0      &bt BT_SEL 1      &bt BT_SEL 2         &bt BT_SEL 3
+&trans           &trans       &trans    &trans    &trans         &out OUT_BLE                     &trans  &trans    &trans         &trans            &trans           &trans            &trans            &trans               &trans
+&bt BT_CLR_ALL   &trans       &trans    &trans    &trans         &out OUT_USB    &kp C_MUTE               &trans                   &rgb_ug RGB_EFR   &rgb_ug RGB_EFF  &rgb_ug RGB_SPI   &rgb_ug RGB_SPD   &rgb_ug RGB_BRI      &rgb_ug RGB_BRD
+                                      &trans    &trans         &trans                                                            &rgb_ug RGB_ON    &trans           &rgb_ug RGB_OFF
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
