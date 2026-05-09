@@ -252,7 +252,7 @@
         service_layer {
             bindings = <
 &kp ESC          &rgb_ug RGB_ON       &rgb_ug RGB_OFF       &rgb_ug RGB_BRI       &rgb_ug RGB_BRD       &rgb_ug RGB_EFF                              &trans                   &rgb_ug RGB_EFR    &rgb_ug RGB_HUI  &bt BT_SEL 0      &bt BT_SEL 1      &bt BT_SEL 2         &bt BT_SEL 3
-&trans           &ext_power EP_ON     &ext_power EP_OFF     &ws2812_wdg 0         &mkp RCLK             &out OUT_BLE                     &trans    &trans  &trans     &rgb_ug RGB_HUD    &trans           &trans            &trans            &trans               &trans
+&trans           &ext_power EP_ON     &ext_power EP_OFF     &ws2812_wdg 0         &ws2812_wdg 2         &out OUT_BLE                     &trans    &trans  &trans     &rgb_ug RGB_HUD    &trans           &trans            &trans            &trans               &trans
 &bt BT_CLR_ALL   &trans               &trans                &trans                &trans                &out OUT_USB    &kp C_MUTE               &trans                   &rgb_ug RGB_EFR  &rgb_ug RGB_EFF   &rgb_ug RGB_SPI   &rgb_ug RGB_SPD   &rgb_ug RGB_BRI      &rgb_ug RGB_BRD
                                                     &trans                &trans                &trans                                                            &rgb_ug RGB_ON    &trans           &rgb_ug RGB_OFF
             >;
