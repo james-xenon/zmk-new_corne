@@ -263,7 +263,7 @@ layers:
   - EP ON
   - EP OFF
   - '&ws2812_wdg'
-  - $$mdi:mouse-right-click-outline$$
+  - '&ws2812_wdg 2'
   - OUT BLE
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
