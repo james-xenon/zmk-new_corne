@@ -46,21 +46,11 @@
             bindings = <&mo 2>, <&mo 4>;
         };
 
-        nav2_toggle_indicate: nav2_toggle_indicate {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <20>;
-            bindings =
-                <&macro_tap &tog 6>,
-                <&macro_tap &ws2812_wdg 0>;
-        };
-
         nav2_double_tap: nav2_double_tap {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
-            bindings = <&trans>, <&nav2_toggle_indicate>;
+            bindings = <&trans>, <&tog 6>;
         };
 
         speedtype_double_tap: speedtype_double_tap {
@@ -169,7 +159,7 @@
             timeout-ms = <50>;
             key-positions = <16 17>;
             bindings = <&mo 1>;
-            layers = <0 11>;
+            layers = <0 11 12>;
         };
 
         combo_service {
@@ -183,21 +173,21 @@
             timeout-ms = <50>;
             key-positions = <7 8>;
             bindings = <&nav2_double_tap>;
-            layers = <0 1 2 3 4 5 6 11>;
+            layers = <0 1 2 3 4 5 6 11 12>;
         };
 
         combo_jk_backspace {
             timeout-ms = <50>;
             key-positions = <23 24>;
             bindings = <&kp BSPC>;
-            layers = <0 1 2 3 4 5 6 11>;
+            layers = <0 1 2 3 4 5 6 11 12>;
         };
 
         combo_kl_delete {
             timeout-ms = <50>;
             key-positions = <24 25>;
             bindings = <&kp DEL>;
-            layers = <0 1 2 3 4 5 6 11>;
+            layers = <0 1 2 3 4 5 6 11 12>;
         };
     };
 
@@ -209,7 +199,7 @@
 &kp TAB    &kp Q             &kp W             &kp E             &kp R             &kp T                               &kp UP                 &media_ht C_PP Y    &media_ht C_PREV U  &media_ht C_NEXT I      &media_ht C_STOP O   &kp P       &lbkt_screenshot 0 LBKT
 &td0       &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D             &edit_ht LC(F) F  &kp G                     &kp LEFT  &kp SPC  &kp RIGHT     &kp H               &kp J               &kp K                   &kp L                &kp SEMI    &mt LSHFT SQT
 &kp LCTRL  &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C  &edit_ht LC(V) V  &kp B      &kp C_MUTE               &kp DOWN               &lang_alt LALT N    &kp M               &kp COMMA               &kp DOT              &kp FSLH    &kp ESC
-                                               &kp RALT          &symb_fn_td       &kp SPC                                                    &mt LGUI ENTER      &mo 3               &lang_nav2 6 0
+                                               &kp RALT          &symb_fn_td       &kp SPC                                                    &mt LGUI ENTER      &mo 3               &lang_nav2 12 0
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -261,9 +251,9 @@
 
         service_layer {
             bindings = <
-&kp ESC          &rgb_ug RGB_ON       &rgb_ug RGB_OFF       &rgb_ug RGB_BRI       &rgb_ug RGB_BRD       &rgb_ug RGB_EFF                              &trans                   &rgb_ug RGB_EFR    &trans           &bt BT_SEL 0      &bt BT_SEL 1      &bt BT_SEL 2         &bt BT_SEL 3
-&trans           &ext_power EP_ON     &ext_power EP_OFF     &ws2812_wdg 0         &mkp RCLK             &out OUT_BLE                     &trans    &trans  &trans     &trans            &trans           &trans            &trans            &trans               &trans
-&bt BT_CLR_ALL   &trans               &trans                &trans                &trans                &out OUT_USB    &kp C_MUTE               &trans                   &rgb_ug RGB_HUI   &rgb_ug RGB_HUD  &rgb_ug RGB_SPI   &rgb_ug RGB_SPD   &rgb_ug RGB_BRI      &rgb_ug RGB_BRD
+&kp ESC          &rgb_ug RGB_ON       &rgb_ug RGB_OFF       &rgb_ug RGB_BRI       &rgb_ug RGB_BRD       &rgb_ug RGB_EFF                              &trans                   &rgb_ug RGB_EFR    &rgb_ug RGB_HUI  &bt BT_SEL 0      &bt BT_SEL 1      &bt BT_SEL 2         &bt BT_SEL 3
+&trans           &ext_power EP_ON     &ext_power EP_OFF     &ws2812_wdg 0         &mkp RCLK             &out OUT_BLE                     &trans    &trans  &trans     &rgb_ug RGB_HUD    &trans           &trans            &trans            &trans               &trans
+&bt BT_CLR_ALL   &trans               &trans                &trans                &trans                &out OUT_USB    &kp C_MUTE               &trans                   &rgb_ug RGB_EFR  &rgb_ug RGB_EFF   &rgb_ug RGB_SPI   &rgb_ug RGB_SPD   &rgb_ug RGB_BRI      &rgb_ug RGB_BRD
                                                     &trans                &trans                &trans                                                            &rgb_ug RGB_ON    &trans           &rgb_ug RGB_OFF
             >;
 
@@ -331,6 +321,17 @@
 &kp LSHFT  &kp A      &kp S      &kp D      &kp F      &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT   &kp H      &kp J      &kp K      &kp L      &kp SEMI    &kp SQT
 &kp LCTRL  &kp Z      &kp X      &kp C      &kp V      &kp B      &kp C_MUTE               &kp DOWN               &kp N      &kp M      &kp COMMA  &kp DOT    &kp FSLH    &kp ESC
                                 &kp RALT   &none      &kp SPC                                                     &kp ENTER  &none      &none
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
+        nav2_hold_layer {
+            bindings = <
+&kp ESC &trans  &trans  &trans  &trans  &trans                        &trans           &trans  &trans  &trans  &trans    &kp DEL   &kp BSPC
+&trans  &trans  &trans  &trans  &trans  &trans              &trans    &trans  &trans   &trans  &trans  &trans  &kp ESC   &kp UP    &kp ENTER
+&trans  &trans  &trans  &trans  &trans  &trans  &kp C_MUTE            &trans           &trans  &trans  &trans  &kp LEFT  &kp DOWN  &kp RIGHT
+                        &trans  &trans  &trans                                         &trans  &trans  &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
