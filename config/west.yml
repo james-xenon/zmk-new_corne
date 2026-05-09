@@ -3,17 +3,14 @@ manifest:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
 
-    - name: gohanda11
-      url-base: https://github.com/gohanda11
-
   projects:
     - name: eyelash_corne
       url: https://github.com/a741725193/zmk-new_corne
       revision: main
 
     - name: zmk-ws2812-driver
-      remote: gohanda11
-      revision: 03cdb21
+      url: https://github.com/james-xenon/zmk-ws2812-driver
+      revision: blink-off
       path: modules/zmk-ws2812-driver
 
     - name: zmk
