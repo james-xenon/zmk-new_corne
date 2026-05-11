@@ -9,7 +9,7 @@ manifest:
       revision: main
 
     - name: zmk-ws2812-driver
-      url: https://github.com/gohanda11/zmk-ws2812-driver
+      url: https://github.com/james-xenon/zmk-ws2812-driver
       revision: main
       path: modules/zmk-ws2812-driver
 
