@@ -2,21 +2,18 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-
+    - name: james-xenon
+      url-base: https://github.com/james-xenon
   projects:
+    - name: zmk
+      remote: zmkfirmware
+      revision: main
+      import: app/west.yml
     - name: eyelash_corne
       url: https://github.com/a741725193/zmk-new_corne
       revision: main
-
     - name: zmk-ws2812-driver
-      url: https://github.com/james-xenon/zmk-ws2812-driver
+      remote: james-xenon
       revision: main
-      path: modules/zmk-ws2812-driver
-
-    - name: zmk
-      remote: zmkfirmware
-      revision: v0.3.0
-      import: app/west.yml
-
   self:
     path: config
