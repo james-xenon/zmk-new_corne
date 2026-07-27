@@ -4,8 +4,6 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: james-xenon
       url-base: https://github.com/james-xenon
-    - name: badjeff
-      url-base: https://github.com/badjeff
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -13,9 +11,6 @@ manifest:
       import: app/manifest/zephyr/west.yml
     - name: zmk-ws2812-driver
       remote: james-xenon
-      revision: main
-    - name: zmk-split-peripheral-output-relay
-      remote: badjeff
       revision: main
   self:
     path: config
