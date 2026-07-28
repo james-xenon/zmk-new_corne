@@ -15,10 +15,10 @@ layers:
   - P
   - {t: '[', h: '&screenshot_win_shift_s', s: '{'}
   - '&td0'
-  - {t: A, h: Ctl+A}
-  - {t: S, h: Ctl+S}
+  - {t: '&one_shot_tap A', h: Ctl+A}
+  - {t: '&one_shot_tap S', h: Ctl+S}
   - D
-  - {t: F, h: Ctl+F}
+  - {t: '&one_shot_tap F', h: Ctl+F}
   - G
   - $$mdi:arrow-left-bold$$
   - SPC
@@ -30,10 +30,10 @@ layers:
   - {t: ;, s: ':'}
   - {t: '''', h: '$$mdi:apple-keyboard-shift$$', s: '"'}
   - $$mdi:apple-keyboard-control$$
-  - {t: Z, h: Ctl+Z}
-  - {t: X, h: Ctl+X}
-  - {t: C, h: Ctl+C}
-  - {t: V, h: Ctl+V}
+  - {t: '&one_shot_tap Z', h: Ctl+Z}
+  - {t: '&one_shot_tap X', h: Ctl+X}
+  - {t: '&one_shot_tap C', h: Ctl+C}
+  - {t: '&one_shot_tap V', h: Ctl+V}
   - B
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
