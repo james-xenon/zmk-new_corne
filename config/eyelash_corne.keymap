@@ -1,6 +1,7 @@
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 1200
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 25
 
+
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 #include <behaviors.dtsi>
@@ -11,6 +12,12 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/rgb.h>
+
+   // Для ВЫКЛЮЧЕНИЯ (визуально гасит, но оставляет систему активной)
+&macro_tap &rgb_ug RGB_BRI 0
+   
+   // Для ВКЛЮЧЕНИЯ (возвращает яркость на 100%)
+&macro_tap &rgb_ug RGB_BRI 100
 
 &led_strip {
     chain-length = <42>; // <-- ВАЖНО: Если у вас по 21 диоду на сторону, оставьте 42. Если физически насчитали по 27 диодов на сторону, измените на 54.
@@ -42,6 +49,19 @@
             #binding-cells = <0>;
             bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
         };
+
+           // Макрос для зажатия слоя 6 БЕЗ индикации
+   nav2_hold_no_indicator: nav2_hold_no_indicator {
+       compatible = "zmk,behavior-macro";
+       #binding-cells = <0>;
+       wait-ms = <10>;
+       tap-ms = <10>;
+       bindings = 
+           <&macro_press &mo nav2_layer>,   // Нажимаем слой
+           <&macro_press &rgb_ug RGB_BRI 0>, // Гасим яркость (индикации не видно)
+           <&macro_release &rgb_ug RGB_BRI 0>,
+           <&macro_release &mo nav2_layer>;  // Отпускаем слой
+   };
 
         symb_fn_td: symb_fn_td {
             compatible = "zmk,behavior-tap-dance";
@@ -193,6 +213,30 @@
             bindings = <&kp DEL>;
             layers = <0 1 2 3 4 5 6 11>;
         };
+
+        // Пример комбо для Ctrl+C (БЕЗ циклического повтора)
+combo_copy {
+    timeout-ms = <50>;
+    // ЗАМЕНИТЕ 20 и 21 на реальные позиции клавиш C и Left Control в вашем keymap
+    key-positions = <20 21>; 
+    // macro_tap гарантирует ОДНОКРАТНОЕ срабатывание
+    bindings = <&macro_tap &kp LC(C)>; 
+};
+
+// Пример комбо для Ctrl+V
+combo_paste {
+    timeout-ms = <50>;
+    key-positions = <20 22>; // Пример позиций
+    bindings = <&macro_tap &kp LC(V)>; 
+};
+
+        // Комбо для проверки статуса батареи (например, зажатие клавиш с позициями 25 и 26)
+// ЗАМЕНИТЕ 25 и 26 на реальные номера позиций из вашего keymap (посмотрите в раскладке)
+combo_battery_check {
+    timeout-ms = <50>;
+    key-positions = <25 26>; 
+    bindings = <&ws2812_wdg 0>; // Триггер статуса
+};
     };
 
     keymap {
@@ -202,7 +246,7 @@
             bindings = <
 &kp TAB    &kp Q             &kp W             &kp E             &kp R             &kp T                               &kp UP                 &media_ht C_PP Y    &media_ht C_PREV U  &media_ht C_NEXT I      &media_ht C_STOP O   &kp P       &lbkt_screenshot 0 LBKT
 &td0       &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D             &edit_ht LC(F) F  &kp G                     &kp LEFT  &kp SPC  &kp RIGHT     &kp H               &kp J               &kp K                   &kp L                &kp SEMI    &mt LSHFT SQT
-&kp LCTRL  &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C  &edit_ht LC(V) V  &kp B      &kp C_MUTE               &kp DOWN               &lang_alt LALT N    &kp M               &kp COMMA               &kp DOT              &kp FSLH    &kp ESC
+&kp LCTRL  &edit_ht LC(Z) Z  &edit_ht LC(X) X  &kp C             &kp V             &kp B      &kp C_MUTE               &kp DOWN               &lang_alt LALT N    &kp M               &kp COMMA               &kp DOT              &kp FSLH    &kp ESC
                                                &kp RALT          &symb_fn_td       &kp SPC                                                    &mt LGUI ENTER      &mo 3               &lang_nav2 6 0
             >;
 
