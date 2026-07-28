@@ -222,7 +222,7 @@
 &kp TAB    &kp Q             &kp W             &kp E             &kp R             &kp T                               &kp UP                 &media_ht C_PP Y    &media_ht C_PREV U  &media_ht C_NEXT I      &media_ht C_STOP O   &kp P       &lbkt_screenshot 0 LBKT
 &td0       &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D             &edit_ht LC(F) F  &kp G                     &kp LEFT  &kp SPC  &kp RIGHT     &kp H               &kp J               &kp K                   &kp L                &kp SEMI    &mt LSHFT SQT
 &kp LCTRL  &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C  &edit_ht LC(V) V  &kp B      &kp C_MUTE               &kp DOWN               &lang_alt LALT N    &kp M               &kp COMMA               &kp DOT              &kp FSLH    &kp ESC
-                                               &kp RALT          &symb_fn_td       &kp SPC                                                    &mt LGUI ENTER      &mo 3               &lang_nav2nolight 6 0
+                                               &kp RALT          &symb_fn_td       &kp SPC                                                    &mt LGUI ENTER      &mo 3               &lang_nav2nolight 12 0
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -294,17 +294,6 @@
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-         nav2nolight_layer {
-            bindings = <
-&kp ESC &trans  &trans  &trans  &trans  &trans                        &trans           &trans  &trans  &trans  &trans    &kp DEL   &kp BSPC
-&trans  &trans  &trans  &trans  &trans  &trans              &trans    &trans  &trans   &trans  &trans  &trans  &kp ESC   &kp UP    &kp ENTER
-&trans  &trans  &trans  &trans  &trans  &trans  &kp C_MUTE            &trans           &trans  &trans  &trans  &kp LEFT  &kp DOWN  &kp RIGHT
-                        &trans  &trans  &trans                                         &trans  &trans  &trans
-            >;
-
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
-
         gaming1_layer {
             bindings = <
 &kp TAB    &kp Q      &kp W      &kp E      &kp R      &kp T                         &kp UP               &kp Y    &kp U   &kp I      &kp O    &kp P     &kp BACKSPACE
@@ -361,23 +350,26 @@
         };
     };
 
+         nav2nolight_layer {
+            bindings = <
+&kp ESC &trans  &trans  &trans  &trans  &trans                        &trans           &trans  &trans  &trans  &trans    &kp DEL   &kp BSPC
+&trans  &trans  &trans  &trans  &trans  &trans              &trans    &trans  &trans   &trans  &trans  &trans  &kp ESC   &kp UP    &kp ENTER
+&trans  &trans  &trans  &trans  &trans  &trans  &kp C_MUTE            &trans           &trans  &trans  &trans  &kp LEFT  &kp DOWN  &kp RIGHT
+                        &trans  &trans  &trans                                         &trans  &trans  &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
 	ws2812_widget {
         compatible = "zmk,ws2812-widget";
         #binding-cells = <0>;
 
-        // Порядок: Слой 0, 1, 2, 3, 4, 5, 6, 7...
         layer-colors = <
-            0 0 100      // Слой 0: Белый
-            60 100 100   // Слой 1: Желтый/Золотой
-            180 100 100  // Слой 2: Голубой
-            0 100 100    // Слой 3: Красный
-            0 0 0        // Слой 4: Выключен (если есть)
-            0 0 0        // Слой 5: Выключен (Service)
-            0 0 0        // Слой 6: Выключен (nav2nolight) <-- ВОТ ОН
-            0 0 0        // Слой 7: Выключен (Gaming)
-            0 0 0        // Слой 8: Выключен
-            0 0 0        // Слой 9: Выключен
-            0 0 0        // Слой 10: Выключен
-            0 0 0        // Слой 11: Выключен (Speedtype)
+            0 0 100
+            60 100 100
+            180 100 100
+            0 100 100
         >;
     };
+};
