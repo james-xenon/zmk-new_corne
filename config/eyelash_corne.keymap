@@ -13,7 +13,7 @@
 #include <dt-bindings/zmk/rgb.h>
 
 &led_strip {
-    chain-length = <42>;
+    chain-length = <42>; // <-- ВАЖНО: Если у вас по 21 диоду на сторону, оставьте 42. Если физически насчитали по 27 диодов на сторону, измените на 54.
 };
 
 &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
@@ -64,7 +64,6 @@
             bindings = <&trans>, <&tog 11>;
         };
 
-        // Стандартный edit_ht без кастомных макросов, чтобы избежать ошибок сборки
         edit_ht: edit_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -78,6 +77,7 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred";
+            tapping-term-ms = <200>;
             quick-tap-ms = <120>;
             bindings = <&kp>, <&kp>;
         };
@@ -91,7 +91,7 @@
             bindings = <&kp>, <&kp>;
         };
 
-        lang_nav2nolight: lang_nav2nolight {
+        lang_nav2: lang_nav2 {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred";
@@ -193,25 +193,6 @@
             bindings = <&kp DEL>;
             layers = <0 1 2 3 4 5 6 11>;
         };
-
-        // Комбо для Ctrl+C, Ctrl+V, Ctrl+X БЕЗ циклического повтора
-        combo_copy {
-            timeout-ms = <50>;
-            key-positions = <14 17>; // Замените на реальные позиции ваших клавиш
-            bindings = <&macro_tap &kp LC(C)>;
-        };
-
-        combo_paste {
-            timeout-ms = <50>;
-            key-positions = <14 18>; // Замените на реальные позиции ваших клавиш
-            bindings = <&macro_tap &kp LC(V)>;
-        };
-        
-        combo_cut {
-            timeout-ms = <50>;
-            key-positions = <14 19>; // Замените на реальные позиции ваших клавиш
-            bindings = <&macro_tap &kp LC(X)>;
-        };
     };
 
     keymap {
@@ -222,7 +203,7 @@
 &kp TAB    &kp Q             &kp W             &kp E             &kp R             &kp T                               &kp UP                 &media_ht C_PP Y    &media_ht C_PREV U  &media_ht C_NEXT I      &media_ht C_STOP O   &kp P       &lbkt_screenshot 0 LBKT
 &td0       &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D             &edit_ht LC(F) F  &kp G                     &kp LEFT  &kp SPC  &kp RIGHT     &kp H               &kp J               &kp K                   &kp L                &kp SEMI    &mt LSHFT SQT
 &kp LCTRL  &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C  &edit_ht LC(V) V  &kp B      &kp C_MUTE               &kp DOWN               &lang_alt LALT N    &kp M               &kp COMMA               &kp DOT              &kp FSLH    &kp ESC
-                                               &kp RALT          &symb_fn_td       &kp SPC                                                    &mt LGUI ENTER      &mo 3               &lang_nav2nolight 12 0
+                                               &kp RALT          &symb_fn_td       &kp SPC                                                    &mt LGUI ENTER      &mo 3               &lang_nav2 6 0
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -349,17 +330,6 @@
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
     };
-
-         nav2nolight_layer {
-            bindings = <
-&kp ESC &trans  &trans  &trans  &trans  &trans                        &trans           &trans  &trans  &trans  &trans    &kp DEL   &kp BSPC
-&trans  &trans  &trans  &trans  &trans  &trans              &trans    &trans  &trans   &trans  &trans  &trans  &kp ESC   &kp UP    &kp ENTER
-&trans  &trans  &trans  &trans  &trans  &trans  &kp C_MUTE            &trans           &trans  &trans  &trans  &kp LEFT  &kp DOWN  &kp RIGHT
-                        &trans  &trans  &trans                                         &trans  &trans  &trans
-            >;
-
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
 
 	ws2812_widget {
         compatible = "zmk,ws2812-widget";
