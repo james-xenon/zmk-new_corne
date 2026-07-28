@@ -15,10 +15,10 @@ layers:
   - P
   - {t: '[', h: '&screenshot_win_shift_s', s: '{'}
   - '&td0'
-  - {t: A, h: '&tap_once_param LC(A)'}
-  - {t: S, h: '&tap_once_param LC(S)'}
+  - {t: A, h: Ctl+A}
+  - {t: S, h: Ctl+S}
   - D
-  - {t: F, h: '&tap_once_param LC(F)'}
+  - {t: F, h: Ctl+F}
   - G
   - $$mdi:arrow-left-bold$$
   - SPC
@@ -30,10 +30,10 @@ layers:
   - {t: ;, s: ':'}
   - {t: '''', h: '$$mdi:apple-keyboard-shift$$', s: '"'}
   - $$mdi:apple-keyboard-control$$
-  - {t: Z, h: '&tap_once_param LC(Z)'}
-  - {t: X, h: '&tap_once_param LC(X)'}
-  - {t: C, h: '&tap_once_param LC(C)'}
-  - {t: V, h: '&tap_once_param LC(V)'}
+  - {t: Z, h: Ctl+Z}
+  - {t: X, h: Ctl+X}
+  - {t: C, h: Ctl+C}
+  - {t: V, h: Ctl+V}
   - B
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
@@ -662,3 +662,9 @@ combos:
 - p: [24, 25]
   k: $$mdi:backspace-reverse-outline$$
   l: [default, nav1, symb, numb, fn, service, nav2, nav3]
+- p: [14, 17]
+  k: '&macro_tap'
+- p: [14, 18]
+  k: '&macro_tap'
+- p: [14, 19]
+  k: '&macro_tap'
