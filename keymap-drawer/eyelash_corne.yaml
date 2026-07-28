@@ -32,8 +32,8 @@ layers:
   - $$mdi:apple-keyboard-control$$
   - {t: Z, h: Ctl+Z}
   - {t: X, h: Ctl+X}
-  - {t: C, h: Ctl+C}
-  - {t: V, h: Ctl+V}
+  - C
+  - V
   - B
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
@@ -613,3 +613,9 @@ combos:
 - p: [24, 25]
   k: $$mdi:backspace-reverse-outline$$
   l: [default, nav1, symb, numb, fn, service, nav2, speedtype]
+- p: [20, 21]
+  k: '&macro_tap'
+- p: [20, 22]
+  k: '&macro_tap'
+- p: [25, 26]
+  k: '&ws2812_wdg'
