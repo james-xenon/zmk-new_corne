@@ -13,7 +13,7 @@
 #include <dt-bindings/zmk/rgb.h>
 
 &led_strip {
-    chain-length = <42>; 
+    chain-length = <42>;
 };
 
 &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
@@ -43,18 +43,6 @@
             bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
         };
 
-        // ИЗМЕНЕНО: Чистый макрос для зажатия слоя 6. 
-        // Он активирует слой, но не отправляет команды виджету, минимизируя шанс индикации.
-        nav2_hold_silent: nav2_hold_silent {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <10>;
-            tap-ms = <10>;
-            bindings = 
-                <&macro_press &mo 6>,
-                <&macro_release &mo 6>;
-        };
-
         symb_fn_td: symb_fn_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -66,7 +54,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
-            bindings = <&trans>, <&tog 6>; // Двойное нажатие = постоянное включение (с индикацией)
+            bindings = <&trans>, <&tog 6>;
         };
 
         speedtype_double_tap: speedtype_double_tap {
@@ -76,13 +64,23 @@
             bindings = <&trans>, <&tog 11>;
         };
 
+        // === НОВОЕ: Поведение для ОДНОКРАТНОГО нажатия без циклического повтора ===
+        tap_once: tap_once {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <1>;
+            wait-ms = <0>;
+            tap-ms = <50>; // Кратковременное нажатие
+            bindings = <&macro_tap &macro_param_1to1>;
+        };
+
         edit_ht: edit_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <220>;
             quick-tap-ms = <150>;
-            bindings = <&kp>, <&kp>;
+            // Первое действие (удержание) = tap_once (строго 1 раз), Второе (быстрый тап) = kp (обычный ввод)
+            bindings = <&tap_once>, <&kp>;
         };
 
         media_ht: media_ht {
@@ -103,7 +101,7 @@
             bindings = <&kp>, <&kp>;
         };
 
-        lang_nav2: lang_nav2 {
+        lang_nav2nolight: lang_nav2nolight {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred";
@@ -205,29 +203,6 @@
             bindings = <&kp DEL>;
             layers = <0 1 2 3 4 5 6 11>;
         };
-
-        // ИЗМЕНЕНО: Комбо для Ctrl+C без циклического повтора. 
-        // ЗАМЕНИТЕ 14 и 17 на реальные позиции ваших клавиш (например, Z и C, если Z=Ctrl)
-        combo_copy {
-            timeout-ms = <50>;
-            key-positions = <14 17>; 
-            bindings = <&macro_tap &kp LC(C)>; 
-        };
-
-        // ИЗМЕНЕНО: Комбо для Ctrl+V без циклического повтора.
-        combo_paste {
-            timeout-ms = <50>;
-            key-positions = <14 18>; // Пример: Z и V
-            bindings = <&macro_tap &kp LC(V)>; 
-        };
-
-        // ИЗМЕНЕНО: Комбо для проверки статуса батареи. 
-        // Используем Y+U (7, 8) или другие удобные. Замените позиции при необходимости.
-        combo_battery_check {
-            timeout-ms = <50>;
-            key-positions = <32 33>; // Пример: N и M на правой руке
-            bindings = <&ws2812_wdg 0>; 
-        };
     };
 
     keymap {
@@ -237,9 +212,10 @@
             bindings = <
 &kp TAB    &kp Q             &kp W             &kp E             &kp R             &kp T                               &kp UP                 &media_ht C_PP Y    &media_ht C_PREV U  &media_ht C_NEXT I      &media_ht C_STOP O   &kp P       &lbkt_screenshot 0 LBKT
 &td0       &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D             &edit_ht LC(F) F  &kp G                     &kp LEFT  &kp SPC  &kp RIGHT     &kp H               &kp J               &kp K                   &kp L                &kp SEMI    &mt LSHFT SQT
-&kp LCTRL  &edit_ht LC(Z) Z  &edit_ht LC(X) X  &kp C             &kp V             &kp B      &kp C_MUTE               &kp DOWN               &lang_alt LALT N    &kp M               &kp COMMA               &kp DOT              &kp FSLH    &kp ESC
-                                               &kp RALT          &symb_fn_td       &kp SPC                                                    &mt LGUI ENTER      &mo 3               &lang_nav2 6 0
+&kp LCTRL  &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C  &edit_ht LC(V) V  &kp B      &kp C_MUTE               &kp DOWN               &lang_alt LALT N    &kp M               &kp COMMA               &kp DOT              &kp FSLH    &kp ESC
+                                               &kp RALT          &symb_fn_td       &kp SPC                                                    &mt LGUI ENTER      &mo 3               &lang_nav2nolight 6 0
             >;
+
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
@@ -250,6 +226,7 @@
 &trans   &trans  &trans  &trans  &trans  &trans  &trans                     &mmv MOVE_DOWN                     &kp END           &msc MOVE_Y(-100)  &mkp MCLK  &msc MOVE_Y(100)     &kp DOT         &kp PG_DN
                          &trans  &trans  &trans                                                                &trans            &trans             &trans
             >;
+
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
@@ -260,6 +237,7 @@
 &trans  &trans     &trans      &trans       &trans     &mkp MB5   &trans                       &kp DOWN                    &kp UNDER         &kp PLUS    &kp LBRC   &kp RBRC   &kp PIPE   &kp TILDE
                                &trans       &trans     &kp SPC                                                             &kp RET           &trans      &trans
             >;   
+
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
@@ -270,6 +248,7 @@
 &trans   &trans  &trans  &trans  &trans  &mkp MB5   &kp C_MUTE                      &msc SCRL_DOWN                   &kp END          &kp N1    &kp N2    &kp N3    &kp DOT     &kp PG_DN
                          &trans  &trans  &trans                                                                      &kp INS          &trans    &trans
             >;
+
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
@@ -280,16 +259,18 @@
 &trans   &trans  &trans  &trans  &trans    &mkp MB5  &kp C_MUTE                       &mmv MOVE_DOWN                     &trans  &trans  &trans  &trans  &trans   &kp ESC
                          &trans  &trans    &trans                                                                        &trans  &trans  &trans
             >;
+
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         service_layer {
             bindings = <
-&kp ESC          &trans  &trans          &trans          &mkp RCLK      &studio_unlock                           &trans                   &bt BT_CLR        &trans           &bt BT_SEL 0      &bt BT_SEL 1      &bt BT_SEL 2         &bt BT_SEL 3
-&trans           &trans  &trans          &ws2812_wdg 0   &ws2812_wdg 2  &out OUT_BLE                     &trans  &trans    &trans         &trans            &trans           &trans            &trans            &trans               &trans
-&bt BT_CLR_ALL   &trans  &trans          &trans          &trans         &out OUT_USB    &kp C_MUTE               &trans                   &rgb_ug RGB_EFR   &rgb_ug RGB_EFF  &rgb_ug RGB_SPI   &rgb_ug RGB_SPD   &rgb_ug RGB_BRI      &rgb_ug RGB_BRD
-                                   &trans    &trans         &trans                                                            &rgb_ug RGB_TOG   &trans           &trans            // <--- ИЗМЕНЕНО: RGB_TOG вместо ON/OFF для синхронного переключения
+&kp ESC          &trans  &trans          &trans          &mkp RCLK        &studio_unlock                           &trans                   &bt BT_CLR        &trans           &bt BT_SEL 0      &bt BT_SEL 1      &bt BT_SEL 2         &bt BT_SEL 3
+&trans           &trans  &trans          &ws2812_wdg 0   &rgb_ug RGB_TOG  &out OUT_BLE                     &trans  &trans    &trans         &trans            &trans           &trans            &trans            &trans               &trans
+&bt BT_CLR_ALL   &trans  &trans          &trans          &trans           &out OUT_USB    &kp C_MUTE               &trans                   &rgb_ug RGB_EFR   &rgb_ug RGB_EFF  &rgb_ug RGB_SPI   &rgb_ug RGB_SPD   &rgb_ug RGB_BRI      &rgb_ug RGB_BRD
+                                         &trans          &trans           &trans                                                            &rgb_ug RGB_ON    &trans           &rgb_ug RGB_OFF
             >;
+
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
@@ -300,6 +281,18 @@
 &trans  &trans  &trans  &trans  &trans  &trans  &kp C_MUTE            &trans           &trans  &trans  &trans  &kp LEFT  &kp DOWN  &kp RIGHT
                         &trans  &trans  &trans                                         &trans  &trans  &trans
             >;
+
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
+         nav2nolight_layer {
+            bindings = <
+&kp ESC &trans  &trans  &trans  &trans  &trans                        &trans           &trans  &trans  &trans  &trans    &kp DEL   &kp BSPC
+&trans  &trans  &trans  &trans  &trans  &trans              &trans    &trans  &trans   &trans  &trans  &trans  &kp ESC   &kp UP    &kp ENTER
+&trans  &trans  &trans  &trans  &trans  &trans  &kp C_MUTE            &trans           &trans  &trans  &trans  &kp LEFT  &kp DOWN  &kp RIGHT
+                        &trans  &trans  &trans                                         &trans  &trans  &trans
+            >;
+
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
@@ -310,6 +303,7 @@
 &kp LCTRL  &kp Z      &kp X      &kp C      &kp V      &kp B      &none              &kp DOWN             &kp N    &kp M   &kp COMMA  &kp DOT  &kp FSLH  &none
                                 &mo 9      &mo 8      &kp SPACE                                          &kp RET  &none   &none
             >;
+
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
@@ -317,9 +311,10 @@
             bindings = <
 &kp ESC  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5                    &none          &kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &none
 &kp U    &kp N6  &kp N7  &kp N8  &kp N9  &kp N0            &none  &none  &none  &kp F8  &none   &none   &none   &none   &none
-&kp K    &kp L   &kp P   &kp J   &kp I   &kp M   &none            &none          &none  &none  &none  &none  &none  &none
-                         &none   &none   &none                                    &none  &none  &none
+&kp K    &kp L   &kp P   &kp J   &kp I   &kp M   &none            &none          &none   &none   &none   &none   &none   &none
+                         &none   &none   &none                                    &none   &none   &none
             >;
+
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
@@ -330,6 +325,7 @@
 &none  &none   &none   &none   &kp M   &kp N   &none           &none          &none  &none  &none  &none  &none  &none
                        &none   &none   &none                                   &none  &none  &none
             >;
+
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
@@ -340,6 +336,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans  &kp C_MUTE            &kp DOWN               &kp END         &msc MOVE_Y(-100)    &mkp MCLK       &msc MOVE_Y(100)   &kp DOT        &kp PG_DN
                         &trans  &trans  &trans                                               &trans          &trans               &trans
             >;
+
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
@@ -350,24 +347,20 @@
 &kp LCTRL  &kp Z      &kp X      &kp C      &kp V      &kp B      &kp C_MUTE               &kp DOWN               &kp N      &kp M      &kp COMMA  &kp DOT    &kp FSLH    &kp ESC
                                 &kp RALT   &none      &kp SPC                                                     &kp ENTER  &none      &none
             >;
+
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
     };
 
-    ws2812_widget {
+	ws2812_widget {
         compatible = "zmk,ws2812-widget";
         #binding-cells = <0>;
 
-        // Убедитесь, что здесь достаточно цветов для ваших слоев. 
-        // Формат: Hue, Saturation, Value (яркость). 0 0 0 = выключено.
         layer-colors = <
-            0 0 0       // Слой 0: Выключено (или поставьте 0 0 100 для белого)
-            60 100 100  // Слой 1
-            180 100 100 // Слой 2
-            0 100 100   // Слой 3
-            0 0 0       // Слой 4
-            0 0 0       // Слой 5
-            0 0 0       // Слой 6 (nav2): 0 0 0 гарантирует отсутствие цвета при активации
+            0 0 100
+            60 100 100
+            180 100 100
+            0 100 100
         >;
     };
 };
