@@ -291,9 +291,9 @@ layers:
   - {type: held}
   - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
-  - RGB ON
+  - RGB TOG
   - {t: '$$mdi:transfer$$', type: trans}
-  - RGB OFF
+  - {t: '$$mdi:transfer$$', type: trans}
   nav2:
   - $$mdi:keyboard-esc$$
   - {t: '$$mdi:transfer$$', type: trans}
@@ -613,9 +613,9 @@ combos:
 - p: [24, 25]
   k: $$mdi:backspace-reverse-outline$$
   l: [default, nav1, symb, numb, fn, service, nav2, speedtype]
-- p: [20, 21]
+- p: [14, 17]
   k: '&macro_tap'
-- p: [20, 22]
+- p: [14, 18]
   k: '&macro_tap'
-- p: [25, 26]
+- p: [32, 33]
   k: '&ws2812_wdg'
