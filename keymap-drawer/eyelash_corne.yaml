@@ -15,10 +15,10 @@ layers:
   - P
   - {t: '[', h: '&screenshot_win_shift_s', s: '{'}
   - '&td0'
-  - {t: A, h: '&tap_once LC(A)'}
-  - {t: S, h: '&tap_once LC(S)'}
+  - {t: A, h: '&tap_once_param LC(A)'}
+  - {t: S, h: '&tap_once_param LC(S)'}
   - D
-  - {t: F, h: '&tap_once LC(F)'}
+  - {t: F, h: '&tap_once_param LC(F)'}
   - G
   - $$mdi:arrow-left-bold$$
   - SPC
@@ -30,10 +30,10 @@ layers:
   - {t: ;, s: ':'}
   - {t: '''', h: '$$mdi:apple-keyboard-shift$$', s: '"'}
   - $$mdi:apple-keyboard-control$$
-  - {t: Z, h: '&tap_once LC(Z)'}
-  - {t: X, h: '&tap_once LC(X)'}
-  - {t: C, h: '&tap_once LC(C)'}
-  - {t: V, h: '&tap_once LC(V)'}
+  - {t: Z, h: '&tap_once_param LC(Z)'}
+  - {t: X, h: '&tap_once_param LC(X)'}
+  - {t: C, h: '&tap_once_param LC(C)'}
+  - {t: V, h: '&tap_once_param LC(V)'}
   - B
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
@@ -263,7 +263,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - '&ws2812_wdg'
-  - RGB TOG
+  - '&ws2812_wdg 2'
   - OUT BLE
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
