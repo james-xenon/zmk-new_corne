@@ -195,27 +195,22 @@
             layers = <0 1 2 3 4 5 6 11>;
         };
 
-        // === ОДНОКРАТНЫЕ КОМБО (БЕЗ ЦИКЛИЧНОСТИ) ===
-        // Используем &macro_tap для эмуляции быстрого нажатия-отпускания
-        
+        // Комбо для Ctrl+C, Ctrl+V, Ctrl+X БЕЗ циклического повтора
         combo_copy {
             timeout-ms = <50>;
-            // Замените позиции на реальные для вашего Ctrl и C
-            key-positions = <14 17>; 
+            key-positions = <14 17>; // Замените на реальные позиции ваших клавиш
             bindings = <&macro_tap &kp LC(C)>;
         };
 
         combo_paste {
             timeout-ms = <50>;
-            // Замените позиции на реальные для вашего Ctrl и V
-            key-positions = <14 18>; 
+            key-positions = <14 18>; // Замените на реальные позиции ваших клавиш
             bindings = <&macro_tap &kp LC(V)>;
         };
         
         combo_cut {
             timeout-ms = <50>;
-            // Замените позиции на реальные для вашего Ctrl и X
-            key-positions = <14 19>; 
+            key-positions = <14 19>; // Замените на реальные позиции ваших клавиш
             bindings = <&macro_tap &kp LC(X)>;
         };
     };
@@ -280,10 +275,10 @@
 
         service_layer {
             bindings = <
-&kp ESC          &trans  &trans          &trans          &mkp RCLK        &studio_unlock                           &trans                   &bt BT_CLR        &trans           &bt BT_SEL 0      &bt BT_SEL 1      &bt BT_SEL 2         &bt BT_SEL 3
-&trans           &trans  &trans          &ws2812_wdg 0   &ws2812_wdg 2    &out OUT_BLE                     &trans  &trans    &trans         &trans            &trans           &trans            &trans            &trans               &trans
-&bt BT_CLR_ALL   &trans  &trans          &trans          &trans           &out OUT_USB    &kp C_MUTE               &trans                   &rgb_ug RGB_EFR   &rgb_ug RGB_EFF  &rgb_ug RGB_SPI   &rgb_ug RGB_SPD   &rgb_ug RGB_BRI      &rgb_ug RGB_BRD
-                                         &trans          &trans           &trans                                                            &rgb_ug RGB_ON    &trans           &rgb_ug RGB_OFF
+&kp ESC          &trans  &trans          &trans          &mkp RCLK      &studio_unlock                           &trans                   &bt BT_CLR        &trans           &bt BT_SEL 0      &bt BT_SEL 1      &bt BT_SEL 2         &bt BT_SEL 3
+&trans           &trans  &trans          &ws2812_wdg 0   &ws2812_wdg 2  &out OUT_BLE                     &trans  &trans    &trans         &trans            &trans           &trans            &trans            &trans               &trans
+&bt BT_CLR_ALL   &trans  &trans          &trans          &trans         &out OUT_USB    &kp C_MUTE               &trans                   &rgb_ug RGB_EFR   &rgb_ug RGB_EFF  &rgb_ug RGB_SPI   &rgb_ug RGB_SPD   &rgb_ug RGB_BRI      &rgb_ug RGB_BRD
+                                   &trans    &trans         &trans                                                            &rgb_ug RGB_ON    &trans           &rgb_ug RGB_OFF
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
