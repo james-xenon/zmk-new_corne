@@ -56,7 +56,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            require-prior-idle-ms = <150>; // Добавлено по твоему запросу
+            require-prior-idle-ms = <150>;
             bindings = <&mo>, <&numb_symb_td>;
         };
 
@@ -118,6 +118,33 @@
             tapping-term-ms = <220>;
             quick-tap-ms = <150>;
             bindings = <&kp>, <&kp>;
+        };
+
+        // Вторая кнопка слева снизу: Hold = слой символов, Double tap = Windows
+        symb_win_td: symb_win_td {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&mo 2>, <&kp LGUI>;
+        };
+
+        // P: Hold = FN слой
+        p_fn_ht: p_fn_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <0>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&mo 4>, <&kp P>;
+        };
+
+        // Самая левая снизу: Hold = lefthand слой с require-prior-idle
+        lefthand_ht: lefthand_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <0>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            require-prior-idle-ms = <150>;
+            bindings = <&mo 13>, <&kp RALT>;
         };
 
         screenshot_win_shift_s: screenshot_win_shift_s {
@@ -223,7 +250,7 @@
 &kp TAB    &kp Q             &kp W             &kp E             &kp R             &kp T                               &kp UP                 &media_ht C_PP Y    &media_ht C_PREV U  &media_ht C_NEXT I      &media_ht C_STOP O   &kp P       &lbkt_screenshot 0 LBKT
 &td0       &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D             &edit_ht LC(F) F  &kp G                     &kp LEFT  &kp SPC  &kp RIGHT     &kp H               &kp J               &kp K                   &kp L                &kp SEMI    &mt LSHFT SQT
 &kp LCTRL  &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C  &edit_ht LC(V) V  &kp B      &kp C_MUTE               &kp DOWN               &lang_alt LALT N    &kp M               &kp COMMA               &kp DOT              &kp FSLH    &kp ESC
-                                               &kp RALT          &kp LGUI             &kp SPC                                                    &kp ENTER           &thumb_num_sym_fn 4 0       &lang_nav2 12 0
+                                               &lefthand_ht       &symb_win_td         &kp SPC                                                    &kp ENTER           &thumb_num_sym_fn 4 0       &lang_nav2 12 0
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -356,6 +383,17 @@
 &trans  &trans  &trans  &trans  &trans  &trans              &trans    &trans  &trans   &trans  &trans  &trans  &kp ESC   &kp UP    &kp ENTER
 &trans  &trans  &trans  &trans  &trans  &trans  &kp C_MUTE            &trans           &trans  &trans  &trans  &kp LEFT  &kp DOWN  &kp RIGHT
                         &trans  &trans  &trans                                         &trans  &trans  &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
+        lefthand_layer {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans                                     &trans                       &trans  &trans  &trans  &trans    &trans   &trans
+&trans  &trans  &trans  &trans  &trans  &trans                     &trans           &trans  &trans               &trans  &trans  &trans  &trans    &trans   &trans
+&trans  &trans  &trans  &trans  &trans  &trans          &trans                     &trans                       &trans  &trans  &trans  &trans    &trans   &trans
+                        &trans  &trans  &trans                                                                  &trans  &trans  &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
