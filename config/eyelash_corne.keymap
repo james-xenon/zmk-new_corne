@@ -36,12 +36,6 @@
         zmk,ws2812-widget = &led_strip;
     };
 
-    sensors {
-        compatible = "zmk,keymap-sensors";
-        triggers-per-rotation = <30>;
-        sensors = <&left_encoder>;
-    };
-
     behaviors {
         td0: td0 {
             compatible = "zmk,behavior-tap-dance";
@@ -56,13 +50,24 @@
             bindings = <&tog 3>, <&tog 2>;
         };
 
+        // Предпоследняя кнопка (Win): Удержание = FN (слой 4), Тап = Цифры/Символы
         thumb_num_sym_fn: thumb_num_sym_fn {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "balanced";
+            flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            require-prior-idle-ms = <150>;
-            bindings = <&mo 12>, <&numb_symb_td>;
+            require-prior-idle-ms = <150>; // Добавлено по твоему запросу
+            bindings = <&mo>, <&numb_symb_td>;
+        };
+
+        // Последняя кнопка (Раскладка): Удержание = nav2nolight (слой 12), Тап = Win+Space
+        lang_nav2: lang_nav2 {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <220>;
+            quick-tap-ms = <150>;
+            bindings = <&mo>, <&win_space>;
         };
 
         nav2_double_tap: nav2_double_tap {
@@ -113,16 +118,6 @@
             tapping-term-ms = <220>;
             quick-tap-ms = <150>;
             bindings = <&kp>, <&kp>;
-        };
-
-        lang_nav2: lang_nav2 {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <220>;
-            quick-tap-ms = <150>;
-            require-prior-idle-ms = <150>;
-            bindings = <&mo 4>, <&win_space>;
         };
 
         screenshot_win_shift_s: screenshot_win_shift_s {
@@ -228,7 +223,7 @@
 &kp TAB    &kp Q             &kp W             &kp E             &kp R             &kp T                               &kp UP                 &media_ht C_PP Y    &media_ht C_PREV U  &media_ht C_NEXT I      &media_ht C_STOP O   &kp P       &lbkt_screenshot 0 LBKT
 &td0       &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D             &edit_ht LC(F) F  &kp G                     &kp LEFT  &kp SPC  &kp RIGHT     &kp H               &kp J               &kp K                   &kp L                &kp SEMI    &mt LSHFT SQT
 &kp LCTRL  &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C  &edit_ht LC(V) V  &kp B      &kp C_MUTE               &kp DOWN               &lang_alt LALT N    &kp M               &kp COMMA               &kp DOT              &kp FSLH    &kp ESC
-                                               &kp RALT          &kp LGUI             &kp SPC                                                    &kp ENTER           &thumb_num_sym_fn 12 0       &lang_nav2 4 0
+                                               &kp RALT          &kp LGUI             &kp SPC                                                    &kp ENTER           &thumb_num_sym_fn 4 0       &lang_nav2 12 0
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
