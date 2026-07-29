@@ -47,8 +47,8 @@ layers:
   - LGUI
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - '&num_sym_td'
-  - {t: '&win_space_1param', h: fn}
+  - {t: '&num_sym_td', h: numb}
+  - {t: '&win_space', h: fn}
   nav1:
   - $$mdi:keyboard-esc$$
   - {t: '$$mdi:transfer$$', type: trans}
@@ -194,7 +194,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - INS
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
   fn:
   - $$mdi:keyboard-esc$$
