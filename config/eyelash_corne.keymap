@@ -56,7 +56,7 @@
             flavor = "balanced";
             tapping-term-ms = <200>;
             require-prior-idle-ms = <150>;
-            bindings = <&mo 4>, <&numb_symb_td>; // Или другой нужный индекс слоя
+            bindings = <&mo>, <&numb_symb_td>;
         };
 
         nav2_double_tap: nav2_double_tap {
@@ -221,7 +221,7 @@
 &kp TAB    &kp Q             &kp W             &kp E             &kp R             &kp T                               &kp UP                 &media_ht C_PP Y    &media_ht C_PREV U  &media_ht C_NEXT I      &media_ht C_STOP O   &kp P       &lbkt_screenshot 0 LBKT
 &td0       &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D             &edit_ht LC(F) F  &kp G                     &kp LEFT  &kp SPC  &kp RIGHT     &kp H               &kp J               &kp K                   &kp L                &kp SEMI    &mt LSHFT SQT
 &kp LCTRL  &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C  &edit_ht LC(V) V  &kp B      &kp C_MUTE               &kp DOWN               &lang_alt LALT N    &kp M               &kp COMMA               &kp DOT              &kp FSLH    &kp ESC
-                                               &kp RALT          &LGUI             &kp SPC                                                    &kp ENTER           &thumb_num_sym_fn 4 0       &lang_nav2 12 0
+                                               &kp RALT          &kp LGUI             &kp SPC                                                    &kp ENTER           &thumb_num_sym_fn 4 0       &lang_nav2 12 0
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
