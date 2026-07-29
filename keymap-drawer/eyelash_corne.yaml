@@ -47,8 +47,8 @@ layers:
   - LGUI
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '&numb_symb_td', h: '&mo 12 12'}
-  - {t: '&win_space', h: '&mo 4 4'}
+  - {t: '&numb_symb_td', h: fn}
+  - {t: '&win_space', h: nav2nolight}
   nav1:
   - $$mdi:keyboard-esc$$
   - {t: '$$mdi:transfer$$', type: trans}
@@ -243,7 +243,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
   service:
   - $$mdi:keyboard-esc$$
@@ -636,7 +636,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
 combos:
 - p: [2, 3, 4, 5]
   k: {t: gaming1, h: toggle}
