@@ -12,7 +12,7 @@ layers:
   - {t: U, h: '$$mdi:skip-previous$$'}
   - {t: I, h: '$$mdi:skip-next$$'}
   - {t: O, h: STOP}
-  - '&p_fn_ht'
+  - {t: P, h: fn}
   - {t: '[', h: '&screenshot_win_shift_s', s: '{'}
   - '&td0'
   - {t: A, h: '&kp_once LC(A)'}
@@ -43,7 +43,7 @@ layers:
   - {t: ., s: '>'}
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
-  - '&lefthand_ht'
+  - {t: '$$mdi:apple-keyboard-option$$', h: lefthand}
   - '&symb_win_td'
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
@@ -208,7 +208,7 @@ layers:
   - F7
   - F8
   - F9
-  - F10
+  - {t: F10, type: held}
   - F11
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -243,7 +243,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {type: held}
+  - {type: held alternate}
   - {t: '$$mdi:transfer$$', type: trans}
   service:
   - $$mdi:keyboard-esc$$
@@ -680,7 +680,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
