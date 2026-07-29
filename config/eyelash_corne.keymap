@@ -16,18 +16,18 @@
     chain-length = <42>;
 };
 
-&mmv_input_listener { input-processors = <&zip_xy_scaler 1 1>; };
-&msc_input_listener { input-processors = <&zip_scroll_scaler 1 1>; };
+&mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
+&msc_input_listener { input-processors = <&zip_scroll_scaler 2 1>; };
 
 &msc {
-    acceleration-exponent = <0>;
-    time-to-max-speed-ms = <0>;
+    acceleration-exponent = <1>;
+    time-to-max-speed-ms = <100>;
     delay-ms = <0>;
 };
 
 &mmv {
     time-to-max-speed-ms = <500>;
-    acceleration-exponent = <0>;
+    acceleration-exponent = <1>;
     trigger-period-ms = <16>;
 };
 
@@ -38,7 +38,7 @@
 
     sensors {
         compatible = "zmk,keymap-sensors";
-        triggers-per-rotation = <20>;
+        triggers-per-rotation = <30>;
         sensors = <&left_encoder>;
     };
 
@@ -53,23 +53,23 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
-            bindings = <&mo 3>, <&tog 2>;
+            bindings = <&tog 3>, <&tog 2>;
         };
 
         num_sym_ht: num_sym_ht {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
+            #binding-cells = <0>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&mo>, <&num_sym_td>;
+            bindings = <&mo 3>, <&num_sym_td>;
         };
 
         lang_fn_ht: lang_fn_ht {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
+            #binding-cells = <0>;
             flavor = "balanced";
             tapping-term-ms = <200>;
-            bindings = <&mo>, <&win_space>;
+            bindings = <&mo 4>, <&win_space>;
         };
 
         nav2_double_tap: nav2_double_tap {
@@ -225,7 +225,7 @@
 &kp TAB    &kp Q             &kp W             &kp E             &kp R             &kp T                               &kp UP                 &media_ht C_PP Y    &media_ht C_PREV U  &media_ht C_NEXT I      &media_ht C_STOP O   &kp P       &lbkt_screenshot 0 LBKT
 &td0       &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D             &edit_ht LC(F) F  &kp G                     &kp LEFT  &kp SPC  &kp RIGHT     &kp H               &kp J               &kp K                   &kp L                &kp SEMI    &mt LSHFT SQT
 &kp LCTRL  &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C  &edit_ht LC(V) V  &kp B      &kp C_MUTE               &kp DOWN               &lang_alt LALT N    &kp M               &kp COMMA               &kp DOT              &kp FSLH    &kp ESC
-                                               &kp RALT          &kp LGUI             &kp SPC                                                    &kp ENTER           &num_sym_ht 3 0       &lang_fn_ht 4 0
+                                               &kp RALT          &kp LGUI             &kp SPC                                                    &kp ENTER           &num_sym_ht       &lang_fn_ht
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
