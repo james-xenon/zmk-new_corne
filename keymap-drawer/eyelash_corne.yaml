@@ -47,8 +47,8 @@ layers:
   - LGUI
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - '&num_sym_ht'
-  - '&lang_fn_ht'
+  - {t: '&numb_symb_td', h: '&mo 12 12'}
+  - {t: '&win_space', h: '&mo 4 4'}
   nav1:
   - $$mdi:keyboard-esc$$
   - {t: '$$mdi:transfer$$', type: trans}
