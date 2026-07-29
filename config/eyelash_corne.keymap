@@ -13,7 +13,7 @@
 #include <dt-bindings/zmk/rgb.h>
 
 &led_strip {
-    chain-length = <42>; // <-- ВАЖНО: Если у вас по 21 диоду на сторону, оставьте 42. Если физически насчитали по 27 диодов на сторону, измените на 54.
+    chain-length = <42>;
 };
 
 &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
@@ -43,21 +43,35 @@
             bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
         };
 
-        numb_symb_td: numb_symb_td {
+        // --- НОВЫЕ ПОВЕДЕНИЯ ДЛЯ НИЖНЕГО РЯДА ---
+        
+        // Тап-данс: 1 тап = цифры (моментально), 2 тапа = символы (переключатель)
+        num_sym_td: num_sym_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
-            bindings = <&mo 3>, <&mo 2>;
+            bindings = <&mo 3>, <&tog 2>;
         };
 
-        thumb_num_sym_fn: thumb_num_sym_fn {
+        // Предпоследняя кнопка: Удержание = цифры, Тап = тап-данс выше
+        num_sym_ht: num_sym_ht {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
+            #binding-cells = <0>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&mo 3>, <&num_sym_td>;
+        };
+
+        // Последняя кнопка: Удержание = FN слой (4), Тап = смена языка
+        lang_fn_ht: lang_fn_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <0>;
             flavor = "balanced";
             tapping-term-ms = <200>;
-            require-prior-idle-ms = <150>;
-            bindings = <&mo>, <&numb_symb_td>;
+            bindings = <&mo 4>, <&win_space>;
         };
+
+        // ----------------------------------------
 
         nav2_double_tap: nav2_double_tap {
             compatible = "zmk,behavior-tap-dance";
@@ -78,8 +92,8 @@
             #binding-cells = <1>;
             wait-ms = <0>;
             tap-ms = <0>;
-            bindings = <&macro_param_1to1 &macro_press &kp MACRO_PLACEHOLDER>,
-                       <&macro_param_1to1 &macro_release &kp MACRO_PLACEHOLDER>;
+            bindings = <&macro_param_1to1 &macro_press &kp 0>,
+                       <&macro_param_1to1 &macro_release &kp 0>;
         };
 
         edit_ht: edit_ht {
@@ -107,15 +121,6 @@
             tapping-term-ms = <220>;
             quick-tap-ms = <150>;
             bindings = <&kp>, <&kp>;
-        };
-
-        lang_nav2: lang_nav2 {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <220>;
-            quick-tap-ms = <150>;
-            bindings = <&mo>, <&win_space>;
         };
 
         screenshot_win_shift_s: screenshot_win_shift_s {
@@ -221,7 +226,7 @@
 &kp TAB    &kp Q             &kp W             &kp E             &kp R             &kp T                               &kp UP                 &media_ht C_PP Y    &media_ht C_PREV U  &media_ht C_NEXT I      &media_ht C_STOP O   &kp P       &lbkt_screenshot 0 LBKT
 &td0       &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D             &edit_ht LC(F) F  &kp G                     &kp LEFT  &kp SPC  &kp RIGHT     &kp H               &kp J               &kp K                   &kp L                &kp SEMI    &mt LSHFT SQT
 &kp LCTRL  &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C  &edit_ht LC(V) V  &kp B      &kp C_MUTE               &kp DOWN               &lang_alt LALT N    &kp M               &kp COMMA               &kp DOT              &kp FSLH    &kp ESC
-                                               &kp RALT          &kp LGUI             &kp SPC                                                    &kp ENTER           &thumb_num_sym_fn 4 0       &lang_nav2 12 0
+                                               &kp RALT          &kp LGUI             &kp SPC                                                    &kp ENTER           &num_sym_ht       &lang_fn_ht
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
