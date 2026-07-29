@@ -13,7 +13,7 @@
 #include <dt-bindings/zmk/rgb.h>
 
 &led_strip {
-    chain-length = <42>; 
+    chain-length = <42>; // <-- ВАЖНО: Если у вас по 21 диоду на сторону, оставьте 42. Если физически насчитали по 27 диодов на сторону, измените на 54.
 };
 
 &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
@@ -64,93 +64,13 @@
             bindings = <&trans>, <&tog 11>;
         };
 
-        // --- МАКРОСЫ ДЛЯ ОДНОКРАТНОГО СРАБАТЫВАНИЯ (HOLD) ---
-        
-        macro_ctrl_a: macro_ctrl_a {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <50>;
-            bindings = 
-                <&macro_press &kp LCTRL>, 
-                <&macro_tap &kp A>, 
-                <&macro_release &kp LCTRL>;
-        };
-
-        macro_ctrl_s: macro_ctrl_s {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <50>;
-            bindings = 
-                <&macro_press &kp LCTRL>, 
-                <&macro_tap &kp S>, 
-                <&macro_release &kp LCTRL>;
-        };
-
-        macro_ctrl_f: macro_ctrl_f {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <50>;
-            bindings = 
-                <&macro_press &kp LCTRL>, 
-                <&macro_tap &kp F>, 
-                <&macro_release &kp LCTRL>;
-        };
-
-        macro_ctrl_z: macro_ctrl_z {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <50>;
-            bindings = 
-                <&macro_press &kp LCTRL>, 
-                <&macro_tap &kp Z>, 
-                <&macro_release &kp LCTRL>;
-        };
-
-        macro_ctrl_x: macro_ctrl_x {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <50>;
-            bindings = 
-                <&macro_press &kp LCTRL>, 
-                <&macro_tap &kp X>, 
-                <&macro_release &kp LCTRL>;
-        };
-
-        macro_ctrl_c: macro_ctrl_c {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <50>;
-            bindings = 
-                <&macro_press &kp LCTRL>, 
-                <&macro_tap &kp C>, 
-                <&macro_release &kp LCTRL>;
-        };
-
-        macro_ctrl_v: macro_ctrl_v {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <50>;
-            bindings = 
-                <&macro_press &kp LCTRL>, 
-                <&macro_tap &kp V>, 
-                <&macro_release &kp LCTRL>;
-        };
-
-        // --- НАСТРОЙКА HOLD-TAP ---
         edit_ht: edit_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <220>;
             quick-tap-ms = <150>;
-            bindings = <&kp>, <&kp>; 
+            bindings = <&kp>, <&kp>;
         };
 
         media_ht: media_ht {
@@ -281,10 +201,11 @@
         default_layer {
             bindings = <
 &kp TAB    &kp Q             &kp W             &kp E             &kp R             &kp T                               &kp UP                 &media_ht C_PP Y    &media_ht C_PREV U  &media_ht C_NEXT I      &media_ht C_STOP O   &kp P       &lbkt_screenshot 0 LBKT
-&td0       &edit_ht macro_ctrl_a A  &edit_ht macro_ctrl_s S  &kp D             &edit_ht macro_ctrl_f F  &kp G                     &kp LEFT  &kp SPC  &kp RIGHT     &kp H               &kp J               &kp K                   &kp L                &kp SEMI    &mt LSHFT SQT
-&kp LCTRL  &edit_ht macro_ctrl_z Z  &edit_ht macro_ctrl_x X  &edit_ht macro_ctrl_c C  &edit_ht macro_ctrl_v V  &kp B      &kp C_MUTE               &kp DOWN               &lang_alt LALT N    &kp M               &kp COMMA               &kp DOT              &kp FSLH    &kp ESC
+&td0       &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D             &edit_ht LC(F) F  &kp G                     &kp LEFT  &kp SPC  &kp RIGHT     &kp H               &kp J               &kp K                   &kp L                &kp SEMI    &mt LSHFT SQT
+&kp LCTRL  &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C  &edit_ht LC(V) V  &kp B      &kp C_MUTE               &kp DOWN               &lang_alt LALT N    &kp M               &kp COMMA               &kp DOT              &kp FSLH    &kp ESC
                                                &kp RALT          &symb_fn_td       &kp SPC                                                    &mt LGUI ENTER      &mo 3               &lang_nav2 6 0
             >;
+
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
