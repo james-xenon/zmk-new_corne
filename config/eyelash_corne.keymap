@@ -56,7 +56,7 @@
             flavor = "balanced";
             tapping-term-ms = <200>;
             require-prior-idle-ms = <150>;
-            bindings = <&mo>, <&numb_symb_td>;
+            bindings = <&mo 4>, <&numb_symb_td>; // Или другой нужный индекс слоя
         };
 
         nav2_double_tap: nav2_double_tap {
