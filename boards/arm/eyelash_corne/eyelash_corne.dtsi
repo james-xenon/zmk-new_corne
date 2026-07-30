@@ -39,15 +39,10 @@
 
     left_encoder: encoder_left {
         compatible = "alps,ec11";
-        a-gpios = <&gpio1 10 ((0 << 0) | (1 << 4))>;
-        b-gpios = <&gpio1 14 ((0 << 0) | (1 << 4))>;
-        steps = <48>;
-        
-        // Добавь эти две строки:
-        zmk,encoder-debounce-press-ms = <5>;
-        zmk,encoder-debounce-release-ms = <5>;
-        
-        status = "disabled"; 
+        a-gpios = <&gpio1 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&gpio1 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <24>;
+        status = "disabled";
     };
 
     sensors {
@@ -185,7 +180,7 @@ zephyr_udc0: &usbd {
 
     spi3_default: spi3_default {
         group1 {
-            psels = <NRF_PSEL(SPIM_MOSI, 1, 12)>; // WS2812_VEXT_DATA
+            psels = <NRF_PSEL(SPIM_MOSI, 1, 12)>;
         };
     };
 
