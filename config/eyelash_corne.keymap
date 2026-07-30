@@ -265,7 +265,7 @@
             >;
 
             // Энкодер: горизонтальный скролл влево/вправо
-            sensor-bindings = <&inc_dec_msc SCRL_LEFT SCRL_RIGHT>;
+            sensor-bindings = <&inc_dec_kp LC(LEFT) LC(RIGHT)>;
         };
 
         symb_layer {
@@ -365,7 +365,7 @@
             >;
 
             // Энкодер: горизонтальный скролл влево/вправо
-            sensor-bindings = <&inc_dec_msc SCRL_LEFT SCRL_RIGHT>;
+            sensor-bindings = <&inc_dec_kp LC(LEFT) LC(RIGHT)>;
         };
 
         speedtype {
