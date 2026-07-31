@@ -62,24 +62,16 @@
             bindings = <&mo>, <&tog>;
         };
 
-        // Tap-dance для тапов: 1 тап = toggle цифры (3), 2 тапа = Windows
-        symb_win_tap_dance: symb_win_tap_dance {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <250>;
-            bindings = <&tog 3>, <&kp LGUI>;
-        };
-
-        // Символы: Hold = символы (2), Tap = tap-dance (toggle цифры / Win)
+        // Символы: Hold = символы (2), Tap = Windows (LGUI)
         symb_win_td: symb_win_td {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <1>;
+            #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&mo>, <&symb_win_tap_dance>;
+            bindings = <&mo>, <&kp>;
         };
 
-        // Последняя кнопка (Раскладка): Удержание = nav2nolight (слой 12), Тап = Win+Space
+        // Последняя кнопка (Раскладка): Удержание = nav2nolight (12), Тап = Win+Space
         lang_nav2: lang_nav2 {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -87,6 +79,16 @@
             tapping-term-ms = <220>;
             quick-tap-ms = <150>;
             bindings = <&mo>, <&win_space>;
+        };
+
+        // Q: Hold = lefthand слой (13), Tap = Q
+        q_lefthand_ht: q_lefthand_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            bindings = <&mo>, <&kp>;
         };
 
         nav2_double_tap: nav2_double_tap {
@@ -130,6 +132,7 @@
             bindings = <&kp>, <&kp>;
         };
 
+        // Alt: Hold = LALT, Tap = N
         lang_alt: lang_alt {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -257,10 +260,10 @@
 
         default_layer {
             bindings = <
-&tab_esc_ht ESC TAB  &kp Q             &kp W             &kp E             &kp R             &kp T                               &kp UP                 &media_ht C_PP Y    &media_ht C_PREV U  &media_ht C_NEXT I      &media_ht C_STOP O   &kp P    &lbkt_screenshot 0 LBKT
+&q_lefthand_ht 13 Q  &kp W             &kp E             &kp R             &kp T                               &kp UP                 &media_ht C_PP Y    &media_ht C_PREV U  &media_ht C_NEXT I      &media_ht C_STOP O   &kp P    &lbkt_screenshot 0 LBKT
 &td0       &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D             &edit_ht LC(F) F  &kp G                     &kp LEFT  &kp SPC  &kp RIGHT     &kp H               &kp J               &kp K                   &kp L                &p_fn_ht 4 SEMI    &mt LSHFT SQT
 &kp LCTRL  &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C  &edit_ht LC(V) V  &kp B      &kp C_MUTE               &kp DOWN               &lang_alt LALT N    &kp M               &kp COMMA               &kp DOT              &kp FSLH    &kp ESC
-                                               &lefthand_ht 13 RALT  &symb_win_td 2  &kp SPC                                                    &kp ENTER           &thumb_num_sym_fn 3 2  &lang_nav2 12 0
+                                               &lefthand_ht 13 RALT  &symb_win_td 2 LGUI  &kp SPC                                                    &kp ENTER           &thumb_num_sym_fn 3 2  &lang_nav2 12 0
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -274,7 +277,6 @@
                          &trans  &trans  &trans                                                                &trans            &trans             &trans
             >;
 
-            // Энкодер: горизонтальный скролл влево/вправо
             sensor-bindings = <&inc_dec_kp LC(LEFT) LC(RIGHT)>;
         };
 
@@ -374,7 +376,6 @@
                         &trans  &trans  &trans                                               &trans          &trans               &trans
             >;
 
-            // Энкодер: горизонтальный скролл влево/вправо
             sensor-bindings = <&inc_dec_kp LC(LEFT) LC(RIGHT)>;
         };
 
