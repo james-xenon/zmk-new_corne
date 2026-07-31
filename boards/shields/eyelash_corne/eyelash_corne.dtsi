@@ -39,13 +39,13 @@
          * Если пропускает → попробуй steps=48, triggers=24
          * Если двойные    → попробуй steps=12, triggers=12
          */
-        steps = <24>;
+        steps = <48>;
         status = "disabled";
     };
 
     sensors {
         compatible = "zmk,keymap-sensors";
-        triggers-per-rotation = <96>;
+        triggers-per-rotation = <48>;
         sensors = <&left_encoder>;
     };
 

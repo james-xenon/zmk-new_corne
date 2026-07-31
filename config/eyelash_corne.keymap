@@ -43,16 +43,17 @@
             bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
         };
 
-        // TAB: Hold = ESC, Tap = TAB
+        // TAB: Hold = ESC, Tap = TAB (tap-preferred для мгновенного срабатывания в Alt-Tab)
         tab_esc_ht: tab_esc_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "hold-preferred";
+            flavor = "tap-preferred";
             tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
             bindings = <&kp>, <&kp>;
         };
 
-        // Q: Hold = слой 13, Tap = Q (с защитой от ложных срабатываний при быстром наборе)
+        // Q: Hold = слой 13, Tap = Q
         q_lefthand_ht: q_lefthand_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -123,7 +124,7 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Alt: Hold = LALT (мгновенно для Alt-Tab), Tap = toggle последний слой (13)
+        // Alt: Hold = LALT, Tap = toggle слой 13
         lang_alt: lang_alt {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -132,12 +133,13 @@
             bindings = <&kp>, <&tog>;
         };
 
-        // Символы/Win
-        symb_win_td: symb_win_td {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <300>;
-            bindings = <&mo 2>, <&kp LGUI>;
+        // Символы: Hold = слой 2, Tap = Windows (LGUI)
+        symb_win_ht: symb_win_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&mo>, <&kp>;
         };
 
         // Ж (SEMI): Hold = FN слой (4), Tap = SEMI
@@ -262,7 +264,7 @@
 &tab_esc_ht ESC TAB  &q_lefthand_ht 13 Q  &kp W             &kp E             &kp R             &kp T                               &kp UP                 &media_ht C_PP Y    &media_ht C_PREV U  &media_ht C_NEXT I  &media_ht C_STOP O  &kp P    &lbkt_screenshot 0 LBKT
 &td0       &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D             &edit_ht LC(F) F  &kp G                     &kp LEFT  &kp SPC    &kp RIGHT   &kp H               &kp J               &kp K               &kp L               &semi_fn_ht 4 SEMI        &mt LSHFT SQT
 &kp LCTRL  &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C  &edit_ht LC(V) V  &kp B      &kp C_MUTE               &kp DOWN               &lang_alt LALT 13    &kp M               &kp COMMA           &kp DOT             &kp FSLH        &kp ESC
-                                               &lefthand_ht 13 RALT  &symb_win_td  &kp SPC                                                    &kp ENTER           &thumb_num_sym_fn 3 2  &lang_nav2 12 0
+                                               &lefthand_ht 13 RALT  &symb_win_ht 2 LGUI  &kp SPC                                                    &kp ENTER           &thumb_num_sym_fn 3 2  &lang_nav2 12 0
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
@@ -274,7 +276,7 @@
 &trans   &trans  &trans  &trans  &trans  &trans  &trans                     &mmv MOVE_DOWN                     &kp END           &msc MOVE_Y(-100)  &mkp MCLK  &msc MOVE_Y(100)  &kp DOT         &kp PG_DN
                          &trans  &trans  &trans                                                                &trans            &trans             &trans
             >;
-            sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp LC(LEFT) LC(RIGHT)>;
         };
 
         symb_layer {
@@ -364,7 +366,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans  &kp C_MUTE          &kp DOWN               &kp END         &msc MOVE_Y(-100) &mkp MCLK       &msc MOVE_Y(100)  &kp DOT        &kp PG_DN
                         &trans  &trans  &trans                                             &trans          &trans            &trans
             >;
-            sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp LC(LEFT) LC(RIGHT)>;
         };
 
         speedtype {
