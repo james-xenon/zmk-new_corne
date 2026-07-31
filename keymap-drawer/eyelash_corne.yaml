@@ -1,7 +1,7 @@
 layout: {zmk_keyboard: eyelash_corne}
 layers:
   default:
-  - $$mdi:keyboard-tab$$
+  - {t: '$$mdi:keyboard-tab$$', h: '$$mdi:keyboard-esc$$'}
   - Q
   - W
   - E
@@ -12,7 +12,7 @@ layers:
   - {t: U, h: '$$mdi:skip-previous$$'}
   - {t: I, h: '$$mdi:skip-next$$'}
   - {t: O, h: STOP}
-  - {t: P, h: fn}
+  - P
   - {t: '[', h: '&screenshot_win_shift_s', s: '{'}
   - '&td0'
   - {t: A, h: '&kp_once LC(A)'}
@@ -27,7 +27,7 @@ layers:
   - J
   - K
   - L
-  - {t: ;, s: ':'}
+  - {t: ;, h: fn, s: ':'}
   - {t: '''', h: '$$mdi:apple-keyboard-shift$$', s: '"'}
   - $$mdi:apple-keyboard-control$$
   - {t: Z, h: '&kp_once LC(Z)'}
@@ -44,10 +44,10 @@ layers:
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
   - {t: '$$mdi:apple-keyboard-option$$', h: lefthand}
-  - '&symb_win_td'
+  - {t: numb, h: symb}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '&numb_symb_td', h: numb}
+  - {t: symb, h: numb}
   - {t: '&win_space', h: nav2nolight}
   nav1:
   - $$mdi:keyboard-esc$$
@@ -142,7 +142,7 @@ layers:
   - '|'
   - '~'
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -208,7 +208,7 @@ layers:
   - F7
   - F8
   - F9
-  - {t: F10, type: held}
+  - F10
   - F11
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -223,7 +223,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
   - F12
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
