@@ -41,17 +41,13 @@
         compatible = "alps,ec11";
         a-gpios = <&gpio1 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         b-gpios = <&gpio1 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        steps = <20>; // Было <30>. Стандартное значение для EC11.
-        status = "okay"; // Было "disabled". Энкодер теперь включён.
-
-        // Аппаратный дебаунс для подавления дребезга контактов.
-        zmk,encoder-debounce-press-ms = <5>;
-        zmk,encoder-debounce-release-ms = <5>;
+        steps = <20>; // Стандарт для EC11. Должно совпадать с triggers-per-rotation
+        status = "okay"; // ОБЯЗАТЕЛЬНО "okay", иначе энкодер не работает
     };
 
     sensors {
         compatible = "zmk,keymap-sensors";
-        triggers-per-rotation = <20>; // Было <15>. Должно совпадать со steps.
+        triggers-per-rotation = <20>; // Должно быть равно steps для линейной работы
         sensors = <&left_encoder>;
     };
 
