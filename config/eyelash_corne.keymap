@@ -50,8 +50,8 @@
             bindings = <&tog 3>, <&tog 2>;
         };
 
-        // ИСПРАВЛЕНО: #binding-cells = <1> (1 для &mo + 0 для &numb_symb_td)
-        // bindings содержат ТОЛЬКО ссылки на поведения, без аргументов!
+        // ИСПРАВЛЕНО: bindings содержат ТОЛЬКО ссылки, без аргументов.
+        // #binding-cells = <1>, так как &mo требует 1 аргумент.
         thumb_num_sym_fn: thumb_num_sym_fn {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <1>;
@@ -61,14 +61,14 @@
             bindings = <&mo>, <&numb_symb_td>;
         };
 
-        // ИСПРАВЛЕНО: #binding-cells = <1> (1 для &mo + 0 для &win_space)
+        // ИСПРАВЛЕНО: bindings содержат ТОЛЬКО ссылки.
+        // #binding-cells = <1>, так как &mo требует 1 аргумент.
         lang_nav2: lang_nav2 {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <1>;
             flavor = "tap-preferred";
             tapping-term-ms = <220>;
             quick-tap-ms = <150>;
-            require-prior-idle-ms = <150>;
             bindings = <&mo>, <&win_space>;
         };
 
@@ -321,9 +321,9 @@
 
         gaming3_layer {
             bindings = <
-&none  &kp P   &kp O   &kp I   &kp U   &kp Y                    &none          &none  &none  &none  &none  &none  &none
-&none  &none   &kp L   &kp K   &kp J   &kp H             &kp A  &none  &none  &none  &none  &none  &none  &none  &none
-&none  &none   &none   &none   &kp M   &kp N   &none           &none          &none  &none  &none  &none  &none  &none
+&none &kp P   &kp O   &kp I   &kp U   &kp Y                    &none          &none  &none  &none  &none  &none  &none
+&none &none   &kp L   &kp K   &kp J   &kp H             &kp A  &none  &none  &none  &none  &none  &none  &none  &none
+&none &none   &none   &none   &kp M   &kp N   &none           &none          &none  &none  &none  &none  &none  &none
                        &none   &none   &none                                   &none  &none  &none
             >;
 
