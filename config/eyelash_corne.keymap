@@ -62,7 +62,7 @@
             bindings = <&mo>, <&tog>;
         };
 
-        // Символы: Hold = символы (2), Tap = Windows (LGUI)
+        // Символы: Hold = слой 2, Tap = Windows (LGUI)
         symb_win_td: symb_win_td {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -89,6 +89,16 @@
             tapping-term-ms = <200>;
             quick-tap-ms = <150>;
             bindings = <&mo>, <&kp>;
+        };
+
+        // Alt: Hold = LALT, Tap = toggle слой 13
+        lang_alt: lang_alt {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <220>;
+            quick-tap-ms = <150>;
+            bindings = <&kp>, <&tog>;
         };
 
         nav2_double_tap: nav2_double_tap {
@@ -129,16 +139,6 @@
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
             quick-tap-ms = <120>;
-            bindings = <&kp>, <&kp>;
-        };
-
-        // Alt: Hold = LALT, Tap = N
-        lang_alt: lang_alt {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <220>;
-            quick-tap-ms = <150>;
             bindings = <&kp>, <&kp>;
         };
 
@@ -262,7 +262,7 @@
             bindings = <
 &q_lefthand_ht 13 Q  &kp W             &kp E             &kp R             &kp T                               &kp UP                 &media_ht C_PP Y    &media_ht C_PREV U  &media_ht C_NEXT I      &media_ht C_STOP O   &kp P    &lbkt_screenshot 0 LBKT
 &td0       &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D             &edit_ht LC(F) F  &kp G                     &kp LEFT  &kp SPC  &kp RIGHT     &kp H               &kp J               &kp K                   &kp L                &p_fn_ht 4 SEMI    &mt LSHFT SQT
-&kp LCTRL  &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C  &edit_ht LC(V) V  &kp B      &kp C_MUTE               &kp DOWN               &lang_alt LALT N    &kp M               &kp COMMA               &kp DOT              &kp FSLH    &kp ESC
+&kp LCTRL  &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C  &edit_ht LC(V) V  &kp B      &kp C_MUTE               &kp DOWN               &lang_alt LALT 13   &kp M               &kp COMMA               &kp DOT              &kp FSLH    &kp ESC
                                                &lefthand_ht 13 RALT  &symb_win_td 2 LGUI  &kp SPC                                                    &kp ENTER           &thumb_num_sym_fn 3 2  &lang_nav2 12 0
             >;
 
