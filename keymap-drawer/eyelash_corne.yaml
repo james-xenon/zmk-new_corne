@@ -32,7 +32,7 @@ layers:
   - $$mdi:apple-keyboard-control$$
   - {t: Z, h: '&kp_once LC(Z)'}
   - {t: X, h: '&kp_once LC(X)'}
-  - '&edit_ht LC(C)'
+  - {t: C, h: '&kp_once LC(C)'}
   - {t: V, h: '&kp_once LC(V)'}
   - B
   - $$mdi:volume-off$$
