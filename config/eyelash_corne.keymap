@@ -54,15 +54,13 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Q: tap = Q, hold = слой 13
-        q_lefthand_ht: q_lefthand_ht {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <220>;
-            quick-tap-ms = <150>;
-            require-prior-idle-ms = <150>;
-            bindings = <&mo>, <&kp>;
+        // Q: одиночный = Q, двойной = слой 13 (tog)
+        // tap-dance не мешает печати — требует двойного нажатия
+        q_lefthand_td: q_lefthand_td {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp Q>, <&tog 13>;
         };
 
         // ----------------------------------------------------------------
@@ -175,14 +173,15 @@
             bindings = <&mo>, <&kp>;
         };
 
-        // Самая левая снизу (RAlt): Hold = lefthand (13), Tap = RAlt
+        // Самая левая снизу:
+        //   удержание   = mo 13 (слой активен пока держишь)
+        //   двойной тап = LGUI (Windows)
+        // tap-dance с mo 13 и kp LGUI — стандартный ZMK паттерн
         lefthand_ht: lefthand_ht {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <200>;
-            require-prior-idle-ms = <150>;
-            bindings = <&mo>, <&kp>;
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <250>;
+            bindings = <&mo 13>, <&kp LALT>;
         };
 
         screenshot_win_shift_s: screenshot_win_shift_s {
@@ -285,14 +284,10 @@
 
         default_layer {
             bindings = <
-// TAB/ESC        Q/layer13            W              E              R              T                       UP              Y(media)            U(media)            I(media)            O(media)            P               LBKT/screenshot
-&tab_esc_ht ESC TAB  &q_lefthand_ht 13 Q  &kp W  &kp E  &kp R  &kp T         &kp UP         &media_ht C_PP Y  &media_ht C_PREV U  &media_ht C_NEXT I  &media_ht C_STOP O  &kp P  &lbkt_screenshot 0 LBKT
-// Shift/Caps     A/ctrl               S/ctrl         D              F/ctrl         G        LEFT  SPC  RIGHT  H                   J                   K                   L                   Ж/FN4               '/shift
-&td0  &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D  &edit_ht LC(F) F  &kp G  &kp LEFT  &kp SPC  &kp RIGHT  &kp H  &kp J  &kp K  &kp L  &semi_fn_ht 4 SEMI  &mt LSHFT SQT
-// Ctrl           Z/ctrl               X/ctrl         C/ctrl         V/ctrl         B        MUTE         DOWN  N/З(tap=N,hold=Alt) M                   ,                   .                   /                   ESC
-&kp LCTRL  &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C  &edit_ht LC(V) V  &kp B  &kp C_MUTE   &kp DOWN  &n_alt_ht LALT N  &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
-//                                          RAlt/layer13             Win(dbl)/hold=symb2    SPC                  Enter               Цифры(hold)/Символы(tap)    RU/EN/nav12
-                                            &lefthand_ht 13 RALT  &symb_win_td  &kp SPC            &kp ENTER  &thumb_num_sym_fn 3 0  &lang_nav2 12 0
+&tab_esc_ht ESC TAB  &q_lefthand_td    &kp W             &kp E             &kp R              &kp T                                &kp UP                &media_ht C_PP Y      &media_ht C_PREV U    &media_ht C_NEXT I     &media_ht C_STOP O    &kp P               &lbkt_screenshot 0 LBKT
+&td0                 &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D             &edit_ht LC(F) F   &kp G                     &kp LEFT   &kp SPC   &kp RIGHT   &kp H                 &kp J                 &kp K                  &kp L                 &semi_fn_ht 4 SEMI  &mt LSHFT SQT
+&kp LCTRL            &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C)    &edit_ht LC(V) V   &kp B       &kp C_MUTE               &kp DOWN              &n_alt_ht LALT N      &kp M                 &kp COMMA              &kp DOT               &kp FSLH            &kp ESC
+                                                         &lefthand_ht      &symb_win_td       &kp SPC                                                                          &kp ENTER             &thumb_num_sym_fn 3 0  &lang_nav2 12 0
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
@@ -420,7 +415,7 @@
         lefthand_layer {
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans                      &trans          &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &kp D  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans              &trans          &trans  &trans  &trans  &trans  &trans  &trans
                         &trans  &trans  &trans                                      &trans  &trans  &trans
             >;
