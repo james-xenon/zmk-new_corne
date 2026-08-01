@@ -52,7 +52,8 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Q: одиночный = Q, двойной = tog 13 с индикацией
+        // Q: одиночный = Q, двойной = tog 13
+        // require-prior-idle-ms убирает задержку при быстрой печати
         q_lefthand_td: q_lefthand_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -134,6 +135,8 @@
             bindings = <&kp>, <&kp>;
         };
 
+        // Alt на букве З: tap=N, hold=LALT
+        // Принцип из оригинального lang_alt — tap-preferred, работает для Alt+Tab
         n_alt_ht: n_alt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -152,23 +155,16 @@
             bindings = <&mo>, <&kp>;
         };
 
-        // Левая нижняя кнопка:
-        //   одиночный тап = LALT
-        //   удержание     = tog 13 с индикацией
-        //   двойной тап   = LALT (просто второй альт, можно назначить другое)
-        lefthand_td: lefthand_td {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <300>;
-            bindings = <&kp LALT>, <&kp LALT>;
-        };
-
+        // Левая нижняя: tap=LALT, hold=mo 14
+        // Точно как lang_alt из оригинала — tap-preferred, LALT мгновенно
+        // Alt+Tab: нажал — LALT зарегистрировался — Tab работает нормально
         lefthand_ht: lefthand_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <200>;
-            bindings = <&mo>, <&lefthand_td>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <220>;
+            quick-tap-ms = <150>;
+            bindings = <&mo>, <&kp>;
         };
 
         screenshot_win_shift_s: screenshot_win_shift_s {
@@ -204,7 +200,7 @@
                 <&macro_release &kp LGUI>;
         };
 
-        // Макрос: tog 13 + индикация ws2812
+        // Макрос: tog 13 + индикация
         tog13_ind: tog13_ind {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -274,7 +270,7 @@
             layers = <0 1 2 3 4 5 6 11>;
         };
 
-        // DOWN + RIGHT = BSPC, только слои 13 и 14
+        // DOWN(поз.29) + RIGHT(поз.30) = BSPC, только слои 13 и 14
         combo_lh_bspc {
             timeout-ms = <50>;
             key-positions = <29 30>;
@@ -282,7 +278,7 @@
             layers = <13 14>;
         };
 
-        // LEFT + DOWN = DEL, только слои 13 и 14
+        // LEFT(поз.28) + DOWN(поз.29) = DEL, только слои 13 и 14
         combo_lh_del {
             timeout-ms = <50>;
             key-positions = <28 29>;
@@ -299,7 +295,7 @@
 &tab_esc_ht ESC TAB  &q_lefthand_td    &kp W             &kp E             &kp R             &kp T             &kp UP                &media_ht C_PP Y    &media_ht C_PREV U  &media_ht C_NEXT I  &media_ht C_STOP O  &kp P               &lbkt_screenshot 0 LBKT
 &td0                 &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D             &edit_ht LC(F) F  &kp G   &kp LEFT  &kp SPC   &kp RIGHT   &kp H               &kp J               &kp K               &kp L               &semi_fn_ht 4 SEMI  &mt LSHFT SQT
 &kp LCTRL            &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C  &edit_ht LC(V) V  &kp B   &kp C_MUTE            &kp DOWN  &n_alt_ht LALT N    &kp M               &kp COMMA           &kp DOT             &kp FSLH            &kp ESC
-                                                         &lefthand_ht 14 0  &symb_win_td     &kp SPC                               &kp ENTER             &thumb_num_sym_fn 3 0  &lang_nav2 12 0
+                                                         &lefthand_ht 14 LALT  &symb_win_td  &kp SPC                               &kp ENTER             &thumb_num_sym_fn 3 0  &lang_nav2 12 0
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
@@ -316,10 +312,10 @@
 
         symb_layer {
             bindings = <
-&trans  &kp EXCL  &kp AT    &kp HASH  &kp DLLR   &kp PRCNT                               &kp UP                   &kp EXCL   &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp BSPC
-&trans  &kp BSLH  &kp BSLH  &kp TILDE &kp CARET  &mkp MB4                      &kp LEFT  &kp SPC    &kp RIGHT      &kp AT     &kp RBKT   &kp LBKT   &kp HASH   &kp BSLH   &kp DLLR
-&trans  &kp PIPE  &kp LBRC  &kp RBRC  &kp GRAVE  &mkp MB5   &trans                       &kp DOWN                 &kp UNDER  &kp MINUS  &kp PLUS   &kp EQUAL  &kp PIPE   &kp PRCNT
-                             &trans    &trans     &kp SPC                                                          &kp RET    &trans     &trans
+&trans  &kp EXCL  &kp AT    &kp HASH   &kp DLLR   &kp PRCNT                               &kp UP                    &kp EXCL   &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp DQT
+&trans  &kp BSLH  &trans    &kp TILDE  &kp CARET  &mkp MB4                      &kp LEFT  &kp SPC    &kp RIGHT      &kp AT     &kp RBKT   &kp LBKT   &kp HASH   &kp DLLR   &kp COLON
+&trans  &kp PIPE  &kp LBRC  &kp RBRC   &kp GRAVE  &mkp MB5   &trans                       &kp DOWN                  &kp UNDER  &kp MINUS  &kp PLUS   &kp EQUAL  &kp PRCNT  &kp BSLH
+                             &trans    &trans     &kp SPC                                                           &kp RET    &trans     &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
