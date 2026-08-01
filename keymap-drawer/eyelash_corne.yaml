@@ -37,7 +37,7 @@ layers:
   - B
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
-  - {t: lefthand, h: '$$mdi:apple-keyboard-option$$'}
+  - $$mdi:apple-keyboard-option$$
   - M
   - {t: ',', s: <}
   - {t: ., s: '>'}
@@ -47,7 +47,7 @@ layers:
   - {t: LGUI, h: symb}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: symb, h: numb}
+  - {t: '&numb_symb_td', h: numb}
   - {t: '&win_space', h: nav2nolight}
   nav1:
   - $$mdi:keyboard-esc$$
@@ -642,7 +642,7 @@ layers:
   - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - S
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
