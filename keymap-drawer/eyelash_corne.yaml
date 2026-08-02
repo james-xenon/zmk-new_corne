@@ -43,7 +43,7 @@ layers:
   - {t: ., s: '>'}
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
-  - {t: '&lefthand_td', h: lefthandnolight}
+  - {t: '$$mdi:apple-keyboard-option$$', h: lefthandnolight}
   - '&symb_win_td'
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
@@ -111,10 +111,10 @@ layers:
   - '*'
   - (
   - )
-  - {t: '$$mdi:backspace$$', type: backspace}
+  - '"'
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: \, s: '|'}
-  - {t: \, s: '|'}
+  - {t: '$$mdi:transfer$$', type: trans}
   - '~'
   - ^
   - '&mkp MB4'
@@ -125,8 +125,8 @@ layers:
   - {t: ']', s: '}'}
   - {t: '[', s: '{'}
   - '#'
-  - {t: \, s: '|'}
   - $
+  - ':'
   - {t: '$$mdi:transfer$$', type: trans}
   - '|'
   - '{'
@@ -139,8 +139,8 @@ layers:
   - {t: '-', s: _}
   - +
   - {t: '=', s: +}
-  - '|'
   - '%'
+  - {t: \, s: '|'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - SPC
