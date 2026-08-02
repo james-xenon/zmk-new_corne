@@ -27,7 +27,7 @@
 
     sensors {
         compatible = "zmk,keymap-sensors";
-        triggers-per-rotation = <48>;
+        triggers-per-rotation = <96>;
         sensors = <&qdec0>;
     };
 
@@ -133,7 +133,7 @@
     pinctrl-1 = <&qdec_sleep>;
     pinctrl-names = "default", "sleep";
     led-pre = <0>;
-    steps = <192>;
+    steps = <96>;
 };
 
 nice_view_spi: &spi0 {
