@@ -44,12 +44,11 @@
             bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
         };
 
-        tab_esc_ht: tab_esc_ht {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "hold-preferred";
+        td_tab_esc: tap_dance_tab_esc {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&kp TAB>, <&kp ESC>;
         };
 
         symb_win_td: symb_win_td {
@@ -148,13 +147,6 @@
             flavor = "balanced";
             tapping-term-ms = <200>;
             bindings = <&mo>, <&kp>;
-        };
-
-        alt_double_tap: alt_double_tap {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&none>, <&kp LALT>;
         };
 
         lefthand_td: lefthand_td {
@@ -295,10 +287,10 @@
 
         default_layer {
             bindings = <
-&tab_esc_ht ESC TAB  &kp Q             &kp W             &kp E              &kp R             &kp T                         &kp UP                &media_ht C_PP Y    &media_ht C_PREV U     &media_ht C_NEXT I  &media_ht C_STOP O  &kp P               &lbkt_screenshot 0 LBKT
-&td0                 &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D              &edit_ht LC(F) F  &kp G               &kp LEFT  &kp SPC   &kp RIGHT   &kp H               &kp J                  &kp K               &kp L               &semi_fn_ht 4 SEMI  &mt LSHFT SQT
-&kp LCTRL            &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C   &edit_ht LC(V) V  &kp B   &kp C_MUTE            &kp DOWN              &n_alt_ht LALT N    &kp M                  &kp COMMA           &kp DOT             &kp FSLH            &kp ESC
-                                                         &lefthand_td 14 0  &symb_win_td      &kp SPC                                             &kp ENTER           &thumb_num_sym_fn 3 0  &lang_nav2 12 0
+&td_tab_esc          &kp Q             &kp W             &kp E             &kp R             &kp T             &kp UP                &media_ht C_PP Y    &media_ht C_PREV U  &media_ht C_NEXT I  &media_ht C_STOP O  &kp P               &lbkt_screenshot 0 LBKT
+&td0                 &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D             &edit_ht LC(F) F  &kp G   &kp LEFT  &kp SPC   &kp RIGHT   &kp H               &kp J               &kp K               &kp L               &semi_fn_ht 4 SEMI  &mt LSHFT SQT
+&kp LCTRL            &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C  &edit_ht LC(V) V  &kp B   &kp C_MUTE            &kp DOWN  &n_alt_ht LALT N    &kp M               &kp COMMA           &kp DOT             &kp FSLH            &kp ESC
+                                                         &lefthand_td  &symb_win_td  &kp SPC                               &kp ENTER             &thumb_num_sym_fn 3 0  &lang_nav2 12 0
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
@@ -425,7 +417,7 @@
 
         lefthand_layer {
             bindings = <
-&tab_esc_ht ESC TAB  &trans    &kp ENTER    &kp UP       &kp SPC    &kp HOME                       &trans           &trans  &trans  &trans  &trans  &trans  &trans
+&td_tab_esc          &trans    &kp ENTER    &kp UP       &kp SPC    &kp HOME                       &trans           &trans  &trans  &trans  &trans  &trans  &trans
 &trans               &trans    &kp LEFT     &kp DOWN     &kp RIGHT  &kp END                &trans  &trans  &trans   &trans  &trans  &trans  &trans  &trans  &trans
 &trans               &kp EXCL  &kp AMPS     &kp COMMA    &kp DOT    &trans     &trans              &trans           &trans  &trans  &trans  &trans  &trans  &trans
                                             &trans       &trans     &trans                                          &trans  &trans  &trans
@@ -435,7 +427,7 @@
 
         lefthandnolight_layer {
             bindings = <
-&tab_esc_ht ESC TAB  &trans    &kp ENTER    &kp UP       &kp SPC    &kp HOME                       &trans           &trans  &trans  &trans  &trans  &trans  &trans
+&td_tab_esc          &trans    &kp ENTER    &kp UP       &kp SPC    &kp HOME                       &trans           &trans  &trans  &trans  &trans  &trans  &trans
 &trans               &trans    &kp LEFT     &kp DOWN     &kp RIGHT  &kp END                &trans  &trans  &trans   &trans  &trans  &trans  &trans  &trans  &trans
 &trans               &kp EXCL  &kp AMPS     &kp COMMA    &kp DOT    &trans     &trans              &trans           &trans  &trans  &trans  &trans  &trans  &trans
                                             &trans       &trans     &trans                                          &trans  &trans  &trans
