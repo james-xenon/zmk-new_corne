@@ -111,7 +111,6 @@
             low-power-enable;
         };
     };
-&pinctrl {
     qdec_default: qdec_default {
         group1 {
             psels = <NRF_PSEL(QDEC_A, 1, 10)>,
@@ -135,7 +134,6 @@
     pinctrl-names = "default", "sleep";
     led-pre = <0>;
     steps = <96>;
-};
 };
 
 nice_view_spi: &spi0 {
