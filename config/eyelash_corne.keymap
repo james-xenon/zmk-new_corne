@@ -225,14 +225,6 @@
             layers = <0 13>;
         };
 
-        // Q+W = tog 13 с индикацией (вместо двойного тапа на Q)
-        combo_qw_tog13 {
-            timeout-ms = <50>;
-            key-positions = <1 2>;
-            bindings = <&tog13_ind>;
-            layers = <0>;
-        };
-
         combo_er_nav3 {
             timeout-ms = <50>;
             key-positions = <3 4>;
