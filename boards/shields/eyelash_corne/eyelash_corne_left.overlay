@@ -1,3 +1,4 @@
+#include "eyelash_corne.dtsi"
 &qdec0 {
     status = "okay";
     pinctrl-0 = <&qdec_default>;
