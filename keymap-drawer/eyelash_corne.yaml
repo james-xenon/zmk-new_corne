@@ -2,7 +2,7 @@ layout: {zmk_keyboard: eyelash_corne}
 layers:
   default:
   - {t: '$$mdi:keyboard-tab$$', h: '$$mdi:keyboard-esc$$'}
-  - '&q_lefthand_td'
+  - Q
   - W
   - E
   - R
@@ -111,10 +111,10 @@ layers:
   - '*'
   - (
   - )
-  - '"'
+  - {t: '$$mdi:backspace$$', type: backspace}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: \, s: '|'}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: \, s: '|'}
   - '~'
   - ^
   - '&mkp MB4'
@@ -125,8 +125,8 @@ layers:
   - {t: ']', s: '}'}
   - {t: '[', s: '{'}
   - '#'
+  - {t: \, s: '|'}
   - $
-  - ':'
   - {t: '$$mdi:transfer$$', type: trans}
   - '|'
   - '{'
@@ -139,8 +139,8 @@ layers:
   - {t: '-', s: _}
   - +
   - {t: '=', s: +}
+  - '|'
   - '%'
-  - {t: \, s: '|'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - SPC
@@ -739,6 +739,12 @@ combos:
 - p: [2, 3, 4, 5]
   k: {t: gaming1, h: toggle}
   l: [default, gaming1]
+- p: [1, 2]
+  k: '&tog13_ind'
+  l: [default, lefthand]
+- p: [1, 2]
+  k: '&tog13_ind'
+  l: [default]
 - p: [3, 4]
   k: nav3
   l: [default]
@@ -760,9 +766,9 @@ combos:
 - p: [24, 25]
   k: $$mdi:backspace-reverse-outline$$
   l: [default, nav1, symb, numb, fn, service, nav2, speedtype]
-- p: [29, 30]
+- p: [16, 17]
   k: {t: '$$mdi:backspace$$', type: backspace}
   l: [lefthand, lefthandnolight]
-- p: [28, 29]
+- p: [15, 16]
   k: $$mdi:backspace-reverse-outline$$
   l: [lefthand, lefthandnolight]
