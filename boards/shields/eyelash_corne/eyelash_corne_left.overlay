@@ -1,12 +1,10 @@
 /*
-*
-* Copyright (c) 2024 The ZMK Contributors
-* SPDX-License-Identifier: MIT
-*
-*/
+ * Copyright (c) 2024 The ZMK Contributors
+ * SPDX-License-Identifier: MIT
+ */
 
 #include "eyelash_corne.dtsi"
 
-&left_encoder {
+&qdec0 {
     status = "okay";
 };

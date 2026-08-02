@@ -1,9 +1,7 @@
 /*
-*
-* Copyright (c) 2024 The ZMK Contributors
-* SPDX-License-Identifier: MIT
-*
-*/
+ * Copyright (c) 2024 The ZMK Contributors
+ * SPDX-License-Identifier: MIT
+ */
 #include <dt-bindings/led/led.h>
 #include <dt-bindings/zmk/matrix_transform.h>
 #include "eyelash_corne-layouts.dtsi"
@@ -27,26 +25,10 @@
         init-delay-ms = <50>;
     };
 
-    left_encoder: encoder_left {
-        compatible = "alps,ec11";
-        a-gpios = <&gpio1 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        b-gpios = <&gpio1 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        /*
-         * steps = физических импульсов на оборот
-         * triggers-per-rotation = событий ZMK на оборот
-         *
-         * Текущие значения: 24/24 = 1 событие на щелчок
-         * Если пропускает → попробуй steps=48, triggers=24
-         * Если двойные    → попробуй steps=12, triggers=12
-         */
-        steps = <48>;
-        status = "disabled";
-    };
-
     sensors {
         compatible = "zmk,keymap-sensors";
         triggers-per-rotation = <24>;
-        sensors = <&left_encoder>;
+        sensors = <&qdec0>;
     };
 
     kscan0: kscan {
@@ -129,6 +111,22 @@
             low-power-enable;
         };
     };
+    qdec_default: qdec_default {
+        group1 {
+            psels = <NRF_PSEL(QDEC_A, 1, 10)>,
+                    <NRF_PSEL(QDEC_B, 1, 14)>;
+            bias-pull-up;
+        };
+    };
+};
+
+/* Аппаратный квадратурный декодер nRF52840 — замена alps,ec11 */
+&qdec0 {
+    pinctrl-0 = <&qdec_default>;
+    pinctrl-names = "default";
+    led-pre = <0>;
+    steps = <96>;
+    status = "disabled";
 };
 
 nice_view_spi: &spi0 {
