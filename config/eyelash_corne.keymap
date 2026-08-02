@@ -157,8 +157,8 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <150>;
+            tapping-term-ms = <300>;
+            quick-tap-ms = <200>;
             bindings = <&mo>, <&lh_td>;
         };
 
@@ -350,27 +350,27 @@
 
         default_layer {
             bindings = <
-&kp TAB      &kp Q              &kp W              &kp E                &kp R              &kp T                                                         &kp UP                &media_ht C_PP Y    &media_ht C_PREV U     &media_ht C_NEXT I  &media_ht C_STOP O  &kp P               &lbkt_screenshot 0 LBKT
+&kp TAB      &kp Q             &kp W             &kp E                &kp R             &kp T                         &kp UP                &media_ht C_PP Y    &media_ht C_PREV U     &media_ht C_NEXT I  &media_ht C_STOP O  &kp P               &lbkt_screenshot 0 LBKT
 &td0         &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D                &edit_ht LC(F) F  &kp G               &kp LEFT  &kp SPC   &kp RIGHT   &kp H               &kp J                  &kp K               &kp L               &semi_fn_ht 4 SEMI  &mt LSHFT SQT
 &kp LCTRL    &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C     &edit_ht LC(V) V  &kp B   &kp C_MUTE            &kp DOWN              &n_alt_ht LALT N    &kp M                  &kp COMMA           &kp DOT             &kp FSLH            &kp ESC
-                                                 &lefthand_ht 14 0    &symb_win_td      &kp SPC                                                             &kp ENTER           &thumb_num_sym_fn 3 0  &lang_nav2 12 0
+                                                 &lefthand_ht 14 0    &symb_win_td      &kp SPC                                             &kp ENTER           &thumb_num_sym_fn 3 0  &lang_nav2 12 0
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         nav1_layer {
             bindings = <
-&kp ESC  &trans  &trans  &trans  &trans  &trans                                                             &mmv MOVE_UP                       &kp HOME          &mkp LCLK          &kp UP     &mkp RCLK            &kp COMMA       &kp BSPC
-&trans   &trans  &trans  &trans  &trans  &trans             &mmv MOVE_LEFT  &mkp LCLK      &mmv MOVE_RIGHT     &msc SCRL_DOWN    &kp LEFT           &kp DOWN   &kp RIGHT            &msc SCRL_UP    &kp PG_UP
-&trans   &trans  &trans  &trans  &trans  &trans  &trans                     &mmv MOVE_DOWN                     &kp END           &msc MOVE_Y(-100)  &mkp MCLK  &msc MOVE_Y(100)     &kp DOT         &kp PG_DN
-                         &trans  &trans  &trans                                                                                  &trans            &trans             &trans
+&kp ESC  &none  &none  &none  &none  &none                               &mmv MOVE_UP                       &kp HOME          &mkp LCLK          &kp UP     &mkp RCLK            &kp COMMA       &kp BSPC
+&none   &none   &none  &none  &none  &none               &mmv MOVE_LEFT  &mkp LCLK      &mmv MOVE_RIGHT     &msc SCRL_DOWN    &kp LEFT           &kp DOWN   &kp RIGHT            &msc SCRL_UP    &kp PG_UP
+&none   &none   &none  &none  &none  &none       &trans                  &mmv MOVE_DOWN                     &kp END           &msc MOVE_Y(-100)  &mkp MCLK  &msc MOVE_Y(100)     &kp DOT         &kp PG_DN
+                       &trans &trans &trans                                                                 &trans            &trans             &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
         symb_layer {
             bindings = <
-&kp ESC &kp EXCL  &kp AT    &kp HASH  &kp DLLR   &kp PRCNT                                               &kp UP                   &kp EXCL   &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp HASH
+&kp ESC &kp EXCL  &kp AT    &kp HASH  &kp DLLR   &kp PRCNT                               &kp UP                   &kp EXCL   &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp HASH
 &trans  &kp BSLH  &kp BSLH  &kp TILDE &kp AMPS   &mkp MB4                      &kp LEFT  &kp SPC    &kp RIGHT     &kp AT     &kp RBKT   &kp LBKT   &kp CARET  &kp BSLH   &kp DLLR
 &trans  &kp PIPE  &kp LBRC  &kp RBRC  &kp GRAVE  &mkp MB5   &trans                       &kp DOWN                 &kp UNDER  &kp MINUS  &kp PLUS   &kp EQUAL  &kp PIPE   &kp PRCNT
                             &trans    &trans     &kp SPC                                                          &kp ENTER  &trans     &trans
@@ -380,10 +380,10 @@
 
         numb_layer {
             bindings = <
-&kp ESC   &kp COMMA  &kp N9  &kp N8  &kp N7  &kp C_AL_CALCULATOR                        &msc SCRL_UP                     &kp HOME   &kp N7  &kp N8  &kp N9  &kp COMMA  &kp BSPC
-&kp PG_UP &kp N0     &kp N6  &kp N5  &kp N4  &mkp MB4                 &msc SCRL_LEFT    &mkp LCLK     &msc SCRL_RIGHT    &kp QMARK  &kp N4  &kp N5  &kp N6  &kp N0     &kp PG_UP
-&kp PG_DN &kp DOT    &kp N3  &kp N2  &kp N1  &mkp MB5  &kp C_MUTE                       &msc SCRL_DOWN                   &kp END    &kp N1  &kp N2  &kp N3  &kp DOT    &kp PG_DN
-                             &trans  &trans  &trans                                                                      &kp INS    &trans  &trans
+&kp ESC   &kp COMMA  &kp N9  &kp N8  &kp N7  &kp C_AL_CALCULATOR                                 &msc SCRL_UP                       &kp HOME   &kp N7  &kp N8  &kp N9  &kp COMMA  &kp BSPC
+&kp PG_UP &kp N0     &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &kp QMARK  &kp N4  &kp N5  &kp N6  &kp N0     &kp PG_UP
+&kp PG_DN &kp DOT    &kp N3  &kp N2  &kp N1  &mkp MB5             &kp C_MUTE                     &msc SCRL_DOWN                     &kp END    &kp N1  &kp N2  &kp N3  &kp DOT    &kp PG_DN
+                             &trans  &trans  &trans                                                                                 &kp INS    &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
@@ -420,7 +420,7 @@
 
         gaming1_layer {
             bindings = <
-&kp TAB    &kp Q  &kp W  &kp E   &kp R   &kp T                                &kp UP                  &kp Y      &kp U   &kp I      &kp O    &kp P     &kp BACKSPACE
+&kp TAB    &kp Q  &kp W  &kp E   &kp R   &kp T                        &kp UP                  &kp Y      &kp U   &kp I      &kp O    &kp P     &kp BACKSPACE
 &kp LSHFT  &kp A  &kp S  &kp D   &kp F   &kp G              &kp LEFT  &kp ENTER  &kp RIGHT    &kp H      &kp J   &kp K      &kp L    &kp SEMI  &none
 &kp LCTRL  &kp Z  &kp X  &kp C   &kp V   &kp B       &none            &kp DOWN                &kp N      &kp M   &kp COMMA  &kp DOT  &kp FSLH  &none
                          &mo 9   &mo 8   &kp SPACE                                            &kp ENTER  &none   &none
@@ -430,8 +430,8 @@
 
         gaming2_layer {
             bindings = <
-&kp ESC  &kp N1  &kp N9  &kp N8  &kp N7   &kp N5                  &none          &kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &none
-&kp L    &kp N6  &kp N6  &kp N5  &kp N4   &kp I          &none  &none  &none     &kp F8  &none   &none   &none   &none   &none
+&kp ESC  &kp N1  &kp N9  &kp N8  &kp N7   &kp N5                &none          &kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &none
+&kp L    &kp N6  &kp N6  &kp N5  &kp N4   &kp I          &none  &none  &none   &kp F8  &none   &none   &none   &none   &none
 &kp U    &kp L   &kp N3  &kp N2  &kp N1   &kp J   &none         &none          &kp F9  &none   &none   &none   &none   &none
                          &none   &none    &none                                &none   &none   &none
             >;
@@ -450,7 +450,7 @@
 
         nav3_layer {
             bindings = <
-&kp ESC &none   &none   &none   &none   &none                                          &kp UP                   &kp HOME        &mkp LCLK            &mmv MOVE_UP    &mkp RCLK          &kp COMMA      &kp BSPC
+&kp ESC &none   &none   &none   &none   &none                          &kp UP                   &kp HOME        &mkp LCLK            &mmv MOVE_UP    &mkp RCLK          &kp COMMA      &kp BSPC
 &none   &none   &none   &none   &none   &none                &kp LEFT  &kp ENTER  &kp RIGHT     &msc SCRL_DOWN  &mmv MOVE_LEFT       &mmv MOVE_DOWN  &mmv MOVE_RIGHT    &msc SCRL_UP   &kp PG_UP
 &none   &none   &trans  &none   &none   &none   &kp C_MUTE             &kp DOWN                 &kp END         &msc MOVE_Y(-100)    &mkp MCLK       &msc MOVE_Y(100)   &kp DOT        &kp PG_DN
                         &trans  &trans  &trans                                                  &trans          &trans               &trans
@@ -460,10 +460,10 @@
 
         speedtype {
             bindings = <
-&kp TAB    &kp Q  &kp W  &kp E      &kp R          &kp T                               &kp UP                 &kp Y      &kp U                  &kp I      &kp O            &kp P     &kp LBKT
-&kp LSHFT  &kp A  &kp S  &kp D      &kp F          &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT   &kp H      &kp J                  &kp K      &kp L            &kp SEMI  &kp SQT
-&kp LCTRL  &kp Z  &kp X  &kp C      &kp V          &kp B      &kp C_MUTE               &kp DOWN               &kp N      &kp M                  &kp COMMA  &kp DOT          &kp FSLH  &kp ESC
-                         &kp RALT  &symb_win_td   &kp SPC                                                    &kp ENTER  &thumb_num_sym_fn 3 0             &lang_nav2 12 0
+&kp TAB    &kp Q  &kp W  &kp E      &kp R          &kp T                               &kp UP                 &kp Y      &kp U                  &kp I              &kp O       &kp P     &kp LBKT
+&kp LSHFT  &kp A  &kp S  &kp D      &kp F          &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT   &kp H      &kp J                  &kp K              &kp L       &kp SEMI  &kp SQT
+&kp LCTRL  &kp Z  &kp X  &kp C      &kp V          &kp B      &kp C_MUTE               &kp DOWN               &kp N      &kp M                  &kp COMMA          &kp DOT     &kp FSLH  &kp ESC
+                         &kp RALT   &symb_win_td   &kp SPC                                                    &kp ENTER  &thumb_num_sym_fn 3 0  &lang_nav2 12 0
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
