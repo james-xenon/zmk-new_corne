@@ -111,6 +111,7 @@
             low-power-enable;
         };
     };
+&pinctrl {
     qdec_default: qdec_default {
         group1 {
             psels = <NRF_PSEL(QDEC_A, 1, 10)>,
@@ -118,15 +119,23 @@
             bias-pull-up;
         };
     };
+    qdec_sleep: qdec_sleep {
+        group1 {
+            psels = <NRF_PSEL(QDEC_A, 1, 10)>,
+                    <NRF_PSEL(QDEC_B, 1, 14)>;
+            low-power-enable;
+        };
+    };
 };
 
-/* Аппаратный квадратурный декодер nRF52840 — замена alps,ec11 */
 &qdec0 {
+    status = "okay";
     pinctrl-0 = <&qdec_default>;
-    pinctrl-names = "default";
+    pinctrl-1 = <&qdec_sleep>;
+    pinctrl-names = "default", "sleep";
     led-pre = <0>;
     steps = <96>;
-    status = "disabled";
+};
 };
 
 nice_view_spi: &spi0 {
