@@ -44,6 +44,13 @@
             bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
         };
 
+        q_td: q_td {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp Q>, <&tog13_ind>;
+        };
+
         tab_esc_ht: tab_esc_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -52,7 +59,6 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Win thumb: удержание = mo 2, двойной = LGUI
         symb_win_td: symb_win_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -126,7 +132,6 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Alt на З: tap=N, hold=LALT
         n_alt_ht: n_alt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -145,10 +150,6 @@
             bindings = <&mo>, <&kp>;
         };
 
-        // Левая нижняя: tap=LALT, hold=mo 14
-        // ПРОСТОЙ hold-tap без tap-dance — Alt работает мгновенно
-        // Alt+Tab: нажал кнопку — LALT зажат — нажимаешь Tab — работает
-        // Удержание кнопки дольше 200ms — mo 14
         lefthand_ht: lefthand_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -191,7 +192,6 @@
                 <&macro_release &kp LGUI>;
         };
 
-        // tog 13 + красная индикация
         tog13_ind: tog13_ind {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -199,9 +199,9 @@
             tap-ms = <0>;
             bindings =
                 <&tog 13>,
-                <&rgb_ug RGB_COLOR_HSB(0,100,50)>,
+                <&rgb_ug RGB_COLOR_HSB(0,0,100)>,
                 <&ws2812_wdg 0>,
-                <&rgb_ug RGB_COLOR_HSB(0,0,0)>;
+                <&rgb_ug RGB_COLOR_HSB(0,100,50)>;
         };
     };
 
@@ -215,16 +215,6 @@
             bindings = <&tog 7>;
             layers = <0 7>;
         };
-
-        // Q(1)+W(2) = tog 13 с красной индикацией, только слой 0
-        combo_qw_tog13 {
-            timeout-ms = <60>;
-            require-prior-idle-ms = <150>;
-            key-positions = <1 2>;
-            bindings = <&tog13_ind>;
-            layers = <0 13>;
-        };
-
 
         combo_er_nav3 {
             timeout-ms = <50>;
@@ -275,7 +265,6 @@
             layers = <0 1 2 3 4 5 6 11>;
         };
 
-        // DOWN(16) + RIGHT(17) = BSPC — только слои 13 и 14
         combo_lh_bspc {
             timeout-ms = <50>;
             key-positions = <16 17>;
@@ -283,7 +272,6 @@
             layers = <13 14>;
         };
 
-        // LEFT(15) + DOWN(16) = DEL — только слои 13 и 14
         combo_lh_del {
             timeout-ms = <50>;
             key-positions = <15 16>;
@@ -297,10 +285,10 @@
 
         default_layer {
             bindings = <
-&tab_esc_ht ESC TAB  &kp Q             &kp W             &kp E             &kp R             &kp T             &kp UP                &media_ht C_PP Y    &media_ht C_PREV U  &media_ht C_NEXT I  &media_ht C_STOP O  &kp P               &lbkt_screenshot 0 LBKT
+&tab_esc_ht ESC TAB  &q_td             &kp W             &kp E             &kp R             &kp T             &kp UP                &media_ht C_PP Y    &media_ht C_PREV U  &media_ht C_NEXT I  &media_ht C_STOP O  &kp P               &lbkt_screenshot 0 LBKT
 &td0                 &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D             &edit_ht LC(F) F  &kp G   &kp LEFT  &kp SPC   &kp RIGHT   &kp H               &kp J               &kp K               &kp L               &semi_fn_ht 4 SEMI  &mt LSHFT SQT
 &kp LCTRL            &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C  &edit_ht LC(V) V  &kp B   &kp C_MUTE            &kp DOWN  &n_alt_ht LALT N    &kp M               &kp COMMA           &kp DOT             &kp FSLH            &kp ESC
-                                                         &lefthand_ht 2 LALT  &symb_win_td  &kp SPC                               &kp ENTER             &thumb_num_sym_fn 3 0  &lang_nav2 12 0
+                                                         &lefthand_ht 13 LALT  &symb_win_td  &kp SPC                               &kp ENTER             &thumb_num_sym_fn 3 0  &lang_nav2 12 0
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
