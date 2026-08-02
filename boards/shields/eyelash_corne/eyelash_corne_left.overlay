@@ -5,5 +5,5 @@
     pinctrl-1 = <&qdec_sleep>;
     pinctrl-names = "default", "sleep";
     led-pre = <0>;
-    steps = <48>;
+    steps = <192>;
 };
