@@ -742,9 +742,6 @@ combos:
 - p: [1, 2]
   k: '&tog13_ind'
   l: [default, lefthand]
-- p: [1, 2]
-  k: '&tog13_ind'
-  l: [default]
 - p: [3, 4]
   k: nav3
   l: [default]

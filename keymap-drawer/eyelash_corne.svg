@@ -589,37 +589,33 @@ rect.held, rect.combo.held {
 <text x="112" y="42" class="combo tap"><tspan style="font-size: 60%">&amp;tog13_ind</tspan></text>
 </g>
 <g class="combo combopos-2">
-<rect rx="6" ry="6" x="98" y="29" width="28" height="26" class="combo"/>
-<text x="112" y="42" class="combo tap"><tspan style="font-size: 60%">&amp;tog13_ind</tspan></text>
-</g>
-<g class="combo combopos-3">
 <rect rx="6" ry="6" x="210" y="18" width="28" height="26" class="combo"/>
 <a href="#nav3">
 <text x="224" y="31" class="combo tap layer-activator">nav3</text>
 </a></g>
-<g class="combo combopos-4">
+<g class="combo combopos-3">
 <rect rx="6" ry="6" x="938" y="120" width="28" height="26" class="combo"/>
 <text x="952" y="133" class="combo tap"><tspan style="font-size: 60%">&amp;speedtyp…</tspan></text>
 </g>
-<g class="combo combopos-5">
+<g class="combo combopos-4">
 <rect rx="6" ry="6" x="210" y="74" width="28" height="26" class="combo"/>
 <a href="#nav1">
 <text x="224" y="87" class="combo tap layer-activator">nav1</text>
 </a></g>
-<g class="combo combopos-6">
+<g class="combo combopos-5">
 <rect rx="6" ry="6" x="241" y="193" width="28" height="26" class="combo"/>
 <a href="#service">
 <text x="255" y="206" class="combo tap layer-activator"><tspan style="font-size: 86%">service</tspan></text>
 </a></g>
-<g class="combo combopos-7">
+<g class="combo combopos-6">
 <rect rx="6" ry="6" x="686" y="25" width="28" height="26" class="combo"/>
 <text x="700" y="38" class="combo tap"><tspan style="font-size: 60%">&amp;nav2_dou…</tspan></text>
 </g>
-<g class="combo backspace combopos-8">
+<g class="combo backspace combopos-7">
 <rect rx="6" ry="6" x="742" y="74" width="28" height="26" class="combo backspace"/>
 <use href="#mdi:backspace" xlink:href="#mdi:backspace" x="747" y="78" height="18" width="18.0" class="combo backspace tap glyph mdi:backspace"/>
 </g>
-<g class="combo combopos-9">
+<g class="combo combopos-8">
 <rect rx="6" ry="6" x="798" y="74" width="28" height="26" class="combo"/>
 <use href="#mdi:backspace-reverse-outline" xlink:href="#mdi:backspace-reverse-outline" x="803" y="78" height="18" width="18.0" class="combo tap glyph mdi:backspace-reverse-outline"/>
 </g>
