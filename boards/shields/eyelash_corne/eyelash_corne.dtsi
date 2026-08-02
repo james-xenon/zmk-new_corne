@@ -133,7 +133,7 @@
     pinctrl-1 = <&qdec_sleep>;
     pinctrl-names = "default", "sleep";
     led-pre = <0>;
-    steps = <96>;
+    steps = <24>;
 };
 
 nice_view_spi: &spi0 {
