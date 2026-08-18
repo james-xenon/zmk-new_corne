@@ -67,12 +67,11 @@
         // 2. Внешний Hold-Tap: добавляет удержание к нашему Tap-Dance
         symb_win_ht: symb_win_ht {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <0>;
+            #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
             quick-tap-ms = <150>;
-            bindings = <&mo 2>, <&symb_win_tap_dance>;
-};
+            bindings = <&mo>, <&symb_win_tap_dance>;
         };
 
         // ==========================================
@@ -352,7 +351,7 @@
 &kp TAB      &kp Q             &kp W             &kp E                &kp R             &kp T                         &kp UP                &media_ht C_PP Y    &media_ht C_PREV U     &media_ht C_NEXT I  &media_ht C_STOP O  &kp P               &lbkt_screenshot 0 LBKT
 &td0         &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D                &edit_ht LC(F) F  &kp G               &kp LEFT  &kp SPC   &kp RIGHT   &kp H               &kp J                  &kp K               &kp L               &semi_fn_ht 4 SEMI  &mt LSHFT SQT
 &kp LCTRL    &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C     &edit_ht LC(V) V  &kp B   &kp C_MUTE            &kp DOWN              &n_alt_ht LALT N    &kp M                  &kp COMMA           &kp DOT             &kp FSLH            &kp ESC
-                                                 &lefthand_ht 14 0    &symb_win_ht      &kp SPC                                             &kp ENTER           &thumb_num_sym_fn 3 0  &lang_nav2 12 0
+                                                 &lefthand_ht 14 0    &symb_win_ht 2 0      &kp SPC                                             &kp ENTER           &thumb_num_sym_fn 3 0  &lang_nav2 12 0
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
@@ -462,7 +461,7 @@
 &kp TAB    &kp Q  &kp W  &kp E      &kp R          &kp T                               &kp UP                 &kp Y      &kp U                  &kp I              &kp O       &kp P     &kp LBKT
 &kp LSHFT  &kp A  &kp S  &kp D      &kp F          &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT   &kp H      &kp J                  &kp K              &kp L       &kp SEMI  &kp SQT
 &kp LCTRL  &kp Z  &kp X  &kp C      &kp V          &kp B      &trans                   &kp DOWN               &kp N      &kp M                  &kp COMMA          &kp DOT     &kp FSLH  &kp ESC
-                         &kp RALT   &symb_win_ht   &kp SPC                                                    &kp ENTER  &thumb_num_sym_fn 3 0  &lang_nav2 12 0
+                         &kp RALT   &symb_win_ht 2 0   &kp SPC                                                    &kp ENTER  &thumb_num_sym_fn 3 0  &lang_nav2 12 0
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
