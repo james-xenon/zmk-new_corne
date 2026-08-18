@@ -51,19 +51,13 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Внутренний tap-dance для symb_win_td
-        // 1 тап = TOG 3 (Цифры)
-        // 2 тапа = LGUI (Win)
         symb_win_td_inner: symb_win_td_inner {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <280>;
+            tapping-term-ms = <350>;
             bindings = <&tog 3>, <&kp LGUI>;
         };
 
-        // Основной бихейвиор для клавиши
-        // Холд = MO 2 (Символы)
-        // Тап = symb_win_td_inner (Цифры / Win)
         symb_win_td: symb_win_td {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -104,6 +98,15 @@
             #binding-cells = <0>;
             tapping-term-ms = <300>;
             bindings = <&trans>, <&tog 6>;
+        };
+
+        // R+T двойной тап для слоя 13
+        // 1й тап = trans (ничего), 2й тап = tog13_td (вкл/выкл + подсветка)
+        layer13_double_tap: layer13_double_tap {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&trans>, <&tog13_td>;
         };
 
         speedtype_double_tap: speedtype_double_tap {
@@ -242,20 +245,13 @@
             layers = <0 7>;
         };
 
-        combo_qw_tog13_on {
-            timeout-ms = <60>;
-            require-prior-idle-ms = <150>;
-            key-positions = <1 2>;
-            bindings = <&tog13_on>;
-            layers = <0>;
-        };
-
-        combo_qw_tog13_off {
-            timeout-ms = <60>;
-            require-prior-idle-ms = <150>;
-            key-positions = <1 2>;
-            bindings = <&tog13_off>;
-            layers = <13>;
+        // R(3)+T(4) ВСЕГДА ДВОЙНОЙ ТАП = переключение слоя 13
+        // Механизм 1:1 как combo_yu_nav2_double_tap
+        combo_rt_layer13_double_tap {
+            timeout-ms = <50>;
+            key-positions = <3 4>;
+            bindings = <&layer13_double_tap>;
+            layers = <0 1 2 3 4 5 6 11 13>;
         };
 
         combo_er_nav3 {
