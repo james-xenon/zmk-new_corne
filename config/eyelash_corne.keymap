@@ -60,8 +60,8 @@
         symb_win_tap_dance: symb_win_tap_dance {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <250>; // Оптимально для дабл-тапа: быстро, но надежно
-            bindings = <&tog 3>, <&kp LGUI>; // 1 тап = Numb (слой 3), 2 тапа = Win (LGUI)
+            tapping-term-ms = <250>;
+            bindings = <&tog 3>, <&kp LGUI>;
         };
 
         // 2. Внешний Hold-Tap: добавляет удержание к нашему Tap-Dance
@@ -142,7 +142,6 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Alt на З: tap=N, hold=LALT
         n_alt_ht: n_alt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -168,7 +167,6 @@
             bindings = <&trans>, <&kp LALT>;
         };
 
-        // Левая нижняя: double tap=LALT, hold=mo 14
         lefthand_ht: lefthand_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -184,11 +182,11 @@
             wait-ms = <0>;
             tap-ms = <30>;
             bindings =
-                <&macro_press &kp LGUI>,
+                <&macro_press &kp LWIN>,
                 <&macro_press &kp LSHIFT>,
                 <&macro_tap &kp S>,
                 <&macro_release &kp LSHIFT>,
-                <&macro_release &kp LGUI>;
+                <&macro_release &kp LWIN>;
         };
 
         lbkt_screenshot: lbkt_screenshot {
@@ -206,12 +204,11 @@
             wait-ms = <0>;
             tap-ms = <0>;
             bindings =
-                <&macro_press &kp LGUI>,
+                <&macro_press &kp LWIN>,
                 <&macro_tap &kp SPACE>,
-                <&macro_release &kp LGUI>;
+                <&macro_release &kp LWIN>;
         };
 
-        // Включение слоя 13 — белая индикация (ws2812_lsync param=1 = ON цвет)
         tog13_on: tog13_on {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -220,7 +217,6 @@
             bindings = <&tog 13>, <&ws2812_lsync 1>;
         };
 
-        // Выключение слоя 13 — красная индикация (ws2812_lsync param=0 = OFF цвет)
         tog13_off: tog13_off {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -229,7 +225,6 @@
             bindings = <&tog 13>, <&ws2812_lsync 0>;
         };
 
-        // Tap-dance для слоя 13: одиночный тап = включение (белый), двойной тап = выключение (красный)
         tog13_td: tog13_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -249,12 +244,11 @@
             layers = <0 7>;
         };
 
-        // НОВОЕ КОМБО: R(4) + T(5) с дабл-тапом для переключения слоя 13 с подсветкой
         combo_rt_tog13_td {
             timeout-ms = <50>;
-            key-positions = <4 5>; // 4 = R, 5 = T
+            key-positions = <4 5>;
             bindings = <&tog13_td>;
-            layers = <0 13>; // Активно только на базовом слое и слое 13
+            layers = <0 13>;
         };
 
         combo_er_nav3 {
@@ -295,50 +289,42 @@
         combo_jk_backspace {
             timeout-ms = <50>;
             key-positions = <23 24>;
-            bindings = <&kp BSPC>;
+            bindings = <&kp BACKSPACE>;
             layers = <0 1 2 3 4 5 6 11>;
         };
 
         combo_kl_delete {
             timeout-ms = <50>;
             key-positions = <24 25>;
-            bindings = <&kp DEL>;
+            bindings = <&kp DELETE>;
             layers = <0 1 2 3 4 5 6 11>;
         };
 
-        // DOWN(16) + RIGHT(17) = BSPC — только слои 13 и 14
         combo_lh_bspc {
             timeout-ms = <50>;
             key-positions = <16 17>;
-            bindings = <&kp BSPC>;
+            bindings = <&kp BACKSPACE>;
             layers = <13 14>;
         };
 
-        // LEFT(15) + DOWN(16) = DEL — только слои 13 и 14
         combo_lh_del {
             timeout-ms = <50>;
             key-positions = <15 16>;
-            bindings = <&kp DEL>;
+            bindings = <&kp DELETE>;
             layers = <13 14>;
         };
 
-        // ==========================================
-        // НОВЫЕ КОМБО для левой центральной половины
-        // ==========================================
-        
-        // Комбо Backspace для левой центральной половины
         combo_left_center_bspc {
             timeout-ms = <50>;
             key-positions = <16 17>;
-            bindings = <&kp BSPC>;
+            bindings = <&kp BACKSPACE>;
             layers = <2 3 4 6 12>;
         };
 
-        // Комбо Delete для левой центральной половины
         combo_left_center_del {
             timeout-ms = <50>;
             key-positions = <15 16>;
-            bindings = <&kp DEL>;
+            bindings = <&kp DELETE>;
             layers = <2 3 4 6 12>;
         };
     };
@@ -348,10 +334,10 @@
 
         default_layer {
             bindings = <
-&kp TAB      &kp Q             &kp W             &kp E                &kp R             &kp T                         &kp UP                &media_ht C_PP Y    &media_ht C_PREV U     &media_ht C_NEXT I  &media_ht C_STOP O  &kp P               &lbkt_screenshot 0 LBKT
-&td0         &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D                &edit_ht LC(F) F  &kp G               &kp LEFT  &kp SPC   &kp RIGHT   &kp H               &kp J                  &kp K               &kp L               &semi_fn_ht 4 SEMI  &mt LSHFT SQT
-&kp LCTRL    &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C     &edit_ht LC(V) V  &kp B   &kp C_MUTE            &kp DOWN              &n_alt_ht LALT N    &kp M                  &kp COMMA           &kp DOT             &kp FSLH            &kp ESC
-                                                 &lefthand_ht 14 0    &symb_win_ht 2 0      &kp SPC                                             &kp ENTER           &thumb_num_sym_fn 3 0  &lang_nav2 12 0
+&kp TAB        &kp Q             &kp W             &kp E          &kp R              &kp T                                                   &kp UP                      &kp MEDIA_PLAY_PAUSE  &kp Y              &kp MEDIA_PREV    &kp MEDIA_NEXT     &kp U              &kp LBKT
+&td0           &edit_ht LCTRL A  &edit_ht LCTRL S  &edit_ht LCTRL D &kp F              &edit_ht LCTRL G                    &kp PAGE_UP  &kp SPC    &kp PAGE_DOWN       &kp H              &kp J              &kp K              &kp L              &mt LSHIFT SEMI    &mt RSHIFT SQT
+&kp LCTRL      &edit_ht LALT Z   &edit_ht LALT X   &edit_ht LALT C &edit_ht LALT V    &kp B           &kp C_AL_CALCULATOR   &trans                     &kp DOWN                &kp N              &n_alt_ht LALT M   &kp COMMA          &kp DOT            &kp FSLH           &kp ESC
+                                                  &lefthand_ht 14 0    &symb_win_ht 2 0      &kp SPC                                                    &kp ENTER           &thumb_num_sym_fn 3 0  &lang_nav2 12 0
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
