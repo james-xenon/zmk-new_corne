@@ -739,12 +739,9 @@ combos:
 - p: [2, 3, 4, 5]
   k: {t: gaming1, h: toggle}
   l: [default, gaming1]
-- p: [1, 2]
-  k: '&tog13_on'
-  l: [default]
-- p: [1, 2]
-  k: '&tog13_off'
-  l: [lefthand]
+- p: [3, 4]
+  k: '&layer13_double_tap'
+  l: [default, nav1, symb, numb, fn, service, nav2, speedtype, lefthand]
 - p: [3, 4]
   k: nav3
   l: [default]
