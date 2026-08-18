@@ -320,7 +320,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:keyboard-esc$$
-  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - ENTERd
   - $$mdi:arrow-up-bold$$
   - SPC
   - {t: '$$mdi:transfer$$', type: trans}
