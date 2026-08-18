@@ -68,12 +68,11 @@
         symb_win_ht: symb_win_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <0>;
-            flavor = "hold-preferred"; // Мгновенное срабатывание удержания
-            tapping-term-ms = <200>;   // Стандартное время для активации холда
-            quick-tap-ms = <150>;      // Мгновенный отклик при быстром одиночном тапе
-            
-            // ИСПРАВЛЕНИЕ: Запятая обязательна для разделения Hold и Tap частей
-            bindings = <&mo 2>, <&symb_win_tap_dance>; 
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            bindings = <&mo 2>, <&symb_win_tap_dance>;
+};
         };
 
         // ==========================================
