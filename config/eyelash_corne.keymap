@@ -60,18 +60,20 @@
         symb_win_tap_dance: symb_win_tap_dance {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <250>;
-            bindings = <&tog 3>, <&kp LGUI>;
+            tapping-term-ms = <250>; // Оптимально для дабл-тапа: быстро, но надежно
+            bindings = <&tog 3>, <&kp LGUI>; // 1 тап = Numb (слой 3), 2 тапа = Win (LGUI)
         };
 
         // 2. Внешний Hold-Tap: добавляет удержание к нашему Tap-Dance
         symb_win_ht: symb_win_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <150>;
-            bindings = <&mo>, <&symb_win_tap_dance>;
+            flavor = "hold-preferred"; // Мгновенное срабатывание удержания
+            tapping-term-ms = <200>;   // Стандартное время для активации холда
+            quick-tap-ms = <150>;      // Мгновенный отклик при быстром одиночном тапе
+            
+            // ИСПРАВЛЕНИЕ: Запятая обязательна для разделения Hold и Tap частей
+            bindings = <&mo>, <&symb_win_tap_dance>; 
         };
 
         // ==========================================
@@ -462,24 +464,24 @@
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
-        lefthand_layer {
-            bindings = <
-&tab_esc_ht ESC TAB  &trans    &kp ENTER    &kp UP       &kp SPC    &kp HOME                       &trans            &trans  &trans  &trans  &trans  &trans  &trans
-&trans               &trans    &kp LEFT     &kp DOWN     &kp RIGHT  &kp END                &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans               &kp EXCL  &kp AMPS     &kp COMMA    &kp DOT    &trans     &trans              &trans            &trans  &trans  &trans  &trans  &trans  &trans
-                                            &trans       &trans     &trans                                           &trans  &trans  &trans
-            >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
-        };
+        // lefthand_layer {
+        //     bindings = <
+        // &tab_esc_ht ESC TAB  &trans    &kp ENTER    &kp UP       &kp SPC    &kp HOME                       &trans            &trans  &trans  &trans  &trans  &trans  &trans
+        // &trans               &trans    &kp LEFT     &kp DOWN     &kp RIGHT  &kp END                &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+        // &trans               &kp EXCL  &kp AMPS     &kp COMMA    &kp DOT    &trans     &trans              &trans            &trans  &trans  &trans  &trans  &trans  &trans
+        //                                     &trans       &trans     &trans                                           &trans  &trans  &trans
+        //         >;
+        //     sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+        // };
 
-        lefthandnolight_layer {
-            bindings = <
-&tab_esc_ht ESC TAB  &trans    &kp ENTER    &kp UP       &kp SPC    &kp HOME                       &trans            &trans  &trans  &trans  &trans  &trans  &trans
-&trans               &trans    &kp LEFT     &kp DOWN     &kp RIGHT  &kp END                &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans               &kp EXCL  &kp AMPS     &kp COMMA    &kp DOT    &trans     &trans              &trans            &trans  &trans  &trans  &trans  &trans  &trans
-                                            &trans       &trans     &trans                                           &trans  &trans  &trans
-            >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
-        };
+        // lefthandnolight_layer {
+        //     bindings = <
+        // &tab_esc_ht ESC TAB  &trans    &kp ENTER    &kp UP       &kp SPC    &kp HOME                       &trans            &trans  &trans  &trans  &trans  &trans  &trans
+        // &trans               &trans    &kp LEFT     &kp DOWN     &kp RIGHT  &kp END                &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+        // &trans               &kp EXCL  &kp AMPS     &kp COMMA    &kp DOT    &trans     &trans              &trans            &trans  &trans  &trans  &trans  &trans  &trans
+        //                                     &trans       &trans     &trans                                           &trans  &trans  &trans
+        //         >;
+        //     sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+        // };
     };
 };
