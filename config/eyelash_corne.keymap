@@ -182,11 +182,11 @@
             wait-ms = <0>;
             tap-ms = <30>;
             bindings =
-                <&macro_press &kp LWIN>,
+                <&macro_press &kp LGUI>,
                 <&macro_press &kp LSHIFT>,
                 <&macro_tap &kp S>,
                 <&macro_release &kp LSHIFT>,
-                <&macro_release &kp LWIN>;
+                <&macro_release &kp LGUI>;
         };
 
         lbkt_screenshot: lbkt_screenshot {
@@ -204,9 +204,9 @@
             wait-ms = <0>;
             tap-ms = <0>;
             bindings =
-                <&macro_press &kp LWIN>,
+                <&macro_press &kp LGUI>,
                 <&macro_tap &kp SPACE>,
-                <&macro_release &kp LWIN>;
+                <&macro_release &kp LGUI>;
         };
 
         tog13_on: tog13_on {
