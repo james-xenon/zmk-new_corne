@@ -71,7 +71,9 @@
             flavor = "hold-preferred"; // Мгновенное срабатывание удержания
             tapping-term-ms = <200>;   // Стандартное время для активации холда
             quick-tap-ms = <150>;      // Мгновенный отклик при быстром одиночном тапе
-            bindings = <&mo 2 &symb_win_tap_dance>; // Hold = Symb (слой 2), Tap = запускаем Tap-Dance выше
+            
+            // ИСПРАВЛЕНИЕ ЗДЕСЬ: запятая обязательна, так как у &mo один аргумент, а у &symb_win_tap_dance - ноль
+            bindings = <&mo 2>, <&symb_win_tap_dance>; 
         };
 
         // ==========================================
@@ -409,7 +411,7 @@
         nav2_layer {
             bindings = <
 &kp ESC &trans  &trans  &trans  &trans  &trans                      &trans              &trans  &trans  &trans   &trans    &kp DEL   &kp BSPC
-&trans  &trans  &trans  &trans  &trans  &trans              &trans  &trans  &trans      &trans  &trans  &kp ESC  &kp ENTER  &kp UP    &kp SPC
+&trans  &trans  &trans  &trans  &trans  &trans              &trans  &trans  &trans      &trans  &trans  &kp ESC  &kp ENTER &kp UP    &kp SPC
 &trans  &trans  &trans  &trans  &trans  &trans  &trans              &trans              &trans  &trans  &trans   &kp LEFT  &kp DOWN  &kp RIGHT
                         &trans  &trans  &trans                                          &trans  &trans  &trans
             >;
