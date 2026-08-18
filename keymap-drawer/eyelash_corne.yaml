@@ -8,10 +8,10 @@ layers:
   - R
   - T
   - $$mdi:arrow-up-bold$$
-  - PP Y
-  - PREV U
-  - NEXT I
-  - STOP O
+  - {t: Y, h: '$$mdi:play-pause$$'}
+  - {t: U, h: '$$mdi:skip-previous$$'}
+  - {t: I, h: '$$mdi:skip-next$$'}
+  - {t: O, h: STOP}
   - P
   - {t: '[', h: '&screenshot_win_shift_s', s: '{'}
   - '&td0'
@@ -44,7 +44,7 @@ layers:
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
   - {t: '&lh_td', h: lefthandnolight}
-  - {t: '&symb_win_tap_dance', h: symb}
+  - {t: '&symb_win_td_inner', h: symb}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '&numb_symb_td', h: numb}
@@ -63,7 +63,7 @@ layers:
   - $$mdi:mouse-right-click-outline$$
   - {t: ',', s: <}
   - {t: '$$mdi:backspace$$', type: backspace}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: held}
@@ -78,7 +78,7 @@ layers:
   - $$mdi:arrow-right-bold$$
   - $$mdi:pan-up$$
   - PG UP
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -104,7 +104,7 @@ layers:
   - '@'
   - '#'
   - $
-  - '&mkp MB5'
+  - '%'
   - $$mdi:arrow-up-bold$$
   - '!'
   - '&'
@@ -132,7 +132,7 @@ layers:
   - '{'
   - '}'
   - {t: '`', s: '~'}
-  - AL CALCULATOR
+  - '&mkp MB5'
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
   - _
@@ -153,7 +153,7 @@ layers:
   - {t: '9', s: (}
   - {t: '8', s: '*'}
   - {t: '7', s: '&'}
-  - '&mkp MB5'
+  - AL CALCULATOR
   - $$mdi:pan-up$$
   - HOME
   - {t: '7', s: '&'}
@@ -181,8 +181,8 @@ layers:
   - {t: '3', s: '#'}
   - {t: '2', s: '@'}
   - {t: '1', s: '!'}
-  - AL CALCULATOR
-  - {t: '$$mdi:transfer$$', type: trans}
+  - '&mkp MB5'
+  - $$mdi:volume-off$$
   - $$mdi:pan-down$$
   - END
   - {t: '1', s: '!'}
@@ -202,7 +202,7 @@ layers:
   - F2
   - F3
   - F4
-  - '&mkp MB5'
+  - F5
   - {t: '$$mdi:menu-up$$', s: '$$mdi:mouse$$'}
   - F6
   - F7
@@ -230,8 +230,8 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - AL CALCULATOR
-  - {t: '$$mdi:transfer$$', type: trans}
+  - '&mkp MB5'
+  - $$mdi:volume-off$$
   - {t: '$$mdi:menu-down$$', s: '$$mdi:mouse$$'}
   - {t: '$$mdi:transfer$$', type: trans}
   - F1
@@ -280,19 +280,19 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - OUT USB
-  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:volume-off$$
   - {t: '$$mdi:transfer$$', type: trans}
   - RGB EFR
   - RGB EFF
-  - RGB SPD
   - RGB SPI
-  - RGB BRD
+  - RGB SPD
   - RGB BRI
+  - RGB BRD
   - {type: held}
   - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
   - RGB ON
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:transfer$$', type: trans}
   - RGB OFF
   nav2:
   - $$mdi:keyboard-esc$$
@@ -319,17 +319,17 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - $$mdi:keyboard-esc$$
-  - {t: '$$mdi:keyboard-return$$', type: enter}
-  - $$mdi:arrow-up-bold$$
   - SPC
+  - $$mdi:keyboard-esc$$
+  - $$mdi:arrow-up-bold$$
+  - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:volume-off$$
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -378,20 +378,20 @@ layers:
   - C
   - V
   - B
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:arrow-down-bold$$
   - N
   - M
   - {t: ',', s: <}
   - {t: ., s: '>'}
   - {t: /, s: '?'}
-  - $$mdi:keyboard-esc$$
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - gaming3
   - gaming2
   - $$mdi:keyboard-space$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   gaming2:
   - $$mdi:keyboard-esc$$
   - {t: '1', s: '!'}
@@ -427,7 +427,7 @@ layers:
   - {t: '2', s: '@'}
   - {t: '1', s: '!'}
   - J
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - F9
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -476,7 +476,7 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - M
   - N
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -504,7 +504,7 @@ layers:
   - $$mdi:mouse-right-click-outline$$
   - {t: ',', s: <}
   - {t: '$$mdi:backspace$$', type: backspace}
-  - $$mdi:apple-keyboard-shift$$
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -519,13 +519,13 @@ layers:
   - {t: '$$mdi:menu-right$$', s: '$$mdi:mouse$$'}
   - $$mdi:pan-up$$
   - PG UP
-  - $$mdi:apple-keyboard-control$$
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
   - END
   - '&msc MOVE_Y(-100)'
@@ -574,7 +574,7 @@ layers:
   - C
   - V
   - B
-  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
   - N
   - M
@@ -583,7 +583,7 @@ layers:
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
   - $$mdi:apple-keyboard-option$$
-  - {t: '&symb_win_tap_dance', h: symb}
+  - {t: '&symb_win_td_inner', h: symb}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '&numb_symb_td', h: numb}
@@ -623,7 +623,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:volume-off$$
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -739,9 +739,12 @@ combos:
 - p: [2, 3, 4, 5]
   k: {t: gaming1, h: toggle}
   l: [default, gaming1]
-- p: [4, 5]
-  k: '&tog13_td'
-  l: [default, lefthand]
+- p: [1, 2]
+  k: '&tog13_on'
+  l: [default]
+- p: [1, 2]
+  k: '&tog13_off'
+  l: [lefthand]
 - p: [3, 4]
   k: nav3
   l: [default]
