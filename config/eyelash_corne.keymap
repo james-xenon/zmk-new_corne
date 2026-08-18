@@ -409,7 +409,7 @@
         nav2_layer {
             bindings = <
 &kp ESC &trans  &trans  &trans  &trans  &trans                      &trans              &trans  &trans  &trans   &trans    &kp DEL   &kp BSPC
-&trans  &trans  &trans  &trans  &trans  &trans              &trans  &trans  &trans      &trans  &trans  &kp ESC  &kp ENTERd  &kp UP    &kp SPC
+&trans  &trans  &trans  &trans  &trans  &trans              &trans  &trans  &trans      &trans  &trans  &kp ESC  &kp ENTER  &kp UP    &kp SPC
 &trans  &trans  &trans  &trans  &trans  &trans  &trans              &trans              &trans  &trans  &trans   &kp LEFT  &kp DOWN  &kp RIGHT
                         &trans  &trans  &trans                                          &trans  &trans  &trans
             >;
