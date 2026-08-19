@@ -44,7 +44,7 @@ layers:
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
   - {t: '&lh_td', h: lefthandnolight}
-  - {t: '&symb_win_td_inner', h: symb}
+  - '&symb_win_td'
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '&numb_symb_td', h: numb}
@@ -142,7 +142,7 @@ layers:
   - '|'
   - '%'
   - {t: '$$mdi:transfer$$', type: trans}
-  - {type: held}
+  - {t: '$$mdi:transfer$$', type: trans}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -583,7 +583,7 @@ layers:
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
   - $$mdi:apple-keyboard-option$$
-  - {t: '&symb_win_td_inner', h: symb}
+  - '&symb_win_td'
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '&numb_symb_td', h: numb}
@@ -740,8 +740,11 @@ combos:
   k: {t: gaming1, h: toggle}
   l: [default, gaming1]
 - p: [1, 2]
-  k: '&layer13_double_tap'
-  l: [default, nav1, symb, numb, fn, service, nav2, speedtype, lefthand]
+  k: '&tog13_on'
+  l: [default]
+- p: [1, 2]
+  k: '&tog13_off'
+  l: [lefthand]
 - p: [3, 4]
   k: nav3
   l: [default]
