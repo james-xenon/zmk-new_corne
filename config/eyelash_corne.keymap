@@ -51,24 +51,23 @@
             bindings = <&kp>, <&kp>;
         };
 
-        symb_win_td_inner: symb_win_td_inner {
+        // 1 тап = tog 3 (цифры), 2 тапа = LGUI (Win)
+        symb_win_tap_dance: symb_win_tap_dance {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <350>;
             bindings = <&tog 3>, <&kp LGUI>;
         };
 
-        // Холд = символы (mo 2)
-        // Тап = цифры (tog 3) / Win (LGUI) через inner tap-dance
-        // quick-tap-ms: быстрое повторное нажатие + удержание = LGUI hold (для Win+V)
+        // Hold = mo 2 (символы), Tap = запускает tap-dance выше
+        // tap-preferred + quick-tap: быстрое удержание после тапа = Win hold (для Win+V и др.)
         symb_win_td: symb_win_td {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "balanced";
+            flavor = "tap-preferred";
             tapping-term-ms = <200>;
             quick-tap-ms = <175>;
-            require-prior-idle-ms = <150>;
-            bindings = <&mo>, <&symb_win_td_inner>;
+            bindings = <&mo>, <&symb_win_tap_dance>;
         };
 
         numb_symb_td: numb_symb_td {
