@@ -233,6 +233,7 @@
             tapping-term-ms = <300>;
             bindings = <&tog13_on>, <&tog13_off>;
         };
+    };
 
     combos {
         compatible = "zmk,combos";
