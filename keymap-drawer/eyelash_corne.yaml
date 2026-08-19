@@ -740,8 +740,11 @@ combos:
   k: {t: gaming1, h: toggle}
   l: [default, gaming1]
 - p: [1, 2]
-  k: '&tog13_td'
-  l: [default, lefthand]
+  k: '&tog13_on'
+  l: [default]
+- p: [1, 2]
+  k: '&tog13_off'
+  l: [lefthand]
 - p: [3, 4]
   k: nav3
   l: [default]
