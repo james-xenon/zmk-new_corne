@@ -242,13 +242,21 @@
             layers = <0 7>;
         };
 
-        // Q(1)+W(2) double-tap: toggles layer 13 (double tap on either layer)
-        combo_qw_tog13 {
+        // Q(1)+W(2) double-tap: toggles layer 13 — separate combos per layer so on/off вызывают разные макросы
+        combo_qw_tog13_on {
             timeout-ms = <60>;
             require-prior-idle-ms = <150>;
             key-positions = <1 2>;
-            bindings = <&tog13_td>;
-            layers = <0 13>;
+            bindings = <&tog13_on>;
+            layers = <0>;
+        };
+
+        combo_qw_tog13_off {
+            timeout-ms = <60>;
+            require-prior-idle-ms = <150>;
+            key-positions = <1 2>;
+            bindings = <&tog13_off>;
+            layers = <13>;
         };
         combo_er_nav3 {
             timeout-ms = <50>;
