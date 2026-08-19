@@ -44,7 +44,7 @@ layers:
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
   - {t: '&lh_td', h: lefthandnolight}
-  - '&symb_win_td'
+  - {t: '&symb_win_td_inner', h: symb}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '&numb_symb_td', h: numb}
@@ -142,7 +142,7 @@ layers:
   - '|'
   - '%'
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -583,7 +583,7 @@ layers:
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
   - $$mdi:apple-keyboard-option$$
-  - '&symb_win_td'
+  - {t: '&symb_win_td_inner', h: symb}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '&numb_symb_td', h: numb}
@@ -740,10 +740,10 @@ combos:
   k: {t: gaming1, h: toggle}
   l: [default, gaming1]
 - p: [1, 2]
-  k: '&tog13_on'
+  k: '&tog13_on_td'
   l: [default]
 - p: [1, 2]
-  k: '&tog13_off'
+  k: '&tog13_off_td'
   l: [lefthand]
 - p: [3, 4]
   k: nav3
