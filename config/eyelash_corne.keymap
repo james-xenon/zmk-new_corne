@@ -250,7 +250,6 @@
             bindings = <&tog13_td>;
             layers = <0 13>;
         };
-
         combo_er_nav3 {
             timeout-ms = <50>;
             key-positions = <3 4>;
