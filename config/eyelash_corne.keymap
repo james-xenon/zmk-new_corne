@@ -219,14 +219,6 @@
             bindings = <&tog 13>, <&ws2812_lsync 1>;
         };
 
-        tog13_on: tog13_on {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&tog 13>, <&ws2812_lsync 1>;
-        };
-
         tog13_off: tog13_off {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
