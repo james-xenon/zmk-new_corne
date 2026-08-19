@@ -66,7 +66,7 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
-            quick-tap-ms = <175>;
+            quick-tap-ms = <300>;
             bindings = <&mo>, <&symb_win_tap_dance>;
         };
 
