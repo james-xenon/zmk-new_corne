@@ -219,21 +219,23 @@
             bindings = <&tog 13>, <&ws2812_lsync 1>;
         };
 
+        // Включение слоя 13 + белое мигание + persistent циан на ОБЕИХ половинах
+        tog13_on: tog13_on {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&tog 13>, <&ws2812_lsync 1>, <&ws2812_wdg 6 13>;
+        };
+
+        // Выключение слоя 13 + красное мигание + очистка persistent на ОБЕИХ половинах
         tog13_off: tog13_off {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <0>;
-            bindings = <&tog 13>, <&ws2812_lsync 0>;
+            bindings = <&tog 13>, <&ws2812_lsync 0>, <&ws2812_wdg 6 0>;
         };
-
-        tog13_td: tog13_td {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <300>;
-            bindings = <&tog13_on>, <&tog13_off>;
-        };
-    };
 
     combos {
         compatible = "zmk,combos";
