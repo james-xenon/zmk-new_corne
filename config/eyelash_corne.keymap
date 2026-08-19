@@ -215,7 +215,7 @@
 
         // Toggle macro: вызывает &tog 13 (используется для double-tap combo)
         toggle13: toggle13 {
-            compatible = "james,toggle-layer13";
+            compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <0>;
