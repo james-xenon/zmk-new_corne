@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2024 The ZMK Contributors
+ * SPDX-License-Identifier: MIT
+ */
+
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 1200
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 25
 
@@ -52,12 +57,13 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Win thumb: удержание = mo 2, двойной = LGUI
+        // Win thumb: ОДИНОЧНОЕ нажатие = ВКЛЮЧИТЬ слой 2 (SYMBOL) постоянно, двойное = LGUI
+        // ИЗМЕНЕНО: &tog 2 вместо &mo 2. Это ключ к постоянной подсветке по тапу.
         symb_win_td: symb_win_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
-            bindings = <&mo 2>, <&kp LGUI>;
+            bindings = <&tog 2>, <&kp LGUI>;
         };
 
         numb_symb_td: numb_symb_td {
@@ -126,7 +132,6 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Alt на З: tap=N, hold=LALT
         n_alt_ht: n_alt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -152,7 +157,6 @@
             bindings = <&trans>, <&kp LALT>;
         };
 
-        // Левая нижняя: double tap=LALT, hold=mo 14
         lefthand_ht: lefthand_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -195,7 +199,6 @@
                 <&macro_release &kp LGUI>;
         };
 
-        // Включение слоя 13 — белая индикация (ws2812_lsync param=1 = ON цвет)
         tog13_on: tog13_on {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -204,7 +207,6 @@
             bindings = <&tog 13>, <&ws2812_lsync 1>;
         };
 
-        // Выключение слоя 13 — красная индикация (ws2812_lsync param=0 = OFF цвет)
         tog13_off: tog13_off {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -213,9 +215,6 @@
             bindings = <&tog 13>, <&ws2812_lsync 0>;
         };
 
-        // tap-dance: одиночный = tog13_on, двойной = tog13_off
-        // Используется если нужен один combo и для входа и для выхода
-        // Но лучше использовать отдельные combo ниже
         tog13_td: tog13_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -235,7 +234,6 @@
             layers = <0 7>;
         };
 
-        // Q(1)+W(2) из слоя 0 = ВКЛЮЧИТЬ слой 13 (белая индикация)
         combo_qw_tog13_on {
             timeout-ms = <60>;
             require-prior-idle-ms = <150>;
@@ -244,7 +242,6 @@
             layers = <0>;
         };
 
-        // Q(1)+W(2) из слоя 13 = ВЫКЛЮЧИТЬ слой 13 (красная индикация)
         combo_qw_tog13_off {
             timeout-ms = <60>;
             require-prior-idle-ms = <150>;
@@ -302,7 +299,6 @@
             layers = <0 1 2 3 4 5 6 11>;
         };
 
-        // DOWN(16) + RIGHT(17) = BSPC — только слои 13 и 14
         combo_lh_bspc {
             timeout-ms = <50>;
             key-positions = <16 17>;
@@ -310,7 +306,6 @@
             layers = <13 14>;
         };
 
-        // LEFT(15) + DOWN(16) = DEL — только слои 13 и 14
         combo_lh_del {
             timeout-ms = <50>;
             key-positions = <15 16>;
@@ -318,14 +313,6 @@
             layers = <13 14>;
         };
 
-        // ==========================================
-        // НОВЫЕ КОМБО для левой центральной половины
-        // ==========================================
-        
-        // Комбо Backspace для левой центральной половины
-        // symb_layer (2): TILDE (16) + AMPS (17)
-        // numb_layer (3): N5 (16) + N4 (17)
-        // fn_layer (4), nav2_layer (6), nav2nolight_layer (12): физически те же позиции
         combo_left_center_bspc {
             timeout-ms = <50>;
             key-positions = <16 17>;
@@ -333,10 +320,6 @@
             layers = <2 3 4 6 12>;
         };
 
-        // Комбо Delete для левой центральной половины
-        // symb_layer (2): BSLH (15) + TILDE (16)
-        // numb_layer (3): N6 (15) + N5 (16)
-        // fn_layer (4), nav2_layer (6), nav2nolight_layer (12): физически те же позиции
         combo_left_center_del {
             timeout-ms = <50>;
             key-positions = <15 16>;
