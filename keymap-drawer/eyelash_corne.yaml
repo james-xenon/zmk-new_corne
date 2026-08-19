@@ -66,8 +66,8 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: held}
-  - {t: '$$mdi:minus-circle-outline$$', type: held}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:menu-left$$', s: '$$mdi:mouse$$'}
   - $$mdi:mouse-left-click-outline$$
@@ -288,8 +288,8 @@ layers:
   - RGB SPD
   - RGB BRI
   - RGB BRD
-  - {type: held}
-  - {type: held}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - RGB ON
   - {t: '$$mdi:transfer$$', type: trans}
@@ -494,8 +494,8 @@ layers:
   - $$mdi:keyboard-esc$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: held}
-  - {t: '$$mdi:minus-circle-outline$$', type: held}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:arrow-up-bold$$
   - HOME
@@ -735,46 +735,3 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-combos:
-- p: [2, 3, 4, 5]
-  k: {t: gaming1, h: toggle}
-  l: [default, gaming1]
-- p: [1, 2]
-  k: '&tog13_on'
-  l: [default]
-- p: [1, 2]
-  k: '&tog13_off'
-  l: [lefthand]
-- p: [3, 4]
-  k: nav3
-  l: [default]
-- p: [27, 41]
-  k: '&speedtype_double_tap'
-  l: [default, speedtype]
-- p: [16, 17]
-  k: nav1
-  l: [default, speedtype]
-- p: [42, 43]
-  k: service
-  l: [default]
-- p: [7, 8]
-  k: '&nav2_double_tap'
-  l: [default, nav1, symb, numb, fn, service, nav2, speedtype]
-- p: [23, 24]
-  k: {t: '$$mdi:backspace$$', type: backspace}
-  l: [default, nav1, symb, numb, fn, service, nav2, speedtype]
-- p: [24, 25]
-  k: $$mdi:backspace-reverse-outline$$
-  l: [default, nav1, symb, numb, fn, service, nav2, speedtype]
-- p: [16, 17]
-  k: {t: '$$mdi:backspace$$', type: backspace}
-  l: [lefthand, lefthandnolight]
-- p: [15, 16]
-  k: $$mdi:backspace-reverse-outline$$
-  l: [lefthand, lefthandnolight]
-- p: [16, 17]
-  k: {t: '$$mdi:backspace$$', type: backspace}
-  l: [symb, numb, fn, nav2, nav2nolight]
-- p: [15, 16]
-  k: $$mdi:backspace-reverse-outline$$
-  l: [symb, numb, fn, nav2, nav2nolight]
