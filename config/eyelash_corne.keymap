@@ -58,7 +58,7 @@
         };
 
         // Win thumb: ОДИНОЧНОЕ нажатие = ВКЛЮЧИТЬ слой 2 (SYMBOL) постоянно, двойное = LGUI
-        // ИЗМЕНЕНО: &tog 2 вместо &mo 2. Это ключ к постоянной подсветке по тапу.
+        // ИЗМЕНЕНО: &tog 2 вместо &mo 2. Это нативное поведение ZMK, не макрос.
         symb_win_td: symb_win_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
