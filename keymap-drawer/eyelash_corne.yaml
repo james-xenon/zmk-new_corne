@@ -44,10 +44,10 @@ layers:
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
   - {t: '&lh_td', h: lefthandnolight}
-  - {t: '&symb_win_tap_dance', h: symb}
+  - {t: '&symb_win_tap_dance', h: symbnolight}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '&numb_symb_td', h: numb}
+  - {t: '&numb_symb_td', h: numbnolight}
   - {t: '&win_space', h: nav2nolight}
   nav1:
   - $$mdi:keyboard-esc$$
@@ -142,7 +142,7 @@ layers:
   - '|'
   - '%'
   - {t: '$$mdi:transfer$$', type: trans}
-  - {type: held}
+  - {t: '$$mdi:transfer$$', type: trans}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -194,7 +194,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - INS
-  - {type: held}
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   fn:
   - $$mdi:keyboard-esc$$
@@ -583,10 +583,10 @@ layers:
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
   - $$mdi:apple-keyboard-option$$
-  - {t: '&symb_win_tap_dance', h: symb}
+  - {t: '&symb_win_tap_dance', h: symbnolight}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '&numb_symb_td', h: numb}
+  - {t: '&numb_symb_td', h: numbnolight}
   - {t: '&win_space', h: nav2nolight}
   nav2nolight:
   - $$mdi:keyboard-esc$$
@@ -735,55 +735,55 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  ? ''
-  : - $$mdi:keyboard-esc$$
-    - {t: '$$mdi:minus-circle-outline$$', type: none}
-    - {t: '$$mdi:minus-circle-outline$$', type: none}
-    - {t: '$$mdi:minus-circle-outline$$', type: none}
-    - {t: '$$mdi:minus-circle-outline$$', type: none}
-    - '&mkp MB5'
-    - $$mdi:arrow-up-bold$$
-    - '!'
-    - '&'
-    - '*'
-    - (
-    - )
-    - '#'
-    - SPC
-    - $$mdi:arrow-up-bold$$
-    - {t: '$$mdi:keyboard-return$$', type: enter}
-    - {t: '$$mdi:minus-circle-outline$$', type: none}
-    - {t: '$$mdi:minus-circle-outline$$', type: none}
-    - '&mkp MB4'
-    - $$mdi:arrow-left-bold$$
-    - SPC
-    - $$mdi:arrow-right-bold$$
-    - '@'
-    - {t: ']', s: '}'}
-    - {t: '[', s: '{'}
-    - ^
-    - {t: \, s: '|'}
-    - $
-    - $$mdi:arrow-left-bold$$
-    - $$mdi:arrow-down-bold$$
-    - $$mdi:arrow-right-bold$$
-    - {t: '$$mdi:minus-circle-outline$$', type: none}
-    - {t: '$$mdi:minus-circle-outline$$', type: none}
-    - AL CALCULATOR
-    - {t: '$$mdi:transfer$$', type: trans}
-    - $$mdi:arrow-down-bold$$
-    - _
-    - {t: '-', s: _}
-    - +
-    - {t: '=', s: +}
-    - '|'
-    - '%'
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - SPC
-    - {t: '$$mdi:keyboard-return$$', type: enter}
-    - {t: '$$mdi:transfer$$', type: trans}
-    - {t: '$$mdi:transfer$$', type: trans}
+  symbnolight:
+  - $$mdi:keyboard-esc$$
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - '&mkp MB5'
+  - $$mdi:arrow-up-bold$$
+  - '!'
+  - '&'
+  - '*'
+  - (
+  - )
+  - '#'
+  - SPC
+  - $$mdi:arrow-up-bold$$
+  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - '&mkp MB4'
+  - $$mdi:arrow-left-bold$$
+  - SPC
+  - $$mdi:arrow-right-bold$$
+  - '@'
+  - {t: ']', s: '}'}
+  - {t: '[', s: '{'}
+  - ^
+  - {t: \, s: '|'}
+  - $
+  - $$mdi:arrow-left-bold$$
+  - $$mdi:arrow-down-bold$$
+  - $$mdi:arrow-right-bold$$
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - AL CALCULATOR
+  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:arrow-down-bold$$
+  - _
+  - {t: '-', s: _}
+  - +
+  - {t: '=', s: +}
+  - '|'
+  - '%'
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
+  - SPC
+  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
   numbnolight:
   - $$mdi:keyboard-esc$$
   - {t: ',', s: <}
@@ -831,7 +831,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - INS
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
 combos:
 - p: [2, 3, 4, 5]
