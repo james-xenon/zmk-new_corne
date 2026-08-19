@@ -219,7 +219,7 @@
             bindings = <&tog 13>, <&ws2812_lsync 1>;
         };
 
-        // Включение слоя 13 + белое мигание + persistent циан на ОБЕИХ половинах
+        // ЕДИНСТВЕННОЕ определение tog13_on (без дубликата!)
         tog13_on: tog13_on {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -228,7 +228,6 @@
             bindings = <&tog 13>, <&ws2812_lsync 1>, <&ws2812_wdg 6 13>;
         };
 
-        // Выключение слоя 13 + красное мигание + очистка persistent на ОБЕИХ половинах
         tog13_off: tog13_off {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
