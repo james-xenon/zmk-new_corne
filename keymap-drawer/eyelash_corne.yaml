@@ -1,8 +1,8 @@
 layout: {zmk_keyboard: eyelash_corne}
 layers:
   default:
-  - $$mdi:keyboard-tab$$
-  - Q
+  - {t: '$$mdi:keyboard-tab$$', h: '$$mdi:keyboard-esc$$'}
+  - '&q_td'
   - W
   - E
   - R
@@ -43,7 +43,7 @@ layers:
   - {t: ., s: '>'}
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
-  - {t: '&lh_td', h: lefthandnolight}
+  - {t: '$$mdi:apple-keyboard-option$$', h: lefthand}
   - '&symb_win_td'
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
@@ -51,11 +51,11 @@ layers:
   - {t: '&win_space', h: nav2nolight}
   nav1:
   - $$mdi:keyboard-esc$$
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:menu-up$$', s: '$$mdi:mouse$$'}
   - HOME
   - $$mdi:mouse-left-click-outline$$
@@ -63,12 +63,12 @@ layers:
   - $$mdi:mouse-right-click-outline$$
   - {t: ',', s: <}
   - {t: '$$mdi:backspace$$', type: backspace}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: held}
-  - {t: '$$mdi:minus-circle-outline$$', type: held}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
+  - {type: held}
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:menu-left$$', s: '$$mdi:mouse$$'}
   - $$mdi:mouse-left-click-outline$$
   - {t: '$$mdi:menu-right$$', s: '$$mdi:mouse$$'}
@@ -78,12 +78,12 @@ layers:
   - $$mdi:arrow-right-bold$$
   - $$mdi:pan-up$$
   - PG UP
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:menu-down$$', s: '$$mdi:mouse$$'}
   - END
@@ -99,7 +99,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   symb:
-  - $$mdi:keyboard-esc$$
+  - {t: '$$mdi:transfer$$', type: trans}
   - '!'
   - '@'
   - '#'
@@ -111,12 +111,12 @@ layers:
   - '*'
   - (
   - )
-  - '#'
+  - {t: '$$mdi:backspace$$', type: backspace}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: \, s: '|'}
   - {t: \, s: '|'}
   - '~'
-  - '&'
+  - ^
   - '&mkp MB4'
   - $$mdi:arrow-left-bold$$
   - SPC
@@ -124,7 +124,7 @@ layers:
   - '@'
   - {t: ']', s: '}'}
   - {t: '[', s: '{'}
-  - ^
+  - '#'
   - {t: \, s: '|'}
   - $
   - {t: '$$mdi:transfer$$', type: trans}
@@ -153,7 +153,7 @@ layers:
   - {t: '9', s: (}
   - {t: '8', s: '*'}
   - {t: '7', s: '&'}
-  - AL CALCULATOR
+  - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:pan-up$$
   - HOME
   - {t: '7', s: '&'}
@@ -170,7 +170,7 @@ layers:
   - $$mdi:pan-left$$
   - $$mdi:mouse-left-click-outline$$
   - $$mdi:pan-right$$
-  - '?'
+  - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '4', s: $}
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
@@ -210,11 +210,11 @@ layers:
   - F9
   - F10
   - F11
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
   - '&mkp MB4'
   - {t: '$$mdi:menu-left$$', s: '$$mdi:mouse$$'}
   - $$mdi:mouse-left-click-outline$$
@@ -223,13 +223,13 @@ layers:
   - F4
   - F5
   - F6
-  - {t: '$$mdi:minus-circle-outline$$', type: held}
+  - {type: held}
   - F12
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
   - '&mkp MB5'
   - $$mdi:volume-off$$
   - {t: '$$mdi:menu-down$$', s: '$$mdi:mouse$$'}
@@ -237,7 +237,7 @@ layers:
   - F1
   - F2
   - F3
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:keyboard-esc$$
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -247,38 +247,38 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   service:
   - $$mdi:keyboard-esc$$
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:mouse-right-click-outline$$
   - '&studio_unlock'
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:bluetooth-off$$
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:transfer$$', type: trans}
   - {h: '1', s: '$$mdi:bluetooth-connect$$'}
   - {h: '2', s: '$$mdi:bluetooth-connect$$'}
   - {h: '3', s: '$$mdi:bluetooth-connect$$'}
   - {h: '4', s: '$$mdi:bluetooth-connect$$'}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
   - '&ws2812_wdg 5'
   - '&ws2812_wdg 2'
   - OUT BLE
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
   - BT CLR ALL
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
   - OUT USB
   - $$mdi:volume-off$$
   - {t: '$$mdi:transfer$$', type: trans}
@@ -319,7 +319,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - SPC
+  - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:keyboard-esc$$
   - $$mdi:arrow-up-bold$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
@@ -364,7 +364,7 @@ layers:
   - F
   - G
   - $$mdi:arrow-left-bold$$
-  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:arrow-right-bold$$
   - H
   - J
@@ -395,9 +395,9 @@ layers:
   gaming2:
   - $$mdi:keyboard-esc$$
   - {t: '1', s: '!'}
-  - {t: '9', s: (}
-  - {t: '8', s: '*'}
-  - {t: '7', s: '&'}
+  - {t: '2', s: '@'}
+  - {t: '3', s: '#'}
+  - {t: '4', s: $}
   - {t: '5', s: '%'}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - F1
@@ -406,12 +406,12 @@ layers:
   - F4
   - F5
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - L
+  - U
   - {t: '6', s: ^}
-  - {t: '6', s: ^}
-  - {t: '5', s: '%'}
-  - {t: '4', s: $}
-  - I
+  - {t: '7', s: '&'}
+  - {t: '8', s: '*'}
+  - {t: '9', s: (}
+  - {t: '0', s: )}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -421,15 +421,15 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - U
+  - K
   - L
-  - {t: '3', s: '#'}
-  - {t: '2', s: '@'}
-  - {t: '1', s: '!'}
+  - P
   - J
+  - I
+  - M
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - F9
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -492,11 +492,11 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   nav3:
   - $$mdi:keyboard-esc$$
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: held}
-  - {t: '$$mdi:minus-circle-outline$$', type: held}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
+  - {type: held}
+  - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-up-bold$$
   - HOME
   - $$mdi:mouse-left-click-outline$$
@@ -504,12 +504,12 @@ layers:
   - $$mdi:mouse-right-click-outline$$
   - {t: ',', s: <}
   - {t: '$$mdi:backspace$$', type: backspace}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-left-bold$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-right-bold$$
@@ -519,12 +519,12 @@ layers:
   - {t: '$$mdi:menu-right$$', s: '$$mdi:mouse$$'}
   - $$mdi:pan-up$$
   - PG UP
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
   - END
@@ -583,11 +583,11 @@ layers:
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
   - $$mdi:apple-keyboard-option$$
-  - '&symb_win_td'
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '&numb_symb_td', h: numb}
-  - {t: '&win_space', h: nav2nolight}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   nav2nolight:
   - $$mdi:keyboard-esc$$
   - {t: '$$mdi:transfer$$', type: trans}
@@ -613,7 +613,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - SPC
+  - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:keyboard-esc$$
   - $$mdi:arrow-up-bold$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
@@ -680,7 +680,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -729,7 +729,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {type: held}
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -739,12 +739,6 @@ combos:
 - p: [2, 3, 4, 5]
   k: {t: gaming1, h: toggle}
   l: [default, gaming1]
-- p: [1, 2]
-  k: '&tog13_on'
-  l: [default]
-- p: [1, 2]
-  k: '&tog13_off'
-  l: [lefthand]
 - p: [3, 4]
   k: nav3
   l: [default]
@@ -772,9 +766,3 @@ combos:
 - p: [15, 16]
   k: $$mdi:backspace-reverse-outline$$
   l: [lefthand, lefthandnolight]
-- p: [16, 17]
-  k: {t: '$$mdi:backspace$$', type: backspace}
-  l: [symb, numb, fn, nav2, nav2nolight]
-- p: [15, 16]
-  k: $$mdi:backspace-reverse-outline$$
-  l: [symb, numb, fn, nav2, nav2nolight]
