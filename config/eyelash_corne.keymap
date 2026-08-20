@@ -305,18 +305,21 @@
             layers = <0 1 2 3 4 5 6 11>;
         };
 
+        // J+K = BSPC. 15/16 = symbnolight/numbnolight — тот же набор,
+        // что и на слоях с подсветкой.
         combo_jk_backspace {
             timeout-ms = <50>;
             key-positions = <23 24>;
             bindings = <&kp BSPC>;
-            layers = <0 1 2 3 4 5 6 11>;
+            layers = <0 1 2 3 4 5 6 11 15 16>;
         };
 
+        // K+L = DEL
         combo_kl_delete {
             timeout-ms = <50>;
             key-positions = <24 25>;
             bindings = <&kp DEL>;
-            layers = <0 1 2 3 4 5 6 11>;
+            layers = <0 1 2 3 4 5 6 11 15 16>;
         };
 
         combo_lh_bspc {
@@ -333,18 +336,20 @@
             layers = <13 14>;
         };
 
+        // D+F = BSPC
         combo_left_center_bspc {
             timeout-ms = <50>;
             key-positions = <16 17>;
             bindings = <&kp BSPC>;
-            layers = <2 3 4 6 12>;
+            layers = <2 3 4 6 12 15 16>;
         };
 
+        // S+D = DEL
         combo_left_center_del {
             timeout-ms = <50>;
             key-positions = <15 16>;
             bindings = <&kp DEL>;
-            layers = <2 3 4 6 12>;
+            layers = <2 3 4 6 12 15 16>;
         };
     };
 
