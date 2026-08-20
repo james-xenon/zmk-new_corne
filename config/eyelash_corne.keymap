@@ -70,11 +70,29 @@
             bindings = <&mo>, <&symb_win_tap_dance>;
         };
 
+        // CHANGED: макросы для слоя 2 с persistent cyan через lsync
+        symb_on: symb_on {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&tog 2>, <&ws2812_lsync 2>;
+        };
+
+        symb_off: symb_off {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&tog 2>, <&ws2812_lsync 2>;
+        };
+
+        // CHANGED: используем symb_on/symb_off вместо &tog 2
         numb_symb_td: numb_symb_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
-            bindings = <&tog 2>, <&tog 3>;
+            bindings = <&symb_on>, <&tog 3>;
         };
 
         // Hold = mo N (numbnolight_layer БЕЗ подсветки), Tap = numb_symb_td (tog 2/3 с цианом)
@@ -408,7 +426,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans  &trans              &trans              &trans  &trans  &kp ESC  &kp LEFT   &kp DOWN  &kp RIGHT
                         &trans  &trans  &trans                                          &trans  &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         gaming1_layer {
@@ -448,7 +466,7 @@
 &trans  &none   &trans  &none   &none   &none   &kp C_MUTE             &kp DOWN                 &kp END         &msc MOVE_Y(-150)    &mkp MCLK       &msc MOVE_Y(150)   &kp DOT        &kp PG_DN
                         &trans  &trans  &trans                                                  &trans          &trans               &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         speedtype {
@@ -468,7 +486,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans  &trans              &trans              &trans  &trans  &kp ESC  &kp LEFT   &kp DOWN  &kp RIGHT
                         &trans  &trans  &trans                                          &trans  &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         lefthand_layer {
@@ -478,7 +496,7 @@
 &kp LCTRL            &kp EXCL    &kp AMPS     &kp COMMA    &kp DOT    &kp FSLH        &kp C_MUTE                 &kp DOWN                &trans  &trans  &trans  &trans  &trans  &trans
                                               &trans       &trans     &trans                                                             &trans  &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         lefthandnolight_layer {
@@ -488,7 +506,7 @@
 &kp LCTRL            &kp EXCL    &kp AMPS     &kp COMMA    &kp DOT    &kp FSLH        &kp C_MUTE                 &kp DOWN                &trans  &trans  &trans  &trans  &trans  &trans
                                               &trans       &trans     &trans                                                             &trans  &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
         
         symbnolight_layer {
@@ -498,7 +516,7 @@
 &kp LEFT   &kp DOWN  &kp RIGHT  &none  &none   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER  &kp MINUS  &kp PLUS   &kp EQUAL  &kp PIPE   &kp PRCNT
                                 &trans &trans  &kp SPC                                                               &kp ENTER  &trans     &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
         
         numbnolight_layer {
@@ -508,7 +526,7 @@
 &kp PG_DN &kp DOT    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END    &kp N1  &kp N2  &kp N3  &kp DOT    &kp PG_DN
                              &trans  &trans  &trans                                                                                 &kp INS    &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
     };
 };
