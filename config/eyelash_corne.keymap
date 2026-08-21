@@ -286,7 +286,7 @@
         // ИСПРАВЛЕНИЕ: добавил require-prior-idle-ms = <150>
         // E+R это частое сочетание (there, over, user), защитить от ложных срабатываний
         combo_er_nav3 {
-            timeout-ms = <100>;
+            timeout-ms = <150>;
             require-prior-idle-ms = <200>;
             key-positions = <3 4>;
             bindings = <&mo 10>;
@@ -305,7 +305,7 @@
         // ИСПРАВЛЕНИЕ: добавил require-prior-idle-ms = <150>
         // D+F это "ва" в русском, частое сочетание (вода, вариант, навык)
         combo_fd_nav {
-            timeout-ms = <100>;
+            timeout-ms = <150>;
             require-prior-idle-ms = <200>;
             key-positions = <16 17>;
             bindings = <&mo 1>;
@@ -335,7 +335,7 @@
         // что и на слоях с подсветкой.
         // J+K это "ол" в русском (только, около, волы) — частое сочетание
         combo_jk_backspace {
-            timeout-ms = <100>;
+            timeout-ms = <150>;
             require-prior-idle-ms = <200>;
             key-positions = <23 24>;
             bindings = <&kp BSPC>;
@@ -345,7 +345,7 @@
         // ИСПРАВЛЕНИЕ: добавил require-prior-idle-ms = <150>
         // K+L = DEL
         combo_kl_delete {
-            timeout-ms = <100>;
+            timeout-ms = <150>;
             require-prior-idle-ms = <200>;
             key-positions = <24 25>;
             bindings = <&kp DEL>;
@@ -354,7 +354,7 @@
 
         // ИСПРАВЛЕНИЕ: добавил require-prior-idle-ms = <150>
         combo_lh_bspc {
-            timeout-ms = <100>;
+            timeout-ms = <150>;
             require-prior-idle-ms = <200>;
             key-positions = <16 17>;
             bindings = <&kp BSPC>;
@@ -363,7 +363,7 @@
 
         // ИСПРАВЛЕНИЕ: добавил require-prior-idle-ms = <150>
         combo_lh_del {
-            timeout-ms = <100>;
+            timeout-ms = <150>;
             require-prior-idle-ms = <200>;
             key-positions = <15 16>;
             bindings = <&kp DEL>;
@@ -373,7 +373,7 @@
         // ИСПРАВЛЕНИЕ: добавил require-prior-idle-ms = <150>
         // D+F = BSPC
         combo_left_center_bspc {
-            timeout-ms = <100>;
+            timeout-ms = <150>;
             require-prior-idle-ms = <200>;
             key-positions = <16 17>;
             bindings = <&kp BSPC>;
@@ -383,7 +383,7 @@
         // ИСПРАВЛЕНИЕ: добавил require-prior-idle-ms = <150>
         // S+D = DEL
         combo_left_center_del {
-            timeout-ms = <100>;
+            timeout-ms = <150>;
             require-prior-idle-ms = <200>;
             key-positions = <15 16>;
             bindings = <&kp DEL>;
