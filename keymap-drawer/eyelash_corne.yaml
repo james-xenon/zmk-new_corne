@@ -737,10 +737,10 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   symbnolight:
   - $$mdi:keyboard-esc$$
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - '!'
+  - '@'
+  - '#'
+  - $
   - '&mkp MB5'
   - $$mdi:arrow-up-bold$$
   - '!'
@@ -749,11 +749,11 @@ layers:
   - (
   - )
   - '#'
-  - SPC
-  - $$mdi:arrow-up-bold$$
-  - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: \, s: '|'}
+  - {t: \, s: '|'}
+  - '~'
+  - '&'
   - '&mkp MB4'
   - $$mdi:arrow-left-bold$$
   - SPC
@@ -764,11 +764,11 @@ layers:
   - ^
   - {t: \, s: '|'}
   - $
-  - $$mdi:arrow-left-bold$$
-  - $$mdi:arrow-down-bold$$
-  - $$mdi:arrow-right-bold$$
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - '|'
+  - '{'
+  - '}'
+  - {t: '`', s: '~'}
   - AL CALCULATOR
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
