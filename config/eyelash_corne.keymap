@@ -13,27 +13,22 @@
 #include <dt-bindings/zmk/rgb.h>
 
 /* =========================================================================
- * НАСТРОЙКИ ЛЕНТЫ И Манипулятора (Мыши/Скролла)
+ * НАСТРОЙКИ ЛЕНТЫ И МАНИПУЛЯТОРА (МЫШИ/СКРОЛЛА)
  * ========================================================================= */
 
 &led_strip {
-    /* Количество диодов НА ОДНОЙ половине. У сплита каждая половина —
-     * отдельный контроллер со своей лентой, суммировать половины НЕЛЬЗЯ. */
     chain-length = <21>;
 };
 
-/* Скейлинг курсора и скролла */
 &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
 &msc_input_listener { input-processors = <&zip_scroll_scaler 1 1>; };
 
-/* Скролл без акселерации (равномерный) */
 &msc {
     acceleration-exponent = <0>;
     time-to-max-speed-ms = <0>;
     delay-ms = <0>;
 };
 
-/* Курсор с плавной акселерацией */
 &mmv {
     time-to-max-speed-ms = <500>;
     acceleration-exponent = <1>;
@@ -48,17 +43,16 @@
     behaviors {
         /* =========================================================================
          * ПОВЕДЕНИЯ (BEHAVIORS)
-         * Описание кастомных клавиш, hold-tap, tap-dance и макросов.
          * ========================================================================= */
 
-        /* Shift/CapsLock (Левый мизинец/безымянный): 1 тап = LSHIFT, 2 тапа = CAPS */
+        /* Shift/CapsLock: 1 тап = LSHIFT, 2 тапа = CAPS */
         td0: td0 {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
         };
 
-        /* Tab/Esc (Левый индекс): Удержание = TAB, Тап = ESC */
+        /* Tab/Esc: удержание = TAB, тап = ESC */
         tab_esc_ht: tab_esc_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -67,8 +61,7 @@
             bindings = <&kp>, <&kp>;
         };
 
-        /* Win-only (Внутренний для левого большого): 
-         * 1 тап = ничего, 2 тапа = LGUI (Win) с таймингом 400мс. */
+        /* Win-only: 2 тапа = LGUI, одиночный тап = none */
         win_only_td: win_only_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -76,11 +69,11 @@
             bindings = <&none>, <&kp LGUI>;
         };
 
-        /* Левый большой палец (&symb_win_td 15 0):
-         * Удержание: мгновенный вход в symbnolight_layer (15).
+        /* Левый большой палец:
+         * Удержание: мгновенный вход в символ слой без подсветки (mo 15).
          * Двойной тап: LGUI (Win) с таймингом 400мс.
-         * Одиночный тап: нет (none).
-         * Примечание: если сработал Win (двойной тап), слой не залипает. */
+         * Одиночный тап: none.
+         * Используется для быстрого доступа с кастомным тапдансом комбо. */
         symb_win_td: symb_win_td {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -89,9 +82,9 @@
             bindings = <&mo>, <&win_only_td>;
         };
 
-        /* Правый большой палец (&thumb_num_sym_fn 16 0):
-         * Удержание: мгновенный вход в numbnolight_layer (16).
-         * Тап/Двойной тап: нет (none). Чистый моментальный слой. */
+        /* Правый большой палец:
+         * Удержание: мгновенный вход в числовой слой без подсветки (mo 16).
+         * Других функций нет - только hold. */
         thumb_num_sym_fn: thumb_num_sym_fn {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -100,7 +93,7 @@
             bindings = <&mo>, <&none>;
         };
 
-        /* Язык/Nav2 (Правый большой/нижний): Удержание = mo 12, Тап = Win+Space */
+        /* Язык/Nav2: удержание = mo 12, тап = Win+Space */
         lang_nav2: lang_nav2 {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -110,7 +103,7 @@
             bindings = <&mo>, <&win_space>;
         };
 
-        /* Nav2 тоггл (Комбо Y+U): 1 тап = trans, 2 тапа = tog 6 (nav2_layer) */
+        /* Nav2 тоггл: 1 тап = none, 2 тапа = tog 6 (nav2_layer) */
         nav2_double_tap: nav2_double_tap {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -118,7 +111,7 @@
             bindings = <&trans>, <&tog 6>;
         };
 
-        /* Speedtype тоггл (Комбо '+ESC): 1 тап = trans, 2 тапа = tog 11 (speedtype) */
+        /* Speedtype тоггл: 1 тап = none, 2 тапа = tog 11 (speedtype) */
         speedtype_double_tap: speedtype_double_tap {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -126,8 +119,7 @@
             bindings = <&trans>, <&tog 11>;
         };
 
-        /* Одноразовое нажатие (Макрос): press+release за один вызов.
-         * Используется в edit_ht, чтобы Ctrl+A/C/S/F не залипали. */
+        /* Одноразовое нажатие: press+release для Ctrl+X/C/S/F */
         kp_once: kp_once {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
@@ -137,8 +129,8 @@
                        <&macro_param_1to1 &macro_release &kp 0>;
         };
 
-        /* Edit (Левая рука, индексы/средние): Удержание = Ctrl+key (одноразово), Тап = буква.
-         * Hold срабатывает ТОЛЬКО при касании клавиш правой руки. */
+        /* Edit: удержание = Ctrl+key (одноразово), тап = буква.
+         * Hold только при касании правой руки. */
         edit_ht: edit_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -150,7 +142,7 @@
             bindings = <&kp_once>, <&kp>;
         };
 
-        /* Media (Правая рука, верхний ряд): Удержание = медиа, Тап = буква */
+        /* Media: удержание = медиа функция, тап = буква */
         media_ht: media_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -160,8 +152,8 @@
             bindings = <&kp>, <&kp>;
         };
 
-        /* Alt+N (Правая рука): Удержание = LALT, Тап = N.
-         * Hold срабатывает ТОЛЬКО при касании клавиш правой руки. */
+        /* Alt+N: удержание = LALT, тап = N.
+         * Hold только при касании правой руки. */
         n_alt_ht: n_alt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -173,8 +165,8 @@
             bindings = <&kp>, <&kp>;
         };
 
-        /* Semicolon/FN (Правая рука, мизинец): Удержание = mo 4 (fn_layer), Тап = ;
-         * Hold срабатывает ТОЛЬКО при касании клавиш правой руки. */
+        /* Semicolon/FN: удержание = mo 4 (fn_layer), тап = ;
+         * Hold только при касании правой руки. */
         semi_fn_ht: semi_fn_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -184,7 +176,7 @@
             bindings = <&mo>, <&kp>;
         };
 
-        /* Left-hand тоггл (Левый нижний): 1 тап = trans, 2 тапа = LALT */
+        /* Left-hand тоггл: 1 тап = none, 2 тапа = LALT */
         lh_td: lh_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -192,7 +184,7 @@
             bindings = <&trans>, <&kp LALT>;
         };
 
-        /* Left-hand слой (Левый большой): Удержание = mo 14 (lefthand), Тап = lh_td */
+        /* Left-hand слой: удержание = mo 14 (lefthand), тап = lh_td */
         lefthand_ht: lefthand_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -202,7 +194,7 @@
             bindings = <&mo>, <&lh_td>;
         };
 
-        /* Макрос скриншота: Win+Shift+S */
+        /* Скриншот макрос: Win+Shift+S */
         screenshot_win_shift_s: screenshot_win_shift_s {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -216,7 +208,7 @@
                 <&macro_release &kp LGUI>;
         };
 
-        /* LBKT (Левая рука, верхний ряд): Удержание = скриншот, Тап = [ */
+        /* LBKT: удержание = скриншот, тап = [ */
         lbkt_screenshot: lbkt_screenshot {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -226,7 +218,7 @@
             bindings = <&screenshot_win_shift_s>, <&kp>;
         };
 
-        /* Макрос переключения языка: Win+Space */
+        /* Win+Space макрос */
         win_space: win_space {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -238,7 +230,7 @@
                 <&macro_release &kp LGUI>;
         };
 
-        /* Макросы для слоя 13 (с подсветкой): Включение и Выключение */
+        /* Слой 13 с подсветкой: включение */
         tog13_on: tog13_on {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -247,6 +239,7 @@
             bindings = <&tog 13>, <&ws2812_lsync 1>;
         };
 
+        /* Слой 13 с подсветкой: выключение */
         tog13_off: tog13_off {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -255,7 +248,7 @@
             bindings = <&tog 13>, <&ws2812_lsync 0>;
         };
 
-        /* Tap-dance для комбо Q+W: 1 тап = trans, 2 тапа = вкл слоя 13 с подсветкой */
+        /* Комбо Q+W вход: 1 тап = none, 2 тапа = включить слой 13 с подсветкой */
         tog13_on_td: tog13_on_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -263,12 +256,28 @@
             bindings = <&trans>, <&tog13_on>;
         };
 
-        /* Tap-dance для комбо Q+W (на слое 13): 1 тап = trans, 2 тапа = выкл слоя 13 */
+        /* Комбо Q+W выход: 1 тап = none, 2 тапа = выключить слой 13 */
         tog13_off_td: tog13_off_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
             bindings = <&trans>, <&tog13_off>;
+        };
+
+        /* Комбо левый большой + V: включение/выключение numb_layer (3) с цианом */
+        thumb_v_numb_td: thumb_v_numb_td {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&trans>, <&tog 3>;
+        };
+
+        /* Комбо правый большой + M: включение/выключение symb_layer (2) с цианом */
+        thumb_m_symb_td: thumb_m_symb_td {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&trans>, <&tog 2>;
         };
     };
 
@@ -276,11 +285,10 @@
         compatible = "zmk,combos";
 
         /* =========================================================================
-         * КОМБО (COMBOS)
-         * Одновременное нажатие клавиш для вызова действий.
+         * КОМБО (COMBOS) - двухклавишные сочетания
          * ========================================================================= */
 
-        /* W+E+R+T (Верхний левый ряд): тоггл gaming (слой 7) */
+        /* Игра: W+E+R+T включ/выкл слой 7 (gaming1) */
         combo_wert_gaming_toggle {
             timeout-ms = <120>;
             require-prior-idle-ms = <250>;
@@ -289,7 +297,7 @@
             layers = <0 7>;
         };
 
-        /* Q+W (Верхний левый ряд): тоггл слоя 13 с подсветкой (вход) */
+        /* Lightshow: Q+W вход - включить слой 13 с подсветкой */
         combo_qw_tog13_on {
             timeout-ms = <50>;
             require-prior-idle-ms = <150>;
@@ -298,7 +306,7 @@
             layers = <0>;
         };
 
-        /* Q+W (на слое 13): тоггл слоя 13 и подсветки (выход) */
+        /* Lightshow: Q+W выход - выключить слой 13 */
         combo_qw_tog13_off {
             timeout-ms = <50>;
             require-prior-idle-ms = <150>;
@@ -307,7 +315,7 @@
             layers = <13>;
         };
 
-        /* E+R (Верхний левый ряд): mo nav3 (слой 10) */
+        /* Навигация 3: E+R временный слой 10 */
         combo_er_nav3 {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
@@ -316,7 +324,7 @@
             layers = <0>;
         };
 
-        /* '+ESC (Правый верхний угол): тоггл speedtype (слой 11) */
+        /* Speedtype: '+ESC включ/выкл слой 11 */
         combo_sqt_esc_speedtype {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
@@ -325,7 +333,7 @@
             layers = <0 11>;
         };
 
-        /* F+D (Левый центр): mo nav1 (слой 1) */
+        /* Навигация 1: D+F временный слой 1 */
         combo_fd_nav {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
@@ -334,7 +342,7 @@
             layers = <0 11>;
         };
 
-        /* Правая нижняя пара (42 43): mo service (слой 5) */
+        /* Сервис: правая нижняя пара (42 43) временный слой 5 */
         combo_service {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
@@ -343,7 +351,7 @@
             layers = <0>;
         };
 
-        /* Y+U (Правый центр): тоггл nav2 (слой 6) */
+        /* Навигация 2: Y+U включ/выкл слой 6 */
         combo_yu_nav2_double_tap {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
@@ -352,7 +360,7 @@
             layers = <0 1 2 3 4 5 6 11>;
         };
 
-        /* J+K (Правый центр): BSPC (защита от опечаток) */
+        /* Удаление: J+K = Backspace */
         combo_jk_backspace {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
@@ -361,7 +369,7 @@
             layers = <0 1 2 3 4 5 6 11 15 16>;
         };
 
-        /* K+L (Правый центр): DEL */
+        /* Удаление: K+L = Delete */
         combo_kl_delete {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
@@ -370,7 +378,7 @@
             layers = <0 1 2 3 4 5 6 11 15 16>;
         };
 
-        /* D+F (Левый центр на lefthand): BSPC */
+        /* Lefthand слой: D+F = Backspace */
         combo_lh_bspc {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
@@ -379,7 +387,7 @@
             layers = <13 14>;
         };
 
-        /* S+D (Левый центр на lefthand): DEL */
+        /* Lefthand слой: S+D = Delete */
         combo_lh_del {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
@@ -388,7 +396,7 @@
             layers = <13 14>;
         };
 
-        /* D+F (Левый центр на слоях с подсветкой): BSPC */
+        /* Слои с подсветкой: D+F = Backspace */
         combo_left_center_bspc {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
@@ -397,7 +405,7 @@
             layers = <2 3 4 6 12 15 16>;
         };
 
-        /* S+D (Левый центр на слоях с подсветкой): DEL */
+        /* Слои с подсветкой: S+D = Delete */
         combo_left_center_del {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
@@ -406,21 +414,21 @@
             layers = <2 3 4 6 12 15 16>;
         };
 
-        /* Левый большой (39) + V (19): тоггл (вход/выход) numb_layer (3) с подсветкой циан */
+        /* Левый большой палец + V: включ/выкл numb_layer (3) с цианом */
         combo_left_thumb_v_numb {
             timeout-ms = <80>;
             require-prior-idle-ms = <100>;
             key-positions = <39 19>;
-            bindings = <&tog 3>;
+            bindings = <&thumb_v_numb_td>;
             layers = <0 15>;
         };
 
-        /* Правый большой (40) + M (33): тоггл (вход/выход) symb_layer (2) с подсветкой циан */
+        /* Правый большой палец + M: включ/выкл symb_layer (2) с цианом */
         combo_right_thumb_m_symb {
             timeout-ms = <80>;
             require-prior-idle-ms = <100>;
             key-positions = <40 33>;
-            bindings = <&tog 2>;
+            bindings = <&thumb_m_symb_td>;
             layers = <0 16>;
         };
     };
