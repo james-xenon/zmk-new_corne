@@ -624,17 +624,13 @@ rect.held, rect.combo.held {
 <path d="M665,122 l157,22" class="combo"/>
 <path d="M665,122 l-157,-22" class="combo"/>
 <rect rx="6" ry="6" x="651" y="109" width="28" height="26" class="combo"/>
-<a href="#numb">
-<text x="665" y="122" class="combo tap layer-activator">numb</text>
-</a><text x="665" y="133" class="combo hold">toggle</text>
+<text x="665" y="122" class="combo tap"><tspan style="font-size: 60%">&amp;thumb_v_…</tspan></text>
 </g>
 <g class="combo combopos-10">
 <path d="M602,157 l275,3" class="combo"/>
 <path d="M602,157 l-275,-3" class="combo"/>
 <rect rx="6" ry="6" x="588" y="144" width="28" height="26" class="combo"/>
-<a href="#symb">
-<text x="602" y="157" class="combo tap layer-activator">symb</text>
-</a><text x="602" y="168" class="combo hold">toggle</text>
+<text x="602" y="157" class="combo tap"><tspan style="font-size: 60%">&amp;thumb_m_…</tspan></text>
 </g>
 </g>
 </g>
@@ -4658,9 +4654,7 @@ rect.held, rect.combo.held {
 <path d="M665,122 l157,22" class="combo"/>
 <path d="M665,122 l-157,-22" class="combo"/>
 <rect rx="6" ry="6" x="651" y="109" width="28" height="26" class="combo"/>
-<a href="#numb">
-<text x="665" y="122" class="combo tap layer-activator">numb</text>
-</a><text x="665" y="133" class="combo hold">toggle</text>
+<text x="665" y="122" class="combo tap"><tspan style="font-size: 60%">&amp;thumb_v_…</tspan></text>
 </g>
 </g>
 </g>
@@ -4964,9 +4958,7 @@ rect.held, rect.combo.held {
 <path d="M602,157 l275,3" class="combo"/>
 <path d="M602,157 l-275,-3" class="combo"/>
 <rect rx="6" ry="6" x="588" y="144" width="28" height="26" class="combo"/>
-<a href="#symb">
-<text x="602" y="157" class="combo tap layer-activator">symb</text>
-</a><text x="602" y="168" class="combo hold">toggle</text>
+<text x="602" y="157" class="combo tap"><tspan style="font-size: 60%">&amp;thumb_m_…</tspan></text>
 </g>
 </g>
 </g>

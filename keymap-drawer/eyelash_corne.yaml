@@ -877,8 +877,8 @@ combos:
   k: $$mdi:backspace-reverse-outline$$
   l: [symb, numb, fn, nav2, nav2nolight, symbnolight, numbnolight]
 - p: [39, 19]
-  k: {t: numb, h: toggle}
+  k: '&thumb_v_numb_td'
   l: [default, symbnolight]
 - p: [40, 33]
-  k: {t: symb, h: toggle}
+  k: '&thumb_m_symb_td'
   l: [default, numbnolight]
