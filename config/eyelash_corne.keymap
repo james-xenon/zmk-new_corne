@@ -55,7 +55,7 @@
         };
 
         // & symb_win_td (pos 43): Левый большой палец
-        // & Удержание > 200мс = mo 15 (symbnolight). Тап = sticky LGUI (мгновенно, без тапданса)
+        // & Удержание > 200мс = mo 15 (symbnolight). Тап = sticky LGUI (мгновенно)
         symb_win_td: symb_win_td {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -156,7 +156,7 @@
             bindings = <&mo>, <&kp>;
         };
 
-        // & lefthand_ht: Left-hand слой. Удержание > 200мс = mo 14, тап = sticky LALT (мгновенно, без тапданса)
+        // & lefthand_ht: Left-hand слой. Удержание > 200мс = mo 14, тап = sticky LALT (мгновенно)
         lefthand_ht: lefthand_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
