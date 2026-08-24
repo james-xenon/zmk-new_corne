@@ -549,7 +549,7 @@ rect.held, rect.combo.held {
 <g transform="translate(285, 209) rotate(12.0)" class="key keypos-43">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;symb_win…</tspan></text>
+<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;win_only…</tspan></text>
 <a href="#symbnolight">
 <text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">symbnolig…</tspan></text>
 </a></g>
@@ -566,7 +566,7 @@ rect.held, rect.combo.held {
 <g transform="translate(695, 209) rotate(-12.0)" class="key keypos-46">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;numb_sym…</tspan></text>
+<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-9" y="-13" height="18" width="18.0" class="key tap glyph mdi:minus-circle-outline"/>
 <a href="#numbnolight">
 <text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">numbnolig…</tspan></text>
 </a></g>
@@ -619,6 +619,22 @@ rect.held, rect.combo.held {
 <g class="combo combopos-8">
 <rect rx="6" ry="6" x="798" y="74" width="28" height="26" class="combo"/>
 <use href="#mdi:backspace-reverse-outline" xlink:href="#mdi:backspace-reverse-outline" x="803" y="78" height="18" width="18.0" class="combo tap glyph mdi:backspace-reverse-outline"/>
+</g>
+<g class="combo combopos-9">
+<path d="M665,122 l157,22" class="combo"/>
+<path d="M665,122 l-157,-22" class="combo"/>
+<rect rx="6" ry="6" x="651" y="109" width="28" height="26" class="combo"/>
+<a href="#numb">
+<text x="665" y="122" class="combo tap layer-activator">numb</text>
+</a><text x="665" y="133" class="combo hold">toggle</text>
+</g>
+<g class="combo combopos-10">
+<path d="M602,157 l275,3" class="combo"/>
+<path d="M602,157 l-275,-3" class="combo"/>
+<rect rx="6" ry="6" x="588" y="144" width="28" height="26" class="combo"/>
+<a href="#symb">
+<text x="602" y="157" class="combo tap layer-activator">symb</text>
+</a><text x="602" y="168" class="combo hold">toggle</text>
 </g>
 </g>
 </g>
@@ -3546,7 +3562,7 @@ rect.held, rect.combo.held {
 <g transform="translate(285, 209) rotate(12.0)" class="key keypos-43">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;symb_win…</tspan></text>
+<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;win_only…</tspan></text>
 <a href="#symbnolight">
 <text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">symbnolig…</tspan></text>
 </a></g>
@@ -3563,7 +3579,7 @@ rect.held, rect.combo.held {
 <g transform="translate(695, 209) rotate(-12.0)" class="key keypos-46">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;numb_sym…</tspan></text>
+<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-9" y="-13" height="18" width="18.0" class="key tap glyph mdi:minus-circle-outline"/>
 <a href="#numbnolight">
 <text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">numbnolig…</tspan></text>
 </a></g>
@@ -4638,6 +4654,14 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="154" y="74" width="28" height="26" class="combo"/>
 <use href="#mdi:backspace-reverse-outline" xlink:href="#mdi:backspace-reverse-outline" x="159" y="78" height="18" width="18.0" class="combo tap glyph mdi:backspace-reverse-outline"/>
 </g>
+<g class="combo combopos-4">
+<path d="M665,122 l157,22" class="combo"/>
+<path d="M665,122 l-157,-22" class="combo"/>
+<rect rx="6" ry="6" x="651" y="109" width="28" height="26" class="combo"/>
+<a href="#numb">
+<text x="665" y="122" class="combo tap layer-activator">numb</text>
+</a><text x="665" y="133" class="combo hold">toggle</text>
+</g>
 </g>
 </g>
 <g transform="translate(40, 5096)" class="layer-numbnolight">
@@ -4935,6 +4959,14 @@ rect.held, rect.combo.held {
 <g class="combo combopos-3">
 <rect rx="6" ry="6" x="154" y="74" width="28" height="26" class="combo"/>
 <use href="#mdi:backspace-reverse-outline" xlink:href="#mdi:backspace-reverse-outline" x="159" y="78" height="18" width="18.0" class="combo tap glyph mdi:backspace-reverse-outline"/>
+</g>
+<g class="combo combopos-4">
+<path d="M602,157 l275,3" class="combo"/>
+<path d="M602,157 l-275,-3" class="combo"/>
+<rect rx="6" ry="6" x="588" y="144" width="28" height="26" class="combo"/>
+<a href="#symb">
+<text x="602" y="157" class="combo tap layer-activator">symb</text>
+</a><text x="602" y="168" class="combo hold">toggle</text>
 </g>
 </g>
 </g>
