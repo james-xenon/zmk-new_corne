@@ -54,23 +54,15 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // & win_only_td: Win для левого большого. Одиночный тап = sticky LGUI (мгновенно)
-        win_only_td: win_only_td {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <400>;
-            bindings = <&sk LGUI>;
-        };
-
         // & symb_win_td (pos 43): Левый большой палец
-        // & Удержание > 150мс = mo 15 (symbnolight). Тап = win_only_td (sticky LGUI)
+        // & Удержание > 200мс = mo 15 (symbnolight). Тап = sticky LGUI (мгновенно, без тапданса)
         symb_win_td: symb_win_td {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
-            tapping-term-ms = <150>;
+            tapping-term-ms = <200>;
             quick-tap-ms = <200>;
-            bindings = <&mo>, <&win_only_td>;
+            bindings = <&mo>, <&sk LGUI>;
         };
 
         // & thumb_num_sym_fn (pos 46): Правый большой палец
@@ -164,23 +156,14 @@
             bindings = <&mo>, <&kp>;
         };
 
-        // & lh_td: Left-hand Alt. Одиночный тап = sticky LALT (мгновенно)
-        lh_td: lh_td {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <350>;
-            bindings = <&sk LALT>;
-        };
-
-        // & lefthand_ht: Left-hand слой. Удержание = mo 14, тап = lh_td (sticky LALT)
-        // & hold-preferred гарантирует: удержание → слой, быстрый тап → LALT без конфликтов
+        // & lefthand_ht: Left-hand слой. Удержание > 200мс = mo 14, тап = sticky LALT (мгновенно, без тапданса)
         lefthand_ht: lefthand_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
             quick-tap-ms = <200>;
-            bindings = <&mo>, <&lh_td>;
+            bindings = <&mo>, <&sk LALT>;
         };
 
         // & screenshot_win_shift_s: Макрос скриншота Win+Shift+S
