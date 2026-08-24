@@ -55,13 +55,13 @@
         };
 
         // & symb_win_td (pos 43): Левый большой палец
-        // Удержание > 150мс = mo 15 (symbnolight). Тап = LGUI
+        // Удержание > 150мс = mo 15 (symbnolight). Тап = Залипающий LGUI
         symb_win_td: symb_win_td {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "hold-preferred";
+            flavor = "balanced";
             tapping-term-ms = <150>;
-            bindings = <&mo>, <&kp>;
+            bindings = <&mo>, <&sk>;
         };
 
         // & thumb_num_sym_fn (pos 46): Правый большой палец
