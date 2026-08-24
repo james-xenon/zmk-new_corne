@@ -42,7 +42,7 @@
         td0: td0 {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            bindings = <&kp ((((0x07) << 16) | (0xE1)))>, <&kp (((((0x07) << 16) | (0x39))))>;
+            bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
         };
 
         // & tab_esc_ht: Tab/Esc. Удержание > 200мс = TAB, тап = ESC
@@ -54,36 +54,38 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // & Макрос-обёртка для LGUI (Win). #binding-cells = 0 для совместимости с hold-tap
+        // & Макрос-обёртка для LGUI. Используется в hold-tap для совместимости ячеек
         sk_gui_macro: sk_gui_macro {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <0>;
-            bindings = <&kp (((((0x07) << 16) | (0xE3))))>;
+            bindings = <&kp LGUI>;
         };
 
-        // & symb_win_td: Удержание = mo 15 (symbnolight), тап = LGUI (через макрос)
+        // & symb_win_td (pos 43): Левый большой палец
+        // Удержание > 150мс = mo 15 (symbnolight). Тап = LGUI (через макрос)
         symb_win_td: symb_win_td {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <150>;
             quick-tap-ms = <200>;
-            bindings = <&mo 15>, <&sk_gui_macro>;
+            bindings = <&mo>, <&sk_gui_macro>;
         };
 
-        // & thumb_num_sym_fn: Удержание = mo 16 (numbnolight), тап = none
+        // & thumb_num_sym_fn (pos 46): Правый большой палец
+        // Удержание > 150мс = mo 16 (numbnolight). Тап отключен (&none)
         thumb_num_sym_fn: thumb_num_sym_fn {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <150>;
             require-prior-idle-ms = <100>;
-            bindings = <&mo 16>, <&none>;
+            bindings = <&mo>, <&none>;
         };
 
-        // & lang_nav2: Удержание = mo 12, тап = Win+Space
+        // & lang_nav2: Язык/Nav2. Удержание > 220мс = mo 12, тап = Win+Space
         lang_nav2: lang_nav2 {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -93,7 +95,7 @@
             bindings = <&mo>, <&win_space>;
         };
 
-        // & nav2_double_tap: 1 тап = none, 2 тапа = tog 6
+        // & nav2_double_tap: Nav2 тоггл. 1 тап = none, 2 тапа = tog 6
         nav2_double_tap: nav2_double_tap {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -101,7 +103,7 @@
             bindings = <&trans>, <&tog 6>;
         };
 
-        // & speedtype_double_tap: 1 тап = none, 2 тапа = tog 11
+        // & speedtype_double_tap: Speedtype тоггл. 1 тап = none, 2 тапа = tog 11
         speedtype_double_tap: speedtype_double_tap {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -109,7 +111,7 @@
             bindings = <&trans>, <&tog 11>;
         };
 
-        // & kp_once: Одноразовое нажатие press+release
+        // & kp_once: Одноразовое нажатие press+release для Ctrl+X/C/S/F
         kp_once: kp_once {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
@@ -119,7 +121,7 @@
                        <&macro_param_1to1 &macro_release &kp 0>;
         };
 
-        // & edit_ht: Удержание = Ctrl+key, тап = буква. Только правая рука
+        // & edit_ht: Edit. Удержание > 220мс = Ctrl+key, тап = буква. Только правая рука
         edit_ht: edit_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -131,7 +133,7 @@
             bindings = <&kp_once>, <&kp>;
         };
 
-        // & media_ht: Удержание = медиа, тап = буква
+        // & media_ht: Media. Удержание > 200мс = медиа функция, тап = буква
         media_ht: media_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -141,7 +143,7 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // & n_alt_ht: Удержание = LALT, тап = N. Только правая рука
+        // & n_alt_ht: Alt+N. Удержание > 220мс = LALT, тап = N. Только правая рука
         n_alt_ht: n_alt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -153,7 +155,7 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // & semi_fn_ht: Удержание = mo 4, тап = ;. Только правая рука
+        // & semi_fn_ht: Semicolon/FN. Удержание > 250мс = mo 4, тап = ;. Только правая рука
         semi_fn_ht: semi_fn_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -163,40 +165,40 @@
             bindings = <&mo>, <&kp>;
         };
 
-        // & Макрос-обёртка для LALT. #binding-cells = 0 для совместимости с hold-tap
+        // & Макрос-обёртка для LALT. Используется в hold-tap для совместимости ячеек
         sk_alt_macro: sk_alt_macro {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <0>;
-            bindings = <&kp (((((0x07) << 16) | (0xE2))))>;
+            bindings = <&kp LALT>;
         };
 
-        // & lefthand_ht: Удержание = mo 14, тап = LALT (через макрос)
+        // & lefthand_ht: Left-hand слой. Удержание > 200мс = mo 14, тап = LALT (через макрос)
         lefthand_ht: lefthand_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
             quick-tap-ms = <200>;
-            bindings = <&mo 14>, <&sk_alt_macro>;
+            bindings = <&mo>, <&sk_alt_macro>;
         };
 
-        // & screenshot_win_shift_s: Макрос Win+Shift+S
+        // & screenshot_win_shift_s: Макрос скриншота Win+Shift+S
         screenshot_win_shift_s: screenshot_win_shift_s {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <30>;
             bindings =
-                <&macro_press &kp (((((0x07) << 16) | (0xE3))))>,
-                <&macro_press &kp (((((0x07) << 16) | (0xE1))))>,
-                <&macro_tap &kp ((((0x07) << 16) | (0x16)))>,
-                <&macro_release &kp (((((0x07) << 16) | (0xE1))))>,
-                <&macro_release &kp (((((0x07) << 16) | (0xE3))))>;
+                <&macro_press &kp LGUI>,
+                <&macro_press &kp LSHIFT>,
+                <&macro_tap &kp S>,
+                <&macro_release &kp LSHIFT>,
+                <&macro_release &kp LGUI>;
         };
 
-        // & lbkt_screenshot: Удержание = скриншот, тап = [
+        // & lbkt_screenshot: LBKT. Удержание > 220мс = скриншот, тап = [
         lbkt_screenshot: lbkt_screenshot {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -206,16 +208,16 @@
             bindings = <&screenshot_win_shift_s>, <&kp>;
         };
 
-        // & win_space: Макрос Win+Space
+        // & win_space: Макрос Win+Space (переключение языка)
         win_space: win_space {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <0>;
             bindings =
-                <&macro_press &kp (((((0x07) << 16) | (0xE3))))>,
-                <&macro_tap &kp ((((0x07) << 16) | (0x2C)))>,
-                <&macro_release &kp (((((0x07) << 16) | (0xE3))))>;
+                <&macro_press &kp LGUI>,
+                <&macro_tap &kp SPACE>,
+                <&macro_release &kp LGUI>;
         };
 
         // & tog13_on: Включение слоя 13 с подсветкой
@@ -236,7 +238,7 @@
             bindings = <&tog 13>, <&ws2812_lsync 0>;
         };
 
-        // & tog13_on_td: 1 тап = none, 2 тапа = включить слой 13
+        // & tog13_on_td: Комбо Q+W вход. 1 тап = none, 2 тапа = включить слой 13
         tog13_on_td: tog13_on_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -244,7 +246,7 @@
             bindings = <&trans>, <&tog13_on>;
         };
 
-        // & tog13_off_td: 1 тап = none, 2 тапа = выключить слой 13
+        // & tog13_off_td: Комбо Q+W выход. 1 тап = none, 2 тапа = выключить слой 13
         tog13_off_td: tog13_off_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -252,7 +254,7 @@
             bindings = <&trans>, <&tog13_off>;
         };
 
-        // & thumb_e_numb_td: 1 тап = none, 2 тапа = tog 3 (numb_layer)
+        // & thumb_e_numb_td: Комбо левый большой + E. 1 тап = none, 2 тапа = tog 3 (numb_layer с цианом)
         thumb_e_numb_td: thumb_e_numb_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -260,7 +262,7 @@
             bindings = <&none>, <&tog 3>;
         };
 
-        // & thumb_i_symb_td: 1 тап = none, 2 тапа = tog 2 (symb_layer)
+        // & thumb_i_symb_td: Комбо правый большой + I. 1 тап = none, 2 тапа = tog 2 (symb_layer с цианом)
         thumb_i_symb_td: thumb_i_symb_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -281,7 +283,7 @@
             layers = <0 7>;
         };
 
-        // & combo_qw_tog13_on: Q+W (pos 1,2) → включить слой 13
+        // & combo_qw_tog13_on: Q+W (pos 1,2) → включить слой 13 с подсветкой
         combo_qw_tog13_on {
             timeout-ms = <50>;
             require-prior-idle-ms = <150>;
@@ -308,7 +310,7 @@
             layers = <0>;
         };
 
-        // & combo_sqt_esc_speedtype: '+ESC (pos 27,41) → speedtype_double_tap
+        // & combo_sqt_esc_speedtype: '+ESC (pos 27,41) → speedtype_double_tap (слой 11)
         combo_sqt_esc_speedtype {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
@@ -326,7 +328,7 @@
             layers = <0 11>;
         };
 
-        // & combo_service: pos 42,43 → mo 5 (service_layer)
+        // & combo_service: Правая нижняя пара (pos 42,43) → mo 5 (service_layer)
         combo_service {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
@@ -335,7 +337,7 @@
             layers = <0>;
         };
 
-        // & combo_yu_nav2_double_tap: Y+U (pos 7,8) → nav2_double_tap
+        // & combo_yu_nav2_double_tap: Y+U (pos 7,8) → nav2_double_tap (слой 6)
         combo_yu_nav2_double_tap {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
@@ -349,7 +351,7 @@
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
             key-positions = <23 24>;
-            bindings = <&kp (((((0x07) << 16) | (0x2A))))>;
+            bindings = <&kp BSPC>;
             layers = <0 1 2 3 4 5 6 11 15 16>;
         };
 
@@ -358,7 +360,7 @@
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
             key-positions = <24 25>;
-            bindings = <&kp (((((0x07) << 16) | (0x4C))))>;
+            bindings = <&kp DEL>;
             layers = <0 1 2 3 4 5 6 11 15 16>;
         };
 
@@ -367,7 +369,7 @@
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
             key-positions = <16 17>;
-            bindings = <&kp (((((0x07) << 16) | (0x2A))))>;
+            bindings = <&kp BSPC>;
             layers = <13 14>;
         };
 
@@ -376,7 +378,7 @@
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
             key-positions = <15 16>;
-            bindings = <&kp (((((0x07) << 16) | (0x4C))))>;
+            bindings = <&kp DEL>;
             layers = <13 14>;
         };
 
@@ -385,7 +387,7 @@
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
             key-positions = <16 17>;
-            bindings = <&kp (((((0x07) << 16) | (0x2A))))>;
+            bindings = <&kp BSPC>;
             layers = <2 3 4 6 12 15 16>;
         };
 
@@ -394,11 +396,11 @@
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
             key-positions = <15 16>;
-            bindings = <&kp (((((0x07) << 16) | (0x4C))))>;
+            bindings = <&kp DEL>;
             layers = <2 3 4 6 12 15 16>;
         };
 
-        // & combo_left_thumb_e_numb: symb_win_td(pos 43)+E(pos 3) → 2 тапа: tog 3
+        // & combo_left_thumb_e_numb: левый большой (pos 43) + E (pos 3) → 2 тапа: tog 3 (numb_layer с цианом)
         combo_left_thumb_e_numb {
             timeout-ms = <200>;
             require-prior-idle-ms = <150>;
@@ -407,7 +409,7 @@
             layers = <0 3>;
         };
 
-        // & combo_right_thumb_i_symb: thumb_num_sym_fn(pos 46)+I(pos 9) → 2 тапа: tog 2
+        // & combo_right_thumb_i_symb: правый большой (pos 46) + I (pos 9) → 2 тапа: tog 2 (symb_layer с цианом)
         combo_right_thumb_i_symb {
             timeout-ms = <200>;
             require-prior-idle-ms = <150>;
@@ -417,178 +419,194 @@
         };
     };
 
-    // & Раскладки (keymap layers). sensor-bindings не изменены.
     keymap {
         compatible = "zmk,keymap";
 
+        // & default_layer: Основная раскладка
         default_layer {
             bindings = <
-&kp ((((0x07) << 16) | (0x2B))) &kp ((((0x07) << 16) | (0x14))) &kp ((((0x07) << 16) | (0x1A))) &kp ((((0x07) << 16) | (0x08))) &kp ((((0x07) << 16) | (0x15))) &kp ((((0x07) << 16) | (0x17))) &kp (((((0x07) << 16) | (0x52)))) &media_ht (((((0x0C) << 16) | (0xCD)))) ((((0x07) << 16) | (0x1C))) &media_ht (((((0x0C) << 16) | (0xB6)))) ((((0x07) << 16) | (0x18))) &media_ht ((((0x0C) << 16) | (0xB5))) ((((0x07) << 16) | (0x0C))) &media_ht ((((0x0C) << 16) | (0xB7))) ((((0x07) << 16) | (0x12))) &kp ((((0x07) << 16) | (0x13))) &lbkt_screenshot 0 (((((0x07) << 16) | (0x2F))))
-&td0 &edit_ht (0x01 << 24 | ((((0x07) << 16) | (0x04)))) ((((0x07) << 16) | (0x04))) &edit_ht (0x01 << 24 | ((((0x07) << 16) | (0x16)))) ((((0x07) << 16) | (0x16))) &kp ((((0x07) << 16) | (0x07))) &edit_ht (0x01 << 24 | ((((0x07) << 16) | (0x09)))) ((((0x07) << 16) | (0x09))) &kp ((((0x07) << 16) | (0x0A))) &kp (((((0x07) << 16) | (0x50)))) &kp (((((0x07) << 16) | (0x2C)))) &kp (((((0x07) << 16) | (0x4F)))) &kp ((((0x07) << 16) | (0x0B))) &kp ((((0x07) << 16) | (0x0D))) &kp ((((0x07) << 16) | (0x0E))) &kp ((((0x07) << 16) | (0x0F))) &semi_fn_ht 4 (((((0x07) << 16) | (0x33)))) &mt (((((0x07) << 16) | (0xE1)))) (((((0x07) << 16) | (0x34))))
-&kp (((((0x07) << 16) | (0xE0)))) &edit_ht (0x01 << 24 | ((((0x07) << 16) | (0x1D)))) ((((0x07) << 16) | (0x1D))) &edit_ht (0x01 << 24 | ((((0x07) << 16) | (0x1B)))) ((((0x07) << 16) | (0x1B))) &edit_ht (0x01 << 24 | ((((0x07) << 16) | (0x06)))) ((((0x07) << 16) | (0x06))) &edit_ht (0x01 << 24 | ((((0x07) << 16) | (0x19)))) ((((0x07) << 16) | (0x19))) &kp ((((0x07) << 16) | (0x05))) &kp ((((0x0C) << 16) | (0xE2))) &kp (((((0x07) << 16) | (0x51)))) &n_alt_ht (((((0x07) << 16) | (0xE2)))) ((((0x07) << 16) | (0x11))) &kp ((((0x07) << 16) | (0x10))) &kp ((((0x07) << 16) | (0x36))) &kp (((((0x07) << 16) | (0x37)))) &kp (((((0x07) << 16) | (0x38)))) &kp (((((0x07) << 16) | (0x29))))
-                                                 &lefthand_ht 14 0 &symb_win_td 15 0 &kp (((((0x07) << 16) | (0x2C)))) &kp (((((0x07) << 16) | (0x28)))) &thumb_num_sym_fn 16 0 &lang_nav2 12 0
+&kp TAB      &kp Q             &kp W             &kp E                &kp R             &kp T                         &kp UP                &media_ht C_PP Y    &media_ht C_PREV U     &media_ht C_NEXT I  &media_ht C_STOP O  &kp P               &lbkt_screenshot 0 LBKT
+&td0         &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D                &edit_ht LC(F) F  &kp G               &kp LEFT  &kp SPC   &kp RIGHT   &kp H               &kp J                  &kp K               &kp L               &semi_fn_ht 4 SEMI  &mt LSHFT SQT
+&kp LCTRL    &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C     &edit_ht LC(V) V  &kp B   &kp C_MUTE            &kp DOWN              &n_alt_ht LALT N    &kp M                  &kp COMMA           &kp DOT             &kp FSLH            &kp ESC
+                                                 &lefthand_ht 14 0    &symb_win_td 15 0  &kp SPC                                             &kp ENTER           &thumb_num_sym_fn 16 0  &lang_nav2 12 0
             >;
-            sensor-bindings = <&inc_dec_kp ((((0x0C) << 16) | (0xE9))) ((((0x0C) << 16) | (0xEA)))>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
+        // & nav1_layer: Навигация 1 (мышь, стрелки, Home/End/PgUp/PgDn)
         nav1_layer {
             bindings = <
-&kp (((((0x07) << 16) | (0x29)))) &none &none &none &none &none &mmv ((-1200) & 0xFFFF) &kp ((((0x07) << 16) | (0x4A))) &mkp ((1UL << (0))) &kp (((((0x07) << 16) | (0x52)))) &mkp ((1UL << (1))) &kp ((((0x07) << 16) | (0x36))) &kp (((((0x07) << 16) | (0x2A))))
-&trans &none &none &none &none &none &mmv (((-1200) & 0xFFFF) << 16) &mkp ((1UL << (0))) &mmv (((1200) & 0xFFFF) << 16) &msc ((-25) & 0xFFFF) &kp (((((0x07) << 16) | (0x50)))) &kp (((((0x07) << 16) | (0x51)))) &kp (((((0x07) << 16) | (0x4F)))) &msc ((25) & 0xFFFF) &kp (((((0x07) << 16) | (0x4B))))
-&trans &none &none &none &none &none &trans &mmv ((1200) & 0xFFFF) &kp ((((0x07) << 16) | (0x4D))) &msc ((-150) & 0xFFFF) &mkp ((1UL << (2))) &msc ((150) & 0xFFFF) &kp (((((0x07) << 16) | (0x37)))) &kp (((((0x07) << 16) | (0x4E))))
-                        &trans &trans &trans &trans &trans &trans
+&kp ESC  &none  &none   &none  &none  &none                               &mmv MOVE_UP                       &kp HOME          &mkp LCLK          &kp UP     &mkp RCLK            &kp COMMA       &kp BSPC
+&trans   &none   &none  &none  &none  &none               &mmv MOVE_LEFT  &mkp LCLK      &mmv MOVE_RIGHT     &msc SCRL_DOWN    &kp LEFT           &kp DOWN   &kp RIGHT            &msc SCRL_UP    &kp PG_UP
+&trans   &none   &none  &none  &none  &none       &trans                  &mmv MOVE_DOWN                     &kp END           &msc MOVE_Y(-150)  &mkp MCLK  &msc MOVE_Y(150)     &kp DOT         &kp PG_DN
+                        &trans &trans &trans                                                                 &trans            &trans             &trans
             >;
-            sensor-bindings = <&inc_dec_kp (0x01 << 24 | (((((0x07) << 16) | (0x4F))))) (0x01 << 24 | (((((0x07) << 16) | (0x50)))))>;
+            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
+        // & symb_layer: Символы (с подсветкой циан)
         symb_layer {
             bindings = <
-&kp (((((0x07) << 16) | (0x29)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x1E))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x1F))))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x20)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x21))))) &mkp (1UL << (4)) &kp (((((0x07) << 16) | (0x52)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x1E))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x24))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x25))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x26))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x27))))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x20))))
-&trans &kp (((((0x07) << 16) | (0x31)))) &kp (((((0x07) << 16) | (0x31)))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x35)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x24))))) &mkp (1UL << (3)) &kp (((((0x07) << 16) | (0x50)))) &kp (((((0x07) << 16) | (0x2C)))) &kp (((((0x07) << 16) | (0x4F)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x1F))))) &kp (((((0x07) << 16) | (0x30)))) &kp (((((0x07) << 16) | (0x2F)))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x23)))) &kp (((((0x07) << 16) | (0x31)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x21)))))
-&trans &kp ((0x02 << 24 | (((0x07) << 16) | (0x31)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x2F))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x30))))) &kp ((((0x07) << 16) | (0x35))) &kp ((((0x0C) << 16) | (0x192))) &trans &kp (((((0x07) << 16) | (0x51)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x2D))))) &kp ((((0x07) << 16) | (0x2D))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x2E)))) &kp ((((0x07) << 16) | (0x2E))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x31)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x22)))))
-                            &trans &trans &kp (((((0x07) << 16) | (0x2C)))) &kp (((((0x07) << 16) | (0x28)))) &trans &trans
+&kp ESC &kp EXCL  &kp AT    &kp HASH  &kp DLLR   &mkp MB5                                     &kp UP                   &kp EXCL   &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp HASH
+&trans  &kp BSLH  &kp BSLH  &kp TILDE &kp AMPS   &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &kp AT     &kp RBKT   &kp LBKT   &kp CARET  &kp BSLH   &kp DLLR
+&trans  &kp PIPE  &kp LBRC  &kp RBRC  &kp GRAVE  &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER  &kp MINUS  &kp PLUS   &kp EQUAL  &kp PIPE   &kp PRCNT
+                            &trans    &trans     &kp SPC                                                               &kp ENTER  &trans     &trans
             >;
-            sensor-bindings = <&inc_dec_kp (0x01 << 24 | (((((0x07) << 16) | (0x4F))))) (0x01 << 24 | (((((0x07) << 16) | (0x50)))))>;
+            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
+        // & numb_layer: Цифры и навигация (с подсветкой циан)
         numb_layer {
             bindings = <
-&kp (((((0x07) << 16) | (0x29)))) &kp ((((0x07) << 16) | (0x36))) &kp (((((0x07) << 16) | (0x26)))) &kp (((((0x07) << 16) | (0x25)))) &kp (((((0x07) << 16) | (0x24)))) &mkp (1UL << (4)) &msc ((25) & 0xFFFF) &kp ((((0x07) << 16) | (0x4A))) &kp (((((0x07) << 16) | (0x24)))) &kp (((((0x07) << 16) | (0x25)))) &kp (((((0x07) << 16) | (0x26)))) &kp ((((0x07) << 16) | (0x36))) &kp (((((0x07) << 16) | (0x2A))))
-&kp (((((0x07) << 16) | (0x4B)))) &kp (((((0x07) << 16) | (0x27)))) &kp (((((0x07) << 16) | (0x23)))) &kp (((((0x07) << 16) | (0x22)))) &kp (((((0x07) << 16) | (0x21)))) &mkp (1UL << (3)) &msc (((-25) & 0xFFFF) << 16) &mkp ((1UL << (0))) &msc (((25) & 0xFFFF) << 16) &kp (((0x02 << 24 | (((0x07) << 16) | (0x38))))) &kp (((((0x07) << 16) | (0x21)))) &kp (((((0x07) << 16) | (0x22)))) &kp (((((0x07) << 16) | (0x23)))) &kp (((((0x07) << 16) | (0x27)))) &kp (((((0x07) << 16) | (0x4B))))
-&kp (((((0x07) << 16) | (0x4E)))) &kp (((((0x07) << 16) | (0x37)))) &kp (((((0x07) << 16) | (0x20)))) &kp (((((0x07) << 16) | (0x1F)))) &kp (((((0x07) << 16) | (0x1E)))) &kp ((((0x0C) << 16) | (0x192))) &trans &msc ((-25) & 0xFFFF) &kp ((((0x07) << 16) | (0x4D))) &kp (((((0x07) << 16) | (0x1E)))) &kp (((((0x07) << 16) | (0x1F)))) &kp (((((0x07) << 16) | (0x20)))) &kp (((((0x07) << 16) | (0x37)))) &kp (((((0x07) << 16) | (0x4E))))
-                             &trans &trans &trans &kp (((((0x07) << 16) | (0x49)))) &trans &trans
+&kp ESC   &kp COMMA  &kp N9  &kp N8  &kp N7  &mkp MB5                                            &msc SCRL_UP                       &kp HOME   &kp N7  &kp N8  &kp N9  &kp COMMA  &kp BSPC
+&kp PG_UP &kp N0     &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &kp QMARK  &kp N4  &kp N5  &kp N6  &kp N0     &kp PG_UP
+&kp PG_DN &kp DOT    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END    &kp N1  &kp N2  &kp N3  &kp DOT    &kp PG_DN
+                             &trans  &trans  &trans                                                                                 &kp INS    &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp (0x01 << 24 | (((((0x07) << 16) | (0x4F))))) (0x01 << 24 | (((((0x07) << 16) | (0x50)))))>;
+            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
+        // & fn_layer: Функциональные клавиши F1-F12
         fn_layer {
             bindings = <
-&kp (((((0x07) << 16) | (0x29)))) &kp ((((0x07) << 16) | (0x3A))) &kp ((((0x07) << 16) | (0x3B))) &kp ((((0x07) << 16) | (0x3C))) &kp ((((0x07) << 16) | (0x3D))) &mkp (1UL << (4)) &mmv ((-1200) & 0xFFFF) &kp ((((0x07) << 16) | (0x3F))) &kp ((((0x07) << 16) | (0x40))) &kp ((((0x07) << 16) | (0x41))) &kp ((((0x07) << 16) | (0x42))) &kp ((((0x07) << 16) | (0x43))) &kp ((((0x07) << 16) | (0x44)))
-&none &none &none &none &kp ((((0x07) << 16) | (0x3E))) &mkp (1UL << (3)) &mmv (((-1200) & 0xFFFF) << 16) &mkp ((1UL << (0))) &mmv (((1200) & 0xFFFF) << 16) &trans &kp ((((0x07) << 16) | (0x3D))) &kp ((((0x07) << 16) | (0x3E))) &kp ((((0x07) << 16) | (0x3F))) &none &kp ((((0x07) << 16) | (0x45)))
-&none &none &none &none &none &kp ((((0x0C) << 16) | (0x192))) &trans &mmv ((1200) & 0xFFFF) &trans &kp ((((0x07) << 16) | (0x3A))) &kp ((((0x07) << 16) | (0x3B))) &kp ((((0x07) << 16) | (0x3C))) &none &kp (((((0x07) << 16) | (0x29))))
-                         &trans &trans &trans &trans &trans &trans
+&kp ESC  &kp F1  &kp F2  &kp F3  &kp F4  &mkp MB5                                          &mmv MOVE_UP                       &kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &kp F11
+&none    &none   &none   &none   &kp F5  &mkp MB4                        &mmv MOVE_LEFT    &mkp LCLK       &mmv MOVE_RIGHT    &trans  &kp F4  &kp F5  &kp F6  &none    &kp F12
+&none    &none   &none   &none   &none   &kp C_AL_CALCULATOR  &trans                       &mmv MOVE_DOWN                     &trans  &kp F1  &kp F2  &kp F3  &none    &kp ESC
+                         &trans  &trans  &trans                                                                               &trans  &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp (0x01 << 24 | (((((0x07) << 16) | (0x4F))))) (0x01 << 24 | (((((0x07) << 16) | (0x50)))))>;
+            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
+        // & service_layer: Bluetooth, RGB, вывод, разблокировка
         service_layer {
             bindings = <
-&kp (((((0x07) << 16) | (0x29)))) &none &none &none &mkp ((1UL << (1))) &studio_unlock &trans &bt 0 0 &none &bt 3 0 &bt 3 1 &bt 3 2 &bt 3 3
-&none &none &none &ws2812_wdg 5 &ws2812_wdg 2 &out 2 &trans &trans &trans &none &none &none &none &none &none
-&bt 4 0 &none &none &none &none &out 1 &trans &trans &rgb_ug 12 0 &rgb_ug 11 0 &rgb_ug 9 0 &rgb_ug 10 0 &rgb_ug 7 0 &rgb_ug 8 0
-                                      &trans &trans &trans &rgb_ug 1 0 &trans &rgb_ug 2 0
+&kp ESC         &none   &none         &none          &mkp RCLK      &studio_unlock                        &trans              &bt BT_CLR      &none           &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2     &bt BT_SEL 3
+&none           &none   &none         &ws2812_wdg 5  &ws2812_wdg 2  &out OUT_BLE                  &trans  &trans  &trans      &none           &none           &none           &none           &none            &none
+&bt BT_CLR_ALL  &none   &none         &none          &none          &out OUT_USB    &trans                &trans              &rgb_ug RGB_EFR &rgb_ug RGB_EFF &rgb_ug RGB_SPI &rgb_ug RGB_SPD &rgb_ug RGB_BRI  &rgb_ug RGB_BRD
+                                      &trans         &trans         &trans                                                    &rgb_ug RGB_ON  &trans          &rgb_ug RGB_OFF
             >;
-            sensor-bindings = <&inc_dec_kp ((((0x0C) << 16) | (0xE9))) ((((0x0C) << 16) | (0xEA)))>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
+        // & nav2_layer: Навигация 2 (стрелки, Enter, Space, Del, Bspc)
         nav2_layer {
             bindings = <
-&kp (((((0x07) << 16) | (0x29)))) &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &kp (((((0x07) << 16) | (0x4C)))) &kp (((((0x07) << 16) | (0x2A))))
-&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &kp (((((0x07) << 16) | (0x28)))) &kp (((((0x07) << 16) | (0x52)))) &kp (((((0x07) << 16) | (0x2C))))
-&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &kp (((((0x07) << 16) | (0x29)))) &kp (((((0x07) << 16) | (0x50)))) &kp (((((0x07) << 16) | (0x51)))) &kp (((((0x07) << 16) | (0x4F))))
-                        &trans &trans &trans &trans &trans &trans
+&kp ESC &trans  &trans  &trans  &trans  &trans                      &trans              &trans  &trans  &trans   &trans     &kp DEL   &kp BSPC
+&trans  &trans  &trans  &trans  &trans  &trans              &trans  &trans  &trans      &trans  &trans  &trans   &kp ENTER  &kp UP    &kp SPC
+&trans  &trans  &trans  &trans  &trans  &trans  &trans              &trans              &trans  &trans  &kp ESC  &kp LEFT   &kp DOWN  &kp RIGHT
+                        &trans  &trans  &trans                                          &trans  &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp ((((0x0C) << 16) | (0xE9))) ((((0x0C) << 16) | (0xEA)))>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
+        // & gaming1_layer: Игровой режим 1 (WASD, стрелки, Enter, Space)
         gaming1_layer {
             bindings = <
-&kp ((((0x07) << 16) | (0x2B))) &kp ((((0x07) << 16) | (0x14))) &kp ((((0x07) << 16) | (0x1A))) &kp ((((0x07) << 16) | (0x08))) &kp ((((0x07) << 16) | (0x15))) &kp ((((0x07) << 16) | (0x17))) &kp (((((0x07) << 16) | (0x52)))) &kp ((((0x07) << 16) | (0x1C))) &kp ((((0x07) << 16) | (0x18))) &kp ((((0x07) << 16) | (0x0C))) &kp ((((0x07) << 16) | (0x12))) &kp ((((0x07) << 16) | (0x13))) &kp (((((0x07) << 16) | (0x2A))))
-&kp (((((0x07) << 16) | (0xE1)))) &kp ((((0x07) << 16) | (0x04))) &kp ((((0x07) << 16) | (0x16))) &kp ((((0x07) << 16) | (0x07))) &kp ((((0x07) << 16) | (0x09))) &kp ((((0x07) << 16) | (0x0A))) &kp (((((0x07) << 16) | (0x50)))) &kp (((((0x07) << 16) | (0x28)))) &kp (((((0x07) << 16) | (0x4F)))) &kp ((((0x07) << 16) | (0x0B))) &kp ((((0x07) << 16) | (0x0D))) &kp ((((0x07) << 16) | (0x0E))) &kp ((((0x07) << 16) | (0x0F))) &kp (((((0x07) << 16) | (0x33)))) &kp (((((0x07) << 16) | (0xE1))))
-&kp (((((0x07) << 16) | (0xE0)))) &kp ((((0x07) << 16) | (0x1D))) &kp ((((0x07) << 16) | (0x1B))) &kp ((((0x07) << 16) | (0x06))) &kp ((((0x07) << 16) | (0x19))) &kp ((((0x07) << 16) | (0x05))) &kp ((((0x0C) << 16) | (0xE2))) &kp (((((0x07) << 16) | (0x51)))) &kp ((((0x07) << 16) | (0x11))) &kp ((((0x07) << 16) | (0x10))) &kp ((((0x07) << 16) | (0x36))) &kp (((((0x07) << 16) | (0x37)))) &kp (((((0x07) << 16) | (0x38)))) &kp (((((0x07) << 16) | (0x29))))
-                         &mo 9 &mo 8 &kp ((((0x07) << 16) | (0x2C))) &kp (((((0x07) << 16) | (0x28)))) &none &none
+&kp TAB    &kp Q  &kp W  &kp E   &kp R   &kp T                            &kp UP                  &kp Y      &kp U   &kp I      &kp O    &kp P     &kp BSPC
+&kp LSHFT  &kp A  &kp S  &kp D   &kp F   &kp G                  &kp LEFT  &kp ENTER  &kp RIGHT    &kp H      &kp J   &kp K      &kp L    &kp SEMI  &kp LSHFT
+&kp LCTRL  &kp Z  &kp X  &kp C   &kp V   &kp B      &kp C_MUTE            &kp DOWN                &kp N      &kp M   &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
+                         &mo 9   &mo 8   &kp SPACE                                                &kp ENTER  &none   &none
             >;
-            sensor-bindings = <&inc_dec_kp ((((0x0C) << 16) | (0xE9))) ((((0x0C) << 16) | (0xEA)))>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
+        // & gaming2_layer: Игровой режим 2 (цифры, F-клавиши)
         gaming2_layer {
             bindings = <
-&kp (((((0x07) << 16) | (0x29)))) &none &kp (((((0x07) << 16) | (0x26)))) &kp (((((0x07) << 16) | (0x25)))) &kp (((((0x07) << 16) | (0x24)))) &kp (((((0x07) << 16) | (0x22)))) &kp (((((0x07) << 16) | (0x52)))) &kp ((((0x07) << 16) | (0x3F))) &kp ((((0x07) << 16) | (0x40))) &kp ((((0x07) << 16) | (0x41))) &kp ((((0x07) << 16) | (0x42))) &kp ((((0x07) << 16) | (0x43))) &kp ((((0x07) << 16) | (0x44)))
-&kp (((((0x07) << 16) | (0xE1)))) &kp (((((0x07) << 16) | (0x27)))) &kp (((((0x07) << 16) | (0x23)))) &kp (((((0x07) << 16) | (0x22)))) &kp (((((0x07) << 16) | (0x21)))) &kp ((((0x07) << 16) | (0x0C))) &kp (((((0x07) << 16) | (0x50)))) &kp (((((0x07) << 16) | (0x28)))) &kp (((((0x07) << 16) | (0x4F)))) &trans &kp ((((0x07) << 16) | (0x3D))) &kp ((((0x07) << 16) | (0x3E))) &kp ((((0x07) << 16) | (0x3F))) &none &kp ((((0x07) << 16) | (0x45)))
-&kp (((((0x07) << 16) | (0xE0)))) &none &kp (((((0x07) << 16) | (0x20)))) &kp (((((0x07) << 16) | (0x1F)))) &kp (((((0x07) << 16) | (0x1E)))) &kp ((((0x07) << 16) | (0x0D))) &kp ((((0x0C) << 16) | (0xE2))) &kp (((((0x07) << 16) | (0x51)))) &trans &kp ((((0x07) << 16) | (0x3A))) &kp ((((0x07) << 16) | (0x3B))) &kp ((((0x07) << 16) | (0x3C))) &none &kp (((((0x07) << 16) | (0x29))))
-                             &none &none &none &kp (((((0x07) << 16) | (0x28)))) &none &none
+&kp ESC      &none   &kp N9  &kp N8  &kp N7   &kp N5                          &kp UP                 &kp F6      &kp F7  &kp F8  &kp F9  &kp F10  &kp F11
+&kp LSHFT    &kp N0  &kp N6  &kp N5  &kp N4   &kp I                &kp LEFT   &kp ENTER  &kp RIGHT   &trans      &kp F4  &kp F5  &kp F6  &none    &kp F12
+&kp LCTRL    &none   &kp N3  &kp N2  &kp N1   &kp J   &kp C_MUTE              &kp DOWN               &trans      &kp F1  &kp F2  &kp F3  &none    &kp ESC
+                             &none   &none    &none                                                  &kp ENTER   &none   &none
             >;
-            sensor-bindings = <&inc_dec_kp ((((0x0C) << 16) | (0xE9))) ((((0x0C) << 16) | (0xEA)))>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
+        // & gaming3_layer: Игровой режим 3 (альтернативная раскладка)
         gaming3_layer {
             bindings = <
-&kp (((((0x07) << 16) | (0x29)))) &kp ((((0x07) << 16) | (0x13))) &kp ((((0x07) << 16) | (0x12))) &kp ((((0x07) << 16) | (0x0C))) &kp ((((0x07) << 16) | (0x18))) &kp ((((0x07) << 16) | (0x1C))) &kp (((((0x07) << 16) | (0x52)))) &none &none &none &none &none &kp (((((0x07) << 16) | (0x2A))))
-&kp (((((0x07) << 16) | (0xE1)))) &none &kp ((((0x07) << 16) | (0x0F))) &kp ((((0x07) << 16) | (0x0E))) &kp ((((0x07) << 16) | (0x0D))) &kp ((((0x07) << 16) | (0x0B))) &kp (((((0x07) << 16) | (0x50)))) &kp (((((0x07) << 16) | (0x28)))) &kp (((((0x07) << 16) | (0x4F)))) &none &none &none &none &none &kp (((((0x07) << 16) | (0xE1))))
-&kp (((((0x07) << 16) | (0xE0)))) &none &none &none &kp ((((0x07) << 16) | (0x10))) &kp ((((0x07) << 16) | (0x11))) &kp ((((0x0C) << 16) | (0xE2))) &kp (((((0x07) << 16) | (0x51)))) &none &none &none &none &none &kp (((((0x07) << 16) | (0x29))))
-                         &none &none &none &kp (((((0x07) << 16) | (0x28)))) &none &none
+&kp ESC    &kp P  &kp O  &kp I  &kp U  &kp Y                           &kp UP                 &none      &none  &none  &none  &none  &kp BSPC
+&kp LSHFT  &none  &kp L  &kp K  &kp J  &kp H                &kp LEFT   &kp ENTER  &kp RIGHT   &none      &none  &none  &none  &none  &kp LSHFT
+&kp LCTRL  &none  &none  &none  &kp M  &kp N   &kp C_MUTE              &kp DOWN               &none      &none  &none  &none  &none  &kp ESC
+                         &none  &none  &none                                                  &kp ENTER  &none  &none
             >;
-            sensor-bindings = <&inc_dec_kp ((((0x0C) << 16) | (0xE9))) ((((0x0C) << 16) | (0xEA)))>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
+        // & nav3_layer: Навигация 3 (мышь, скролл, Home/End/PgUp/PgDn)
         nav3_layer {
             bindings = <
-&kp (((((0x07) << 16) | (0x29)))) &none &none &none &none &none &kp (((((0x07) << 16) | (0x52)))) &kp ((((0x07) << 16) | (0x4A))) &mkp ((1UL << (0))) &mmv ((-1200) & 0xFFFF) &mkp ((1UL << (1))) &kp ((((0x07) << 16) | (0x36))) &kp (((((0x07) << 16) | (0x2A))))
-&trans &none &none &none &none &none &kp (((((0x07) << 16) | (0x50)))) &kp (((((0x07) << 16) | (0x28)))) &kp (((((0x07) << 16) | (0x4F)))) &msc ((-25) & 0xFFFF) &mmv (((-1200) & 0xFFFF) << 16) &mmv ((1200) & 0xFFFF) &mmv (((1200) & 0xFFFF) << 16) &msc ((25) & 0xFFFF) &kp (((((0x07) << 16) | (0x4B))))
-&trans &none &trans &none &none &none &kp ((((0x0C) << 16) | (0xE2))) &kp (((((0x07) << 16) | (0x51)))) &kp ((((0x07) << 16) | (0x4D))) &msc ((-150) & 0xFFFF) &mkp ((1UL << (2))) &msc ((150) & 0xFFFF) &kp (((((0x07) << 16) | (0x37)))) &kp (((((0x07) << 16) | (0x4E))))
-                        &trans &trans &trans &trans &trans &trans
+&kp ESC &none   &none   &none   &none   &none                          &kp UP                   &kp HOME        &mkp LCLK            &mmv MOVE_UP    &mkp RCLK          &kp COMMA      &kp BSPC
+&trans  &none   &none   &none   &none   &none                &kp LEFT  &kp ENTER  &kp RIGHT     &msc SCRL_DOWN  &mmv MOVE_LEFT       &mmv MOVE_DOWN  &mmv MOVE_RIGHT    &msc SCRL_UP   &kp PG_UP
+&trans  &none   &trans  &none   &none   &none   &kp C_MUTE             &kp DOWN                 &kp END         &msc MOVE_Y(-150)    &mkp MCLK       &msc MOVE_Y(150)   &kp DOT        &kp PG_DN
+                        &trans  &trans  &trans                                                  &trans          &trans               &trans
             >;
-            sensor-bindings = <&inc_dec_kp (0x01 << 24 | (((((0x07) << 16) | (0x4F))))) (0x01 << 24 | (((((0x07) << 16) | (0x50)))))>;
+            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
+        // & speedtype: Режим быстрой печати
         speedtype {
             bindings = <
-&kp ((((0x07) << 16) | (0x2B))) &kp ((((0x07) << 16) | (0x14))) &kp ((((0x07) << 16) | (0x1A))) &kp ((((0x07) << 16) | (0x08))) &kp ((((0x07) << 16) | (0x15))) &kp ((((0x07) << 16) | (0x17))) &kp (((((0x07) << 16) | (0x52)))) &kp ((((0x07) << 16) | (0x1C))) &kp ((((0x07) << 16) | (0x18))) &kp ((((0x07) << 16) | (0x0C))) &kp ((((0x07) << 16) | (0x12))) &kp ((((0x07) << 16) | (0x13))) &kp (((((0x07) << 16) | (0x2F))))
-&kp (((((0x07) << 16) | (0xE1)))) &kp ((((0x07) << 16) | (0x04))) &kp ((((0x07) << 16) | (0x16))) &kp ((((0x07) << 16) | (0x07))) &kp ((((0x07) << 16) | (0x09))) &kp ((((0x07) << 16) | (0x0A))) &kp (((((0x07) << 16) | (0x50)))) &kp (((((0x07) << 16) | (0x28)))) &kp (((((0x07) << 16) | (0x4F)))) &kp ((((0x07) << 16) | (0x0B))) &kp ((((0x07) << 16) | (0x0D))) &kp ((((0x07) << 16) | (0x0E))) &kp ((((0x07) << 16) | (0x0F))) &kp (((((0x07) << 16) | (0x33)))) &kp (((((0x07) << 16) | (0x34))))
-&kp (((((0x07) << 16) | (0xE0)))) &kp ((((0x07) << 16) | (0x1D))) &kp ((((0x07) << 16) | (0x1B))) &kp ((((0x07) << 16) | (0x06))) &kp ((((0x07) << 16) | (0x19))) &kp ((((0x07) << 16) | (0x05))) &kp ((((0x0C) << 16) | (0xE2))) &kp (((((0x07) << 16) | (0x51)))) &kp ((((0x07) << 16) | (0x11))) &kp ((((0x07) << 16) | (0x10))) &kp ((((0x07) << 16) | (0x36))) &kp (((((0x07) << 16) | (0x37)))) &kp (((((0x07) << 16) | (0x38)))) &kp (((((0x07) << 16) | (0x29))))
-                         &kp (((((0x07) << 16) | (0xE6)))) &symb_win_td 15 0 &kp (((((0x07) << 16) | (0x2C)))) &kp (((((0x07) << 16) | (0x28)))) &thumb_num_sym_fn 16 0 &lang_nav2 12 0
+&kp TAB    &kp Q  &kp W  &kp E      &kp R              &kp T                               &kp UP                 &kp Y      &kp U                  &kp I              &kp O       &kp P     &kp LBKT
+&kp LSHFT  &kp A  &kp S  &kp D      &kp F              &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT   &kp H      &kp J                  &kp K              &kp L       &kp SEMI  &kp SQT
+&kp LCTRL  &kp Z  &kp X  &kp C      &kp V              &kp B      &kp C_MUTE               &kp DOWN               &kp N      &kp M                  &kp COMMA          &kp DOT     &kp FSLH  &kp ESC
+                         &kp RALT   &symb_win_td 15 0   &kp SPC                                                    &kp ENTER  &thumb_num_sym_fn 16 0  &lang_nav2 12 0
             >;
-            sensor-bindings = <&inc_dec_kp ((((0x0C) << 16) | (0xE9))) ((((0x0C) << 16) | (0xEA)))>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
+        // & nav2nolight_layer: Навигация 2 без подсветки
         nav2nolight_layer {
             bindings = <
-&kp (((((0x07) << 16) | (0x29)))) &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &kp (((((0x07) << 16) | (0x4C)))) &kp (((((0x07) << 16) | (0x2A))))
-&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &kp (((((0x07) << 16) | (0x28)))) &kp (((((0x07) << 16) | (0x52)))) &kp (((((0x07) << 16) | (0x2C))))
-&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &kp (((((0x07) << 16) | (0x29)))) &kp (((((0x07) << 16) | (0x50)))) &kp (((((0x07) << 16) | (0x51)))) &kp (((((0x07) << 16) | (0x4F))))
-                        &trans &trans &trans &trans &trans &trans
+&kp ESC &trans  &trans  &trans  &trans  &trans                      &trans              &trans  &trans  &trans   &trans     &kp DEL   &kp BSPC
+&trans  &trans  &trans  &trans  &trans  &trans              &trans  &trans  &trans      &trans  &trans  &trans   &kp ENTER  &kp UP    &kp SPC
+&trans  &trans  &trans  &trans  &trans  &trans  &trans              &trans              &trans  &trans  &kp ESC  &kp LEFT   &kp DOWN  &kp RIGHT
+                        &trans  &trans  &trans                                          &trans  &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp ((((0x0C) << 16) | (0xE9))) ((((0x0C) << 16) | (0xEA)))>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
+        // & lefthand_layer: Режим одной левой руки
         lefthand_layer {
             bindings = <
-&tab_esc_ht (((((0x07) << 16) | (0x29)))) ((((0x07) << 16) | (0x2B))) &kp ((((0x07) << 16) | (0x4A))) &kp (((((0x07) << 16) | (0x28)))) &kp (((((0x07) << 16) | (0x52)))) &kp (((((0x07) << 16) | (0x2C)))) &msc ((25) & 0xFFFF) &kp (((((0x07) << 16) | (0x52)))) &trans &trans &trans &trans &trans &trans
-&kp (((((0x07) << 16) | (0xE1)))) &kp ((((0x07) << 16) | (0x4D))) &kp (((((0x07) << 16) | (0x50)))) &kp (((((0x07) << 16) | (0x51)))) &kp (((((0x07) << 16) | (0x4F)))) &msc ((-25) & 0xFFFF) &kp (((((0x07) << 16) | (0x50)))) &kp (((((0x07) << 16) | (0x28)))) &kp (((((0x07) << 16) | (0x4F)))) &trans &trans &trans &trans &trans &trans
-&kp (((((0x07) << 16) | (0xE0)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x1E))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x24))))) &kp ((((0x07) << 16) | (0x36))) &kp (((((0x07) << 16) | (0x37)))) &kp (((((0x07) << 16) | (0x38)))) &kp ((((0x0C) << 16) | (0xE2))) &kp (((((0x07) << 16) | (0x51)))) &trans &trans &trans &trans &trans &trans
-                                              &trans &trans &trans &trans &trans &trans
+&tab_esc_ht ESC TAB  &kp HOME    &kp ENTER    &kp UP       &kp SPC    &msc SCRL_UP                               &kp UP                  &trans  &trans  &trans  &trans  &trans  &trans
+&kp LSHFT            &kp END     &kp LEFT     &kp DOWN     &kp RIGHT  &msc SCRL_DOWN                   &kp LEFT  &kp ENTER  &kp RIGHT    &trans  &trans  &trans  &trans  &trans  &trans
+&kp LCTRL            &kp EXCL    &kp AMPS     &kp COMMA    &kp DOT    &kp FSLH        &kp C_MUTE                 &kp DOWN                &trans  &trans  &trans  &trans  &trans  &trans
+                                              &trans       &trans     &trans                                                             &trans  &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp ((((0x0C) << 16) | (0xE9))) ((((0x0C) << 16) | (0xEA)))>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
+        // & lefthandnolight_layer: Режим одной левой руки без подсветки
         lefthandnolight_layer {
             bindings = <
-&tab_esc_ht (((((0x07) << 16) | (0x29)))) ((((0x07) << 16) | (0x2B))) &kp ((((0x07) << 16) | (0x4A))) &kp (((((0x07) << 16) | (0x28)))) &kp (((((0x07) << 16) | (0x52)))) &kp (((((0x07) << 16) | (0x2C)))) &msc ((25) & 0xFFFF) &kp (((((0x07) << 16) | (0x52)))) &trans &trans &trans &trans &trans &trans
-&kp (((((0x07) << 16) | (0xE1)))) &kp ((((0x07) << 16) | (0x4D))) &kp (((((0x07) << 16) | (0x50)))) &kp (((((0x07) << 16) | (0x51)))) &kp (((((0x07) << 16) | (0x4F)))) &msc ((-25) & 0xFFFF) &kp (((((0x07) << 16) | (0x50)))) &kp (((((0x07) << 16) | (0x28)))) &kp (((((0x07) << 16) | (0x4F)))) &trans &trans &trans &trans &trans &trans
-&kp (((((0x07) << 16) | (0xE0)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x1E))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x24))))) &kp ((((0x07) << 16) | (0x36))) &kp (((((0x07) << 16) | (0x37)))) &kp (((((0x07) << 16) | (0x38)))) &kp ((((0x0C) << 16) | (0xE2))) &kp (((((0x07) << 16) | (0x51)))) &trans &trans &trans &trans &trans &trans
-                                              &trans &trans &trans &trans &trans &trans
+&tab_esc_ht ESC TAB  &kp HOME    &kp ENTER    &kp UP       &kp SPC    &msc SCRL_UP                               &kp UP                  &trans  &trans  &trans  &trans  &trans  &trans
+&kp LSHFT            &kp END     &kp LEFT     &kp DOWN     &kp RIGHT  &msc SCRL_DOWN                   &kp LEFT  &kp ENTER  &kp RIGHT    &trans  &trans  &trans  &trans  &trans  &trans
+&kp LCTRL            &kp EXCL    &kp AMPS     &kp COMMA    &kp DOT    &kp FSLH        &kp C_MUTE                 &kp DOWN                &trans  &trans  &trans  &trans  &trans  &trans
+                                              &trans       &trans     &trans                                                             &trans  &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp ((((0x0C) << 16) | (0xE9))) ((((0x0C) << 16) | (0xEA)))>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
+        // & symbnolight_layer: Символы без подсветки
         symbnolight_layer {
             bindings = <
-&kp (((((0x07) << 16) | (0x29)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x1E))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x1F))))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x20)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x21))))) &mkp (1UL << (4)) &kp (((((0x07) << 16) | (0x52)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x1E))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x24))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x25))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x26))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x27))))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x20))))
-&trans &kp (((((0x07) << 16) | (0x31)))) &kp (((((0x07) << 16) | (0x31)))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x35)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x24))))) &mkp (1UL << (3)) &kp (((((0x07) << 16) | (0x50)))) &kp (((((0x07) << 16) | (0x2C)))) &kp (((((0x07) << 16) | (0x4F)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x1F))))) &kp (((((0x07) << 16) | (0x30)))) &kp (((((0x07) << 16) | (0x2F)))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x23)))) &kp (((((0x07) << 16) | (0x31)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x21)))))
-&trans &kp ((0x02 << 24 | (((0x07) << 16) | (0x31)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x2F))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x30))))) &kp ((((0x07) << 16) | (0x35))) &kp ((((0x0C) << 16) | (0x192))) &trans &kp (((((0x07) << 16) | (0x51)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x2D))))) &kp ((((0x07) << 16) | (0x2D))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x2E)))) &kp ((((0x07) << 16) | (0x2E))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x31)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x22)))))
-                            &trans &trans &kp (((((0x07) << 16) | (0x2C)))) &kp (((((0x07) << 16) | (0x28)))) &trans &trans
+&kp ESC &kp EXCL  &kp AT    &kp HASH  &kp DLLR   &mkp MB5                                     &kp UP                   &kp EXCL   &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp HASH
+&trans  &kp BSLH  &kp BSLH  &kp TILDE &kp AMPS   &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &kp AT     &kp RBKT   &kp LBKT   &kp CARET  &kp BSLH   &kp DLLR
+&trans  &kp PIPE  &kp LBRC  &kp RBRC  &kp GRAVE  &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER  &kp MINUS  &kp PLUS   &kp EQUAL  &kp PIPE   &kp PRCNT
+                            &trans    &trans     &kp SPC                                                               &kp ENTER  &trans     &trans
             >;
-            sensor-bindings = <&inc_dec_kp (0x01 << 24 | (((((0x07) << 16) | (0x4F))))) (0x01 << 24 | (((((0x07) << 16) | (0x50)))))>;
+            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
+        // & numbnolight_layer: Цифры и навигация без подсветки
         numbnolight_layer {
             bindings = <
-&kp (((((0x07) << 16) | (0x29)))) &kp ((((0x07) << 16) | (0x36))) &kp (((((0x07) << 16) | (0x26)))) &kp (((((0x07) << 16) | (0x25)))) &kp (((((0x07) << 16) | (0x24)))) &mkp (1UL << (4)) &msc ((25) & 0xFFFF) &kp ((((0x07) << 16) | (0x4A))) &kp (((((0x07) << 16) | (0x24)))) &kp (((((0x07) << 16) | (0x25)))) &kp (((((0x07) << 16) | (0x26)))) &kp ((((0x07) << 16) | (0x36))) &kp (((((0x07) << 16) | (0x2A))))
-&kp (((((0x07) << 16) | (0x4B)))) &kp (((((0x07) << 16) | (0x27)))) &kp (((((0x07) << 16) | (0x23)))) &kp (((((0x07) << 16) | (0x22)))) &kp (((((0x07) << 16) | (0x21)))) &mkp (1UL << (3)) &msc (((-25) & 0xFFFF) << 16) &mkp ((1UL << (0))) &msc (((25) & 0xFFFF) << 16) &kp (((0x02 << 24 | (((0x07) << 16) | (0x38))))) &kp (((((0x07) << 16) | (0x21)))) &kp (((((0x07) << 16) | (0x22)))) &kp (((((0x07) << 16) | (0x23)))) &kp (((((0x07) << 16) | (0x27)))) &kp (((((0x07) << 16) | (0x4B))))
-&kp (((((0x07) << 16) | (0x4E)))) &kp (((((0x07) << 16) | (0x37)))) &kp (((((0x07) << 16) | (0x20)))) &kp (((((0x07) << 16) | (0x1F)))) &kp (((((0x07) << 16) | (0x1E)))) &kp ((((0x0C) << 16) | (0x192))) &trans &msc ((-25) & 0xFFFF) &kp ((((0x07) << 16) | (0x4D))) &kp (((((0x07) << 16) | (0x1E)))) &kp (((((0x07) << 16) | (0x1F)))) &kp (((((0x07) << 16) | (0x20)))) &kp (((((0x07) << 16) | (0x37)))) &kp (((((0x07) << 16) | (0x4E))))
-                             &trans &trans &trans &kp (((((0x07) << 16) | (0x49)))) &trans &trans
+&kp ESC   &kp COMMA  &kp N9  &kp N8  &kp N7  &mkp MB5                                            &msc SCRL_UP                       &kp HOME   &kp N7  &kp N8  &kp N9  &kp COMMA  &kp BSPC
+&kp PG_UP &kp N0     &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &kp QMARK  &kp N4  &kp N5  &kp N6  &kp N0     &kp PG_UP
+&kp PG_DN &kp DOT    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END    &kp N1  &kp N2  &kp N3  &kp DOT    &kp PG_DN
+                             &trans  &trans  &trans                                                                                 &kp INS    &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp (0x01 << 24 | (((((0x07) << 16) | (0x4F))))) (0x01 << 24 | (((((0x07) << 16) | (0x50)))))>;
+            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
     };
 };
