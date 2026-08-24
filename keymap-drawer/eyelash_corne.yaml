@@ -43,8 +43,8 @@ layers:
   - {t: ., s: '>'}
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
-  - {t: LALT 0, h: lefthandnolight}
-  - {t: LGUI 0, h: symbnolight}
+  - {t: '&sk_alt_macro', h: lefthandnolight}
+  - {t: '&sk_gui_macro', h: symbnolight}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', h: numbnolight}
@@ -583,7 +583,7 @@ layers:
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
   - $$mdi:apple-keyboard-option$$
-  - {t: LGUI 0, h: symbnolight}
+  - {t: '&sk_gui_macro', h: symbnolight}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', h: numbnolight}
