@@ -43,8 +43,8 @@ layers:
   - {t: ., s: '>'}
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
-  - {t: LALT 0, h: lefthandnolight}
-  - {t: LGUI 0, h: symbnolight}
+  - {t: '&lh_td', h: lefthandnolight}
+  - {t: '&win_only_td', h: symbnolight}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', h: numbnolight}
@@ -583,7 +583,7 @@ layers:
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
   - $$mdi:apple-keyboard-option$$
-  - {t: LGUI 0, h: symbnolight}
+  - {t: '&win_only_td', h: symbnolight}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', h: numbnolight}
@@ -876,9 +876,9 @@ combos:
 - p: [15, 16]
   k: $$mdi:backspace-reverse-outline$$
   l: [symb, numb, fn, nav2, nav2nolight, symbnolight, numbnolight]
-- p: [3, 43]
-  k: '&thumb_e_numb_td'
-  l: [default, numb]
-- p: [9, 46]
-  k: '&thumb_i_symb_td'
-  l: [default, symb]
+- p: [39, 19]
+  k: '&thumb_v_numb_td'
+  l: [default, symbnolight]
+- p: [40, 33]
+  k: '&thumb_m_symb_td'
+  l: [default, numbnolight]
