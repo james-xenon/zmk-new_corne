@@ -339,9 +339,8 @@
             wait-ms = <0>;
             tap-ms = <0>;
             bindings = 
-                <&ws2812_lsync 0>,   // 1. Отключаем слушатель слоев (модуль "засыпает" и не увидит выход из слоя)
-                <&to 0>,             // 2. Переключаем на 0 слой (красный блик не сработает)
-                <&ws2812_wdg 0>;     // 3. Запускаем зеленый блик
+                <&to 0>,
+                <&ws2812_wdg 0>;
         };
     };
 
@@ -663,9 +662,9 @@
         // Энкодер: Скрол по словам и типа скрол влево-вправо
         nav3_layer {
             bindings = <
-&kp ESC &none   &none   &none   &none   &none                          &kp UP                   &kp HOME           &mkp LCLK            &mmv MOVE_UP    &mkp RCLK          &kp COMMA         &kp BSPC
-&trans  &none   &none   &none   &none   &none                &kp LEFT  &kp ENTER  &kp RIGHT     &msc MOVE_X(-150)  &mmv MOVE_LEFT       &mmv MOVE_DOWN  &mmv MOVE_RIGHT    &msc MOVE_X(150)  &kp PG_UP
-&trans  &none   &trans  &none   &none   &none   &kp C_MUTE             &kp DOWN                 &kp END            &msc MOVE_Y(-150)    &mkp MCLK       &msc MOVE_Y(150)   &kp DOT           &kp PG_DN
+&kp ESC &none   &none   &none   &none   &none                          &kp UP                   &kp HOME           &mkp LCLK            &mmv MOVE_UP    &mkp RCLK          &kp COMMA          &kp BSPC
+&trans  &none   &none   &none   &none   &none                &kp LEFT  &kp ENTER  &kp RIGHT     &msc MOVE_X(-150)  &mmv MOVE_LEFT       &mmv MOVE_DOWN  &mmv MOVE_RIGHT    &msc MOVE_X(150)   &kp PG_UP
+&trans  &none   &trans  &none   &none   &none   &kp C_MUTE             &kp DOWN                 &kp END            &msc MOVE_Y(-150)    &mkp MCLK       &msc MOVE_Y(150)   &kp DOT            &kp PG_DN
                         &trans  &trans  &trans                                                  &trans             &trans               &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
