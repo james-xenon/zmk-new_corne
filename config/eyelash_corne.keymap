@@ -1,9 +1,5 @@
-// Базовые параметры скорости перемещения курсора мыши и скролла.
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 1200
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 25
-
-// Подключение системных библиотек, драйверов ввода и кодов событий.
-// Загрузка плагинов для мыши (pointing), Bluetooth, RGB подсветки и базовых макросов.
 
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
@@ -501,7 +497,7 @@
         compatible = "zmk,keymap";
 
         // Слой 0: Основной слой (QWERTY / Базовая печать)
-        // Энкодер регулирует громкость системы (Volume Up / Down)
+        // Энкодер: Горизонтальный скролл
         default_layer {
             bindings = <
 &kp TAB      &kp Q             &kp W             &kp E                &kp R             &kp T                                                       &kp UP                &media_ht C_PP Y    &media_ht C_PREV U     &media_ht C_NEXT I  &media_ht C_STOP O  &kp P               &lbkt_screenshot 0 LBKT
@@ -509,11 +505,11 @@
 &kp LCTRL    &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C     &edit_ht LC(V) V  &kp B   &kp C_MUTE                                          &kp DOWN              &n_alt_ht LALT N    &kp M                  &kp COMMA           &kp DOT             &kp FSLH            &kp ESC
                                                  &lefthand_ht 14 0    &symb_win_td 15 0 &kp SPC                                                                                               &kp ENTER              &thumb_num_sym_fn 16 0  &lang_nav2 12 0
             >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+            sensor-bindings = <&inc_dec_kp &msc SCRL_RIGHT &msc SCRL_LEFT>;
         };
 
         // Слой 1: Навигация 1 (Управление курсором мыши, кликами, стрелками и Home/End)
-        // Энкодер выполняет переход по словам (Ctrl+Right / Ctrl+Left)
+        // Энкодер: Горизонтальный скролл
         nav1_layer {
             bindings = <
 &kp ESC  &none  &none   &none  &none  &none                                                              &mmv MOVE_UP                       &kp HOME          &mkp LCLK          &kp UP     &mkp RCLK            &kp COMMA       &kp BSPC
@@ -525,7 +521,7 @@
         };
 
         // Слой 2: Символы (Спецсимволы и скобки, с подсветкой правой половины)
-        // Энкодер выполняет переход по словам (Ctrl+Right / Ctrl+Left)
+        // Энкодер: Горизонтальный скролл
         symb_layer {
             bindings = <
 &kp ESC &kp EXCL  &kp AT    &kp HASH  &kp DLLR   &mkp MB5                                                     &kp UP                    &kp EXCL   &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp HASH
@@ -537,7 +533,7 @@
         };
 
         // Слой 3: Цифры (Цифровой блок Numpad с подсветкой левой половины)
-        // Энкодер выполняет переход по словам (Ctrl+Right / Ctrl+Left)
+        // Энкодер: Горизонтальный скролл
         numb_layer {
             bindings = <
 &kp ESC   &kp COMMA  &kp N9  &kp N8  &kp N7  &mkp MB5                                                             &msc SCRL_UP                       &kp HOME   &kp N7  &kp N8  &kp N9  &kp COMMA  &kp BSPC
@@ -549,7 +545,7 @@
         };
 
         // Слой 4: Функциональный блок (Клавиши F1-F12 и управление мышью)
-        // Энкодер выполняет переход по словам (Ctrl+Right / Ctrl+Left)
+        // Энкодер: Горизонтальный скролл
         fn_layer {
             bindings = <
 &kp ESC  &kp F1  &kp F2  &kp F3  &kp F4  &mkp MB5                                                          &mmv MOVE_UP                       &kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &kp F11
@@ -561,7 +557,7 @@
         };
 
         // Слой 5: Сервисный (Настройки Bluetooth профилей, управление RGB-подсветкой, ZMK Studio)
-        // Энкодер регулирует громкость системы (Volume Up / Down)
+        // Энкодер: Громкость (Volume Up / Down)
         service_layer {
             bindings = <
 &kp ESC         &none   &none         &none          &mkp RCLK      &studio_unlock                                        &trans              &bt BT_CLR      &none           &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2     &bt BT_SEL 3
@@ -573,7 +569,7 @@
         };
 
         // Слой 6: Навигация 2 (Фиксируемый слой навигации: стрелки, Enter, Delete, Backspace)
-        // Энкодер регулирует громкость системы (Volume Up / Down)
+        // Энкодер: Громкость (Volume Up / Down)
         nav2_layer {
             bindings = <
 &kp ESC &trans  &trans  &trans  &trans  &trans                                                     &trans              &trans  &trans  &trans   &trans     &kp DEL   &kp BSPC
@@ -585,7 +581,7 @@
         };
 
         // Слой 7: Игровой 1 (Оптимизированная раскладка WASD с прямым доступом к Shift/Ctrl)
-        // Энкодер регулирует громкость системы (Volume Up / Down)
+        // Энкодер: Громкость (Volume Up / Down)
         gaming1_layer {
             bindings = <
 &kp TAB    &kp Q  &kp W  &kp E   &kp R   &kp T                                                            &kp UP                  &kp Y      &kp U   &kp I      &kp O    &kp P     &kp BSPC
@@ -597,7 +593,7 @@
         };
 
         // Слой 8: Игровой 2 (Игровой слой для цифр и F-клавиш)
-        // Энкодер регулирует громкость системы (Volume Up / Down)
+        // Энкодер: Громкость (Volume Up / Down)
         gaming2_layer {
             bindings = <
 &kp ESC      &none   &kp N9  &kp N8  &kp N7   &kp N5                                                          &kp UP                  &kp F6      &kp F7  &kp F8  &kp F9  &kp F10  &kp F11
@@ -609,7 +605,7 @@
         };
 
         // Слой 9: Игровой 3 (Альтернативная игровая раскладка под правую руку/доп. действия)
-        // Энкодер регулирует громкость системы (Volume Up / Down)
+        // Энкодер: Громкость (Volume Up / Down)
         gaming3_layer {
             bindings = <
 &kp ESC    &kp P  &kp O  &kp I  &kp U  &kp Y                                                            &kp UP                  &none      &none  &none  &none  &none  &kp BSPC
@@ -621,7 +617,7 @@
         };
 
         // Слой 10: Навигация 3 (Продвинутое управление мышью и скроллом)
-        // Энкодер выполняет переход по словам (Ctrl+Right / Ctrl+Left)
+        // Энкодер: Горизонтальный скролл
         nav3_layer {
             bindings = <
 &kp ESC &none   &none   &none   &none   &none                                                          &kp UP                   &kp HOME        &mkp LCLK            &mmv MOVE_UP    &mkp RCLK          &kp COMMA      &kp BSPC
@@ -633,7 +629,7 @@
         };
 
         // Слой 11: Speedtype (Чистая печать без модификаторов hold-tap на основной буквенной зоне)
-        // Энкодер регулирует громкость системы (Volume Up / Down)
+        // Энкодер: Громкость (Volume Up / Down)
         speedtype {
             bindings = <
 &kp TAB    &kp Q  &kp W  &kp E      &kp R               &kp T                                                               &kp UP                  &kp Y      &kp U                  &kp I              &kp O       &kp P     &kp LBKT
@@ -645,7 +641,7 @@
         };
 
         // Слой 12: Навигация 2 без подсветки (Временный слой для навигации при зажатии)
-        // Энкодер регулирует громкость системы (Volume Up / Down)
+        // Энкодер: Громкость (Volume Up / Down)
         nav2nolight_layer {
             bindings = <
 &kp ESC &trans  &trans  &trans  &trans  &trans                                                     &trans              &trans  &trans  &trans   &trans     &kp DEL   &kp BSPC
@@ -657,7 +653,7 @@
         };
 
         // Слой 13: Управление одной левой рукой (С включением визуального RGB-профиля)
-        // Энкодер регулирует громкость системы (Volume Up / Down)
+        // Энкодер: Громкость (Volume Up / Down)
         lefthand_layer {
             bindings = <
 &tab_esc_ht ESC TAB  &kp HOME    &kp ENTER    &kp UP       &kp SPC    &msc SCRL_UP                                                               &kp UP                  &trans  &trans  &trans  &trans  &trans  &trans
@@ -669,7 +665,7 @@
         };
 
         // Слой 14: Управление одной левой рукой (Без изменения RGB-подсветки)
-        // Энкодер регулирует громкость системы (Volume Up / Down)
+        // Энкодер: Громкость (Volume Up / Down)
         lefthandnolight_layer {
             bindings = <
 &tab_esc_ht ESC TAB  &kp HOME    &kp ENTER    &kp UP       &kp SPC    &msc SCRL_UP                                                               &kp UP                  &trans  &trans  &trans  &trans  &trans  &trans
@@ -681,7 +677,7 @@
         };
         
         // Слой 15: Символы без подсветки (Вызывается при зажатии левой клавиши большого пальца)
-        // Энкодер выполняет переход по словам (Ctrl+Right / Ctrl+Left)
+        // Энкодер: Горизонтальный скролл
         symbnolight_layer {
             bindings = <
 &kp ESC &kp EXCL  &kp AT    &kp HASH  &kp DLLR   &mkp MB5                                                     &kp UP                    &kp EXCL   &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp HASH
@@ -693,7 +689,7 @@
         };
         
         // Слой 16: Цифры без подсветки (Вызывается при зажатии правой клавиши большого пальца)
-        // Энкодер выполняет переход по словам (Ctrl+Right / Ctrl+Left)
+        // Энкодер: Горизонтальный скролл
         numbnolight_layer {
             bindings = <
 &kp ESC   &kp COMMA  &kp N9  &kp N8  &kp N7  &mkp MB5                                                             &msc SCRL_UP                       &kp HOME   &kp N7  &kp N8  &kp N9  &kp COMMA  &kp BSPC
