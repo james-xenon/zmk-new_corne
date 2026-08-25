@@ -43,8 +43,8 @@ layers:
   - {t: ., s: '>'}
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
-  - {t: '0', h: lefthandnolight}
-  - {t: '&symb_win_double_tap', h: symbnolight}
+  - {t: '&lh_td', h: lefthandnolight}
+  - {t: '&symb_win_tap_dance', h: symbnolight}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '&thumb_alt_double_tap', h: numbnolight}
@@ -72,11 +72,11 @@ layers:
   - {t: '$$mdi:menu-left$$', s: '$$mdi:mouse$$'}
   - $$mdi:mouse-left-click-outline$$
   - {t: '$$mdi:menu-right$$', s: '$$mdi:mouse$$'}
-  - $$mdi:pan-down$$
+  - '&msc MOVE_X(-150)'
   - $$mdi:arrow-left-bold$$
   - $$mdi:arrow-down-bold$$
   - $$mdi:arrow-right-bold$$
-  - $$mdi:pan-up$$
+  - '&msc MOVE_X(150)'
   - PG UP
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -583,7 +583,7 @@ layers:
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
   - $$mdi:apple-keyboard-option$$
-  - {t: '&symb_win_double_tap', h: symbnolight}
+  - {t: '&symb_win_tap_dance', h: symbnolight}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '&thumb_alt_double_tap', h: numbnolight}
