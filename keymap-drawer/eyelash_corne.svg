@@ -636,8 +636,7 @@ rect.held, rect.combo.held {
 <path d="M868,40 l-66,-9" class="combo"/>
 <path d="M868,40 l65,7" class="combo"/>
 <rect rx="6" ry="6" x="854" y="27" width="28" height="26" class="combo"/>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="859" y="31" height="18" width="18.0" class="combo tap glyph mdi:minus-circle-outline"/>
-<text x="868" y="51" class="combo hold"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
+<text x="868" y="40" class="combo tap"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
 </g>
 </g>
 </g>
@@ -918,8 +917,7 @@ rect.held, rect.combo.held {
 <path d="M868,40 l-66,-9" class="combo"/>
 <path d="M868,40 l65,7" class="combo"/>
 <rect rx="6" ry="6" x="854" y="27" width="28" height="26" class="combo"/>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="859" y="31" height="18" width="18.0" class="combo tap glyph mdi:minus-circle-outline"/>
-<text x="868" y="51" class="combo hold"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
+<text x="868" y="40" class="combo tap"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
 </g>
 </g>
 </g>
@@ -1210,8 +1208,7 @@ rect.held, rect.combo.held {
 <path d="M868,40 l-66,-9" class="combo"/>
 <path d="M868,40 l65,7" class="combo"/>
 <rect rx="6" ry="6" x="854" y="27" width="28" height="26" class="combo"/>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="859" y="31" height="18" width="18.0" class="combo tap glyph mdi:minus-circle-outline"/>
-<text x="868" y="51" class="combo hold"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
+<text x="868" y="40" class="combo tap"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
 </g>
 </g>
 </g>
@@ -1526,8 +1523,7 @@ rect.held, rect.combo.held {
 <path d="M868,40 l-66,-9" class="combo"/>
 <path d="M868,40 l65,7" class="combo"/>
 <rect rx="6" ry="6" x="854" y="27" width="28" height="26" class="combo"/>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="859" y="31" height="18" width="18.0" class="combo tap glyph mdi:minus-circle-outline"/>
-<text x="868" y="51" class="combo hold"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
+<text x="868" y="40" class="combo tap"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
 </g>
 </g>
 </g>
@@ -1808,8 +1804,7 @@ rect.held, rect.combo.held {
 <path d="M868,40 l-66,-9" class="combo"/>
 <path d="M868,40 l65,7" class="combo"/>
 <rect rx="6" ry="6" x="854" y="27" width="28" height="26" class="combo"/>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="859" y="31" height="18" width="18.0" class="combo tap glyph mdi:minus-circle-outline"/>
-<text x="868" y="51" class="combo hold"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
+<text x="868" y="40" class="combo tap"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
 </g>
 </g>
 </g>
@@ -2100,8 +2095,7 @@ rect.held, rect.combo.held {
 <path d="M868,40 l-66,-9" class="combo"/>
 <path d="M868,40 l65,7" class="combo"/>
 <rect rx="6" ry="6" x="854" y="27" width="28" height="26" class="combo"/>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="859" y="31" height="18" width="18.0" class="combo tap glyph mdi:minus-circle-outline"/>
-<text x="868" y="51" class="combo hold"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
+<text x="868" y="40" class="combo tap"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
 </g>
 </g>
 </g>
@@ -2372,8 +2366,7 @@ rect.held, rect.combo.held {
 <path d="M868,40 l-66,-9" class="combo"/>
 <path d="M868,40 l65,7" class="combo"/>
 <rect rx="6" ry="6" x="854" y="27" width="28" height="26" class="combo"/>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="859" y="31" height="18" width="18.0" class="combo tap glyph mdi:minus-circle-outline"/>
-<text x="868" y="51" class="combo hold"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
+<text x="868" y="40" class="combo tap"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
 </g>
 </g>
 </g>
@@ -2638,8 +2631,7 @@ rect.held, rect.combo.held {
 <path d="M868,40 l-66,-9" class="combo"/>
 <path d="M868,40 l65,7" class="combo"/>
 <rect rx="6" ry="6" x="854" y="27" width="28" height="26" class="combo"/>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="859" y="31" height="18" width="18.0" class="combo tap glyph mdi:minus-circle-outline"/>
-<text x="868" y="51" class="combo hold"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
+<text x="868" y="40" class="combo tap"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
 </g>
 </g>
 </g>
@@ -2901,8 +2893,7 @@ rect.held, rect.combo.held {
 <path d="M868,40 l-66,-9" class="combo"/>
 <path d="M868,40 l65,7" class="combo"/>
 <rect rx="6" ry="6" x="854" y="27" width="28" height="26" class="combo"/>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="859" y="31" height="18" width="18.0" class="combo tap glyph mdi:minus-circle-outline"/>
-<text x="868" y="51" class="combo hold"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
+<text x="868" y="40" class="combo tap"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
 </g>
 </g>
 </g>
@@ -3153,8 +3144,7 @@ rect.held, rect.combo.held {
 <path d="M868,40 l-66,-9" class="combo"/>
 <path d="M868,40 l65,7" class="combo"/>
 <rect rx="6" ry="6" x="854" y="27" width="28" height="26" class="combo"/>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="859" y="31" height="18" width="18.0" class="combo tap glyph mdi:minus-circle-outline"/>
-<text x="868" y="51" class="combo hold"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
+<text x="868" y="40" class="combo tap"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
 </g>
 </g>
 </g>
@@ -3419,8 +3409,7 @@ rect.held, rect.combo.held {
 <path d="M868,40 l-66,-9" class="combo"/>
 <path d="M868,40 l65,7" class="combo"/>
 <rect rx="6" ry="6" x="854" y="27" width="28" height="26" class="combo"/>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="859" y="31" height="18" width="18.0" class="combo tap glyph mdi:minus-circle-outline"/>
-<text x="868" y="51" class="combo hold"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
+<text x="868" y="40" class="combo tap"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
 </g>
 </g>
 </g>
@@ -3704,8 +3693,7 @@ rect.held, rect.combo.held {
 <path d="M868,40 l-66,-9" class="combo"/>
 <path d="M868,40 l65,7" class="combo"/>
 <rect rx="6" ry="6" x="854" y="27" width="28" height="26" class="combo"/>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="859" y="31" height="18" width="18.0" class="combo tap glyph mdi:minus-circle-outline"/>
-<text x="868" y="51" class="combo hold"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
+<text x="868" y="40" class="combo tap"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
 </g>
 </g>
 </g>
@@ -3963,8 +3951,7 @@ rect.held, rect.combo.held {
 <path d="M868,40 l-66,-9" class="combo"/>
 <path d="M868,40 l65,7" class="combo"/>
 <rect rx="6" ry="6" x="854" y="27" width="28" height="26" class="combo"/>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="859" y="31" height="18" width="18.0" class="combo tap glyph mdi:minus-circle-outline"/>
-<text x="868" y="51" class="combo hold"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
+<text x="868" y="40" class="combo tap"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
 </g>
 </g>
 </g>
@@ -4231,8 +4218,7 @@ rect.held, rect.combo.held {
 <path d="M868,40 l-66,-9" class="combo"/>
 <path d="M868,40 l65,7" class="combo"/>
 <rect rx="6" ry="6" x="854" y="27" width="28" height="26" class="combo"/>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="859" y="31" height="18" width="18.0" class="combo tap glyph mdi:minus-circle-outline"/>
-<text x="868" y="51" class="combo hold"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
+<text x="868" y="40" class="combo tap"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
 </g>
 </g>
 </g>
@@ -4494,8 +4480,7 @@ rect.held, rect.combo.held {
 <path d="M868,40 l-66,-9" class="combo"/>
 <path d="M868,40 l65,7" class="combo"/>
 <rect rx="6" ry="6" x="854" y="27" width="28" height="26" class="combo"/>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="859" y="31" height="18" width="18.0" class="combo tap glyph mdi:minus-circle-outline"/>
-<text x="868" y="51" class="combo hold"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
+<text x="868" y="40" class="combo tap"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
 </g>
 </g>
 </g>
@@ -4775,8 +4760,7 @@ rect.held, rect.combo.held {
 <path d="M868,40 l-66,-9" class="combo"/>
 <path d="M868,40 l65,7" class="combo"/>
 <rect rx="6" ry="6" x="854" y="27" width="28" height="26" class="combo"/>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="859" y="31" height="18" width="18.0" class="combo tap glyph mdi:minus-circle-outline"/>
-<text x="868" y="51" class="combo hold"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
+<text x="868" y="40" class="combo tap"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
 </g>
 </g>
 </g>
@@ -5080,8 +5064,7 @@ rect.held, rect.combo.held {
 <path d="M868,40 l-66,-9" class="combo"/>
 <path d="M868,40 l65,7" class="combo"/>
 <rect rx="6" ry="6" x="854" y="27" width="28" height="26" class="combo"/>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="859" y="31" height="18" width="18.0" class="combo tap glyph mdi:minus-circle-outline"/>
-<text x="868" y="51" class="combo hold"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
+<text x="868" y="40" class="combo tap"><tspan style="font-size: 60%">&amp;reset_l0…</tspan></text>
 </g>
 </g>
 </g>
