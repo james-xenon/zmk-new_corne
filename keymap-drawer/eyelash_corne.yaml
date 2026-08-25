@@ -884,4 +884,4 @@ combos:
   l: [default, symb]
 - p: [9, 10, 11, 12]
   k: '&reset_l0_green_flash'
-  l: [default, nav1, symb, numb, fn, service, nav2, gaming1, gaming2, gaming3, nav3, speedtype, nav2nolight, lefthand, lefthandnolight, symbnolight, numbnolight]
+  l: [symb, numb, nav2, gaming1, speedtype, lefthand]
