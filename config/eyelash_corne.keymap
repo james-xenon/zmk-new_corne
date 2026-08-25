@@ -527,7 +527,7 @@
 &kp LCTRL    &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C     &edit_ht LC(V) V  &kp B   &kp C_MUTE            &kp DOWN              &n_alt_ht LALT N    &kp M                  &kp COMMA           &kp DOT             &kp FSLH            &kp ESC
                                                  &lefthand_ht 14 0    &symb_win_td 15 0  &kp SPC                                             &kp ENTER           &thumb_num_sym_fn 16 0  &lang_nav2 12 0
             >;
-            sensor-bindings = <&inc_dec_kp LC(TAB) LC(LS(TAB))>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         // Слой 1: Навигация 1 (Управление курсором мыши, кликами, стрелками и Home/End)
@@ -539,7 +539,7 @@
 &trans   &none  &none   &none  &none  &none       &trans                  &mmv MOVE_DOWN                     &kp END           &msc MOVE_Y(-150)  &mkp MCLK  &msc MOVE_Y(150)     &kp DOT         &kp PG_DN
                         &trans &trans &trans                                                                 &trans            &trans             &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(TAB) LC(LS(TAB))>;
+            sensor-bindings = <&inc_dec_msc SCRL_LEFT SCRL_RIGHT>;
         };
 
         // Слой 2: Символы (Спецсимволы и скобки, с подсветкой правой половины)
@@ -551,7 +551,7 @@
 &trans  &kp PIPE  &kp LBRC  &kp RBRC  &kp GRAVE  &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER  &kp MINUS  &kp PLUS   &kp EQUAL  &kp PIPE   &kp PRCNT
                             &trans    &trans     &kp SPC                                                               &kp ENTER  &trans     &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(TAB) LC(LS(TAB))>;
+            sensor-bindings = <&inc_dec_msc SCRL_LEFT SCRL_RIGHT>;
         };
 
         // Слой 3: Цифры (Цифровой блок Numpad с подсветкой левой половины)
@@ -563,7 +563,7 @@
 &kp PG_DN &kp DOT    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END    &kp N1  &kp N2  &kp N3  &kp DOT    &kp PG_DN
                              &trans  &trans  &trans                                                                                 &kp INS    &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(TAB) LC(LS(TAB))>;
+            sensor-bindings = <&inc_dec_msc SCRL_LEFT SCRL_RIGHT>;
         };
 
         // Слой 4: Функциональный блок (Клавиши F1-F12 и управление мышью)
@@ -575,7 +575,7 @@
 &none    &none   &none   &none   &none   &kp C_AL_CALCULATOR  &trans                       &mmv MOVE_DOWN                     &trans  &kp F1  &kp F2  &kp F3  &none    &kp ESC
                          &trans  &trans  &trans                                                                               &trans  &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(TAB) LC(LS(TAB))>;
+            sensor-bindings = <&inc_dec_msc SCRL_LEFT SCRL_RIGHT>;
         };
 
         // Слой 5: Сервисный (Настройки Bluetooth профилей, управление RGB-подсветкой, ZMK Studio)
@@ -647,7 +647,7 @@
 &trans  &none   &trans  &none   &none   &none   &kp C_MUTE             &kp DOWN                 &kp END         &msc MOVE_Y(-150)    &mkp MCLK       &msc MOVE_Y(150)   &kp DOT        &kp PG_DN
                         &trans  &trans  &trans                                                  &trans          &trans               &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(TAB) LC(LS(TAB))>;
+            sensor-bindings = <&inc_dec_msc SCRL_LEFT SCRL_RIGHT>;
         };
 
         // Слой 11: Speedtype (Чистая печать без модификаторов hold-tap на основной буквенной зоне)
@@ -695,7 +695,7 @@
 &kp LCTRL            &kp EXCL    &kp AMPS     &kp COMMA    &kp DOT    &kp FSLH        &kp C_MUTE                 &kp DOWN                &trans  &trans  &trans  &trans  &trans  &trans
                                               &trans       &trans     &trans                                                             &trans  &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(TAB) LC(LS(TAB))>;
+            sensor-bindings = <&inc_dec_msc SCRL_LEFT SCRL_RIGHT>;
         };
 
         // Слой 15: Символы без подсветки (Вызывается при зажатии левой клавиши большого пальца)
@@ -707,7 +707,7 @@
 &trans  &kp PIPE  &kp LBRC  &kp RBRC  &kp GRAVE  &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER  &kp MINUS  &kp PLUS   &kp EQUAL  &kp PIPE   &kp PRCNT
                             &trans    &trans     &kp SPC                                                               &kp ENTER  &trans     &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(TAB) LC(LS(TAB))>;
+            sensor-bindings = <&inc_dec_msc SCRL_LEFT SCRL_RIGHT>;
         };
 
         // Слой 16: Цифры без подсветки (Вызывается при зажатии правой клавиши большого пальца)
@@ -719,7 +719,7 @@
 &kp PG_DN &kp DOT    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END    &kp N1  &kp N2  &kp N3  &kp DOT    &kp PG_DN
                              &trans  &trans  &trans                                                                                 &kp INS    &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(TAB) LC(LS(TAB))>;
+            sensor-bindings = <&inc_dec_msc SCRL_LEFT SCRL_RIGHT>;
         };
     };
 };
