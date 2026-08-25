@@ -332,7 +332,7 @@
             bindings = <&none>, <&tog 2>;
         };
 
-        // === НОВОЕ: Макрос сброса на слой 0 + зеленая вспышка на обеих половинах ===
+        // Макрос сброса на слой 0 + зеленая вспышка на обеих половинах
         reset_l0_green_flash: reset_l0_green_flash {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -344,30 +344,19 @@
         };
     };
 
-// === Комбо I + O + P + [ : Мгновенный сброс на слой 0 + зелёная вспышка ===
-        combo_iop_lbkt_reset {
-            timeout-ms = <120>;
-            require-prior-idle-ms = <250>;
-            key-positions = <9 10 11 12>;
-            bindings = <&reset_l0_green_flash>;
-            layers = <0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16>;
-        };
-    };
-};
-
     // --- КОМБИНАЦИИ КЛАВИШ (COMBOS) ---
     combos {
         compatible = "zmk,combos";
 
-        // Комбо W + E + R + T (Клавиши 2, 3, 4, 5):
+        // Комбо W + E + R + T (Клавиши 2, 3, 4, 5)
         // Включение / выключение игрового режима (Слой 7 Gaming 1).
         // Работает на слоях 0 и 7. Окно срабатывания: 120 мс, простой: 250 мс.
         combo_wert_gaming_toggle {
-            timeout-ms = <120>;
-            require-prior-idle-ms = <250>;
-            key-positions = <2 3 4 5>;
-            bindings = <&tog 7>;
-            layers = <0 7>;
+           timeout-ms = <120>;
+           require-prior-idle-ms = <250>;
+           key-positions = <2 3 4 5>;
+           bindings = <&tog 7>;
+           layers = <0 7>;
         };
 
         // Комбо Q + W (Клавиши 1, 2):
@@ -535,13 +524,13 @@
             layers = <0 2>;
         };
 
-        // === НОВОЕ: Комбо I + O + P + [ : Удержание 500мс -> Сброс на слой 0 + зеленая вспышка ===
+        // Комбо I + O + P + [ : Мгновенный сброс на слой 0 + зелёная вспышка
         combo_iop_lbkt_reset {
-            timeout-ms = <80>;                // Окно одновременного нажатия 4 клавиш
-            require-prior-idle-ms = <150>;    // Защита от ложных срабатываний при печати
-            key-positions = <9 10 11 12>;     // ← ПРОВЕРЬТЕ ПОЗИЦИИ ПО ВАШЕЙ МАТРИЦЕ!
-            bindings = <&combo_iop_lbkt_reset_ht 0 0>;
-            layers = <0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16>; // Доступно со всех слоев
+            timeout-ms = <80>;
+            require-prior-idle-ms = <150>;
+            key-positions = <9 10 11 12>;
+            bindings = <&reset_l0_green_flash>;
+            layers = <0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16>;
         };
     };
 
