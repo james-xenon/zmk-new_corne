@@ -530,7 +530,7 @@
             require-prior-idle-ms = <150>;
             key-positions = <9 10 11 12>;
             bindings = <&reset_l0_green_flash>;
-            layers = <2 3 6 7 11 13>;
+            layers = <0 2 3 6 7 11 13>;
         };
     };
 
