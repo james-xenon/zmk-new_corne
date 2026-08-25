@@ -497,7 +497,7 @@
         compatible = "zmk,keymap";
 
         // Слой 0: Основной слой (QWERTY / Базовая печать)
-        // Энкодер: Горизонтальный скролл
+        // Энкодер: Горизонтальный скролл (эмуляция через Shift + Вертикальный скролл)
         default_layer {
             bindings = <
 &kp TAB      &kp Q             &kp W             &kp E                &kp R             &kp T                                                       &kp UP                &media_ht C_PP Y    &media_ht C_PREV U     &media_ht C_NEXT I  &media_ht C_STOP O  &kp P               &lbkt_screenshot 0 LBKT
