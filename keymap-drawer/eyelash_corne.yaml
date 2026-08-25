@@ -882,3 +882,6 @@ combos:
 - p: [9, 46]
   k: '&thumb_i_symb_td'
   l: [default, symb]
+- p: [9, 10, 11, 12]
+  k: {t: '$$mdi:minus-circle-outline$$', h: '&reset_l0_green_flash'}
+  l: [default, nav1, symb, numb, fn, service, nav2, gaming1, gaming2, gaming3, nav3, speedtype, nav2nolight, lefthand, lefthandnolight, symbnolight, numbnolight]
