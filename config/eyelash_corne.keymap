@@ -340,11 +340,10 @@
             tap-ms = <0>;
             bindings = 
                 <&to 0>,
-                <&rgb_ug RGB_HUI 85>,      // Устанавливаем Hue=85 (зеленый) через HUI
+                <&rgb_ug RGB_HUI>,
                 <&ws2812_lsync 1>,
                 <&macro_wait_time 300>,
                 <&ws2812_lsync 0>;
-        };
         };
 
         // === НОВОЕ: Hold-Tap для комбо сброса (удержание 500 мс) ===
@@ -352,7 +351,7 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
-            tapping-term-ms = <500>;          // Порог удержания 500 мс
+            tapping-term-ms = <500>;
             bindings = <&reset_l0_green_flash>, <&none>;
         };
     };
