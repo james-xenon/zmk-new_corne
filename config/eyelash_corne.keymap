@@ -530,7 +530,7 @@
             require-prior-idle-ms = <150>;
             key-positions = <9 10 11 12>;
             bindings = <&reset_l0_green_flash>;
-            layers = <0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16>;
+            layers = <2 3 6 7 11 13>;
         };
     };
 
@@ -539,7 +539,7 @@
         compatible = "zmk,keymap";
 
         // Слой 0: Основной слой (QWERTY / Базовая печать)
-        // Энкодер: Переключение вкладок (Ctrl+Tab / Ctrl+Shift+Tab)
+        // Энкодер: Скрол по словам и типа скрол влево-вправо
         default_layer {
             bindings = <
 &kp TAB      &kp Q             &kp W             &kp E                &kp R              &kp T                         &kp UP                &media_ht C_PP Y    &media_ht C_PREV U      &media_ht C_NEXT I  &media_ht C_STOP O  &kp P               &lbkt_screenshot 0 LBKT
@@ -551,7 +551,7 @@
         };
 
         // Слой 1: Навигация 1 (Управление курсором мыши, кликами, стрелками и Home/End)
-        // Энкодер: Переключение вкладок (Ctrl+Tab / Ctrl+Shift+Tab)
+        // Энкодер: Скрол по словам и типа скрол влево-вправо
         nav1_layer {
             bindings = <
 &kp ESC  &none  &none   &none  &none  &none                               &mmv MOVE_UP                       &kp HOME           &mkp LCLK          &kp UP     &mkp RCLK            &kp COMMA         &kp BSPC
@@ -563,7 +563,7 @@
         };
 
         // Слой 2: Символы (Спецсимволы и скобки, с подсветкой правой половины)
-        // Энкодер: Переключение вкладок (Ctrl+Tab / Ctrl+Shift+Tab)
+        // Энкодер: Скрол по словам и типа скрол влево-вправо
         symb_layer {
             bindings = <
 &kp ESC &kp EXCL  &kp AT    &kp HASH  &kp DLLR   &mkp MB5                                     &kp UP                   &kp EXCL   &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp HASH
@@ -575,7 +575,7 @@
         };
 
         // Слой 3: Цифры (Цифровой блок Numpad с подсветкой левой половины)
-        // Энкодер: Переключение вкладок (Ctrl+Tab / Ctrl+Shift+Tab)
+        // Энкодер: Скрол по словам и типа скрол влево-вправо
         numb_layer {
             bindings = <
 &kp ESC   &kp COMMA  &kp N9  &kp N8  &kp N7  &mkp MB5                                            &msc SCRL_UP                       &kp HOME   &kp N7  &kp N8  &kp N9  &kp COMMA  &kp BSPC
@@ -587,7 +587,7 @@
         };
 
         // Слой 4: Функциональный блок (Клавиши F1-F12 и управление мышью)
-        // Энкодер: Переключение вкладок (Ctrl+Tab / Ctrl+Shift+Tab)
+        // Энкодер: Скрол по словам и типа скрол влево-вправо
         fn_layer {
             bindings = <
 &kp ESC  &kp F1  &kp F2  &kp F3  &kp F4  &mkp MB5                                          &mmv MOVE_UP                       &kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &kp F11
@@ -659,7 +659,7 @@
         };
 
         // Слой 10: Навигация 3 (Продвинутое управление мышью и скроллом)
-        // Энкодер: Переключение вкладок (Ctrl+Tab / Ctrl+Shift+Tab)
+        // Энкодер: Скрол по словам и типа скрол влево-вправо
         nav3_layer {
             bindings = <
 &kp ESC &none   &none   &none   &none   &none                          &kp UP                   &kp HOME        &mkp LCLK            &mmv MOVE_UP    &mkp RCLK          &kp COMMA      &kp BSPC
@@ -707,7 +707,7 @@
         };
 
         // Слой 14: Управление одной левой рукой (Без изменения RGB-подсветки)
-        // Энкодер: Переключение вкладок (Ctrl+Tab / Ctrl+Shift+Tab)
+        // Энкодер: Скрол по словам и типа скрол влево-вправо
         lefthandnolight_layer {
             bindings = <
 &tab_esc_ht ESC TAB  &kp HOME    &kp ENTER    &kp UP       &kp SPC    &msc SCRL_UP                               &kp UP                  &trans  &trans  &trans  &trans  &trans  &trans
@@ -719,7 +719,7 @@
         };
 
         // Слой 15: Символы без подсветки (Вызывается при зажатии левой клавиши большого пальца)
-        // Энкодер: Переключение вкладок (Ctrl+Tab / Ctrl+Shift+Tab)
+        // Энкодер: Скрол по словам и типа скрол влево-вправо
         symbnolight_layer {
             bindings = <
 &kp ESC &kp EXCL  &kp AT    &kp HASH  &kp DLLR   &mkp MB5                                     &kp UP                   &kp EXCL   &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp HASH
@@ -731,7 +731,7 @@
         };
 
         // Слой 16: Цифры без подсветки (Вызывается при зажатии правой клавиши большого пальца)
-        // Энкодер: Переключение вкладок (Ctrl+Tab / Ctrl+Shift+Tab)
+        // Энкодер: Скрол по словам и типа скрол влево-вправо
         numbnolight_layer {
             bindings = <
 &kp ESC   &kp COMMA  &kp N9  &kp N8  &kp N7  &mkp MB5                                            &msc SCRL_UP                       &kp HOME   &kp N7  &kp N8  &kp N9  &kp COMMA  &kp BSPC
