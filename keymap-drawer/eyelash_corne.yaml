@@ -43,11 +43,11 @@ layers:
   - {t: ., s: '>'}
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
-  - {t: '&lh_td', h: lefthandnolight}
-  - {t: '&symb_win_tap_dance', h: symbnolight}
+  - {t: '0', h: lefthandnolight}
+  - {t: '&symb_win_double_tap', h: symbnolight}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '&numb_symb_td', h: numbnolight}
+  - {t: '&thumb_alt_double_tap', h: numbnolight}
   - {t: '&win_space', h: nav2nolight}
   nav1:
   - $$mdi:keyboard-esc$$
@@ -583,10 +583,10 @@ layers:
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
   - $$mdi:apple-keyboard-option$$
-  - {t: '&symb_win_tap_dance', h: symbnolight}
+  - {t: '&symb_win_double_tap', h: symbnolight}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '&numb_symb_td', h: numbnolight}
+  - {t: '&thumb_alt_double_tap', h: numbnolight}
   - {t: '&win_space', h: nav2nolight}
   nav2nolight:
   - $$mdi:keyboard-esc$$
@@ -876,3 +876,9 @@ combos:
 - p: [15, 16]
   k: $$mdi:backspace-reverse-outline$$
   l: [symb, numb, fn, nav2, nav2nolight, symbnolight, numbnolight]
+- p: [3, 43]
+  k: '&thumb_e_numb_td'
+  l: [default, numb]
+- p: [9, 46]
+  k: '&thumb_i_symb_td'
+  l: [default, symb]
