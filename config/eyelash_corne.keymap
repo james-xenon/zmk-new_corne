@@ -123,6 +123,19 @@
             bindings = <&none>, <&kp LALT>;
         };
 
+        // Hold-Tap lang_nav2 (Клавиша переключения языка):
+        // Удержание -> Временный Слой 12 (Навигация 2 без подсветки)
+        // Одиночный тап -> Макрос Win+Space (смена языка в ОС)
+        // Таймаут удержания: 220 мс, быстрое повторное нажатие: 150 мс
+        lang_nav2: lang_nav2 {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <220>;
+            quick-tap-ms = <150>;
+            bindings = <&mo>, <&win_space>;
+        };
+
         // Tap Dance nav2_double_tap:
         // 1 тап = trans (ничего), двойной тап за 300 мс -> Фиксация/разблокировка Слоя 6 (Навигация 2)
         nav2_double_tap: nav2_double_tap {
