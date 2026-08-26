@@ -102,7 +102,7 @@
 
         // Hold-Tap lefthand_ht (Крайняя левая клавиша большого пальца):
         // Удержание -> Слой 14 (Управление левой рукой без подсветки)
-        // Одиночный тап -> ничего (через lh_td: 1 тап = trans)
+        // Одиночный тап -> ничего (через lh_td: 1 тап = none)
         // Двойной тап (окно 250 мс) -> kp LALT (обычный Alt)
         // kp LALT держится пока кнопка удерживается -> работает Alt+Tab с листанием
         lefthand_ht: lefthand_ht {
@@ -189,6 +189,7 @@
             flavor = "tap-preferred";
             tapping-term-ms = <220>;
             quick-tap-ms = <150>;
+            require-prior-idle-ms = <150>;
             bindings = <&kp>, <&kp>;
         };
 
@@ -336,9 +337,9 @@
 
         // Комбо W + E + R + T (Клавиши 2, 3, 4, 5)
         // Включение / выключение игрового режима (Слой 7 Gaming 1).
-        // Работает на слоях 0 и 7. Окно срабатывания: 120 мс, простой: 250 мс.
+        // Работает на слоях 0 и 7. Окно срабатывания: 100 мс, простой: 250 мс.
         combo_wert_gaming_toggle {
-           timeout-ms = <120>;
+           timeout-ms = <100>;
            require-prior-idle-ms = <250>;
            key-positions = <2 3 4 5>;
            bindings = <&tog 7>;
@@ -358,7 +359,7 @@
 
         // Комбо Q + W (Клавиши 1, 2):
         // Выключение Слоя 13 (Левая рука) и сброс подсветки.
-        // Работает только на слое 13. Окно срабатывания: 50 мс, простой: 150 мс.
+        // Работает только на слое 13. Окно срабатывания: 80 мс, простой: 150 мс.
         combo_qw_tog13_off {
             timeout-ms = <80>;
             require-prior-idle-ms = <150>;
@@ -369,7 +370,7 @@
 
         // Комбо E + R (Клавиши 3, 4):
         // Временная активация Слоя 10 (Навигация 3 / Мышь).
-        // Работает на слое 0. Окно срабатывания: 50 мс, простой: 100 мс.
+        // Работает на слое 0. Окно срабатывания: 80 мс, простой: 100 мс.
         combo_er_nav3 {
             timeout-ms = <80>;
             require-prior-idle-ms = <150>;
@@ -380,7 +381,7 @@
 
         // Комбо ' + Esc (Клавиши 27, 41):
         // Переключение режима быстрой печати (Слой 11 Speedtype).
-        // Работает на слоях 0 и 11. Окно срабатывания: 50 мс, простой: 100 мс.
+        // Работает на слоях 0 и 11. Окно срабатывания: 80 мс, простой: 100 мс.
         combo_sqt_esc_speedtype {
             timeout-ms = <80>;
             require-prior-idle-ms = <150>;
@@ -413,7 +414,7 @@
 
         // Комбо Y + U (Клавиши 7, 8):
         // Фиксация/разблокировка Слоя 6 (Навигация 2).
-        // Работает на слоях 0, 1, 2, 3, 4, 5, 6, 11. Окно срабатывания: 50 мс, простой: 100 мс.
+        // Работает на слоях 0, 1, 2, 3, 4, 5, 6, 11. Окно срабатывания: 80 мс, простой: 100 мс.
         combo_yu_nav2_double_tap {
             timeout-ms = <80>;
             require-prior-idle-ms = <150>;
@@ -445,47 +446,25 @@
         };
 
         // Комбо D + F (Клавиши 16, 17):
-        // Нажатие BSPC (Backspace) в режиме левой руки.
-        // Работает на слоях 13 и 14. Окно срабатывания: 50 мс.
+        // Нажатие BSPC (Backspace) на символьных и цифровых слоях.
+        // Работает на слоях 2, 3, 4, 6, 12, 13, 14, 15, 16 . Окно срабатывания: 50 мс.
         combo_lh_bspc {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
             key-positions = <16 17>;
             bindings = <&kp BSPC>;
-            layers = <13 14>;
+            layers = <2 3 4 6 12 13 14 15 16>;
         };
 
         // Комбо S + D (Клавиши 15, 16):
-        // Нажатие DEL (Delete) в режиме левой руки.
-        // Работает на слоях 13 и 14. Окно срабатывания: 50 мс.
+        // Нажатие DEL (Delete) на символьных и цифровых слоях.
+        // Работает на слоях 2, 3, 4, 6, 12, 13, 14, 15, 16. Окно срабатывания: 50 мс.
         combo_lh_del {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
             key-positions = <15 16>;
             bindings = <&kp DEL>;
-            layers = <13 14>;
-        };
-
-        // Комбо D + F (Клавиши 16, 17):
-        // Нажатие BSPC (Backspace) на символьных и цифровых слоях.
-        // Работает на слоях 2, 3, 4, 6, 12, 15, 16. Окно срабатывания: 50 мс.
-        combo_left_center_bspc {
-            timeout-ms = <50>;
-            require-prior-idle-ms = <100>;
-            key-positions = <16 17>;
-            bindings = <&kp BSPC>;
-            layers = <2 3 4 6 12 15 16>;
-        };
-
-        // Комбо S + D (Клавиши 15, 16):
-        // Нажатие DEL (Delete) на символьных и цифровых слоях.
-        // Работает на слоях 2, 3, 4, 6, 12, 15, 16. Окно срабатывания: 50 мс.
-        combo_left_center_del {
-            timeout-ms = <50>;
-            require-prior-idle-ms = <100>;
-            key-positions = <15 16>;
-            bindings = <&kp DEL>;
-            layers = <2 3 4 6 12 15 16>;
+            layers = <2 3 4 6 12 13 14 15 16>;
         };
 
         // Комбо Левый большой палец + E (Клавиши 3, 43):
@@ -512,8 +491,8 @@
 
         // Комбо I + O + P + [ : Мгновенный сброс на слой 0 + зелёная вспышка
         combo_iop_lbkt_reset {
-            timeout-ms = <80>;
-            require-prior-idle-ms = <150>;
+            timeout-ms = <100>;
+            require-prior-idle-ms = <250>;
             key-positions = <9 10 11 12>;
             bindings = <&reset_l0_green_flash>;
             layers = <0 2 3 6 7 11 13>;
@@ -525,7 +504,7 @@
         compatible = "zmk,keymap";
 
         // Слой 0: Основной слой (QWERTY / Базовая печать)
-        // Энкодер: Скрол по словам и типа скрол влево-вправо
+        // Энкодер: Громкость (Volume Up / Down)
         default_layer {
             bindings = <
 &kp TAB      &kp Q             &kp W             &kp E                &kp R              &kp T                         &kp UP                &media_ht C_PP Y    &media_ht C_PREV U      &media_ht C_NEXT I  &media_ht C_STOP O  &kp P               &lbkt_screenshot 0 LBKT
@@ -549,7 +528,7 @@
         };
 
         // Слой 2: Символы (Спецсимволы и скобки, с подсветкой правой половины)
-        // Энкодер: Скрол по словам и типа скрол влево-вправо
+        // Энкодер: Громкость (Volume Up / Down)
         symb_layer {
             bindings = <
 &kp ESC &kp EXCL  &kp AT    &kp HASH  &kp DLLR   &mkp MB5                                     &kp UP                   &kp EXCL   &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp HASH
@@ -557,11 +536,11 @@
 &trans  &kp PIPE  &kp LBRC  &kp RBRC  &kp GRAVE  &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER  &kp MINUS  &kp PLUS   &kp EQUAL  &kp PIPE   &kp PRCNT
                             &trans    &trans     &kp SPC                                                               &kp ENTER  &trans     &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         // Слой 3: Цифры (Цифровой блок Numpad с подсветкой левой половины)
-        // Энкодер: Скрол по словам и типа скрол влево-вправо
+        // Энкодер: Громкость (Volume Up / Down)
         numb_layer {
             bindings = <
 &kp ESC   &kp COMMA  &kp N9  &kp N8  &kp N7  &mkp MB5                                            &msc SCRL_UP                       &kp HOME   &kp N7  &kp N8  &kp N9  &kp COMMA  &kp BSPC
@@ -569,7 +548,7 @@
 &kp PG_DN &kp DOT    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END    &kp N1  &kp N2  &kp N3  &kp DOT    &kp PG_DN
                              &trans  &trans  &trans                                                                                 &kp INS    &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         // Слой 4: Функциональный блок (Клавиши F1-F12 и управление мышью)
@@ -669,7 +648,7 @@
         };
 
         // Слой 12: Навигация 2 без подсветки (Временный слой для навигации при зажатии lang_nav2)
-        // Энкодер: Громкость (Volume Up / Down)
+        // Энкодер: Скрол по словам и типа скрол влево-вправо
         nav2nolight_layer {
             bindings = <
 &kp ESC &trans  &trans  &trans  &trans  &trans                      &trans              &trans  &trans  &trans   &trans     &kp DEL   &kp BSPC
@@ -677,7 +656,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans  &trans              &trans              &trans  &trans  &kp ESC  &kp LEFT   &kp DOWN  &kp RIGHT
                         &trans  &trans  &trans                                          &trans  &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
         // Слой 13: Управление одной левой рукой (С включением визуального RGB-профиля)
