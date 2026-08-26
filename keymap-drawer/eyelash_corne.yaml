@@ -866,16 +866,10 @@ combos:
   l: [default, nav1, symb, numb, fn, service, nav2, speedtype, symbnolight, numbnolight]
 - p: [16, 17]
   k: {t: '$$mdi:backspace$$', type: backspace}
-  l: [lefthand, lefthandnolight]
+  l: [symb, numb, fn, nav2, nav2nolight, lefthand, lefthandnolight, symbnolight, numbnolight]
 - p: [15, 16]
   k: $$mdi:backspace-reverse-outline$$
-  l: [lefthand, lefthandnolight]
-- p: [16, 17]
-  k: {t: '$$mdi:backspace$$', type: backspace}
-  l: [symb, numb, fn, nav2, nav2nolight, symbnolight, numbnolight]
-- p: [15, 16]
-  k: $$mdi:backspace-reverse-outline$$
-  l: [symb, numb, fn, nav2, nav2nolight, symbnolight, numbnolight]
+  l: [symb, numb, fn, nav2, nav2nolight, lefthand, lefthandnolight, symbnolight, numbnolight]
 - p: [3, 43]
   k: '&thumb_e_numb_td'
   l: [default, numb]
