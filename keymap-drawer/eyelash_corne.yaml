@@ -47,7 +47,7 @@ layers:
   - {t: '&symb_win_tap_dance', h: symbnolight}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '&thumb_alt_double_tap', h: numbnolight}
+  - {t: '$$mdi:minus-circle-outline$$', h: numbnolight}
   - {t: '&win_space', h: nav2nolight}
   nav1:
   - $$mdi:keyboard-esc$$
@@ -586,7 +586,7 @@ layers:
   - {t: '&symb_win_tap_dance', h: symbnolight}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '&thumb_alt_double_tap', h: numbnolight}
+  - {t: '$$mdi:minus-circle-outline$$', h: numbnolight}
   - {t: '&win_space', h: nav2nolight}
   nav2nolight:
   - $$mdi:keyboard-esc$$
