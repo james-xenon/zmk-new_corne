@@ -57,12 +57,12 @@
         };
 
         // Hold-Tap tab_esc_ht:
-        // Удержание = Tab, Быстрый тап = Esc (таймаут 200 мс, приоритет удержания)
+        // Удержание = Esc, Быстрый тап = TAB (таймаут 150 мс, приоритет удержания)
         tab_esc_ht: tab_esc_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
-            tapping-term-ms = <200>;
+            tapping-term-ms = <150>;
             bindings = <&kp>, <&kp>;
         };
 
@@ -74,9 +74,8 @@
         symb_win_td: symb_win_td {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <150>;
-            quick-tap-ms = <200>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
             bindings = <&mo>, <&symb_win_tap_dance>;
         };
 
@@ -89,29 +88,18 @@
             bindings = <&none>, <&kp LGUI>;
         };
 
-        // Hold-Tap thumb_num_sym_fn (Правая клавиша большого пальца):
+        // Hold-Tap thumb_num_sym_fn (Средняя клавиша большого пальца):
         // Удержание -> Слой 16 (Цифры без подсветки)
         // Одиночный тап -> ничего (none)
-        // Двойной тап (окно 400 мс) -> Left Alt через thumb_alt_double_tap
-        // Таймаут нажатия: 150 мс, необходимый простой: 100 мс
+        // Таймаут нажатия: 0 мс, необходимый простой: 100 мс
         thumb_num_sym_fn: thumb_num_sym_fn {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
-            tapping-term-ms = <150>;
+            tapping-term-ms = <200>;
             require-prior-idle-ms = <100>;
-            bindings = <&mo>, <&thumb_alt_double_tap>;
-        };
-
-        // Вспомогательный Tap Dance для thumb_num_sym_fn:
-        // 1 тап = none (ничего), 2 тапа (окно 400 мс) = kp LALT (Alt)
-        // kp LALT держится пока кнопка зажата -> работает Alt+Tab с листанием окон
-        thumb_alt_double_tap: thumb_alt_double_tap {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <400>;
-            bindings = <&none>, <&kp LALT>;
-        };
+            bindings = <&mo>, <&none>;
+};
 
         // Hold-Tap lefthand_ht (Крайняя левая клавиша большого пальца):
         // Удержание -> Слой 14 (Управление левой рукой без подсветки)
@@ -121,18 +109,17 @@
         lefthand_ht: lefthand_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <300>;
-            quick-tap-ms = <200>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
             bindings = <&mo>, <&lh_td>;
         };
 
         // Вспомогательный Tap Dance для lefthand_ht:
-        // 1 тап = trans (ничего), 2 тапа (окно 250 мс) = kp LALT
+        // 1 тап = trans (ничего), 2 тапа (окно 400 мс) = kp LALT
         lh_td: lh_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <250>;
+            tapping-term-ms = <400>;
             bindings = <&trans>, <&kp LALT>;
         };
 
@@ -182,7 +169,6 @@
         // Hold-Tap edit_ht (Клавиши редактирования левой руки: A, S, F, Z, X, C, V):
         // Тап -> Обычный символ
         // Удержание -> Сочетание Ctrl + клавиша (через макрос kp_once)
-        // Hold срабатывает ТОЛЬКО при касании позиций правой руки (26-35, 38-41)
         edit_ht: edit_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -414,7 +400,7 @@
             layers = <0 11>;
         };
 
-        // Комбо двух нижних правых клавиш (Клавиши 42, 43):
+        // Комбо двух нижних левых клавиш (Клавиши 42, 43):
         // Временная активация Слоя 5 (Сервис: Bluetooth, RGB, прошивка).
         // Работает на слое 0. Окно срабатывания: 50 мс, простой: 100 мс.
         combo_service {
@@ -474,7 +460,7 @@
         // Работает на слоях 13 и 14. Окно срабатывания: 50 мс.
         combo_lh_del {
             timeout-ms = <50>;
-            require-prior-idle-ms = <150>;
+            require-prior-idle-ms = <100>;
             key-positions = <15 16>;
             bindings = <&kp DEL>;
             layers = <13 14>;
