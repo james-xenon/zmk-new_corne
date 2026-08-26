@@ -35,7 +35,7 @@
 // Настройки поведения курсора мыши (эмуляция стика/клавиш):
 // Плавный разгон до максимальной скорости за 500 мс с линейным ускорением и периодом опроса 16 мс
 &mmv {
-    time-to-max-speed-ms = <300>;
+    time-to-max-speed-ms = <500>;
     acceleration-exponent = <1>;
     trigger-period-ms = <16>;
 };
@@ -76,7 +76,7 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
-            quick-tap-ms = <200>;
+            quick-tap-ms = <300>;
             bindings = <&mo>, <&symb_win_tap_dance>;
         };
 
@@ -85,7 +85,7 @@
         symb_win_tap_dance: symb_win_tap_dance {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <300>;
+            tapping-term-ms = <500>;
             bindings = <&none>, <&kp LGUI>;
         };
 
@@ -96,7 +96,7 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred";
-            tapping-term-ms = <200>;
+            tapping-term-ms = <80>;
             bindings = <&mo>, <&none>;
         };
 
@@ -110,16 +110,16 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
-            quick-tap-ms = <200>;
+            quick-tap-ms = <300>;
             bindings = <&mo>, <&lh_td>;
         };
 
         // Вспомогательный Tap Dance для lefthand_ht:
-        // 1 тап = none (ничего), 2 тапа (окно 250 мс) = kp LALT
+        // 1 тап = none (ничего), 2 тапа (окно 500 мс) = kp LALT
         lh_td: lh_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <250>;
+            tapping-term-ms = <500>;
             bindings = <&none>, <&kp LALT>;
         };
 
@@ -187,8 +187,8 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <120>;
+            tapping-term-ms = <220>;
+            quick-tap-ms = <150>;
             bindings = <&kp>, <&kp>;
         };
 
@@ -349,7 +349,7 @@
         // Включение Слоя 13 (Левая рука) с активацией подсветки.
         // Работает на слое 0. Окно срабатывания: 50 мс, простой: 150 мс.
         combo_qw_tog13_on {
-            timeout-ms = <50>;
+            timeout-ms = <80>;
             require-prior-idle-ms = <150>;
             key-positions = <1 2>;
             bindings = <&tog13_on_td>;
@@ -360,7 +360,7 @@
         // Выключение Слоя 13 (Левая рука) и сброс подсветки.
         // Работает только на слое 13. Окно срабатывания: 50 мс, простой: 150 мс.
         combo_qw_tog13_off {
-            timeout-ms = <50>;
+            timeout-ms = <80>;
             require-prior-idle-ms = <150>;
             key-positions = <1 2>;
             bindings = <&tog13_off_td>;
@@ -371,8 +371,8 @@
         // Временная активация Слоя 10 (Навигация 3 / Мышь).
         // Работает на слое 0. Окно срабатывания: 50 мс, простой: 100 мс.
         combo_er_nav3 {
-            timeout-ms = <50>;
-            require-prior-idle-ms = <100>;
+            timeout-ms = <80>;
+            require-prior-idle-ms = <150>;
             key-positions = <3 4>;
             bindings = <&mo 10>;
             layers = <0>;
@@ -382,8 +382,8 @@
         // Переключение режима быстрой печати (Слой 11 Speedtype).
         // Работает на слоях 0 и 11. Окно срабатывания: 50 мс, простой: 100 мс.
         combo_sqt_esc_speedtype {
-            timeout-ms = <50>;
-            require-prior-idle-ms = <100>;
+            timeout-ms = <80>;
+            require-prior-idle-ms = <150>;
             key-positions = <27 41>;
             bindings = <&speedtype_double_tap>;
             layers = <0 11>;
@@ -415,7 +415,7 @@
         // Фиксация/разблокировка Слоя 6 (Навигация 2).
         // Работает на слоях 0, 1, 2, 3, 4, 5, 6, 11. Окно срабатывания: 50 мс, простой: 100 мс.
         combo_yu_nav2_double_tap {
-            timeout-ms = <50>;
+            timeout-ms = <>;
             require-prior-idle-ms = <100>;
             key-positions = <7 8>;
             bindings = <&nav2_double_tap>;
