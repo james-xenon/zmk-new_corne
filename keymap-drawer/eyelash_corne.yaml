@@ -14,7 +14,7 @@ layers:
   - {t: O, h: STOP}
   - P
   - {t: '[', h: '&screenshot_win_shift_s', s: '{'}
-  - '&td0'
+  - '&td_shift_caps'
   - {t: A, h: '&kp_once LC(A)'}
   - {t: S, h: '&kp_once LC(S)'}
   - D
@@ -28,7 +28,7 @@ layers:
   - K
   - L
   - {t: ;, h: fn, s: ':'}
-  - '&td0'
+  - '&td_shift_caps'
   - $$mdi:apple-keyboard-control$$
   - {t: Z, h: '&kp_once LC(Z)'}
   - {t: X, h: '&kp_once LC(X)'}
