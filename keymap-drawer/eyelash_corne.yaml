@@ -28,7 +28,7 @@ layers:
   - K
   - L
   - {t: ;, h: fn, s: ':'}
-  - '&right_shift_complex_ht'
+  - {t: '''', h: '$$mdi:apple-keyboard-shift$$', s: '"'}
   - $$mdi:apple-keyboard-control$$
   - {t: Z, h: '&kp_once LC(Z)'}
   - {t: X, h: '&kp_once LC(X)'}
