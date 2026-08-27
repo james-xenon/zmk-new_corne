@@ -48,13 +48,12 @@
     // --- ПОВЕДЕНИЯ КЛАВИШ (BEHAVIORS) ---
     behaviors {
 
-            // Новый Tap Dance Caps с уменьшенным временем ожидания
-            td_shift_caps: td_shift_caps {
-                compatible = "zmk,behavior-tap-dance";
-                #binding-cells = <0>;
-                tapping-term-ms = <150>; // Уменьшили время ожидания. Теперь задержка всего 150мс.
-                bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
-            };
+        // Новый Tap Dance Caps с уменьшенным временем ожидания
+        td_shift_caps: td_shift_caps {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <150>; // Уменьшили время ожидания. Теперь задержка всего 150мс.
+            bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
         };
 
         // Hold-Tap tab_esc_ht:
