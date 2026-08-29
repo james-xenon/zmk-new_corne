@@ -34,7 +34,7 @@ layers:
   - {t: X, h: '&kp_once LC(X)'}
   - {t: C, h: '&kp_once LC(C)'}
   - {t: V, h: '&kp_once LC(V)'}
-  - B
+  - '&b_alt_ht'
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
   - {t: N, h: '$$mdi:apple-keyboard-option$$'}
@@ -61,7 +61,7 @@ layers:
   - $$mdi:mouse-left-click-outline$$
   - $$mdi:arrow-up-bold$$
   - $$mdi:mouse-right-click-outline$$
-  - {t: ',', s: <}
+  - '&macro_comma_uni'
   - {t: '$$mdi:backspace$$', type: backspace}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -90,7 +90,7 @@ layers:
   - '&msc MOVE_Y(-150)'
   - $$mdi:mouse-scroll-wheel$$
   - '&msc MOVE_Y(150)'
-  - {t: ., s: '>'}
+  - '&macro_dot_uni'
   - PG DN
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -148,8 +148,8 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   numb:
-  - $$mdi:keyboard-esc$$
-  - {t: ',', s: <}
+  - PG UP
+  - '&macro_comma_uni'
   - {t: '9', s: (}
   - {t: '8', s: '*'}
   - {t: '7', s: '&'}
@@ -159,9 +159,9 @@ layers:
   - {t: '7', s: '&'}
   - {t: '8', s: '*'}
   - {t: '9', s: (}
-  - {t: ',', s: <}
-  - {t: '$$mdi:backspace$$', type: backspace}
+  - '&macro_comma_uni'
   - PG UP
+  - '&td0'
   - {t: '0', s: )}
   - {t: '6', s: ^}
   - {t: '5', s: '%'}
@@ -175,9 +175,9 @@ layers:
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
   - {t: '0', s: )}
-  - PG UP
+  - {t: '$$mdi:backspace$$', type: backspace}
   - PG DN
-  - {t: ., s: '>'}
+  - '&macro_dot_uni'
   - {t: '3', s: '#'}
   - {t: '2', s: '@'}
   - {t: '1', s: '!'}
@@ -188,7 +188,7 @@ layers:
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
   - {t: '3', s: '#'}
-  - {t: ., s: '>'}
+  - '&macro_dot_uni'
   - PG DN
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -394,11 +394,11 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   gaming2:
   - $$mdi:keyboard-esc$$
+  - {t: '1', s: '!'}
+  - {t: '2', s: '@'}
+  - {t: '3', s: '#'}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '9', s: (}
-  - {t: '8', s: '*'}
-  - {t: '7', s: '&'}
-  - {t: '5', s: '%'}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:arrow-up-bold$$
   - F6
   - F7
@@ -407,29 +407,29 @@ layers:
   - F10
   - F11
   - $$mdi:apple-keyboard-shift$$
-  - {t: '0', s: )}
-  - {t: '6', s: ^}
-  - {t: '5', s: '%'}
   - {t: '4', s: $}
-  - I
+  - {t: '5', s: '%'}
+  - {t: '6', s: ^}
+  - {t: '0', s: )}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:arrow-left-bold$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-right-bold$$
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - F4
   - F5
   - F6
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - F12
   - $$mdi:apple-keyboard-control$$
+  - {t: '7', s: '&'}
+  - {t: '8', s: '*'}
+  - {t: '9', s: (}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '3', s: '#'}
-  - {t: '2', s: '@'}
-  - {t: '1', s: '!'}
-  - J
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - F1
   - F2
   - F3
@@ -502,8 +502,8 @@ layers:
   - $$mdi:mouse-left-click-outline$$
   - {t: '$$mdi:menu-up$$', s: '$$mdi:mouse$$'}
   - $$mdi:mouse-right-click-outline$$
-  - {t: ',', s: <}
-  - {t: '$$mdi:backspace$$', type: backspace}
+  - '&macro_comma_uni'
+  - PG UP
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -518,7 +518,7 @@ layers:
   - {t: '$$mdi:menu-down$$', s: '$$mdi:mouse$$'}
   - {t: '$$mdi:menu-right$$', s: '$$mdi:mouse$$'}
   - '&msc MOVE_X(150)'
-  - PG UP
+  - {t: '$$mdi:backspace$$', type: backspace}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -531,7 +531,7 @@ layers:
   - '&msc MOVE_Y(-150)'
   - $$mdi:mouse-scroll-wheel$$
   - '&msc MOVE_Y(150)'
-  - {t: ., s: '>'}
+  - '&macro_dot_uni'
   - PG DN
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -669,8 +669,8 @@ layers:
   - $$mdi:apple-keyboard-control$$
   - '!'
   - '&'
-  - {t: ',', s: <}
-  - {t: ., s: '>'}
+  - '&macro_comma_uni'
+  - '&macro_dot_uni'
   - {t: /, s: '?'}
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
@@ -718,8 +718,8 @@ layers:
   - $$mdi:apple-keyboard-control$$
   - '!'
   - '&'
-  - {t: ',', s: <}
-  - {t: ., s: '>'}
+  - '&macro_comma_uni'
+  - '&macro_dot_uni'
   - {t: /, s: '?'}
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
@@ -749,7 +749,7 @@ layers:
   - (
   - )
   - '#'
-  - {t: '$$mdi:transfer$$', type: trans}
+  - '&lshft_to_numb_ht 16'
   - {t: \, s: '|'}
   - {t: \, s: '|'}
   - '~'
@@ -764,7 +764,7 @@ layers:
   - ^
   - {t: \, s: '|'}
   - $
-  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:apple-keyboard-control$$
   - '|'
   - '{'
   - '}'
@@ -785,8 +785,8 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   numbnolight:
-  - $$mdi:keyboard-esc$$
-  - {t: ',', s: <}
+  - PG UP
+  - '&macro_comma_uni'
   - {t: '9', s: (}
   - {t: '8', s: '*'}
   - {t: '7', s: '&'}
@@ -796,9 +796,9 @@ layers:
   - {t: '7', s: '&'}
   - {t: '8', s: '*'}
   - {t: '9', s: (}
-  - {t: ',', s: <}
-  - {t: '$$mdi:backspace$$', type: backspace}
+  - '&macro_comma_uni'
   - PG UP
+  - '&td0'
   - {t: '0', s: )}
   - {t: '6', s: ^}
   - {t: '5', s: '%'}
@@ -812,9 +812,9 @@ layers:
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
   - {t: '0', s: )}
-  - PG UP
+  - {t: '$$mdi:backspace$$', h: symbnolight}
   - PG DN
-  - {t: ., s: '>'}
+  - '&macro_dot_uni'
   - {t: '3', s: '#'}
   - {t: '2', s: '@'}
   - {t: '1', s: '!'}
@@ -825,7 +825,7 @@ layers:
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
   - {t: '3', s: '#'}
-  - {t: ., s: '>'}
+  - '&macro_dot_uni'
   - PG DN
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -840,6 +840,9 @@ combos:
 - p: [1, 2]
   k: '&tog13_on_td'
   l: [default]
+- p: [0, 1]
+  k: $$mdi:keyboard-esc$$
+  l: [default, speedtype]
 - p: [1, 2]
   k: '&tog13_off_td'
   l: [lefthand]
