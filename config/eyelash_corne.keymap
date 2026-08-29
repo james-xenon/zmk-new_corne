@@ -568,10 +568,10 @@
         // Энкодер: Громкость (Volume Up / Down)
         default_layer {
             bindings = <
-&kp TAB      &kp Q             &kp W             &kp E                &kp R              &kp T                             &kp UP                &media_ht C_PP Y    &media_ht C_PREV U      &media_ht C_NEXT I  &media_ht C_STOP O  &kp P               &lbkt_screenshot 0 LBKT
-&td0         &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D                &edit_ht LC(F) F   &kp G                   &kp LEFT  &kp SPC   &kp RIGHT   &kp H               &kp J                   &kp K               &kp L               &semi_fn_ht 4 SEMI  &mt LSHFT SQT
-&kp LCTRL    &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C     &edit_ht LC(V) V   &b_alt_ht   &kp C_MUTE            &kp DOWN              &n_alt_ht LALT N    &kp M                   &kp COMMA           &kp DOT             &kp FSLH            &kp ESC
-                                                 &lefthand_ht 14 0    &symb_win_td 15 0  &kp SPC                                                 &kp ENTER           &thumb_num_sym_fn 16 0  &lang_nav2 12 0
+&kp TAB      &kp Q             &kp W             &kp E                &kp R              &kp T                                    &kp UP                &media_ht C_PP Y    &media_ht C_PREV U      &media_ht C_NEXT I  &media_ht C_STOP O  &kp P               &lbkt_screenshot 0 LBKT
+&td0         &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D                &edit_ht LC(F) F   &kp G                          &kp LEFT  &kp SPC   &kp RIGHT   &kp H               &kp J                   &kp K               &kp L               &semi_fn_ht 4 SEMI  &mt LSHFT SQT
+&kp LCTRL    &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C     &edit_ht LC(V) V   &b_alt_ht LALT B   &kp C_MUTE            &kp DOWN              &n_alt_ht LALT N    &kp M                   &kp COMMA           &kp DOT             &kp FSLH            &kp ESC
+                                                 &lefthand_ht 14 0    &symb_win_td 15 0  &kp SPC                                                        &kp ENTER           &thumb_num_sym_fn 16 0  &lang_nav2 12 0
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
@@ -678,7 +678,7 @@
             bindings = <
 &kp ESC    &kp P  &kp O  &kp I  &kp U  &kp Y                           &kp UP                 &none      &none  &none  &none  &none  &kp BSPC
 &kp LSHFT  &none  &kp L  &kp K  &kp J  &kp H                &kp LEFT   &kp ENTER  &kp RIGHT   &none      &none  &none  &none  &none  &kp LSHFT
-&kp LCTRL  &none  &none  &none  &kp M  &kp N   &kp C_MUTE              &kp DOWN               &none      &none  &none  &none  &none  &kp ESC
+&kp LCTRL  &none  &kp N  &kp M  &none  &none   &kp C_MUTE              &kp DOWN               &none      &none  &none  &none  &none  &kp ESC
                          &none  &none  &none                                                  &kp ENTER  &none  &none
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
