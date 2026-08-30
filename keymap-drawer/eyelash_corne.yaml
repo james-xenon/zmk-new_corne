@@ -100,38 +100,38 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   symb:
   - $$mdi:keyboard-esc$$
-  - '!'
-  - '@'
-  - '#'
-  - $
+  - '~'
+  - {t: '`', s: '~'}
+  - ^
+  - {t: '''', s: '"'}
   - '&mkp MB5'
   - $$mdi:arrow-up-bold$$
   - '!'
-  - '&'
+  - '&macro_qmark_uni'
   - '*'
   - (
   - )
   - '#'
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: \, s: '|'}
-  - {t: \, s: '|'}
-  - '~'
-  - '&'
-  - '&mkp MB4'
-  - $$mdi:arrow-left-bold$$
-  - {t: '$$mdi:keyboard-return$$', type: enter}
-  - $$mdi:arrow-right-bold$$
-  - '@'
-  - {t: ']', s: '}'}
-  - {t: '[', s: '{'}
-  - ^
+  - {t: '$$mdi:backspace$$', h: numbnolightcopy}
+  - '>'
   - {t: \, s: '|'}
   - $
-  - {t: '$$mdi:transfer$$', type: trans}
+  - '"'
+  - '&mkp MB4'
+  - $$mdi:arrow-left-bold$$
+  - SPC
+  - $$mdi:arrow-right-bold$$
+  - '&macro_colon_uni'
+  - {t: ']', s: '}'}
+  - '&macro_semi_uni'
+  - {t: ;, s: ':'}
+  - '&macro_slash_uni'
+  - '}'
+  - $$mdi:apple-keyboard-control$$
+  - <
   - '|'
   - '{'
   - '}'
-  - {t: '`', s: '~'}
   - AL CALCULATOR
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
@@ -139,8 +139,8 @@ layers:
   - {t: '-', s: _}
   - +
   - {t: '=', s: +}
-  - '|'
   - '%'
+  - '@'
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - SPC
@@ -668,10 +668,10 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:apple-keyboard-control$$
   - '!'
-  - '&'
+  - '&macro_qmark_uni'
   - '&macro_comma_uni'
   - '&macro_dot_uni'
-  - {t: /, s: '?'}
+  - '&macro_slash_uni'
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
   - {t: '$$mdi:transfer$$', type: trans}
@@ -717,10 +717,10 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:apple-keyboard-control$$
   - '!'
-  - '&'
+  - '&macro_qmark_uni'
   - '&macro_comma_uni'
   - '&macro_dot_uni'
-  - {t: /, s: '?'}
+  - '&macro_slash_uni'
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
   - {t: '$$mdi:transfer$$', type: trans}
@@ -787,37 +787,37 @@ layers:
   symbnolightcopy:
   - $$mdi:keyboard-esc$$
   - '~'
+  - {t: '`', s: '~'}
   - ^
-  - '#'
   - {t: '''', s: '"'}
   - '&mkp MB5'
   - $$mdi:arrow-up-bold$$
   - '!'
-  - '&'
+  - '&macro_qmark_uni'
   - '*'
   - (
   - )
   - '#'
-  - {t: '$$mdi:backspace$$', type: backspace}
+  - {t: '$$mdi:backspace$$', h: numbnolightcopy}
   - '>'
   - {t: \, s: '|'}
-  - '~'
+  - $
   - '"'
   - '&mkp MB4'
   - $$mdi:arrow-left-bold$$
   - SPC
   - $$mdi:arrow-right-bold$$
-  - ':'
+  - '&macro_colon_uni'
   - {t: ']', s: '}'}
-  - {t: '[', s: '{'}
+  - '&macro_semi_uni'
   - {t: ;, s: ':'}
-  - {t: /, s: '?'}
-  - {t: $, type: held}
+  - '&macro_slash_uni'
+  - {t: '}', type: held}
   - $$mdi:apple-keyboard-control$$
   - <
   - '|'
+  - '{'
   - '}'
-  - {t: '`', s: '~'}
   - AL CALCULATOR
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
@@ -836,13 +836,13 @@ layers:
   symbnolight:
   - $$mdi:keyboard-esc$$
   - '~'
+  - {t: '`', s: '~'}
   - ^
-  - '#'
   - {t: '''', s: '"'}
   - '&mkp MB5'
   - $$mdi:arrow-up-bold$$
   - '!'
-  - '&'
+  - '&macro_qmark_uni'
   - '*'
   - (
   - )
@@ -850,23 +850,23 @@ layers:
   - {t: '$$mdi:backspace$$', h: numbnolightcopy}
   - '>'
   - {t: \, s: '|'}
-  - '~'
+  - $
   - '"'
   - '&mkp MB4'
   - $$mdi:arrow-left-bold$$
   - SPC
   - $$mdi:arrow-right-bold$$
-  - ':'
+  - '&macro_colon_uni'
   - {t: ']', s: '}'}
-  - {t: '[', s: '{'}
+  - '&macro_semi_uni'
   - {t: ;, s: ':'}
-  - {t: /, s: '?'}
-  - $
+  - '&macro_slash_uni'
+  - '}'
   - $$mdi:apple-keyboard-control$$
   - <
   - '|'
+  - '{'
   - '}'
-  - {t: '`', s: '~'}
   - AL CALCULATOR
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
@@ -910,7 +910,7 @@ layers:
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
   - {t: '0', s: )}
-  - {t: '$$mdi:backspace$$', type: backspace}
+  - {t: '$$mdi:backspace$$', type: held alternate}
   - PG DN
   - '&macro_dot_uni'
   - {t: '3', s: '#'}
@@ -926,10 +926,10 @@ layers:
   - '&macro_dot_uni'
   - PG DN
   - {t: '$$mdi:transfer$$', type: trans}
-  - {type: held}
+  - {type: held alternate}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held alternate}
   - {t: '$$mdi:transfer$$', type: trans}
 combos:
 - p: [2, 3, 4, 5]
