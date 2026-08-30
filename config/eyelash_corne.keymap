@@ -76,6 +76,20 @@
                 <&macro_release &kp LALT>;
         };
 
+        // НОВЫЙ МАКРОС: Знак вопроса через Alt+Code (063 на NumPad = ?)
+        macro_qmark_uni: macro_qmark_uni {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <5>;
+            tap-ms = <5>;
+            bindings = 
+                <&macro_press &kp LALT>,
+                <&macro_tap &kp KP_N0>,
+                <&macro_tap &kp KP_N6>,
+                <&macro_tap &kp KP_N3>,
+                <&macro_release &kp LALT>;
+        };
+
         // Tap Dance td0:
         // 1 нажатие = Left Shift, 2 быстрых нажатия = Caps Lock
         td0: td0 {
@@ -421,11 +435,11 @@
         // Комбо Tab + Q:
         // При одновременном нажатии Tab и Q отправляется Esc
         combo_tab_q_esc {
-            timeout-ms = <50>;
-            require-prior-idle-ms = <100>;
-            key-positions = <0 1>;
-            bindings = <&kp ESC>;
-            layers = <0 11>;
+            timeout-ms = <50>;           // Время окна для распознавания комбо (мс)
+            require-prior-idle-ms = <100>; // Требуется пауза перед нажатием (защита от случайных срабатываний при быстрой печати)
+            key-positions = <0 1>;       // Позиции клавиш: 0 = Tab, 1 = Q (согласно твоему default_layer)
+            bindings = <&kp ESC>;        // Действие: отправить Esc
+            layers = <0 11>;             // Активно на основном слое (0) и Speedtype (11). Можно добавить другие слои при необходимости.
         };
 
         // Комбо Q + W (Клавиши 1, 2):
@@ -575,6 +589,7 @@
         compatible = "zmk,keymap";
 
         // Слой 0: Основной слой (QWERTY / Базовая печать)
+        // Энкодер: Громкость (Volume Up / Down)
         default_layer {
             bindings = <
 &kp TAB      &kp Q             &kp W             &kp E                &kp R              &kp T                                    &kp UP                &media_ht C_PP Y    &media_ht C_PREV U      &media_ht C_NEXT I  &media_ht C_STOP O  &kp P               &lbkt_screenshot 0 LBKT
@@ -585,10 +600,11 @@
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        // Слой 1: Навигация 1
+        // Слой 1: Навигация 1 (Управление курсором мыши, кликами, стрелками и Home/End)
+        // Энкодер: Скрол по словам и типа скрол влево-вправо
         nav1_layer {
             bindings = <
-&kp ESC  &none  &none   &none  &none  &none                               &mmv MOVE_UP                       &kp HOME           &mkp LCLK          &kp UP     &mkp RCLK            &macro_comma_uni    &kp PG_UP
+&kp ESC  &none  &none   &none  &none  &none                               &mmv MOVE_UP                       &kp HOME           &mkp LCLK          &kp UP     &mkp RCLK            &macro_qmark_uni    &kp PG_UP
 &trans   &none  &none   &none  &none  &none               &mmv MOVE_LEFT  &mkp LCLK      &mmv MOVE_RIGHT     &msc MOVE_X(-150)  &kp LEFT           &kp DOWN   &kp RIGHT            &msc MOVE_X(150)    &kp BSPC
 &trans   &none  &none   &none  &none  &none       &trans                  &mmv MOVE_DOWN                     &kp END            &msc MOVE_Y(-150)  &mkp MCLK  &msc MOVE_Y(150)     &macro_dot_uni      &kp PG_DN
                         &trans &trans &trans                                                                 &trans             &trans             &trans
@@ -596,7 +612,8 @@
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
-        // Слой 2: Символы
+        // Слой 2: Символы (Спецсимволы и скобки, с подсветкой правой половины)
+        // Энкодер: Громкость (Volume Up / Down)
         symb_layer {
             bindings = <
 &kp ESC &kp EXCL  &kp AT    &kp HASH  &kp DLLR   &mkp MB5                                     &kp UP                   &kp EXCL   &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp HASH
@@ -607,18 +624,20 @@
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        // Слой 3: Цифры
+        // Слой 3: Цифры (Цифровой блок Numpad с подсветкой левой половины)
+        // Энкодер: Громкость (Volume Up / Down)
         numb_layer {
             bindings = <
 &kp PG_UP   &macro_comma_uni  &kp N9  &kp N8  &kp N7  &mkp MB5                                            &msc SCRL_UP                       &kp HOME   &kp N7  &kp N8  &kp N9  &macro_comma_uni  &kp PG_UP
-&td0        &kp N0            &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &kp QMARK  &kp N4  &kp N5  &kp N6  &kp N0            &kp BSPC
+&td0        &kp N0            &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &macro_qmark_uni  &kp N4  &kp N5  &kp N6  &kp N0            &kp BSPC
 &kp PG_DN   &macro_dot_uni    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END    &kp N1  &kp N2  &kp N3  &macro_dot_uni    &kp PG_DN
                                       &trans  &trans  &trans                                                                                 &trans     &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        // Слой 4: Функциональный блок
+        // Слой 4: Функциональный блок (Клавиши F1-F12 и управление мышью)
+        // Энкодер: Скрол по словам и типа скрол влево-вправо
         fn_layer {
             bindings = <
 &kp ESC    &kp F1  &kp F2   &kp F3    &kp F4   &mkp MB5                                          &mmv MOVE_UP                       &none   &kp F7  &kp F8  &kp F9  &kp F10  &kp F11
@@ -629,7 +648,8 @@
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
-        // Слой 5: Сервисный
+        // Слой 5: Сервисный (Настройки Bluetooth профилей, управление RGB-подсветкой, ZMK Studio)
+        // Энкодер: Громкость (Volume Up / Down)
         service_layer {
             bindings = <
 &kp ESC         &none   &none    &none          &none          &studio_unlock                        &trans              &bt BT_CLR      &none           &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2     &bt BT_SEL 3
@@ -640,7 +660,8 @@
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        // Слой 6: Навигация 2
+        // Слой 6: Навигация 2 (Фиксируемый слой навигации: стрелки, Enter, Delete, Backspace)
+        // Энкодер: Громкость (Volume Up / Down)
         nav2_layer {
             bindings = <
 &kp ESC &trans  &trans  &trans  &trans  &trans                      &trans              &trans  &trans  &trans     &kp ESC    &kp DEL   &kp BSPC
@@ -651,7 +672,8 @@
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        // Слой 7: Игровой 1
+        // Слой 7: Игровой 1 (Оптимизированная раскладка WASD с прямым доступом к Shift/Ctrl)
+        // Энкодер: Громкость (Volume Up / Down)
         gaming1_layer {
             bindings = <
 &kp TAB    &kp Q  &kp W  &kp E   &kp R   &kp T                            &kp UP                  &kp Y      &kp U   &kp I      &kp O    &kp P     &kp BSPC
@@ -662,7 +684,8 @@
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        // Слой 8: Игровой 2
+        // Слой 8: Игровой 2 (Игровой слой для цифр и F-клавиш)
+        // Энкодер: Громкость (Volume Up / Down)
         gaming2_layer {
             bindings = <
 &kp ESC      &kp N1   &kp N2  &kp N3  &none    &none                          &kp UP                  &none       &kp F7  &kp F8  &kp F9  &kp F10  &kp F11
@@ -673,7 +696,8 @@
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        // Слой 9: Игровой 3
+        // Слой 9: Игровой 3 (Альтернативная игровая раскладка под правую руку/доп. действия)
+        // Энкодер: Громкость (Volume Up / Down)
         gaming3_layer {
             bindings = <
 &kp ESC    &kp P  &kp O  &kp I  &kp U  &kp Y                           &kp UP                 &none      &none  &none  &none  &none  &kp BSPC
@@ -684,10 +708,11 @@
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        // Слой 10: Навигация 3
+        // Слой 10: Навигация 3 (Продвинутое управление мышью и скроллом)
+        // Энкодер: Скрол по словам и типа скрол влево-вправо
         nav3_layer {
             bindings = <
-&kp ESC &none   &none   &none   &none   &none                          &kp UP                   &kp HOME           &mkp LCLK            &mmv MOVE_UP    &mkp RCLK          &macro_comma_uni   &kp PG_UP
+&kp ESC &none   &none   &none   &none   &none                          &kp UP                   &kp HOME           &mkp LCLK            &mmv MOVE_UP    &mkp RCLK          &macro_qmark_uni   &kp PG_UP
 &trans  &none   &none   &none   &none   &none                &kp LEFT  &kp ENTER  &kp RIGHT     &msc MOVE_X(-150)  &mmv MOVE_LEFT       &mmv MOVE_DOWN  &mmv MOVE_RIGHT    &msc MOVE_X(150)   &kp BSPC
 &trans  &none   &none   &none   &none   &none   &kp C_MUTE             &kp DOWN                 &kp END            &msc MOVE_Y(-150)    &mkp MCLK       &msc MOVE_Y(150)   &macro_dot_uni     &kp PG_DN
                         &trans  &trans  &trans                                                  &trans             &trans               &trans
@@ -695,7 +720,8 @@
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
-        // Слой 11: Speedtype
+        // Слой 11: Speedtype (Чистая печать без модификаторов hold-tap на основной буквенной зоне)
+        // Энкодер: Громкость (Volume Up / Down)
         speedtype {
             bindings = <
 &kp TAB    &kp Q  &kp W  &kp E      &kp R              &kp T                               &kp UP                 &kp Y      &kp U                   &kp I              &kp O       &kp P     &kp LBKT
@@ -706,7 +732,8 @@
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        // Слой 12: Навигация 2 без подсветки
+        // Слой 12: Навигация 2 без подсветки (Временный слой для навигации при зажатии lang_nav2)
+        // Энкодер: Скрол по словам и типа скрол влево-вправо
         nav2nolight_layer {
             bindings = <
 &kp ESC &trans  &trans  &trans  &trans  &trans                      &trans              &trans  &trans  &trans     &kp ESC    &kp DEL   &kp BSPC
@@ -717,7 +744,8 @@
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
-        // Слой 13: Управление одной левой рукой
+        // Слой 13: Управление одной левой рукой (С включением визуального RGB-профиля)
+        // Энкодер: Громкость (Volume Up / Down)
         lefthand_layer {
             bindings = <
 &tab_esc_ht ESC TAB  &kp HOME    &kp ENTER    &kp UP              &kp SPC          &msc MOVE_Y(150)                              &kp UP                  &trans  &trans  &trans  &trans  &trans  &trans
@@ -728,7 +756,8 @@
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        // Слой 14: Управление одной левой рукой (без подсветки)
+        // Слой 14: Управление одной левой рукой (Без изменения RGB-подсветки)
+        // Энкодер: Скрол по словам и типа скрол влево-вправо
         lefthandnolight_layer {
             bindings = <
 &tab_esc_ht ESC TAB  &kp HOME    &kp ENTER    &kp UP              &kp SPC           &msc MOVE_Y(150)                              &kp UP                  &trans  &trans  &trans  &trans  &trans  &trans
@@ -739,7 +768,8 @@
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
-        // Слой 15: Символы без подсветки
+        // Слой 15: Символы без подсветки (Вызывается при зажатии левой клавиши большого пальца)
+        // Энкодер: Скрол по словам и типа скрол влево-вправо
         symbnolight_layer {
             bindings = <
 &kp ESC                      &kp TILDE   &kp CARET &kp HASH  &kp SQT    &mkp MB5                                     &kp UP                   &kp EXCL   &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp HASH
@@ -750,11 +780,13 @@
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
-        // Слой 16: Цифры без подсветки (ИСПРАВЛЕН: &kp BSPC вместо &BSPC)
+        // Слой 16: Цифры без подсветки (Вызывается при зажатии правой клавиши большого пальца)
+        // Энкодер: Скрол по словам и типа скрол влево-вправо
+        // ИСПРАВЛЕНО: &kp BSPC вместо &BSPC во второй строке (строка 774 в логе)
         numbnolight_layer {
             bindings = <
 &kp PG_UP   &macro_comma_uni  &kp N9  &kp N8  &kp N7  &mkp MB5                                            &msc SCRL_UP                       &kp HOME   &kp N7  &kp N8  &kp N9  &macro_comma_uni  &kp PG_UP
-&kp BSPC    &kp N0            &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &kp QMARK  &kp N4  &kp N5  &kp N6  &kp N0            &bspc_to_symb_ht 15 BSPC
+&kp BSPC    &kp N0            &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &macro_qmark_uni  &kp N4  &kp N5  &kp N6  &kp N0            &bspc_to_symb_ht 15 BSPC
 &kp PG_DN   &macro_dot_uni    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END    &kp N1  &kp N2  &kp N3  &macro_dot_uni    &kp PG_DN
                                       &trans  &trans  &trans                                                                                 &kp INS    &trans  &trans
             >;
