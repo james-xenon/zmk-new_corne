@@ -275,12 +275,13 @@
         };
 
         // Hold-Tap для перехода из Символов (16/17) в Цифры (15) через BSPC
+        // ИСПОЛЬЗУЕТСЯ &tog для выключения верхнего слоя
         bspc_to_numb_ht: bspc_to_numb_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&mo>, <&kp>;
+            bindings = <&tog>, <&kp>;
         };      
 
         // Hold-Tap semi_fn_ht (Клавиша точки с запятой):
@@ -784,7 +785,7 @@
         symbnolightcopy_layer {
             bindings = <
 &kp ESC                      &kp TILDE   &kp CARET &kp HASH  &kp SQT    &mkp MB5                                     &kp UP                   &kp EXCL   &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp HASH
-&bspc_to_numb_ht 15 BSPC     &kp GT      &kp BSLH  &kp TILDE &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &kp COLON  &kp RBKT   &kp LBKT   &kp SEMI   &kp SLASH  &kp DLLR
+&bspc_to_numb_ht 16 BSPC     &kp GT      &kp BSLH  &kp TILDE &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &kp COLON  &kp RBKT   &kp LBKT   &kp SEMI   &kp SLASH  &kp DLLR
 &kp LCTRL                    &kp LT      &kp PIPE  &kp RBRC  &kp GRAVE  &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER  &kp MINUS  &kp PLUS   &kp EQUAL  &kp PRCNT  &kp AT
                                                    &trans    &trans     &kp SPC                                                               &kp ENTER  &trans     &trans
             >;
@@ -796,7 +797,7 @@
         symbnolight_layer {
             bindings = <
 &kp ESC                      &kp TILDE   &kp CARET &kp HASH  &kp SQT    &mkp MB5                                     &kp UP                   &kp EXCL   &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp HASH
-&bspc_to_numb_ht 15 BSPC     &kp GT      &kp BSLH  &kp TILDE &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &kp COLON  &kp RBKT   &kp LBKT   &kp SEMI   &kp SLASH  &kp DLLR
+&bspc_to_numb_ht 17 BSPC     &kp GT      &kp BSLH  &kp TILDE &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &kp COLON  &kp RBKT   &kp LBKT   &kp SEMI   &kp SLASH  &kp DLLR
 &kp LCTRL                    &kp LT      &kp PIPE  &kp RBRC  &kp GRAVE  &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER  &kp MINUS  &kp PLUS   &kp EQUAL  &kp PRCNT  &kp AT
                                                    &trans    &trans     &kp SPC                                                               &kp ENTER  &trans     &trans
             >;
