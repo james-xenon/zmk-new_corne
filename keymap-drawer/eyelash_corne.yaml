@@ -62,7 +62,7 @@ layers:
   - $$mdi:arrow-up-bold$$
   - $$mdi:mouse-right-click-outline$$
   - '&macro_comma_uni'
-  - {t: '$$mdi:backspace$$', type: backspace}
+  - PG UP
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -77,7 +77,7 @@ layers:
   - $$mdi:arrow-down-bold$$
   - $$mdi:arrow-right-bold$$
   - '&msc MOVE_X(150)'
-  - PG UP
+  - {t: '$$mdi:backspace$$', type: backspace}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -749,7 +749,7 @@ layers:
   - (
   - )
   - '#'
-  - {t: '$$mdi:apple-keyboard-shift$$', h: numbnolight}
+  - {t: '$$mdi:backspace$$', h: numbnolight}
   - {t: \, s: '|'}
   - {t: \, s: '|'}
   - '~'
@@ -812,7 +812,7 @@ layers:
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
   - {t: '0', s: )}
-  - {t: '$$mdi:backspace$$', h: symbnolight}
+  - {t: '$$mdi:backspace$$', h: numbnolight}
   - PG DN
   - '&macro_dot_uni'
   - {t: '3', s: '#'}
