@@ -798,7 +798,7 @@ layers:
   - (
   - )
   - '#'
-  - {t: '$$mdi:backspace$$', h: numbnolight}
+  - {t: '$$mdi:backspace$$', h: symbnolightcopy}
   - '>'
   - {t: \, s: '|'}
   - '~'
@@ -847,7 +847,7 @@ layers:
   - (
   - )
   - '#'
-  - {t: '$$mdi:backspace$$', h: numbnolight}
+  - {t: '$$mdi:backspace$$', h: symbnolight}
   - '>'
   - {t: \, s: '|'}
   - '~'
