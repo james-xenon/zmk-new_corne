@@ -749,7 +749,7 @@ layers:
   - (
   - )
   - '#'
-  - {t: '$$mdi:backspace$$', h: numbnolight}
+  - {t: '$$mdi:apple-keyboard-shift$$', h: numbnolight}
   - {t: \, s: '|'}
   - {t: \, s: '|'}
   - '~'
@@ -812,7 +812,7 @@ layers:
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
   - {t: '0', s: )}
-  - {t: '$$mdi:backspace$$', h: numbnolight}
+  - {t: '$$mdi:apple-keyboard-shift$$', h: numbnolight}
   - PG DN
   - '&macro_dot_uni'
   - {t: '3', s: '#'}
