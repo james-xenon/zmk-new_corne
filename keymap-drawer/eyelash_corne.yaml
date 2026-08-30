@@ -204,13 +204,13 @@ layers:
   - F4
   - '&mkp MB5'
   - {t: '$$mdi:menu-up$$', s: '$$mdi:mouse$$'}
-  - F6
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - F7
   - F8
   - F9
   - F10
   - F11
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - '&td0'
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -219,13 +219,13 @@ layers:
   - {t: '$$mdi:menu-left$$', s: '$$mdi:mouse$$'}
   - $$mdi:mouse-left-click-outline$$
   - {t: '$$mdi:menu-right$$', s: '$$mdi:mouse$$'}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - F4
   - F5
   - F6
   - {t: '$$mdi:minus-circle-outline$$', type: held}
   - F12
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - $$mdi:apple-keyboard-control$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -233,7 +233,7 @@ layers:
   - AL CALCULATOR
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:menu-down$$', s: '$$mdi:mouse$$'}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - F1
   - F2
   - F3
