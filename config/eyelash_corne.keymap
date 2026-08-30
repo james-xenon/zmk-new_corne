@@ -132,6 +132,17 @@
                 <&macro_release &kp LALT>;
         };
 
+        // НОВЫЙ МАКРОС: Однократное нажатие DQT (") без повторения при удержании
+        macro_dqt_once: macro_dqt_once {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = 
+                <&macro_press &kp DQT>,
+                <&macro_release &kp DQT>;
+        };
+
         // Tap Dance td0:
         // 1 нажатие = Left Shift, 2 быстрых нажатия = Caps Lock
         td0: td0 {
@@ -317,15 +328,15 @@
             bindings = <&mo>, <&kp>;
         };
 
-        // НОВОЕ: Hold-Tap rbkt_dqt_ht (Клавиша }):
-        // Тап -> } (RBKT)
-        // Удержание (200 мс) -> " (DQT)
-        rbkt_dqt_ht: rbkt_dqt_ht {
+        // НОВОЕ: Hold-Tap lbkt_dqt_ht (Клавиша {):
+        // Тап -> { (LBKT)
+        // Удержание (200 мс) -> " (DQT) однократно, без повторения при зажатии
+        lbkt_dqt_ht: lbkt_dqt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&macro_dqt_once>, <&kp>;
         };
 
         // Hold-Tap semi_fn_ht (Клавиша точки с запятой):
@@ -661,7 +672,7 @@
         symb_layer {
             bindings = <
 &kp ESC                       &kp TILDE   &kp GRAVE &kp CARET  &kp SQT    &mkp MB5                                     &kp UP                   &kp EXCL              &macro_qmark_uni   &kp ASTRK         &kp LPAR          &kp RPAR          &kp HASH
-&bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &macro_colon_uni      &rbkt_dqt_ht DQT RBKT  &kp LBKT          &macro_semi_uni   &macro_slash_uni  &kp AMPS
+&bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &macro_colon_uni      &kp RBKT           &lbkt_dqt_ht DQT LBKT  &macro_semi_uni   &macro_slash_uni  &kp AMPS
 &kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER             &kp MINUS          &kp PLUS          &kp EQUAL         &kp PRCNT         &kp AT
                                                     &trans     &trans     &kp SPC                                                               &kp ENTER             &trans             &trans
             >;
@@ -831,7 +842,7 @@
         symbnolightcopy_layer {
             bindings = <
 &kp ESC                       &kp TILDE   &kp GRAVE &kp CARET  &kp SQT    &mkp MB5                                     &kp UP                   &kp EXCL              &macro_qmark_uni   &kp ASTRK         &kp LPAR          &kp RPAR          &kp HASH
-&bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &macro_colon_uni      &rbkt_dqt_ht DQT RBKT  &kp LBKT          &macro_semi_uni   &macro_slash_uni  &kp AMPS
+&bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &macro_colon_uni      &kp RBKT           &lbkt_dqt_ht DQT LBKT  &macro_semi_uni   &macro_slash_uni  &kp AMPS
 &kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER             &kp MINUS          &kp PLUS          &kp EQUAL         &kp PRCNT         &kp AT
                                                     &trans     &trans     &kp SPC                                                               &kp ENTER             &trans             &trans
             >;
@@ -844,7 +855,7 @@
         symbnolight_layer {
             bindings = <
 &kp ESC                       &kp TILDE   &kp GRAVE &kp CARET  &kp SQT    &mkp MB5                                     &kp UP                   &kp EXCL              &macro_qmark_uni   &kp ASTRK         &kp LPAR          &kp RPAR          &kp HASH
-&bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &macro_colon_uni      &rbkt_dqt_ht DQT RBKT  &kp LBKT          &macro_semi_uni   &macro_slash_uni  &kp AMPS
+&bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &macro_colon_uni      &kp RBKT           &lbkt_dqt_ht DQT LBKT  &macro_semi_uni   &macro_slash_uni  &kp AMPS
 &kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER             &kp MINUS          &kp PLUS          &kp EQUAL         &kp PRCNT         &kp AT
                                                     &trans     &trans     &kp SPC                                                               &kp ENTER             &trans             &trans
             >;
