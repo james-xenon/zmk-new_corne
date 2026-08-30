@@ -48,22 +48,22 @@
     // --- ПОВЕДЕНИЯ КЛАВИШ (BEHAVIORS) ---
     behaviors {
 
-        // Макрос для точки (Unicode .)
+        // Макрос для точки (.)
         macro_dot_uni: macro_dot_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&kp U002E>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&macro_press &kp LSHFT>, <&macro_tap &kp DOT>, <&macro_release &kp LSHFT>;
         };
 
-        // Макрос для запятой (Unicode ,)
+        // Макрос для запятой (,)
         macro_comma_uni: macro_comma_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&kp U002C>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&macro_press &kp LSHFT>, <&macro_tap &kp COMMA>, <&macro_release &kp LSHFT>;
         };
 
         // Tap Dance td0:
