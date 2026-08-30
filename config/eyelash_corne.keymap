@@ -48,18 +48,32 @@
     // --- ПОВЕДЕНИЯ КЛАВИШ (BEHAVIORS) ---
     behaviors {
 
-        // Макрос для точки (.)
+        // Макрос для точки через Alt+Code (046 на NumPad = точка)
         macro_dot_uni: macro_dot_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp DOT>;
+            wait-ms = <5>;
+            tap-ms = <5>;
+            bindings = 
+                <&macro_press &kp LALT>,
+                <&macro_tap &kp KP_N0>,
+                <&macro_tap &kp KP_N4>,
+                <&macro_tap &kp KP_N6>,
+                <&macro_release &kp LALT>;
         };
 
-        // Макрос для запятой (,)
+        // Макрос для запятой через Alt+Code (044 на NumPad = запятая)
         macro_comma_uni: macro_comma_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp COMMA>;
+            wait-ms = <5>;
+            tap-ms = <5>;
+            bindings = 
+                <&macro_press &kp LALT>,
+                <&macro_tap &kp KP_N0>,
+                <&macro_tap &kp KP_N4>,
+                <&macro_tap &kp KP_N4>,
+                <&macro_release &kp LALT>;
         };
 
         // Tap Dance td0:
@@ -241,7 +255,7 @@
         bspc_to_symb_ht: bspc_to_symb_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "hold-preferred"; // Приоритет удержанию, чтобы слой включался стабильно
+            flavor = "hold-preferred"; // Приоритет удержанию, как в lshft_to_numb_ht
             tapping-term-ms = <200>;   // Задержка 200 мс
             bindings = <&mo>, <&kp>;   // Hold = Layer (1st param), Tap = Key (2nd param)
         };
