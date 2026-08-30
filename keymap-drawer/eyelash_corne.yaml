@@ -798,7 +798,7 @@ layers:
   - {t: '9', s: (}
   - '&macro_comma_uni'
   - PG UP
-  - {t: '&BSPC', type: held alternate}
+  - {t: '$$mdi:backspace$$', type: held alternate}
   - {t: '0', s: )}
   - {t: '6', s: ^}
   - {t: '5', s: '%'}
