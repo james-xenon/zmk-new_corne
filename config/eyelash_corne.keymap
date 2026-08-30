@@ -90,6 +90,48 @@
                 <&macro_release &kp LALT>;
         };
 
+        // НОВЫЙ МАКРОС: Двоеточие через Alt+Code (058 на NumPad = :)
+        macro_colon_uni: macro_colon_uni {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <5>;
+            tap-ms = <5>;
+            bindings = 
+                <&macro_press &kp LALT>,
+                <&macro_tap &kp KP_N0>,
+                <&macro_tap &kp KP_N5>,
+                <&macro_tap &kp KP_N8>,
+                <&macro_release &kp LALT>;
+        };
+
+        // НОВЫЙ МАКРОС: Точка с запятой через Alt+Code (059 на NumPad = ;)
+        macro_semi_uni: macro_semi_uni {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <5>;
+            tap-ms = <5>;
+            bindings = 
+                <&macro_press &kp LALT>,
+                <&macro_tap &kp KP_N0>,
+                <&macro_tap &kp KP_N5>,
+                <&macro_tap &kp KP_N9>,
+                <&macro_release &kp LALT>;
+        };
+
+        // НОВЫЙ МАКРОС: Слэш через Alt+Code (047 на NumPad = /)
+        macro_slash_uni: macro_slash_uni {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <5>;
+            tap-ms = <5>;
+            bindings = 
+                <&macro_press &kp LALT>,
+                <&macro_tap &kp KP_N0>,
+                <&macro_tap &kp KP_N4>,
+                <&macro_tap &kp KP_N7>,
+                <&macro_release &kp LALT>;
+        };
+
         // Tap Dance td0:
         // 1 нажатие = Left Shift, 2 быстрых нажатия = Caps Lock
         td0: td0 {
@@ -112,6 +154,7 @@
         // Удержание -> Слой 17 (Символы без подсветки)
         // Одиночный тап -> ничего (none)
         // Двойной тап (окно 500 мс) -> Win (LGUI) через symb_win_tap_dance
+        // Параметр N передаётся при вызове: &symb_win_td 17 0
         symb_win_td: symb_win_td {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -500,7 +543,7 @@
 
         // Комбо J + K (Клавиши 23, 24):
         // Нажатие клавиши BSPC (Backspace).
-        // Работает на основных и вспомогательных слоях. Окно срабатывания: 50 мс.
+        // Работает на слоях 0, 1, 2, 3, 4, 5, 6, 11, 15, 16, 17, 18. Окно срабатывания: 50 мс.
         combo_jk_backspace {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
@@ -511,7 +554,7 @@
 
         // Комбо K + L (Клавиши 24, 25):
         // Нажатие клавиши DEL (Delete).
-        // Работает на основных и вспомогательных слоях. Окно срабатывания: 50 мс.
+        // Работает на слоях 0, 1, 2, 3, 4, 5, 6, 11, 15, 16, 17, 18. Окно срабатывания: 50 мс.
         combo_kl_delete {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
@@ -522,7 +565,7 @@
 
         // Комбо D + F (Клавиши 16, 17):
         // Нажатие BSPC (Backspace) на символьных и цифровых слоях.
-        // Работает на слоях 2, 3, 6, 13, 14, 15, 16, 17, 18. Окно срабатывания: 50 мс.
+        // Работает на слоях 2, 3, 4, 6, 12, 13, 14, 15, 16, 17, 18. Окно срабатывания: 50 мс.
         combo_lh_bspc {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
@@ -533,7 +576,7 @@
 
         // Комбо S + D (Клавиши 15, 16):
         // Нажатие DEL (Delete) на символьных и цифровых слоях.
-        // Работает на слоях 2, 3, 6, 13, 14, 15, 16, 17, 18. Окно срабатывания: 50 мс.
+        // Работает на слоях 2, 3, 4, 6, 12, 13, 14, 15, 16, 17, 18. Окно срабатывания: 50 мс.
         combo_lh_del {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
@@ -596,7 +639,7 @@
             bindings = <
 &kp ESC  &none  &none   &none  &none  &none                               &mmv MOVE_UP                       &kp HOME           &mkp LCLK          &kp UP     &mkp RCLK            &macro_qmark_uni    &kp PG_UP
 &trans   &none  &none   &none  &none  &none               &mmv MOVE_LEFT  &mkp LCLK      &mmv MOVE_RIGHT     &msc MOVE_X(-150)  &kp LEFT           &kp DOWN   &kp RIGHT            &msc MOVE_X(150)    &kp BSPC
-&trans   &none  &none  &none  &none  &none       &trans                  &mmv MOVE_DOWN                     &kp END            &msc MOVE_Y(-150)  &mkp MCLK  &msc MOVE_Y(150)     &macro_dot_uni      &kp PG_DN
+&trans   &none  &none   &none  &none  &none       &trans                  &mmv MOVE_DOWN                     &kp END            &msc MOVE_Y(-150)  &mkp MCLK  &msc MOVE_Y(150)     &macro_dot_uni      &kp PG_DN
                         &trans &trans &trans                                                                 &trans             &trans             &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
@@ -606,10 +649,10 @@
         // Энкодер: Громкость (Volume Up / Down)
         symb_layer {
             bindings = <
-&kp ESC &kp EXCL  &kp AT    &kp HASH  &kp DLLR   &mkp MB5                                     &kp UP                   &kp EXCL   &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp HASH
-&trans  &kp BSLH  &kp BSLH  &kp TILDE &kp AMPS   &mkp MB4                           &kp LEFT  &kp ENTER    &kp RIGHT   &kp AT     &kp RBKT   &kp LBKT   &kp CARET  &kp BSLH   &kp DLLR
-&trans  &kp PIPE  &kp LBRC  &kp RBRC  &kp GRAVE  &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER  &kp MINUS  &kp PLUS   &kp EQUAL  &kp PIPE   &kp PRCNT
-                            &trans    &trans     &kp SPC                                                               &kp ENTER  &trans     &trans
+&kp ESC                       &kp TILDE   &kp GRAVE &kp CARET  &kp SQT    &mkp MB5                                     &kp UP                   &kp EXCL              &macro_qmark_uni   &kp ASTRK         &kp LPAR   &kp RPAR          &kp HASH
+&bspc_to_layer_ht 18 BSPC     &kp GT      &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &macro_colon_uni      &kp RBKT           &macro_semi_uni   &kp SEMI   &macro_slash_uni  &kp RBRC
+&kp LCTRL                     &kp LT      &kp PIPE  &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER             &kp MINUS          &kp PLUS          &kp EQUAL  &kp PRCNT         &kp AT
+                                                    &trans     &trans     &kp SPC                                                               &kp ENTER             &trans             &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
@@ -619,7 +662,7 @@
         numb_layer {
             bindings = <
 &kp PG_UP   &macro_comma_uni  &kp N9  &kp N8  &kp N7  &mkp MB5                                            &msc SCRL_UP                       &kp HOME   &kp N7  &kp N8  &kp N9  &macro_comma_uni  &kp PG_UP
-&td0        &kp N0            &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &macro_qmark_uni  &kp N4  &kp N5  &kp N6  &kp N0            &kp BSPC
+&td0        &kp N0            &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &macro_qmark_uni   &kp N4  &kp N5  &kp N6  &kp N0    &kp BSPC
 &kp PG_DN   &macro_dot_uni    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END    &kp N1  &kp N2  &kp N3  &macro_dot_uni    &kp PG_DN
                                       &trans  &trans  &trans                                                                                 &trans     &trans  &trans
             >;
@@ -738,10 +781,10 @@
         // Энкодер: Громкость (Volume Up / Down)
         lefthand_layer {
             bindings = <
-&tab_esc_ht ESC TAB  &kp HOME    &kp ENTER    &kp UP              &kp SPC          &msc MOVE_Y(150)                              &kp UP                  &trans  &trans  &trans  &trans  &trans  &trans
-&kp LSHFT            &kp END     &kp LEFT     &kp DOWN            &kp RIGHT        &msc MOVE_Y(-150)                   &kp LEFT  &kp ENTER  &kp RIGHT    &trans  &trans  &trans  &trans  &trans  &trans
-&kp LCTRL            &kp EXCL    &kp AMPS     &macro_comma_uni    &macro_dot_uni   &kp FSLH          &kp C_MUTE                  &kp DOWN                &trans  &trans  &trans  &trans  &trans  &trans
-                                              &trans              &trans           &trans                                                                &trans  &trans  &trans
+&tab_esc_ht ESC TAB  &kp HOME    &kp ENTER          &kp UP              &kp SPC          &msc MOVE_Y(150)                               &kp UP                  &trans  &trans  &trans  &trans  &trans  &trans
+&kp LSHFT            &kp END     &kp LEFT           &kp DOWN            &kp RIGHT        &msc MOVE_Y(-150)                    &kp LEFT  &kp ENTER  &kp RIGHT    &trans  &trans  &trans  &trans  &trans  &trans
+&kp LCTRL            &kp EXCL    &macro_qmark_uni   &macro_comma_uni    &macro_dot_uni   &macro_slash_uni   &kp C_MUTE                  &kp DOWN                &trans  &trans  &trans  &trans  &trans  &trans
+                                                    &trans              &trans           &trans                                                                 &trans  &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
@@ -750,10 +793,10 @@
         // Энкодер: Скрол по словам и типа скрол влево-вправо
         lefthandnolight_layer {
             bindings = <
-&tab_esc_ht ESC TAB  &kp HOME    &kp ENTER    &kp UP              &kp SPC           &msc MOVE_Y(150)                              &kp UP                  &trans  &trans  &trans  &trans  &trans  &trans
-&kp LSHFT            &kp END     &kp LEFT     &kp DOWN            &kp RIGHT         &msc MOVE_Y(-150)                   &kp LEFT  &kp ENTER  &kp RIGHT    &trans  &trans  &trans  &trans  &trans  &trans
-&kp LCTRL            &kp EXCL    &kp AMPS     &macro_comma_uni    &macro_dot_uni    &kp FSLH          &kp C_MUTE                  &kp DOWN                &trans  &trans  &trans  &trans  &trans  &trans
-                                              &trans              &trans            &trans                                                                &trans  &trans  &trans
+&tab_esc_ht ESC TAB  &kp HOME    &kp ENTER          &kp UP              &kp SPC          &msc MOVE_Y(150)                               &kp UP                  &trans  &trans  &trans  &trans  &trans  &trans
+&kp LSHFT            &kp END     &kp LEFT           &kp DOWN            &kp RIGHT        &msc MOVE_Y(-150)                    &kp LEFT  &kp ENTER  &kp RIGHT    &trans  &trans  &trans  &trans  &trans  &trans
+&kp LCTRL            &kp EXCL    &macro_qmark_uni   &macro_comma_uni    &macro_dot_uni   &macro_slash_uni   &kp C_MUTE                  &kp DOWN                &trans  &trans  &trans  &trans  &trans  &trans
+                                                    &trans              &trans           &trans                                                                 &trans  &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
@@ -776,10 +819,10 @@
         // Энкодер: Скрол по словам и типа скрол влево-вправо
         symbnolightcopy_layer {
             bindings = <
-&kp ESC    &kp TILDE   &kp CARET &kp HASH  &kp SQT    &mkp MB5                                     &kp UP                   &kp EXCL   &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp HASH
-&kp BSPC   &kp GT      &kp BSLH  &kp TILDE &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &kp COLON  &kp RBKT   &kp LBKT   &kp SEMI   &kp SLASH  &kp DLLR
-&kp LCTRL  &kp LT      &kp PIPE  &kp RBRC  &kp GRAVE  &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER  &kp MINUS  &kp PLUS   &kp EQUAL  &kp PRCNT  &kp AT
-                                  &trans    &trans     &kp SPC                                                               &kp ENTER  &trans     &trans
+&kp ESC                       &kp TILDE   &kp GRAVE &kp CARET  &kp SQT    &mkp MB5                                     &kp UP                   &kp EXCL              &macro_qmark_uni   &kp ASTRK         &kp LPAR   &kp RPAR          &kp HASH
+&bspc_to_layer_ht 18 BSPC     &kp GT      &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &macro_colon_uni      &kp RBKT           &macro_semi_uni   &kp SEMI   &macro_slash_uni  &kp RBRC
+&kp LCTRL                     &kp LT      &kp PIPE  &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER             &kp MINUS          &kp PLUS          &kp EQUAL  &kp PRCNT         &kp AT
+                                                    &trans     &trans     &kp SPC                                                               &kp ENTER             &trans             &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
@@ -789,10 +832,10 @@
         // Энкодер: Скрол по словам и типа скрол влево-вправо
         symbnolight_layer {
             bindings = <
-&kp ESC                        &kp TILDE   &kp CARET &kp HASH  &kp SQT    &mkp MB5                                     &kp UP                   &kp EXCL   &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp HASH
-&bspc_to_layer_ht 18 BSPC     &kp GT      &kp BSLH  &kp TILDE &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &kp COLON  &kp RBKT   &kp LBKT   &kp SEMI   &kp SLASH  &kp DLLR
-&kp LCTRL                     &kp LT      &kp PIPE  &kp RBRC  &kp GRAVE  &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER  &kp MINUS  &kp PLUS   &kp EQUAL  &kp PRCNT  &kp AT
-                                                    &trans    &trans     &kp SPC                                                               &kp ENTER  &trans     &trans
+&kp ESC                       &kp TILDE   &kp GRAVE &kp CARET  &kp SQT    &mkp MB5                                     &kp UP                   &kp EXCL              &macro_qmark_uni   &kp ASTRK         &kp LPAR   &kp RPAR          &kp HASH
+&bspc_to_layer_ht 18 BSPC     &kp GT      &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &macro_colon_uni      &kp RBKT           &macro_semi_uni   &kp SEMI   &macro_slash_uni  &kp RBRC
+&kp LCTRL                     &kp LT      &kp PIPE  &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER             &kp MINUS          &kp PLUS          &kp EQUAL  &kp PRCNT         &kp AT
+                                                    &trans     &trans     &kp SPC                                                               &kp ENTER             &trans             &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
