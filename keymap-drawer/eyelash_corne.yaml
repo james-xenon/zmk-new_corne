@@ -113,7 +113,7 @@ layers:
   - )
   - '#'
   - {t: '$$mdi:backspace$$', h: numbnolightcopy}
-  - '>'
+  - '|'
   - {t: \, s: '|'}
   - $
   - '"'
@@ -122,14 +122,14 @@ layers:
   - SPC
   - $$mdi:arrow-right-bold$$
   - '&macro_colon_uni'
-  - {t: ']', s: '}'}
+  - {t: ']', h: '"', s: '}'}
+  - {t: '[', s: '{'}
   - '&macro_semi_uni'
-  - {t: ;, s: ':'}
   - '&macro_slash_uni'
-  - '}'
+  - '&'
   - $$mdi:apple-keyboard-control$$
   - <
-  - '|'
+  - '>'
   - '{'
   - '}'
   - AL CALCULATOR
@@ -799,7 +799,7 @@ layers:
   - )
   - '#'
   - {t: '$$mdi:backspace$$', h: numbnolightcopy}
-  - '>'
+  - '|'
   - {t: \, s: '|'}
   - $
   - '"'
@@ -808,14 +808,14 @@ layers:
   - SPC
   - $$mdi:arrow-right-bold$$
   - '&macro_colon_uni'
-  - {t: ']', s: '}'}
+  - {t: ']', h: '"', s: '}'}
+  - {t: '[', s: '{'}
   - '&macro_semi_uni'
-  - {t: ;, s: ':'}
   - '&macro_slash_uni'
-  - {t: '}', type: held}
+  - {t: '&', type: held}
   - $$mdi:apple-keyboard-control$$
   - <
-  - '|'
+  - '>'
   - '{'
   - '}'
   - AL CALCULATOR
@@ -848,7 +848,7 @@ layers:
   - )
   - '#'
   - {t: '$$mdi:backspace$$', h: numbnolightcopy}
-  - '>'
+  - '|'
   - {t: \, s: '|'}
   - $
   - '"'
@@ -857,14 +857,14 @@ layers:
   - SPC
   - $$mdi:arrow-right-bold$$
   - '&macro_colon_uni'
-  - {t: ']', s: '}'}
+  - {t: ']', h: '"', s: '}'}
+  - {t: '[', s: '{'}
   - '&macro_semi_uni'
-  - {t: ;, s: ':'}
   - '&macro_slash_uni'
-  - '}'
+  - '&'
   - $$mdi:apple-keyboard-control$$
   - <
-  - '|'
+  - '>'
   - '{'
   - '}'
   - AL CALCULATOR
