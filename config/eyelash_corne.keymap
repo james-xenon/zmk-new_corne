@@ -447,7 +447,7 @@
             require-prior-idle-ms = <150>;
             key-positions = <3 4>;
             bindings = <&mo 10>;
-            layers = <0>;
+            layers = <0 11>;
         };
 
         // Комбо ' + Esc (Клавиши 27, 41):
@@ -491,7 +491,7 @@
             require-prior-idle-ms = <150>;
             key-positions = <7 8>;
             bindings = <&nav2_double_tap>;
-            layers = <0 1 2 3 4 5 6 11>;
+            layers = <0>;
         };
 
         // Комбо J + K (Клавиши 23, 24):
@@ -524,7 +524,7 @@
             require-prior-idle-ms = <100>;
             key-positions = <16 17>;
             bindings = <&kp BSPC>;
-            layers = <2 3 4 6 12 13 14 15 16>;
+            layers = <2 3 6 13 14 15 16>;
         };
 
         // Комбо S + D (Клавиши 15, 16):
@@ -535,7 +535,7 @@
             require-prior-idle-ms = <100>;
             key-positions = <15 16>;
             bindings = <&kp DEL>;
-            layers = <2 3 4 6 12 13 14 15 16>;
+            layers = <2 3 6 13 14 15 16>;
         };
 
         // Комбо Левый большой палец + E (Клавиши 3, 43):
@@ -603,7 +603,7 @@
         symb_layer {
             bindings = <
 &kp ESC &kp EXCL  &kp AT    &kp HASH  &kp DLLR   &mkp MB5                                     &kp UP                   &kp EXCL   &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp HASH
-&trans  &kp BSLH  &kp BSLH  &kp TILDE &kp AMPS   &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &kp AT     &kp RBKT   &kp LBKT   &kp CARET  &kp BSLH   &kp DLLR
+&trans  &kp BSLH  &kp BSLH  &kp TILDE &kp AMPS   &mkp MB4                           &kp LEFT  &kp ENTER    &kp RIGHT   &kp AT     &kp RBKT   &kp LBKT   &kp CARET  &kp BSLH   &kp DLLR
 &trans  &kp PIPE  &kp LBRC  &kp RBRC  &kp GRAVE  &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER  &kp MINUS  &kp PLUS   &kp EQUAL  &kp PIPE   &kp PRCNT
                             &trans    &trans     &kp SPC                                                               &kp ENTER  &trans     &trans
             >;
@@ -650,9 +650,9 @@
         // Энкодер: Громкость (Volume Up / Down)
         nav2_layer {
             bindings = <
-&kp ESC &trans  &trans  &trans  &trans  &trans                      &trans              &trans  &trans  &trans   &trans     &kp DEL   &kp BSPC
-&trans  &trans  &trans  &trans  &trans  &trans              &trans  &trans  &trans      &trans  &trans  &trans   &kp ENTER  &kp UP    &kp SPC
-&trans  &trans  &trans  &trans  &trans  &trans  &trans              &trans              &trans  &trans  &kp ESC  &kp LEFT   &kp DOWN  &kp RIGHT
+&kp ESC &trans  &trans  &trans  &trans  &trans                      &trans              &trans  &trans  &trans     &kp ESC    &kp DEL   &kp BSPC
+&trans  &trans  &trans  &trans  &trans  &trans              &trans  &trans  &trans      &trans  &trans  &trans     &kp ENTER  &kp UP    &kp SPC
+&trans  &trans  &trans  &trans  &trans  &trans  &trans              &trans              &trans  &trans  &kp LSHFT  &kp LEFT   &kp DOWN  &kp RIGHT
                         &trans  &trans  &trans                                          &trans  &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -700,7 +700,7 @@
             bindings = <
 &kp ESC &none   &none   &none   &none   &none                          &kp UP                   &kp HOME           &mkp LCLK            &mmv MOVE_UP    &mkp RCLK          &macro_comma_uni   &kp PG_UP
 &trans  &none   &none   &none   &none   &none                &kp LEFT  &kp ENTER  &kp RIGHT     &msc MOVE_X(-150)  &mmv MOVE_LEFT       &mmv MOVE_DOWN  &mmv MOVE_RIGHT    &msc MOVE_X(150)   &kp BSPC
-&trans  &none   &trans  &none   &none   &none   &kp C_MUTE             &kp DOWN                 &kp END            &msc MOVE_Y(-150)    &mkp MCLK       &msc MOVE_Y(150)   &macro_dot_uni     &kp PG_DN
+&trans  &none   &none   &none   &none   &none   &kp C_MUTE             &kp DOWN                 &kp END            &msc MOVE_Y(-150)    &mkp MCLK       &msc MOVE_Y(150)   &macro_dot_uni     &kp PG_DN
                         &trans  &trans  &trans                                                  &trans             &trans               &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
@@ -722,9 +722,9 @@
         // Энкодер: Скрол по словам и типа скрол влево-вправо
         nav2nolight_layer {
             bindings = <
-&kp ESC &trans  &trans  &trans  &trans  &trans                      &trans              &trans  &trans  &trans   &trans     &kp DEL   &kp BSPC
-&trans  &trans  &trans  &trans  &trans  &trans              &trans  &trans  &trans      &trans  &trans  &trans   &kp ENTER  &kp UP    &kp SPC
-&trans  &trans  &trans  &trans  &trans  &trans  &trans              &trans              &trans  &trans  &kp ESC  &kp LEFT   &kp DOWN  &kp RIGHT
+&kp ESC &trans  &trans  &trans  &trans  &trans                      &trans              &trans  &trans  &trans     &kp ESC    &kp DEL   &kp BSPC
+&trans  &trans  &trans  &trans  &trans  &trans              &trans  &trans  &trans      &trans  &trans  &trans     &kp ENTER  &kp UP    &kp SPC
+&trans  &trans  &trans  &trans  &trans  &trans  &trans              &trans              &trans  &trans  &kp LSHFT  &kp LEFT   &kp DOWN  &kp RIGHT
                         &trans  &trans  &trans                                          &trans  &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
@@ -771,7 +771,7 @@
         numbnolight_layer {
             bindings = <
 &kp PG_UP   &macro_comma_uni  &kp N9  &kp N8  &kp N7  &mkp MB5                                            &msc SCRL_UP                       &kp HOME   &kp N7  &kp N8  &kp N9  &macro_comma_uni  &kp PG_UP
-&td0        &kp N0            &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &kp QMARK  &kp N4  &kp N5  &kp N6  &kp N0            &BSPC_to_symb_ht 16 BSPC
+&BSPC       &kp N0            &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &kp QMARK  &kp N4  &kp N5  &kp N6  &kp N0            &BSPC_to_symb_ht 16 BSPC
 &kp PG_DN   &macro_dot_uni    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END    &kp N1  &kp N2  &kp N3  &macro_dot_uni    &kp PG_DN
                                       &trans  &trans  &trans                                                                                 &kp INS    &trans  &trans
             >;
