@@ -119,7 +119,7 @@ layers:
   - '&'
   - '&mkp MB4'
   - $$mdi:arrow-left-bold$$
-  - SPC
+  - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-right-bold$$
   - '@'
   - {t: ']', s: '}'}
@@ -305,7 +305,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:keyboard-esc$$
   - $$mdi:backspace-reverse-outline$$
   - {t: '$$mdi:backspace$$', type: backspace}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -333,7 +333,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - $$mdi:keyboard-esc$$
+  - $$mdi:apple-keyboard-shift$$
   - $$mdi:arrow-left-bold$$
   - $$mdi:arrow-down-bold$$
   - $$mdi:arrow-right-bold$$
@@ -521,7 +521,7 @@ layers:
   - {t: '$$mdi:backspace$$', type: backspace}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -599,7 +599,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:keyboard-esc$$
   - $$mdi:backspace-reverse-outline$$
   - {t: '$$mdi:backspace$$', type: backspace}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -627,7 +627,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - $$mdi:keyboard-esc$$
+  - $$mdi:apple-keyboard-shift$$
   - $$mdi:arrow-left-bold$$
   - $$mdi:arrow-down-bold$$
   - $$mdi:arrow-right-bold$$
@@ -798,7 +798,7 @@ layers:
   - {t: '9', s: (}
   - '&macro_comma_uni'
   - PG UP
-  - {t: '&td0', type: held alternate}
+  - {t: '&BSPC', type: held alternate}
   - {t: '0', s: )}
   - {t: '6', s: ^}
   - {t: '5', s: '%'}
@@ -848,7 +848,7 @@ combos:
   l: [lefthand]
 - p: [3, 4]
   k: nav3
-  l: [default]
+  l: [default, speedtype]
 - p: [27, 41]
   k: '&speedtype_double_tap'
   l: [default, speedtype]
@@ -860,7 +860,7 @@ combos:
   l: [default]
 - p: [7, 8]
   k: '&nav2_double_tap'
-  l: [default, nav1, symb, numb, fn, service, nav2, speedtype]
+  l: [default]
 - p: [23, 24]
   k: {t: '$$mdi:backspace$$', type: backspace}
   l: [default, nav1, symb, numb, fn, service, nav2, speedtype, symbnolight, numbnolight]
@@ -869,10 +869,10 @@ combos:
   l: [default, nav1, symb, numb, fn, service, nav2, speedtype, symbnolight, numbnolight]
 - p: [16, 17]
   k: {t: '$$mdi:backspace$$', type: backspace}
-  l: [symb, numb, fn, nav2, nav2nolight, lefthand, lefthandnolight, symbnolight, numbnolight]
+  l: [symb, numb, nav2, lefthand, lefthandnolight, symbnolight, numbnolight]
 - p: [15, 16]
   k: $$mdi:backspace-reverse-outline$$
-  l: [symb, numb, fn, nav2, nav2nolight, lefthand, lefthandnolight, symbnolight, numbnolight]
+  l: [symb, numb, nav2, lefthand, lefthandnolight, symbnolight, numbnolight]
 - p: [3, 43]
   k: '&thumb_e_numb_td'
   l: [default, numb]
