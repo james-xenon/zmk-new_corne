@@ -34,7 +34,7 @@ layers:
   - {t: X, h: '&kp_once LC(X)'}
   - {t: C, h: '&kp_once LC(C)'}
   - {t: V, h: '&kp_once LC(V)'}
-  - '&b_alt_ht'
+  - {t: B, h: '$$mdi:apple-keyboard-option$$'}
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
   - {t: N, h: '$$mdi:apple-keyboard-option$$'}
@@ -472,10 +472,10 @@ layers:
   - $$mdi:apple-keyboard-shift$$
   - $$mdi:apple-keyboard-control$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - M
   - N
+  - M
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
