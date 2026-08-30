@@ -193,7 +193,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - INS
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   fn:
@@ -211,10 +211,10 @@ layers:
   - F10
   - F11
   - '&td0'
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - F5
+  - F12
+  - F10
+  - F11
   - '&mkp MB4'
   - {t: '$$mdi:menu-left$$', s: '$$mdi:mouse$$'}
   - $$mdi:mouse-left-click-outline$$
@@ -250,7 +250,7 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - $$mdi:mouse-right-click-outline$$
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - '&studio_unlock'
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:bluetooth-off$$
@@ -400,7 +400,7 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:arrow-up-bold$$
-  - F6
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - F7
   - F8
   - F9
@@ -643,7 +643,7 @@ layers:
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-up-bold$$
   - SPC
-  - $$mdi:pan-up$$
+  - '&msc MOVE_Y(150)'
   - $$mdi:arrow-up-bold$$
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -656,7 +656,7 @@ layers:
   - $$mdi:arrow-left-bold$$
   - $$mdi:arrow-down-bold$$
   - $$mdi:arrow-right-bold$$
-  - $$mdi:pan-down$$
+  - '&msc MOVE_Y(-150)'
   - $$mdi:arrow-left-bold$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-right-bold$$
@@ -692,7 +692,7 @@ layers:
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-up-bold$$
   - SPC
-  - $$mdi:pan-up$$
+  - '&msc MOVE_Y(150)'
   - $$mdi:arrow-up-bold$$
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -705,7 +705,7 @@ layers:
   - $$mdi:arrow-left-bold$$
   - $$mdi:arrow-down-bold$$
   - $$mdi:arrow-right-bold$$
-  - $$mdi:pan-down$$
+  - '&msc MOVE_Y(-150)'
   - $$mdi:arrow-left-bold$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-right-bold$$
@@ -737,10 +737,10 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   symbnolight:
   - $$mdi:keyboard-esc$$
-  - '!'
-  - '@'
+  - '~'
+  - ^
   - '#'
-  - $
+  - {t: '''', s: '"'}
   - '&mkp MB5'
   - $$mdi:arrow-up-bold$$
   - '!'
@@ -749,24 +749,24 @@ layers:
   - (
   - )
   - '#'
-  - {t: '$$mdi:apple-keyboard-shift$$', h: numbnolight}
-  - {t: \, s: '|'}
+  - {t: '$$mdi:backspace$$', h: numbnolight}
+  - '>'
   - {t: \, s: '|'}
   - '~'
-  - '&'
+  - '"'
   - '&mkp MB4'
   - $$mdi:arrow-left-bold$$
   - SPC
   - $$mdi:arrow-right-bold$$
-  - '@'
+  - ':'
   - {t: ']', s: '}'}
   - {t: '[', s: '{'}
-  - ^
-  - {t: \, s: '|'}
+  - {t: ;, s: ':'}
+  - {t: /, s: '?'}
   - $
   - $$mdi:apple-keyboard-control$$
+  - <
   - '|'
-  - '{'
   - '}'
   - {t: '`', s: '~'}
   - AL CALCULATOR
@@ -776,8 +776,8 @@ layers:
   - {t: '-', s: _}
   - +
   - {t: '=', s: +}
-  - '|'
   - '%'
+  - '@'
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
   - SPC
@@ -812,7 +812,7 @@ layers:
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
   - {t: '0', s: )}
-  - {t: '$$mdi:apple-keyboard-shift$$', h: numbnolight}
+  - {t: '$$mdi:backspace$$', h: symbnolight}
   - PG DN
   - '&macro_dot_uni'
   - {t: '3', s: '#'}
