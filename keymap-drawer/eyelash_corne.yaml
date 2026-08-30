@@ -61,7 +61,7 @@ layers:
   - $$mdi:mouse-left-click-outline$$
   - $$mdi:arrow-up-bold$$
   - $$mdi:mouse-right-click-outline$$
-  - '&macro_comma_uni'
+  - '&macro_qmark_uni'
   - PG UP
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -170,7 +170,7 @@ layers:
   - $$mdi:pan-left$$
   - $$mdi:mouse-left-click-outline$$
   - $$mdi:pan-right$$
-  - '?'
+  - '&macro_qmark_uni'
   - {t: '4', s: $}
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
@@ -502,7 +502,7 @@ layers:
   - $$mdi:mouse-left-click-outline$$
   - {t: '$$mdi:menu-up$$', s: '$$mdi:mouse$$'}
   - $$mdi:mouse-right-click-outline$$
-  - '&macro_comma_uni'
+  - '&macro_qmark_uni'
   - PG UP
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -807,7 +807,7 @@ layers:
   - $$mdi:pan-left$$
   - $$mdi:mouse-left-click-outline$$
   - $$mdi:pan-right$$
-  - '?'
+  - '&macro_qmark_uni'
   - {t: '4', s: $}
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
