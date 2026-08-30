@@ -109,10 +109,10 @@
         };
 
         // Hold-Tap symb_win_td (Левая клавиша большого пальца):
-        // Удержание -> Слой 15 (Символы без подсветки)
+        // Удержание -> Слой 16 (Символы без подсветки)
         // Одиночный тап -> ничего (none)
         // Двойной тап (окно 500 мс) -> Win (LGUI) через symb_win_tap_dance
-        // Параметр N передаётся при вызове: &symb_win_td 15 0
+        // Параметр N передаётся при вызове: &symb_win_td 16 0
         symb_win_td: symb_win_td {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -132,7 +132,7 @@
         };
 
         // Hold-Tap thumb_num_sym_fn:
-        // Удержание -> Слой 16
+        // Удержание -> Слой 17
         // Тап -> &none
         thumb_num_sym_fn: thumb_num_sym_fn {
             compatible = "zmk,behavior-hold-tap";
@@ -265,7 +265,7 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Hold-Tap для перехода из Цифр (16) в Символы (15) через BSPC
+        // Hold-Tap для перехода из Цифр (17) в Символы (15) через BSPC
         bspc_to_symb_ht: bspc_to_symb_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -274,7 +274,7 @@
             bindings = <&mo>, <&kp>;
         };
 
-        // Hold-Tap для перехода из Символов (15) в Цифры (16) через BSPC
+        // Hold-Tap для перехода из Символов (15/16) в Цифры (17) через BSPC
         bspc_to_numb_ht: bspc_to_numb_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -375,7 +375,6 @@
         };
 
         // Tap Dance thumb_e_numb_td:
-        // 1 тап = none (ничего), двойной тап -> Переключение фиксированного режима Слоя 3 (Цифры)
         // Используется в комбо: Левый большой палец (pos 43) + E (pos 3)
         thumb_e_numb_td: thumb_e_numb_td {
             compatible = "zmk,behavior-tap-dance";
@@ -510,46 +509,46 @@
 
         // Комбо J + K (Клавиши 23, 24):
         // Нажатие клавиши BSPC (Backspace).
-        // Работает на слоях 0, 1, 2, 3, 4, 5, 6, 11, 15, 16. Окно срабатывания: 50 мс.
+        // Работает на слоях 0, 1, 2, 3, 4, 5, 6, 11, 15, 16, 17. Окно срабатывания: 50 мс.
         combo_jk_backspace {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
             key-positions = <23 24>;
             bindings = <&kp BSPC>;
-            layers = <0 1 2 3 4 5 6 11 15 16>;
+            layers = <0 1 2 3 4 5 6 11 15 16 17>;
         };
 
         // Комбо K + L (Клавиши 24, 25):
         // Нажатие клавиши DEL (Delete).
-        // Работает на слоях 0, 1, 2, 3, 4, 5, 6, 11, 15, 16. Окно срабатывания: 50 мс.
+        // Работает на слоях 0, 1, 2, 3, 4, 5, 6, 11, 15, 16, 17. Окно срабатывания: 50 мс.
         combo_kl_delete {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
             key-positions = <24 25>;
             bindings = <&kp DEL>;
-            layers = <0 1 2 3 4 5 6 11 15 16>;
+            layers = <0 1 2 3 4 5 6 11 15 16 17>;
         };
 
         // Комбо D + F (Клавиши 16, 17):
         // Нажатие BSPC (Backspace) на символьных и цифровых слоях.
-        // Работает на слоях 2, 3, 4, 6, 12, 13, 14, 15, 16 . Окно срабатывания: 50 мс.
+        // Работает на слоях 2, 3, 4, 6, 12, 13, 14, 15, 16, 17 . Окно срабатывания: 50 мс.
         combo_lh_bspc {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
             key-positions = <16 17>;
             bindings = <&kp BSPC>;
-            layers = <2 3 6 13 14 15 16>;
+            layers = <2 3 6 13 14 15 16 17>;
         };
 
         // Комбо S + D (Клавиши 15, 16):
         // Нажатие DEL (Delete) на символьных и цифровых слоях.
-        // Работает на слоях 2, 3, 4, 6, 12, 13, 14, 15, 16. Окно срабатывания: 50 мс.
+        // Работает на слоях 2, 3, 4, 6, 12, 13, 14, 15, 16, 17. Окно срабатывания: 50 мс.
         combo_lh_del {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
             key-positions = <15 16>;
             bindings = <&kp DEL>;
-            layers = <2 3 6 13 14 15 16>;
+            layers = <2 3 6 13 14 15 16 17>;
         };
 
         // Комбо Левый большой палец + E (Клавиши 3, 43):
@@ -595,7 +594,7 @@
 &kp TAB      &kp Q             &kp W             &kp E                &kp R              &kp T                                    &kp UP                &media_ht C_PP Y    &media_ht C_PREV U      &media_ht C_NEXT I  &media_ht C_STOP O  &kp P               &lbkt_screenshot 0 LBKT
 &td0         &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D                &edit_ht LC(F) F   &kp G                          &kp LEFT  &kp SPC   &kp RIGHT   &kp H               &kp J                   &kp K               &kp L               &semi_fn_ht 4 SEMI  &mt LSHFT SQT
 &kp LCTRL    &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C     &edit_ht LC(V) V   &b_alt_ht LALT B   &kp C_MUTE            &kp DOWN              &n_alt_ht LALT N    &kp M                   &kp COMMA           &kp DOT             &kp FSLH            &kp ESC
-                                                 &lefthand_ht 14 0    &symb_win_td 15 0  &kp SPC                                                        &kp ENTER           &thumb_num_sym_fn 16 0  &lang_nav2 12 0
+                                                 &lefthand_ht 14 0    &symb_win_td 16 0  &kp SPC                                                        &kp ENTER           &thumb_num_sym_fn 17 0  &lang_nav2 12 0
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
@@ -606,7 +605,7 @@
             bindings = <
 &kp ESC  &none  &none   &none  &none  &none                               &mmv MOVE_UP                       &kp HOME           &mkp LCLK          &kp UP     &mkp RCLK            &macro_qmark_uni    &kp PG_UP
 &trans   &none  &none   &none  &none  &none               &mmv MOVE_LEFT  &mkp LCLK      &mmv MOVE_RIGHT     &msc MOVE_X(-150)  &kp LEFT           &kp DOWN   &kp RIGHT            &msc MOVE_X(150)    &kp BSPC
-&trans   &none  &none   &none  &none  &none       &trans                  &mmv MOVE_DOWN                     &kp END            &msc MOVE_Y(-150)  &mkp MCLK  &msc MOVE_Y(150)     &macro_dot_uni      &kp PG_DN
+&trans   &none  &none  &none  &none  &none       &trans                  &mmv MOVE_DOWN                     &kp END            &msc MOVE_Y(-150)  &mkp MCLK  &msc MOVE_Y(150)     &macro_dot_uni      &kp PG_DN
                         &trans &trans &trans                                                                 &trans             &trans             &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
@@ -727,7 +726,7 @@
 &kp TAB    &kp Q  &kp W  &kp E      &kp R              &kp T                               &kp UP                 &kp Y      &kp U                   &kp I              &kp O       &kp P     &kp LBKT
 &kp LSHFT  &kp A  &kp S  &kp D      &kp F              &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT   &kp H      &kp J                   &kp K              &kp L       &kp SEMI  &kp SQT
 &kp LCTRL  &kp Z  &kp X  &kp C      &kp V              &kp B      &kp C_MUTE               &kp DOWN               &kp N      &kp M                   &kp COMMA          &kp DOT     &kp FSLH  &kp ESC
-                         &kp RALT   &symb_win_td 15 0  &kp SPC                                                    &kp ENTER  &thumb_num_sym_fn 16 0  &lang_nav2 12 0
+                         &kp RALT   &symb_win_td 16 0  &kp SPC                                                    &kp ENTER  &thumb_num_sym_fn 17 0  &lang_nav2 12 0
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
@@ -768,27 +767,38 @@
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
-        // Слой 15: Символы без подсветки (Вызывается при зажатии левой клавиши большого пальца)
+        // Слой 15: Символы без подсветки (Копия для хака перехода из слоя 17 в слой 15)
         // Энкодер: Скрол по словам и типа скрол влево-вправо
-        symbnolight_layer {
+        symbnolightcopy_layer {
             bindings = <
 &kp ESC                      &kp TILDE   &kp CARET &kp HASH  &kp SQT    &mkp MB5                                     &kp UP                   &kp EXCL   &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp HASH
-&bspc_to_numb_ht 16 BSPC     &kp GT      &kp BSLH  &kp TILDE &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &kp COLON  &kp RBKT   &kp LBKT   &kp SEMI   &kp SLASH  &kp DLLR
+&bspc_to_numb_ht 17 BSPC     &kp GT      &kp BSLH  &kp TILDE &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &kp COLON  &kp RBKT   &kp LBKT   &kp SEMI   &kp SLASH  &kp DLLR
 &kp LCTRL                    &kp LT      &kp PIPE  &kp RBRC  &kp GRAVE  &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER  &kp MINUS  &kp PLUS   &kp EQUAL  &kp PRCNT  &kp AT
                                                    &trans    &trans     &kp SPC                                                               &kp ENTER  &trans     &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
-        // Слой 16: Цифры без подсветки (Вызывается при зажатии правой клавиши большого пальца)
+        // Слой 16: Символы без подсветки (Вызывается при зажатии левой клавиши большого пальца)
         // Энкодер: Скрол по словам и типа скрол влево-вправо
-        // ИСПРАВЛЕНО: &kp BSPC вместо &BSPC во второй строке (строка 774 в логе)
+        symbnolight_layer {
+            bindings = <
+&kp ESC                      &kp TILDE   &kp CARET &kp HASH  &kp SQT    &mkp MB5                                     &kp UP                   &kp EXCL   &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp HASH
+&bspc_to_numb_ht 17 BSPC     &kp GT      &kp BSLH  &kp TILDE &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &kp COLON  &kp RBKT   &kp LBKT   &kp SEMI   &kp SLASH  &kp DLLR
+&kp LCTRL                    &kp LT      &kp PIPE  &kp RBRC  &kp GRAVE  &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER  &kp MINUS  &kp PLUS   &kp EQUAL  &kp PRCNT  &kp AT
+                                                   &trans    &trans     &kp SPC                                                               &kp ENTER  &trans     &trans
+            >;
+            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+        };
+
+        // Слой 17: Цифры без подсветки (Вызывается при зажатии правой клавиши большого пальца)
+        // Энкодер: Скрол по словам и типа скрол влево-вправо
         numbnolight_layer {
             bindings = <
-&kp PG_UP   &macro_comma_uni  &kp N9  &kp N8  &kp N7  &mkp MB5                                            &msc SCRL_UP                       &kp HOME   &kp N7  &kp N8  &kp N9  &macro_comma_uni  &kp PG_UP
-&kp BSPC    &kp N0            &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &macro_qmark_uni  &kp N4  &kp N5  &kp N6  &kp N0            &bspc_to_symb_ht 15 BSPC
-&kp PG_DN   &macro_dot_uni    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END    &kp N1  &kp N2  &kp N3  &macro_dot_uni    &kp PG_DN
-                                      &trans  &trans  &trans                                                                                 &kp INS    &trans  &trans
+&kp PG_UP   &macro_comma_uni  &kp N9  &kp N8  &kp N7  &mkp MB5                                            &msc SCRL_UP                       &kp HOME           &kp N7  &kp N8  &kp N9  &macro_comma_uni  &kp PG_UP
+&kp BSPC    &kp N0            &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &macro_qmark_uni   &kp N4  &kp N5  &kp N6  &kp N0            &bspc_to_symb_ht 15 BSPC
+&kp PG_DN   &macro_dot_uni    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END            &kp N1  &kp N2  &kp N3  &macro_dot_uni    &kp PG_DN
+                                      &trans  &trans  &trans                                                                                 &kp ENTER          &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
