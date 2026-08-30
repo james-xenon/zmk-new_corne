@@ -251,8 +251,8 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Hold-Tap для перехода из Цифр (16) в Символы (15) через Backspace
-        bspc_to_symb_ht: bspc_to_symb_ht {
+        // Hold-Tap для перехода из Цифр (16) в Символы (15)  BSPC
+        BSPC_to_symb_ht: BSPC_to_symb_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred"; // Приоритет удержанию, как в lshft_to_numb_ht
@@ -260,8 +260,8 @@
             bindings = <&mo>, <&kp>;   // Hold = Layer (1st param), Tap = Key (2nd param)
         };
 
-        // Hold-Tap для перехода из Символов (15) в Цифры (16) через Left Shift
-        lshft_to_numb_ht: lshft_to_numb_ht {
+        // Hold-Tap для перехода из Символов (15) в Цифры (16) через BSPC
+        BSPC_to_numb_ht: BSPC_to_numb_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
@@ -590,9 +590,9 @@
         // Энкодер: Скрол по словам и типа скрол влево-вправо
         nav1_layer {
             bindings = <
-&kp ESC  &none  &none   &none  &none  &none                               &mmv MOVE_UP                       &kp HOME           &mkp LCLK          &kp UP     &mkp RCLK            &macro_comma_uni         &kp BSPC
-&trans   &none  &none   &none  &none  &none               &mmv MOVE_LEFT  &mkp LCLK      &mmv MOVE_RIGHT     &msc MOVE_X(-150)  &kp LEFT           &kp DOWN   &kp RIGHT            &msc MOVE_X(150)  &kp PG_UP
-&trans   &none  &none   &none  &none  &none       &trans                  &mmv MOVE_DOWN                     &kp END            &msc MOVE_Y(-150)  &mkp MCLK  &msc MOVE_Y(150)     &macro_dot_uni           &kp PG_DN
+&kp ESC  &none  &none   &none  &none  &none                               &mmv MOVE_UP                       &kp HOME           &mkp LCLK          &kp UP     &mkp RCLK            &macro_comma_uni    &kp PG_UP
+&trans   &none  &none   &none  &none  &none               &mmv MOVE_LEFT  &mkp LCLK      &mmv MOVE_RIGHT     &msc MOVE_X(-150)  &kp LEFT           &kp DOWN   &kp RIGHT            &msc MOVE_X(150)    &kp BSPC
+&trans   &none  &none   &none  &none  &none       &trans                  &mmv MOVE_DOWN                     &kp END            &msc MOVE_Y(-150)  &mkp MCLK  &msc MOVE_Y(150)     &macro_dot_uni      &kp PG_DN
                         &trans &trans &trans                                                                 &trans             &trans             &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
@@ -698,9 +698,9 @@
         // Энкодер: Скрол по словам и типа скрол влево-вправо
         nav3_layer {
             bindings = <
-&kp ESC &none   &none   &none   &none   &none                          &kp UP                   &kp HOME           &mkp LCLK            &mmv MOVE_UP    &mkp RCLK          &macro_comma_uni          &kp PG_UP
+&kp ESC &none   &none   &none   &none   &none                          &kp UP                   &kp HOME           &mkp LCLK            &mmv MOVE_UP    &mkp RCLK          &macro_comma_uni   &kp PG_UP
 &trans  &none   &none   &none   &none   &none                &kp LEFT  &kp ENTER  &kp RIGHT     &msc MOVE_X(-150)  &mmv MOVE_LEFT       &mmv MOVE_DOWN  &mmv MOVE_RIGHT    &msc MOVE_X(150)   &kp BSPC
-&trans  &none   &trans  &none   &none   &none   &kp C_MUTE             &kp DOWN                 &kp END            &msc MOVE_Y(-150)    &mkp MCLK       &msc MOVE_Y(150)   &macro_dot_uni            &kp PG_DN
+&trans  &none   &trans  &none   &none   &none   &kp C_MUTE             &kp DOWN                 &kp END            &msc MOVE_Y(-150)    &mkp MCLK       &msc MOVE_Y(150)   &macro_dot_uni     &kp PG_DN
                         &trans  &trans  &trans                                                  &trans             &trans               &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
@@ -734,10 +734,10 @@
         // Энкодер: Громкость (Volume Up / Down)
         lefthand_layer {
             bindings = <
-&tab_esc_ht ESC TAB  &kp HOME    &kp ENTER    &kp UP       &kp SPC    &msc SCRL_UP                               &kp UP                  &trans  &trans  &trans  &trans  &trans  &trans
-&kp LSHFT            &kp END     &kp LEFT     &kp DOWN     &kp RIGHT  &msc SCRL_DOWN                   &kp LEFT  &kp ENTER  &kp RIGHT    &trans  &trans  &trans  &trans  &trans  &trans
-&kp LCTRL            &kp EXCL    &kp AMPS     &macro_comma_uni    &macro_dot_uni    &kp FSLH        &kp C_MUTE                 &kp DOWN                &trans  &trans  &trans  &trans  &trans  &trans
-                                              &trans       &trans     &trans                                                             &trans  &trans  &trans
+&tab_esc_ht ESC TAB  &kp HOME    &kp ENTER    &kp UP              &kp SPC          &msc SCRL_UP                               &kp UP                  &trans  &trans  &trans  &trans  &trans  &trans
+&kp LSHFT            &kp END     &kp LEFT     &kp DOWN            &kp RIGHT        &msc SCRL_DOWN                   &kp LEFT  &kp ENTER  &kp RIGHT    &trans  &trans  &trans  &trans  &trans  &trans
+&kp LCTRL            &kp EXCL    &kp AMPS     &macro_comma_uni    &macro_dot_uni   &kp FSLH        &kp C_MUTE                 &kp DOWN                &trans  &trans  &trans  &trans  &trans  &trans
+                                              &trans              &trans           &trans                                                             &trans  &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
@@ -746,10 +746,10 @@
         // Энкодер: Скрол по словам и типа скрол влево-вправо
         lefthandnolight_layer {
             bindings = <
-&tab_esc_ht ESC TAB  &kp HOME    &kp ENTER    &kp UP       &kp SPC    &msc SCRL_UP                               &kp UP                  &trans  &trans  &trans  &trans  &trans  &trans
-&kp LSHFT            &kp END     &kp LEFT     &kp DOWN     &kp RIGHT  &msc SCRL_DOWN                   &kp LEFT  &kp ENTER  &kp RIGHT    &trans  &trans  &trans  &trans  &trans  &trans
+&tab_esc_ht ESC TAB  &kp HOME    &kp ENTER    &kp UP              &kp SPC           &msc SCRL_UP                               &kp UP                  &trans  &trans  &trans  &trans  &trans  &trans
+&kp LSHFT            &kp END     &kp LEFT     &kp DOWN            &kp RIGHT         &msc SCRL_DOWN                   &kp LEFT  &kp ENTER  &kp RIGHT    &trans  &trans  &trans  &trans  &trans  &trans
 &kp LCTRL            &kp EXCL    &kp AMPS     &macro_comma_uni    &macro_dot_uni    &kp FSLH        &kp C_MUTE                 &kp DOWN                &trans  &trans  &trans  &trans  &trans  &trans
-                                              &trans       &trans     &trans                                                             &trans  &trans  &trans
+                                              &trans              &trans            &trans                                                             &trans  &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
@@ -758,10 +758,10 @@
         // Энкодер: Скрол по словам и типа скрол влево-вправо
         symbnolight_layer {
             bindings = <
-&kp ESC               &kp EXCL  &kp AT    &kp HASH  &kp DLLR   &mkp MB5                                     &kp UP                   &kp EXCL   &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp HASH
-&lshft_to_numb_ht 16 LSHIFT  &kp BSLH  &kp BSLH  &kp TILDE &kp AMPS   &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &kp AT     &kp RBKT   &kp LBKT   &kp CARET  &kp BSLH   &kp DLLR
-&kp LCTRL             &kp PIPE  &kp LBRC  &kp RBRC  &kp GRAVE  &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER  &kp MINUS  &kp PLUS   &kp EQUAL  &kp PIPE   &kp PRCNT
-                                          &trans    &trans     &kp SPC                                                               &kp ENTER  &trans     &trans
+&kp ESC                      &kp EXCL  &kp AT    &kp HASH  &kp DLLR   &mkp MB5                                     &kp UP                   &kp EXCL   &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp HASH
+&BSPC_to_numb_ht 16 BSPC     &kp BSLH  &kp BSLH  &kp TILDE &kp AMPS   &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &kp AT     &kp RBKT   &kp LBKT   &kp CARET  &kp BSLH   &kp DLLR
+&kp LCTRL                    &kp PIPE  &kp LBRC  &kp RBRC  &kp GRAVE  &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER  &kp MINUS  &kp PLUS   &kp EQUAL  &kp PIPE   &kp PRCNT
+                                                 &trans    &trans     &kp SPC                                                               &kp ENTER  &trans     &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
@@ -771,7 +771,7 @@
         numbnolight_layer {
             bindings = <
 &kp PG_UP   &macro_comma_uni  &kp N9  &kp N8  &kp N7  &mkp MB5                                            &msc SCRL_UP                       &kp HOME   &kp N7  &kp N8  &kp N9  &macro_comma_uni  &kp PG_UP
-&td0        &kp N0            &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &kp QMARK  &kp N4  &kp N5  &kp N6  &kp N0            &bspc_to_symb_ht 15 BSPC
+&td0        &kp N0            &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &kp QMARK  &kp N4  &kp N5  &kp N6  &kp N0            &BSPC_to_symb_ht 16 BSPC
 &kp PG_DN   &macro_dot_uni    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END    &kp N1  &kp N2  &kp N3  &macro_dot_uni    &kp PG_DN
                                       &trans  &trans  &trans                                                                                 &kp INS    &trans  &trans
             >;
