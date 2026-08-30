@@ -122,8 +122,8 @@ layers:
   - SPC
   - $$mdi:arrow-right-bold$$
   - '&macro_colon_uni'
-  - {t: ']', h: '"', s: '}'}
-  - {t: '[', s: '{'}
+  - {t: ']', s: '}'}
+  - {t: '[', h: '&macro_dqt_once DQT', s: '{'}
   - '&macro_semi_uni'
   - '&macro_slash_uni'
   - '&'
@@ -808,8 +808,8 @@ layers:
   - SPC
   - $$mdi:arrow-right-bold$$
   - '&macro_colon_uni'
-  - {t: ']', h: '"', s: '}'}
-  - {t: '[', s: '{'}
+  - {t: ']', s: '}'}
+  - {t: '[', h: '&macro_dqt_once DQT', s: '{'}
   - '&macro_semi_uni'
   - '&macro_slash_uni'
   - {t: '&', type: held}
@@ -857,8 +857,8 @@ layers:
   - SPC
   - $$mdi:arrow-right-bold$$
   - '&macro_colon_uni'
-  - {t: ']', h: '"', s: '}'}
-  - {t: '[', s: '{'}
+  - {t: ']', s: '}'}
+  - {t: '[', h: '&macro_dqt_once DQT', s: '{'}
   - '&macro_semi_uni'
   - '&macro_slash_uni'
   - '&'
