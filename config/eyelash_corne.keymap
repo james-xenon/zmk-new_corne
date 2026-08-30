@@ -252,7 +252,7 @@
         };
 
         // Hold-Tap для перехода из Цифр (16) в Символы (15)  LSHFT
-        LSHFT_to_symb_ht: LSHFT_to_symb_ht {
+        lshft_to_symb_ht: lshft_to_symb_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred"; // Приоритет удержанию, как в lshft_to_numb_ht
@@ -261,7 +261,7 @@
         };
 
         // Hold-Tap для перехода из Символов (15) в Цифры (16) через LSHFT
-        LSHFT_to_numb_ht: LSHFT_to_numb_ht {
+        lshft_to_numb_ht: lshft_to_numb_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
@@ -626,10 +626,10 @@
         // Энкодер: Скрол по словам и типа скрол влево-вправо
         fn_layer {
             bindings = <
-&kp ESC  &kp F1  &kp F2  &kp F3  &kp F4  &mkp MB5                                          &mmv MOVE_UP                       &kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &kp F11
-&none    &none   &none   &none   &kp F5  &mkp MB4                        &mmv MOVE_LEFT    &mkp LCLK       &mmv MOVE_RIGHT    &trans  &kp F4  &kp F5  &kp F6  &none    &kp F12
-&none    &none   &none   &none   &none   &kp C_AL_CALCULATOR  &trans                       &mmv MOVE_DOWN                     &trans  &kp F1  &kp F2  &kp F3  &none    &kp ESC
-                         &trans  &trans  &trans                                                                               &trans  &trans  &trans
+&kp ESC    &kp F1  &kp F2  &kp F3  &kp F4  &mkp MB5                                          &mmv MOVE_UP                       &none   &kp F7  &kp F8  &kp F9  &kp F10  &kp F11
+&td0       &none   &none   &none   &kp F5  &mkp MB4                        &mmv MOVE_LEFT    &mkp LCLK       &mmv MOVE_RIGHT    &none   &kp F4  &kp F5  &kp F6  &none    &kp F12
+&kp LCTRL  &none   &none   &none   &none   &kp C_AL_CALCULATOR  &trans                       &mmv MOVE_DOWN                     &none   &kp F1  &kp F2  &kp F3  &none    &kp ESC
+                         &trans  &trans  &trans                                                                                 &trans  &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
@@ -759,7 +759,7 @@
         symbnolight_layer {
             bindings = <
 &kp ESC                      &kp EXCL  &kp AT    &kp HASH  &kp DLLR   &mkp MB5                                     &kp UP                   &kp EXCL   &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp HASH
-&LSHFT_to_numb_ht 16 LSHFT     &kp BSLH  &kp BSLH  &kp TILDE &kp AMPS   &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &kp AT     &kp RBKT   &kp LBKT   &kp CARET  &kp BSLH   &kp DLLR
+&lshft_to_numb_ht 16 LSHFT     &kp BSLH  &kp BSLH  &kp TILDE &kp AMPS   &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &kp AT     &kp RBKT   &kp LBKT   &kp CARET  &kp BSLH   &kp DLLR
 &kp LCTRL                    &kp PIPE  &kp LBRC  &kp RBRC  &kp GRAVE  &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER  &kp MINUS  &kp PLUS   &kp EQUAL  &kp PIPE   &kp PRCNT
                                                  &trans    &trans     &kp SPC                                                               &kp ENTER  &trans     &trans
             >;
@@ -771,7 +771,7 @@
         numbnolight_layer {
             bindings = <
 &kp PG_UP   &macro_comma_uni  &kp N9  &kp N8  &kp N7  &mkp MB5                                            &msc SCRL_UP                       &kp HOME   &kp N7  &kp N8  &kp N9  &macro_comma_uni  &kp PG_UP
-&BSPC       &kp N0            &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &kp QMARK  &kp N4  &kp N5  &kp N6  &kp N0            &LSHFT_to_symb_ht 16 LSHFT
+&BSPC       &kp N0            &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &kp QMARK  &kp N4  &kp N5  &kp N6  &kp N0            &lshft_to_symb_ht 16 LSHFT
 &kp PG_DN   &macro_dot_uni    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END    &kp N1  &kp N2  &kp N3  &macro_dot_uni    &kp PG_DN
                                       &trans  &trans  &trans                                                                                 &kp INS    &trans  &trans
             >;
