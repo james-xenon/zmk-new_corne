@@ -735,6 +735,55 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
+  symbnolightcopy:
+  - $$mdi:keyboard-esc$$
+  - '~'
+  - ^
+  - '#'
+  - {t: '''', s: '"'}
+  - '&mkp MB5'
+  - $$mdi:arrow-up-bold$$
+  - '!'
+  - '&'
+  - '*'
+  - (
+  - )
+  - '#'
+  - {t: '$$mdi:backspace$$', h: numbnolight}
+  - '>'
+  - {t: \, s: '|'}
+  - '~'
+  - '"'
+  - '&mkp MB4'
+  - $$mdi:arrow-left-bold$$
+  - SPC
+  - $$mdi:arrow-right-bold$$
+  - ':'
+  - {t: ']', s: '}'}
+  - {t: '[', s: '{'}
+  - {t: ;, s: ':'}
+  - {t: /, s: '?'}
+  - $
+  - $$mdi:apple-keyboard-control$$
+  - <
+  - '|'
+  - '}'
+  - {t: '`', s: '~'}
+  - AL CALCULATOR
+  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:arrow-down-bold$$
+  - _
+  - {t: '-', s: _}
+  - +
+  - {t: '=', s: +}
+  - '%'
+  - '@'
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - SPC
+  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
   symbnolight:
   - $$mdi:keyboard-esc$$
   - '~'
@@ -812,7 +861,7 @@ layers:
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
   - {t: '0', s: )}
-  - {t: '$$mdi:backspace$$', h: symbnolight}
+  - {t: '$$mdi:backspace$$', h: symbnolightcopy}
   - PG DN
   - '&macro_dot_uni'
   - {t: '3', s: '#'}
@@ -830,7 +879,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held alternate}
   - {t: '$$mdi:transfer$$', type: trans}
-  - INS
+  - {t: '$$mdi:keyboard-return$$', type: enter}
   - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
 combos:
@@ -863,16 +912,16 @@ combos:
   l: [default]
 - p: [23, 24]
   k: {t: '$$mdi:backspace$$', type: backspace}
-  l: [default, nav1, symb, numb, fn, service, nav2, speedtype, symbnolight, numbnolight]
+  l: [default, nav1, symb, numb, fn, service, nav2, speedtype, symbnolightcopy, symbnolight, numbnolight]
 - p: [24, 25]
   k: $$mdi:backspace-reverse-outline$$
-  l: [default, nav1, symb, numb, fn, service, nav2, speedtype, symbnolight, numbnolight]
+  l: [default, nav1, symb, numb, fn, service, nav2, speedtype, symbnolightcopy, symbnolight, numbnolight]
 - p: [16, 17]
   k: {t: '$$mdi:backspace$$', type: backspace}
-  l: [symb, numb, nav2, lefthand, lefthandnolight, symbnolight, numbnolight]
+  l: [symb, numb, nav2, lefthand, lefthandnolight, symbnolightcopy, symbnolight, numbnolight]
 - p: [15, 16]
   k: $$mdi:backspace-reverse-outline$$
-  l: [symb, numb, nav2, lefthand, lefthandnolight, symbnolight, numbnolight]
+  l: [symb, numb, nav2, lefthand, lefthandnolight, symbnolightcopy, symbnolight, numbnolight]
 - p: [3, 43]
   k: '&thumb_e_numb_td'
   l: [default, numb]
