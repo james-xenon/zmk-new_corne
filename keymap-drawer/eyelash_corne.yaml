@@ -749,7 +749,7 @@ layers:
   - (
   - )
   - '#'
-  - '&lshft_to_numb_ht 16'
+  - {t: '$$mdi:apple-keyboard-shift$$', h: numbnolight}
   - {t: \, s: '|'}
   - {t: \, s: '|'}
   - '~'
@@ -798,7 +798,7 @@ layers:
   - {t: '9', s: (}
   - '&macro_comma_uni'
   - PG UP
-  - '&td0'
+  - {t: '&td0', type: held alternate}
   - {t: '0', s: )}
   - {t: '6', s: ^}
   - {t: '5', s: '%'}
@@ -828,7 +828,7 @@ layers:
   - '&macro_dot_uni'
   - PG DN
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held alternate}
   - {t: '$$mdi:transfer$$', type: trans}
   - INS
   - {type: held}
