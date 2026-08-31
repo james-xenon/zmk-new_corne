@@ -76,7 +76,7 @@
                 <&macro_release &kp LALT>;
         };
 
-        // НОВЫЙ МАКРОС: Знак вопроса через Alt+Code (063 на NumPad = ?)
+        // Макрос: Знак вопроса через Alt+Code (063 на NumPad = ?)
         macro_qmark_uni: macro_qmark_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -90,7 +90,7 @@
                 <&macro_release &kp LALT>;
         };
 
-        // НОВЫЙ МАКРОС: Двоеточие через Alt+Code (058 на NumPad = :)
+        // Макрос: Двоеточие через Alt+Code (058 на NumPad = :)
         macro_colon_uni: macro_colon_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -104,7 +104,7 @@
                 <&macro_release &kp LALT>;
         };
 
-        // НОВЫЙ МАКРОС: Точка с запятой через Alt+Code (059 на NumPad = ;)
+        // Макрос: Точка с запятой через Alt+Code (059 на NumPad = ;)
         macro_semi_uni: macro_semi_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -118,7 +118,7 @@
                 <&macro_release &kp LALT>;
         };
 
-        // НОВЫЙ МАКРОС: Слэш через Alt+Code (047 на NumPad = /)
+        // Макрос: Слэш через Alt+Code (047 на NumPad = /)
         macro_slash_uni: macro_slash_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -132,7 +132,7 @@
                 <&macro_release &kp LALT>;
         };
 
-        // НОВЫЙ МАКРОС: Однократное нажатие DQT (") без повторения при удержании
+        // Макрос: Однократное нажатие DQT (") без повторения при удержании
         macro_dqt_once: macro_dqt_once {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -165,7 +165,6 @@
         // Удержание -> Слой 17 (Символы без подсветки)
         // Одиночный тап -> ничего (none)
         // Двойной тап (окно 500 мс) -> Win (LGUI) через symb_win_tap_dance
-        // Параметр N передаётся при вызове: &symb_win_td 17 0
         symb_win_td: symb_win_td {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -199,7 +198,6 @@
         // Удержание -> Слой 14 (Управление левой рукой без подсветки)
         // Одиночный тап -> ничего (через lh_td: 1 тап = none)
         // Двойной тап (окно 250 мс) -> kp LALT (обычный Alt)
-        // kp LALT держится пока кнопка удерживается -> работает Alt+Tab с листанием
         lefthand_ht: lefthand_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -221,7 +219,6 @@
         // Hold-Tap lang_nav2 (Клавиша переключения языка):
         // Удержание -> Временный Слой 12 (Навигация 2 без подсветки)
         // Одиночный тап -> Макрос Win+Space (смена языка в ОС)
-        // Таймаут удержания: 220 мс, быстрое повторное нажатие: 150 мс
         lang_nav2: lang_nav2 {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -251,7 +248,6 @@
 
         // Параметрический макрос kp_once:
         // Выполняет одиночное нажатие указанной клавиши (press + release за один вызов)
-        // Используется в edit_ht чтобы Ctrl+A/S/F/Z/X/C/V не залипали
         kp_once: kp_once {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
@@ -291,7 +287,6 @@
         // Hold-Tap n_alt_ht (Клавиша N):
         // Тап -> Символ N
         // Удержание -> Left Alt
-        // Hold срабатывает ТОЛЬКО при касании позиций правой руки (26-35, 38-41)
         n_alt_ht: n_alt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -306,7 +301,6 @@
         // Hold-Tap b_alt_ht (Клавиша B):
         // Тап -> Символ B
         // Удержание -> Left Alt
-        // Hold срабатывает ТОЛЬКО при касании позиций правой руки (26-35, 38-41)
         b_alt_ht: b_alt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -318,8 +312,7 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Hold-Tap для перехода из Цифр (15) в Копию символов (16) через BSPC
-        // И для перехода из Символов (17) в Копию цифр (18) через BSPC
+        // Hold-Tap для перехода между слоями через BSPC
         bspc_to_layer_ht: bspc_to_layer_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -328,42 +321,7 @@
             bindings = <&mo>, <&kp>;
         };
 
-        // Hold-Tap lbkt_dot_ht (Клавиша {):
-        // Тап -> . (точка через Alt+Code)
-        // Удержание (200 мс) -> { (LBKT)
-        lbkt_dot_ht: lbkt_dot_ht {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <200>;
-            bindings = <&kp>, <&macro_dot_uni>;
-        };
-
-        // Hold-Tap minus_dqt_ht (Клавиша -):
-        // Тап -> - (MINUS)
-        // Удержание (200 мс) -> " (DQT) однократно, без повторения при зажатии
-        minus_dqt_ht: minus_dqt_ht {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <200>;
-            bindings = <&macro_dqt_once>, <&kp>;
-        };
-
-        // Hold-Tap colon_semi_ht (Клавиша :):
-        // Тап -> : (двоеточие через Alt+Code)
-        // Удержание (200 мс) -> ; (точка с запятой через Alt+Code)
-        colon_semi_ht: colon_semi_ht {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <200>;
-            bindings = <&macro_semi_uni>, <&macro_colon_uni>;
-        };
-
-        // НОВОЕ: Hold-Tap excl_tilde_ht (Клавиша !):
-        // Тап -> ! (EXCL)
-        // Удержание (200 мс) -> ~ (TILDE)
+        // Hold-Tap excl_tilde_ht: тап=! hold=~
         excl_tilde_ht: excl_tilde_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -372,9 +330,7 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // НОВОЕ: Hold-Tap qmark_dqt_ht (Клавиша ?):
-        // Тап -> ? (макрос)
-        // Удержание (200 мс) -> " (DQT) однократно
+        // Hold-Tap qmark_dqt_ht: тап=? hold=" (однократно)
         qmark_dqt_ht: qmark_dqt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -383,9 +339,7 @@
             bindings = <&macro_dqt_once>, <&macro_qmark_uni>;
         };
 
-        // НОВОЕ: Hold-Tap astrk_caret_ht (Клавиша *):
-        // Тап -> * (ASTRK)
-        // Удержание (200 мс) -> ^ (CARET)
+        // Hold-Tap astrk_caret_ht: тап=* hold=^
         astrk_caret_ht: astrk_caret_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -394,9 +348,7 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // НОВОЕ: Hold-Tap lpar_lt_ht (Клавиша ():
-        // Тап -> ( (LPAR)
-        // Удержание (200 мс) -> < (LT)
+        // Hold-Tap lpar_lt_ht: тап=( hold=<
         lpar_lt_ht: lpar_lt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -405,9 +357,7 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // НОВОЕ: Hold-Tap rpar_gt_ht (Клавиша ):
-        // Тап -> ) (RPAR)
-        // Удержание (200 мс) -> > (GT)
+        // Hold-Tap rpar_gt_ht: тап=) hold=>
         rpar_gt_ht: rpar_gt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -416,9 +366,7 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // НОВОЕ: Hold-Tap hash_dollar_ht (Клавиша #):
-        // Тап -> # (HASH)
-        // Удержание (200 мс) -> $ (DLLR)
+        // Hold-Tap hash_dollar_ht: тап=# hold=$
         hash_dollar_ht: hash_dollar_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -427,9 +375,16 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // НОВОЕ: Hold-Tap rbkt_sqt_ht (Клавиша }):
-        // Тап -> } (RBKT)
-        // Удержание (200 мс) -> ' (SQT)
+        // Hold-Tap colon_semi_ht: тап=: hold=;
+        colon_semi_ht: colon_semi_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&macro_semi_uni>, <&macro_colon_uni>;
+        };
+
+        // Hold-Tap rbkt_sqt_ht: тап=] hold='
         rbkt_sqt_ht: rbkt_sqt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -438,9 +393,25 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // НОВОЕ: Hold-Tap slash_bslh_ht (Клавиша /):
-        // Тап -> / (макрос слэш)
-        // Удержание (200 мс) -> \ (BSLH)
+        // Hold-Tap dot_lbkt_ht: тап=. hold={
+        dot_lbkt_ht: dot_lbkt_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&macro_dot_uni>;
+        };
+
+        // Hold-Tap comma_lbrc_ht: тап=, hold=[
+        comma_lbrc_ht: comma_lbrc_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&macro_comma_uni>;
+        };
+
+        // Hold-Tap slash_bslh_ht: тап=/ hold=\
         slash_bslh_ht: slash_bslh_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -449,10 +420,8 @@
             bindings = <&kp>, <&macro_slash_uni>;
         };
 
-        // НОВОЕ: Hold-Tap percent_pipe_ht (Клавиша %):
-        // Тап -> % (PRCNT)
-        // Удержание (200 мс) -> | (PIPE)
-        percent_pipe_ht: percent_pipe_ht {
+        // Hold-Tap under_grave_ht: тап=_ hold=`
+        under_grave_ht: under_grave_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
@@ -460,10 +429,45 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Hold-Tap semi_fn_ht (Клавиша точки с запятой):
+        // Hold-Tap minus_dqt_ht: тап=- hold=" (однократно)
+        minus_dqt_ht: minus_dqt_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&macro_dqt_once>, <&kp>;
+        };
+
+        // Hold-Tap plus_pipe_ht: тап=+ hold=|
+        plus_pipe_ht: plus_pipe_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        // Hold-Tap equal_amp_ht: тап== hold=&
+        equal_amp_ht: equal_amp_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        // Hold-Tap percent_at_ht: тап=% hold=@
+        percent_at_ht: percent_at_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        // Hold-Tap semi_fn_ht (Клавиша точки с запятой на основном слое):
         // Тап -> Символ ; (точка с запятой)
         // Удержание -> Переход на Слой 4 (Fn-клавиши)
-        // Hold срабатывает ТОЛЬКО при касании позиций правой руки (26-35, 38-41)
         semi_fn_ht: semi_fn_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -588,7 +592,6 @@
 
         // Комбо W + E + R + T (Клавиши 2, 3, 4, 5)
         // Включение / выключение игрового режима (Слой 7 Gaming 1).
-        // Работает на слоях 0 и 7. Окно срабатывания: 100 мс, простой: 250 мс.
         combo_wert_gaming_toggle {
            timeout-ms = <100>;
            require-prior-idle-ms = <250>;
@@ -599,7 +602,6 @@
 
         // Комбо Q + W (Клавиши 1, 2):
         // Включение Слоя 13 (Левая рука) с активацией подсветки.
-        // Работает на слое 0. Окно срабатывания: 50 мс, простой: 150 мс.
         combo_qw_tog13_on {
             timeout-ms = <80>;
             require-prior-idle-ms = <150>;
@@ -611,16 +613,15 @@
         // Комбо Tab + Q:
         // При одновременном нажатии Tab и Q отправляется Esc
         combo_tab_q_esc {
-            timeout-ms = <50>;           // Время окна для распознавания комбо (мс)
-            require-prior-idle-ms = <100>; // Требуется пауза перед нажатием (защита от случайных срабатываний при быстрой печати)
-            key-positions = <0 1>;       // Позиции клавиш: 0 = Tab, 1 = Q (согласно твоему default_layer)
-            bindings = <&kp ESC>;        // Действие: отправить Esc
-            layers = <0 11>;             // Активно на основном слое (0) и Speedtype (11). Можно добавить другие слои при необходимости.
+            timeout-ms = <50>;
+            require-prior-idle-ms = <100>;
+            key-positions = <0 1>;
+            bindings = <&kp ESC>;
+            layers = <0 11>;
         };
 
         // Комбо Q + W (Клавиши 1, 2):
         // Выключение Слоя 13 (Левая рука) и сброс подсветки.
-        // Работает только на слое 13. Окно срабатывания: 80 мс, простой: 150 мс.
         combo_qw_tog13_off {
             timeout-ms = <80>;
             require-prior-idle-ms = <150>;
@@ -631,7 +632,6 @@
 
         // Комбо E + R (Клавиши 3, 4):
         // Временная активация Слоя 10 (Навигация 3 / Мышь).
-        // Работает на слое 0. Окно срабатывания: 80 мс, простой: 100 мс.
         combo_er_nav3 {
             timeout-ms = <80>;
             require-prior-idle-ms = <150>;
@@ -642,7 +642,6 @@
 
         // Комбо ' + Esc (Клавиши 27, 41):
         // Переключение режима быстрой печати (Слой 11 Speedtype).
-        // Работает на слоях 0 и 11. Окно срабатывания: 80 мс, простой: 100 мс.
         combo_sqt_esc_speedtype {
             timeout-ms = <80>;
             require-prior-idle-ms = <150>;
@@ -653,7 +652,6 @@
 
         // Комбо D + F (Клавиши 16, 17):
         // Временный переход на Слой 1 (Навигация 1).
-        // Работает на слоях 0 и 11. Окно срабатывания: 50 мс, простой: 100 мс.
         combo_fd_nav {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
@@ -664,7 +662,6 @@
 
         // Комбо двух нижних левых клавиш (Клавиши 42, 43):
         // Временная активация Слоя 5 (Сервис: Bluetooth, RGB, прошивка).
-        // Работает на слое 0. Окно срабатывания: 50 мс, простой: 100 мс.
         combo_service {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
@@ -675,7 +672,6 @@
 
         // Комбо Y + U (Клавиши 7, 8):
         // Фиксация/разблокировка Слоя 6 (Навигация 2).
-        // Работает на слоях 0, 1, 2, 3, 4, 5, 6, 11. Окно срабатывания: 80 мс, простой: 100 мс.
         combo_yu_nav2_double_tap {
             timeout-ms = <80>;
             require-prior-idle-ms = <150>;
@@ -686,7 +682,6 @@
 
         // Комбо J + K (Клавиши 23, 24):
         // Нажатие клавиши BSPC (Backspace).
-        // Работает на слоях 0, 1, 2, 3, 4, 5, 6, 11, 15, 16, 17, 18. Окно срабатывания: 50 мс.
         combo_jk_backspace {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
@@ -697,7 +692,6 @@
 
         // Комбо K + L (Клавиши 24, 25):
         // Нажатие клавиши DEL (Delete).
-        // Работает на слоях 0, 1, 2, 3, 4, 5, 6, 11, 15, 16, 17, 18. Окно срабатывания: 50 мс.
         combo_kl_delete {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
@@ -708,7 +702,6 @@
 
         // Комбо D + F (Клавиши 16, 17):
         // Нажатие BSPC (Backspace) на символьных и цифровых слоях.
-        // Работает на слоях 2, 3, 4, 6, 12, 13, 14, 15, 16, 17, 18. Окно срабатывания: 50 мс.
         combo_lh_bspc {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
@@ -719,7 +712,6 @@
 
         // Комбо S + D (Клавиши 15, 16):
         // Нажатие DEL (Delete) на символьных и цифровых слоях.
-        // Работает на слоях 2, 3, 4, 6, 12, 13, 14, 15, 16, 17, 18. Окно срабатывания: 50 мс.
         combo_lh_del {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
@@ -730,7 +722,6 @@
 
         // Комбо Левый большой палец + E (Клавиши 3, 43):
         // Двойной тап -> Переключение фиксированного Слоя 3 (Цифровой блок с цианом).
-        // Работает на слоях 0 и 3. Окно срабатывания: 200 мс, простой: 150 мс.
         combo_left_thumb_e_numb {
             timeout-ms = <300>;
             require-prior-idle-ms = <150>;
@@ -741,7 +732,6 @@
 
         // Комбо Правый большой палец + I (Клавиши 9, 46):
         // Двойной тап -> Переключение фиксированного Слоя 2 (Символьный блок с цианом).
-        // Работает на слоях 0 и 2. Окно срабатывания: 200 мс, простой: 150 мс.
         combo_right_thumb_i_symb {
             timeout-ms = <300>;
             require-prior-idle-ms = <150>;
@@ -793,8 +783,8 @@
         symb_layer {
             bindings = <
 &kp ESC                       &kp TILDE   &kp GRAVE &kp CARET  &kp SQT    &mkp MB5                                     &kp UP                   &excl_tilde_ht EXCL TILDE  &qmark_dqt_ht DQT QMARK  &astrk_caret_ht ASTRK CARET  &lpar_lt_ht LPAR LT  &rpar_gt_ht RPAR GT  &hash_dollar_ht HASH DLLR
-&bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &colon_semi_ht SEMI COLON  &rbkt_sqt_ht RBKT SQT  &lbkt_dot_ht LBKT DOT  &macro_dot_uni   &slash_bslh_ht BSLH SLASH  &kp AMPS
-&kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER             &minus_dqt_ht DQT MINUS  &kp PLUS          &kp EQUAL         &percent_pipe_ht PRCNT PIPE  &kp AT
+&bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &colon_semi_ht SEMI COLON  &rbkt_sqt_ht RBKT SQT  &dot_lbkt_ht LBKT DOT  &comma_lbrc_ht LBRC COMMA  &slash_bslh_ht BSLH SLASH  &kp AMPS
+&kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &under_grave_ht GRAVE UNDER  &minus_dqt_ht DQT MINUS  &plus_pipe_ht PIPE PLUS  &equal_amp_ht AMP EQUAL  &percent_at_ht AT PRCNT  &kp DQT
                                                     &trans     &trans     &kp SPC                                                               &kp ENTER             &trans             &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -959,12 +949,12 @@
 
         // Слой 16: Копия символов без подсветки (Для перехода из слоя 15 Цифр)
         // Активируется удержанием правого мизинца на слое 15. 16 > 15, поэтому работает.
-        // Энкодер: Скрол по словам и типа скрол влево-вправо
+        // ЗЕРКАЛО слоя 17. Энкодер: Скрол по словам и типа скрол влево-вправо
         symbnolightcopy_layer {
             bindings = <
-&kp ESC                       &kp TILDE   &kp GRAVE &kp CARET  &kp SQT    &mkp MB5                                     &kp UP                   &excl_tilde_ht EXCL TILDE  &qmark_dqt_ht DQT QMARK  &astrk_caret_ht ASTRK CARET  &lpar_lt_ht LPAR LT  &rpar_gt_ht RPAR GT  &hash_dollar_ht HASH DLLR
-&bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &colon_semi_ht SEMI COLON  &rbkt_sqt_ht RBKT SQT  &lbkt_dot_ht LBKT DOT  &macro_dot_uni   &slash_bslh_ht BSLH SLASH  &kp AMPS
-&kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER             &minus_dqt_ht DQT MINUS  &kp PLUS          &kp EQUAL         &percent_pipe_ht PRCNT PIPE  &kp AT
+&kp DQT                       &percent_at_ht AT PRCNT  &equal_amp_ht AMP EQUAL  &plus_pipe_ht PIPE PLUS  &minus_dqt_ht DQT MINUS  &under_grave_ht GRAVE UNDER  &kp DOWN                 &colon_semi_ht SEMI COLON  &rbkt_sqt_ht RBKT SQT  &dot_lbkt_ht LBKT DOT  &comma_lbrc_ht LBRC COMMA  &slash_bslh_ht BSLH SLASH  &kp AMPS
+&bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &hash_dollar_ht HASH DLLR  &rpar_gt_ht RPAR GT  &lpar_lt_ht LPAR LT  &astrk_caret_ht ASTRK CARET  &qmark_dqt_ht DQT QMARK  &excl_tilde_ht EXCL TILDE
+&kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp UP                   &kp MB5                   &kp SQT                   &kp CARET                 &kp GRAVE                 &kp TILDE                 &kp ESC
                                                     &trans     &trans     &kp SPC                                                               &kp ENTER             &trans             &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
@@ -976,8 +966,8 @@
         symbnolight_layer {
             bindings = <
 &kp ESC                       &kp TILDE   &kp GRAVE &kp CARET  &kp SQT    &mkp MB5                                     &kp UP                   &excl_tilde_ht EXCL TILDE  &qmark_dqt_ht DQT QMARK  &astrk_caret_ht ASTRK CARET  &lpar_lt_ht LPAR LT  &rpar_gt_ht RPAR GT  &hash_dollar_ht HASH DLLR
-&bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &colon_semi_ht SEMI COLON  &rbkt_sqt_ht RBKT SQT  &lbkt_dot_ht LBKT DOT  &macro_dot_uni   &slash_bslh_ht BSLH SLASH  &kp AMPS
-&kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER             &minus_dqt_ht DQT MINUS  &kp PLUS          &kp EQUAL         &percent_pipe_ht PRCNT PIPE  &kp AT
+&bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &colon_semi_ht SEMI COLON  &rbkt_sqt_ht RBKT SQT  &dot_lbkt_ht LBKT DOT  &comma_lbrc_ht LBRC COMMA  &slash_bslh_ht BSLH SLASH  &kp AMPS
+&kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &under_grave_ht GRAVE UNDER  &minus_dqt_ht DQT MINUS  &plus_pipe_ht PIPE PLUS  &equal_amp_ht AMP EQUAL  &percent_at_ht AT PRCNT  &kp DQT
                                                     &trans     &trans     &kp SPC                                                               &kp ENTER             &trans             &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
