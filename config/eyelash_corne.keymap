@@ -328,10 +328,21 @@
             bindings = <&mo>, <&kp>;
         };
 
-        // Hold-Tap lbkt_dqt_ht (Клавиша {):
-        // Тап -> { (LBKT)
+        // Hold-Tap lbkt_dot_ht (Клавиша {):
+        // Тап -> . (точка через Alt+Code)
+        // Удержание (200 мс) -> { (LBKT)
+        lbkt_dot_ht: lbkt_dot_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&macro_dot_uni>;
+        };
+
+        // Hold-Tap minus_dqt_ht (Клавиша -):
+        // Тап -> - (MINUS)
         // Удержание (200 мс) -> " (DQT) однократно, без повторения при зажатии
-        lbkt_dqt_ht: lbkt_dqt_ht {
+        minus_dqt_ht: minus_dqt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
@@ -339,26 +350,114 @@
             bindings = <&macro_dqt_once>, <&kp>;
         };
 
-        // Hold-Tap rbkt_comma_ht (Клавиша }):
-        // Тап -> , (запятая через Alt+Code)
-        // Удержание (200 мс) -> } (RBKT)
-        rbkt_comma_ht: rbkt_comma_ht {
+        // Hold-Tap colon_semi_ht (Клавиша :):
+        // Тап -> : (двоеточие через Alt+Code)
+        // Удержание (200 мс) -> ; (точка с запятой через Alt+Code)
+        colon_semi_ht: colon_semi_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&macro_comma_uni>;
+            bindings = <&macro_semi_uni>, <&macro_colon_uni>;
         };
 
-        // НОВОЕ: Hold-Tap amps_comma_ht (Клавиша &):
-        // Тап -> , (запятая через Alt+Code)
-        // Удержание (200 мс) -> & (AMPS)
-        amps_comma_ht: amps_comma_ht {
+        // НОВОЕ: Hold-Tap excl_tilde_ht (Клавиша !):
+        // Тап -> ! (EXCL)
+        // Удержание (200 мс) -> ~ (TILDE)
+        excl_tilde_ht: excl_tilde_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&macro_comma_uni>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        // НОВОЕ: Hold-Tap qmark_dqt_ht (Клавиша ?):
+        // Тап -> ? (макрос)
+        // Удержание (200 мс) -> " (DQT) однократно
+        qmark_dqt_ht: qmark_dqt_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&macro_dqt_once>, <&macro_qmark_uni>;
+        };
+
+        // НОВОЕ: Hold-Tap astrk_caret_ht (Клавиша *):
+        // Тап -> * (ASTRK)
+        // Удержание (200 мс) -> ^ (CARET)
+        astrk_caret_ht: astrk_caret_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        // НОВОЕ: Hold-Tap lpar_lt_ht (Клавиша ():
+        // Тап -> ( (LPAR)
+        // Удержание (200 мс) -> < (LT)
+        lpar_lt_ht: lpar_lt_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        // НОВОЕ: Hold-Tap rpar_gt_ht (Клавиша ):
+        // Тап -> ) (RPAR)
+        // Удержание (200 мс) -> > (GT)
+        rpar_gt_ht: rpar_gt_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        // НОВОЕ: Hold-Tap hash_dollar_ht (Клавиша #):
+        // Тап -> # (HASH)
+        // Удержание (200 мс) -> $ (DLLR)
+        hash_dollar_ht: hash_dollar_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        // НОВОЕ: Hold-Tap rbkt_sqt_ht (Клавиша }):
+        // Тап -> } (RBKT)
+        // Удержание (200 мс) -> ' (SQT)
+        rbkt_sqt_ht: rbkt_sqt_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        // НОВОЕ: Hold-Tap slash_bslh_ht (Клавиша /):
+        // Тап -> / (макрос слэш)
+        // Удержание (200 мс) -> \ (BSLH)
+        slash_bslh_ht: slash_bslh_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&macro_slash_uni>;
+        };
+
+        // НОВОЕ: Hold-Tap percent_pipe_ht (Клавиша %):
+        // Тап -> % (PRCNT)
+        // Удержание (200 мс) -> | (PIPE)
+        percent_pipe_ht: percent_pipe_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&kp>;
         };
 
         // Hold-Tap semi_fn_ht (Клавиша точки с запятой):
@@ -683,7 +782,7 @@
             bindings = <
 &kp ESC  &none  &none   &none  &none  &none                               &mmv MOVE_UP                       &kp HOME           &mkp LCLK          &kp UP     &mkp RCLK            &macro_qmark_uni    &kp PG_UP
 &trans   &none  &none   &none  &none  &none               &mmv MOVE_LEFT  &mkp LCLK      &mmv MOVE_RIGHT     &msc MOVE_X(-150)  &kp LEFT           &kp DOWN   &kp RIGHT            &msc MOVE_X(150)    &kp BSPC
-&trans   &none  &none   &none  &none  &none       &trans                  &mmv MOVE_DOWN                     &kp END            &msc MOVE_Y(-150)  &mkp MCLK  &msc MOVE_Y(150)     &macro_dot_uni      &kp PG_DN
+&trans   &none  &none  &none  &none  &none       &trans                  &mmv MOVE_DOWN                     &kp END            &msc MOVE_Y(-150)  &mkp MCLK  &msc MOVE_Y(150)     &macro_dot_uni      &kp PG_DN
                         &trans &trans &trans                                                                 &trans             &trans             &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
@@ -693,10 +792,10 @@
         // Энкодер: Громкость (Volume Up / Down)
         symb_layer {
             bindings = <
-&kp ESC                       &kp TILDE   &kp GRAVE &kp CARET  &kp SQT    &mkp MB5                                     &kp UP                   &kp EXCL              &macro_qmark_uni           &kp ASTRK              &kp LPAR          &kp RPAR          &kp HASH
-&bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &macro_colon_uni      &rbkt_comma_ht RBKT COMMA  &lbkt_dqt_ht DQT LBKT  &macro_semi_uni   &macro_slash_uni  &amps_comma_ht AMPS COMMA
-&kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER             &kp MINUS                  &kp PLUS               &kp EQUAL         &kp PRCNT         &kp AT
-                                                    &trans     &trans     &kp SPC                                                               &kp ENTER             &trans                     &trans
+&kp ESC                       &kp TILDE   &kp GRAVE &kp CARET  &kp SQT    &mkp MB5                                     &kp UP                   &excl_tilde_ht EXCL TILDE  &qmark_dqt_ht DQT QMARK  &astrk_caret_ht ASTRK CARET  &lpar_lt_ht LPAR LT  &rpar_gt_ht RPAR GT  &hash_dollar_ht HASH DLLR
+&bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &colon_semi_ht SEMI COLON  &rbkt_sqt_ht RBKT SQT  &lbkt_dot_ht LBKT DOT  &macro_dot_uni   &slash_bslh_ht BSLH SLASH  &kp AMPS
+&kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER             &minus_dqt_ht DQT MINUS  &kp PLUS          &kp EQUAL         &percent_pipe_ht PRCNT PIPE  &kp AT
+                                                    &trans     &trans     &kp SPC                                                               &kp ENTER             &trans             &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
@@ -765,7 +864,7 @@
         // Энкодер: Громкость (Volume Up / Down)
         gaming2_layer {
             bindings = <
-&kp ESC      &kp N1   &kp N2  &kp N3  &none    &none                           &kp UP                  &none       &kp F7  &kp F8  &kp F9  &kp F10  &kp F11
+&kp ESC      &kp N1   &kp N2  &kp N3  &none    &none                          &kp UP                  &none       &kp F7  &kp F8  &kp F9  &kp F10  &kp F11
 &kp LSHFT    &kp N4   &kp N5  &kp N6  &kp N0   &none                &kp LEFT   &kp ENTER  &kp RIGHT   &none       &kp F4  &kp F5  &kp F6  &none    &kp F12
 &kp LCTRL    &kp N7   &kp N8  &kp N9  &none    &none   &kp C_MUTE              &kp DOWN               &none       &kp F1  &kp F2  &kp F3  &none    &kp ESC
                               &none   &none    &none                                                  &kp ENTER   &none   &none
@@ -863,10 +962,10 @@
         // Энкодер: Скрол по словам и типа скрол влево-вправо
         symbnolightcopy_layer {
             bindings = <
-&kp ESC                       &kp TILDE   &kp GRAVE &kp CARET  &kp SQT    &mkp MB5                                     &kp UP                   &kp EXCL              &macro_qmark_uni           &kp ASTRK              &kp LPAR          &kp RPAR          &kp HASH
-&bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &macro_colon_uni      &rbkt_comma_ht RBKT COMMA  &lbkt_dqt_ht DQT LBKT  &macro_semi_uni   &macro_slash_uni  &amps_comma_ht AMPS COMMA
-&kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER             &kp MINUS                  &kp PLUS               &kp EQUAL         &kp PRCNT         &kp AT
-                                                    &trans     &trans     &kp SPC                                                               &kp ENTER             &trans                     &trans
+&kp ESC                       &kp TILDE   &kp GRAVE &kp CARET  &kp SQT    &mkp MB5                                     &kp UP                   &excl_tilde_ht EXCL TILDE  &qmark_dqt_ht DQT QMARK  &astrk_caret_ht ASTRK CARET  &lpar_lt_ht LPAR LT  &rpar_gt_ht RPAR GT  &hash_dollar_ht HASH DLLR
+&bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &colon_semi_ht SEMI COLON  &rbkt_sqt_ht RBKT SQT  &lbkt_dot_ht LBKT DOT  &macro_dot_uni   &slash_bslh_ht BSLH SLASH  &kp AMPS
+&kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER             &minus_dqt_ht DQT MINUS  &kp PLUS          &kp EQUAL         &percent_pipe_ht PRCNT PIPE  &kp AT
+                                                    &trans     &trans     &kp SPC                                                               &kp ENTER             &trans             &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
@@ -876,10 +975,10 @@
         // Энкодер: Скрол по словам и типа скрол влево-вправо
         symbnolight_layer {
             bindings = <
-&kp ESC                       &kp TILDE   &kp GRAVE &kp CARET  &kp SQT    &mkp MB5                                     &kp UP                   &kp EXCL              &macro_qmark_uni           &kp ASTRK              &kp LPAR          &kp RPAR          &kp HASH
-&bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &macro_colon_uni      &rbkt_comma_ht RBKT COMMA  &lbkt_dqt_ht DQT LBKT  &macro_semi_uni   &macro_slash_uni  &amps_comma_ht AMPS COMMA
-&kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER             &kp MINUS                  &kp PLUS               &kp EQUAL         &kp PRCNT         &kp AT
-                                                    &trans     &trans     &kp SPC                                                               &kp ENTER             &trans                     &trans
+&kp ESC                       &kp TILDE   &kp GRAVE &kp CARET  &kp SQT    &mkp MB5                                     &kp UP                   &excl_tilde_ht EXCL TILDE  &qmark_dqt_ht DQT QMARK  &astrk_caret_ht ASTRK CARET  &lpar_lt_ht LPAR LT  &rpar_gt_ht RPAR GT  &hash_dollar_ht HASH DLLR
+&bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &colon_semi_ht SEMI COLON  &rbkt_sqt_ht RBKT SQT  &lbkt_dot_ht LBKT DOT  &macro_dot_uni   &slash_bslh_ht BSLH SLASH  &kp AMPS
+&kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &kp UNDER             &minus_dqt_ht DQT MINUS  &kp PLUS          &kp EQUAL         &percent_pipe_ht PRCNT PIPE  &kp AT
+                                                    &trans     &trans     &kp SPC                                                               &kp ENTER             &trans             &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
