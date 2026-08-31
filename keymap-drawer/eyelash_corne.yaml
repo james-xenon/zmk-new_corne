@@ -122,11 +122,11 @@ layers:
   - SPC
   - $$mdi:arrow-right-bold$$
   - '&macro_colon_uni'
-  - {t: ']', s: '}'}
+  - {t: '&macro_comma_uni COMMA', h: ']'}
   - {t: '[', h: '&macro_dqt_once DQT', s: '{'}
   - '&macro_semi_uni'
   - '&macro_slash_uni'
-  - '&'
+  - {t: '&macro_comma_uni COMMA', h: '&'}
   - $$mdi:apple-keyboard-control$$
   - <
   - '>'
@@ -808,11 +808,11 @@ layers:
   - SPC
   - $$mdi:arrow-right-bold$$
   - '&macro_colon_uni'
-  - {t: ']', s: '}'}
+  - {t: '&macro_comma_uni COMMA', h: ']'}
   - {t: '[', h: '&macro_dqt_once DQT', s: '{'}
   - '&macro_semi_uni'
   - '&macro_slash_uni'
-  - {t: '&', type: held}
+  - {t: '&macro_comma_uni COMMA', h: '&', type: held}
   - $$mdi:apple-keyboard-control$$
   - <
   - '>'
@@ -857,11 +857,11 @@ layers:
   - SPC
   - $$mdi:arrow-right-bold$$
   - '&macro_colon_uni'
-  - {t: ']', s: '}'}
+  - {t: '&macro_comma_uni COMMA', h: ']'}
   - {t: '[', h: '&macro_dqt_once DQT', s: '{'}
   - '&macro_semi_uni'
   - '&macro_slash_uni'
-  - '&'
+  - {t: '&macro_comma_uni COMMA', h: '&'}
   - $$mdi:apple-keyboard-control$$
   - <
   - '>'
