@@ -100,47 +100,47 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   symb:
   - $$mdi:keyboard-esc$$
-  - '~'
-  - {t: '`', s: '~'}
-  - ^
-  - {t: '''', s: '"'}
-  - '&mkp MB5'
+  - {t: '!', h: '&kp_once TILDE'}
+  - {t: '&macro_dqt_once QMARK', h: '&kp_once DQT'}
+  - {t: '*', h: '&kp_once CARET'}
+  - {t: (, h: '&kp_once LT'}
+  - {t: ), h: '&kp_once GT'}
   - $$mdi:arrow-up-bold$$
-  - {t: '&kp_once EXCL', h: '~'}
-  - {t: '?', h: '&macro_dqt_once DQT'}
-  - {t: '&kp_once ASTRK', h: ^}
-  - {t: '&kp_once LPAR', h: <}
-  - {t: '&kp_once RPAR', h: '>'}
-  - {t: '#', h: '&kp_once DLLR'}
+  - {t: '!', h: '&kp_once TILDE'}
+  - {t: '&macro_dqt_once QMARK', h: '&kp_once DQT'}
+  - {t: '*', h: '&kp_once CARET'}
+  - {t: (, h: '&kp_once LT'}
+  - {t: ), h: '&kp_once GT'}
+  - {t: $, h: '&kp_once HASH'}
   - {t: '$$mdi:backspace$$', h: numbnolightcopy}
-  - '|'
-  - {t: \, s: '|'}
-  - $
-  - '"'
-  - '&mkp MB4'
+  - {t: ':', h: '&kp_once SEMI'}
+  - {t: ']', h: '&kp_once SQT', s: '}'}
+  - {t: ., h: '&kp_once LBRC', s: '>'}
+  - {t: ',', h: '&kp_once LBKT', s: <}
+  - {t: /, h: '&kp_once BSLH', s: '?'}
   - $$mdi:arrow-left-bold$$
   - SPC
   - $$mdi:arrow-right-bold$$
-  - {t: '&kp_once COLON', h: ;}
-  - {t: '&kp_once RBKT', h: ''''}
+  - {t: ':', h: '&kp_once SEMI'}
+  - {t: ']', h: '&kp_once SQT', s: '}'}
   - {t: ., h: '&kp_once LBRC', s: '>'}
   - {t: ',', h: '&kp_once LBKT', s: <}
-  - {t: '&kp_once SLASH', h: \}
+  - {t: /, h: '&kp_once BSLH', s: '?'}
   - '&'
   - $$mdi:apple-keyboard-control$$
-  - <
-  - '>'
-  - '{'
-  - '}'
-  - AL CALCULATOR
+  - {t: ^, h: '&kp_once UNDER'}
+  - {t: '-', h: '&kp_once GRAVE', s: _}
+  - {t: +, h: '&kp_once PIPE'}
+  - {t: '=', s: +}
+  - {t: '&', h: '&kp_once PRCNT'}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
-  - {t: '&kp_once UNDER', h: ^}
-  - {t: '&kp_once MINUS', h: '`'}
-  - {t: '&kp_once PLUS', h: '|'}
+  - {t: ^, h: '&kp_once UNDER'}
+  - {t: '-', h: '&kp_once GRAVE', s: _}
+  - {t: +, h: '&kp_once PIPE'}
   - {t: '=', s: +}
-  - {t: '%', h: '&kp_once AMPS'}
-  - {t: '"', h: '&macro_dqt_once AT'}
+  - {t: '&', h: '&kp_once PRCNT'}
+  - {t: '&macro_dqt_once macro_dqt_once', h: '&kp_once AT'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - SPC
@@ -786,47 +786,47 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   symbnolightcopy:
   - $$mdi:keyboard-esc$$
-  - '~'
-  - {t: '`', s: '~'}
-  - ^
-  - {t: '''', s: '"'}
-  - '&mkp MB5'
+  - {t: '!', h: '&kp_once TILDE'}
+  - {t: '&macro_dqt_once QMARK', h: '&kp_once DQT'}
+  - {t: '*', h: '&kp_once CARET'}
+  - {t: (, h: '&kp_once LT'}
+  - {t: ), h: '&kp_once GT'}
   - $$mdi:arrow-up-bold$$
-  - {t: '&kp_once EXCL', h: '~'}
-  - {t: '?', h: '&macro_dqt_once DQT'}
-  - {t: '&kp_once ASTRK', h: ^}
-  - {t: '&kp_once LPAR', h: <}
-  - {t: '&kp_once RPAR', h: '>'}
-  - {t: '#', h: '&kp_once DLLR'}
+  - {t: '!', h: '&kp_once TILDE'}
+  - {t: '&macro_dqt_once QMARK', h: '&kp_once DQT'}
+  - {t: '*', h: '&kp_once CARET'}
+  - {t: (, h: '&kp_once LT'}
+  - {t: ), h: '&kp_once GT'}
+  - {t: $, h: '&kp_once HASH'}
   - {t: '$$mdi:backspace$$', h: numbnolightcopy}
-  - '|'
-  - {t: \, s: '|'}
-  - $
-  - '"'
-  - '&mkp MB4'
+  - {t: ':', h: '&kp_once SEMI'}
+  - {t: ']', h: '&kp_once SQT', s: '}'}
+  - {t: ., h: '&kp_once LBRC', s: '>'}
+  - {t: ',', h: '&kp_once LBKT', s: <}
+  - {t: /, h: '&kp_once BSLH', s: '?'}
   - $$mdi:arrow-left-bold$$
   - SPC
   - $$mdi:arrow-right-bold$$
-  - {t: '&kp_once COLON', h: ;}
-  - {t: '&kp_once RBKT', h: ''''}
+  - {t: ':', h: '&kp_once SEMI'}
+  - {t: ']', h: '&kp_once SQT', s: '}'}
   - {t: ., h: '&kp_once LBRC', s: '>'}
   - {t: ',', h: '&kp_once LBKT', s: <}
-  - {t: '&kp_once SLASH', h: \}
+  - {t: /, h: '&kp_once BSLH', s: '?'}
   - {t: '&', type: held}
   - $$mdi:apple-keyboard-control$$
-  - <
-  - '>'
-  - '{'
-  - '}'
-  - AL CALCULATOR
+  - {t: ^, h: '&kp_once UNDER'}
+  - {t: '-', h: '&kp_once GRAVE', s: _}
+  - {t: +, h: '&kp_once PIPE'}
+  - {t: '=', s: +}
+  - {t: '&', h: '&kp_once PRCNT'}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
-  - {t: '&kp_once UNDER', h: ^}
-  - {t: '&kp_once MINUS', h: '`'}
-  - {t: '&kp_once PLUS', h: '|'}
+  - {t: ^, h: '&kp_once UNDER'}
+  - {t: '-', h: '&kp_once GRAVE', s: _}
+  - {t: +, h: '&kp_once PIPE'}
   - {t: '=', s: +}
-  - {t: '%', h: '&kp_once AMPS'}
-  - {t: '"', h: '&macro_dqt_once AT'}
+  - {t: '&', h: '&kp_once PRCNT'}
+  - {t: '&macro_dqt_once macro_dqt_once', h: '&kp_once AT'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - SPC
@@ -835,47 +835,47 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   symbnolight:
   - $$mdi:keyboard-esc$$
-  - '~'
-  - {t: '`', s: '~'}
-  - ^
-  - {t: '''', s: '"'}
-  - '&mkp MB5'
+  - {t: '!', h: '&kp_once TILDE'}
+  - {t: '&macro_dqt_once QMARK', h: '&kp_once DQT'}
+  - {t: '*', h: '&kp_once CARET'}
+  - {t: (, h: '&kp_once LT'}
+  - {t: ), h: '&kp_once GT'}
   - $$mdi:arrow-up-bold$$
-  - {t: '&kp_once EXCL', h: '~'}
-  - {t: '?', h: '&macro_dqt_once DQT'}
-  - {t: '&kp_once ASTRK', h: ^}
-  - {t: '&kp_once LPAR', h: <}
-  - {t: '&kp_once RPAR', h: '>'}
-  - {t: '#', h: '&kp_once DLLR'}
+  - {t: '!', h: '&kp_once TILDE'}
+  - {t: '&macro_dqt_once QMARK', h: '&kp_once DQT'}
+  - {t: '*', h: '&kp_once CARET'}
+  - {t: (, h: '&kp_once LT'}
+  - {t: ), h: '&kp_once GT'}
+  - {t: $, h: '&kp_once HASH'}
   - {t: '$$mdi:backspace$$', h: numbnolightcopy}
-  - '|'
-  - {t: \, s: '|'}
-  - $
-  - '"'
-  - '&mkp MB4'
+  - {t: ':', h: '&kp_once SEMI'}
+  - {t: ']', h: '&kp_once SQT', s: '}'}
+  - {t: ., h: '&kp_once LBRC', s: '>'}
+  - {t: ',', h: '&kp_once LBKT', s: <}
+  - {t: /, h: '&kp_once BSLH', s: '?'}
   - $$mdi:arrow-left-bold$$
   - SPC
   - $$mdi:arrow-right-bold$$
-  - {t: '&kp_once COLON', h: ;}
-  - {t: '&kp_once RBKT', h: ''''}
+  - {t: ':', h: '&kp_once SEMI'}
+  - {t: ']', h: '&kp_once SQT', s: '}'}
   - {t: ., h: '&kp_once LBRC', s: '>'}
   - {t: ',', h: '&kp_once LBKT', s: <}
-  - {t: '&kp_once SLASH', h: \}
+  - {t: /, h: '&kp_once BSLH', s: '?'}
   - '&'
   - $$mdi:apple-keyboard-control$$
-  - <
-  - '>'
-  - '{'
-  - '}'
-  - AL CALCULATOR
+  - {t: ^, h: '&kp_once UNDER'}
+  - {t: '-', h: '&kp_once GRAVE', s: _}
+  - {t: +, h: '&kp_once PIPE'}
+  - {t: '=', s: +}
+  - {t: '&', h: '&kp_once PRCNT'}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
-  - {t: '&kp_once UNDER', h: ^}
-  - {t: '&kp_once MINUS', h: '`'}
-  - {t: '&kp_once PLUS', h: '|'}
+  - {t: ^, h: '&kp_once UNDER'}
+  - {t: '-', h: '&kp_once GRAVE', s: _}
+  - {t: +, h: '&kp_once PIPE'}
   - {t: '=', s: +}
-  - {t: '%', h: '&kp_once AMPS'}
-  - {t: '"', h: '&macro_dqt_once AT'}
+  - {t: '&', h: '&kp_once PRCNT'}
+  - {t: '&macro_dqt_once macro_dqt_once', h: '&kp_once AT'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
   - SPC
