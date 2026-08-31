@@ -44,7 +44,7 @@ layers:
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
   - {t: '&lh_td', h: lefthandnolight}
-  - {t: '&symb_win_tap_dance', h: symbnolight}
+  - {t: '&symb_win_tap_dance', h: symbnolightcopy}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', h: numbnolight}
@@ -112,7 +112,7 @@ layers:
   - {t: (, h: <}
   - {t: ), h: '>'}
   - {t: '#', h: $}
-  - {t: '$$mdi:backspace$$', h: numbnolightcopy}
+  - {t: '$$mdi:backspace$$', h: numbnolight}
   - '|'
   - {t: \, s: '|'}
   - $
@@ -123,10 +123,10 @@ layers:
   - $$mdi:arrow-right-bold$$
   - {t: '&macro_colon_uni COLON', h: '&macro_semi_uni SEMI'}
   - {t: ']', h: '''', s: '}'}
-  - {t: '&macro_dot_uni DOT', h: '{'}
-  - {t: '&macro_comma_uni COMMA', h: '['}
-  - {t: '&macro_semi_uni SEMI', h: ']'}
+  - {t: '&macro_dot_uni DOT', h: '['}
+  - {t: '&macro_comma_uni COMMA', h: '{'}
   - {t: '&macro_slash_uni SLASH', h: \}
+  - '&'
   - $$mdi:apple-keyboard-control$$
   - <
   - '>'
@@ -135,12 +135,12 @@ layers:
   - AL CALCULATOR
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
-  - {t: _, h: ^}
-  - {t: '-', h: '`', s: _}
+  - {t: _, h: '`'}
+  - {t: '-', h: '&macro_dqt_once DQT', s: _}
   - {t: +, h: '|'}
-  - {t: '=', s: +}
-  - {t: '%', h: '&'}
-  - {t: '"', h: '@'}
+  - {t: '=', h: AMP, s: +}
+  - {t: '%', h: '@'}
+  - '"'
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - SPC
@@ -583,7 +583,7 @@ layers:
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
   - $$mdi:apple-keyboard-option$$
-  - {t: '&symb_win_tap_dance', h: symbnolight}
+  - {t: '&symb_win_tap_dance', h: symbnolightcopy}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', h: numbnolight}
@@ -735,6 +735,104 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
+  symbnolight:
+  - $$mdi:keyboard-esc$$
+  - '~'
+  - {t: '`', s: '~'}
+  - ^
+  - {t: '''', s: '"'}
+  - '&mkp MB5'
+  - $$mdi:arrow-up-bold$$
+  - {t: '!', h: '~'}
+  - {t: '&macro_qmark_uni QMARK', h: '&macro_dqt_once DQT'}
+  - {t: '*', h: ^}
+  - {t: (, h: <}
+  - {t: ), h: '>'}
+  - {t: '#', h: $}
+  - {t: '$$mdi:backspace$$', h: numbnolight}
+  - '|'
+  - {t: \, s: '|'}
+  - $
+  - '"'
+  - '&mkp MB4'
+  - $$mdi:arrow-left-bold$$
+  - SPC
+  - $$mdi:arrow-right-bold$$
+  - {t: '&macro_colon_uni COLON', h: '&macro_semi_uni SEMI'}
+  - {t: ']', h: '''', s: '}'}
+  - {t: '&macro_dot_uni DOT', h: '['}
+  - {t: '&macro_comma_uni COMMA', h: '{'}
+  - {t: '&macro_slash_uni SLASH', h: \}
+  - '&'
+  - $$mdi:apple-keyboard-control$$
+  - <
+  - '>'
+  - '{'
+  - '}'
+  - AL CALCULATOR
+  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:arrow-down-bold$$
+  - {t: _, h: '`'}
+  - {t: '-', h: '&macro_dqt_once DQT', s: _}
+  - {t: +, h: '|'}
+  - {t: '=', h: AMP, s: +}
+  - {t: '%', h: '@'}
+  - '"'
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - SPC
+  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  symbnolightcopy:
+  - $$mdi:keyboard-esc$$
+  - '~'
+  - {t: '`', s: '~'}
+  - ^
+  - {t: '''', s: '"'}
+  - '&mkp MB5'
+  - $$mdi:arrow-up-bold$$
+  - {t: '!', h: '~'}
+  - {t: '&macro_qmark_uni QMARK', h: '&macro_dqt_once DQT'}
+  - {t: '*', h: ^}
+  - {t: (, h: <}
+  - {t: ), h: '>'}
+  - {t: '#', h: $}
+  - {t: '$$mdi:backspace$$', h: numbnolight}
+  - '|'
+  - {t: \, s: '|'}
+  - $
+  - '"'
+  - '&mkp MB4'
+  - $$mdi:arrow-left-bold$$
+  - SPC
+  - $$mdi:arrow-right-bold$$
+  - {t: '&macro_colon_uni COLON', h: '&macro_semi_uni SEMI'}
+  - {t: ']', h: '''', s: '}'}
+  - {t: '&macro_dot_uni DOT', h: '['}
+  - {t: '&macro_comma_uni COMMA', h: '{'}
+  - {t: '&macro_slash_uni SLASH', h: \}
+  - '&'
+  - $$mdi:apple-keyboard-control$$
+  - <
+  - '>'
+  - '{'
+  - '}'
+  - AL CALCULATOR
+  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:arrow-down-bold$$
+  - {t: _, h: '`'}
+  - {t: '-', h: '&macro_dqt_once DQT', s: _}
+  - {t: +, h: '|'}
+  - {t: '=', h: AMP, s: +}
+  - {t: '%', h: '@'}
+  - '"'
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
+  - SPC
+  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
   numbnolight:
   - PG UP
   - '&macro_comma_uni'
@@ -749,7 +847,7 @@ layers:
   - {t: '9', s: (}
   - '&macro_comma_uni'
   - PG UP
-  - {t: '$$mdi:backspace$$', type: backspace}
+  - {t: '$$mdi:backspace$$', type: held alternate}
   - {t: '0', s: )}
   - {t: '6', s: ^}
   - {t: '5', s: '%'}
@@ -779,108 +877,10 @@ layers:
   - '&macro_dot_uni'
   - PG DN
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held alternate}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {type: held}
-  - {t: '$$mdi:transfer$$', type: trans}
-  symbnolightcopy:
-  - $$mdi:keyboard-esc$$
-  - '~'
-  - {t: '`', s: '~'}
-  - ^
-  - {t: '''', s: '"'}
-  - '&mkp MB5'
-  - $$mdi:arrow-up-bold$$
-  - {t: '!', h: '~'}
-  - {t: '&macro_qmark_uni QMARK', h: '&macro_dqt_once DQT'}
-  - {t: '*', h: ^}
-  - {t: (, h: <}
-  - {t: ), h: '>'}
-  - {t: '#', h: $}
-  - {t: '$$mdi:backspace$$', h: numbnolightcopy}
-  - '|'
-  - {t: \, s: '|'}
-  - $
-  - '"'
-  - '&mkp MB4'
-  - $$mdi:arrow-left-bold$$
-  - SPC
-  - $$mdi:arrow-right-bold$$
-  - {t: '&macro_colon_uni COLON', h: '&macro_semi_uni SEMI'}
-  - {t: ']', h: '''', s: '}'}
-  - {t: '&macro_dot_uni DOT', h: '{'}
-  - {t: '&macro_comma_uni COMMA', h: '['}
-  - {t: '&macro_semi_uni SEMI', h: ']'}
-  - {t: '&macro_slash_uni SLASH', h: \, type: held}
-  - $$mdi:apple-keyboard-control$$
-  - <
-  - '>'
-  - '{'
-  - '}'
-  - AL CALCULATOR
-  - {t: '$$mdi:transfer$$', type: trans}
-  - $$mdi:arrow-down-bold$$
-  - {t: _, h: ^}
-  - {t: '-', h: '`', s: _}
-  - {t: +, h: '|'}
-  - {t: '=', s: +}
-  - {t: '%', h: '&'}
-  - {t: '"', h: '@'}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - SPC
-  - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {type: held}
-  - {t: '$$mdi:transfer$$', type: trans}
-  symbnolight:
-  - $$mdi:keyboard-esc$$
-  - '~'
-  - {t: '`', s: '~'}
-  - ^
-  - {t: '''', s: '"'}
-  - '&mkp MB5'
-  - $$mdi:arrow-up-bold$$
-  - {t: '!', h: '~'}
-  - {t: '&macro_qmark_uni QMARK', h: '&macro_dqt_once DQT'}
-  - {t: '*', h: ^}
-  - {t: (, h: <}
-  - {t: ), h: '>'}
-  - {t: '#', h: $}
-  - {t: '$$mdi:backspace$$', h: numbnolightcopy}
-  - '|'
-  - {t: \, s: '|'}
-  - $
-  - '"'
-  - '&mkp MB4'
-  - $$mdi:arrow-left-bold$$
-  - SPC
-  - $$mdi:arrow-right-bold$$
-  - {t: '&macro_colon_uni COLON', h: '&macro_semi_uni SEMI'}
-  - {t: ']', h: '''', s: '}'}
-  - {t: '&macro_dot_uni DOT', h: '{'}
-  - {t: '&macro_comma_uni COMMA', h: '['}
-  - {t: '&macro_semi_uni SEMI', h: ']'}
-  - {t: '&macro_slash_uni SLASH', h: \}
-  - $$mdi:apple-keyboard-control$$
-  - <
-  - '>'
-  - '{'
-  - '}'
-  - AL CALCULATOR
-  - {t: '$$mdi:transfer$$', type: trans}
-  - $$mdi:arrow-down-bold$$
-  - {t: _, h: ^}
-  - {t: '-', h: '`', s: _}
-  - {t: +, h: '|'}
-  - {t: '=', s: +}
-  - {t: '%', h: '&'}
-  - {t: '"', h: '@'}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {type: held}
-  - SPC
-  - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   numbnolightcopy:
   - PG UP
@@ -896,7 +896,7 @@ layers:
   - {t: '9', s: (}
   - '&macro_comma_uni'
   - PG UP
-  - {t: '$$mdi:backspace$$', type: held}
+  - {t: '$$mdi:backspace$$', type: backspace}
   - {t: '0', s: )}
   - {t: '6', s: ^}
   - {t: '5', s: '%'}
@@ -910,7 +910,7 @@ layers:
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
   - {t: '0', s: )}
-  - {t: '$$mdi:backspace$$', type: held alternate}
+  - {t: '$$mdi:backspace$$', type: backspace}
   - PG DN
   - '&macro_dot_uni'
   - {t: '3', s: '#'}
@@ -926,10 +926,10 @@ layers:
   - '&macro_dot_uni'
   - PG DN
   - {t: '$$mdi:transfer$$', type: trans}
-  - {type: held alternate}
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {type: held alternate}
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
 combos:
 - p: [2, 3, 4, 5]
@@ -961,16 +961,16 @@ combos:
   l: [default]
 - p: [23, 24]
   k: {t: '$$mdi:backspace$$', type: backspace}
-  l: [default, nav1, symb, numb, fn, service, nav2, speedtype, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy]
+  l: [default, nav1, symb, numb, fn, service, nav2, speedtype, symbnolight, symbnolightcopy, numbnolight, numbnolightcopy]
 - p: [24, 25]
   k: $$mdi:backspace-reverse-outline$$
-  l: [default, nav1, symb, numb, fn, service, nav2, speedtype, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy]
+  l: [default, nav1, symb, numb, fn, service, nav2, speedtype, symbnolight, symbnolightcopy, numbnolight, numbnolightcopy]
 - p: [16, 17]
   k: {t: '$$mdi:backspace$$', type: backspace}
-  l: [symb, numb, nav2, lefthand, lefthandnolight, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy]
+  l: [symb, numb, nav2, lefthand, lefthandnolight, symbnolight, symbnolightcopy, numbnolight, numbnolightcopy]
 - p: [15, 16]
   k: $$mdi:backspace-reverse-outline$$
-  l: [symb, numb, nav2, lefthand, lefthandnolight, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy]
+  l: [symb, numb, nav2, lefthand, lefthandnolight, symbnolight, symbnolightcopy, numbnolight, numbnolightcopy]
 - p: [3, 43]
   k: '&thumb_e_numb_td'
   l: [default, numb]
