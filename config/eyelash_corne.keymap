@@ -248,6 +248,7 @@
 
         // Параметрический макрос kp_once:
         // Выполняет одиночное нажатие указанной клавиши (press + release за один вызов)
+        // ИСПОЛЬЗУЕТСЯ ДЛЯ ХОЛДОВ, ЧТОБЫ СИМВОЛЫ НЕ ПОВТОРЯЛИСЬ
         kp_once: kp_once {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
@@ -321,149 +322,149 @@
             bindings = <&mo>, <&kp>;
         };
 
-        // Hold-Tap excl_tilde_ht: тап=! hold=~
+        // Hold-Tap excl_tilde_ht: тап=! hold=~ (однократно)
         excl_tilde_ht: excl_tilde_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&kp EXCL>, <&kp_once TILDE>;
         };
 
-        // Hold-Tap qmark_dqt_ht: тап=? hold=" (однократно)
+        // Hold-Tap qmark_dqt_ht: тап=? hold=" (однократно через макрос)
         qmark_dqt_ht: qmark_dqt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&macro_dqt_once>, <&macro_qmark_uni>;
+            bindings = <&kp QMARK>, <&macro_dqt_once>;
         };
 
-        // Hold-Tap astrk_caret_ht: тап=* hold=^
+        // Hold-Tap astrk_caret_ht: тап=* hold=^ (однократно)
         astrk_caret_ht: astrk_caret_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&kp ASTRK>, <&kp_once CARET>;
         };
 
-        // Hold-Tap lpar_lt_ht: тап=( hold=<
+        // Hold-Tap lpar_lt_ht: тап=( hold=< (однократно)
         lpar_lt_ht: lpar_lt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&kp LPAR>, <&kp_once LT>;
         };
 
-        // Hold-Tap rpar_gt_ht: тап=) hold=>
+        // Hold-Tap rpar_gt_ht: тап=) hold=> (однократно)
         rpar_gt_ht: rpar_gt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&kp RPAR>, <&kp_once GT>;
         };
 
-        // Hold-Tap hash_dollar_ht: тап=# hold=$
+        // Hold-Tap hash_dollar_ht: тап=# hold=$ (однократно, параметры упорядочены)
         hash_dollar_ht: hash_dollar_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&kp HASH>, <&kp_once DLLR>;
         };
 
-        // Hold-Tap colon_semi_ht: тап=: hold=;
+        // Hold-Tap colon_semi_ht: тап=: hold=; (однократно)
         colon_semi_ht: colon_semi_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&macro_semi_uni>, <&macro_colon_uni>;
+            bindings = <&kp COLON>, <&kp_once SEMI>;
         };
 
-        // Hold-Tap rbkt_sqt_ht: тап=] hold='
+        // Hold-Tap rbkt_sqt_ht: тап=] hold=' (однократно)
         rbkt_sqt_ht: rbkt_sqt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&kp RBKT>, <&kp_once SQT>;
         };
 
-        // Hold-Tap dot_lbrc_ht: тап=. hold=[
+        // Hold-Tap dot_lbrc_ht: тап=. hold=[ (однократно)
         dot_lbrc_ht: dot_lbrc_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&macro_dot_uni>;
+            bindings = <&kp DOT>, <&kp_once LBRC>;
         };
 
-        // Hold-Tap comma_lbkt_ht: тап=, hold={
+        // Hold-Tap comma_lbkt_ht: тап=, hold={ (однократно)
         comma_lbkt_ht: comma_lbkt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&macro_comma_uni>;
+            bindings = <&kp COMMA>, <&kp_once LBKT>;
         };
 
-        // Hold-Tap slash_bslh_ht: тап=/ hold=\
+        // Hold-Tap slash_bslh_ht: тап=/ hold=\ (однократно)
         // ИСПРАВЛЕНО: Восстановлено имя ноды
         slash_bslh_ht: slash_bslh_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&macro_slash_uni>;
+            bindings = <&kp SLASH>, <&kp_once BSLH>;
         };
 
-        // Hold-Tap under_caret_ht: тап=_ hold=^
+        // Hold-Tap under_caret_ht: тап=_ hold=^ (однократно)
         under_caret_ht: under_caret_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&kp UNDER>, <&kp_once CARET>;
         };
 
-        // Hold-Tap minus_grave_ht: тап=- hold=`
+        // Hold-Tap minus_grave_ht: тап=- hold=` (однократно)
         minus_grave_ht: minus_grave_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&kp MINUS>, <&kp_once GRAVE>;
         };
 
-        // Hold-Tap plus_pipe_ht: тап=+ hold=|
+        // Hold-Tap plus_pipe_ht: тап=+ hold=| (однократно)
         plus_pipe_ht: plus_pipe_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&kp PLUS>, <&kp_once PIPE>;
         };
 
-        // Hold-Tap percent_amp_ht: тап=% hold=&
+        // Hold-Tap percent_amp_ht: тап=% hold=& (однократно, параметры упорядочены)
         percent_amp_ht: percent_amp_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&kp PRCNT>, <&kp_once AMPS>;
         };
 
-        // Hold-Tap dqt_at_ht: тап=" hold=@
+        // Hold-Tap dqt_at_ht: тап=" (макрос, однократно) hold=@
         dqt_at_ht: dqt_at_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&macro_dqt_once>, <&kp AT>;
         };
 
         // Hold-Tap semi_fn_ht (Клавиша точки с запятой на базовом слое):
@@ -502,7 +503,7 @@
             flavor = "tap-preferred";
             tapping-term-ms = <300>;
             quick-tap-ms = <200>;
-            bindings = <&screenshot_win_shift_s>, <&kp>;
+            bindings = <&screenshot_win_shift_s>, <&kp LBKT>;
         };
 
         // Макрос win_space:
@@ -780,6 +781,7 @@
 
         // Слой 2: Символы (Спецсимволы и скобки, с подсветкой правой половины)
         // Энкодер: Громкость (Volume Up / Down)
+        // СДЕЛАНО ИДЕНТИЧНЫМ ШАБЛОНУ (symbnolight_layer)
         symb_layer {
             bindings = <
 &kp ESC                       &kp TILDE   &kp GRAVE &kp CARET  &kp SQT    &mkp MB5                                     &kp UP                   &excl_tilde_ht TILDE EXCL  &qmark_dqt_ht DQT QMARK  &astrk_caret_ht CARET ASTRK  &lpar_lt_ht LT LPAR  &rpar_gt_ht GT RPAR  &hash_dollar_ht DLLR HASH
@@ -950,6 +952,7 @@
         // Слой 16: Копия символов без подсветки (Для перехода из слоя 15 Цифр)
         // Активируется удержанием правого мизинца на слое 15. 16 > 15, поэтому работает.
         // Энкодер: Скрол по словам и типа скрол влево-вправо
+        // СДЕЛАНО ИДЕНТИЧНЫМ ШАБЛОНУ (symbnolight_layer)
         symbnolightcopy_layer {
             bindings = <
 &kp ESC                       &kp TILDE   &kp GRAVE &kp CARET  &kp SQT    &mkp MB5                                     &kp UP                   &excl_tilde_ht TILDE EXCL  &qmark_dqt_ht DQT QMARK  &astrk_caret_ht CARET ASTRK  &lpar_lt_ht LT LPAR  &rpar_gt_ht GT RPAR  &hash_dollar_ht DLLR HASH
@@ -963,6 +966,7 @@
         // Слой 17: Символы без подсветки (Вызывается при зажатии левой клавиши большого пальца)
         // Удержание левого мизинца -> переход в Копию цифр (слой 18)
         // Энкодер: Скрол по словам и типа скрол влево-вправо
+        // ШАБЛОН ДЛЯ ВСЕХ СИМВОЛЬНЫХ СЛОЕВ
         symbnolight_layer {
             bindings = <
 &kp ESC                       &kp TILDE   &kp GRAVE &kp CARET  &kp SQT    &mkp MB5                                     &kp UP                   &excl_tilde_ht TILDE EXCL  &qmark_dqt_ht DQT QMARK  &astrk_caret_ht CARET ASTRK  &lpar_lt_ht LT LPAR  &rpar_gt_ht GT RPAR  &hash_dollar_ht DLLR HASH
