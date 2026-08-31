@@ -465,7 +465,7 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Hold-Tap semi_fn_ht (Клавиша точки с запятой на основном слое):
+        // Hold-Tap semi_fn_ht (Клавиша точки с запятой):
         // Тап -> Символ ; (точка с запятой)
         // Удержание -> Переход на Слой 4 (Fn-клавиши)
         semi_fn_ht: semi_fn_ht {
@@ -566,7 +566,6 @@
 
         // Tap Dance thumb_i_symb_td:
         // 1 тап = none (ничего), двойной тап -> Переключение фиксированного режима Слоя 2 (Символы)
-        // Используется в комбо: Правый большой палец (pos 46) + I (pos 9)
         thumb_i_symb_td: thumb_i_symb_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -784,7 +783,7 @@
             bindings = <
 &kp ESC                       &kp TILDE   &kp GRAVE &kp CARET  &kp SQT    &mkp MB5                                     &kp UP                   &excl_tilde_ht EXCL TILDE  &qmark_dqt_ht DQT QMARK  &astrk_caret_ht ASTRK CARET  &lpar_lt_ht LPAR LT  &rpar_gt_ht RPAR GT  &hash_dollar_ht HASH DLLR
 &bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &colon_semi_ht SEMI COLON  &rbkt_sqt_ht RBKT SQT  &dot_lbkt_ht LBKT DOT  &comma_lbrc_ht LBRC COMMA  &slash_bslh_ht BSLH SLASH  &kp AMPS
-&kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &under_grave_ht GRAVE UNDER  &minus_dqt_ht DQT MINUS  &plus_pipe_ht PIPE PLUS  &equal_amp_ht AMP EQUAL  &percent_at_ht AT PRCNT  &kp DQT
+&kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &under_grave_ht GRAVE UNDER  &minus_dqt_ht DQT MINUS  &plus_pipe_ht PIPE PLUS  &equal_amp_ht AMPS EQUAL  &percent_at_ht AT PRCNT  &kp DQT
                                                     &trans     &trans     &kp SPC                                                               &kp ENTER             &trans             &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -949,12 +948,12 @@
 
         // Слой 16: Копия символов без подсветки (Для перехода из слоя 15 Цифр)
         // Активируется удержанием правого мизинца на слое 15. 16 > 15, поэтому работает.
-        // ЗЕРКАЛО слоя 17. Энкодер: Скрол по словам и типа скрол влево-вправо
+        // Зеркало слоя 17. Энкодер: Скрол по словам и типа скрол влево-вправо
         symbnolightcopy_layer {
             bindings = <
-&kp DQT                       &percent_at_ht AT PRCNT  &equal_amp_ht AMP EQUAL  &plus_pipe_ht PIPE PLUS  &minus_dqt_ht DQT MINUS  &under_grave_ht GRAVE UNDER  &kp DOWN                 &colon_semi_ht SEMI COLON  &rbkt_sqt_ht RBKT SQT  &dot_lbkt_ht LBKT DOT  &comma_lbrc_ht LBRC COMMA  &slash_bslh_ht BSLH SLASH  &kp AMPS
+&kp DQT                       &percent_at_ht AT PRCNT  &equal_amp_ht AMPS EQUAL  &plus_pipe_ht PIPE PLUS  &minus_dqt_ht DQT MINUS  &under_grave_ht GRAVE UNDER  &kp DOWN                 &colon_semi_ht SEMI COLON  &rbkt_sqt_ht RBKT SQT  &dot_lbkt_ht LBKT DOT  &comma_lbrc_ht LBRC COMMA  &slash_bslh_ht BSLH SLASH  &kp AMPS
 &bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &hash_dollar_ht HASH DLLR  &rpar_gt_ht RPAR GT  &lpar_lt_ht LPAR LT  &astrk_caret_ht ASTRK CARET  &qmark_dqt_ht DQT QMARK  &excl_tilde_ht EXCL TILDE
-&kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp UP                   &kp MB5                   &kp SQT                   &kp CARET                 &kp GRAVE                 &kp TILDE                 &kp ESC
+&kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp UP                   &mkp MB5                   &kp SQT                   &kp CARET                 &kp GRAVE                 &kp TILDE                 &kp ESC
                                                     &trans     &trans     &kp SPC                                                               &kp ENTER             &trans             &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
@@ -967,7 +966,7 @@
             bindings = <
 &kp ESC                       &kp TILDE   &kp GRAVE &kp CARET  &kp SQT    &mkp MB5                                     &kp UP                   &excl_tilde_ht EXCL TILDE  &qmark_dqt_ht DQT QMARK  &astrk_caret_ht ASTRK CARET  &lpar_lt_ht LPAR LT  &rpar_gt_ht RPAR GT  &hash_dollar_ht HASH DLLR
 &bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &colon_semi_ht SEMI COLON  &rbkt_sqt_ht RBKT SQT  &dot_lbkt_ht LBKT DOT  &comma_lbrc_ht LBRC COMMA  &slash_bslh_ht BSLH SLASH  &kp AMPS
-&kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &under_grave_ht GRAVE UNDER  &minus_dqt_ht DQT MINUS  &plus_pipe_ht PIPE PLUS  &equal_amp_ht AMP EQUAL  &percent_at_ht AT PRCNT  &kp DQT
+&kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &under_grave_ht GRAVE UNDER  &minus_dqt_ht DQT MINUS  &plus_pipe_ht PIPE PLUS  &equal_amp_ht AMPS EQUAL  &percent_at_ht AT PRCNT  &kp DQT
                                                     &trans     &trans     &kp SPC                                                               &kp ENTER             &trans             &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
