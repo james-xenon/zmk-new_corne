@@ -106,12 +106,12 @@ layers:
   - {t: '''', s: '"'}
   - '&mkp MB5'
   - $$mdi:arrow-up-bold$$
-  - '!'
-  - '&macro_qmark_uni'
-  - '*'
-  - (
-  - )
-  - '#'
+  - {t: '~', h: '!'}
+  - {t: '&macro_qmark_uni QMARK', h: '&macro_dqt_once DQT'}
+  - {t: ^, h: '*'}
+  - {t: <, h: (}
+  - {t: '>', h: )}
+  - {t: $, h: '#'}
   - {t: '$$mdi:backspace$$', h: numbnolightcopy}
   - '|'
   - {t: \, s: '|'}
@@ -121,12 +121,12 @@ layers:
   - $$mdi:arrow-left-bold$$
   - SPC
   - $$mdi:arrow-right-bold$$
-  - '&macro_colon_uni'
-  - {t: '&macro_comma_uni COMMA', h: ']'}
-  - {t: '[', h: '&macro_dqt_once DQT', s: '{'}
-  - '&macro_semi_uni'
-  - '&macro_slash_uni'
-  - {t: '&macro_comma_uni COMMA', h: '&'}
+  - {t: '&macro_colon_uni COLON', h: '&macro_semi_uni SEMI'}
+  - {t: '''', h: ']', s: '"'}
+  - {t: '&macro_dot_uni DOT', h: '['}
+  - '&macro_dot_uni'
+  - {t: '&macro_slash_uni SLASH', h: \}
+  - '&'
   - $$mdi:apple-keyboard-control$$
   - <
   - '>'
@@ -136,10 +136,10 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
   - _
-  - {t: '-', s: _}
+  - {t: '-', h: '&macro_dqt_once DQT', s: _}
   - +
   - {t: '=', s: +}
-  - '%'
+  - {t: '|', h: '%'}
   - '@'
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -792,12 +792,12 @@ layers:
   - {t: '''', s: '"'}
   - '&mkp MB5'
   - $$mdi:arrow-up-bold$$
-  - '!'
-  - '&macro_qmark_uni'
-  - '*'
-  - (
-  - )
-  - '#'
+  - {t: '~', h: '!'}
+  - {t: '&macro_qmark_uni QMARK', h: '&macro_dqt_once DQT'}
+  - {t: ^, h: '*'}
+  - {t: <, h: (}
+  - {t: '>', h: )}
+  - {t: $, h: '#'}
   - {t: '$$mdi:backspace$$', h: numbnolightcopy}
   - '|'
   - {t: \, s: '|'}
@@ -807,12 +807,12 @@ layers:
   - $$mdi:arrow-left-bold$$
   - SPC
   - $$mdi:arrow-right-bold$$
-  - '&macro_colon_uni'
-  - {t: '&macro_comma_uni COMMA', h: ']'}
-  - {t: '[', h: '&macro_dqt_once DQT', s: '{'}
-  - '&macro_semi_uni'
-  - '&macro_slash_uni'
-  - {t: '&macro_comma_uni COMMA', h: '&', type: held}
+  - {t: '&macro_colon_uni COLON', h: '&macro_semi_uni SEMI'}
+  - {t: '''', h: ']', s: '"'}
+  - {t: '&macro_dot_uni DOT', h: '['}
+  - '&macro_dot_uni'
+  - {t: '&macro_slash_uni SLASH', h: \}
+  - {t: '&', type: held}
   - $$mdi:apple-keyboard-control$$
   - <
   - '>'
@@ -822,10 +822,10 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
   - _
-  - {t: '-', s: _}
+  - {t: '-', h: '&macro_dqt_once DQT', s: _}
   - +
   - {t: '=', s: +}
-  - '%'
+  - {t: '|', h: '%'}
   - '@'
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -841,12 +841,12 @@ layers:
   - {t: '''', s: '"'}
   - '&mkp MB5'
   - $$mdi:arrow-up-bold$$
-  - '!'
-  - '&macro_qmark_uni'
-  - '*'
-  - (
-  - )
-  - '#'
+  - {t: '~', h: '!'}
+  - {t: '&macro_qmark_uni QMARK', h: '&macro_dqt_once DQT'}
+  - {t: ^, h: '*'}
+  - {t: <, h: (}
+  - {t: '>', h: )}
+  - {t: $, h: '#'}
   - {t: '$$mdi:backspace$$', h: numbnolightcopy}
   - '|'
   - {t: \, s: '|'}
@@ -856,12 +856,12 @@ layers:
   - $$mdi:arrow-left-bold$$
   - SPC
   - $$mdi:arrow-right-bold$$
-  - '&macro_colon_uni'
-  - {t: '&macro_comma_uni COMMA', h: ']'}
-  - {t: '[', h: '&macro_dqt_once DQT', s: '{'}
-  - '&macro_semi_uni'
-  - '&macro_slash_uni'
-  - {t: '&macro_comma_uni COMMA', h: '&'}
+  - {t: '&macro_colon_uni COLON', h: '&macro_semi_uni SEMI'}
+  - {t: '''', h: ']', s: '"'}
+  - {t: '&macro_dot_uni DOT', h: '['}
+  - '&macro_dot_uni'
+  - {t: '&macro_slash_uni SLASH', h: \}
+  - '&'
   - $$mdi:apple-keyboard-control$$
   - <
   - '>'
@@ -871,10 +871,10 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
   - _
-  - {t: '-', s: _}
+  - {t: '-', h: '&macro_dqt_once DQT', s: _}
   - +
   - {t: '=', s: +}
-  - '%'
+  - {t: '|', h: '%'}
   - '@'
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
