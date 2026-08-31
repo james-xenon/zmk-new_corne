@@ -196,7 +196,6 @@
 
         // Hold-Tap lefthand_ht (Крайняя левая клавиша большого пальца):
         // Удержание -> Слой 14 (Управление левой рукой без подсветки)
-        // Одиночный тап -> ничего (через lh_td: 1 тап = none)
         // Двойной тап (окно 250 мс) -> kp LALT (обычный Alt)
         lefthand_ht: lefthand_ht {
             compatible = "zmk,behavior-hold-tap";
@@ -312,7 +311,8 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Hold-Tap для перехода между слоями через BSPC
+        // Hold-Tap для перехода между слоями через BSPC:
+        // Удержание -> слой (параметр 1), Тап -> BSPC (параметр 2)
         bspc_to_layer_ht: bspc_to_layer_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -384,7 +384,7 @@
             bindings = <&macro_semi_uni>, <&macro_colon_uni>;
         };
 
-        // Hold-Tap rbkt_sqt_ht: тап=] hold='
+        // Hold-Tap rbkt_sqt_ht: тап=} hold='
         rbkt_sqt_ht: rbkt_sqt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -393,8 +393,8 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Hold-Tap dot_lbkt_ht: тап=. hold={
-        dot_lbkt_ht: dot_lbkt_ht {
+        // Hold-Tap dot_lbrc_ht: тап=. hold=[
+        dot_lbrc_ht: dot_lbrc_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
@@ -402,8 +402,8 @@
             bindings = <&kp>, <&macro_dot_uni>;
         };
 
-        // Hold-Tap comma_lbrc_ht: тап=, hold=[
-        comma_lbrc_ht: comma_lbrc_ht {
+        // Hold-Tap comma_lbkt_ht: тап=, hold={
+        comma_lbkt_ht: comma_lbkt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
@@ -411,7 +411,17 @@
             bindings = <&kp>, <&macro_comma_uni>;
         };
 
-        // Hold-Tap slash_bslh_ht: тап=/ hold=\
+        // Hold-Tap semi_rbkt_ht: тап=; hold=}
+        semi_rbkt_ht: semi_rbkt_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&macro_semi_uni>;
+        };
+
+        // ИСПРАВЛЕНО: Hold-Tap slash_bslh_ht: тап=/ hold=\
+        // (восстановлена строка с именем ноды — именно её не хватало в строке 589)
         slash_bslh_ht: slash_bslh_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -420,8 +430,8 @@
             bindings = <&kp>, <&macro_slash_uni>;
         };
 
-        // Hold-Tap under_grave_ht: тап=_ hold=`
-        under_grave_ht: under_grave_ht {
+        // Hold-Tap under_caret_ht: тап=_ hold=^
+        under_caret_ht: under_caret_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
@@ -429,13 +439,13 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Hold-Tap minus_dqt_ht: тап=- hold=" (однократно)
-        minus_dqt_ht: minus_dqt_ht {
+        // Hold-Tap minus_grave_ht: тап=- hold=`
+        minus_grave_ht: minus_grave_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&macro_dqt_once>, <&kp>;
+            bindings = <&kp>, <&kp>;
         };
 
         // Hold-Tap plus_pipe_ht: тап=+ hold=|
@@ -447,8 +457,8 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Hold-Tap equal_amp_ht: тап== hold=&
-        equal_amp_ht: equal_amp_ht {
+        // Hold-Tap percent_amp_ht: тап=% hold=&
+        percent_amp_ht: percent_amp_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
@@ -456,8 +466,8 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Hold-Tap percent_at_ht: тап=% hold=@
-        percent_at_ht: percent_at_ht {
+        // Hold-Tap dqt_at_ht: тап=" hold=@
+        dqt_at_ht: dqt_at_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
@@ -465,7 +475,7 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Hold-Tap semi_fn_ht (Клавиша точки с запятой):
+        // Hold-Tap semi_fn_ht (Клавиша точки с запятой на базовом слое):
         // Тап -> Символ ; (точка с запятой)
         // Удержание -> Переход на Слой 4 (Fn-клавиши)
         semi_fn_ht: semi_fn_ht {
@@ -771,19 +781,19 @@
             bindings = <
 &kp ESC  &none  &none   &none  &none  &none                               &mmv MOVE_UP                       &kp HOME           &mkp LCLK          &kp UP     &mkp RCLK            &macro_qmark_uni    &kp PG_UP
 &trans   &none  &none   &none  &none  &none               &mmv MOVE_LEFT  &mkp LCLK      &mmv MOVE_RIGHT     &msc MOVE_X(-150)  &kp LEFT           &kp DOWN   &kp RIGHT            &msc MOVE_X(150)    &kp BSPC
-&trans   &none  &none  &none  &none  &none       &trans                  &mmv MOVE_DOWN                     &kp END            &msc MOVE_Y(-150)  &mkp MCLK  &msc MOVE_Y(150)     &macro_dot_uni      &kp PG_DN
+&trans   &none  &none   &none  &none  &none       &trans                  &mmv MOVE_DOWN                     &kp END            &msc MOVE_Y(-150)  &mkp MCLK  &msc MOVE_Y(150)     &macro_dot_uni      &kp PG_DN
                         &trans &trans &trans                                                                 &trans             &trans             &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         // Слой 2: Символы (Спецсимволы и скобки, с подсветкой правой половины)
         // Энкодер: Громкость (Volume Up / Down)
         symb_layer {
             bindings = <
-&kp ESC                       &kp TILDE   &kp GRAVE &kp CARET  &kp SQT    &mkp MB5                                     &kp UP                   &excl_tilde_ht EXCL TILDE  &qmark_dqt_ht DQT QMARK  &astrk_caret_ht ASTRK CARET  &lpar_lt_ht LPAR LT  &rpar_gt_ht RPAR GT  &hash_dollar_ht HASH DLLR
-&bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &colon_semi_ht SEMI COLON  &rbkt_sqt_ht RBKT SQT  &dot_lbkt_ht LBKT DOT  &comma_lbrc_ht LBRC COMMA  &slash_bslh_ht BSLH SLASH  &kp AMPS
-&kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &under_grave_ht GRAVE UNDER  &minus_dqt_ht DQT MINUS  &plus_pipe_ht PIPE PLUS  &equal_amp_ht AMPS EQUAL  &percent_at_ht AT PRCNT  &kp DQT
+&kp ESC                       &kp TILDE   &kp GRAVE &kp CARET  &kp SQT    &mkp MB5                                     &kp UP                   &excl_tilde_ht TILDE EXCL  &qmark_dqt_ht DQT QMARK  &astrk_caret_ht CARET ASTRK  &lpar_lt_ht LT LPAR  &rpar_gt_ht GT RPAR  &hash_dollar_ht DLLR HASH
+&bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &colon_semi_ht SEMI COLON  &rbkt_sqt_ht SQT RBKT  &dot_lbrc_ht LBRC DOT  &comma_lbkt_ht LBKT COMMA  &semi_rbkt_ht RBKT SEMI  &slash_bslh_ht BSLH SLASH
+&kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &under_caret_ht CARET UNDER  &minus_grave_ht GRAVE MINUS  &plus_pipe_ht PIPE PLUS  &kp EQUAL  &percent_amp_ht AMPS PRCNT  &dqt_at_ht AT DQT
                                                     &trans     &trans     &kp SPC                                                               &kp ENTER             &trans             &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -810,7 +820,7 @@
 &kp LCTRL  &none   &none    &none     &none    &kp C_AL_CALCULATOR  &trans                       &mmv MOVE_DOWN                     &none   &kp F1  &kp F2  &kp F3  &none    &kp ESC
                             &trans    &trans   &trans                                                                               &trans  &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         // Слой 5: Сервисный (Настройки Bluetooth профилей, управление RGB-подсветкой, ZMK Studio)
@@ -882,7 +892,7 @@
 &trans  &none   &none   &none   &none   &none   &kp C_MUTE             &kp DOWN                 &kp END            &msc MOVE_Y(-150)    &mkp MCLK       &msc MOVE_Y(150)   &macro_dot_uni     &kp PG_DN
                         &trans  &trans  &trans                                                  &trans             &trans               &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         // Слой 11: Speedtype (Чистая печать без модификаторов hold-tap на основной буквенной зоне)
@@ -906,7 +916,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans  &trans              &trans              &trans  &trans  &kp LSHFT  &kp LEFT   &kp DOWN  &kp RIGHT
                         &trans  &trans  &trans                                          &trans  &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         // Слой 13: Управление одной левой рукой (С включением визуального RGB-профиля)
@@ -930,7 +940,7 @@
 &kp LCTRL            &kp EXCL    &macro_qmark_uni   &macro_comma_uni    &macro_dot_uni   &macro_slash_uni   &kp C_MUTE                  &kp DOWN                &trans  &trans  &trans  &trans  &trans  &trans
                                                     &trans              &trans           &trans                                                                 &trans  &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         // Слой 15: Цифры без подсветки (Вызывается при зажатии правой клавиши большого пальца)
@@ -943,20 +953,20 @@
 &kp PG_DN   &macro_dot_uni    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END            &kp N1  &kp N2  &kp N3  &macro_dot_uni    &kp PG_DN
                                       &trans  &trans  &trans                                                                                 &kp ENTER          &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         // Слой 16: Копия символов без подсветки (Для перехода из слоя 15 Цифр)
         // Активируется удержанием правого мизинца на слое 15. 16 > 15, поэтому работает.
-        // Зеркало слоя 17. Энкодер: Скрол по словам и типа скрол влево-вправо
+        // Энкодер: Скрол по словам и типа скрол влево-вправо
         symbnolightcopy_layer {
             bindings = <
-&kp DQT                       &percent_at_ht AT PRCNT  &equal_amp_ht AMPS EQUAL  &plus_pipe_ht PIPE PLUS  &minus_dqt_ht DQT MINUS  &under_grave_ht GRAVE UNDER  &kp DOWN                 &colon_semi_ht SEMI COLON  &rbkt_sqt_ht RBKT SQT  &dot_lbkt_ht LBKT DOT  &comma_lbrc_ht LBRC COMMA  &slash_bslh_ht BSLH SLASH  &kp AMPS
-&bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &hash_dollar_ht HASH DLLR  &rpar_gt_ht RPAR GT  &lpar_lt_ht LPAR LT  &astrk_caret_ht ASTRK CARET  &qmark_dqt_ht DQT QMARK  &excl_tilde_ht EXCL TILDE
-&kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp UP                   &mkp MB5                   &kp SQT                   &kp CARET                 &kp GRAVE                 &kp TILDE                 &kp ESC
+&kp ESC                       &kp TILDE   &kp GRAVE &kp CARET  &kp SQT    &mkp MB5                                     &kp UP                   &excl_tilde_ht TILDE EXCL  &qmark_dqt_ht DQT QMARK  &astrk_caret_ht CARET ASTRK  &lpar_lt_ht LT LPAR  &rpar_gt_ht GT RPAR  &hash_dollar_ht DLLR HASH
+&bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &colon_semi_ht SEMI COLON  &rbkt_sqt_ht SQT RBKT  &dot_lbrc_ht LBRC DOT  &comma_lbkt_ht LBKT COMMA  &semi_rbkt_ht RBKT SEMI  &slash_bslh_ht BSLH SLASH
+&kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &under_caret_ht CARET UNDER  &minus_grave_ht GRAVE MINUS  &plus_pipe_ht PIPE PLUS  &kp EQUAL  &percent_amp_ht AMPS PRCNT  &dqt_at_ht AT DQT
                                                     &trans     &trans     &kp SPC                                                               &kp ENTER             &trans             &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         // Слой 17: Символы без подсветки (Вызывается при зажатии левой клавиши большого пальца)
@@ -964,12 +974,12 @@
         // Энкодер: Скрол по словам и типа скрол влево-вправо
         symbnolight_layer {
             bindings = <
-&kp ESC                       &kp TILDE   &kp GRAVE &kp CARET  &kp SQT    &mkp MB5                                     &kp UP                   &excl_tilde_ht EXCL TILDE  &qmark_dqt_ht DQT QMARK  &astrk_caret_ht ASTRK CARET  &lpar_lt_ht LPAR LT  &rpar_gt_ht RPAR GT  &hash_dollar_ht HASH DLLR
-&bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &colon_semi_ht SEMI COLON  &rbkt_sqt_ht RBKT SQT  &dot_lbkt_ht LBKT DOT  &comma_lbrc_ht LBRC COMMA  &slash_bslh_ht BSLH SLASH  &kp AMPS
-&kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &under_grave_ht GRAVE UNDER  &minus_dqt_ht DQT MINUS  &plus_pipe_ht PIPE PLUS  &equal_amp_ht AMPS EQUAL  &percent_at_ht AT PRCNT  &kp DQT
+&kp ESC                       &kp TILDE   &kp GRAVE &kp CARET  &kp SQT    &mkp MB5                                     &kp UP                   &excl_tilde_ht TILDE EXCL  &qmark_dqt_ht DQT QMARK  &astrk_caret_ht CARET ASTRK  &lpar_lt_ht LT LPAR  &rpar_gt_ht GT RPAR  &hash_dollar_ht DLLR HASH
+&bspc_to_layer_ht 18 BSPC     &kp PIPE    &kp BSLH  &kp DLLR   &kp DQT    &mkp MB4                           &kp LEFT  &kp SPC    &kp RIGHT     &colon_semi_ht SEMI COLON  &rbkt_sqt_ht SQT RBKT  &dot_lbrc_ht LBRC DOT  &comma_lbkt_ht LBKT COMMA  &semi_rbkt_ht RBKT SEMI  &slash_bslh_ht BSLH SLASH
+&kp LCTRL                     &kp LT      &kp GT    &kp LBRC   &kp RBRC   &kp C_AL_CALCULATOR   &trans                 &kp DOWN                 &under_caret_ht CARET UNDER  &minus_grave_ht GRAVE MINUS  &plus_pipe_ht PIPE PLUS  &kp EQUAL  &percent_amp_ht AMPS PRCNT  &dqt_at_ht AT DQT
                                                     &trans     &trans     &kp SPC                                                               &kp ENTER             &trans             &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         // Слой 18: Копия цифр без подсветки (Для перехода из слоя 17 Символов)
@@ -982,7 +992,7 @@
 &kp PG_DN   &macro_dot_uni    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END            &kp N1  &kp N2  &kp N3  &macro_dot_uni    &kp PG_DN
                                       &trans  &trans  &trans                                                                                 &kp ENTER          &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
     };
 };
