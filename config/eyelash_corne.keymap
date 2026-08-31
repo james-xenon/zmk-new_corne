@@ -457,13 +457,13 @@
             bindings = <&kp_once>, <&kp>;
         };
 
-        // Hold-Tap dqt_at_ht: тап=" (макрос, однократно) hold=@
+        // Hold-Tap dqt_at_ht: тап=" (однократно) hold=@
         dqt_at_ht: dqt_at_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp_once>, <&macro_dqt_once>;
+            bindings = <&macro_dqt_once>, <&kp>;
         };
 
         // Hold-Tap semi_fn_ht (Клавиша точки с запятой на базовом слое):
@@ -785,7 +785,7 @@
             bindings = <
 &kp ESC                       &excl_tilde_ht TILDE EXCL     &qmark_dqt_ht DQT QMARK      &astrk_caret_ht CARET ASTRK  &lpar_lt_ht LT LPAR        &rpar_gt_ht GT RPAR                                   &kp UP                   &excl_tilde_ht TILDE EXCL    &qmark_dqt_ht DQT QMARK  &astrk_caret_ht CARET ASTRK  &lpar_lt_ht LT LPAR        &rpar_gt_ht GT RPAR        &hash_dollar_ht HASH DLLR
 &bspc_to_layer_ht 18 BSPC     &colon_semi_ht SEMI COLON     &rbkt_sqt_ht SQT RBKT        &dot_lbrc_ht LBRC DOT        &comma_lbkt_ht LBKT COMMA  &slash_bslh_ht BSLH SLASH                  &kp LEFT  &kp SPC    &kp RIGHT     &colon_semi_ht SEMI COLON    &rbkt_sqt_ht SQT RBKT    &dot_lbrc_ht LBRC DOT        &comma_lbkt_ht LBKT COMMA  &slash_bslh_ht BSLH SLASH  &kp AMPS
-&kp LCTRL                     &under_caret_ht UNDER CARET   &minus_grave_ht GRAVE MINUS  &plus_pipe_ht PIPE PLUS      &kp EQUAL                  &percent_amp_ht PRCNT AMPS   &trans                   &kp DOWN                 &under_caret_ht UNDER CARET  &minus_grave_ht GRAVE MINUS &plus_pipe_ht PIPE PLUS    &kp EQUAL                  &percent_amp_ht PRCNT AMPS &dqt_at_ht AT macro_dqt_once
+&kp LCTRL                     &under_caret_ht UNDER CARET   &minus_grave_ht GRAVE MINUS  &plus_pipe_ht PIPE PLUS      &kp EQUAL                  &percent_amp_ht PRCNT AMPS   &trans                   &kp DOWN                 &under_caret_ht UNDER CARET  &minus_grave_ht GRAVE MINUS &plus_pipe_ht PIPE PLUS    &kp EQUAL                  &percent_amp_ht PRCNT AMPS &dqt_at_ht 0 AT
                                                                                          &trans                       &trans                     &kp SPC                                                                           &kp ENTER                    &trans                   &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -965,7 +965,7 @@
             bindings = <
 &kp ESC                       &excl_tilde_ht TILDE EXCL     &qmark_dqt_ht DQT QMARK      &astrk_caret_ht CARET ASTRK  &lpar_lt_ht LT LPAR        &rpar_gt_ht GT RPAR                                   &kp UP                   &excl_tilde_ht TILDE EXCL    &qmark_dqt_ht DQT QMARK  &astrk_caret_ht CARET ASTRK  &lpar_lt_ht LT LPAR        &rpar_gt_ht GT RPAR        &hash_dollar_ht HASH DLLR
 &bspc_to_layer_ht 18 BSPC     &colon_semi_ht SEMI COLON     &rbkt_sqt_ht SQT RBKT        &dot_lbrc_ht LBRC DOT        &comma_lbkt_ht LBKT COMMA  &slash_bslh_ht BSLH SLASH                  &kp LEFT  &kp SPC    &kp RIGHT     &colon_semi_ht SEMI COLON    &rbkt_sqt_ht SQT RBKT    &dot_lbrc_ht LBRC DOT        &comma_lbkt_ht LBKT COMMA  &slash_bslh_ht BSLH SLASH  &kp AMPS
-&kp LCTRL                     &under_caret_ht UNDER CARET   &minus_grave_ht GRAVE MINUS  &plus_pipe_ht PIPE PLUS      &kp EQUAL                  &percent_amp_ht PRCNT AMPS   &trans                   &kp DOWN                 &under_caret_ht UNDER CARET  &minus_grave_ht GRAVE MINUS &plus_pipe_ht PIPE PLUS    &kp EQUAL                  &percent_amp_ht PRCNT AMPS &dqt_at_ht AT macro_dqt_once
+&kp LCTRL                     &under_caret_ht UNDER CARET   &minus_grave_ht GRAVE MINUS  &plus_pipe_ht PIPE PLUS      &kp EQUAL                  &percent_amp_ht PRCNT AMPS   &trans                   &kp DOWN                 &under_caret_ht UNDER CARET  &minus_grave_ht GRAVE MINUS &plus_pipe_ht PIPE PLUS    &kp EQUAL                  &percent_amp_ht PRCNT AMPS &dqt_at_ht 0 AT
                                                                                          &trans                       &trans                     &kp SPC                                                                           &kp ENTER                    &trans                   &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
