@@ -138,7 +138,7 @@ layers:
   - {t: _, h: '`'}
   - {t: '-', h: '&macro_dqt_once DQT', s: _}
   - {t: +, h: '|'}
-  - {t: '=', h: AMP, s: +}
+  - {t: '=', h: '&', s: +}
   - {t: '%', h: '@'}
   - '"'
   - {t: '$$mdi:transfer$$', type: trans}
@@ -787,7 +787,7 @@ layers:
   symbnolightcopy:
   - '"'
   - {t: '%', h: '@'}
-  - {t: '=', h: AMP, s: +}
+  - {t: '=', h: '&', s: +}
   - {t: +, h: '|'}
   - {t: '-', h: '&macro_dqt_once DQT', s: _}
   - {t: _, h: '`'}
@@ -821,7 +821,7 @@ layers:
   - AL CALCULATOR
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-up-bold$$
-  - MB5
+  - '&mkp MB5'
   - {t: '''', s: '"'}
   - ^
   - {t: '`', s: '~'}
@@ -873,7 +873,7 @@ layers:
   - {t: _, h: '`'}
   - {t: '-', h: '&macro_dqt_once DQT', s: _}
   - {t: +, h: '|'}
-  - {t: '=', h: AMP, s: +}
+  - {t: '=', h: '&', s: +}
   - {t: '%', h: '@'}
   - '"'
   - {t: '$$mdi:transfer$$', type: trans}
