@@ -126,7 +126,7 @@ layers:
   - {t: '&macro_dot_uni DOT', h: '{'}
   - {t: '&macro_comma_uni COMMA', h: '['}
   - {t: '&macro_slash_uni SLASH', h: \}
-  - '&macro_dqt_once'
+  - '&'
   - $$mdi:apple-keyboard-control$$
   - <
   - '>'
@@ -135,12 +135,12 @@ layers:
   - AL CALCULATOR
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
-  - {t: _, h: '`'}
-  - {t: '-', h: '&macro_dqt_once DQT', s: _}
+  - {t: _, h: ^}
+  - {t: '-', h: '`', s: _}
   - {t: +, h: '|'}
-  - {t: '=', h: AMP, s: +}
-  - {t: '%', h: '@'}
-  - '&macro_dqt_once'
+  - {t: '=', s: +}
+  - {t: '%', h: '&'}
+  - {t: '"', h: '@'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - SPC
@@ -812,7 +812,7 @@ layers:
   - {t: '&macro_dot_uni DOT', h: '{'}
   - {t: '&macro_comma_uni COMMA', h: '['}
   - {t: '&macro_slash_uni SLASH', h: \}
-  - {t: '&macro_dqt_once', type: held}
+  - {t: '&', type: held}
   - $$mdi:apple-keyboard-control$$
   - <
   - '>'
@@ -821,12 +821,12 @@ layers:
   - AL CALCULATOR
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
-  - {t: _, h: '`'}
-  - {t: '-', h: '&macro_dqt_once DQT', s: _}
+  - {t: _, h: ^}
+  - {t: '-', h: '`', s: _}
   - {t: +, h: '|'}
-  - {t: '=', h: AMP, s: +}
-  - {t: '%', h: '@'}
-  - '&macro_dqt_once'
+  - {t: '=', s: +}
+  - {t: '%', h: '&'}
+  - {t: '"', h: '@'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - SPC
@@ -861,7 +861,7 @@ layers:
   - {t: '&macro_dot_uni DOT', h: '{'}
   - {t: '&macro_comma_uni COMMA', h: '['}
   - {t: '&macro_slash_uni SLASH', h: \}
-  - '&macro_dqt_once'
+  - '&'
   - $$mdi:apple-keyboard-control$$
   - <
   - '>'
@@ -870,12 +870,12 @@ layers:
   - AL CALCULATOR
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
-  - {t: _, h: '`'}
-  - {t: '-', h: '&macro_dqt_once DQT', s: _}
+  - {t: _, h: ^}
+  - {t: '-', h: '`', s: _}
   - {t: +, h: '|'}
-  - {t: '=', h: AMP, s: +}
-  - {t: '%', h: '@'}
-  - '&macro_dqt_once'
+  - {t: '=', s: +}
+  - {t: '%', h: '&'}
+  - {t: '"', h: '@'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
   - SPC
