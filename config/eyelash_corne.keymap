@@ -328,7 +328,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp EXCL>, <&kp_once TILDE>;
+            bindings = <&kp &kp_once>;
         };
 
         // Hold-Tap qmark_dqt_ht: тап=? hold=" (однократно через макрос)
@@ -337,7 +337,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp QMARK>, <&macro_dqt_once>;
+            bindings = <&macro_dqt_once &kp>;
         };
 
         // Hold-Tap astrk_caret_ht: тап=* hold=^ (однократно)
@@ -346,7 +346,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp ASTRK>, <&kp_once CARET>;
+            bindings = <&kp &kp_once>;
         };
 
         // Hold-Tap lpar_lt_ht: тап=( hold=< (однократно)
@@ -355,7 +355,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp LPAR>, <&kp_once LT>;
+            bindings = <&kp &kp_once>;
         };
 
         // Hold-Tap rpar_gt_ht: тап=) hold=> (однократно)
@@ -364,16 +364,16 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp RPAR>, <&kp_once GT>;
+            bindings = <&kp &kp_once>;
         };
 
-        // Hold-Tap hash_dollar_ht: тап=# hold=$ (однократно, параметры упорядочены)
+        // Hold-Tap hash_dollar_ht: тап=$ hold=# (однократно, поменяли местами тап и холд)
         hash_dollar_ht: hash_dollar_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp HASH>, <&kp_once DLLR>;
+            bindings = <&kp_once &kp>;
         };
 
         // Hold-Tap colon_semi_ht: тап=: hold=; (однократно)
@@ -382,7 +382,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp COLON>, <&kp_once SEMI>;
+            bindings = <&kp &kp_once>;
         };
 
         // Hold-Tap rbkt_sqt_ht: тап=] hold=' (однократно)
@@ -391,7 +391,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp RBKT>, <&kp_once SQT>;
+            bindings = <&kp &kp_once>;
         };
 
         // Hold-Tap dot_lbrc_ht: тап=. hold=[ (однократно)
@@ -400,7 +400,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp DOT>, <&kp_once LBRC>;
+            bindings = <&kp_once &kp>;
         };
 
         // Hold-Tap comma_lbkt_ht: тап=, hold={ (однократно)
@@ -409,7 +409,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp COMMA>, <&kp_once LBKT>;
+            bindings = <&kp_once &kp>;
         };
 
         // Hold-Tap slash_bslh_ht: тап=/ hold=\ (однократно)
@@ -419,7 +419,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp SLASH>, <&kp_once BSLH>;
+            bindings = <&kp &kp_once>;
         };
 
         // Hold-Tap under_caret_ht: тап=_ hold=^ (однократно)
@@ -428,7 +428,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp UNDER>, <&kp_once CARET>;
+            bindings = <&kp &kp_once>;
         };
 
         // Hold-Tap minus_grave_ht: тап=- hold=` (однократно)
@@ -437,7 +437,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp MINUS>, <&kp_once GRAVE>;
+            bindings = <&kp &kp_once>;
         };
 
         // Hold-Tap plus_pipe_ht: тап=+ hold=| (однократно)
@@ -446,16 +446,16 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp PLUS>, <&kp_once PIPE>;
+            bindings = <&kp &kp_once>;
         };
 
-        // Hold-Tap percent_amp_ht: тап=% hold=& (однократно, параметры упорядочены)
+        // Hold-Tap percent_amp_ht: тап=& hold=% (однократно, поменяли местами тап и холд)
         percent_amp_ht: percent_amp_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp PRCNT>, <&kp_once AMPS>;
+            bindings = <&kp_once &kp>;
         };
 
         // Hold-Tap dqt_at_ht: тап=" (макрос, однократно) hold=@
@@ -464,7 +464,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&macro_dqt_once>, <&kp AT>;
+            bindings = <&macro_dqt_once &kp>;
         };
 
         // Hold-Tap semi_fn_ht (Клавиша точки с запятой на базовом слое):
@@ -503,7 +503,7 @@
             flavor = "tap-preferred";
             tapping-term-ms = <300>;
             quick-tap-ms = <200>;
-            bindings = <&screenshot_win_shift_s>, <&kp LBKT>;
+            bindings = <&screenshot_win_shift_s>, <&kp>;
         };
 
         // Макрос win_space:
