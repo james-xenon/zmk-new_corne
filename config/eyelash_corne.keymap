@@ -668,7 +668,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&macro_pipe_uni>, <&kp PRCNT>;
+            bindings = <&macro_pipe_uni &kp PRCNT>;
         };
 
         // Hold-Tap semi_fn_ht (Клавиша точки с запятой):
