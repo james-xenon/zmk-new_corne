@@ -127,7 +127,7 @@ layers:
   - {t: '&macro_comma_uni COMMA', h: '&macro_degree_uni LBRC'}
   - {t: '&macro_semi_uni', h: '&macro_backtick_uni'}
   - {t: '&macro_slash_uni SLASH', h: \}
-  - {t: PRCNT 0, h: '&macro_pipe_uni PIPE'}
+  - {t: PRCNT PRCNT, h: '&macro_pipe_uni PIPE'}
   - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
   - {t: +, h: '>'}
@@ -138,9 +138,9 @@ layers:
   - {t: _, h: '&macro_emdash_uni LSHFT'}
   - {t: '-', h: <, s: _}
   - {t: +, h: '>'}
-  - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
+  - {t: '=', s: +}
   - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
-  - {t: PRCNT 0, h: '&macro_pipe_uni PIPE'}
+  - {t: PRCNT PRCNT, h: '&macro_pipe_uni PIPE'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - SPC
@@ -813,7 +813,7 @@ layers:
   - {t: '&macro_comma_uni COMMA', h: '&macro_degree_uni LBRC'}
   - {t: '&macro_semi_uni', h: '&macro_backtick_uni'}
   - {t: '&macro_slash_uni SLASH', h: \, type: held}
-  - {t: PRCNT 0, h: '&macro_pipe_uni PIPE'}
+  - {t: PRCNT PRCNT, h: '&macro_pipe_uni PIPE'}
   - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
   - {t: +, h: '>'}
@@ -824,9 +824,9 @@ layers:
   - {t: _, h: '&macro_emdash_uni LSHFT'}
   - {t: '-', h: <, s: _}
   - {t: +, h: '>'}
-  - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
+  - {t: '=', s: +}
   - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
-  - {t: PRCNT 0, h: '&macro_pipe_uni PIPE'}
+  - {t: PRCNT PRCNT, h: '&macro_pipe_uni PIPE'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - SPC
@@ -862,7 +862,7 @@ layers:
   - {t: '&macro_comma_uni COMMA', h: '&macro_degree_uni LBRC'}
   - {t: '&macro_semi_uni', h: '&macro_backtick_uni'}
   - {t: '&macro_slash_uni SLASH', h: \, type: held alternate}
-  - {t: PRCNT 0, h: '&macro_pipe_uni PIPE'}
+  - {t: PRCNT PRCNT, h: '&macro_pipe_uni PIPE'}
   - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
   - {t: +, h: '>'}
@@ -873,9 +873,9 @@ layers:
   - {t: _, h: '&macro_emdash_uni LSHFT'}
   - {t: '-', h: <, s: _}
   - {t: +, h: '>'}
-  - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
+  - {t: '=', s: +}
   - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
-  - {t: PRCNT 0, h: '&macro_pipe_uni PIPE'}
+  - {t: PRCNT PRCNT, h: '&macro_pipe_uni PIPE'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
   - SPC
