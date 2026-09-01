@@ -99,12 +99,12 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   symb:
-  - $$mdi:keyboard-esc$$
-  - '~'
-  - {t: '`', s: '~'}
-  - ^
-  - {t: '''', s: '"'}
-  - '&mkp MB5'
+  - {t: '#', h: $}
+  - {t: ), h: '}'}
+  - {t: (, h: '{'}
+  - {t: '*', h: ^}
+  - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
+  - {t: '!', h: '~'}
   - $$mdi:arrow-up-bold$$
   - {t: '!', h: '~'}
   - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
@@ -113,33 +113,33 @@ layers:
   - {t: ), h: '}'}
   - {t: '#', h: $}
   - {t: /, h: numbnolight, s: '?'}
-  - '|'
-  - {t: \, s: '|'}
-  - $
-  - '"'
-  - '&mkp MB4'
+  - {t: '&macro_semi_uni', h: '&macro_rbrc_uni'}
+  - {t: '&macro_comma_uni COMMA', h: '{'}
+  - {t: '&macro_dot_uni DOT', h: '['}
+  - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
+  - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
   - $$mdi:arrow-left-bold$$
   - SPC
   - $$mdi:arrow-right-bold$$
-  - {t: '&macro_colon_uni COLON', h: '@'}
-  - {t: ']', h: '''', s: '}'}
+  - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
+  - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
   - {t: '&macro_dot_uni DOT', h: '['}
   - {t: '&macro_comma_uni COMMA', h: '{'}
-  - '&macro_semi_uni'
+  - {t: '&macro_semi_uni', h: '&macro_rbrc_uni'}
   - {t: '&macro_slash_uni SLASH', h: \}
   - {t: '&macro_dqt_once', h: '|'}
-  - <
-  - '>'
-  - '{'
-  - '}'
-  - AL CALCULATOR
+  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: '=', h: '~', s: +}
+  - {t: +, h: '>'}
+  - {t: '-', h: <, s: _}
+  - {t: _, h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
   - {t: _, h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '-', h: <, s: _}
   - {t: +, h: '>'}
   - {t: '=', h: '~', s: +}
-  - {t: '&', h: '%'}
+  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
   - {t: '&macro_dqt_once', h: '|'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -736,12 +736,12 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   symbnolight:
-  - $$mdi:keyboard-esc$$
-  - '~'
-  - {t: '`', s: '~'}
-  - ^
-  - {t: '''', s: '"'}
-  - '&mkp MB5'
+  - {t: '#', h: $}
+  - {t: ), h: '}'}
+  - {t: (, h: '{'}
+  - {t: '*', h: ^}
+  - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
+  - {t: '!', h: '~'}
   - $$mdi:arrow-up-bold$$
   - {t: '!', h: '~'}
   - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
@@ -750,33 +750,33 @@ layers:
   - {t: ), h: '}'}
   - {t: '#', h: $}
   - {t: /, h: numbnolight, s: '?'}
-  - '|'
-  - {t: \, s: '|'}
-  - $
-  - '"'
-  - '&mkp MB4'
+  - {t: '&macro_semi_uni', h: '&macro_rbrc_uni'}
+  - {t: '&macro_comma_uni COMMA', h: '{'}
+  - {t: '&macro_dot_uni DOT', h: '['}
+  - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
+  - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
   - $$mdi:arrow-left-bold$$
   - SPC
   - $$mdi:arrow-right-bold$$
-  - {t: '&macro_colon_uni COLON', h: '@'}
-  - {t: ']', h: '''', s: '}'}
+  - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
+  - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
   - {t: '&macro_dot_uni DOT', h: '['}
   - {t: '&macro_comma_uni COMMA', h: '{'}
-  - '&macro_semi_uni'
+  - {t: '&macro_semi_uni', h: '&macro_rbrc_uni'}
   - {t: '&macro_slash_uni SLASH', h: \}
   - {t: '&macro_dqt_once', h: '|'}
-  - <
-  - '>'
-  - '{'
-  - '}'
-  - AL CALCULATOR
+  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: '=', h: '~', s: +}
+  - {t: +, h: '>'}
+  - {t: '-', h: <, s: _}
+  - {t: _, h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
   - {t: _, h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '-', h: <, s: _}
   - {t: +, h: '>'}
   - {t: '=', h: '~', s: +}
-  - {t: '&', h: '%'}
+  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
   - {t: '&macro_dqt_once', h: '|'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -785,12 +785,12 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   symbnolightcopy:
-  - $$mdi:keyboard-esc$$
-  - '~'
-  - {t: '`', s: '~'}
-  - ^
-  - {t: '''', s: '"'}
-  - '&mkp MB5'
+  - {t: '#', h: $}
+  - {t: ), h: '}'}
+  - {t: (, h: '{'}
+  - {t: '*', h: ^}
+  - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
+  - {t: '!', h: '~'}
   - $$mdi:arrow-up-bold$$
   - {t: '!', h: '~'}
   - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
@@ -799,33 +799,33 @@ layers:
   - {t: ), h: '}'}
   - {t: '#', h: $}
   - {t: /, h: numbnolight, s: '?'}
-  - '|'
-  - {t: \, s: '|'}
-  - $
-  - '"'
-  - '&mkp MB4'
+  - {t: '&macro_semi_uni', h: '&macro_rbrc_uni'}
+  - {t: '&macro_comma_uni COMMA', h: '{'}
+  - {t: '&macro_dot_uni DOT', h: '['}
+  - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
+  - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
   - $$mdi:arrow-left-bold$$
   - SPC
   - $$mdi:arrow-right-bold$$
-  - {t: '&macro_colon_uni COLON', h: '@'}
-  - {t: ']', h: '''', s: '}'}
+  - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
+  - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
   - {t: '&macro_dot_uni DOT', h: '['}
   - {t: '&macro_comma_uni COMMA', h: '{'}
-  - '&macro_semi_uni'
+  - {t: '&macro_semi_uni', h: '&macro_rbrc_uni'}
   - {t: '&macro_slash_uni SLASH', h: \}
   - {t: '&macro_dqt_once', h: '|'}
-  - <
-  - '>'
-  - '{'
-  - '}'
-  - AL CALCULATOR
+  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: '=', h: '~', s: +}
+  - {t: +, h: '>'}
+  - {t: '-', h: <, s: _}
+  - {t: _, h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
   - {t: _, h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '-', h: <, s: _}
   - {t: +, h: '>'}
   - {t: '=', h: '~', s: +}
-  - {t: '&', h: '%'}
+  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
   - {t: '&macro_dqt_once', h: '|'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
@@ -861,7 +861,7 @@ layers:
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
   - {t: '0', s: )}
-  - {t: '$$mdi:backspace$$', h: symbnolight}
+  - {t: '$$mdi:backspace$$', h: symbnolightcopy}
   - PG DN
   - '&macro_dot_uni'
   - {t: '3', s: '#'}
