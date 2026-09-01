@@ -549,7 +549,7 @@ rect.held, rect.combo.held {
 <g transform="translate(224, 203)" class="key keypos-42">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;lh_td_wr…</tspan></text>
+<text x="0" y="-4" class="key tap">&amp;lh_td</text>
 <a href="#lefthandnolight">
 <text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">lefthandn…</tspan></text>
 </a></g>
@@ -573,14 +573,14 @@ rect.held, rect.combo.held {
 <g transform="translate(695, 209) rotate(-12.0)" class="key keypos-46">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;none_wrap</tspan></text>
+<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-9" y="-13" height="18" width="18.0" class="key tap glyph mdi:minus-circle-outline"/>
 <a href="#numbnolight">
 <text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">numbnolig…</tspan></text>
 </a></g>
 <g transform="translate(756, 203)" class="key keypos-47">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;win_spac…</tspan></text>
+<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;win_space</tspan></text>
 <a href="#nav2nolight">
 <text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">nav2nolig…</tspan></text>
 </a></g>
@@ -927,7 +927,7 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">#</text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_dl…</tspan></text>
+<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_do…</tspan></text>
 </g>
 <g transform="translate(84, 49)" class="key keypos-1">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -998,7 +998,7 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">#</text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_dl…</tspan></text>
+<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_do…</tspan></text>
 </g>
 <g transform="translate(28, 105)" class="key keypos-13">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -1012,18 +1012,22 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_se…</tspan></text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_ba…</tspan></text>
+<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_gr…</tspan></text>
 </g>
 <g transform="translate(140, 91)" class="key keypos-15">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_co…</tspan></text>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_co…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">COMMA</tspan>
+</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_de…</tspan></text>
 </g>
 <g transform="translate(196, 84)" class="key keypos-16">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_do…</tspan></text>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_do…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">DOT</tspan>
+</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_lb…</tspan></text>
 </g>
 <g transform="translate(252, 91)" class="key keypos-17">
@@ -1036,7 +1040,9 @@ rect.held, rect.combo.held {
 <g transform="translate(308, 97)" class="key keypos-18">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_co…</tspan></text>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_co…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">COLON</tspan>
+</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_at…</tspan></text>
 </g>
 <g transform="translate(490, 97)" class="key keypos-19">
@@ -1057,7 +1063,9 @@ rect.held, rect.combo.held {
 <g transform="translate(672, 97)" class="key keypos-22">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_co…</tspan></text>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_co…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">COLON</tspan>
+</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_at…</tspan></text>
 </g>
 <g transform="translate(728, 91)" class="key keypos-23">
@@ -1070,44 +1078,52 @@ rect.held, rect.combo.held {
 <g transform="translate(784, 84)" class="key keypos-24">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_do…</tspan></text>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_do…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">DOT</tspan>
+</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_lb…</tspan></text>
 </g>
 <g transform="translate(840, 91)" class="key keypos-25">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_co…</tspan></text>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_co…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">COMMA</tspan>
+</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_de…</tspan></text>
 </g>
 <g transform="translate(896, 105)" class="key keypos-26">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_se…</tspan></text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_ba…</tspan></text>
+<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_gr…</tspan></text>
 </g>
 <g transform="translate(952, 105)" class="key keypos-27">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_sl…</tspan></text>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_sl…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">SLASH</tspan>
+</text>
 <text x="0" y="24" class="key hold">\</text>
 </g>
 <g transform="translate(28, 161)" class="key keypos-28">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap">%</text>
+<text x="0" y="-4" class="key tap">0</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_pi…</tspan></text>
 </g>
 <g transform="translate(84, 161)" class="key keypos-29">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_dq…</tspan></text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;none_wrap</tspan></text>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_dq…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">AMPS</tspan>
+</text>
+<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:minus-circle-outline"/>
 </g>
 <g transform="translate(140, 147)" class="key keypos-30">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">=</text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;none_wrap</tspan></text>
+<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:minus-circle-outline"/>
 <text x="0" y="-24" class="key shifted">+</text>
 </g>
 <g transform="translate(196, 140)" class="key keypos-31">
@@ -1162,18 +1178,21 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">=</text>
+<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:minus-circle-outline"/>
 <text x="0" y="-24" class="key shifted">+</text>
 </g>
 <g transform="translate(896, 161)" class="key keypos-40">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_dq…</tspan></text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;none_wrap</tspan></text>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_dq…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">AMPS</tspan>
+</text>
+<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:minus-circle-outline"/>
 </g>
 <g transform="translate(952, 161)" class="key keypos-41">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap">%</text>
+<text x="0" y="-4" class="key tap">0</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_pi…</tspan></text>
 </g>
 <g transform="translate(224, 203)" class="key trans keypos-42">
@@ -1411,9 +1430,7 @@ rect.held, rect.combo.held {
 <g transform="translate(84, 161)" class="key keypos-29">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap">
-<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_do…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">DOT</tspan>
-</text>
+<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_do…</tspan></text>
 <use href="#mdi:apple-keyboard-shift" xlink:href="#mdi:apple-keyboard-shift" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:apple-keyboard-shift"/>
 </g>
 <g transform="translate(140, 147)" class="key keypos-30">
@@ -1477,9 +1494,7 @@ rect.held, rect.combo.held {
 <g transform="translate(896, 161)" class="key keypos-40">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap">
-<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_do…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">DOT</tspan>
-</text>
+<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_do…</tspan></text>
 <use href="#mdi:apple-keyboard-shift" xlink:href="#mdi:apple-keyboard-shift" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:apple-keyboard-shift"/>
 </g>
 <g transform="translate(952, 161)" class="key keypos-41">
@@ -3630,14 +3645,14 @@ rect.held, rect.combo.held {
 <g transform="translate(695, 209) rotate(-12.0)" class="key keypos-46">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;none_wrap</tspan></text>
+<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-9" y="-13" height="18" width="18.0" class="key tap glyph mdi:minus-circle-outline"/>
 <a href="#numbnolight">
 <text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">numbnolig…</tspan></text>
 </a></g>
 <g transform="translate(756, 203)" class="key keypos-47">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;win_spac…</tspan></text>
+<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;win_space</tspan></text>
 <a href="#nav2nolight">
 <text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">nav2nolig…</tspan></text>
 </a></g>
@@ -4623,9 +4638,7 @@ rect.held, rect.combo.held {
 <g transform="translate(84, 161)" class="key keypos-29">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap">
-<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_do…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">DOT</tspan>
-</text>
+<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_do…</tspan></text>
 <use href="#mdi:apple-keyboard-shift" xlink:href="#mdi:apple-keyboard-shift" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:apple-keyboard-shift"/>
 </g>
 <g transform="translate(140, 147)" class="key keypos-30">
@@ -4689,9 +4702,7 @@ rect.held, rect.combo.held {
 <g transform="translate(896, 161)" class="key keypos-40">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap">
-<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_do…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">DOT</tspan>
-</text>
+<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_do…</tspan></text>
 <use href="#mdi:apple-keyboard-shift" xlink:href="#mdi:apple-keyboard-shift" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:apple-keyboard-shift"/>
 </g>
 <g transform="translate(952, 161)" class="key keypos-41">
@@ -4755,7 +4766,7 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">#</text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_dl…</tspan></text>
+<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_do…</tspan></text>
 </g>
 <g transform="translate(84, 49)" class="key keypos-1">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -4826,7 +4837,7 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">#</text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_dl…</tspan></text>
+<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_do…</tspan></text>
 </g>
 <g transform="translate(28, 105)" class="key keypos-13">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -4840,18 +4851,22 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_se…</tspan></text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_ba…</tspan></text>
+<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_gr…</tspan></text>
 </g>
 <g transform="translate(140, 91)" class="key keypos-15">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_co…</tspan></text>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_co…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">COMMA</tspan>
+</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_de…</tspan></text>
 </g>
 <g transform="translate(196, 84)" class="key keypos-16">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_do…</tspan></text>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_do…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">DOT</tspan>
+</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_lb…</tspan></text>
 </g>
 <g transform="translate(252, 91)" class="key keypos-17">
@@ -4864,7 +4879,9 @@ rect.held, rect.combo.held {
 <g transform="translate(308, 97)" class="key keypos-18">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_co…</tspan></text>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_co…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">COLON</tspan>
+</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_at…</tspan></text>
 </g>
 <g transform="translate(490, 97)" class="key keypos-19">
@@ -4885,7 +4902,9 @@ rect.held, rect.combo.held {
 <g transform="translate(672, 97)" class="key keypos-22">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_co…</tspan></text>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_co…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">COLON</tspan>
+</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_at…</tspan></text>
 </g>
 <g transform="translate(728, 91)" class="key keypos-23">
@@ -4898,44 +4917,52 @@ rect.held, rect.combo.held {
 <g transform="translate(784, 84)" class="key keypos-24">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_do…</tspan></text>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_do…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">DOT</tspan>
+</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_lb…</tspan></text>
 </g>
 <g transform="translate(840, 91)" class="key keypos-25">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_co…</tspan></text>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_co…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">COMMA</tspan>
+</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_de…</tspan></text>
 </g>
 <g transform="translate(896, 105)" class="key keypos-26">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_se…</tspan></text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_ba…</tspan></text>
+<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_gr…</tspan></text>
 </g>
 <g transform="translate(952, 105)" class="key held keypos-27">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key held side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key held"/>
-<text x="0" y="-4" class="key held tap"><tspan style="font-size: 60%">&amp;macro_sl…</tspan></text>
+<text x="0" y="-4" class="key held tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_sl…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">SLASH</tspan>
+</text>
 <text x="0" y="24" class="key held hold">\</text>
 </g>
 <g transform="translate(28, 161)" class="key keypos-28">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap">%</text>
+<text x="0" y="-4" class="key tap">0</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_pi…</tspan></text>
 </g>
 <g transform="translate(84, 161)" class="key keypos-29">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_dq…</tspan></text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;none_wrap</tspan></text>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_dq…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">AMPS</tspan>
+</text>
+<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:minus-circle-outline"/>
 </g>
 <g transform="translate(140, 147)" class="key keypos-30">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">=</text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;none_wrap</tspan></text>
+<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:minus-circle-outline"/>
 <text x="0" y="-24" class="key shifted">+</text>
 </g>
 <g transform="translate(196, 140)" class="key keypos-31">
@@ -4990,19 +5017,21 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">=</text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;none_wrap</tspan></text>
+<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:minus-circle-outline"/>
 <text x="0" y="-24" class="key shifted">+</text>
 </g>
 <g transform="translate(896, 161)" class="key keypos-40">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_dq…</tspan></text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;none_wrap</tspan></text>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_dq…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">AMPS</tspan>
+</text>
+<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:minus-circle-outline"/>
 </g>
 <g transform="translate(952, 161)" class="key keypos-41">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap">%</text>
+<text x="0" y="-4" class="key tap">0</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_pi…</tspan></text>
 </g>
 <g transform="translate(224, 203)" class="key trans keypos-42">
@@ -5059,7 +5088,7 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">#</text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_dl…</tspan></text>
+<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_do…</tspan></text>
 </g>
 <g transform="translate(84, 49)" class="key keypos-1">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -5130,7 +5159,7 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">#</text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_dl…</tspan></text>
+<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_do…</tspan></text>
 </g>
 <g transform="translate(28, 105)" class="key held alternate keypos-13">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key held alternate side"/>
@@ -5144,18 +5173,22 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_se…</tspan></text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_ba…</tspan></text>
+<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_gr…</tspan></text>
 </g>
 <g transform="translate(140, 91)" class="key keypos-15">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_co…</tspan></text>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_co…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">COMMA</tspan>
+</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_de…</tspan></text>
 </g>
 <g transform="translate(196, 84)" class="key keypos-16">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_do…</tspan></text>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_do…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">DOT</tspan>
+</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_lb…</tspan></text>
 </g>
 <g transform="translate(252, 91)" class="key keypos-17">
@@ -5168,7 +5201,9 @@ rect.held, rect.combo.held {
 <g transform="translate(308, 97)" class="key keypos-18">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_co…</tspan></text>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_co…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">COLON</tspan>
+</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_at…</tspan></text>
 </g>
 <g transform="translate(490, 97)" class="key keypos-19">
@@ -5189,7 +5224,9 @@ rect.held, rect.combo.held {
 <g transform="translate(672, 97)" class="key keypos-22">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_co…</tspan></text>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_co…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">COLON</tspan>
+</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_at…</tspan></text>
 </g>
 <g transform="translate(728, 91)" class="key keypos-23">
@@ -5202,44 +5239,52 @@ rect.held, rect.combo.held {
 <g transform="translate(784, 84)" class="key keypos-24">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_do…</tspan></text>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_do…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">DOT</tspan>
+</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_lb…</tspan></text>
 </g>
 <g transform="translate(840, 91)" class="key keypos-25">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_co…</tspan></text>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_co…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">COMMA</tspan>
+</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_de…</tspan></text>
 </g>
 <g transform="translate(896, 105)" class="key keypos-26">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_se…</tspan></text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_ba…</tspan></text>
+<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_gr…</tspan></text>
 </g>
 <g transform="translate(952, 105)" class="key held alternate keypos-27">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key held alternate side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key held alternate"/>
-<text x="0" y="-4" class="key held alternate tap"><tspan style="font-size: 60%">&amp;macro_sl…</tspan></text>
+<text x="0" y="-4" class="key held alternate tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_sl…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">SLASH</tspan>
+</text>
 <text x="0" y="24" class="key held alternate hold">\</text>
 </g>
 <g transform="translate(28, 161)" class="key keypos-28">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap">%</text>
+<text x="0" y="-4" class="key tap">0</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_pi…</tspan></text>
 </g>
 <g transform="translate(84, 161)" class="key keypos-29">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_dq…</tspan></text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;none_wrap</tspan></text>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_dq…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">AMPS</tspan>
+</text>
+<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:minus-circle-outline"/>
 </g>
 <g transform="translate(140, 147)" class="key keypos-30">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">=</text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;none_wrap</tspan></text>
+<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:minus-circle-outline"/>
 <text x="0" y="-24" class="key shifted">+</text>
 </g>
 <g transform="translate(196, 140)" class="key keypos-31">
@@ -5294,19 +5339,21 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">=</text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;none_wrap</tspan></text>
+<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:minus-circle-outline"/>
 <text x="0" y="-24" class="key shifted">+</text>
 </g>
 <g transform="translate(896, 161)" class="key keypos-40">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_dq…</tspan></text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;none_wrap</tspan></text>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_dq…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">AMPS</tspan>
+</text>
+<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:minus-circle-outline"/>
 </g>
 <g transform="translate(952, 161)" class="key keypos-41">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap">%</text>
+<text x="0" y="-4" class="key tap">0</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_pi…</tspan></text>
 </g>
 <g transform="translate(224, 203)" class="key trans keypos-42">
@@ -5530,9 +5577,7 @@ rect.held, rect.combo.held {
 <g transform="translate(84, 161)" class="key keypos-29">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap">
-<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_do…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">DOT</tspan>
-</text>
+<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_do…</tspan></text>
 <use href="#mdi:apple-keyboard-shift" xlink:href="#mdi:apple-keyboard-shift" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:apple-keyboard-shift"/>
 </g>
 <g transform="translate(140, 147)" class="key keypos-30">
@@ -5596,9 +5641,7 @@ rect.held, rect.combo.held {
 <g transform="translate(896, 161)" class="key keypos-40">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap">
-<tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_do…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">DOT</tspan>
-</text>
+<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_do…</tspan></text>
 <use href="#mdi:apple-keyboard-shift" xlink:href="#mdi:apple-keyboard-shift" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:apple-keyboard-shift"/>
 </g>
 <g transform="translate(952, 161)" class="key keypos-41">
