@@ -44,7 +44,7 @@ layers:
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
   - {t: '&lh_td', h: lefthandnolight}
-  - {t: '&symb_win_tap_dance', h: symbnolight}
+  - {t: '&symb_win_tap_dance', h: symbnolightcopy}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', h: numbnolight}
@@ -99,48 +99,48 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   symb:
-  - '&hash_dollar_ht DLLR HASH'
-  - '&rpar_rbrc_ht RBRC RPAR'
-  - '&lpar_lbrc_ht LBRC LPAR'
-  - '&astrk_caret_ht CARET ASTRK'
-  - '&qmark_dqt_ht 0 0'
-  - '&excl_tilde_ht TILDE EXCL'
+  - {t: '#', h: $}
+  - {t: ), h: '}'}
+  - {t: (, h: '{'}
+  - {t: '*', h: ^}
+  - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
+  - {t: '!', h: '~'}
   - $$mdi:arrow-up-bold$$
-  - '&excl_tilde_ht TILDE EXCL'
-  - '&qmark_dqt_ht 0 0'
-  - '&astrk_caret_ht CARET ASTRK'
-  - '&lpar_lbrc_ht LBRC LPAR'
-  - '&rpar_rbrc_ht RBRC RPAR'
-  - '&hash_dollar_ht DLLR HASH'
-  - '&bspc_to_numb_ht 17 FSLH'
-  - '&semi_rbrc_ht 0 0'
-  - '&comma_lbrc_ht LBRC COMMA'
-  - '&dot_lbkt_ht LBKT DOT'
-  - '&rbkt_sqt_ht SQT RBKT'
-  - '&colon_at_ht AT COLON'
+  - {t: '!', h: '~'}
+  - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
+  - {t: '*', h: ^}
+  - {t: (, h: '{'}
+  - {t: ), h: '}'}
+  - {t: '#', h: $}
+  - {t: /, h: numbnolight, s: '?'}
+  - {t: '&macro_semi_uni', h: '&macro_rbrc_uni'}
+  - {t: '&macro_comma_uni COMMA', h: '{'}
+  - {t: '&macro_dot_uni DOT', h: '['}
+  - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
+  - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
   - $$mdi:arrow-left-bold$$
   - SPC
   - $$mdi:arrow-right-bold$$
-  - '&colon_at_ht AT COLON'
-  - '&rbkt_sqt_ht SQT RBKT'
-  - '&dot_lbkt_ht LBKT DOT'
-  - '&comma_lbrc_ht LBRC COMMA'
-  - '&semi_rbrc_ht 0 0'
-  - '&slash_bslh_ht BSLH SLASH'
-  - '&dqt_pipe_ht PIPE 0'
-  - '&percent_amp_ht PRCNT AMPS'
-  - '&equal_tilde_ht TILDE EQUAL'
-  - '&plus_gt_ht GT PLUS'
-  - '&minus_lt_ht LT MINUS'
-  - '&under_lshft_ht LSHFT UNDER'
+  - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
+  - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
+  - {t: '&macro_dot_uni DOT', h: '['}
+  - {t: '&macro_comma_uni COMMA', h: '{'}
+  - {t: '&macro_semi_uni', h: '&macro_rbrc_uni'}
+  - {t: '&macro_slash_uni SLASH', h: \}
+  - {t: '&macro_dqt_once', h: '|'}
+  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: '=', h: '~', s: +}
+  - {t: +, h: '>'}
+  - {t: '-', h: <, s: _}
+  - {t: _, h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
-  - '&under_lshft_ht LSHFT UNDER'
-  - '&minus_lt_ht LT MINUS'
-  - '&plus_gt_ht GT PLUS'
-  - '&equal_tilde_ht TILDE EQUAL'
-  - '&percent_amp_ht PRCNT AMPS'
-  - '&dqt_pipe_ht PIPE 0'
+  - {t: _, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: '-', h: <, s: _}
+  - {t: +, h: '>'}
+  - {t: '=', h: '~', s: +}
+  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: '&macro_dqt_once', h: '|'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - SPC
@@ -583,7 +583,7 @@ layers:
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
   - $$mdi:apple-keyboard-option$$
-  - {t: '&symb_win_tap_dance', h: symbnolight}
+  - {t: '&symb_win_tap_dance', h: symbnolightcopy}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', h: numbnolight}
@@ -668,10 +668,10 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:apple-keyboard-control$$
   - '!'
-  - '&'
+  - '&macro_qmark_uni'
   - '&macro_comma_uni'
   - '&macro_dot_uni'
-  - {t: /, s: '?'}
+  - '&macro_slash_uni'
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
   - {t: '$$mdi:transfer$$', type: trans}
@@ -717,10 +717,10 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:apple-keyboard-control$$
   - '!'
-  - '&'
+  - '&macro_qmark_uni'
   - '&macro_comma_uni'
   - '&macro_dot_uni'
-  - {t: /, s: '?'}
+  - '&macro_slash_uni'
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
   - {t: '$$mdi:transfer$$', type: trans}
@@ -733,6 +733,104 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  symbnolight:
+  - {t: '#', h: $}
+  - {t: ), h: '}'}
+  - {t: (, h: '{'}
+  - {t: '*', h: ^}
+  - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
+  - {t: '!', h: '~'}
+  - $$mdi:arrow-up-bold$$
+  - {t: '!', h: '~'}
+  - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
+  - {t: '*', h: ^}
+  - {t: (, h: '{'}
+  - {t: ), h: '}'}
+  - {t: '#', h: $}
+  - {t: /, h: numbnolight, s: '?'}
+  - {t: '&macro_semi_uni', h: '&macro_rbrc_uni'}
+  - {t: '&macro_comma_uni COMMA', h: '{'}
+  - {t: '&macro_dot_uni DOT', h: '['}
+  - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
+  - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
+  - $$mdi:arrow-left-bold$$
+  - SPC
+  - $$mdi:arrow-right-bold$$
+  - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
+  - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
+  - {t: '&macro_dot_uni DOT', h: '['}
+  - {t: '&macro_comma_uni COMMA', h: '{'}
+  - {t: '&macro_semi_uni', h: '&macro_rbrc_uni'}
+  - {t: '&macro_slash_uni SLASH', h: \}
+  - {t: '&macro_dqt_once', h: '|'}
+  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: '=', h: '~', s: +}
+  - {t: +, h: '>'}
+  - {t: '-', h: <, s: _}
+  - {t: _, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:arrow-down-bold$$
+  - {t: _, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: '-', h: <, s: _}
+  - {t: +, h: '>'}
+  - {t: '=', h: '~', s: +}
+  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: '&macro_dqt_once', h: '|'}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - SPC
+  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  symbnolightcopy:
+  - {t: '#', h: $}
+  - {t: ), h: '}'}
+  - {t: (, h: '{'}
+  - {t: '*', h: ^}
+  - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
+  - {t: '!', h: '~'}
+  - $$mdi:arrow-up-bold$$
+  - {t: '!', h: '~'}
+  - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
+  - {t: '*', h: ^}
+  - {t: (, h: '{'}
+  - {t: ), h: '}'}
+  - {t: '#', h: $}
+  - {t: /, h: numbnolight, s: '?'}
+  - {t: '&macro_semi_uni', h: '&macro_rbrc_uni'}
+  - {t: '&macro_comma_uni COMMA', h: '{'}
+  - {t: '&macro_dot_uni DOT', h: '['}
+  - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
+  - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
+  - $$mdi:arrow-left-bold$$
+  - SPC
+  - $$mdi:arrow-right-bold$$
+  - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
+  - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
+  - {t: '&macro_dot_uni DOT', h: '['}
+  - {t: '&macro_comma_uni COMMA', h: '{'}
+  - {t: '&macro_semi_uni', h: '&macro_rbrc_uni'}
+  - {t: '&macro_slash_uni SLASH', h: \}
+  - {t: '&macro_dqt_once', h: '|'}
+  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: '=', h: '~', s: +}
+  - {t: +, h: '>'}
+  - {t: '-', h: <, s: _}
+  - {t: _, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:arrow-down-bold$$
+  - {t: _, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: '-', h: <, s: _}
+  - {t: +, h: '>'}
+  - {t: '=', h: '~', s: +}
+  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: '&macro_dqt_once', h: '|'}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
+  - SPC
+  - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   numbnolight:
@@ -749,7 +847,7 @@ layers:
   - {t: '9', s: (}
   - '&macro_comma_uni'
   - PG UP
-  - {t: '$$mdi:backspace$$', type: backspace}
+  - {t: '$$mdi:backspace$$', type: held alternate}
   - {t: '0', s: )}
   - {t: '6', s: ^}
   - {t: '5', s: '%'}
@@ -779,108 +877,10 @@ layers:
   - '&macro_dot_uni'
   - PG DN
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held alternate}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {type: held}
-  - {t: '$$mdi:transfer$$', type: trans}
-  symbnolightcopy:
-  - '&hash_dollar_ht DLLR HASH'
-  - '&rpar_rbrc_ht RBRC RPAR'
-  - '&lpar_lbrc_ht LBRC LPAR'
-  - '&astrk_caret_ht CARET ASTRK'
-  - '&qmark_dqt_ht 0 0'
-  - '&excl_tilde_ht TILDE EXCL'
-  - $$mdi:arrow-up-bold$$
-  - '&excl_tilde_ht TILDE EXCL'
-  - '&qmark_dqt_ht 0 0'
-  - '&astrk_caret_ht CARET ASTRK'
-  - '&lpar_lbrc_ht LBRC LPAR'
-  - '&rpar_rbrc_ht RBRC RPAR'
-  - '&hash_dollar_ht DLLR HASH'
-  - '&bspc_to_numb_ht 17 FSLH'
-  - '&semi_rbrc_ht 0 0'
-  - '&comma_lbrc_ht LBRC COMMA'
-  - '&dot_lbkt_ht LBKT DOT'
-  - '&rbkt_sqt_ht SQT RBKT'
-  - '&colon_at_ht AT COLON'
-  - $$mdi:arrow-left-bold$$
-  - SPC
-  - $$mdi:arrow-right-bold$$
-  - '&colon_at_ht AT COLON'
-  - '&rbkt_sqt_ht SQT RBKT'
-  - '&dot_lbkt_ht LBKT DOT'
-  - '&comma_lbrc_ht LBRC COMMA'
-  - '&semi_rbrc_ht 0 0'
-  - {t: '&slash_bslh_ht BSLH SLASH', type: held}
-  - '&dqt_pipe_ht PIPE 0'
-  - '&percent_amp_ht PRCNT AMPS'
-  - '&equal_tilde_ht TILDE EQUAL'
-  - '&plus_gt_ht GT PLUS'
-  - '&minus_lt_ht LT MINUS'
-  - '&under_lshft_ht LSHFT UNDER'
-  - {t: '$$mdi:transfer$$', type: trans}
-  - $$mdi:arrow-down-bold$$
-  - '&under_lshft_ht LSHFT UNDER'
-  - '&minus_lt_ht LT MINUS'
-  - '&plus_gt_ht GT PLUS'
-  - '&equal_tilde_ht TILDE EQUAL'
-  - '&percent_amp_ht PRCNT AMPS'
-  - '&dqt_pipe_ht PIPE 0'
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - SPC
-  - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {type: held}
-  - {t: '$$mdi:transfer$$', type: trans}
-  symbnolight:
-  - '&hash_dollar_ht DLLR HASH'
-  - '&rpar_rbrc_ht RBRC RPAR'
-  - '&lpar_lbrc_ht LBRC LPAR'
-  - '&astrk_caret_ht CARET ASTRK'
-  - '&qmark_dqt_ht 0 0'
-  - '&excl_tilde_ht TILDE EXCL'
-  - $$mdi:arrow-up-bold$$
-  - '&excl_tilde_ht TILDE EXCL'
-  - '&qmark_dqt_ht 0 0'
-  - '&astrk_caret_ht CARET ASTRK'
-  - '&lpar_lbrc_ht LBRC LPAR'
-  - '&rpar_rbrc_ht RBRC RPAR'
-  - '&hash_dollar_ht DLLR HASH'
-  - '&bspc_to_numb_ht 17 FSLH'
-  - '&semi_rbrc_ht 0 0'
-  - '&comma_lbrc_ht LBRC COMMA'
-  - '&dot_lbkt_ht LBKT DOT'
-  - '&rbkt_sqt_ht SQT RBKT'
-  - '&colon_at_ht AT COLON'
-  - $$mdi:arrow-left-bold$$
-  - SPC
-  - $$mdi:arrow-right-bold$$
-  - '&colon_at_ht AT COLON'
-  - '&rbkt_sqt_ht SQT RBKT'
-  - '&dot_lbkt_ht LBKT DOT'
-  - '&comma_lbrc_ht LBRC COMMA'
-  - '&semi_rbrc_ht 0 0'
-  - '&slash_bslh_ht BSLH SLASH'
-  - '&dqt_pipe_ht PIPE 0'
-  - '&percent_amp_ht PRCNT AMPS'
-  - '&equal_tilde_ht TILDE EQUAL'
-  - '&plus_gt_ht GT PLUS'
-  - '&minus_lt_ht LT MINUS'
-  - '&under_lshft_ht LSHFT UNDER'
-  - {t: '$$mdi:transfer$$', type: trans}
-  - $$mdi:arrow-down-bold$$
-  - '&under_lshft_ht LSHFT UNDER'
-  - '&minus_lt_ht LT MINUS'
-  - '&plus_gt_ht GT PLUS'
-  - '&equal_tilde_ht TILDE EQUAL'
-  - '&percent_amp_ht PRCNT AMPS'
-  - '&dqt_pipe_ht PIPE 0'
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {type: held}
-  - SPC
-  - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   numbnolightcopy:
   - PG UP
@@ -961,16 +961,16 @@ combos:
   l: [default]
 - p: [23, 24]
   k: {t: '$$mdi:backspace$$', type: backspace}
-  l: [default, nav1, symb, numb, fn, service, nav2, speedtype, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy]
+  l: [default, nav1, symb, numb, fn, service, nav2, speedtype, symbnolight, symbnolightcopy, numbnolight, numbnolightcopy]
 - p: [24, 25]
   k: $$mdi:backspace-reverse-outline$$
-  l: [default, nav1, symb, numb, fn, service, nav2, speedtype, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy]
+  l: [default, nav1, symb, numb, fn, service, nav2, speedtype, symbnolight, symbnolightcopy, numbnolight, numbnolightcopy]
 - p: [16, 17]
   k: {t: '$$mdi:backspace$$', type: backspace}
-  l: [symb, numb, nav2, lefthand, lefthandnolight, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy]
+  l: [symb, numb, nav2, lefthand, lefthandnolight, symbnolight, symbnolightcopy, numbnolight, numbnolightcopy]
 - p: [15, 16]
   k: $$mdi:backspace-reverse-outline$$
-  l: [symb, numb, nav2, lefthand, lefthandnolight, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy]
+  l: [symb, numb, nav2, lefthand, lefthandnolight, symbnolight, symbnolightcopy, numbnolight, numbnolightcopy]
 - p: [3, 43]
   k: '&thumb_e_numb_td'
   l: [default, numb]
