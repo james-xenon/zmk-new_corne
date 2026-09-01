@@ -99,23 +99,23 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   symb:
-  - {t: '&macro_dllr_uni HASH', h: DLLR DLLR}
-  - {t: '&macro_rbrc_uni RPAR', h: RBRC RBRC}
-  - {t: '&macro_lbrc_uni LPAR', h: LBRC LBRC}
+  - {t: '#', h: $}
+  - {t: ), h: '}'}
+  - {t: (, h: '{'}
   - {t: '*', h: ^}
   - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
-  - {t: '&macro_tilde_uni EXCL', h: TILDE TILDE}
+  - {t: '!', h: '~'}
   - $$mdi:arrow-up-bold$$
-  - {t: '&macro_tilde_uni EXCL', h: TILDE TILDE}
+  - {t: '!', h: '~'}
   - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
   - {t: '*', h: ^}
-  - {t: '&macro_lbrc_uni LPAR', h: LBRC LBRC}
-  - {t: '&macro_rbrc_uni RPAR', h: RBRC RBRC}
-  - {t: '&macro_dllr_uni HASH', h: DLLR DLLR}
-  - '&bspc_to_numb_ht 17 FSLH'
-  - {t: '$$mdi:minus-circle-outline$$', h: '&macro_semi_uni'}
-  - {t: '$$mdi:minus-circle-outline$$', h: LBRC LBRC}
-  - {t: '&macro_lbkt_uni DOT', h: LBKT LBKT}
+  - {t: (, h: '{'}
+  - {t: ), h: '}'}
+  - {t: '#', h: $}
+  - {t: /, h: symbnolight, s: '?'}
+  - {t: '&macro_semi_uni', h: '&macro_backtick_uni'}
+  - {t: '&macro_comma_uni COMMA', h: '&macro_degree_uni LBRC'}
+  - {t: '&macro_dot_uni DOT', h: '['}
   - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
   - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
   - $$mdi:arrow-left-bold$$
@@ -123,24 +123,24 @@ layers:
   - $$mdi:arrow-right-bold$$
   - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
   - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
-  - {t: '&macro_lbkt_uni DOT', h: LBKT LBKT}
-  - {t: '$$mdi:minus-circle-outline$$', h: LBRC LBRC}
-  - {t: '$$mdi:minus-circle-outline$$', h: '&macro_semi_uni'}
+  - {t: '&macro_dot_uni DOT', h: '['}
+  - {t: '&macro_comma_uni COMMA', h: '&macro_degree_uni LBRC'}
+  - {t: '&macro_semi_uni', h: '&macro_backtick_uni'}
   - {t: '&macro_slash_uni SLASH', h: \}
-  - {t: '&macro_pipe_uni', h: PRCNT PIPE}
-  - {t: '$$mdi:minus-circle-outline$$', h: '&macro_dqt_once PRCNT'}
-  - {t: '$$mdi:minus-circle-outline$$', h: EQUAL TILDE}
+  - {t: '&macro_dqt_once', h: '|'}
+  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: EQUAL EQUAL, h: '$$mdi:minus-circle-outline$$'}
   - {t: +, h: '>'}
   - {t: '-', h: <, s: _}
-  - {t: _, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: UNDER UNDER, h: '&macro_emdash_uni LSHFT'}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
-  - {t: _, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: UNDER UNDER, h: '&macro_emdash_uni LSHFT'}
   - {t: '-', h: <, s: _}
   - {t: +, h: '>'}
-  - {t: '$$mdi:minus-circle-outline$$', h: EQUAL TILDE}
-  - {t: '$$mdi:minus-circle-outline$$', h: '&macro_dqt_once PRCNT'}
-  - {t: '&macro_pipe_uni', h: PRCNT PIPE}
+  - {t: EQUAL EQUAL, h: '$$mdi:minus-circle-outline$$'}
+  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: '&macro_dqt_once', h: '|'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - SPC
@@ -177,7 +177,7 @@ layers:
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', type: backspace}
   - PG DN
-  - '&macro_dot_uni'
+  - {t: '&macro_dot_uni DOT', h: LSHIFT LSHIFT}
   - {t: '3', s: '#'}
   - {t: '2', s: '@'}
   - {t: '1', s: '!'}
@@ -188,7 +188,7 @@ layers:
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
   - {t: '3', s: '#'}
-  - '&macro_dot_uni'
+  - {t: '&macro_dot_uni DOT', h: LSHIFT LSHIFT}
   - PG DN
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -765,7 +765,7 @@ layers:
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', h: symbnolightcopy}
   - PG DN
-  - '&macro_dot_uni'
+  - {t: '&macro_dot_uni DOT', h: LSHIFT LSHIFT}
   - {t: '3', s: '#'}
   - {t: '2', s: '@'}
   - {t: '1', s: '!'}
@@ -776,7 +776,7 @@ layers:
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
   - {t: '3', s: '#'}
-  - '&macro_dot_uni'
+  - {t: '&macro_dot_uni DOT', h: LSHIFT LSHIFT}
   - PG DN
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -785,23 +785,23 @@ layers:
   - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
   symbnolightcopy:
-  - {t: '&macro_dllr_uni HASH', h: DLLR DLLR}
-  - {t: '&macro_rbrc_uni RPAR', h: RBRC RBRC}
-  - {t: '&macro_lbrc_uni LPAR', h: LBRC LBRC}
+  - {t: '#', h: $}
+  - {t: ), h: '}'}
+  - {t: (, h: '{'}
   - {t: '*', h: ^}
   - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
-  - {t: '&macro_tilde_uni EXCL', h: TILDE TILDE}
+  - {t: '!', h: '~'}
   - $$mdi:arrow-up-bold$$
-  - {t: '&macro_tilde_uni EXCL', h: TILDE TILDE}
+  - {t: '!', h: '~'}
   - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
   - {t: '*', h: ^}
-  - {t: '&macro_lbrc_uni LPAR', h: LBRC LBRC}
-  - {t: '&macro_rbrc_uni RPAR', h: RBRC RBRC}
-  - {t: '&macro_dllr_uni HASH', h: DLLR DLLR}
-  - '&bspc_to_numb_ht 17 FSLH'
-  - {t: '$$mdi:minus-circle-outline$$', h: '&macro_semi_uni'}
-  - {t: '$$mdi:minus-circle-outline$$', h: LBRC LBRC}
-  - {t: '&macro_lbkt_uni DOT', h: LBKT LBKT}
+  - {t: (, h: '{'}
+  - {t: ), h: '}'}
+  - {t: '#', h: $}
+  - {t: /, h: symbnolight, s: '?'}
+  - {t: '&macro_semi_uni', h: '&macro_backtick_uni'}
+  - {t: '&macro_comma_uni COMMA', h: '&macro_degree_uni LBRC'}
+  - {t: '&macro_dot_uni DOT', h: '['}
   - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
   - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
   - $$mdi:arrow-left-bold$$
@@ -809,24 +809,24 @@ layers:
   - $$mdi:arrow-right-bold$$
   - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
   - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
-  - {t: '&macro_lbkt_uni DOT', h: LBKT LBKT}
-  - {t: '$$mdi:minus-circle-outline$$', h: LBRC LBRC}
-  - {t: '$$mdi:minus-circle-outline$$', h: '&macro_semi_uni'}
+  - {t: '&macro_dot_uni DOT', h: '['}
+  - {t: '&macro_comma_uni COMMA', h: '&macro_degree_uni LBRC'}
+  - {t: '&macro_semi_uni', h: '&macro_backtick_uni'}
   - {t: '&macro_slash_uni SLASH', h: \, type: held}
-  - {t: '&macro_pipe_uni', h: PRCNT PIPE}
-  - {t: '$$mdi:minus-circle-outline$$', h: '&macro_dqt_once PRCNT'}
-  - {t: '$$mdi:minus-circle-outline$$', h: EQUAL TILDE}
+  - {t: '&macro_dqt_once', h: '|'}
+  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: EQUAL EQUAL, h: '$$mdi:minus-circle-outline$$'}
   - {t: +, h: '>'}
   - {t: '-', h: <, s: _}
-  - {t: _, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: UNDER UNDER, h: '&macro_emdash_uni LSHFT'}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
-  - {t: _, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: UNDER UNDER, h: '&macro_emdash_uni LSHFT'}
   - {t: '-', h: <, s: _}
   - {t: +, h: '>'}
-  - {t: '$$mdi:minus-circle-outline$$', h: EQUAL TILDE}
-  - {t: '$$mdi:minus-circle-outline$$', h: '&macro_dqt_once PRCNT'}
-  - {t: '&macro_pipe_uni', h: PRCNT PIPE}
+  - {t: EQUAL EQUAL, h: '$$mdi:minus-circle-outline$$'}
+  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: '&macro_dqt_once', h: '|'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - SPC
@@ -834,23 +834,23 @@ layers:
   - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
   symbnolight:
-  - {t: '&macro_dllr_uni HASH', h: DLLR DLLR}
-  - {t: '&macro_rbrc_uni RPAR', h: RBRC RBRC}
-  - {t: '&macro_lbrc_uni LPAR', h: LBRC LBRC}
+  - {t: '#', h: $}
+  - {t: ), h: '}'}
+  - {t: (, h: '{'}
   - {t: '*', h: ^}
   - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
-  - {t: '&macro_tilde_uni EXCL', h: TILDE TILDE}
+  - {t: '!', h: '~'}
   - $$mdi:arrow-up-bold$$
-  - {t: '&macro_tilde_uni EXCL', h: TILDE TILDE}
+  - {t: '!', h: '~'}
   - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
   - {t: '*', h: ^}
-  - {t: '&macro_lbrc_uni LPAR', h: LBRC LBRC}
-  - {t: '&macro_rbrc_uni RPAR', h: RBRC RBRC}
-  - {t: '&macro_dllr_uni HASH', h: DLLR DLLR}
-  - '&bspc_to_numb_ht 17 FSLH'
-  - {t: '$$mdi:minus-circle-outline$$', h: '&macro_semi_uni'}
-  - {t: '$$mdi:minus-circle-outline$$', h: LBRC LBRC}
-  - {t: '&macro_lbkt_uni DOT', h: LBKT LBKT}
+  - {t: (, h: '{'}
+  - {t: ), h: '}'}
+  - {t: '#', h: $}
+  - {t: /, h: symbnolight, s: '?', type: held alternate}
+  - {t: '&macro_semi_uni', h: '&macro_backtick_uni'}
+  - {t: '&macro_comma_uni COMMA', h: '&macro_degree_uni LBRC'}
+  - {t: '&macro_dot_uni DOT', h: '['}
   - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
   - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
   - $$mdi:arrow-left-bold$$
@@ -858,29 +858,29 @@ layers:
   - $$mdi:arrow-right-bold$$
   - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
   - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
-  - {t: '&macro_lbkt_uni DOT', h: LBKT LBKT}
-  - {t: '$$mdi:minus-circle-outline$$', h: LBRC LBRC}
-  - {t: '$$mdi:minus-circle-outline$$', h: '&macro_semi_uni'}
-  - {t: '&macro_slash_uni SLASH', h: \}
-  - {t: '&macro_pipe_uni', h: PRCNT PIPE}
-  - {t: '$$mdi:minus-circle-outline$$', h: '&macro_dqt_once PRCNT'}
-  - {t: '$$mdi:minus-circle-outline$$', h: EQUAL TILDE}
+  - {t: '&macro_dot_uni DOT', h: '['}
+  - {t: '&macro_comma_uni COMMA', h: '&macro_degree_uni LBRC'}
+  - {t: '&macro_semi_uni', h: '&macro_backtick_uni'}
+  - {t: '&macro_slash_uni SLASH', h: \, type: held alternate}
+  - {t: '&macro_dqt_once', h: '|'}
+  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: EQUAL EQUAL, h: '$$mdi:minus-circle-outline$$'}
   - {t: +, h: '>'}
   - {t: '-', h: <, s: _}
-  - {t: _, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: UNDER UNDER, h: '&macro_emdash_uni LSHFT'}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
-  - {t: _, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: UNDER UNDER, h: '&macro_emdash_uni LSHFT'}
   - {t: '-', h: <, s: _}
   - {t: +, h: '>'}
-  - {t: '$$mdi:minus-circle-outline$$', h: EQUAL TILDE}
-  - {t: '$$mdi:minus-circle-outline$$', h: '&macro_dqt_once PRCNT'}
-  - {t: '&macro_pipe_uni', h: PRCNT PIPE}
+  - {t: EQUAL EQUAL, h: '$$mdi:minus-circle-outline$$'}
+  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: '&macro_dqt_once', h: '|'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held alternate}
   - {t: '$$mdi:transfer$$', type: trans}
   numbnolightcopy:
   - PG UP
@@ -912,7 +912,7 @@ layers:
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', type: backspace}
   - PG DN
-  - '&macro_dot_uni'
+  - {t: '&macro_dot_uni DOT', h: LSHIFT LSHIFT}
   - {t: '3', s: '#'}
   - {t: '2', s: '@'}
   - {t: '1', s: '!'}
@@ -923,7 +923,7 @@ layers:
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
   - {t: '3', s: '#'}
-  - '&macro_dot_uni'
+  - {t: '&macro_dot_uni DOT', h: LSHIFT LSHIFT}
   - PG DN
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
