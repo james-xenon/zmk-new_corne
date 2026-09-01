@@ -301,6 +301,90 @@
                 <&macro_release &kp LALT>;
         };
 
+        // Макрос: & через Alt+Code (038 = &)
+        macro_amp_uni: macro_amp_uni {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <5>;
+            tap-ms = <5>;
+            bindings =
+                <&macro_press &kp LALT>,
+                <&macro_tap &kp KP_N0>,
+                <&macro_tap &kp KP_N3>,
+                <&macro_tap &kp KP_N8>,
+                <&macro_release &kp LALT>;
+        };
+
+        // Макрос: ^ через Alt+Code (094 = ^)
+        macro_caret_uni: macro_caret_uni {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <5>;
+            tap-ms = <5>;
+            bindings =
+                <&macro_press &kp LALT>,
+                <&macro_tap &kp KP_N0>,
+                <&macro_tap &kp KP_N9>,
+                <&macro_tap &kp KP_N4>,
+                <&macro_release &kp LALT>;
+        };
+
+        // Макрос: < через Alt+Code (060 = <)
+        macro_lt_uni: macro_lt_uni {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <5>;
+            tap-ms = <5>;
+            bindings =
+                <&macro_press &kp LALT>,
+                <&macro_tap &kp KP_N0>,
+                <&macro_tap &kp KP_N6>,
+                <&macro_tap &kp KP_N0>,
+                <&macro_release &kp LALT>;
+        };
+
+        // Макрос: > через Alt+Code (062 = >)
+        macro_gt_uni: macro_gt_uni {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <5>;
+            tap-ms = <5>;
+            bindings =
+                <&macro_press &kp LALT>,
+                <&macro_tap &kp KP_N0>,
+                <&macro_tap &kp KP_N6>,
+                <&macro_tap &kp KP_N2>,
+                <&macro_release &kp LALT>;
+        };
+
+        // Макрос: " через Alt+Code (034 = ")
+        macro_dqt_uni: macro_dqt_uni {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <5>;
+            tap-ms = <5>;
+            bindings =
+                <&macro_press &kp LALT>,
+                <&macro_tap &kp KP_N0>,
+                <&macro_tap &kp KP_N3>,
+                <&macro_tap &kp KP_N4>,
+                <&macro_release &kp LALT>;
+        };
+
+        // Макрос: % через Alt+Code (037 = %)
+        macro_percent_uni: macro_percent_uni {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <5>;
+            tap-ms = <5>;
+            bindings =
+                <&macro_press &kp LALT>,
+                <&macro_tap &kp KP_N0>,
+                <&macro_tap &kp KP_N3>,
+                <&macro_tap &kp KP_N7>,
+                <&macro_release &kp LALT>;
+        };
+
         // Tap Dance td0:
         // 1 нажатие = Left Shift, 2 быстрых нажатия = Caps Lock
         td0: td0 {
@@ -519,22 +603,22 @@
             bindings = <&macro_tilde_uni>, <&kp>;
         };
 
-        // Hold-Tap qmark_dqt_ht: тап=? (Alt-code), холд=" (макрос)
+        // Hold-Tap qmark_dqt_ht: тап=? (Alt-code), холд=& (Alt-code)
         qmark_dqt_ht: qmark_dqt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&macro_dqt_once>, <&macro_qmark_uni>;
+            bindings = <&macro_amp_uni>, <&macro_qmark_uni>;
         };
 
-        // Hold-Tap astrk_caret_ht: тап=*, холд=^
+        // Hold-Tap astrk_caret_ht: тап=*, холд=^ (Alt-code)
         astrk_caret_ht: astrk_caret_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&macro_caret_uni>, <&kp>;
         };
 
         // Hold-Tap lpar_lbrc_ht: тап=(, холд=макрос {
@@ -628,22 +712,22 @@
             bindings = <&macro_emdash_uni>, <&kp>;
         };
 
-        // Hold-Tap minus_lt_ht: тап=-, холд=<
+        // Hold-Tap minus_lt_ht: тап=-, холд=< (Alt-code)
         minus_lt_ht: minus_lt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&macro_lt_uni>, <&kp>;
         };
 
-        // Hold-Tap plus_gt_ht: тап=+, холд=>
+        // Hold-Tap plus_gt_ht: тап=+, холд=> (Alt-code)
         plus_gt_ht: plus_gt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&macro_gt_uni>, <&kp>;
         };
 
         // Hold-Tap equal_tilde_ht: тап==, холд нет
@@ -655,23 +739,23 @@
             bindings = <&none>, <&kp>;
         };
 
-        // Hold-Tap percent_amp_ht: тап=" (макрос), холд нет
+        // Hold-Tap percent_amp_ht: тап=" (Alt-code), холд нет
         percent_amp_ht: percent_amp_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&none>, <&macro_dqt_once>;
+            bindings = <&none>, <&macro_dqt_uni>;
         };
 
-        // Hold-Tap dqt_pipe_ht: тап=%, холд=макрос |
+        // Hold-Tap dqt_pipe_ht: тап=% (Alt-code), холд=| (Alt-code)
         // Крайняя левая и правая клавиши строки 3 в символьных слоях
         dqt_pipe_ht: dqt_pipe_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&macro_pipe_uni>, <&kp>;
+            bindings = <&macro_pipe_uni>, <&macro_percent_uni>;
         };
 
         // Hold-Tap semi_fn_ht (Клавиша точки с запятой):
@@ -1187,7 +1271,7 @@
         symbnolightcopy_layer {
             bindings = <
 &hash_dollar_ht DLLR HASH       &rpar_rbrc_ht RBRC RPAR       &lpar_lbrc_ht LBRC LPAR        &astrk_caret_ht CARET ASTRK    &qmark_dqt_ht 0 0       &excl_tilde_ht TILDE EXCL                              &kp UP                 &excl_tilde_ht TILDE EXCL     &qmark_dqt_ht 0 0            &astrk_caret_ht CARET ASTRK  &lpar_lbrc_ht LBRC LPAR      &rpar_rbrc_ht RBRC RPAR       &hash_dollar_ht DLLR HASH
-&bspc_to_numb_ht 17 FSLH        &semi_rbrc_ht 0 0             &comma_lbrc_ht LBRC COMMA      &dot_lbkt_ht LBKT DOT          &rbkt_sqt_ht SQT RBKT   &colon_at_ht AT COLON                        &kp LEFT  &kp SPC   &kp RIGHT    &colon_at_ht AT COLON         &rbkt_sqt_ht SQT RBKT        &dot_lbkt_ht LBKT DOT        &comma_lbrc_ht LBRC COMMA    &semi_rbrc_ht 0 0             &slash_bslh_ht BSLH SLASH
+&bspc_to_numb_ht 18 FSLH        &semi_rbrc_ht 0 0             &comma_lbrc_ht LBRC COMMA      &dot_lbkt_ht LBKT DOT          &rbkt_sqt_ht SQT RBKT   &colon_at_ht AT COLON                        &kp LEFT  &kp SPC   &kp RIGHT    &colon_at_ht AT COLON         &rbkt_sqt_ht SQT RBKT        &dot_lbkt_ht LBKT DOT        &comma_lbrc_ht LBRC COMMA    &semi_rbrc_ht 0 0             &slash_bslh_ht BSLH SLASH
 &dqt_pipe_ht PIPE 0             &percent_amp_ht PRCNT AMPS    &equal_tilde_ht TILDE EQUAL    &plus_gt_ht GT PLUS            &minus_lt_ht LT MINUS   &under_lshft_ht LSHFT UNDER     &trans                 &kp DOWN               &under_lshft_ht LSHFT UNDER   &minus_lt_ht LT MINUS        &plus_gt_ht GT PLUS          &equal_tilde_ht TILDE EQUAL  &percent_amp_ht PRCNT AMPS    &dqt_pipe_ht PIPE 0
                                                                                              &trans                         &trans                  &kp SPC                                                                       &kp ENTER                     &trans                       &trans
             >;
@@ -1200,7 +1284,7 @@
         symbnolight_layer {
             bindings = <
 &hash_dollar_ht DLLR HASH       &rpar_rbrc_ht RBRC RPAR       &lpar_lbrc_ht LBRC LPAR        &astrk_caret_ht CARET ASTRK    &qmark_dqt_ht 0 0       &excl_tilde_ht TILDE EXCL                              &kp UP                 &excl_tilde_ht TILDE EXCL     &qmark_dqt_ht 0 0            &astrk_caret_ht CARET ASTRK  &lpar_lbrc_ht LBRC LPAR      &rpar_rbrc_ht RBRC RPAR       &hash_dollar_ht DLLR HASH
-&bspc_to_numb_ht 17 FSLH        &semi_rbrc_ht 0 0             &comma_lbrc_ht LBRC COMMA      &dot_lbkt_ht LBKT DOT          &rbkt_sqt_ht SQT RBKT   &colon_at_ht AT COLON                        &kp LEFT  &kp SPC   &kp RIGHT    &colon_at_ht AT COLON         &rbkt_sqt_ht SQT RBKT        &dot_lbkt_ht LBKT DOT        &comma_lbrc_ht LBRC COMMA    &semi_rbrc_ht 0 0             &slash_bslh_ht BSLH SLASH
+&bspc_to_numb_ht 18 FSLH        &semi_rbrc_ht 0 0             &comma_lbrc_ht LBRC COMMA      &dot_lbkt_ht LBKT DOT          &rbkt_sqt_ht SQT RBKT   &colon_at_ht AT COLON                        &kp LEFT  &kp SPC   &kp RIGHT    &colon_at_ht AT COLON         &rbkt_sqt_ht SQT RBKT        &dot_lbkt_ht LBKT DOT        &comma_lbrc_ht LBRC COMMA    &semi_rbrc_ht 0 0             &slash_bslh_ht BSLH SLASH
 &dqt_pipe_ht PIPE 0             &percent_amp_ht PRCNT AMPS    &equal_tilde_ht TILDE EQUAL    &plus_gt_ht GT PLUS            &minus_lt_ht LT MINUS   &under_lshft_ht LSHFT UNDER     &trans                 &kp DOWN               &under_lshft_ht LSHFT UNDER   &minus_lt_ht LT MINUS        &plus_gt_ht GT PLUS          &equal_tilde_ht TILDE EQUAL  &percent_amp_ht PRCNT AMPS    &dqt_pipe_ht PIPE 0
                                                                                              &trans                         &trans                  &kp SPC                                                                       &kp ENTER                     &trans                       &trans
             >;
