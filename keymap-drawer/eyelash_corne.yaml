@@ -140,7 +140,7 @@ layers:
   - {t: +, h: '&kp_once PIPE'}
   - {t: '=', s: +}
   - {t: '&', h: '&kp_once PRCNT'}
-  - {t: '&macro_dqt_once macro_dqt_once', h: '&kp_once AT'}
+  - {t: '@', h: '&macro_dqt_once'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - SPC
@@ -875,7 +875,7 @@ layers:
   - {t: +, h: '&kp_once PIPE'}
   - {t: '=', s: +}
   - {t: '&', h: '&kp_once PRCNT'}
-  - {t: '&macro_dqt_once macro_dqt_once', h: '&kp_once AT'}
+  - {t: '@', h: '&macro_dqt_once'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
   - SPC
