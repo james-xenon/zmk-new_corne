@@ -13,7 +13,7 @@ layers:
   - {t: I, h: '$$mdi:skip-next$$'}
   - {t: O, h: STOP}
   - P
-  - '&lbkt_screenshot LBKT'
+  - {t: '[', h: '&screenshot_win_shift_s_wrap', s: '{'}
   - '&td0'
   - {t: A, h: '&kp_once LC(A)'}
   - {t: S, h: '&kp_once LC(S)'}
@@ -43,12 +43,12 @@ layers:
   - {t: ., s: '>'}
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
-  - '&lefthand_ht 14'
-  - '&symb_win_td 17'
+  - {t: '&lh_td_wrap', h: lefthandnolight}
+  - {t: '&symb_win_tap_dance_wrap', h: symbnolight}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - '&thumb_num_sym_fn 15'
-  - '&lang_nav2 12'
+  - {t: '&none_wrap', h: numbnolight}
+  - {t: '&win_space_wrap', h: nav2nolight}
   nav1:
   - $$mdi:keyboard-esc$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -99,48 +99,48 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   symb:
-  - '&hash_dollar_ht'
-  - '&rpar_rbrc_ht'
-  - '&lpar_lbrc_ht'
-  - '&astrk_caret_ht'
-  - '&qmark_dqt_ht'
-  - '&excl_tilde_ht'
+  - {t: '#', h: '&macro_dllr_uni_wrap'}
+  - {t: ), h: '&macro_rbrc_uni_wrap'}
+  - {t: (, h: '&macro_lbrc_uni_wrap'}
+  - {t: '*', h: ^}
+  - {t: '&macro_qmark_uni_wrap', h: '&macro_dqt_once_wrap'}
+  - {t: '!', h: '&macro_tilde_uni_wrap'}
   - $$mdi:arrow-up-bold$$
-  - '&excl_tilde_ht'
-  - '&qmark_dqt_ht'
-  - '&astrk_caret_ht'
-  - '&lpar_lbrc_ht'
-  - '&rpar_rbrc_ht'
-  - '&hash_dollar_ht'
+  - {t: '!', h: '&macro_tilde_uni_wrap'}
+  - {t: '&macro_qmark_uni_wrap', h: '&macro_dqt_once_wrap'}
+  - {t: '*', h: ^}
+  - {t: (, h: '&macro_lbrc_uni_wrap'}
+  - {t: ), h: '&macro_rbrc_uni_wrap'}
+  - {t: '#', h: '&macro_dllr_uni_wrap'}
   - {t: /, h: symbnolight, s: '?'}
-  - '&semi_rbrc_ht'
-  - '&comma_lbrc_ht'
-  - '&dot_lbkt_ht'
-  - '&rbkt_sqt_ht'
-  - '&colon_at_ht'
+  - {t: '&macro_semi_uni_wrap', h: '&macro_backtick_uni_wrap'}
+  - {t: '&macro_comma_uni_wrap', h: '&macro_degree_uni_wrap'}
+  - {t: '&macro_dot_uni_wrap', h: '&macro_lbkt_uni_wrap'}
+  - {t: ']', h: '&macro_sqt_uni_wrap', s: '}'}
+  - {t: '&macro_colon_uni_wrap', h: '&macro_at_uni_wrap'}
   - $$mdi:arrow-left-bold$$
   - SPC
   - $$mdi:arrow-right-bold$$
-  - '&colon_at_ht'
-  - '&rbkt_sqt_ht'
-  - '&dot_lbkt_ht'
-  - '&comma_lbrc_ht'
-  - '&semi_rbrc_ht'
-  - '&slash_bslh_ht'
-  - '&dqt_pipe_ht'
-  - '&percent_amp_ht'
-  - '&equal_tilde_ht'
-  - '&plus_gt_ht'
-  - '&minus_lt_ht'
-  - '&under_lshft_ht'
+  - {t: '&macro_colon_uni_wrap', h: '&macro_at_uni_wrap'}
+  - {t: ']', h: '&macro_sqt_uni_wrap', s: '}'}
+  - {t: '&macro_dot_uni_wrap', h: '&macro_lbkt_uni_wrap'}
+  - {t: '&macro_comma_uni_wrap', h: '&macro_degree_uni_wrap'}
+  - {t: '&macro_semi_uni_wrap', h: '&macro_backtick_uni_wrap'}
+  - {t: '&macro_slash_uni_wrap', h: \}
+  - {t: '%', h: '&macro_pipe_uni_wrap'}
+  - {t: '&macro_dqt_once_wrap', h: '&none_wrap'}
+  - {t: '=', h: '&none_wrap', s: +}
+  - {t: +, h: '>'}
+  - {t: '-', h: <, s: _}
+  - {t: _, h: '&macro_emdash_uni_wrap'}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
-  - '&under_lshft_ht'
-  - '&minus_lt_ht'
-  - '&plus_gt_ht'
+  - {t: _, h: '&macro_emdash_uni_wrap'}
+  - {t: '-', h: <, s: _}
+  - {t: +, h: '>'}
   - {t: '=', s: +}
-  - '&percent_amp_ht'
-  - '&dqt_pipe_ht'
+  - {t: '&macro_dqt_once_wrap', h: '&none_wrap'}
+  - {t: '%', h: '&macro_pipe_uni_wrap'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - SPC
@@ -177,7 +177,7 @@ layers:
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', type: backspace}
   - PG DN
-  - '&dot_lshift_ht'
+  - {t: '&macro_dot_uni_wrap DOT', h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '3', s: '#'}
   - {t: '2', s: '@'}
   - {t: '1', s: '!'}
@@ -188,7 +188,7 @@ layers:
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
   - {t: '3', s: '#'}
-  - '&dot_lshift_ht'
+  - {t: '&macro_dot_uni_wrap DOT', h: '$$mdi:apple-keyboard-shift$$'}
   - PG DN
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -583,11 +583,11 @@ layers:
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
   - $$mdi:apple-keyboard-option$$
-  - '&symb_win_td 17'
+  - {t: '&symb_win_tap_dance_wrap', h: symbnolight}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - '&thumb_num_sym_fn 15'
-  - '&lang_nav2 12'
+  - {t: '&none_wrap', h: numbnolight}
+  - {t: '&win_space_wrap', h: nav2nolight}
   nav2nolight:
   - $$mdi:keyboard-esc$$
   - {t: '$$mdi:transfer$$', type: trans}
@@ -636,7 +636,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
   lefthand:
   - {t: '$$mdi:keyboard-tab$$', h: '$$mdi:keyboard-esc$$'}
   - HOME
@@ -729,7 +729,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -765,7 +765,7 @@ layers:
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', h: symbnolightcopy}
   - PG DN
-  - '&dot_lshift_ht'
+  - {t: '&macro_dot_uni_wrap DOT', h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '3', s: '#'}
   - {t: '2', s: '@'}
   - {t: '1', s: '!'}
@@ -776,111 +776,111 @@ layers:
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
   - {t: '3', s: '#'}
-  - '&dot_lshift_ht'
+  - {t: '&macro_dot_uni_wrap DOT', h: '$$mdi:apple-keyboard-shift$$'}
   - PG DN
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
   symbnolightcopy:
-  - '&hash_dollar_ht'
-  - '&rpar_rbrc_ht'
-  - '&lpar_lbrc_ht'
-  - '&astrk_caret_ht'
-  - '&qmark_dqt_ht'
-  - '&excl_tilde_ht'
+  - {t: '#', h: '&macro_dllr_uni_wrap'}
+  - {t: ), h: '&macro_rbrc_uni_wrap'}
+  - {t: (, h: '&macro_lbrc_uni_wrap'}
+  - {t: '*', h: ^}
+  - {t: '&macro_qmark_uni_wrap', h: '&macro_dqt_once_wrap'}
+  - {t: '!', h: '&macro_tilde_uni_wrap'}
   - $$mdi:arrow-up-bold$$
-  - '&excl_tilde_ht'
-  - '&qmark_dqt_ht'
-  - '&astrk_caret_ht'
-  - '&lpar_lbrc_ht'
-  - '&rpar_rbrc_ht'
-  - '&hash_dollar_ht'
+  - {t: '!', h: '&macro_tilde_uni_wrap'}
+  - {t: '&macro_qmark_uni_wrap', h: '&macro_dqt_once_wrap'}
+  - {t: '*', h: ^}
+  - {t: (, h: '&macro_lbrc_uni_wrap'}
+  - {t: ), h: '&macro_rbrc_uni_wrap'}
+  - {t: '#', h: '&macro_dllr_uni_wrap'}
   - {t: /, h: symbnolight, s: '?'}
-  - '&semi_rbrc_ht'
-  - '&comma_lbrc_ht'
-  - '&dot_lbkt_ht'
-  - '&rbkt_sqt_ht'
-  - '&colon_at_ht'
+  - {t: '&macro_semi_uni_wrap', h: '&macro_backtick_uni_wrap'}
+  - {t: '&macro_comma_uni_wrap', h: '&macro_degree_uni_wrap'}
+  - {t: '&macro_dot_uni_wrap', h: '&macro_lbkt_uni_wrap'}
+  - {t: ']', h: '&macro_sqt_uni_wrap', s: '}'}
+  - {t: '&macro_colon_uni_wrap', h: '&macro_at_uni_wrap'}
   - $$mdi:arrow-left-bold$$
   - SPC
   - $$mdi:arrow-right-bold$$
-  - '&colon_at_ht'
-  - '&rbkt_sqt_ht'
-  - '&dot_lbkt_ht'
-  - '&comma_lbrc_ht'
-  - '&semi_rbrc_ht'
-  - {t: '&slash_bslh_ht', type: held}
-  - '&dqt_pipe_ht'
-  - '&percent_amp_ht'
-  - '&equal_tilde_ht'
-  - '&plus_gt_ht'
-  - '&minus_lt_ht'
-  - '&under_lshft_ht'
+  - {t: '&macro_colon_uni_wrap', h: '&macro_at_uni_wrap'}
+  - {t: ']', h: '&macro_sqt_uni_wrap', s: '}'}
+  - {t: '&macro_dot_uni_wrap', h: '&macro_lbkt_uni_wrap'}
+  - {t: '&macro_comma_uni_wrap', h: '&macro_degree_uni_wrap'}
+  - {t: '&macro_semi_uni_wrap', h: '&macro_backtick_uni_wrap'}
+  - {t: '&macro_slash_uni_wrap', h: \, type: held}
+  - {t: '%', h: '&macro_pipe_uni_wrap'}
+  - {t: '&macro_dqt_once_wrap', h: '&none_wrap'}
+  - {t: '=', h: '&none_wrap', s: +}
+  - {t: +, h: '>'}
+  - {t: '-', h: <, s: _}
+  - {t: _, h: '&macro_emdash_uni_wrap'}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
-  - '&under_lshft_ht'
-  - '&minus_lt_ht'
-  - '&plus_gt_ht'
-  - '&equal_tilde_ht'
-  - '&percent_amp_ht'
-  - '&dqt_pipe_ht'
+  - {t: _, h: '&macro_emdash_uni_wrap'}
+  - {t: '-', h: <, s: _}
+  - {t: +, h: '>'}
+  - {t: '=', h: '&none_wrap', s: +}
+  - {t: '&macro_dqt_once_wrap', h: '&none_wrap'}
+  - {t: '%', h: '&macro_pipe_uni_wrap'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
   symbnolight:
-  - '&hash_dollar_ht'
-  - '&rpar_rbrc_ht'
-  - '&lpar_lbrc_ht'
-  - '&astrk_caret_ht'
-  - '&qmark_dqt_ht'
-  - '&excl_tilde_ht'
+  - {t: '#', h: '&macro_dllr_uni_wrap'}
+  - {t: ), h: '&macro_rbrc_uni_wrap'}
+  - {t: (, h: '&macro_lbrc_uni_wrap'}
+  - {t: '*', h: ^}
+  - {t: '&macro_qmark_uni_wrap', h: '&macro_dqt_once_wrap'}
+  - {t: '!', h: '&macro_tilde_uni_wrap'}
   - $$mdi:arrow-up-bold$$
-  - '&excl_tilde_ht'
-  - '&qmark_dqt_ht'
-  - '&astrk_caret_ht'
-  - '&lpar_lbrc_ht'
-  - '&rpar_rbrc_ht'
-  - '&hash_dollar_ht'
-  - {t: /, h: symbnolight, s: '?', type: held}
-  - '&semi_rbrc_ht'
-  - '&comma_lbrc_ht'
-  - '&dot_lbkt_ht'
-  - '&rbkt_sqt_ht'
-  - '&colon_at_ht'
+  - {t: '!', h: '&macro_tilde_uni_wrap'}
+  - {t: '&macro_qmark_uni_wrap', h: '&macro_dqt_once_wrap'}
+  - {t: '*', h: ^}
+  - {t: (, h: '&macro_lbrc_uni_wrap'}
+  - {t: ), h: '&macro_rbrc_uni_wrap'}
+  - {t: '#', h: '&macro_dllr_uni_wrap'}
+  - {t: /, h: symbnolight, s: '?', type: held alternate}
+  - {t: '&macro_semi_uni_wrap', h: '&macro_backtick_uni_wrap'}
+  - {t: '&macro_comma_uni_wrap', h: '&macro_degree_uni_wrap'}
+  - {t: '&macro_dot_uni_wrap', h: '&macro_lbkt_uni_wrap'}
+  - {t: ']', h: '&macro_sqt_uni_wrap', s: '}'}
+  - {t: '&macro_colon_uni_wrap', h: '&macro_at_uni_wrap'}
   - $$mdi:arrow-left-bold$$
   - SPC
   - $$mdi:arrow-right-bold$$
-  - '&colon_at_ht'
-  - '&rbkt_sqt_ht'
-  - '&dot_lbkt_ht'
-  - '&comma_lbrc_ht'
-  - '&semi_rbrc_ht'
-  - {t: '&slash_bslh_ht', type: held alternate}
-  - '&dqt_pipe_ht'
-  - '&percent_amp_ht'
-  - '&equal_tilde_ht'
-  - '&plus_gt_ht'
-  - '&minus_lt_ht'
-  - '&under_lshft_ht'
+  - {t: '&macro_colon_uni_wrap', h: '&macro_at_uni_wrap'}
+  - {t: ']', h: '&macro_sqt_uni_wrap', s: '}'}
+  - {t: '&macro_dot_uni_wrap', h: '&macro_lbkt_uni_wrap'}
+  - {t: '&macro_comma_uni_wrap', h: '&macro_degree_uni_wrap'}
+  - {t: '&macro_semi_uni_wrap', h: '&macro_backtick_uni_wrap'}
+  - {t: '&macro_slash_uni_wrap', h: \, type: held alternate}
+  - {t: '%', h: '&macro_pipe_uni_wrap'}
+  - {t: '&macro_dqt_once_wrap', h: '&none_wrap'}
+  - {t: '=', h: '&none_wrap', s: +}
+  - {t: +, h: '>'}
+  - {t: '-', h: <, s: _}
+  - {t: _, h: '&macro_emdash_uni_wrap'}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
-  - '&under_lshft_ht'
-  - '&minus_lt_ht'
-  - '&plus_gt_ht'
-  - '&equal_tilde_ht'
-  - '&percent_amp_ht'
-  - '&dqt_pipe_ht'
+  - {t: _, h: '&macro_emdash_uni_wrap'}
+  - {t: '-', h: <, s: _}
+  - {t: +, h: '>'}
+  - {t: '=', h: '&none_wrap', s: +}
+  - {t: '&macro_dqt_once_wrap', h: '&none_wrap'}
+  - {t: '%', h: '&macro_pipe_uni_wrap'}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held alternate}
   - {t: '$$mdi:transfer$$', type: trans}
   numbnolightcopy:
   - PG UP
@@ -912,7 +912,7 @@ layers:
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', type: backspace}
   - PG DN
-  - '&dot_lshift_ht'
+  - {t: '&macro_dot_uni_wrap DOT', h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '3', s: '#'}
   - {t: '2', s: '@'}
   - {t: '1', s: '!'}
@@ -923,7 +923,7 @@ layers:
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
   - {t: '3', s: '#'}
-  - '&dot_lshift_ht'
+  - {t: '&macro_dot_uni_wrap DOT', h: '$$mdi:apple-keyboard-shift$$'}
   - PG DN
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
