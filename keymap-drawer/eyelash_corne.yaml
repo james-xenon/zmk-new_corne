@@ -102,13 +102,13 @@ layers:
   - {t: '#', h: '&macro_dollar_uni DLLR'}
   - {t: ), h: '&macro_rbrc_uni RBRC'}
   - {t: (, h: '&macro_lbrc_uni LBRC'}
-  - {t: '*', h: ^}
-  - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
+  - {t: '*', h: '&macro_caret_uni CARET'}
+  - {t: '&macro_qmark_uni', h: '&macro_amp_uni'}
   - {t: '!', h: '&macro_tilde_uni TILDE'}
   - $$mdi:arrow-up-bold$$
   - {t: '!', h: '&macro_tilde_uni TILDE'}
-  - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
-  - {t: '*', h: ^}
+  - {t: '&macro_qmark_uni', h: '&macro_amp_uni'}
+  - {t: '*', h: '&macro_caret_uni CARET'}
   - {t: (, h: '&macro_lbrc_uni LBRC'}
   - {t: ), h: '&macro_rbrc_uni RBRC'}
   - {t: '#', h: '&macro_dollar_uni DLLR'}
@@ -127,20 +127,20 @@ layers:
   - {t: '&macro_comma_uni COMMA', h: '&macro_degree_uni LBRC'}
   - {t: '&macro_semi_uni', h: '&macro_grave_uni'}
   - {t: '&macro_slash_uni SLASH', h: \}
-  - {t: '0', h: '&macro_pipe_uni PIPE'}
-  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: '&macro_percent_uni', h: '&macro_pipe_uni PIPE'}
+  - {t: '&macro_dqt_uni AMPS', h: '$$mdi:minus-circle-outline$$'}
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
-  - {t: +, h: '>'}
-  - {t: '-', h: <, s: _}
+  - {t: +, h: '&macro_gt_uni GT'}
+  - {t: '-', h: '&macro_lt_uni LT', s: _}
   - {t: _, h: '&macro_emdash_uni LSHFT'}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
   - {t: _, h: '&macro_emdash_uni LSHFT'}
-  - {t: '-', h: <, s: _}
-  - {t: +, h: '>'}
+  - {t: '-', h: '&macro_lt_uni LT', s: _}
+  - {t: +, h: '&macro_gt_uni GT'}
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
-  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
-  - {t: '0', h: '&macro_pipe_uni PIPE'}
+  - {t: '&macro_dqt_uni AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: '&macro_percent_uni', h: '&macro_pipe_uni PIPE'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - SPC
@@ -788,17 +788,17 @@ layers:
   - {t: '#', h: '&macro_dollar_uni DLLR'}
   - {t: ), h: '&macro_rbrc_uni RBRC'}
   - {t: (, h: '&macro_lbrc_uni LBRC'}
-  - {t: '*', h: ^}
-  - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
+  - {t: '*', h: '&macro_caret_uni CARET'}
+  - {t: '&macro_qmark_uni', h: '&macro_amp_uni'}
   - {t: '!', h: '&macro_tilde_uni TILDE'}
   - $$mdi:arrow-up-bold$$
   - {t: '!', h: '&macro_tilde_uni TILDE'}
-  - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
-  - {t: '*', h: ^}
+  - {t: '&macro_qmark_uni', h: '&macro_amp_uni'}
+  - {t: '*', h: '&macro_caret_uni CARET'}
   - {t: (, h: '&macro_lbrc_uni LBRC'}
   - {t: ), h: '&macro_rbrc_uni RBRC'}
   - {t: '#', h: '&macro_dollar_uni DLLR'}
-  - {t: /, h: symbnolight, s: '?'}
+  - {t: /, h: numbnolightcopy, s: '?'}
   - {t: '&macro_semi_uni', h: '&macro_grave_uni'}
   - {t: '&macro_comma_uni COMMA', h: '&macro_degree_uni LBRC'}
   - {t: '&macro_dot_uni DOT', h: '&macro_lbkt_uni LBKT'}
@@ -813,20 +813,20 @@ layers:
   - {t: '&macro_comma_uni COMMA', h: '&macro_degree_uni LBRC'}
   - {t: '&macro_semi_uni', h: '&macro_grave_uni'}
   - {t: '&macro_slash_uni SLASH', h: \, type: held}
-  - {t: '0', h: '&macro_pipe_uni PIPE'}
-  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: '&macro_percent_uni', h: '&macro_pipe_uni PIPE'}
+  - {t: '&macro_dqt_uni AMPS', h: '$$mdi:minus-circle-outline$$'}
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
-  - {t: +, h: '>'}
-  - {t: '-', h: <, s: _}
+  - {t: +, h: '&macro_gt_uni GT'}
+  - {t: '-', h: '&macro_lt_uni LT', s: _}
   - {t: _, h: '&macro_emdash_uni LSHFT'}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
   - {t: _, h: '&macro_emdash_uni LSHFT'}
-  - {t: '-', h: <, s: _}
-  - {t: +, h: '>'}
+  - {t: '-', h: '&macro_lt_uni LT', s: _}
+  - {t: +, h: '&macro_gt_uni GT'}
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
-  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
-  - {t: '0', h: '&macro_pipe_uni PIPE'}
+  - {t: '&macro_dqt_uni AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: '&macro_percent_uni', h: '&macro_pipe_uni PIPE'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - SPC
@@ -837,17 +837,17 @@ layers:
   - {t: '#', h: '&macro_dollar_uni DLLR'}
   - {t: ), h: '&macro_rbrc_uni RBRC'}
   - {t: (, h: '&macro_lbrc_uni LBRC'}
-  - {t: '*', h: ^}
-  - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
+  - {t: '*', h: '&macro_caret_uni CARET'}
+  - {t: '&macro_qmark_uni', h: '&macro_amp_uni'}
   - {t: '!', h: '&macro_tilde_uni TILDE'}
   - $$mdi:arrow-up-bold$$
   - {t: '!', h: '&macro_tilde_uni TILDE'}
-  - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
-  - {t: '*', h: ^}
+  - {t: '&macro_qmark_uni', h: '&macro_amp_uni'}
+  - {t: '*', h: '&macro_caret_uni CARET'}
   - {t: (, h: '&macro_lbrc_uni LBRC'}
   - {t: ), h: '&macro_rbrc_uni RBRC'}
   - {t: '#', h: '&macro_dollar_uni DLLR'}
-  - {t: /, h: symbnolight, s: '?', type: held alternate}
+  - {t: /, h: numbnolightcopy, s: '?', type: held alternate}
   - {t: '&macro_semi_uni', h: '&macro_grave_uni'}
   - {t: '&macro_comma_uni COMMA', h: '&macro_degree_uni LBRC'}
   - {t: '&macro_dot_uni DOT', h: '&macro_lbkt_uni LBKT'}
@@ -861,26 +861,26 @@ layers:
   - {t: '&macro_dot_uni DOT', h: '&macro_lbkt_uni LBKT'}
   - {t: '&macro_comma_uni COMMA', h: '&macro_degree_uni LBRC'}
   - {t: '&macro_semi_uni', h: '&macro_grave_uni'}
-  - {t: '&macro_slash_uni SLASH', h: \, type: held alternate}
-  - {t: '0', h: '&macro_pipe_uni PIPE'}
-  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: '&macro_slash_uni SLASH', h: \}
+  - {t: '&macro_percent_uni', h: '&macro_pipe_uni PIPE'}
+  - {t: '&macro_dqt_uni AMPS', h: '$$mdi:minus-circle-outline$$'}
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
-  - {t: +, h: '>'}
-  - {t: '-', h: <, s: _}
+  - {t: +, h: '&macro_gt_uni GT'}
+  - {t: '-', h: '&macro_lt_uni LT', s: _}
   - {t: _, h: '&macro_emdash_uni LSHFT'}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:arrow-down-bold$$
   - {t: _, h: '&macro_emdash_uni LSHFT'}
-  - {t: '-', h: <, s: _}
-  - {t: +, h: '>'}
+  - {t: '-', h: '&macro_lt_uni LT', s: _}
+  - {t: +, h: '&macro_gt_uni GT'}
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
-  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
-  - {t: '0', h: '&macro_pipe_uni PIPE'}
+  - {t: '&macro_dqt_uni AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: '&macro_percent_uni', h: '&macro_pipe_uni PIPE'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {type: held alternate}
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   numbnolightcopy:
   - PG UP
@@ -896,7 +896,7 @@ layers:
   - {t: '9', s: (}
   - '&macro_comma_uni'
   - PG UP
-  - {t: '$$mdi:backspace$$', type: backspace}
+  - {t: '$$mdi:backspace$$', type: held}
   - {t: '0', s: )}
   - {t: '6', s: ^}
   - {t: '5', s: '%'}
@@ -910,7 +910,7 @@ layers:
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
   - {t: '0', s: )}
-  - {t: '$$mdi:backspace$$', type: backspace}
+  - {t: '$$mdi:backspace$$', type: held}
   - PG DN
   - {t: '&macro_dot_uni', h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '3', s: '#'}
@@ -926,10 +926,10 @@ layers:
   - {t: '&macro_dot_uni', h: '$$mdi:apple-keyboard-shift$$'}
   - PG DN
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held alternate}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
 combos:
 - p: [2, 3, 4, 5]
