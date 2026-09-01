@@ -112,7 +112,7 @@ layers:
   - {t: (, h: '{'}
   - {t: ), h: '}'}
   - {t: '#', h: $}
-  - '&bspc_to_numb_ht 17 FSLH'
+  - {t: /, h: symbnolight, s: '?'}
   - {t: '&macro_semi_uni', h: '&macro_rbrc_uni'}
   - {t: '&macro_comma_uni COMMA', h: '{'}
   - {t: '&macro_dot_uni DOT', h: '['}
@@ -798,7 +798,7 @@ layers:
   - {t: (, h: '{'}
   - {t: ), h: '}'}
   - {t: '#', h: $}
-  - '&bspc_to_numb_ht 17 FSLH'
+  - {t: /, h: symbnolight, s: '?'}
   - {t: '&macro_semi_uni', h: '&macro_rbrc_uni'}
   - {t: '&macro_comma_uni COMMA', h: '{'}
   - {t: '&macro_dot_uni DOT', h: '['}
@@ -847,7 +847,7 @@ layers:
   - {t: (, h: '{'}
   - {t: ), h: '}'}
   - {t: '#', h: $}
-  - '&bspc_to_numb_ht 17 FSLH'
+  - {t: /, h: symbnolight, s: '?', type: held alternate}
   - {t: '&macro_semi_uni', h: '&macro_rbrc_uni'}
   - {t: '&macro_comma_uni COMMA', h: '{'}
   - {t: '&macro_dot_uni DOT', h: '['}
@@ -861,7 +861,7 @@ layers:
   - {t: '&macro_dot_uni DOT', h: '['}
   - {t: '&macro_comma_uni COMMA', h: '{'}
   - {t: '&macro_semi_uni', h: '&macro_rbrc_uni'}
-  - {t: '&macro_slash_uni SLASH', h: \}
+  - {t: '&macro_slash_uni SLASH', h: \, type: held alternate}
   - {t: '&macro_dqt_once', h: '|'}
   - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
   - {t: '=', h: '~', s: +}
@@ -880,7 +880,7 @@ layers:
   - {type: held}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held alternate}
   - {t: '$$mdi:transfer$$', type: trans}
   numbnolightcopy:
   - PG UP
