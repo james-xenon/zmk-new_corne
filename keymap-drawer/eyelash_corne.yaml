@@ -99,23 +99,23 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   symb:
-  - {t: '#', h: $}
-  - {t: ), h: '}'}
-  - {t: (, h: '{'}
+  - {t: '&macro_dllr_uni HASH', h: DLLR DLLR}
+  - {t: '&macro_rbrc_uni RPAR', h: RBRC RBRC}
+  - {t: '&macro_lbrc_uni LPAR', h: LBRC LBRC}
   - {t: '*', h: ^}
   - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
-  - {t: '!', h: '~'}
+  - {t: '&macro_tilde_uni EXCL', h: TILDE TILDE}
   - $$mdi:arrow-up-bold$$
-  - {t: '!', h: '~'}
+  - {t: '&macro_tilde_uni EXCL', h: TILDE TILDE}
   - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
   - {t: '*', h: ^}
-  - {t: (, h: '{'}
-  - {t: ), h: '}'}
-  - {t: '#', h: $}
-  - {t: /, h: numbnolightcopy, s: '?'}
-  - {t: '&macro_semi_uni', h: '&macro_rbrc_uni'}
-  - {t: '&macro_comma_uni COMMA', h: '{'}
-  - {t: '&macro_dot_uni DOT', h: '['}
+  - {t: '&macro_lbrc_uni LPAR', h: LBRC LBRC}
+  - {t: '&macro_rbrc_uni RPAR', h: RBRC RBRC}
+  - {t: '&macro_dllr_uni HASH', h: DLLR DLLR}
+  - '&bspc_to_numb_ht 17 FSLH'
+  - {t: '$$mdi:minus-circle-outline$$', h: '&macro_semi_uni'}
+  - {t: '$$mdi:minus-circle-outline$$', h: LBRC LBRC}
+  - {t: '&macro_lbkt_uni DOT', h: LBKT LBKT}
   - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
   - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
   - $$mdi:arrow-left-bold$$
@@ -123,13 +123,13 @@ layers:
   - $$mdi:arrow-right-bold$$
   - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
   - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
-  - {t: '&macro_dot_uni DOT', h: '['}
-  - {t: '&macro_comma_uni COMMA', h: '{'}
-  - {t: '&macro_semi_uni', h: '&macro_rbrc_uni'}
+  - {t: '&macro_lbkt_uni DOT', h: LBKT LBKT}
+  - {t: '$$mdi:minus-circle-outline$$', h: LBRC LBRC}
+  - {t: '$$mdi:minus-circle-outline$$', h: '&macro_semi_uni'}
   - {t: '&macro_slash_uni SLASH', h: \}
-  - {t: '&macro_dqt_once', h: '|'}
-  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
-  - {t: '=', h: '~', s: +}
+  - {t: '&macro_pipe_uni', h: PRCNT PIPE}
+  - {t: '$$mdi:minus-circle-outline$$', h: '&macro_dqt_once PRCNT'}
+  - {t: '$$mdi:minus-circle-outline$$', h: EQUAL TILDE}
   - {t: +, h: '>'}
   - {t: '-', h: <, s: _}
   - {t: _, h: '$$mdi:apple-keyboard-shift$$'}
@@ -138,9 +138,9 @@ layers:
   - {t: _, h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '-', h: <, s: _}
   - {t: +, h: '>'}
-  - {t: '=', h: '~', s: +}
-  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
-  - {t: '&macro_dqt_once', h: '|'}
+  - {t: '$$mdi:minus-circle-outline$$', h: EQUAL TILDE}
+  - {t: '$$mdi:minus-circle-outline$$', h: '&macro_dqt_once PRCNT'}
+  - {t: '&macro_pipe_uni', h: PRCNT PIPE}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - SPC
@@ -175,7 +175,7 @@ layers:
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
   - {t: '0', s: )}
-  - {t: '$$mdi:backspace$$', h: symbnolightcopy}
+  - {t: '$$mdi:backspace$$', type: backspace}
   - PG DN
   - '&macro_dot_uni'
   - {t: '3', s: '#'}
@@ -785,23 +785,23 @@ layers:
   - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
   symbnolightcopy:
-  - {t: '#', h: $}
-  - {t: ), h: '}'}
-  - {t: (, h: '{'}
+  - {t: '&macro_dllr_uni HASH', h: DLLR DLLR}
+  - {t: '&macro_rbrc_uni RPAR', h: RBRC RBRC}
+  - {t: '&macro_lbrc_uni LPAR', h: LBRC LBRC}
   - {t: '*', h: ^}
   - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
-  - {t: '!', h: '~'}
+  - {t: '&macro_tilde_uni EXCL', h: TILDE TILDE}
   - $$mdi:arrow-up-bold$$
-  - {t: '!', h: '~'}
+  - {t: '&macro_tilde_uni EXCL', h: TILDE TILDE}
   - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
   - {t: '*', h: ^}
-  - {t: (, h: '{'}
-  - {t: ), h: '}'}
-  - {t: '#', h: $}
-  - {t: /, h: numbnolightcopy, s: '?'}
-  - {t: '&macro_semi_uni', h: '&macro_rbrc_uni'}
-  - {t: '&macro_comma_uni COMMA', h: '{'}
-  - {t: '&macro_dot_uni DOT', h: '['}
+  - {t: '&macro_lbrc_uni LPAR', h: LBRC LBRC}
+  - {t: '&macro_rbrc_uni RPAR', h: RBRC RBRC}
+  - {t: '&macro_dllr_uni HASH', h: DLLR DLLR}
+  - '&bspc_to_numb_ht 17 FSLH'
+  - {t: '$$mdi:minus-circle-outline$$', h: '&macro_semi_uni'}
+  - {t: '$$mdi:minus-circle-outline$$', h: LBRC LBRC}
+  - {t: '&macro_lbkt_uni DOT', h: LBKT LBKT}
   - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
   - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
   - $$mdi:arrow-left-bold$$
@@ -809,13 +809,13 @@ layers:
   - $$mdi:arrow-right-bold$$
   - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
   - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
-  - {t: '&macro_dot_uni DOT', h: '['}
-  - {t: '&macro_comma_uni COMMA', h: '{'}
-  - {t: '&macro_semi_uni', h: '&macro_rbrc_uni'}
+  - {t: '&macro_lbkt_uni DOT', h: LBKT LBKT}
+  - {t: '$$mdi:minus-circle-outline$$', h: LBRC LBRC}
+  - {t: '$$mdi:minus-circle-outline$$', h: '&macro_semi_uni'}
   - {t: '&macro_slash_uni SLASH', h: \, type: held}
-  - {t: '&macro_dqt_once', h: '|'}
-  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
-  - {t: '=', h: '~', s: +}
+  - {t: '&macro_pipe_uni', h: PRCNT PIPE}
+  - {t: '$$mdi:minus-circle-outline$$', h: '&macro_dqt_once PRCNT'}
+  - {t: '$$mdi:minus-circle-outline$$', h: EQUAL TILDE}
   - {t: +, h: '>'}
   - {t: '-', h: <, s: _}
   - {t: _, h: '$$mdi:apple-keyboard-shift$$'}
@@ -824,33 +824,33 @@ layers:
   - {t: _, h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '-', h: <, s: _}
   - {t: +, h: '>'}
-  - {t: '=', h: '~', s: +}
-  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
-  - {t: '&macro_dqt_once', h: '|'}
+  - {t: '$$mdi:minus-circle-outline$$', h: EQUAL TILDE}
+  - {t: '$$mdi:minus-circle-outline$$', h: '&macro_dqt_once PRCNT'}
+  - {t: '&macro_pipe_uni', h: PRCNT PIPE}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {type: held alternate}
+  - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
   symbnolight:
-  - {t: '#', h: $}
-  - {t: ), h: '}'}
-  - {t: (, h: '{'}
+  - {t: '&macro_dllr_uni HASH', h: DLLR DLLR}
+  - {t: '&macro_rbrc_uni RPAR', h: RBRC RBRC}
+  - {t: '&macro_lbrc_uni LPAR', h: LBRC LBRC}
   - {t: '*', h: ^}
   - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
-  - {t: '!', h: '~'}
+  - {t: '&macro_tilde_uni EXCL', h: TILDE TILDE}
   - $$mdi:arrow-up-bold$$
-  - {t: '!', h: '~'}
+  - {t: '&macro_tilde_uni EXCL', h: TILDE TILDE}
   - {t: '&macro_qmark_uni', h: '&macro_dqt_once'}
   - {t: '*', h: ^}
-  - {t: (, h: '{'}
-  - {t: ), h: '}'}
-  - {t: '#', h: $}
-  - {t: /, h: numbnolightcopy, s: '?'}
-  - {t: '&macro_semi_uni', h: '&macro_rbrc_uni'}
-  - {t: '&macro_comma_uni COMMA', h: '{'}
-  - {t: '&macro_dot_uni DOT', h: '['}
+  - {t: '&macro_lbrc_uni LPAR', h: LBRC LBRC}
+  - {t: '&macro_rbrc_uni RPAR', h: RBRC RBRC}
+  - {t: '&macro_dllr_uni HASH', h: DLLR DLLR}
+  - '&bspc_to_numb_ht 17 FSLH'
+  - {t: '$$mdi:minus-circle-outline$$', h: '&macro_semi_uni'}
+  - {t: '$$mdi:minus-circle-outline$$', h: LBRC LBRC}
+  - {t: '&macro_lbkt_uni DOT', h: LBKT LBKT}
   - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
   - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
   - $$mdi:arrow-left-bold$$
@@ -858,13 +858,13 @@ layers:
   - $$mdi:arrow-right-bold$$
   - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
   - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
-  - {t: '&macro_dot_uni DOT', h: '['}
-  - {t: '&macro_comma_uni COMMA', h: '{'}
-  - {t: '&macro_semi_uni', h: '&macro_rbrc_uni'}
+  - {t: '&macro_lbkt_uni DOT', h: LBKT LBKT}
+  - {t: '$$mdi:minus-circle-outline$$', h: LBRC LBRC}
+  - {t: '$$mdi:minus-circle-outline$$', h: '&macro_semi_uni'}
   - {t: '&macro_slash_uni SLASH', h: \}
-  - {t: '&macro_dqt_once', h: '|'}
-  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
-  - {t: '=', h: '~', s: +}
+  - {t: '&macro_pipe_uni', h: PRCNT PIPE}
+  - {t: '$$mdi:minus-circle-outline$$', h: '&macro_dqt_once PRCNT'}
+  - {t: '$$mdi:minus-circle-outline$$', h: EQUAL TILDE}
   - {t: +, h: '>'}
   - {t: '-', h: <, s: _}
   - {t: _, h: '$$mdi:apple-keyboard-shift$$'}
@@ -873,9 +873,9 @@ layers:
   - {t: _, h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '-', h: <, s: _}
   - {t: +, h: '>'}
-  - {t: '=', h: '~', s: +}
-  - {t: '&macro_dqt_once AMPS', h: '$$mdi:minus-circle-outline$$'}
-  - {t: '&macro_dqt_once', h: '|'}
+  - {t: '$$mdi:minus-circle-outline$$', h: EQUAL TILDE}
+  - {t: '$$mdi:minus-circle-outline$$', h: '&macro_dqt_once PRCNT'}
+  - {t: '&macro_pipe_uni', h: PRCNT PIPE}
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
   - SPC
@@ -896,7 +896,7 @@ layers:
   - {t: '9', s: (}
   - '&macro_comma_uni'
   - PG UP
-  - {t: '$$mdi:backspace$$', type: held}
+  - {t: '$$mdi:backspace$$', type: backspace}
   - {t: '0', s: )}
   - {t: '6', s: ^}
   - {t: '5', s: '%'}
@@ -910,7 +910,7 @@ layers:
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
   - {t: '0', s: )}
-  - {t: '$$mdi:backspace$$', h: symbnolightcopy, type: held alternate}
+  - {t: '$$mdi:backspace$$', type: backspace}
   - PG DN
   - '&macro_dot_uni'
   - {t: '3', s: '#'}
@@ -926,10 +926,10 @@ layers:
   - '&macro_dot_uni'
   - PG DN
   - {t: '$$mdi:transfer$$', type: trans}
-  - {type: held alternate}
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {type: held alternate}
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
 combos:
 - p: [2, 3, 4, 5]
