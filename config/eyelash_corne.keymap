@@ -54,7 +54,7 @@
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings =
+            bindings = 
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N4>,
@@ -68,7 +68,7 @@
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings =
+            bindings = 
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N4>,
@@ -76,13 +76,13 @@
                 <&macro_release &kp LALT>;
         };
 
-        // Макрос: Знак вопроса через Alt+Code (063 на NumPad = ?)
+        // НОВЫЙ МАКРОС: Знак вопроса через Alt+Code (063 на NumPad = ?)
         macro_qmark_uni: macro_qmark_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings =
+            bindings = 
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N6>,
@@ -362,6 +362,26 @@
         // Hold-Tap для перехода из Цифр (15) в Копию символов (16) через BSPC
         // И для перехода из Символов (17) в Копию цифр (18) через BSPC
         bspc_to_layer_ht: bspc_to_layer_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&mo>, <&kp>;
+        };
+
+        // Hold-Tap bspc_to_symb_ht: переход из цифр (17) в символы (15/16)
+        // тап=BSPC, холд=mo слоя
+        bspc_to_symb_ht: bspc_to_symb_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&mo>, <&kp>;
+        };
+
+        // Hold-Tap bspc_to_numb_ht: переход из символов (15/16) в цифры (17)
+        // тап=FSLH (/), холд=mo слоя
+        bspc_to_numb_ht: bspc_to_numb_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
