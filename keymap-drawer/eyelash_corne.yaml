@@ -14,7 +14,7 @@ layers:
   - {t: O, h: STOP}
   - P
   - {t: '[', h: '&screenshot_win_shift_s', s: '{'}
-  - '&td0'
+  - {t: '&td0_caps', h: '$$mdi:apple-keyboard-shift$$'}
   - {t: A, h: '&kp_once LC(A)'}
   - {t: S, h: '&kp_once LC(S)'}
   - D
@@ -161,7 +161,7 @@ layers:
   - {t: '9', s: (}
   - '&macro_comma_uni'
   - PG UP
-  - '&td0'
+  - {t: '&td0_caps', h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '0', s: )}
   - {t: '6', s: ^}
   - {t: '5', s: '%'}
@@ -210,7 +210,7 @@ layers:
   - F9
   - F10
   - F11
-  - '&td0'
+  - {t: '&td0_caps', h: '$$mdi:apple-keyboard-shift$$'}
   - F5
   - F12
   - F10
@@ -668,10 +668,10 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:apple-keyboard-control$$
   - '!'
-  - '&'
+  - '&macro_qmark_uni'
   - '&macro_comma_uni'
   - '&macro_dot_uni'
-  - {t: /, s: '?'}
+  - '&macro_slash_uni'
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
   - {t: '$$mdi:transfer$$', type: trans}
@@ -717,10 +717,10 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:apple-keyboard-control$$
   - '!'
-  - '&'
+  - '&macro_qmark_uni'
   - '&macro_comma_uni'
   - '&macro_dot_uni'
-  - {t: /, s: '?'}
+  - '&macro_slash_uni'
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
   - {t: '$$mdi:transfer$$', type: trans}
