@@ -129,6 +129,49 @@
                 <&macro_release &kp LALT>;
         };
 
+
+        // Макрос: @ через Alt+Code (064 = @)
+        macro_at_uni: macro_at_uni {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <5>;
+            tap-ms = <5>;
+            bindings =
+                <&macro_press &kp LALT>,
+                <&macro_tap &kp KP_N0>,
+                <&macro_tap &kp KP_N6>,
+                <&macro_tap &kp KP_N4>,
+                <&macro_release &kp LALT>;
+        };
+
+        // Макрос: ' через Alt+Code (039 = ')
+        macro_sqt_uni: macro_sqt_uni {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <5>;
+            tap-ms = <5>;
+            bindings =
+                <&macro_press &kp LALT>,
+                <&macro_tap &kp KP_N0>,
+                <&macro_tap &kp KP_N3>,
+                <&macro_tap &kp KP_N9>,
+                <&macro_release &kp LALT>;
+        };
+
+        // Макрос: } через Alt+Code (125 = })
+        macro_rbrc_uni: macro_rbrc_uni {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <5>;
+            tap-ms = <5>;
+            bindings =
+                <&macro_press &kp LALT>,
+                <&macro_tap &kp KP_N1>,
+                <&macro_tap &kp KP_N2>,
+                <&macro_tap &kp KP_N5>,
+                <&macro_release &kp LALT>;
+        };
+
         // Макрос: " однократно (без повтора при удержании)
         macro_dqt_once: macro_dqt_once {
             compatible = "zmk,behavior-macro";
@@ -363,22 +406,22 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Hold-Tap colon_at_ht: тап=: (Alt-code), холд=@ — строка 2 позиция 1
+        // Hold-Tap colon_at_ht: тап=: (Alt-code), холд=@ (Alt-code)
         colon_at_ht: colon_at_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&macro_colon_uni>;
+            bindings = <&macro_at_uni>, <&macro_colon_uni>;
         };
 
-        // Hold-Tap rbkt_sqt_ht: тап=], холд='
+        // Hold-Tap rbkt_sqt_ht: тап=] (kp), холд=' (Alt-code)
         rbkt_sqt_ht: rbkt_sqt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&macro_sqt_uni>, <&kp>;
         };
 
         // Hold-Tap dot_lbkt_ht: тап=. (Alt-code), холд=[
@@ -397,6 +440,15 @@
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
             bindings = <&kp>, <&macro_comma_uni>;
+        };
+
+        // Hold-Tap semi_rbrc_ht: тап=; (Alt-code), холд=} (Alt-code)
+        semi_rbrc_ht: semi_rbrc_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&macro_rbrc_uni>, <&macro_semi_uni>;
         };
 
         // Hold-Tap slash_bslh_ht: тап=/ (Alt-code), холд=\
@@ -445,13 +497,13 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Hold-Tap percent_amp_ht: тап=%, холд=&
+        // Hold-Tap percent_amp_ht: тап=" (макрос), холд нет
         percent_amp_ht: percent_amp_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&none>, <&macro_dqt_once>;
         };
 
         // Hold-Tap dqt_pipe_ht: тап=" (макрос), холд=| (kp)
@@ -742,10 +794,10 @@
         // Энкодер: Громкость (Volume Up / Down)
         symb_layer {
             bindings = <
-&kp ESC                   &kp TILDE  &kp GRAVE  &kp CARET  &kp SQT   &mkp MB5                                   &kp UP    &excl_tilde_ht TILDE EXCL  &qmark_dqt_ht 0 0            &astrk_caret_ht CARET ASTRK  &lpar_lbrc_ht LBRC LPAR  &rpar_rbrc_ht RBRC RPAR  &hash_dollar_ht DLLR HASH
-&bspc_to_numb_ht 17 FSLH  &kp PIPE   &kp BSLH   &kp DLLR   &kp DQT   &mkp MB4                       &kp LEFT  &kp SPC   &kp RIGHT  &colon_at_ht AT COLON      &rbkt_sqt_ht SQT RBKT        &dot_lbkt_ht LBKT DOT        &comma_lbrc_ht LBRC COMMA  &macro_semi_uni          &slash_bslh_ht BSLH SLASH
-&dqt_pipe_ht PIPE 0       &kp LT     &kp GT     &kp LBRC   &kp RBRC  &kp C_AL_CALCULATOR  &trans                &kp DOWN  &under_lshft_ht LSHFT UNDER  &minus_lt_ht LT MINUS        &plus_gt_ht GT PLUS          &equal_tilde_ht TILDE EQUAL  &percent_amp_ht PRCNT AMPS &dqt_pipe_ht PIPE 0
-                                                 &trans     &trans    &kp SPC                                              &kp ENTER                    &trans                       &trans
+&hash_dollar_ht DLLR HASH       &rpar_rbrc_ht RBRC RPAR       &lpar_lbrc_ht LBRC LPAR        &astrk_caret_ht CARET ASTRK    &qmark_dqt_ht 0 0       &excl_tilde_ht TILDE EXCL                              &kp UP                 &excl_tilde_ht TILDE EXCL     &qmark_dqt_ht 0 0            &astrk_caret_ht CARET ASTRK  &lpar_lbrc_ht LBRC LPAR      &rpar_rbrc_ht RBRC RPAR       &hash_dollar_ht DLLR HASH
+&bspc_to_numb_ht 17 FSLH        &semi_rbrc_ht 0 0             &comma_lbrc_ht LBRC COMMA      &dot_lbkt_ht LBKT DOT          &rbkt_sqt_ht SQT RBKT   &colon_at_ht AT COLON                        &kp LEFT  &kp SPC   &kp RIGHT    &colon_at_ht AT COLON         &rbkt_sqt_ht SQT RBKT        &dot_lbkt_ht LBKT DOT        &comma_lbrc_ht LBRC COMMA    &semi_rbrc_ht 0 0             &slash_bslh_ht BSLH SLASH
+&dqt_pipe_ht PIPE 0             &percent_amp_ht PRCNT AMPS    &equal_tilde_ht TILDE EQUAL    &plus_gt_ht GT PLUS            &minus_lt_ht LT MINUS   &under_lshft_ht LSHFT UNDER     &trans                 &kp DOWN               &under_lshft_ht LSHFT UNDER   &minus_lt_ht LT MINUS        &plus_gt_ht GT PLUS          &equal_tilde_ht TILDE EQUAL  &percent_amp_ht PRCNT AMPS    &dqt_pipe_ht PIPE 0
+                                                                                             &trans                         &trans                  &kp SPC                                                                       &kp ENTER                     &trans                       &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
@@ -899,10 +951,10 @@
         // Энкодер: Скрол по словам / влево-вправо
         symbnolight_layer {
             bindings = <
-&kp ESC                   &kp TILDE  &kp GRAVE  &kp CARET  &kp SQT   &mkp MB5                                   &kp UP    &excl_tilde_ht TILDE EXCL  &qmark_dqt_ht 0 0            &astrk_caret_ht CARET ASTRK  &lpar_lbrc_ht LBRC LPAR  &rpar_rbrc_ht RBRC RPAR  &hash_dollar_ht DLLR HASH
-&bspc_to_numb_ht 17 FSLH  &kp PIPE   &kp BSLH   &kp DLLR   &kp DQT   &mkp MB4                       &kp LEFT  &kp SPC   &kp RIGHT  &colon_at_ht AT COLON      &rbkt_sqt_ht SQT RBKT        &dot_lbkt_ht LBKT DOT        &comma_lbrc_ht LBRC COMMA  &macro_semi_uni          &slash_bslh_ht BSLH SLASH
-&dqt_pipe_ht PIPE 0       &kp LT     &kp GT     &kp LBRC   &kp RBRC  &kp C_AL_CALCULATOR  &trans                &kp DOWN  &under_lshft_ht LSHFT UNDER  &minus_lt_ht LT MINUS        &plus_gt_ht GT PLUS          &equal_tilde_ht TILDE EQUAL  &percent_amp_ht PRCNT AMPS &dqt_pipe_ht PIPE 0
-                                                 &trans     &trans    &kp SPC                                              &kp ENTER                    &trans                       &trans
+&hash_dollar_ht DLLR HASH       &rpar_rbrc_ht RBRC RPAR       &lpar_lbrc_ht LBRC LPAR        &astrk_caret_ht CARET ASTRK    &qmark_dqt_ht 0 0       &excl_tilde_ht TILDE EXCL                              &kp UP                 &excl_tilde_ht TILDE EXCL     &qmark_dqt_ht 0 0            &astrk_caret_ht CARET ASTRK  &lpar_lbrc_ht LBRC LPAR      &rpar_rbrc_ht RBRC RPAR       &hash_dollar_ht DLLR HASH
+&bspc_to_numb_ht 17 FSLH        &semi_rbrc_ht 0 0             &comma_lbrc_ht LBRC COMMA      &dot_lbkt_ht LBKT DOT          &rbkt_sqt_ht SQT RBKT   &colon_at_ht AT COLON                        &kp LEFT  &kp SPC   &kp RIGHT    &colon_at_ht AT COLON         &rbkt_sqt_ht SQT RBKT        &dot_lbkt_ht LBKT DOT        &comma_lbrc_ht LBRC COMMA    &semi_rbrc_ht 0 0             &slash_bslh_ht BSLH SLASH
+&dqt_pipe_ht PIPE 0             &percent_amp_ht PRCNT AMPS    &equal_tilde_ht TILDE EQUAL    &plus_gt_ht GT PLUS            &minus_lt_ht LT MINUS   &under_lshft_ht LSHFT UNDER     &trans                 &kp DOWN               &under_lshft_ht LSHFT UNDER   &minus_lt_ht LT MINUS        &plus_gt_ht GT PLUS          &equal_tilde_ht TILDE EQUAL  &percent_amp_ht PRCNT AMPS    &dqt_pipe_ht PIPE 0
+                                                                                             &trans                         &trans                  &kp SPC                                                                       &kp ENTER                     &trans                       &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
@@ -912,10 +964,10 @@
         // Энкодер: Скрол по словам / влево-вправо
         symbnolightcopy_layer {
             bindings = <
-&kp ESC                   &kp TILDE  &kp GRAVE  &kp CARET  &kp SQT   &mkp MB5                                   &kp UP    &excl_tilde_ht TILDE EXCL  &qmark_dqt_ht 0 0            &astrk_caret_ht CARET ASTRK  &lpar_lbrc_ht LBRC LPAR  &rpar_rbrc_ht RBRC RPAR  &hash_dollar_ht DLLR HASH
-&bspc_to_numb_ht 17 FSLH  &kp PIPE   &kp BSLH   &kp DLLR   &kp DQT   &mkp MB4                       &kp LEFT  &kp SPC   &kp RIGHT  &colon_at_ht AT COLON      &rbkt_sqt_ht SQT RBKT        &dot_lbkt_ht LBKT DOT        &comma_lbrc_ht LBRC COMMA  &macro_semi_uni          &slash_bslh_ht BSLH SLASH
-&dqt_pipe_ht PIPE 0       &kp LT     &kp GT     &kp LBRC   &kp RBRC  &kp C_AL_CALCULATOR  &trans                &kp DOWN  &under_lshft_ht LSHFT UNDER  &minus_lt_ht LT MINUS        &plus_gt_ht GT PLUS          &equal_tilde_ht TILDE EQUAL  &percent_amp_ht PRCNT AMPS &dqt_pipe_ht PIPE 0
-                                                 &trans     &trans    &kp SPC                                              &kp ENTER                    &trans                       &trans
+&hash_dollar_ht DLLR HASH       &rpar_rbrc_ht RBRC RPAR       &lpar_lbrc_ht LBRC LPAR        &astrk_caret_ht CARET ASTRK    &qmark_dqt_ht 0 0       &excl_tilde_ht TILDE EXCL                              &kp UP                 &excl_tilde_ht TILDE EXCL     &qmark_dqt_ht 0 0            &astrk_caret_ht CARET ASTRK  &lpar_lbrc_ht LBRC LPAR      &rpar_rbrc_ht RBRC RPAR       &hash_dollar_ht DLLR HASH
+&bspc_to_numb_ht 17 FSLH        &semi_rbrc_ht 0 0             &comma_lbrc_ht LBRC COMMA      &dot_lbkt_ht LBKT DOT          &rbkt_sqt_ht SQT RBKT   &colon_at_ht AT COLON                        &kp LEFT  &kp SPC   &kp RIGHT    &colon_at_ht AT COLON         &rbkt_sqt_ht SQT RBKT        &dot_lbkt_ht LBKT DOT        &comma_lbrc_ht LBRC COMMA    &semi_rbrc_ht 0 0             &slash_bslh_ht BSLH SLASH
+&dqt_pipe_ht PIPE 0             &percent_amp_ht PRCNT AMPS    &equal_tilde_ht TILDE EQUAL    &plus_gt_ht GT PLUS            &minus_lt_ht LT MINUS   &under_lshft_ht LSHFT UNDER     &trans                 &kp DOWN               &under_lshft_ht LSHFT UNDER   &minus_lt_ht LT MINUS        &plus_gt_ht GT PLUS          &equal_tilde_ht TILDE EQUAL  &percent_amp_ht PRCNT AMPS    &dqt_pipe_ht PIPE 0
+                                                                                             &trans                         &trans                  &kp SPC                                                                       &kp ENTER                     &trans                       &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
@@ -926,7 +978,7 @@
         numbnolight_layer {
             bindings = <
 &kp PG_UP  &macro_comma_uni  &kp N9  &kp N8  &kp N7  &mkp MB5                                           &msc SCRL_UP                    &kp HOME          &kp N7  &kp N8  &kp N9  &macro_comma_uni  &kp PG_UP
-&kp BSPC   &kp N0            &kp N6  &kp N5  &kp N4  &mkp MB4                       &msc SCRL_LEFT      &mkp LCLK      &msc SCRL_RIGHT   &macro_qmark_uni  &kp N4  &kp N5  &kp N6  &kp N0            &bspc_to_symb_ht 15 BSPC
+&kp BSPC   &kp N0            &kp N6  &kp N5  &kp N4  &mkp MB4                       &msc SCRL_LEFT      &mkp LCLK      &msc SCRL_RIGHT   &macro_qmark_uni  &kp N4  &kp N5  &kp N6  &kp N0            &bspc_to_symb_ht 16 BSPC
 &kp PG_DN  &macro_dot_uni    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR  &trans                        &msc SCRL_DOWN                   &kp END           &kp N1  &kp N2  &kp N3  &macro_dot_uni    &kp PG_DN
                                      &trans  &trans  &trans                                                                               &kp ENTER         &trans  &trans
             >;
