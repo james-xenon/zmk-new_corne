@@ -49,7 +49,6 @@
     behaviors {
 
         // Макрос для точки через Alt+Code (046 на NumPad = точка)
-        // Обновлен до press-release для предотвращения повторов
         macro_dot_uni: macro_dot_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -77,7 +76,7 @@
                 <&macro_release &kp LALT>;
         };
 
-        // Макрос: Знак вопроса через Alt+Code (063 на NumPad = ?)
+        // НОВЫЙ МАКРОС: Знак вопроса через Alt+Code (063 на NumPad = ?)
         macro_qmark_uni: macro_qmark_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -175,8 +174,36 @@
                 <&macro_release &kp LALT>;
         };
 
-        // Макрос: Длинное тире (—) через Alt+Code (0151)
-        macro_emdash_uni: macro_emdash_uni {
+        // Макрос: ~ через Alt+Code (126 = ~)
+        macro_tilde_uni: macro_tilde_uni {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <5>;
+            tap-ms = <5>;
+            bindings =
+                <&macro_press &kp LALT>,
+                <&macro_press &kp KP_N1>, <&macro_release &kp KP_N1>,
+                <&macro_press &kp KP_N2>, <&macro_release &kp KP_N2>,
+                <&macro_press &kp KP_N6>, <&macro_release &kp KP_N6>,
+                <&macro_release &kp LALT>;
+        };
+
+        // Макрос: | через Alt+Code (124 = |)
+        macro_pipe_uni: macro_pipe_uni {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <5>;
+            tap-ms = <5>;
+            bindings =
+                <&macro_press &kp LALT>,
+                <&macro_press &kp KP_N1>, <&macro_release &kp KP_N1>,
+                <&macro_press &kp KP_N2>, <&macro_release &kp KP_N2>,
+                <&macro_press &kp KP_N4>, <&macro_release &kp KP_N4>,
+                <&macro_release &kp LALT>;
+        };
+
+        // Макрос: [ через Alt+Code (091 = [)
+        macro_lbkt_uni: macro_lbkt_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <5>;
@@ -184,13 +211,40 @@
             bindings =
                 <&macro_press &kp LALT>,
                 <&macro_press &kp KP_N0>, <&macro_release &kp KP_N0>,
-                <&macro_press &kp KP_N1>, <&macro_release &kp KP_N1>,
-                <&macro_press &kp KP_N5>, <&macro_release &kp KP_N5>,
+                <&macro_press &kp KP_N9>, <&macro_release &kp KP_N9>,
                 <&macro_press &kp KP_N1>, <&macro_release &kp KP_N1>,
                 <&macro_release &kp LALT>;
         };
 
-        // Макрос: Обратный апостроф (`) через Alt+Code (096)
+        // Макрос: { через Alt+Code (123 = {)
+        macro_lbrc_uni: macro_lbrc_uni {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <5>;
+            tap-ms = <5>;
+            bindings =
+                <&macro_press &kp LALT>,
+                <&macro_press &kp KP_N1>, <&macro_release &kp KP_N1>,
+                <&macro_press &kp KP_N2>, <&macro_release &kp KP_N2>,
+                <&macro_press &kp KP_N3>, <&macro_release &kp KP_N3>,
+                <&macro_release &kp LALT>;
+        };
+
+        // Макрос: $ через Alt+Code (036 = $)
+        macro_dllr_uni: macro_dllr_uni {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <5>;
+            tap-ms = <5>;
+            bindings =
+                <&macro_press &kp LALT>,
+                <&macro_press &kp KP_N0>, <&macro_release &kp KP_N0>,
+                <&macro_press &kp KP_N3>, <&macro_release &kp KP_N3>,
+                <&macro_press &kp KP_N6>, <&macro_release &kp KP_N6>,
+                <&macro_release &kp LALT>;
+        };
+
+        // Макрос: ` через Alt+Code (096 = `)
         macro_backtick_uni: macro_backtick_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -204,8 +258,22 @@
                 <&macro_release &kp LALT>;
         };
 
-        // Макрос: Знак градуса (°) через Alt+Code (0176)
+        // Макрос: ° через Alt+Code (176 = °)
         macro_degree_uni: macro_degree_uni {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <5>;
+            tap-ms = <5>;
+            bindings =
+                <&macro_press &kp LALT>,
+                <&macro_press &kp KP_N1>, <&macro_release &kp KP_N1>,
+                <&macro_press &kp KP_N7>, <&macro_release &kp KP_N7>,
+                <&macro_press &kp KP_N6>, <&macro_release &kp KP_N6>,
+                <&macro_release &kp LALT>;
+        };
+
+        // Макрос: — длинное тире через Alt+Code (0151 = —)
+        macro_emdash_uni: macro_emdash_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <5>;
@@ -214,8 +282,8 @@
                 <&macro_press &kp LALT>,
                 <&macro_press &kp KP_N0>, <&macro_release &kp KP_N0>,
                 <&macro_press &kp KP_N1>, <&macro_release &kp KP_N1>,
-                <&macro_press &kp KP_N7>, <&macro_release &kp KP_N7>,
-                <&macro_press &kp KP_N6>, <&macro_release &kp KP_N6>,
+                <&macro_press &kp KP_N5>, <&macro_release &kp KP_N5>,
+                <&macro_press &kp KP_N1>, <&macro_release &kp KP_N1>,
                 <&macro_release &kp LALT>;
         };
 
@@ -320,7 +388,7 @@
         // Tap Dance nav2_double_tap:
         // 1 тап = trans (ничего), двойной тап за 300 мс -> Фиксация/разблокировка Слоя 6 (Навигация 2)
         nav2_double_tap: nav2_double_tap {
-            compatible = "zmk,behavior-tap-dance";
+            compatible = "zmk,behavior-tap-dance-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
             bindings = <&trans>, <&tog 6>;
@@ -439,16 +507,16 @@
         // Правая половина — hold-tap с зеркалом
         // -------------------------------------------------------
 
-        // Hold-Tap excl_tilde_ht: тап=!, холд=~
+        // Hold-Tap excl_tilde_ht: тап=!, холд=~ (макрос)
         excl_tilde_ht: excl_tilde_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&macro_tilde_uni>, <&kp>;
         };
 
-        // Hold-Tap qmark_dqt_ht: тап=? (Alt-code), холд=" (макрос)
+        // Hold-Tap qmark_dqt_ht: тап=? (макрос), холд=" (макрос)
         qmark_dqt_ht: qmark_dqt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -466,34 +534,34 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Hold-Tap lpar_lbrc_ht: тап=(, холд={
+        // Hold-Tap lpar_lbrc_ht: тап=(, холд={ (макрос)
         lpar_lbrc_ht: lpar_lbrc_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&macro_lbrc_uni>, <&kp>;
         };
 
-        // Hold-Tap rpar_rbrc_ht: тап=), холд=}
+        // Hold-Tap rpar_rbrc_ht: тап=), холд=} (макрос)
         rpar_rbrc_ht: rpar_rbrc_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&macro_rbrc_uni>, <&kp>;
         };
 
-        // Hold-Tap hash_dollar_ht: тап=#, холд=$
+        // Hold-Tap hash_dollar_ht: тап=#, холд=$ (макрос)
         hash_dollar_ht: hash_dollar_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&macro_dllr_uni>, <&kp>;
         };
 
-        // Hold-Tap colon_at_ht: тап=: (Alt-code), холд=@ (Alt-code)
+        // Hold-Tap colon_at_ht: тап=: (макрос), холд=@ (макрос)
         colon_at_ht: colon_at_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -502,7 +570,7 @@
             bindings = <&macro_at_uni>, <&macro_colon_uni>;
         };
 
-        // Hold-Tap rbkt_sqt_ht: тап=] (kp), холд=' (Alt-code)
+        // Hold-Tap rbkt_sqt_ht: тап=] (kp), холд=' (макрос)
         rbkt_sqt_ht: rbkt_sqt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -511,16 +579,16 @@
             bindings = <&macro_sqt_uni>, <&kp>;
         };
 
-        // Hold-Tap dot_lbkt_ht: тап=. (Alt-code), холд=[
+        // Hold-Tap dot_lbkt_ht: тап=. (макрос), холд=[ (макрос)
         dot_lbkt_ht: dot_lbkt_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&macro_dot_uni>;
+            bindings = <&macro_lbkt_uni>, <&macro_dot_uni>;
         };
 
-        // Hold-Tap comma_lbrc_ht: тап=, (Alt-code), холд=° (макрос)
+        // Hold-Tap comma_lbrc_ht: тап=, (макрос), холд=° (макрос)
         comma_lbrc_ht: comma_lbrc_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -529,7 +597,7 @@
             bindings = <&macro_degree_uni>, <&macro_comma_uni>;
         };
 
-        // Hold-Tap semi_rbrc_ht: тап=; (Alt-code), холд=` (макрос)
+        // Hold-Tap semi_rbrc_ht: тап=; (макрос), холд=` (макрос)
         semi_rbrc_ht: semi_rbrc_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -538,7 +606,7 @@
             bindings = <&macro_backtick_uni>, <&macro_semi_uni>;
         };
 
-        // Hold-Tap slash_bslh_ht: тап=/ (Alt-code), холд=\
+        // Hold-Tap slash_bslh_ht: тап=/ (макрос), холд=\
         // Крайний правый столбец строки 2
         slash_bslh_ht: slash_bslh_ht {
             compatible = "zmk,behavior-hold-tap";
@@ -548,13 +616,13 @@
             bindings = <&kp>, <&macro_slash_uni>;
         };
 
-        // Hold-Tap under_lshft_ht: тап=_, холд=— (длинное тире, макрос)
+        // Hold-Tap under_lshft_ht: тап=_, холд=— (макрос длинное тире)
         under_lshft_ht: under_lshft_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&macro_emdash_uni>, <&kp UNDER>;
+            bindings = <&macro_emdash_uni>, <&kp>;
         };
 
         // Hold-Tap minus_lt_ht: тап=-, холд=<
@@ -575,13 +643,13 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Hold-Tap equal_tilde_ht: тап==, холд=нет (просто знак равно)
+        // Hold-Tap equal_tilde_ht: тап=, холд нет
         equal_tilde_ht: equal_tilde_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&none>, <&kp EQUAL>;
+            bindings = <&none>, <&kp>;
         };
 
         // Hold-Tap percent_amp_ht: тап=" (макрос), холд нет
@@ -593,14 +661,14 @@
             bindings = <&none>, <&macro_dqt_once>;
         };
 
-        // Hold-Tap dqt_pipe_ht: тап=" (макрос), холд=| (kp)
+        // Hold-Tap dqt_pipe_ht: тап=%, холд=| (макрос)
         // Крайняя левая и правая клавиши строки 3 в символьных слоях
         dqt_pipe_ht: dqt_pipe_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&macro_dqt_once>;
+            bindings = <&macro_pipe_uni>, <&kp PRCNT>;
         };
 
         // Hold-Tap semi_fn_ht (Клавиша точки с запятой):
@@ -616,8 +684,7 @@
             bindings = <&mo>, <&kp>;
         };
 
-        // Hold-Tap dot_lshift_ht: для слоев с цифрами
-        // Тап -> макрос точки, Удержание -> Left Shift
+        // Hold-Tap dot_lshift_ht: тап=. (макрос), холд=левый шифт
         dot_lshift_ht: dot_lshift_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -893,7 +960,7 @@
         };
 
         // Комбо Правый большой палец + I (Клавиши 9, 46):
-        // Двойной тап -> Переключение фиксированного Слоя 2 (Символьный блок с цианом).
+        // Двойной тап -> Переключение фиксированного режима Слоя 2 (Символьный блок с цианом).
         // Работает на слоях 0 и 2. Окно срабатывания: 200 мс, простой: 150 мс.
         combo_right_thumb_i_symb {
             timeout-ms = <300>;
@@ -959,7 +1026,7 @@
             bindings = <
 &kp PG_UP   &macro_comma_uni  &kp N9  &kp N8  &kp N7  &mkp MB5                                            &msc SCRL_UP                       &kp HOME   &kp N7  &kp N8  &kp N9  &macro_comma_uni  &kp PG_UP
 &td0        &kp N0            &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &macro_qmark_uni  &kp N4  &kp N5  &kp N6  &kp N0            &kp BSPC
-&kp PG_DN   &dot_lshift_ht LSHIFT DOT &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END    &kp N1  &kp N2  &kp N3  &dot_lshift_ht LSHIFT DOT &kp PG_DN
+&kp PG_DN   &dot_lshift_ht LSHIFT DOT    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END    &kp N1  &kp N2  &kp N3  &dot_lshift_ht LSHIFT DOT    &kp PG_DN
                                       &trans  &trans  &trans                                                                                 &trans     &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -1104,7 +1171,7 @@
             bindings = <
 &kp PG_UP   &macro_comma_uni  &kp N9  &kp N8  &kp N7  &mkp MB5                                            &msc SCRL_UP                       &kp HOME           &kp N7  &kp N8  &kp N9  &macro_comma_uni  &kp PG_UP
 &kp BSPC    &kp N0            &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &macro_qmark_uni   &kp N4  &kp N5  &kp N6  &kp N0            &bspc_to_layer_ht 16 BSPC
-&kp PG_DN   &dot_lshift_ht LSHIFT DOT &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END            &kp N1  &kp N2  &kp N3  &dot_lshift_ht LSHIFT DOT &kp PG_DN
+&kp PG_DN   &dot_lshift_ht LSHIFT DOT    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END            &kp N1  &kp N2  &kp N3  &dot_lshift_ht LSHIFT DOT    &kp PG_DN
                                       &trans  &trans  &trans                                                                                 &kp ENTER          &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
@@ -1143,7 +1210,7 @@
             bindings = <
 &kp PG_UP   &macro_comma_uni  &kp N9  &kp N8  &kp N7  &mkp MB5                                            &msc SCRL_UP                       &kp HOME           &kp N7  &kp N8  &kp N9  &macro_comma_uni  &kp PG_UP
 &kp BSPC    &kp N0            &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &macro_qmark_uni   &kp N4  &kp N5  &kp N6  &kp N0            &kp BSPC
-&kp PG_DN   &dot_lshift_ht LSHIFT DOT &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END            &kp N1  &kp N2  &kp N3  &dot_lshift_ht LSHIFT DOT &kp PG_DN
+&kp PG_DN   &dot_lshift_ht LSHIFT DOT    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END            &kp N1  &kp N2  &kp N3  &dot_lshift_ht LSHIFT DOT    &kp PG_DN
                                       &trans  &trans  &trans                                                                                 &kp ENTER          &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
