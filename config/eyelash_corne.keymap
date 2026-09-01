@@ -303,7 +303,7 @@
         td0: td0 {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
+            bindings = <&kp LEFT_SHIFT &kp CAPS>;
         };
 
         // Hold-Tap tab_esc_ht:
@@ -313,7 +313,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <150>;
-            bindings = <&kp &kp>;
+            bindings = <&kp ESC &kp TAB>;
         };
 
         // Hold-Tap symb_win_td (Левая клавиша большого пальца):
@@ -326,7 +326,7 @@
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
             quick-tap-ms = <300>;
-            bindings = <&mo &symb_win_tap_dance>;
+            bindings = <&mo 17 &symb_win_tap_dance>;
         };
 
         // Вспомогательный Tap Dance для symb_win_td:
@@ -346,7 +346,7 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <80>;
-            bindings = <&mo &none>;
+            bindings = <&mo 15 &none>;
         };
 
         // Hold-Tap lefthand_ht (Крайняя левая клавиша большого пальца):
@@ -360,7 +360,7 @@
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
             quick-tap-ms = <300>;
-            bindings = <&mo &lh_td>;
+            bindings = <&mo 14 &lh_td>;
         };
 
         // Вспомогательный Tap Dance для lefthand_ht:
@@ -382,7 +382,7 @@
             flavor = "tap-preferred";
             tapping-term-ms = <220>;
             quick-tap-ms = <150>;
-            bindings = <&mo &win_space>;
+            bindings = <&mo 12 &win_space>;
         };
 
         // Tap Dance nav2_double_tap:
@@ -454,7 +454,7 @@
             quick-tap-ms = <150>;
             require-prior-idle-ms = <150>;
             hold-trigger-key-positions = <26 27 28 29 30 31 32 33 34 35 38 39 40 41>;
-            bindings = <&kp &kp>;
+            bindings = <&kp N &kp LALT>;
         };
 
         // Hold-Tap b_alt_ht (Клавиша B):
@@ -469,7 +469,7 @@
             quick-tap-ms = <150>;
             require-prior-idle-ms = <150>;
             hold-trigger-key-positions = <26 27 28 29 30 31 32 33 34 35 38 39 40 41>;
-            bindings = <&kp &kp>;
+            bindings = <&kp B &kp LALT>;
         };
 
         // Hold-Tap для перехода из Цифр (15) в Копию символов (16) через BSPC
@@ -479,7 +479,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&mo &kp>;
+            bindings = <&mo &kp BSPC>;
         };
 
         // Hold-Tap bspc_to_symb_ht: переход из цифр (17) в символы (15/16)
@@ -489,7 +489,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&mo &kp>;
+            bindings = <&mo &kp BSPC>;
         };
 
         // Hold-Tap bspc_to_numb_ht: переход из символов (15/16) в цифры (17)
@@ -499,7 +499,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&mo &kp>;
+            bindings = <&mo &kp FSLH>;
         };
 
         // -------------------------------------------------------
@@ -513,7 +513,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&macro_tilde_uni &kp EXCL>;
+            bindings = <&kp EXCL &macro_tilde_uni>;
         };
 
         // Hold-Tap qmark_dqt_ht: тап=? (макрос), холд=" (макрос)
@@ -522,7 +522,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&macro_dqt_once &macro_qmark_uni>;
+            bindings = <&macro_qmark_uni &macro_dqt_once>;
         };
 
         // Hold-Tap astrk_caret_ht: тап=*, холд=^
@@ -531,7 +531,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp CARET &kp ASTRK>;
+            bindings = <&kp ASTRK &kp CARET>;
         };
 
         // Hold-Tap lpar_lbrc_ht: тап=(, холд={ (макрос)
@@ -540,7 +540,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&macro_lbrc_uni &kp LPAR>;
+            bindings = <&kp LPAR &macro_lbrc_uni>;
         };
 
         // Hold-Tap rpar_rbrc_ht: тап=), холд=} (макрос)
@@ -549,7 +549,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&macro_rbrc_uni &kp RPAR>;
+            bindings = <&kp RPAR &macro_rbrc_uni>;
         };
 
         // Hold-Tap hash_dollar_ht: тап=#, холд=$ (макрос)
@@ -558,7 +558,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&macro_dllr_uni &kp HASH>;
+            bindings = <&kp HASH &macro_dllr_uni>;
         };
 
         // Hold-Tap colon_at_ht: тап=: (макрос), холд=@ (макрос)
@@ -567,7 +567,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&macro_at_uni &macro_colon_uni>;
+            bindings = <&macro_colon_uni &macro_at_uni>;
         };
 
         // Hold-Tap rbkt_sqt_ht: тап=] (kp), холд=' (макрос)
@@ -576,7 +576,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&macro_sqt_uni &kp RBKT>;
+            bindings = <&kp RBKT &macro_sqt_uni>;
         };
 
         // Hold-Tap dot_lbkt_ht: тап=. (макрос), холд=[ (макрос)
@@ -585,7 +585,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&macro_lbkt_uni &macro_dot_uni>;
+            bindings = <&macro_dot_uni &macro_lbkt_uni>;
         };
 
         // Hold-Tap comma_lbrc_ht: тап=, (макрос), холд=° (макрос)
@@ -594,7 +594,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&macro_degree_uni &macro_comma_uni>;
+            bindings = <&macro_comma_uni &macro_degree_uni>;
         };
 
         // Hold-Tap semi_rbrc_ht: тап=; (макрос), холд=` (макрос)
@@ -603,7 +603,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&macro_backtick_uni &macro_semi_uni>;
+            bindings = <&macro_semi_uni &macro_backtick_uni>;
         };
 
         // Hold-Tap slash_bslh_ht: тап=/ (макрос), холд=\
@@ -622,7 +622,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&macro_emdash_uni &kp UNDER>;
+            bindings = <&kp UNDER &macro_emdash_uni>;
         };
 
         // Hold-Tap minus_lt_ht: тап=-, холд=<
@@ -631,7 +631,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp LT &kp MINUS>;
+            bindings = <&kp MINUS &kp LT>;
         };
 
         // Hold-Tap plus_gt_ht: тап=+, холд=>
@@ -640,10 +640,10 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp GT &kp PLUS>;
+            bindings = <&kp PLUS &kp GT>;
         };
 
-        // Hold-Tap equal_tilde_ht: тап=, холд нет
+        // Hold-Tap equal_tilde_ht: тап==, холд нет
         equal_tilde_ht: equal_tilde_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -662,13 +662,13 @@
         };
 
         // Hold-Tap dqt_pipe_ht: тап=%, холд=| (макрос)
-        // ИСПРАВЛЕНО: объединены скобки bindings
+        // Крайняя левая и правая клавиши строки 3 в символьных слоях
         dqt_pipe_ht: dqt_pipe_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&macro_pipe_uni &kp PRCNT>;
+            bindings = <&kp PRCNT &macro_pipe_uni>;
         };
 
         // Hold-Tap semi_fn_ht (Клавиша точки с запятой):
@@ -681,7 +681,7 @@
             flavor = "balanced";
             tapping-term-ms = <250>;
             hold-trigger-key-positions = <26 27 28 29 30 31 32 33 34 35 38 39 40 41>;
-            bindings = <&mo 4 &kp SEMI>;
+            bindings = <&kp SEMI &mo 4>;
         };
 
         // Hold-Tap dot_lshift_ht: тап=. (макрос), холд=левый шифт
@@ -690,7 +690,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp LSHIFT &macro_dot_uni>;
+            bindings = <&macro_dot_uni &kp LSHIFT>;
         };
 
         // Макрос screenshot_win_shift_s:
@@ -717,7 +717,7 @@
             flavor = "tap-preferred";
             tapping-term-ms = <300>;
             quick-tap-ms = <200>;
-            bindings = <&screenshot_win_shift_s &kp LBKT>;
+            bindings = <&kp LBKT &screenshot_win_shift_s>;
         };
 
         // Макрос win_space:
@@ -740,7 +740,7 @@
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <0>;
-            bindings = <&tog 13>, <&ws2812_lsync 1>;
+            bindings = <&tog 13 &ws2812_lsync 1>;
         };
 
         // Макрос tog13_off:
@@ -750,7 +750,7 @@
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <0>;
-            bindings = <&tog 13>, <&ws2812_lsync 0>;
+            bindings = <&tog 13 &ws2812_lsync 0>;
         };
 
         // Tap Dance tog13_on_td:
