@@ -78,6 +78,48 @@
                 <&tog 19>;
         };
 
+                // ============================================================
+        // ЭФФЕКТЫ ВИДЖЕТА WS2812
+        // ============================================================
+        // Переключение дополнительных эффектов подсветки виджета.
+        // Эффекты работают поверх underglow и автоматически
+        // приостанавливают его на время работы.
+        //
+        // 0 = NONE (выкл, вернуть underglow)
+        // 1 = RAINBOW_WAVE
+        // 2 = FIRE
+        // 3 = MATRIX_RAIN
+        // 4 = SPARKLE
+        // 5 = GRADIENT_PULSE
+        // ============================================================
+
+        // Следующий эффект виджета
+        ws2812_eff_next: ws2812_eff_next {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&ws2812_wdg 6>;
+        };
+
+        // Предыдущий эффект виджета
+        ws2812_eff_prev: ws2812_eff_prev {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&ws2812_wdg 7>;
+        };
+
+        // Выключить эффект виджета (вернуть underglow)
+        ws2812_eff_off: ws2812_eff_off {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&ws2812_wdg 8>;
+        };
+
         // Вспомогательный макрос для одиночного срабатывания комбо R+T:
         // Быстро отправляет буквы R и T подряд без задержки
         macro_combo_rt: macro_combo_rt {
@@ -1230,7 +1272,7 @@
         service_layer {
             bindings = <
 &kp ESC         &none   &none    &none          &none          &studio_unlock                        &trans              &bt BT_CLR      &none           &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2     &bt BT_SEL 3
-&none           &none   &none    &ws2812_wdg 5  &ws2812_wdg 2  &out OUT_BLE                  &trans  &trans  &trans      &kp C_BRI_UP    &kp C_BRI_DN    &none           &none           &none            &none
+&none           &none   &none    &ws2812_wdg 5  &ws2812_wdg 2  &out OUT_BLE                  &trans  &trans  &trans      &kp C_BRI_UP    &kp C_BRI_DN    &ws2812_wdg 6           &ws2812_wdg 7           &ws2812_wdg 8            &none
 &bt BT_CLR_ALL  &none   &none    &none          &none          &out OUT_USB    &trans                &trans              &rgb_ug RGB_EFR &rgb_ug RGB_EFF &rgb_ug RGB_SPI &rgb_ug RGB_SPD &rgb_ug RGB_BRI  &rgb_ug RGB_BRD
                                  &trans         &trans         &trans                                                    &rgb_ug RGB_ON  &trans          &rgb_ug RGB_OFF
             >;
