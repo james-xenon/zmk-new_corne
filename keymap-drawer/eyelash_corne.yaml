@@ -934,7 +934,7 @@ layers:
 combos:
 - p: [4, 5]
   k: '&combo_rt_caps_td'
-  l: [default]
+  l: [default, speedtype]
 - p: [2, 3, 4, 5]
   k: {t: gaming1, h: toggle}
   l: [default, gaming1]
