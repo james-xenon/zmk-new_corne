@@ -1136,7 +1136,7 @@
             require-prior-idle-ms = <100>;
             key-positions = <16 17>;
             bindings = <&kp BSPC>;
-            layers = <2 3 6 13 14 15 16 17 18 19>;
+            layers = <2 3 6 13 14 15 16 17 18>;
         };
 
         // Комбо S + D (Клавиши 15, 16):
@@ -1147,7 +1147,7 @@
             require-prior-idle-ms = <100>;
             key-positions = <15 16>;
             bindings = <&kp DEL>;
-            layers = <2 3 6 13 14 15 16 17 18 19>;
+            layers = <2 3 6 13 14 15 16 17 18>;
         };
 
         // Комбо Левый большой палец + : (Клавиши 3, 43):
