@@ -960,11 +960,13 @@
         reset_l0_green_flash: reset_l0_green_flash {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
+            wait-ms = <30>;
+            tap-ms = <20>;
             bindings = 
-                <&to 0>,
-                <&ws2812_wdg 0>;
+                <&to 0>,           // Сбросить все временные слои на базовый
+                <&tog 19>,         // Выключить слой 19 (переключает его состояние)
+                <&kp CAPS>,        // Выключить Caps Lock (переключает его состояние)
+                <&ws2812_wdg 0>;   // Зеленая вспышка на обеих половинах
         };
 
         // Hold-Tap dot_lshft_ht: тап=макрос . (Alt-code), холд=Left Shift
@@ -1150,7 +1152,7 @@
         // Двойной тап -> Переключение фиксированного Слоя 3 (Цифровой блок с цианом).
         // Работает на слоях 0 и 3. Окно срабатывания: 200 мс, простой: 150 мс.
         combo_left_thumb_e_numb {
-            timeout-ms = <200>;
+            timeout-ms = <250>;
             require-prior-idle-ms = <100>;
             key-positions = <18 43>;
             bindings = <&thumb_e_numb_td>;
@@ -1161,9 +1163,9 @@
         // Двойной тап -> Переключение фиксированного Слоя 2 (Символьный блок с цианом).
         // Работает на слоях 0 и 2. Окно срабатывания: 200 мс, простой: 150 мс.
         combo_right_thumb_i_symb {
-            timeout-ms = <200>;
+            timeout-ms = <250>;
             require-prior-idle-ms = <100>;
-            key-positions = <19 46>;
+            key-positions = <9 19>;
             bindings = <&thumb_i_symb_td>;
             layers = <0 2 19>;
         };
