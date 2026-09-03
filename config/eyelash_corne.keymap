@@ -136,7 +136,7 @@
         combo_rt_caps_td: combo_rt_caps_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <300>;
+            tapping-term-ms = <450>;
             bindings = <&macro_combo_rt>, <&caps_toggle>;
         };
 
@@ -156,23 +156,6 @@
                 <&macro_tap &kp KP_N4>,
                 <&macro_tap &kp KP_N6>,
                 <&macro_release &kp LALT>;
-        };
-
-        // Hold-Tap: Shift по удержанию (мгновенно) / Caps Lock по двойному тапу
-        shift_caps_ht: shift_caps_ht {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <150>;
-            bindings = <&kp>, <&td0_caps>;
-        };
-
-        // Tap Dance: 1 тап = Shift (с задержкой 300мс), 2 тапа = Caps Lock
-        td0_caps: td0_caps {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <300>;
-            bindings = <&kp LSHIFT>, <&kp CAPS>;
         };
 
         // Макрос для запятой через Alt+Code (044 на NumPad = запятая)
@@ -496,14 +479,6 @@
                 <&macro_tap &kp KP_N3>,
                 <&macro_tap &kp KP_N7>,
                 <&macro_release &kp LALT>;
-        };
-
-        // Tap Dance td0:
-        // 1 нажатие = Left Shift, 2 быстрых нажатия = Caps Lock
-        td0: td0 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
         };
 
         // Hold-Tap tab_esc_ht:
@@ -1171,24 +1146,24 @@
             layers = <2 3 6 13 14 15 16 17 18 19>;
         };
 
-        // Комбо Левый большой палец + E (Клавиши 3, 43):
+        // Комбо Левый большой палец + : (Клавиши 3, 43):
         // Двойной тап -> Переключение фиксированного Слоя 3 (Цифровой блок с цианом).
         // Работает на слоях 0 и 3. Окно срабатывания: 200 мс, простой: 150 мс.
         combo_left_thumb_e_numb {
-            timeout-ms = <300>;
-            require-prior-idle-ms = <150>;
-            key-positions = <3 43>;
+            timeout-ms = <200>;
+            require-prior-idle-ms = <100>;
+            key-positions = <18 43>;
             bindings = <&thumb_e_numb_td>;
             layers = <0 3 19>;
         };
 
-        // Комбо Правый большой палец + I (Клавиши 9, 46):
+        // Комбо Правый большой палец + ? (Клавиши 9, 46):
         // Двойной тап -> Переключение фиксированного Слоя 2 (Символьный блок с цианом).
         // Работает на слоях 0 и 2. Окно срабатывания: 200 мс, простой: 150 мс.
         combo_right_thumb_i_symb {
-            timeout-ms = <300>;
-            require-prior-idle-ms = <150>;
-            key-positions = <9 46>;
+            timeout-ms = <200>;
+            require-prior-idle-ms = <100>;
+            key-positions = <19 46>;
             bindings = <&thumb_i_symb_td>;
             layers = <0 2 19>;
         };
