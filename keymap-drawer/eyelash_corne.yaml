@@ -204,12 +204,12 @@ layers:
   - F4
   - '&mkp MB5'
   - {t: '$$mdi:menu-up$$', s: '$$mdi:mouse$$'}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - F10
   - F7
   - F8
   - F9
-  - F10
-  - F11
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:apple-keyboard-shift$$
   - F5
   - F12
@@ -219,12 +219,12 @@ layers:
   - {t: '$$mdi:menu-left$$', s: '$$mdi:mouse$$'}
   - $$mdi:mouse-left-click-outline$$
   - {t: '$$mdi:menu-right$$', s: '$$mdi:mouse$$'}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - F11
   - F4
   - F5
   - F6
   - {t: '$$mdi:minus-circle-outline$$', type: held}
-  - F12
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:apple-keyboard-control$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -233,12 +233,12 @@ layers:
   - AL CALCULATOR
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:menu-down$$', s: '$$mdi:mouse$$'}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - F12
   - F1
   - F2
   - F3
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - $$mdi:keyboard-esc$$
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -270,9 +270,9 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:brightness-5$$
   - $$mdi:brightness-7$$
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - '&ws2812_wdg 6'
+  - '&ws2812_wdg 7'
+  - '&ws2812_wdg 8'
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - BT CLR ALL
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -400,12 +400,12 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:arrow-up-bold$$
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - F10
   - F7
   - F8
   - F9
-  - F10
-  - F11
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:apple-keyboard-shift$$
   - {t: '4', s: $}
   - {t: '5', s: '%'}
@@ -415,12 +415,12 @@ layers:
   - $$mdi:arrow-left-bold$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-right-bold$$
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - F11
   - F4
   - F5
   - F6
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - F12
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:apple-keyboard-control$$
   - {t: '7', s: '&'}
   - {t: '8', s: '*'}
@@ -429,7 +429,7 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - F12
   - F1
   - F2
   - F3
@@ -931,55 +931,104 @@ layers:
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
+  caps_indicator:
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
 combos:
 - p: [4, 5]
   k: '&combo_rt_caps_td'
-  l: [default, speedtype]
+  l: [default, speedtype, caps_indicator]
 - p: [2, 3, 4, 5]
   k: {t: gaming1, h: toggle}
-  l: [default, gaming1]
+  l: [default, gaming1, caps_indicator]
 - p: [1, 2]
   k: '&tog13_on_td'
-  l: [default]
+  l: [default, caps_indicator]
 - p: [0, 1]
   k: $$mdi:keyboard-esc$$
-  l: [default, speedtype]
+  l: [default, speedtype, caps_indicator]
 - p: [1, 2]
   k: '&tog13_off_td'
   l: [lefthand]
 - p: [3, 4]
   k: nav3
-  l: [default, speedtype]
+  l: [default, speedtype, caps_indicator]
 - p: [27, 41]
   k: '&speedtype_double_tap'
-  l: [default, speedtype]
+  l: [default, speedtype, caps_indicator]
 - p: [16, 17]
   k: nav1
-  l: [default, speedtype]
+  l: [default, speedtype, caps_indicator]
 - p: [42, 43]
   k: service
-  l: [default]
+  l: [default, caps_indicator]
 - p: [7, 8]
   k: '&nav2_double_tap'
-  l: [default]
+  l: [default, nav2, caps_indicator]
 - p: [23, 24]
   k: {t: '$$mdi:backspace$$', type: backspace}
-  l: [default, nav1, symb, numb, fn, service, nav2, speedtype, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy]
+  l: [default, nav1, symb, numb, fn, service, nav2, speedtype, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy, caps_indicator]
 - p: [24, 25]
   k: $$mdi:backspace-reverse-outline$$
-  l: [default, nav1, symb, numb, fn, service, nav2, speedtype, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy]
+  l: [default, nav1, symb, numb, fn, service, nav2, speedtype, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy, caps_indicator]
 - p: [16, 17]
   k: {t: '$$mdi:backspace$$', type: backspace}
-  l: [symb, numb, nav2, lefthand, lefthandnolight, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy]
+  l: [symb, numb, nav2, lefthand, lefthandnolight, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy, caps_indicator]
 - p: [15, 16]
   k: $$mdi:backspace-reverse-outline$$
-  l: [symb, numb, nav2, lefthand, lefthandnolight, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy]
-- p: [3, 43]
+  l: [symb, numb, nav2, lefthand, lefthandnolight, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy, caps_indicator]
+- p: [18, 43]
   k: '&thumb_e_numb_td'
-  l: [default, numb]
-- p: [9, 46]
+  l: [default, numb, caps_indicator]
+- p: [22, 46]
   k: '&thumb_i_symb_td'
-  l: [default, symb]
+  l: [default, symb, caps_indicator]
 - p: [9, 10, 11, 12]
   k: '&reset_l0_green_flash'
-  l: [default, symb, numb, nav2, gaming1, speedtype, lefthand]
+  l: [default, symb, numb, nav2, gaming1, speedtype, lefthand, caps_indicator]
