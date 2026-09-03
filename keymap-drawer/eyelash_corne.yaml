@@ -931,92 +931,43 @@ layers:
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
-  caps_indicator:
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
 combos:
 - p: [4, 5]
   k: '&combo_rt_caps_td'
-  l: [default, speedtype, caps_indicator]
+  l: [default, speedtype]
 - p: [2, 3, 4, 5]
   k: {t: gaming1, h: toggle}
-  l: [default, gaming1, caps_indicator]
+  l: [default, gaming1]
 - p: [1, 2]
   k: '&tog13_on_td'
-  l: [default, caps_indicator]
+  l: [default]
 - p: [0, 1]
   k: $$mdi:keyboard-esc$$
-  l: [default, speedtype, caps_indicator]
+  l: [default, speedtype]
 - p: [1, 2]
   k: '&tog13_off_td'
   l: [lefthand]
 - p: [3, 4]
   k: nav3
-  l: [default, speedtype, caps_indicator]
+  l: [default, speedtype]
 - p: [27, 41]
   k: '&speedtype_double_tap'
-  l: [default, speedtype, caps_indicator]
+  l: [default, speedtype]
 - p: [16, 17]
   k: nav1
-  l: [default, speedtype, caps_indicator]
+  l: [default, speedtype]
 - p: [42, 43]
   k: service
-  l: [default, caps_indicator]
+  l: [default]
 - p: [7, 8]
   k: '&nav2_double_tap'
-  l: [default, nav2, caps_indicator]
+  l: [default, nav2]
 - p: [23, 24]
   k: {t: '$$mdi:backspace$$', type: backspace}
-  l: [default, nav1, symb, numb, fn, service, nav2, speedtype, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy, caps_indicator]
+  l: [default, nav1, symb, numb, fn, service, nav2, speedtype, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy]
 - p: [24, 25]
   k: $$mdi:backspace-reverse-outline$$
-  l: [default, nav1, symb, numb, fn, service, nav2, speedtype, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy, caps_indicator]
+  l: [default, nav1, symb, numb, fn, service, nav2, speedtype, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy]
 - p: [16, 17]
   k: {t: '$$mdi:backspace$$', type: backspace}
   l: [symb, numb, nav2, lefthand, lefthandnolight, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy]
@@ -1025,10 +976,10 @@ combos:
   l: [symb, numb, nav2, lefthand, lefthandnolight, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy]
 - p: [18, 43]
   k: '&thumb_e_numb_td'
-  l: [default, numb, caps_indicator]
+  l: [default, numb]
 - p: [22, 46]
   k: '&thumb_i_symb_td'
-  l: [default, symb, caps_indicator]
+  l: [default, symb]
 - p: [9, 10, 11, 12]
   k: '&reset_l0_green_flash'
-  l: [default, symb, numb, nav2, gaming1, speedtype, lefthand, caps_indicator]
+  l: [default, symb, numb, nav2, gaming1, speedtype, lefthand]
