@@ -1019,10 +1019,10 @@ combos:
   l: [default, nav1, symb, numb, fn, service, nav2, speedtype, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy, caps_indicator]
 - p: [16, 17]
   k: {t: '$$mdi:backspace$$', type: backspace}
-  l: [symb, numb, nav2, lefthand, lefthandnolight, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy, caps_indicator]
+  l: [symb, numb, nav2, lefthand, lefthandnolight, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy]
 - p: [15, 16]
   k: $$mdi:backspace-reverse-outline$$
-  l: [symb, numb, nav2, lefthand, lefthandnolight, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy, caps_indicator]
+  l: [symb, numb, nav2, lefthand, lefthandnolight, numbnolight, symbnolightcopy, symbnolight, numbnolightcopy]
 - p: [18, 43]
   k: '&thumb_e_numb_td'
   l: [default, numb, caps_indicator]
