@@ -220,7 +220,7 @@
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings =
+            bindings = 
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N4>,
@@ -234,7 +234,7 @@
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings =
+            bindings = 
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N6>,
@@ -248,7 +248,7 @@
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings =
+            bindings = 
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N3>,
@@ -262,7 +262,7 @@
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings =
+            bindings = 
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N1>,
                 <&macro_tap &kp KP_N2>,
@@ -287,7 +287,7 @@
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings =
+            bindings = 
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N1>,
@@ -302,7 +302,7 @@
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings =
+            bindings = 
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N1>,
@@ -317,7 +317,7 @@
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings =
+            bindings = 
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N9>,
@@ -331,7 +331,7 @@
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings =
+            bindings = 
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N1>,
                 <&macro_tap &kp KP_N2>,
@@ -345,7 +345,7 @@
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings =
+            bindings = 
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N3>,
@@ -359,7 +359,7 @@
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings =
+            bindings = 
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N9>,
@@ -373,7 +373,7 @@
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings =
+            bindings = 
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N1>,
@@ -388,7 +388,7 @@
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings =
+            bindings = 
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N1>,
@@ -403,7 +403,7 @@
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings =
+            bindings = 
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N3>,
@@ -417,7 +417,7 @@
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings =
+            bindings = 
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N9>,
@@ -431,7 +431,7 @@
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings =
+            bindings = 
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N6>,
@@ -445,7 +445,7 @@
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings =
+            bindings = 
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N6>,
@@ -459,7 +459,7 @@
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings =
+            bindings = 
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N3>,
@@ -473,7 +473,7 @@
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings =
+            bindings = 
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N3>,
@@ -956,14 +956,18 @@
             bindings = <&none>, <&tog 2>;
         };
 
-        // Макрос сброса на слой 0 + зеленая вспышка на обеих половинах
+        // ✅ ИСПРАВЛЕННЫЙ МАКРОС СБРОСА НА СЛОЙ 0 + ЗЕЛЁНАЯ ВСПЫШКА
+        // &to 0 деактивирует ВСЕ toggle-слои включая 19.
+        // macro_wait 100мс даёт виджету время обработать деактивацию слоя 19
+        // и погасить LED 5,6 ДО того, как зелёная вспышка зальёт всю ленту.
         reset_l0_green_flash: reset_l0_green_flash {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
+            wait-ms = <20>;
+            tap-ms = <20>;
             bindings = 
                 <&to 0>,
+                <&macro_wait 100>,
                 <&ws2812_wdg 0>;
         };
 
