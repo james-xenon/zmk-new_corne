@@ -310,8 +310,8 @@ rect.held, rect.combo.held {
   visibility: hidden;
 }
 </style>
-<g transform="translate(40, 0)" class="layer-default">
-<text x="0" y="28" class="label" id="default">default:</text>
+<g transform="translate(40, 0)" class="layer-default_layer">
+<text x="0" y="28" class="label" id="default_layer">default_layer:</text>
 <g transform="translate(0, 56)">
 <g transform="translate(28, 49)" class="key keypos-0">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -456,8 +456,8 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">;</text>
-<a href="#fn">
-<text x="0" y="24" class="key hold layer-activator">fn</text>
+<a href="#fn_layer">
+<text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 75%">fn_layer</tspan></text>
 </a><text x="0" y="-24" class="key shifted">:</text>
 </g>
 <g transform="translate(952, 105)" class="key keypos-27">
@@ -550,14 +550,14 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">&amp;lh_td</text>
-<a href="#lefthandnolight">
+<a href="#lefthandnolight_layer">
 <text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">lefthandn…</tspan></text>
 </a></g>
 <g transform="translate(285, 209) rotate(12.0)" class="key keypos-43">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;symb_win…</tspan></text>
-<a href="#symbnolight">
+<a href="#symbnolight_layer">
 <text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">symbnolig…</tspan></text>
 </a></g>
 <g transform="translate(348, 226) rotate(24.0)" class="key keypos-44">
@@ -574,14 +574,14 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-9" y="-13" height="18" width="18.0" class="key tap glyph mdi:minus-circle-outline"/>
-<a href="#numbnolight">
+<a href="#numbnolight_layer">
 <text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">numbnolig…</tspan></text>
 </a></g>
 <g transform="translate(756, 203)" class="key keypos-47">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;win_space</tspan></text>
-<a href="#nav2nolight">
+<a href="#nav2nolight_layer">
 <text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">nav2nolig…</tspan></text>
 </a></g>
 <g class="combo combopos-0">
@@ -592,8 +592,8 @@ rect.held, rect.combo.held {
 <path d="M224,35 l-65,0" class="combo"/>
 <path d="M224,35 l65,5" class="combo"/>
 <rect rx="6" ry="6" x="210" y="22" width="28" height="26" class="combo"/>
-<a href="#gaming1">
-<text x="224" y="35" class="combo tap layer-activator"><tspan style="font-size: 86%">gaming1</tspan></text>
+<a href="#gaming1_layer">
+<text x="224" y="35" class="combo tap layer-activator"><tspan style="font-size: 60%">gaming1_l…</tspan></text>
 </a><text x="224" y="46" class="combo hold">toggle</text>
 </g>
 <g class="combo combopos-2">
@@ -606,8 +606,8 @@ rect.held, rect.combo.held {
 </g>
 <g class="combo combopos-4">
 <rect rx="6" ry="6" x="210" y="18" width="28" height="26" class="combo"/>
-<a href="#nav3">
-<text x="224" y="31" class="combo tap layer-activator">nav3</text>
+<a href="#nav3_layer">
+<text x="224" y="31" class="combo tap layer-activator"><tspan style="font-size: 60%">nav3_layer</tspan></text>
 </a></g>
 <g class="combo combopos-5">
 <rect rx="6" ry="6" x="938" y="120" width="28" height="26" class="combo"/>
@@ -615,13 +615,13 @@ rect.held, rect.combo.held {
 </g>
 <g class="combo combopos-6">
 <rect rx="6" ry="6" x="210" y="74" width="28" height="26" class="combo"/>
-<a href="#nav1">
-<text x="224" y="87" class="combo tap layer-activator">nav1</text>
+<a href="#nav1_layer">
+<text x="224" y="87" class="combo tap layer-activator"><tspan style="font-size: 60%">nav1_layer</tspan></text>
 </a></g>
 <g class="combo combopos-7">
 <rect rx="6" ry="6" x="241" y="193" width="28" height="26" class="combo"/>
-<a href="#service">
-<text x="255" y="206" class="combo tap layer-activator"><tspan style="font-size: 86%">service</tspan></text>
+<a href="#service_layer">
+<text x="255" y="206" class="combo tap layer-activator"><tspan style="font-size: 60%">service_l…</tspan></text>
 </a></g>
 <g class="combo combopos-8">
 <rect rx="6" ry="6" x="686" y="25" width="28" height="26" class="combo"/>
@@ -655,8 +655,8 @@ rect.held, rect.combo.held {
 </g>
 </g>
 </g>
-<g transform="translate(40, 318)" class="layer-nav1">
-<text x="0" y="28" class="label" id="nav1">nav1:</text>
+<g transform="translate(40, 318)" class="layer-nav1_layer">
+<text x="0" y="28" class="label" id="nav1_layer">nav1_layer:</text>
 <g transform="translate(0, 56)">
 <g transform="translate(28, 49)" class="key keypos-0">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -924,8 +924,8 @@ rect.held, rect.combo.held {
 </g>
 </g>
 </g>
-<g transform="translate(40, 637)" class="layer-symb">
-<text x="0" y="28" class="label" id="symb">symb:</text>
+<g transform="translate(40, 637)" class="layer-symb_layer">
+<text x="0" y="28" class="label" id="symb_layer">symb_layer:</text>
 <g transform="translate(0, 56)">
 <g transform="translate(28, 49)" class="key keypos-0">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -1008,7 +1008,7 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">/</text>
-<a href="#symbnolight">
+<a href="#symbnolight_layer">
 <text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">symbnolig…</tspan></text>
 </a><text x="0" y="-24" class="key shifted">?</text>
 </g>
@@ -1259,8 +1259,8 @@ rect.held, rect.combo.held {
 </g>
 </g>
 </g>
-<g transform="translate(40, 955)" class="layer-numb">
-<text x="0" y="28" class="label" id="numb">numb:</text>
+<g transform="translate(40, 955)" class="layer-numb_layer">
+<text x="0" y="28" class="label" id="numb_layer">numb_layer:</text>
 <g transform="translate(0, 56)">
 <g transform="translate(28, 49)" class="key keypos-0">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -1568,8 +1568,8 @@ rect.held, rect.combo.held {
 </g>
 </g>
 </g>
-<g transform="translate(40, 1274)" class="layer-fn">
-<text x="0" y="28" class="label" id="fn">fn:</text>
+<g transform="translate(40, 1274)" class="layer-fn_layer">
+<text x="0" y="28" class="label" id="fn_layer">fn_layer:</text>
 <g transform="translate(0, 56)">
 <g transform="translate(28, 49)" class="key keypos-0">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -1831,8 +1831,8 @@ rect.held, rect.combo.held {
 </g>
 </g>
 </g>
-<g transform="translate(40, 1592)" class="layer-service">
-<text x="0" y="28" class="label" id="service">service:</text>
+<g transform="translate(40, 1592)" class="layer-service_layer">
+<text x="0" y="28" class="label" id="service_layer">service_layer:</text>
 <g transform="translate(0, 56)">
 <g transform="translate(28, 49)" class="key keypos-0">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -1997,25 +1997,33 @@ rect.held, rect.combo.held {
 <tspan x="0" dy="-1.2em">BT</tspan><tspan x="0" dy="1.2em">CLR</tspan><tspan x="0" dy="1.2em">ALL</tspan>
 </text>
 </g>
-<g transform="translate(84, 161)" class="key none keypos-29">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key none side"/>
-<rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key none"/>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-9" y="-13" height="18" width="18.0" class="key none tap glyph mdi:minus-circle-outline"/>
+<g transform="translate(84, 161)" class="key keypos-29">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
+<rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.6em">RGB</tspan><tspan x="0" dy="1.2em">HUD</tspan>
+</text>
 </g>
-<g transform="translate(140, 147)" class="key none keypos-30">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key none side"/>
-<rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key none"/>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-9" y="-13" height="18" width="18.0" class="key none tap glyph mdi:minus-circle-outline"/>
+<g transform="translate(140, 147)" class="key keypos-30">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
+<rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.6em">RGB</tspan><tspan x="0" dy="1.2em">HUI</tspan>
+</text>
 </g>
-<g transform="translate(196, 140)" class="key none keypos-31">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key none side"/>
-<rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key none"/>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-9" y="-13" height="18" width="18.0" class="key none tap glyph mdi:minus-circle-outline"/>
+<g transform="translate(196, 140)" class="key keypos-31">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
+<rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.6em">RGB</tspan><tspan x="0" dy="1.2em">SAD</tspan>
+</text>
 </g>
-<g transform="translate(252, 147)" class="key none keypos-32">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key none side"/>
-<rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key none"/>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-9" y="-13" height="18" width="18.0" class="key none tap glyph mdi:minus-circle-outline"/>
+<g transform="translate(252, 147)" class="key keypos-32">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
+<rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
+<text x="0" y="-4" class="key tap">
+<tspan x="0" dy="-0.6em">RGB</tspan><tspan x="0" dy="1.2em">SAI</tspan>
+</text>
 </g>
 <g transform="translate(308, 153)" class="key keypos-33">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -2118,8 +2126,8 @@ rect.held, rect.combo.held {
 </g>
 </g>
 </g>
-<g transform="translate(40, 1911)" class="layer-nav2">
-<text x="0" y="28" class="label" id="nav2">nav2:</text>
+<g transform="translate(40, 1911)" class="layer-nav2_layer">
+<text x="0" y="28" class="label" id="nav2_layer">nav2_layer:</text>
 <g transform="translate(0, 56)">
 <g transform="translate(28, 49)" class="key trans keypos-0">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans side"/>
@@ -2393,8 +2401,8 @@ rect.held, rect.combo.held {
 </g>
 </g>
 </g>
-<g transform="translate(40, 2229)" class="layer-gaming1">
-<text x="0" y="28" class="label" id="gaming1">gaming1:</text>
+<g transform="translate(40, 2229)" class="layer-gaming1_layer">
+<text x="0" y="28" class="label" id="gaming1_layer">gaming1_layer:</text>
 <g transform="translate(0, 56)">
 <g transform="translate(28, 49)" class="key keypos-0">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -2614,14 +2622,14 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;gaming_m…</tspan></text>
-<a href="#gaming3">
-<text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 86%">gaming3</tspan></text>
+<a href="#gaming3_layer">
+<text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">gaming3_l…</tspan></text>
 </a></g>
 <g transform="translate(285, 209) rotate(12.0)" class="key keypos-43">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<a href="#gaming2">
-<text x="0" y="-4" class="key tap layer-activator"><tspan style="font-size: 86%">gaming2</tspan></text>
+<a href="#gaming2_layer">
+<text x="0" y="-4" class="key tap layer-activator"><tspan style="font-size: 60%">gaming2_l…</tspan></text>
 </a></g>
 <g transform="translate(348, 226) rotate(24.0)" class="key keypos-44">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -2647,8 +2655,8 @@ rect.held, rect.combo.held {
 <path d="M224,35 l-65,0" class="combo"/>
 <path d="M224,35 l65,5" class="combo"/>
 <rect rx="6" ry="6" x="210" y="22" width="28" height="26" class="combo"/>
-<a href="#gaming1">
-<text x="224" y="35" class="combo tap layer-activator"><tspan style="font-size: 86%">gaming1</tspan></text>
+<a href="#gaming1_layer">
+<text x="224" y="35" class="combo tap layer-activator"><tspan style="font-size: 60%">gaming1_l…</tspan></text>
 </a><text x="224" y="46" class="combo hold">toggle</text>
 </g>
 <g class="combo combopos-1">
@@ -2669,8 +2677,8 @@ rect.held, rect.combo.held {
 </g>
 </g>
 </g>
-<g transform="translate(40, 2548)" class="layer-gaming2">
-<text x="0" y="28" class="label" id="gaming2">gaming2:</text>
+<g transform="translate(40, 2548)" class="layer-gaming2_layer">
+<text x="0" y="28" class="label" id="gaming2_layer">gaming2_layer:</text>
 <g transform="translate(0, 56)">
 <g transform="translate(28, 49)" class="key keypos-0">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -2744,7 +2752,7 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <use href="#mdi:apple-keyboard-shift" xlink:href="#mdi:apple-keyboard-shift" x="-9" y="-13" height="18" width="18.0" class="key tap glyph mdi:apple-keyboard-shift"/>
-<a href="#lefthandnolight">
+<a href="#lefthandnolight_layer">
 <text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">lefthandn…</tspan></text>
 </a></g>
 <g transform="translate(84, 105)" class="key keypos-14">
@@ -2926,8 +2934,8 @@ rect.held, rect.combo.held {
 </g>
 </g>
 </g>
-<g transform="translate(40, 2866)" class="layer-gaming3">
-<text x="0" y="28" class="label" id="gaming3">gaming3:</text>
+<g transform="translate(40, 2866)" class="layer-gaming3_layer">
+<text x="0" y="28" class="label" id="gaming3_layer">gaming3_layer:</text>
 <g transform="translate(0, 56)">
 <g transform="translate(28, 49)" class="key keypos-0">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -3074,20 +3082,20 @@ rect.held, rect.combo.held {
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <use href="#mdi:apple-keyboard-control" xlink:href="#mdi:apple-keyboard-control" x="-9" y="-13" height="18" width="18.0" class="key tap glyph mdi:apple-keyboard-control"/>
 </g>
-<g transform="translate(84, 161)" class="key none keypos-29">
+<g transform="translate(84, 161)" class="key keypos-29">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
+<rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
+<text x="0" y="-4" class="key tap">M</text>
+</g>
+<g transform="translate(140, 147)" class="key none keypos-30">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key none side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key none"/>
 <use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-9" y="-13" height="18" width="18.0" class="key none tap glyph mdi:minus-circle-outline"/>
 </g>
-<g transform="translate(140, 147)" class="key keypos-30">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
-<rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap">N</text>
-</g>
 <g transform="translate(196, 140)" class="key keypos-31">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap">M</text>
+<text x="0" y="-4" class="key tap">N</text>
 </g>
 <g transform="translate(252, 147)" class="key keypos-32">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -3144,8 +3152,8 @@ rect.held, rect.combo.held {
 <g transform="translate(224, 203)" class="key held keypos-42">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key held side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key held"/>
-<a href="#gaming3">
-<text x="0" y="-4" class="key held tap layer-activator"><tspan style="font-size: 86%">gaming3</tspan></text>
+<a href="#gaming3_layer">
+<text x="0" y="-4" class="key held tap layer-activator"><tspan style="font-size: 60%">gaming3_l…</tspan></text>
 </a></g>
 <g transform="translate(285, 209) rotate(12.0)" class="key none keypos-43">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key none side"/>
@@ -3174,8 +3182,8 @@ rect.held, rect.combo.held {
 </g>
 </g>
 </g>
-<g transform="translate(40, 3185)" class="layer-nav3">
-<text x="0" y="28" class="label" id="nav3">nav3:</text>
+<g transform="translate(40, 3185)" class="layer-nav3_layer">
+<text x="0" y="28" class="label" id="nav3_layer">nav3_layer:</text>
 <g transform="translate(0, 56)">
 <g transform="translate(28, 49)" class="key keypos-0">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -3663,7 +3671,7 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;symb_win…</tspan></text>
-<a href="#symbnolight">
+<a href="#symbnolight_layer">
 <text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">symbnolig…</tspan></text>
 </a></g>
 <g transform="translate(348, 226) rotate(24.0)" class="key keypos-44">
@@ -3680,14 +3688,14 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-9" y="-13" height="18" width="18.0" class="key tap glyph mdi:minus-circle-outline"/>
-<a href="#numbnolight">
+<a href="#numbnolight_layer">
 <text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">numbnolig…</tspan></text>
 </a></g>
 <g transform="translate(756, 203)" class="key keypos-47">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;win_space</tspan></text>
-<a href="#nav2nolight">
+<a href="#nav2nolight_layer">
 <text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">nav2nolig…</tspan></text>
 </a></g>
 <g class="combo combopos-0">
@@ -3700,8 +3708,8 @@ rect.held, rect.combo.held {
 </g>
 <g class="combo combopos-2">
 <rect rx="6" ry="6" x="210" y="18" width="28" height="26" class="combo"/>
-<a href="#nav3">
-<text x="224" y="31" class="combo tap layer-activator">nav3</text>
+<a href="#nav3_layer">
+<text x="224" y="31" class="combo tap layer-activator"><tspan style="font-size: 60%">nav3_layer</tspan></text>
 </a></g>
 <g class="combo combopos-3">
 <rect rx="6" ry="6" x="938" y="120" width="28" height="26" class="combo"/>
@@ -3709,8 +3717,8 @@ rect.held, rect.combo.held {
 </g>
 <g class="combo combopos-4">
 <rect rx="6" ry="6" x="210" y="74" width="28" height="26" class="combo"/>
-<a href="#nav1">
-<text x="224" y="87" class="combo tap layer-activator">nav1</text>
+<a href="#nav1_layer">
+<text x="224" y="87" class="combo tap layer-activator"><tspan style="font-size: 60%">nav1_layer</tspan></text>
 </a></g>
 <g class="combo backspace combopos-5">
 <rect rx="6" ry="6" x="742" y="74" width="28" height="26" class="combo backspace"/>
@@ -3728,8 +3736,8 @@ rect.held, rect.combo.held {
 </g>
 </g>
 </g>
-<g transform="translate(40, 3822)" class="layer-nav2nolight">
-<text x="0" y="28" class="label" id="nav2nolight">nav2nolight:</text>
+<g transform="translate(40, 3822)" class="layer-nav2nolight_layer">
+<text x="0" y="28" class="label" id="nav2nolight_layer">nav2nolight_layer:</text>
 <g transform="translate(0, 56)">
 <g transform="translate(28, 49)" class="key trans keypos-0">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans side"/>
@@ -3976,8 +3984,8 @@ rect.held, rect.combo.held {
 </g>
 </g>
 </g>
-<g transform="translate(40, 4140)" class="layer-lefthand">
-<text x="0" y="28" class="label" id="lefthand">lefthand:</text>
+<g transform="translate(40, 4140)" class="layer-lefthand_layer">
+<text x="0" y="28" class="label" id="lefthand_layer">lefthand_layer:</text>
 <g transform="translate(0, 56)">
 <g transform="translate(28, 49)" class="key keypos-0">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -4247,8 +4255,8 @@ rect.held, rect.combo.held {
 </g>
 </g>
 </g>
-<g transform="translate(40, 4459)" class="layer-lefthandnolight">
-<text x="0" y="28" class="label" id="lefthandnolight">lefthandnolight:</text>
+<g transform="translate(40, 4459)" class="layer-lefthandnolight_layer">
+<text x="0" y="28" class="label" id="lefthandnolight_layer">lefthandnolight_layer:</text>
 <g transform="translate(0, 56)">
 <g transform="translate(28, 49)" class="key keypos-0">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -4503,8 +4511,8 @@ rect.held, rect.combo.held {
 </g>
 </g>
 </g>
-<g transform="translate(40, 4777)" class="layer-numbnolight">
-<text x="0" y="28" class="label" id="numbnolight">numbnolight:</text>
+<g transform="translate(40, 4777)" class="layer-numbnolight_layer">
+<text x="0" y="28" class="label" id="numbnolight_layer">numbnolight_layer:</text>
 <g transform="translate(0, 56)">
 <g transform="translate(28, 49)" class="key keypos-0">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -4667,7 +4675,7 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <use href="#mdi:backspace" xlink:href="#mdi:backspace" x="-9" y="-13" height="18" width="18.0" class="key tap glyph mdi:backspace"/>
-<a href="#symbnolightcopy">
+<a href="#symbnolightcopy_layer">
 <text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">symbnolig…</tspan></text>
 </a></g>
 <g transform="translate(28, 161)" class="key keypos-28">
@@ -4801,8 +4809,8 @@ rect.held, rect.combo.held {
 </g>
 </g>
 </g>
-<g transform="translate(40, 5096)" class="layer-symbnolightcopy">
-<text x="0" y="28" class="label" id="symbnolightcopy">symbnolightcopy:</text>
+<g transform="translate(40, 5096)" class="layer-symbnolightcopy_layer">
+<text x="0" y="28" class="label" id="symbnolightcopy_layer">symbnolightcopy_layer:</text>
 <g transform="translate(0, 56)">
 <g transform="translate(28, 49)" class="key keypos-0">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -4885,7 +4893,7 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">/</text>
-<a href="#numbnolightcopy">
+<a href="#numbnolightcopy_layer">
 <text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">numbnolig…</tspan></text>
 </a><text x="0" y="-24" class="key shifted">?</text>
 </g>
@@ -5123,8 +5131,8 @@ rect.held, rect.combo.held {
 </g>
 </g>
 </g>
-<g transform="translate(40, 5414)" class="layer-symbnolight">
-<text x="0" y="28" class="label" id="symbnolight">symbnolight:</text>
+<g transform="translate(40, 5414)" class="layer-symbnolight_layer">
+<text x="0" y="28" class="label" id="symbnolight_layer">symbnolight_layer:</text>
 <g transform="translate(0, 56)">
 <g transform="translate(28, 49)" class="key keypos-0">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -5207,7 +5215,7 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key held alternate side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key held alternate"/>
 <text x="0" y="-4" class="key held alternate tap">/</text>
-<a href="#numbnolightcopy">
+<a href="#numbnolightcopy_layer">
 <text x="0" y="24" class="key held alternate hold layer-activator"><tspan style="font-size: 60%">numbnolig…</tspan></text>
 </a><text x="0" y="-24" class="key held alternate shifted">?</text>
 </g>
@@ -5445,8 +5453,8 @@ rect.held, rect.combo.held {
 </g>
 </g>
 </g>
-<g transform="translate(40, 5733)" class="layer-numbnolightcopy">
-<text x="0" y="28" class="label" id="numbnolightcopy">numbnolightcopy:</text>
+<g transform="translate(40, 5733)" class="layer-numbnolightcopy_layer">
+<text x="0" y="28" class="label" id="numbnolightcopy_layer">numbnolightcopy_layer:</text>
 <g transform="translate(0, 56)">
 <g transform="translate(28, 49)" class="key keypos-0">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
