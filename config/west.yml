@@ -4,13 +4,16 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: james-xenon
       url-base: https://github.com/james-xenon
+
   projects:
     - name: zmk
       remote: zmkfirmware
       revision: v0.3.0
       import: app/west.yml
+
     - name: zmk-ws2812-driver
       remote: james-xenon
       revision: main
+
   self:
     path: config
