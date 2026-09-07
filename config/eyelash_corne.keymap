@@ -1,6 +1,5 @@
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 1200
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 25
-
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 #include <behaviors.dtsi>
@@ -13,7 +12,6 @@
 #include <dt-bindings/zmk/rgb.h>
 
 // --- НАСТРОЙКИ ОБОРУДОВАНИЯ И ПЕРИФЕРИИ ---
-
 // Количество адресованных светодиодов WS2812 на одной половине сплит-клавиатуры
 &led_strip {
     chain-length = <21>;
@@ -23,7 +21,6 @@
 // Увеличение чувствительности курсора (x2) и стандартный скролл (x1)
 &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
 &msc_input_listener { input-processors = <&zip_scroll_scaler 1 1>; };
-
 // Настройки поведения прокрутки мыши (колесо):
 // Мгновенный отклик, нулевая задержка и отсутствие кривой ускорения
 &msc {
@@ -39,7 +36,6 @@
     acceleration-exponent = <1>;
     trigger-period-ms = <16>;
 };
-
 / {
     chosen {
         zmk,ws2812-widget = &led_strip;
@@ -47,7 +43,6 @@
 
     // --- ПОВЕДЕНИЯ КЛАВИШ (BEHAVIORS) ---
     behaviors {
-
         // ============================================================
         // CAPS LOCK ПОДСВЕТКА (БЕЗ СЛОЯ-ФЛАГА)
         // ============================================================
@@ -63,7 +58,6 @@
         // Первый R+T×2 → Caps ON  → LED 5,6 белые (через widget.c)
         // Второй R+T×2 → Caps OFF → LED 5,6 гаснут (через widget.c)
         // ============================================================
-
         // Макрос переключения Caps Lock.
         // Подсветка переключается автоматически через C-код (event listener).
         caps_toggle: caps_toggle {
@@ -73,7 +67,6 @@
             tap-ms = <20>;    // Обеспечивает стабильное одиночное срабатывание
             bindings = <&kp CAPS>;
         };
-
         // ============================================================
         // ЭФФЕКТЫ ВИДЖЕТА WS2812
         // ============================================================
@@ -88,7 +81,6 @@
         // 4 = SPARKLE
         // 5 = GRADIENT_PULSE
         // ============================================================
-
         // Следующий эффект виджета
         ws2812_eff_next: ws2812_eff_next {
             compatible = "zmk,behavior-macro";
@@ -97,7 +89,6 @@
             tap-ms = <0>;
             bindings = <&ws2812_wdg 6>;
         };
-
         // Предыдущий эффект виджета
         ws2812_eff_prev: ws2812_eff_prev {
             compatible = "zmk,behavior-macro";
@@ -106,7 +97,6 @@
             tap-ms = <0>;
             bindings = <&ws2812_wdg 7>;
         };
-
         // Выключить эффект виджета (вернуть underglow)
         ws2812_eff_off: ws2812_eff_off {
             compatible = "zmk,behavior-macro";
@@ -115,7 +105,6 @@
             tap-ms = <0>;
             bindings = <&ws2812_wdg 8>;
         };
-
         // Вспомогательный макрос для одиночного срабатывания комбо R+T:
         // Быстро отправляет буквы R и T подряд без задержки
         macro_combo_rt: macro_combo_rt {
@@ -125,7 +114,6 @@
             tap-ms = <0>;
             bindings = <&macro_tap &kp R>, <&macro_tap &kp T>;
         };
-
         // Tap Dance для комбо R+T:
         // 1 одновременное нажатие = вывод макроса R+T (просто буквы)
         // 2 одновременных нажатия (окно 450 мс) = переключение Caps + подсветка
@@ -135,53 +123,48 @@
             tapping-term-ms = <450>;
             bindings = <&macro_combo_rt>, <&caps_toggle>;
         };
-
         // ============================================================
         // КОНЕЦ БЛОКА CAPS LOCK ПОДСВЕТКИ
         // ============================================================
-
         // Макрос для точки через Alt+Code (046 на NumPad = точка)
         macro_dot_uni: macro_dot_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings = 
+            bindings =
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N4>,
                 <&macro_tap &kp KP_N6>,
                 <&macro_release &kp LALT>;
         };
-
         // Макрос для запятой через Alt+Code (044 на NumPad = запятая)
         macro_comma_uni: macro_comma_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings = 
+            bindings =
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N4>,
                 <&macro_tap &kp KP_N4>,
                 <&macro_release &kp LALT>;
         };
-
         // Знак вопроса через Alt+Code (063 на NumPad = ?)
         macro_qmark_uni: macro_qmark_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings = 
+            bindings =
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N6>,
                 <&macro_tap &kp KP_N3>,
                 <&macro_release &kp LALT>;
         };
-
         // Двоеточие через Alt+Code (058 на NumPad = :)
         macro_colon_uni: macro_colon_uni {
             compatible = "zmk,behavior-macro";
@@ -195,7 +178,6 @@
                 <&macro_tap &kp KP_N8>,
                 <&macro_release &kp LALT>;
         };
-
         // Точка с запятой через Alt+Code (059 на NumPad = ;)
         macro_semi_uni: macro_semi_uni {
             compatible = "zmk,behavior-macro";
@@ -209,63 +191,58 @@
                 <&macro_tap &kp KP_N9>,
                 <&macro_release &kp LALT>;
         };
-
         // Слэш через Alt+Code (047 на NumPad = /)
         macro_slash_uni: macro_slash_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings = 
+            bindings =
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N4>,
                 <&macro_tap &kp KP_N7>,
                 <&macro_release &kp LALT>;
         };
-
         // @ через Alt+Code (064 = @)
         macro_at_uni: macro_at_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings = 
+            bindings =
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N6>,
                 <&macro_tap &kp KP_N4>,
                 <&macro_release &kp LALT>;
         };
-
         // ' через Alt+Code (039 = ')
         macro_sqt_uni: macro_sqt_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings = 
+            bindings =
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N3>,
                 <&macro_tap &kp KP_N9>,
                 <&macro_release &kp LALT>;
         };
-
         // } через Alt+Code (125 = })
         macro_rbrc_uni: macro_rbrc_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings = 
+            bindings =
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N1>,
                 <&macro_tap &kp KP_N2>,
                 <&macro_tap &kp KP_N5>,
                 <&macro_release &kp LALT>;
         };
-
         // " однократно (без повтора при удержании)
         macro_dqt_once: macro_dqt_once {
             compatible = "zmk,behavior-macro";
@@ -276,14 +253,13 @@
                 <&macro_press &kp DQT>,
                 <&macro_release &kp DQT>;
         };
-
         // ~ через Alt+Code (126 = ~)
         macro_tilde_uni: macro_tilde_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings = 
+            bindings =
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N1>,
@@ -291,14 +267,13 @@
                 <&macro_tap &kp KP_N6>,
                 <&macro_release &kp LALT>;
         };
-
         // | через Alt+Code (124 = |)
         macro_pipe_uni: macro_pipe_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings = 
+            bindings =
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N1>,
@@ -306,70 +281,65 @@
                 <&macro_tap &kp KP_N4>,
                 <&macro_release &kp LALT>;
         };
-
         // [ через Alt+Code (091 = [)
         macro_lbkt_uni: macro_lbkt_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings = 
+            bindings =
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N9>,
                 <&macro_tap &kp KP_N1>,
                 <&macro_release &kp LALT>;
         };
-
         // { через Alt+Code (123 = {)
         macro_lbrc_uni: macro_lbrc_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings = 
+            bindings =
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N1>,
                 <&macro_tap &kp KP_N2>,
                 <&macro_tap &kp KP_N3>,
                 <&macro_release &kp LALT>;
         };
-
         // $ через Alt+Code (036 = $)
         macro_dollar_uni: macro_dollar_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings = 
+            bindings =
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N3>,
                 <&macro_tap &kp KP_N6>,
                 <&macro_release &kp LALT>;
         };
-
         // ` через Alt+Code (096 = `)
         macro_grave_uni: macro_grave_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings = 
+            bindings =
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N9>,
                 <&macro_tap &kp KP_N6>,
                 <&macro_release &kp LALT>;
         };
-
         // ° через Alt+Code (0176 = °)
         macro_degree_uni: macro_degree_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings = 
+            bindings =
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N1>,
@@ -377,14 +347,13 @@
                 <&macro_tap &kp KP_N6>,
                 <&macro_release &kp LALT>;
         };
-
         // — через Alt+Code (0151 = em dash)
         macro_emdash_uni: macro_emdash_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings = 
+            bindings =
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N1>,
@@ -392,91 +361,84 @@
                 <&macro_tap &kp KP_N1>,
                 <&macro_release &kp LALT>;
         };
-
         // & через Alt+Code (038 = &)
         macro_amp_uni: macro_amp_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings = 
+            bindings =
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N3>,
                 <&macro_tap &kp KP_N8>,
                 <&macro_release &kp LALT>;
         };
-
         // ^ через Alt+Code (094 = ^)
         macro_caret_uni: macro_caret_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings = 
+            bindings =
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N9>,
                 <&macro_tap &kp KP_N4>,
                 <&macro_release &kp LALT>;
         };
-
         // < через Alt+Code (060 = <)
         macro_lt_uni: macro_lt_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings = 
+            bindings =
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N6>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_release &kp LALT>;
         };
-
         // > через Alt+Code (062 = >)
         macro_gt_uni: macro_gt_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings = 
+            bindings =
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N6>,
                 <&macro_tap &kp KP_N2>,
                 <&macro_release &kp LALT>;
         };
-
         // " через Alt+Code (034 = ")
         macro_dqt_uni: macro_dqt_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings = 
+            bindings =
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N3>,
                 <&macro_tap &kp KP_N4>,
                 <&macro_release &kp LALT>;
         };
-
         // % через Alt+Code (037 = %)
         macro_percent_uni: macro_percent_uni {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <5>;
             tap-ms = <5>;
-            bindings = 
+            bindings =
                 <&macro_press &kp LALT>,
                 <&macro_tap &kp KP_N0>,
                 <&macro_tap &kp KP_N3>,
                 <&macro_tap &kp KP_N7>,
                 <&macro_release &kp LALT>;
         };
-
         // Hold-Tap tab_esc_ht:
         // Удержание = Esc, Быстрый тап = TAB (таймаут 150 мс, приоритет удержания)
         tab_esc_ht: tab_esc_ht {
@@ -486,7 +448,6 @@
             tapping-term-ms = <150>;
             bindings = <&kp>, <&kp>;
         };
-
         // Hold-Tap symb_win_td (Левая клавиша большого пальца):
         // Удержание -> Слой 17 (Символы без подсветки)
         // Одиночный тап -> ничего (none)
@@ -499,7 +460,6 @@
             quick-tap-ms = <300>;
             bindings = <&mo>, <&symb_win_tap_dance>;
         };
-
         // Вспомогательный Tap Dance для symb_win_td:
         // 1 тап = none (ничего), 2 тапа (окно 500 мс) = kp LGUI (Win)
         symb_win_tap_dance: symb_win_tap_dance {
@@ -508,7 +468,6 @@
             tapping-term-ms = <500>;
             bindings = <&none>, <&kp LGUI>;
         };
-
         // Hold-Tap thumb_num_sym_fn:
         // Удержание -> Слой 15 (Цифры)
         // Тап -> &none
@@ -519,7 +478,6 @@
             tapping-term-ms = <80>;
             bindings = <&mo>, <&none>;
         };
-
         // Hold-Tap lefthand_ht (Крайняя левая клавиша большого пальца):
         // Удержание -> Слой 14 (Управление левой рукой без подсветки)
         // Одиночный тап -> ничего (через lh_td: 1 тап = none)
@@ -533,7 +491,6 @@
             quick-tap-ms = <300>;
             bindings = <&mo>, <&lh_td>;
         };
-
         // Вспомогательный Tap Dance для lefthand_ht:
         // 1 тап = none (ничего), 2 тапа (окно 500 мс) = kp LALT
         lh_td: lh_td {
@@ -542,7 +499,6 @@
             tapping-term-ms = <500>;
             bindings = <&none>, <&kp LALT>;
         };
-
         // Hold-Tap gaming_mo9_alt (Слой 7, левая клавиша большого пальца):
         // Удержание -> Временный Слой 9
         // Одиночный тап -> ничего (через gaming_mo9_td: 1 тап = none)
@@ -555,7 +511,6 @@
             quick-tap-ms = <300>;
             bindings = <&mo>, <&gaming_mo9_td>;
         };
-
         // Вспомогательный Tap Dance для gaming_mo9_alt:
         // 1 тап = none (ничего), 2 тапа (окно 500 мс) = kp LALT
         gaming_mo9_td: gaming_mo9_td {
@@ -564,7 +519,6 @@
             tapping-term-ms = <500>;
             bindings = <&none>, <&kp LALT>;
         };
-
         // Hold-Tap gaming_shft_mo14 (LSHFT в слое 8 gaming2_layer):
         // Удержание -> Временный Слой 14 (Управление левой рукой без подсветки)
         // Тап -> &kp LSHFT (обычный Shift)
@@ -575,7 +529,6 @@
             tapping-term-ms = <200>;
             bindings = <&mo>, <&kp>;
         };
-
         // Hold-Tap lang_nav2 (Клавиша переключения языка):
         // Удержание -> Временный Слой 12 (Навигация 2 без подсветки)
         // Одиночный тап -> Макрос Win+Space (смена языка в ОС)
@@ -588,7 +541,6 @@
             quick-tap-ms = <150>;
             bindings = <&mo>, <&win_space>;
         };
-
         // Tap Dance nav2_double_tap:
         // 1 тап = trans (ничего), двойной тап за 300 мс -> Фиксация/разблокировка Слоя 6 (Навигация 2)
         nav2_double_tap: nav2_double_tap {
@@ -597,7 +549,6 @@
             tapping-term-ms = <300>;
             bindings = <&trans>, <&tog 6>;
         };
-
         // Tap Dance speedtype_double_tap:
         // 1 тап = trans (ничего), двойной тап за 300 мс -> Включение/выключение Слоя 11 (Speedtype)
         speedtype_double_tap: speedtype_double_tap {
@@ -606,7 +557,6 @@
             tapping-term-ms = <300>;
             bindings = <&trans>, <&tog 11>;
         };
-
         // Параметрический макрос kp_once:
         // Выполняет одиночное нажатие указанной клавиши (press + release за один вызов)
         // Используется в edit_ht чтобы Ctrl+A/S/F/Z/X/C/V не залипали
@@ -618,7 +568,6 @@
             bindings = <&macro_param_1to1 &macro_press &kp 0>,
                        <&macro_param_1to1 &macro_release &kp 0>;
         };
-
         // Hold-Tap edit_ht (Клавиши редактирования левой руки: A, S, F, Z, X, C, V):
         // Тап -> Обычный символ
         // Удержание -> Сочетание Ctrl + клавиша (через макрос kp_once)
@@ -632,7 +581,6 @@
             hold-trigger-key-positions = <26 27 28 29 30 31 32 33 34 35 38 39 40 41>;
             bindings = <&kp_once>, <&kp>;
         };
-
         // Hold-Tap media_ht (Медиа-клавиши верхнего ряда правой руки: Y, U, I, O):
         // Тап -> Буква (Y, U, I, O)
         // Удержание -> Управление плеером (Play/Pause, Prev, Next, Stop)
@@ -645,7 +593,6 @@
             require-prior-idle-ms = <150>;
             bindings = <&kp>, <&kp>;
         };
-
         // Hold-Tap n_alt_ht (Клавиша N):
         // Тап -> Символ N
         // Удержание -> Left Alt
@@ -660,7 +607,6 @@
             hold-trigger-key-positions = <26 27 28 29 30 31 32 33 34 35 38 39 40 41>;
             bindings = <&kp>, <&kp>;
         };
-
         // Hold-Tap b_alt_ht (Клавиша B):
         // Тап -> Символ B
         // Удержание -> Left Alt
@@ -675,7 +621,6 @@
             hold-trigger-key-positions = <26 27 28 29 30 31 32 33 34 35 38 39 40 41>;
             bindings = <&kp>, <&kp>;
         };
-
         // Hold-Tap для перехода из Цифр (15) в Копию символов (16) через BSPC
         // И для перехода из Символов (17) в Копию цифр (18) через BSPC
         bspc_to_layer_ht: bspc_to_layer_ht {
@@ -685,7 +630,6 @@
             tapping-term-ms = <200>;
             bindings = <&mo>, <&kp>;
         };
-
         // Hold-Tap bspc_to_symb_ht: переход из цифр (17) в символы (15/16)
         // тап=BSPC, холд=mo слоя
         bspc_to_symb_ht: bspc_to_symb_ht {
@@ -695,7 +639,6 @@
             tapping-term-ms = <200>;
             bindings = <&mo>, <&kp>;
         };
-
         // Hold-Tap bspc_to_numb_ht: переход из символов (15/16) в цифры (17)
         // тап=FSLH (/), холд=mo слоя
         bspc_to_numb_ht: bspc_to_numb_ht {
@@ -705,12 +648,10 @@
             tapping-term-ms = <200>;
             bindings = <&mo>, <&kp>;
         };
-
         // -------------------------------------------------------
         // behaviors для символьных слоёв (2, 15, 16)
         // Правая половина — hold-tap с зеркалом
         // -------------------------------------------------------
-
         // Hold-Tap excl_tilde_ht: тап=!, холд=макрос ~
         excl_tilde_ht: excl_tilde_ht {
             compatible = "zmk,behavior-hold-tap";
@@ -719,7 +660,6 @@
             tapping-term-ms = <200>;
             bindings = <&macro_tilde_uni>, <&kp>;
         };
-
         // Hold-Tap qmark_dqt_ht: тап=? (Alt-code), холд=& (Alt-code)
         qmark_dqt_ht: qmark_dqt_ht {
             compatible = "zmk,behavior-hold-tap";
@@ -728,7 +668,6 @@
             tapping-term-ms = <200>;
             bindings = <&macro_amp_uni>, <&macro_qmark_uni>;
         };
-
         // Hold-Tap astrk_caret_ht: тап=*, холд=^ (Alt-code)
         astrk_caret_ht: astrk_caret_ht {
             compatible = "zmk,behavior-hold-tap";
@@ -737,7 +676,6 @@
             tapping-term-ms = <200>;
             bindings = <&macro_caret_uni>, <&kp>;
         };
-
         // Hold-Tap lpar_lbrc_ht: тап=(, холд=макрос {
         lpar_lbrc_ht: lpar_lbrc_ht {
             compatible = "zmk,behavior-hold-tap";
@@ -746,7 +684,6 @@
             tapping-term-ms = <200>;
             bindings = <&macro_lbrc_uni>, <&kp>;
         };
-
         // Hold-Tap rpar_rbrc_ht: тап=), холд=макрос }
         rpar_rbrc_ht: rpar_rbrc_ht {
             compatible = "zmk,behavior-hold-tap";
@@ -755,7 +692,6 @@
             tapping-term-ms = <200>;
             bindings = <&macro_rbrc_uni>, <&kp>;
         };
-
         // Hold-Tap hash_dollar_ht: тап=#, холд=макрос $
         hash_dollar_ht: hash_dollar_ht {
             compatible = "zmk,behavior-hold-tap";
@@ -764,7 +700,6 @@
             tapping-term-ms = <200>;
             bindings = <&macro_dollar_uni>, <&kp>;
         };
-
         // Hold-Tap colon_at_ht: тап=: (Alt-code), холд=@ (Alt-code)
         colon_at_ht: colon_at_ht {
             compatible = "zmk,behavior-hold-tap";
@@ -773,7 +708,6 @@
             tapping-term-ms = <200>;
             bindings = <&macro_at_uni>, <&macro_colon_uni>;
         };
-
         // Hold-Tap rbkt_sqt_ht: тап=] (kp), холд=' (Alt-code)
         rbkt_sqt_ht: rbkt_sqt_ht {
             compatible = "zmk,behavior-hold-tap";
@@ -782,7 +716,6 @@
             tapping-term-ms = <200>;
             bindings = <&macro_sqt_uni>, <&kp>;
         };
-
         // Hold-Tap dot_lbkt_ht: тап=. (Alt-code), холд=макрос [
         dot_lbkt_ht: dot_lbkt_ht {
             compatible = "zmk,behavior-hold-tap";
@@ -791,7 +724,6 @@
             tapping-term-ms = <200>;
             bindings = <&macro_lbkt_uni>, <&macro_dot_uni>;
         };
-
         // Hold-Tap comma_lbrc_ht: тап=, (Alt-code), холд=макрос °
         comma_lbrc_ht: comma_lbrc_ht {
             compatible = "zmk,behavior-hold-tap";
@@ -800,7 +732,6 @@
             tapping-term-ms = <200>;
             bindings = <&macro_degree_uni>, <&macro_comma_uni>;
         };
-
         // Hold-Tap semi_rbrc_ht: тап=; (Alt-code), холд=макрос `
         semi_rbrc_ht: semi_rbrc_ht {
             compatible = "zmk,behavior-hold-tap";
@@ -809,7 +740,6 @@
             tapping-term-ms = <200>;
             bindings = <&macro_grave_uni>, <&macro_semi_uni>;
         };
-
         // Hold-Tap slash_bslh_ht: тап=/ (Alt-code), холд=\
         // Крайний правый столбец строки 2
         slash_bslh_ht: slash_bslh_ht {
@@ -819,7 +749,6 @@
             tapping-term-ms = <200>;
             bindings = <&kp>, <&macro_slash_uni>;
         };
-
         // Hold-Tap under_lshft_ht: тап=_, холд=макрос — (em dash)
         under_lshft_ht: under_lshft_ht {
             compatible = "zmk,behavior-hold-tap";
@@ -828,7 +757,6 @@
             tapping-term-ms = <200>;
             bindings = <&macro_emdash_uni>, <&kp>;
         };
-
         // Hold-Tap minus_lt_ht: тап=-, холд=< (Alt-code)
         minus_lt_ht: minus_lt_ht {
             compatible = "zmk,behavior-hold-tap";
@@ -837,7 +765,6 @@
             tapping-term-ms = <200>;
             bindings = <&macro_lt_uni>, <&kp>;
         };
-
         // Hold-Tap plus_gt_ht: тап=+, холд=> (Alt-code)
         plus_gt_ht: plus_gt_ht {
             compatible = "zmk,behavior-hold-tap";
@@ -846,7 +773,6 @@
             tapping-term-ms = <200>;
             bindings = <&macro_gt_uni>, <&kp>;
         };
-
         // Hold-Tap equal_tilde_ht: тап==, холд нет
         equal_tilde_ht: equal_tilde_ht {
             compatible = "zmk,behavior-hold-tap";
@@ -855,7 +781,6 @@
             tapping-term-ms = <200>;
             bindings = <&none>, <&kp>;
         };
-
         // Hold-Tap percent_amp_ht: тап=" (Alt-code), холд нет
         percent_amp_ht: percent_amp_ht {
             compatible = "zmk,behavior-hold-tap";
@@ -864,7 +789,6 @@
             tapping-term-ms = <200>;
             bindings = <&none>, <&macro_dqt_uni>;
         };
-
         // Hold-Tap dqt_pipe_ht: тап=% (Alt-code), холд=| (Alt-code)
         // Крайняя левая и правая клавиши строки 3 в символьных слоях
         dqt_pipe_ht: dqt_pipe_ht {
@@ -874,7 +798,6 @@
             tapping-term-ms = <200>;
             bindings = <&macro_pipe_uni>, <&macro_percent_uni>;
         };
-
         // Hold-Tap semi_fn_ht (Клавиша точки с запятой):
         // Тап -> Символ ; (точка с запятой)
         // Удержание -> Переход на Слой 4 (Fn-клавиши)
@@ -887,7 +810,6 @@
             hold-trigger-key-positions = <26 27 28 29 30 31 32 33 34 35 38 39 40 41>;
             bindings = <&mo>, <&kp>;
         };
-
         // Макрос screenshot_win_shift_s:
         // Эмулирует нажатие комбинации Win + Shift + S для создания скриншота в Windows
         screenshot_win_shift_s: screenshot_win_shift_s {
@@ -902,7 +824,6 @@
                 <&macro_release &kp LSHIFT>,
                 <&macro_release &kp LGUI>;
         };
-
         // Hold-Tap lbkt_screenshot (Клавиша '['):
         // Тап -> Символ открывающей квадратной скобки '['
         // Удержание -> Запуск макроса скриншота (Win + Shift + S)
@@ -914,7 +835,6 @@
             quick-tap-ms = <200>;
             bindings = <&screenshot_win_shift_s>, <&kp>;
         };
-
         // Макрос win_space:
         // Быстрое последовательное нажатие Win + Space для переключения языка ввода
         win_space: win_space {
@@ -927,7 +847,6 @@
                 <&macro_tap &kp SPACE>,
                 <&macro_release &kp LGUI>;
         };
-
         // Макрос tog13_on:
         // Переключает Слой 13 (Левая рука) и включает синхронизацию RGB-подсветки (профиль 1)
         tog13_on: tog13_on {
@@ -937,7 +856,6 @@
             tap-ms = <0>;
             bindings = <&tog 13>, <&ws2812_lsync 1>;
         };
-
         // Макрос tog13_off:
         // Отключает Слой 13 (Левая рука) и возвращает стандартную RGB-подсветку (профиль 0)
         tog13_off: tog13_off {
@@ -947,7 +865,6 @@
             tap-ms = <0>;
             bindings = <&tog 13>, <&ws2812_lsync 0>;
         };
-
         // Tap Dance tog13_on_td:
         // 1 тап = trans (ничего), двойной тап -> Вызов макроса включения Слоя 13 с подсветкой
         tog13_on_td: tog13_on_td {
@@ -956,7 +873,6 @@
             tapping-term-ms = <300>;
             bindings = <&trans>, <&tog13_on>;
         };
-
         // Tap Dance tog13_off_td:
         // 1 тап = trans (ничего), двойной тап -> Вызов макроса выключения Слоя 13 с подсветкой
         tog13_off_td: tog13_off_td {
@@ -965,26 +881,25 @@
             tapping-term-ms = <300>;
             bindings = <&trans>, <&tog13_off>;
         };
-
         // Tap Dance thumb_e_numb_td:
-        // Используется в комбо: Левый большой палец (pos 43) + E (pos 3)
+        // Используется в комбо: левый большой палец (pos 43) + G (pos 18).
+        // Имя behavior сохранено историческое; фактическая привязка комбо: <18 43>.
         thumb_e_numb_td: thumb_e_numb_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
             bindings = <&none>, <&tog 3>;
         };
-
         // Tap Dance thumb_i_symb_td:
         // 1 тап = none (ничего), двойной тап -> Переключение фиксированного режима Слоя 2 (Символы)
-        // Используется в комбо: Правый большой палец (pos 46) + I (pos 9)
+        // Используется в комбо: правый большой палец (pos 46) + H (pos 22).
+        // Имя behavior сохранено историческое; фактическая привязка комбо: <22 46>.
         thumb_i_symb_td: thumb_i_symb_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
             bindings = <&none>, <&tog 2>;
         };
-
         // МАКРОС СБРОСА НА СЛОЙ 0 + ЗЕЛЁНАЯ ВСПЫШКА
         // &to 0 деактивирует ВСЕ toggle-слои.
         // Зелёная вспышка подтверждает успешный сброс.
@@ -993,11 +908,10 @@
             #binding-cells = <0>;
             wait-ms = <20>;
             tap-ms = <20>;
-            bindings = 
+            bindings =
                 <&to 0>,
                 <&ws2812_wdg 0>;
         };
-
         // Hold-Tap dot_lshft_ht: тап=макрос . (Alt-code), холд=Left Shift
         // Используется в numb-слоях (3, 15, 18)
         dot_lshft_ht: dot_lshft_ht {
@@ -1007,7 +921,6 @@
             tapping-term-ms = <200>;
             bindings = <&kp>, <&macro_dot_uni>;
         };
-
         // Tap Dance gaming3_alt_td:
         // Добавлено для слоя gaming3_layer (&mo 9).
         // 1 тап = none (чтобы не прерывать удержание слоя),
@@ -1019,11 +932,9 @@
             bindings = <&none>, <&kp LALT>;
         };
     };
-
     // --- КОМБИНАЦИИ КЛАВИШ (COMBOS) ---
     combos {
         compatible = "zmk,combos";
-
         // ============================================================
         // Комбо R + T (Клавиши 4, 5):
         // Два одновременных нажатия (два раза вместе) за 450 мс
@@ -1043,7 +954,6 @@
             bindings = <&combo_rt_caps_td>;
             layers = <0 11>;
         };
-
         // Комбо W + E + R + T (Клавиши 2, 3, 4, 5)
         // Включение / выключение игрового режима (Слой 7 Gaming 1).
         // Работает на слоях 0 и 7. Окно срабатывания: 100 мс, простой: 250 мс.
@@ -1054,7 +964,6 @@
            bindings = <&tog 7>;
            layers = <0 7>;
         };
-
         // Комбо Q + W (Клавиши 1, 2):
         // Включение Слоя 13 (Левая рука) с активацией подсветки.
         // Работает на слое 0. Окно срабатывания: 80 мс, простой: 150 мс.
@@ -1065,7 +974,6 @@
             bindings = <&tog13_on_td>;
             layers = <0>;
         };
-
         // Комбо Tab + Q:
         // При одновременном нажатии Tab и Q отправляется Esc
         combo_tab_q_esc {
@@ -1075,7 +983,6 @@
             bindings = <&kp ESC>;
             layers = <0 6 7 11 12 13>;
         };
-
         // Комбо Q + W (Клавиши 1, 2):
         // Выключение Слоя 13 (Левая рука) и сброс подсветки.
         // Работает только на слое 13. Окно срабатывания: 80 мс, простой: 150 мс.
@@ -1086,7 +993,6 @@
             bindings = <&tog13_off_td>;
             layers = <13>;
         };
-
         // Комбо E + R (Клавиши 3, 4):
         // Временная активация Слоя 10 (Навигация 3 / Мышь).
         // Работает на слое 0. Окно срабатывания: 80 мс, простой: 100 мс.
@@ -1097,7 +1003,6 @@
             bindings = <&mo 10>;
             layers = <0 11>;
         };
-
         // Комбо ' + Esc (Клавиши 27, 41):
         // Переключение режима быстрой печати (Слой 11 Speedtype).
         // Работает на слоях 0 и 11. Окно срабатывания: 80 мс, простой: 100 мс.
@@ -1108,7 +1013,6 @@
             bindings = <&speedtype_double_tap>;
             layers = <0 11>;
         };
-
         // Комбо D + F (Клавиши 16, 17):
         // Временный переход на Слой 1 (Навигация 1).
         // Работает на слоях 0 и 11. Окно срабатывания: 50 мс, простой: 100 мс.
@@ -1119,7 +1023,6 @@
             bindings = <&mo 1>;
             layers = <0 11>;
         };
-
         // Комбо двух нижних левых клавиш (Клавиши 42, 43):
         // Временная активация Слоя 5 (Сервис: Bluetooth, RGB, прошивка).
         // Работает на слое 0. Окно срабатывания: 50 мс, простой: 100 мс.
@@ -1130,7 +1033,6 @@
             bindings = <&mo 5>;
             layers = <0>;
         };
-
         // Комбо Y + U (Клавиши 7, 8):
         // Фиксация/разблокировка Слоя 6 (Навигация 2).
         // Работает на слоях 0 и 6. Окно срабатывания: 80 мс, простой: 100 мс.
@@ -1141,7 +1043,6 @@
             bindings = <&nav2_double_tap>;
             layers = <0 6>;
         };
-
         // Комбо J + K (Клавиши 23, 24):
         // Нажатие клавиши BSPC (Backspace).
         // Работает на основных и вспомогательных слоях. Окно срабатывания: 50 мс.
@@ -1152,7 +1053,6 @@
             bindings = <&kp BSPC>;
             layers = <0 1 2 3 4 5 6 11 15 16 17 18>;
         };
-
         // Комбо K + L (Клавиши 24, 25):
         // Нажатие клавиши DEL (Delete).
         // Работает на основных и вспомогательных слоях. Окно срабатывания: 50 мс.
@@ -1163,7 +1063,6 @@
             bindings = <&kp DEL>;
             layers = <0 1 2 3 4 5 6 11 15 16 17 18>;
         };
-
         // Комбо D + F (Клавиши 16, 17):
         // Нажатие BSPC (Backspace) на символьных и цифровых слоях.
         // Работает на слоях 2, 3, 6, 13, 14, 15, 16, 17, 18. Окно срабатывания: 50 мс.
@@ -1174,7 +1073,6 @@
             bindings = <&kp BSPC>;
             layers = <2 3 6 13 14 15 16 17 18>;
         };
-
         // Комбо S + D (Клавиши 15, 16):
         // Нажатие DEL (Delete) на символьных и цифровых слоях.
         // Работает на слоях 2, 3, 6, 13, 14, 15, 16, 17, 18. Окно срабатывания: 50 мс.
@@ -1185,8 +1083,7 @@
             bindings = <&kp DEL>;
             layers = <2 3 6 13 14 15 16 17 18>;
         };
-
-        // Комбо Левый большой палец + : (Клавиши 3, 43):
+        // Комбо G + левый большой палец (Клавиши 18, 43):
         // Двойной тап -> Переключение фиксированного Слоя 3 (Цифровой блок с цианом).
         // Работает на слоях 0 и 3. Окно срабатывания: 200 мс, простой: 150 мс.
         combo_left_thumb_e_numb {
@@ -1196,8 +1093,7 @@
             bindings = <&thumb_e_numb_td>;
             layers = <0 3>;
         };
-
-        // Комбо Правый большой палец + ? (Клавиши 9, 46):
+        // Комбо H + правый большой палец (Клавиши 22, 46):
         // Двойной тап -> Переключение фиксированного Слоя 2 (Символьный блок с цианом).
         // Работает на слоях 0 и 2. Окно срабатывания: 200 мс, простой: 150 мс.
         combo_right_thumb_i_symb {
@@ -1207,7 +1103,6 @@
             bindings = <&thumb_i_symb_td>;
             layers = <0 2>;
         };
-
         // Комбо I + O + P + [ : Мгновенный сброс на слой 0 + зелёная вспышка
         combo_iop_lbkt_reset {
             timeout-ms = <100>;
@@ -1216,7 +1111,6 @@
             bindings = <&reset_l0_green_flash>;
             layers = <0 2 3 6 7 11 13>;
         };
-
         // Комбо Z + X + C (Клавиши 29, 30, 31):
         // Нажатие Enter в игровом слое 7.
         // Окно срабатывания: 80 мс, простой: 50 мс.
@@ -1232,10 +1126,10 @@
     // --- РАСКЛАДКИ И СЛОИ (KEYMAP) ---
     keymap {
         compatible = "zmk,keymap";
-
         // Слой 0: Основной слой (QWERTY / Базовая печать)
         // Энкодер: Громкость (Volume Up / Down)
         default_layer {
+            display-name = "default_layer";
             bindings = <
 &kp TAB                  &kp Q             &kp W             &kp E               &kp R              &kp T                                    &kp UP                &media_ht C_PP Y    &media_ht C_PREV U      &media_ht C_NEXT I  &media_ht C_STOP O  &kp P               &lbkt_screenshot 0 LBKT
 &kp LSHIFT               &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D               &edit_ht LC(F) F   &kp G                          &kp LEFT  &kp SPC   &kp RIGHT   &kp H               &kp J                   &kp K               &kp L               &semi_fn_ht 4 SEMI  &mt LSHFT SQT
@@ -1244,10 +1138,10 @@
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
-
         // Слой 1: Навигация 1 (Управление курсором мыши, кликами, стрелками и Home/End)
         // Энкодер: Скрол по словам и типа скрол влево-вправо
         nav1_layer {
+            display-name = "nav1_layer";
             bindings = <
 &kp ESC  &none  &none   &none  &none  &none                               &mmv MOVE_UP                       &kp HOME           &mkp LCLK          &kp UP     &mkp RCLK            &macro_qmark_uni    &kp PG_UP
 &trans   &none  &none   &none  &none  &none               &mmv MOVE_LEFT  &mkp LCLK      &mmv MOVE_RIGHT     &msc MOVE_X(-150)  &kp LEFT           &kp DOWN   &kp RIGHT            &msc MOVE_X(150)    &kp BSPC
@@ -1256,10 +1150,10 @@
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
-
         // Слой 2: Символы (Спецсимволы и скобки, с подсветкой правой половины)
         // Энкодер: Громкость (Volume Up / Down)
         symb_layer {
+            display-name = "symb_layer";
             bindings = <
 &hash_dollar_ht DLLR HASH       &rpar_rbrc_ht RBRC RPAR       &lpar_lbrc_ht LBRC LPAR        &astrk_caret_ht CARET ASTRK    &qmark_dqt_ht 0 0       &excl_tilde_ht TILDE EXCL                              &kp UP                 &excl_tilde_ht TILDE EXCL     &qmark_dqt_ht 0 0            &astrk_caret_ht CARET ASTRK  &lpar_lbrc_ht LBRC LPAR      &rpar_rbrc_ht RBRC RPAR       &hash_dollar_ht DLLR HASH
 &bspc_to_numb_ht 17 FSLH        &semi_rbrc_ht 0 0             &comma_lbrc_ht LBRC COMMA      &dot_lbkt_ht LBKT DOT          &rbkt_sqt_ht SQT RBKT   &colon_at_ht AT COLON                        &kp LEFT  &kp SPC   &kp RIGHT    &colon_at_ht AT COLON         &rbkt_sqt_ht SQT RBKT        &dot_lbkt_ht LBKT DOT        &comma_lbrc_ht LBRC COMMA    &semi_rbrc_ht 0 0             &slash_bslh_ht BSLH SLASH
@@ -1268,10 +1162,10 @@
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
-
         // Слой 3: Цифры (Цифровой блок Numpad с подсветкой левой половины)
         // Энкодер: Громкость (Volume Up / Down)
         numb_layer {
+            display-name = "numb_layer";
             bindings = <
 &kp PG_UP      &macro_comma_uni         &kp N9  &kp N8  &kp N7  &mkp MB5                                            &msc SCRL_UP                       &kp HOME          &kp N7  &kp N8  &kp N9  &macro_comma_uni         &kp PG_UP
 &kp LSHIFT     &kp N0                   &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &macro_qmark_uni  &kp N4  &kp N5  &kp N6  &kp N0                   &kp BSPC
@@ -1280,10 +1174,10 @@
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
-
         // Слой 4: Функциональный блок (Клавиши F1-F12 и управление мышью)
         // Энкодер: Скрол по словам и типа скрол влево-вправо
         fn_layer {
+            display-name = "fn_layer";
             bindings = <
 &kp ESC                     &kp F1  &kp F2   &kp F3    &kp F4   &mkp MB5                                          &mmv MOVE_UP                       &kp F10   &kp F7  &kp F8  &kp F9  &none  &none
 &kp LSHIFT                  &kp F5  &kp F12  &kp F10   &kp F11  &mkp MB4                        &mmv MOVE_LEFT    &mkp LCLK       &mmv MOVE_RIGHT    &kp F11   &kp F4  &kp F5  &kp F6  &none  &none
@@ -1292,22 +1186,23 @@
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
-
         // Слой 5: Сервисный (Настройки Bluetooth профилей, управление RGB-подсветкой, ZMK Studio)
         // Энкодер: Громкость (Volume Up / Down)
         service_layer {
+            display-name = "service_layer";
             bindings = <
 &kp ESC         &none   &none    &none          &none          &studio_unlock                        &trans              &bt BT_CLR        &none             &bt BT_SEL 0        &bt BT_SEL 1       &bt BT_SEL 2     &bt BT_SEL 3
 &none           &none   &none    &ws2812_wdg 5  &ws2812_wdg 2  &out OUT_BLE                  &trans  &trans  &trans      &kp C_BRI_UP      &kp C_BRI_DN      &ws2812_wdg 6       &ws2812_wdg 7      &ws2812_wdg 8    &none
-&bt BT_CLR_ALL  &none   &none    &none          &none          &out OUT_USB    &trans                &trans              &rgb_ug RGB_EFR   &rgb_ug RGB_EFF   &rgb_ug RGB_SPI     &rgb_ug RGB_SPD    &rgb_ug RGB_BRI  &rgb_ug RGB_BRD
+&bt BT_CLR_ALL  &rgb_ug RGB_HUD   &rgb_ug RGB_HUI   &rgb_ug RGB_SAD   &rgb_ug RGB_SAI   &out OUT_USB    &trans                &trans              &rgb_ug RGB_EFR   &rgb_ug RGB_EFF   &rgb_ug RGB_SPI     &rgb_ug RGB_SPD    &rgb_ug RGB_BRI  &rgb_ug RGB_BRD
                                  &trans         &trans         &trans                                                    &rgb_ug RGB_ON    &trans            &rgb_ug RGB_OFF
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
+    >;
+    sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+};
 
         // Слой 6: Навигация 2 (Фиксируемый слой навигации: стрелки, Enter, Delete, Backspace)
         // Энкодер: Громкость (Volume Up / Down)
         nav2_layer {
+            display-name = "nav2_layer";
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans                      &trans              &trans  &trans  &trans     &kp ESC    &kp DEL   &kp BSPC
 &trans  &trans  &trans  &trans  &trans  &trans              &trans  &trans  &trans      &trans  &trans  &trans     &kp ENTER  &kp UP    &kp SPC
@@ -1316,10 +1211,10 @@
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
-
         // Слой 7: Игровой 1 (Оптимизированная раскладка WASD с прямым доступом к Shift/Ctrl)
         // Энкодер: Громкость (Volume Up / Down)
         gaming1_layer {
+            display-name = "gaming1_layer";
             bindings = <
 &kp TAB    &kp Q  &kp W  &kp E                 &kp R   &kp T                            &kp UP                  &kp Y      &kp U   &kp I      &kp O    &kp P     &kp BSPC
 &kp LSHFT  &kp A  &kp S  &kp D                 &kp F   &kp G                  &kp LEFT  &kp ENTER  &kp RIGHT    &kp H      &kp J   &kp K      &kp L    &kp SEMI  &kp LSHFT
@@ -1328,10 +1223,10 @@
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
-
         // Слой 8: Игровой 2 (Игровой слой для цифр и F-клавиш)
         // Энкодер: Громкость (Volume Up / Down)
         gaming2_layer {
+            display-name = "gaming2_layer";
             bindings = <
 &kp ESC                       &kp N1   &none    &kp N2   &kp N3  &none                                &kp UP                 &kp F10       &kp F7     &kp F8  &kp F9  &none    &kp BSPC
 &gaming_shft_mo14 14 LSHFT    &kp N4   &none    &kp N5   &kp N6  &kp N0                    &kp LEFT   &kp ENTER  &kp RIGHT   &kp F11       &kp F4     &kp F5  &kp F6  &none    &kp LSHFT
@@ -1340,22 +1235,22 @@
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
-
         // Слой 9: Игровой 3 (Альтернативная игровая раскладка под правую руку/доп. действия)
         // Энкодер: Громкость (Volume Up / Down)
         gaming3_layer {
+            display-name = "gaming3_layer";
             bindings = <
 &kp ESC    &kp Y  &kp U  &kp I  &kp O      &kp P                           &kp UP                 &kp F10       &kp F7  &kp F8  &kp F9  &none    &kp BSPC
 &kp LSHFT  &kp H  &kp J  &kp K  &kp L      &none                &kp LEFT   &kp ENTER  &kp RIGHT   &kp F11       &kp F4  &kp F5  &kp F6  &none    &kp LSHFT
-&kp LCTRL  &none  &kp N  &kp M  &kp COMMA  &kp DOT   &kp C_MUTE            &kp DOWN               &kp F12       &kp F1  &kp F2  &kp F3  &none    &kp ESC
+&kp LCTRL  &kp M  &none  &kp N  &kp COMMA  &kp DOT   &kp C_MUTE            &kp DOWN               &kp F12       &kp F1  &kp F2  &kp F3  &none    &kp ESC
                          &mo 9  &none      &kp SPACE                                              &kp ENTER     &none   &none
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
-
         // Слой 10: Навигация 3 (Продвинутое управление мышью и скроллом)
         // Энкодер: Скрол по словам и типа скрол влево-вправо
         nav3_layer {
+            display-name = "nav3_layer";
             bindings = <
 &kp ESC &none   &none   &none   &none   &none                          &kp UP                   &kp HOME           &mkp LCLK            &mmv MOVE_UP    &mkp RCLK          &macro_qmark_uni   &kp PG_UP
 &trans  &none   &none   &none   &none   &none                &kp LEFT  &kp ENTER  &kp RIGHT     &msc MOVE_X(-150)  &mmv MOVE_LEFT       &mmv MOVE_DOWN  &mmv MOVE_RIGHT    &msc MOVE_X(150)   &kp BSPC
@@ -1364,10 +1259,10 @@
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
-
         // Слой 11: Speedtype (Чистая печать без модификаторов hold-tap на основной буквенной зоне)
         // Энкодер: Громкость (Volume Up / Down)
         speedtype {
+            display-name = "speedtype";
             bindings = <
 &kp TAB    &kp Q  &kp W  &kp E      &kp R              &kp T                               &kp UP                 &kp Y      &kp U                   &kp I              &kp O       &kp P     &kp LBKT
 &kp LSHFT  &kp A  &kp S  &kp D      &kp F              &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT   &kp H      &kp J                   &kp K              &kp L       &kp SEMI  &kp SQT
@@ -1376,10 +1271,10 @@
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
-
         // Слой 12: Навигация 2 без подсветки (Временный слой для навигации при зажатии lang_nav2)
         // Энкодер: Скрол по словам и типа скрол влево-вправо
         nav2nolight_layer {
+            display-name = "nav2nolight_layer";
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans                      &trans              &trans  &trans  &trans     &kp ESC    &kp DEL   &kp BSPC
 &trans  &trans  &trans  &trans  &trans  &trans              &trans  &trans  &trans      &trans  &trans  &trans     &kp ENTER  &kp UP    &kp SPC
@@ -1388,10 +1283,10 @@
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
-
         // Слой 13: Управление одной левой рукой (С включением визуального RGB-профиля)
         // Энкодер: Громкость (Volume Up / Down)
         lefthand_layer {
+            display-name = "lefthand_layer";
             bindings = <
 &kp TAB              &kp HOME    &kp ENTER            &kp UP              &kp SPC          &msc MOVE_Y(150)                              &kp UP                  &trans  &trans  &trans  &trans  &trans  &trans
 &kp LSHFT            &kp END     &kp LEFT             &kp DOWN            &kp RIGHT        &msc MOVE_Y(-150)                   &kp LEFT  &kp ENTER  &kp RIGHT    &trans  &trans  &trans  &trans  &trans  &trans
@@ -1400,10 +1295,10 @@
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
-
         // Слой 14: Управление одной левой рукой (Без изменения RGB-подсветки)
         // Энкодер: Скрол по словам и типа скрол влево-вправо
         lefthandnolight_layer {
+            display-name = "lefthandnolight_layer";
             bindings = <
 &tab_esc_ht ESC TAB  &kp HOME    &kp ENTER            &kp UP              &kp SPC           &msc MOVE_Y(150)                              &kp UP                  &trans  &trans  &trans  &trans  &trans  &trans
 &kp LSHFT            &kp END     &kp LEFT             &kp DOWN            &kp RIGHT         &msc MOVE_Y(-150)                   &kp LEFT  &kp ENTER  &kp RIGHT    &trans  &trans  &trans  &trans  &trans  &trans
@@ -1412,11 +1307,11 @@
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
-
         // Слой 15: Цифры без подсветки (Вызывается при зажатии правой клавиши большого пальца)
         // Удержание правого мизинца -> переход в Копию символов (слой 16)
         // Энкодер: Скрол по словам и типа скрол влево-вправо
         numbnolight_layer {
+            display-name = "numbnolight_layer";
             bindings = <
 &kp PG_UP   &macro_comma_uni         &kp N9  &kp N8  &kp N7  &mkp MB5                                            &msc SCRL_UP                       &kp HOME           &kp N7  &kp N8  &kp N9  &macro_comma_uni         &kp PG_UP
 &kp BSPC    &kp N0                   &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &macro_qmark_uni   &kp N4  &kp N5  &kp N6  &kp N0                   &bspc_to_layer_ht 16 BSPC
@@ -1425,11 +1320,11 @@
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
-
         // Слой 16: Копия символов без подсветки (Для перехода из слоя 15 Цифр)
         // Активируется удержанием правого мизинца на слое 15. 16 > 15, поэтому работает.
         // Энкодер: Скрол по словам и типа скрол влево-вправо
         symbnolightcopy_layer {
+            display-name = "symbnolightcopy_layer";
             bindings = <
 &hash_dollar_ht DLLR HASH       &rpar_rbrc_ht RBRC RPAR       &lpar_lbrc_ht LBRC LPAR        &astrk_caret_ht CARET ASTRK    &qmark_dqt_ht 0 0       &excl_tilde_ht TILDE EXCL                              &kp UP                 &excl_tilde_ht TILDE EXCL     &qmark_dqt_ht 0 0            &astrk_caret_ht CARET ASTRK  &lpar_lbrc_ht LBRC LPAR      &rpar_rbrc_ht RBRC RPAR       &hash_dollar_ht DLLR HASH
 &bspc_to_numb_ht 18 FSLH        &semi_rbrc_ht 0 0             &comma_lbrc_ht LBRC COMMA      &dot_lbkt_ht LBKT DOT          &rbkt_sqt_ht SQT RBKT   &colon_at_ht AT COLON                        &kp LEFT  &kp SPC   &kp RIGHT    &colon_at_ht AT COLON         &rbkt_sqt_ht SQT RBKT        &dot_lbkt_ht LBKT DOT        &comma_lbrc_ht LBRC COMMA    &semi_rbrc_ht 0 0             &slash_bslh_ht BSLH SLASH
@@ -1438,11 +1333,11 @@
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
-
         // Слой 17: Символы без подсветки (Вызывается при зажатии левой клавиши большого пальца)
         // Удержание левого мизинца -> переход в Копию цифр (слой 18)
         // Энкодер: Скрол по словам и типа скрол влево-вправо
         symbnolight_layer {
+            display-name = "symbnolight_layer";
             bindings = <
 &hash_dollar_ht DLLR HASH       &rpar_rbrc_ht RBRC RPAR       &lpar_lbrc_ht LBRC LPAR        &astrk_caret_ht CARET ASTRK    &qmark_dqt_ht 0 0       &excl_tilde_ht TILDE EXCL                              &kp UP                 &excl_tilde_ht TILDE EXCL     &qmark_dqt_ht 0 0            &astrk_caret_ht CARET ASTRK  &lpar_lbrc_ht LBRC LPAR      &rpar_rbrc_ht RBRC RPAR       &hash_dollar_ht DLLR HASH
 &bspc_to_numb_ht 18 FSLH        &semi_rbrc_ht 0 0             &comma_lbrc_ht LBRC COMMA      &dot_lbkt_ht LBKT DOT          &rbkt_sqt_ht SQT RBKT   &colon_at_ht AT COLON                        &kp LEFT  &kp SPC   &kp RIGHT    &colon_at_ht AT COLON         &rbkt_sqt_ht SQT RBKT        &dot_lbkt_ht LBKT DOT        &comma_lbrc_ht LBRC COMMA    &semi_rbrc_ht 0 0             &slash_bslh_ht BSLH SLASH
@@ -1451,11 +1346,11 @@
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
-
         // Слой 18: Копия цифр без подсветки (Для перехода из слоя 17 Символов)
         // Активируется удержанием левого мизинца на слое 17. 18 > 17, поэтому работает.
         // Энкодер: Скрол по словам и типа скрол влево-вправо
         numbnolightcopy_layer {
+            display-name = "numbnolightcopy_layer";
             bindings = <
 &kp PG_UP   &macro_comma_uni         &kp N9  &kp N8  &kp N7  &mkp MB5                                            &msc SCRL_UP                       &kp HOME           &kp N7  &kp N8  &kp N9  &macro_comma_uni         &kp PG_UP
 &kp BSPC    &kp N0                   &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &macro_qmark_uni   &kp N4  &kp N5  &kp N6  &kp N0                   &kp BSPC
