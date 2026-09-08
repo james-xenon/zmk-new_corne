@@ -29,8 +29,9 @@
     delay-ms = <0>;
 };
 
-// Настройки поведения курсора мыши (эмуляция стика/клавиш):
-// Плавный разгон до максимальной скорости за 500 мс с линейным ускорением и периодом опроса 16 мс
+// Настройки поведения курсора мыши (эмуляция перемещения указателя):
+// Плавный разгон до максимальной скорости за 500 мс, линейное ускорение;
+// trigger-period-ms = 16 задаёт период повторной генерации движения.
 &mmv {
     time-to-max-speed-ms = <500>;
     acceleration-exponent = <1>;
@@ -44,44 +45,51 @@
     // --- ПОВЕДЕНИЯ КЛАВИШ (BEHAVIORS) ---
     behaviors {
         // ============================================================
-        // CAPS LOCK ПОДСВЕТКА (БЕЗ СЛОЯ-ФЛАГА)
+        // CAPS LOCK + ИНДИКАЦИЯ НА LED 5,6 (БЕЗ СЛОЯ-ФЛАГА)
         // ============================================================
-        // Механизм: макрос переключает ТОЛЬКО Caps Lock.
-        // LED 5,6 управляются через event listener в widget.c,
-        // который слушает zmk_keymap_caps_lock_state_changed.
+        // caps_toggle отправляет обычный HID Caps Lock (&kp CAPS).
+        // Сам keymap не хранит отдельный слой/флаг для состояния Caps.
         //
-        // Преимущества перед старым подходом со слоем 19:
-        //   - Нет конфликтов с комбо (BSPC/DEL не срабатывают ложно)
-        //   - Нет микро-задержек мыши из-за наложения прозрачного слоя
-        //   - Нет hold-tap fallback артефактов
+        // На левой половине widget.c, при CONFIG_ZMK_HID_INDICATORS=y,
+        // слушает событие zmk_hid_indicators_changed и берёт РЕАЛЬНОЕ
+        // состояние Caps Lock из HID-indicator report хоста.
         //
-        // Первый R+T×2 → Caps ON  → LED 5,6 белые (через widget.c)
-        // Второй R+T×2 → Caps OFF → LED 5,6 гаснут (через widget.c)
+        // В текущем widget.c:
+        //   LED 5,6 = CAPS_INDICATOR_START 5 / CAPS_INDICATOR_COUNT 2;
+        //   цвет Caps = CAPS_INDICATOR_COLOR 0xFFFFFF (белый).
+        //
+        // Поэтому двойное срабатывание R+T через combo_rt_caps_td
+        // переключает Caps, а LED 5,6 отражают подтверждённое хостом состояние.
         // ============================================================
-        // Макрос переключения Caps Lock.
-        // Подсветка переключается автоматически через C-код (event listener).
+        // Макрос отправки Caps Lock. Подсветкой непосредственно он не управляет.
         caps_toggle: caps_toggle {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <20>;   // Задержка предотвращает спам макроса
-            tap-ms = <20>;    // Обеспечивает стабильное одиночное срабатывание
+            wait-ms = <20>;   // Параметр задержки между действиями макроса; здесь binding один
+            tap-ms = <20>;    // Длительность tap-события макроса
             bindings = <&kp CAPS>;
         };
         // ============================================================
-        // ЭФФЕКТЫ ВИДЖЕТА WS2812
+        // ИСТОРИЧЕСКИЕ МАКРОСЫ ws2812_eff_* — ВАЖНО
         // ============================================================
-        // Переключение дополнительных эффектов подсветки виджета.
-        // Эффекты работают поверх underglow и автоматически
-        // приостанавливают его на время работы.
+        // Имена этих трёх behavior остались от старой версии драйвера.
+        // В ТЕКУЩЕМ behavior_ws2812_widget.c отдельные команды эффектов
+        // для param1 = 6 / 7 / 8 НЕ реализованы.
         //
-        // 0 = NONE (выкл, вернуть underglow)
-        // 1 = RAINBOW_WAVE
-        // 2 = FIRE
-        // 3 = MATRIX_RAIN
-        // 4 = SPARKLE
-        // 5 = GRADIENT_PULSE
+        // Текущая таблица &ws2812_wdg:
+        //   0 = ручная индикация слоя;
+        //   1 = батарея локальной половины;
+        //   2 = toggle временных WS2812-индикаций;
+        //   3 = принудительно включить временные индикации;
+        //   4 = принудительно выключить временные индикации;
+        //   5 = индикация батареи обеих половин;
+        //   прочие значения (включая 6/7/8) попадают в default и вызывают
+        //   ту же ws2812_indicate_layer(), если SHOW_LAYER_CHANGE включён.
+        //
+        // Реальные underglow-эффекты переключаются стандартными командами
+        // &rgb_ug RGB_EFR / RGB_EFF на сервисном слое.
         // ============================================================
-        // Следующий эффект виджета
+        // Историческое имя "next": фактически &ws2812_wdg 6 -> default/manual layer indication.
         ws2812_eff_next: ws2812_eff_next {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -89,7 +97,7 @@
             tap-ms = <0>;
             bindings = <&ws2812_wdg 6>;
         };
-        // Предыдущий эффект виджета
+        // Историческое имя "prev": фактически &ws2812_wdg 7 -> default/manual layer indication.
         ws2812_eff_prev: ws2812_eff_prev {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -97,7 +105,7 @@
             tap-ms = <0>;
             bindings = <&ws2812_wdg 7>;
         };
-        // Выключить эффект виджета (вернуть underglow)
+        // Историческое имя "off": фактически &ws2812_wdg 8 -> default/manual layer indication.
         ws2812_eff_off: ws2812_eff_off {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -481,8 +489,7 @@
         // Hold-Tap lefthand_ht (Крайняя левая клавиша большого пальца):
         // Удержание -> Слой 14 (Управление левой рукой без подсветки)
         // Одиночный тап -> ничего (через lh_td: 1 тап = none)
-        // Двойной тап (окно 500 мс) -> kp LALT (обычный Alt)
-        // kp LALT держится пока кнопка удерживается -> работает Alt+Tab с листанием
+        // Двойной тап (окно 500 мс) -> &kp LALT (Left Alt)
         lefthand_ht: lefthand_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -542,7 +549,7 @@
             bindings = <&mo>, <&win_space>;
         };
         // Tap Dance nav2_double_tap:
-        // 1 тап = trans (ничего), двойной тап за 300 мс -> Фиксация/разблокировка Слоя 6 (Навигация 2)
+        // 1 тап = &trans; 2 тапа в пределах 300 мс -> &tog 6 (переключить фиксированный слой 6)
         nav2_double_tap: nav2_double_tap {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -550,7 +557,7 @@
             bindings = <&trans>, <&tog 6>;
         };
         // Tap Dance speedtype_double_tap:
-        // 1 тап = trans (ничего), двойной тап за 300 мс -> Включение/выключение Слоя 11 (Speedtype)
+        // 1 тап = &trans; 2 тапа в пределах 300 мс -> &tog 11 (переключить слой 11 Speedtype)
         speedtype_double_tap: speedtype_double_tap {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -621,8 +628,9 @@
             hold-trigger-key-positions = <26 27 28 29 30 31 32 33 34 35 38 39 40 41>;
             bindings = <&kp>, <&kp>;
         };
-        // Hold-Tap для перехода из Цифр (15) в Копию символов (16) через BSPC
-        // И для перехода из Символов (17) в Копию цифр (18) через BSPC
+        // Универсальный Hold-Tap: hold = &mo <param1>, tap = &kp <param2>.
+        // В текущем keymap используется на слое 15:
+        // &bspc_to_layer_ht 16 BSPC -> hold: временный слой 16, tap: Backspace.
         bspc_to_layer_ht: bspc_to_layer_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -630,8 +638,9 @@
             tapping-term-ms = <200>;
             bindings = <&mo>, <&kp>;
         };
-        // Hold-Tap bspc_to_symb_ht: переход из цифр (17) в символы (15/16)
-        // тап=BSPC, холд=mo слоя
+        // Универсальный Hold-Tap bspc_to_symb_ht:
+        // hold = &mo <param1>, tap = &kp <param2>.
+        // В текущих bindings ниже этот behavior не используется; оставлен как заготовка.
         bspc_to_symb_ht: bspc_to_symb_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -639,8 +648,9 @@
             tapping-term-ms = <200>;
             bindings = <&mo>, <&kp>;
         };
-        // Hold-Tap bspc_to_numb_ht: переход из символов (15/16) в цифры (17)
-        // тап=FSLH (/), холд=mo слоя
+        // Универсальный Hold-Tap bspc_to_numb_ht:
+        // hold = &mo <param1>, tap = &kp <param2>.
+        // Текущие вызовы используют tap=FSLH и hold-слой 17 либо 18.
         bspc_to_numb_ht: bspc_to_numb_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -649,8 +659,8 @@
             bindings = <&mo>, <&kp>;
         };
         // -------------------------------------------------------
-        // behaviors для символьных слоёв (2, 15, 16)
-        // Правая половина — hold-tap с зеркалом
+        // behaviors для символьных раскладок (слои 2, 16 и 17)
+        // Используются зеркально на обеих сторонах символьных слоёв
         // -------------------------------------------------------
         // Hold-Tap excl_tilde_ht: тап=!, холд=макрос ~
         excl_tilde_ht: excl_tilde_ht {
@@ -848,7 +858,9 @@
                 <&macro_release &kp LGUI>;
         };
         // Макрос tog13_on:
-        // Переключает Слой 13 (Левая рука) и включает синхронизацию RGB-подсветки (профиль 1)
+        // Выполняет &tog 13 и затем &ws2812_lsync 1.
+        // В текущем layer-sync драйвере param1=1 означает временную индикацию "layer ON";
+        // это НЕ отдельный постоянный RGB-профиль и не выбор underglow-эффекта.
         tog13_on: tog13_on {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -857,7 +869,9 @@
             bindings = <&tog 13>, <&ws2812_lsync 1>;
         };
         // Макрос tog13_off:
-        // Отключает Слой 13 (Левая рука) и возвращает стандартную RGB-подсветку (профиль 0)
+        // Выполняет &tog 13 и затем &ws2812_lsync 0.
+        // В текущем layer-sync драйвере param1=0 означает временную индикацию "layer OFF";
+        // после неё widget.c восстанавливает статическое состояние/underglow.
         tog13_off: tog13_off {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -866,7 +880,7 @@
             bindings = <&tog 13>, <&ws2812_lsync 0>;
         };
         // Tap Dance tog13_on_td:
-        // 1 тап = trans (ничего), двойной тап -> Вызов макроса включения Слоя 13 с подсветкой
+        // 1 тап = &trans, двойной тап -> tog13_on: toggle слоя 13 + временная ON-индикация
         tog13_on_td: tog13_on_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -874,7 +888,7 @@
             bindings = <&trans>, <&tog13_on>;
         };
         // Tap Dance tog13_off_td:
-        // 1 тап = trans (ничего), двойной тап -> Вызов макроса выключения Слоя 13 с подсветкой
+        // 1 тап = &trans, двойной тап -> tog13_off: toggle слоя 13 + временная OFF-индикация
         tog13_off_td: tog13_off_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -900,9 +914,10 @@
             tapping-term-ms = <300>;
             bindings = <&none>, <&tog 2>;
         };
-        // МАКРОС СБРОСА НА СЛОЙ 0 + ЗЕЛЁНАЯ ВСПЫШКА
-        // &to 0 деактивирует ВСЕ toggle-слои.
-        // Зелёная вспышка подтверждает успешный сброс.
+        // МАКРОС ПЕРЕХОДА НА СЛОЙ 0 + РУЧНАЯ WS2812-ИНДИКАЦИЯ
+        // Сначала выполняется &to 0, затем &ws2812_wdg 0.
+        // &ws2812_wdg 0 вызывает ws2812_indicate_layer(); её цвет задаётся
+        // CONFIG_WS2812_WIDGET_LAYER_COLOR_MANUAL (в текущем дизайне это зелёное подтверждение).
         reset_l0_green_flash: reset_l0_green_flash {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -936,16 +951,16 @@
     combos {
         compatible = "zmk,combos";
         // ============================================================
-        // Комбо R + T (Клавиши 4, 5):
-        // Два одновременных нажатия (два раза вместе) за 450 мс
-        // переключает Caps Lock. Подсветка LED 5,6 управляется
-        // автоматически через event listener в widget.c.
+        // Комбо R + T (позиции 4, 5), активно на слоях 0 и 11.
+        // timeout-ms=80: R и T должны образовать комбо в пределах 80 мс.
+        // require-prior-idle-ms=150 подавляет комбо сразу после недавнего ввода.
         //
-        // Первый раз:  Caps ON  → LED 5,6 белые
-        // Второй раз:  Caps OFF → LED 5,6 гаснут
+        // Само комбо вызывает combo_rt_caps_td:
+        //   первое срабатывание tap-dance -> macro_combo_rt (тап R, затем тап T);
+        //   второе срабатывание в пределах tapping-term-ms=450 -> caps_toggle.
         //
-        // Обычная последовательная печать R и T (с паузой) не вызывает
-        // комбо, поэтому задержки при быстрой печати нет.
+        // Состояние LED 5,6 берётся не из tap-dance, а из HID Caps Lock
+        // состояния хоста через zmk_hid_indicators_changed в widget.c.
         // ============================================================
         combo_rt_caps {
             timeout-ms = <80>;
@@ -964,9 +979,10 @@
            bindings = <&tog 7>;
            layers = <0 7>;
         };
-        // Комбо Q + W (Клавиши 1, 2):
-        // Включение Слоя 13 (Левая рука) с активацией подсветки.
-        // Работает на слое 0. Окно срабатывания: 80 мс, простой: 150 мс.
+        // Комбо Q + W (позиции 1, 2):
+        // На слое 0 вызывает tog13_on_td; двойное срабатывание tap-dance
+        // делает toggle слоя 13 и временную WS2812 ON-индикацию.
+        // timeout-ms=80, require-prior-idle-ms=150.
         combo_qw_tog13_on {
             timeout-ms = <80>;
             require-prior-idle-ms = <150>;
@@ -983,9 +999,10 @@
             bindings = <&kp ESC>;
             layers = <0 6 7 11 12 13>;
         };
-        // Комбо Q + W (Клавиши 1, 2):
-        // Выключение Слоя 13 (Левая рука) и сброс подсветки.
-        // Работает только на слое 13. Окно срабатывания: 80 мс, простой: 150 мс.
+        // Комбо Q + W (позиции 1, 2):
+        // На слое 13 вызывает tog13_off_td; двойное срабатывание tap-dance
+        // делает toggle слоя 13 и временную WS2812 OFF-индикацию.
+        // timeout-ms=80, require-prior-idle-ms=150.
         combo_qw_tog13_off {
             timeout-ms = <80>;
             require-prior-idle-ms = <150>;
@@ -993,9 +1010,9 @@
             bindings = <&tog13_off_td>;
             layers = <13>;
         };
-        // Комбо E + R (Клавиши 3, 4):
-        // Временная активация Слоя 10 (Навигация 3 / Мышь).
-        // Работает на слое 0. Окно срабатывания: 80 мс, простой: 100 мс.
+        // Комбо E + R (позиции 3, 4):
+        // Временная активация слоя 10 (&mo 10).
+        // Активно на слоях 0 и 11; timeout-ms=80, require-prior-idle-ms=150.
         combo_er_nav3 {
             timeout-ms = <80>;
             require-prior-idle-ms = <150>;
@@ -1003,9 +1020,10 @@
             bindings = <&mo 10>;
             layers = <0 11>;
         };
-        // Комбо ' + Esc (Клавиши 27, 41):
-        // Переключение режима быстрой печати (Слой 11 Speedtype).
-        // Работает на слоях 0 и 11. Окно срабатывания: 80 мс, простой: 100 мс.
+        // Комбо позиций 27 + 41:
+        // Вызывает speedtype_double_tap; второе срабатывание tap-dance
+        // переключает фиксированный слой 11 (&tog 11).
+        // Активно на слоях 0 и 11; timeout-ms=80, require-prior-idle-ms=150.
         combo_sqt_esc_speedtype {
             timeout-ms = <80>;
             require-prior-idle-ms = <150>;
@@ -1024,7 +1042,7 @@
             layers = <0 11>;
         };
         // Комбо двух нижних левых клавиш (Клавиши 42, 43):
-        // Временная активация Слоя 5 (Сервис: Bluetooth, RGB, прошивка).
+        // Временная активация слоя 5 (&mo 5): Bluetooth, USB/BLE output, RGB, ZMK Studio.
         // Работает на слое 0. Окно срабатывания: 50 мс, простой: 100 мс.
         combo_service {
             timeout-ms = <50>;
@@ -1033,9 +1051,10 @@
             bindings = <&mo 5>;
             layers = <0>;
         };
-        // Комбо Y + U (Клавиши 7, 8):
-        // Фиксация/разблокировка Слоя 6 (Навигация 2).
-        // Работает на слоях 0 и 6. Окно срабатывания: 80 мс, простой: 100 мс.
+        // Комбо Y + U (позиции 7, 8):
+        // Вызывает nav2_double_tap; второе срабатывание tap-dance
+        // переключает фиксированный слой 6 (&tog 6).
+        // Активно на слоях 0 и 6; timeout-ms=80, require-prior-idle-ms=150.
         combo_yu_nav2_double_tap {
             timeout-ms = <80>;
             require-prior-idle-ms = <150>;
@@ -1083,9 +1102,10 @@
             bindings = <&kp DEL>;
             layers = <2 3 6 13 14 15 16 17 18>;
         };
-        // Комбо G + левый большой палец (Клавиши 18, 43):
-        // Двойной тап -> Переключение фиксированного Слоя 3 (Цифровой блок с цианом).
-        // Работает на слоях 0 и 3. Окно срабатывания: 200 мс, простой: 150 мс.
+        // Комбо G + левый большой палец (позиции 18, 43):
+        // Второе срабатывание thumb_e_numb_td переключает фиксированный слой 3 (&tog 3).
+        // Для слоя 3 widget.c задаёт persistent-цвет левой половины.
+        // Активно на слоях 0 и 3; timeout-ms=200, require-prior-idle-ms=100.
         combo_left_thumb_e_numb {
             timeout-ms = <200>;
             require-prior-idle-ms = <100>;
@@ -1093,9 +1113,10 @@
             bindings = <&thumb_e_numb_td>;
             layers = <0 3>;
         };
-        // Комбо H + правый большой палец (Клавиши 22, 46):
-        // Двойной тап -> Переключение фиксированного Слоя 2 (Символьный блок с цианом).
-        // Работает на слоях 0 и 2. Окно срабатывания: 200 мс, простой: 150 мс.
+        // Комбо H + правый большой палец (позиции 22, 46):
+        // Второе срабатывание thumb_i_symb_td переключает фиксированный слой 2 (&tog 2).
+        // Для слоя 2 widget.c задаёт persistent-цвет правой половины.
+        // Активно на слоях 0 и 2; timeout-ms=200, require-prior-idle-ms=100.
         combo_right_thumb_i_symb {
             timeout-ms = <200>;
             require-prior-idle-ms = <100>;
@@ -1103,7 +1124,8 @@
             bindings = <&thumb_i_symb_td>;
             layers = <0 2>;
         };
-        // Комбо I + O + P + [ : Мгновенный сброс на слой 0 + зелёная вспышка
+        // Комбо I + O + P + [ (позиции 9,10,11,12):
+        // &to 0, затем ручная WS2812-индикация через &ws2812_wdg 0.
         combo_iop_lbkt_reset {
             timeout-ms = <100>;
             require-prior-idle-ms = <250>;
@@ -1139,7 +1161,7 @@
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
         // Слой 1: Навигация 1 (Управление курсором мыши, кликами, стрелками и Home/End)
-        // Энкодер: Скрол по словам и типа скрол влево-вправо
+        // Энкодер: Ctrl+Right / Ctrl+Left (переход по словам).
         nav1_layer {
             display-name = "nav1_layer";
             bindings = <
@@ -1150,7 +1172,7 @@
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
-        // Слой 2: Символы (Спецсимволы и скобки, с подсветкой правой половины)
+        // Слой 2: Символы. В текущем widget.c это persistent-слой правой половины.
         // Энкодер: Громкость (Volume Up / Down)
         symb_layer {
             display-name = "symb_layer";
@@ -1162,7 +1184,7 @@
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
-        // Слой 3: Цифры (Цифровой блок Numpad с подсветкой левой половины)
+        // Слой 3: Цифры/Numpad. В текущем widget.c это persistent-слой левой половины.
         // Энкодер: Громкость (Volume Up / Down)
         numb_layer {
             display-name = "numb_layer";
@@ -1170,12 +1192,12 @@
 &kp PG_UP      &macro_comma_uni         &kp N9  &kp N8  &kp N7  &mkp MB5                                            &msc SCRL_UP                       &kp HOME          &kp N7  &kp N8  &kp N9  &macro_comma_uni         &kp PG_UP
 &kp LSHIFT     &kp N0                   &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &macro_qmark_uni  &kp N4  &kp N5  &kp N6  &kp N0                   &kp BSPC
 &kp PG_DN      &dot_lshft_ht LSHFT 0    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END           &kp N1  &kp N2  &kp N3  &dot_lshft_ht LSHFT 0    &kp PG_DN
-                                                            &trans  &trans  &trans                                                                     &trans            &trans  &trans
+                                                &trans  &trans  &trans                                                                                 &trans            &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
         // Слой 4: Функциональный блок (Клавиши F1-F12 и управление мышью)
-        // Энкодер: Скрол по словам и типа скрол влево-вправо
+        // Энкодер: Ctrl+Right / Ctrl+Left (переход по словам).
         fn_layer {
             display-name = "fn_layer";
             bindings = <
@@ -1186,15 +1208,21 @@
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
-        // Слой 5: Сервисный (Настройки Bluetooth профилей, управление RGB-подсветкой, ZMK Studio)
+        // Слой 5: Сервисный (Bluetooth, выход USB/BLE, ZMK Studio, RGB underglow, WS2812 widget).
+        // Реальные underglow-эффекты: RGB_EFR = предыдущий, RGB_EFF = следующий.
+        // RGB_HUD/HUI = hue, RGB_SAD/SAI = saturation, RGB_SPI/SPD = speed,
+        // RGB_BRI/BRD = brightness, RGB_ON/OFF = питание underglow.
+        // &ws2812_wdg 5 = батарея обеих половин; &ws2812_wdg 2 = toggle временных индикаций.
+        // Кнопки &ws2812_wdg 6/7/8 сохранены исторически и в текущем драйвере
+        // все попадают в default/manual layer indication — это НЕ next/prev/off эффектов.
         // Энкодер: Громкость (Volume Up / Down)
         service_layer {
             display-name = "service_layer";
             bindings = <
-&kp ESC         &none   &none    &none          &none          &studio_unlock                        &trans              &bt BT_CLR        &none             &bt BT_SEL 0        &bt BT_SEL 1       &bt BT_SEL 2     &bt BT_SEL 3
-&none           &none   &none    &ws2812_wdg 5  &ws2812_wdg 2  &out OUT_BLE                  &trans  &trans  &trans      &kp C_BRI_UP      &kp C_BRI_DN      &ws2812_wdg 6       &ws2812_wdg 7      &ws2812_wdg 8    &none
-&bt BT_CLR_ALL  &rgb_ug RGB_HUD   &rgb_ug RGB_HUI   &rgb_ug RGB_SAD   &rgb_ug RGB_SAI   &out OUT_USB    &trans                &trans              &rgb_ug RGB_EFR   &rgb_ug RGB_EFF   &rgb_ug RGB_SPI     &rgb_ug RGB_SPD    &rgb_ug RGB_BRI  &rgb_ug RGB_BRD
-                                 &trans         &trans         &trans                                                    &rgb_ug RGB_ON    &trans            &rgb_ug RGB_OFF
+&kp ESC         &none   &none    &none             &none             &studio_unlock                        &trans              &bt BT_CLR        &none             &bt BT_SEL 0        &bt BT_SEL 1       &bt BT_SEL 2     &bt BT_SEL 3
+&none           &none   &none    &ws2812_wdg 5     &ws2812_wdg 2     &out OUT_BLE                  &trans  &trans  &trans      &kp C_BRI_UP      &kp C_BRI_DN      &rgb_ug RGB_HUD     &rgb_ug RGB_HUI    &rgb_ug RGB_SAD  &rgb_ug RGB_SAI
+&bt BT_CLR_ALL  &none   &none    &none             &none             &out OUT_USB    &trans                &trans              &rgb_ug RGB_EFR   &rgb_ug RGB_EFF   &rgb_ug RGB_SPI     &rgb_ug RGB_SPD    &rgb_ug RGB_BRI  &rgb_ug RGB_BRD
+                                 &trans            &trans            &trans                                                    &rgb_ug RGB_ON    &trans            &rgb_ug RGB_OFF
     >;
     sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
 };
@@ -1231,7 +1259,7 @@
 &kp ESC                       &kp N1   &none    &kp N2   &kp N3  &none                                &kp UP                 &kp F10       &kp F7     &kp F8  &kp F9  &none    &kp BSPC
 &gaming_shft_mo14 14 LSHFT    &kp N4   &none    &kp N5   &kp N6  &kp N0                    &kp LEFT   &kp ENTER  &kp RIGHT   &kp F11       &kp F4     &kp F5  &kp F6  &none    &kp LSHFT
 &kp LCTRL                     &kp N7   &none    &kp N8   &kp N9  &none       &kp C_MUTE               &kp DOWN               &kp F12       &kp F1     &kp F2  &kp F3  &none    &kp ESC
-                                                &none    &none   &kp SPACE                                                                 &kp ENTER  &none   &none
+                                                &none    &none   &kp SPACE                                                   &kp ENTER     &none      &none
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
@@ -1248,7 +1276,7 @@
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
         // Слой 10: Навигация 3 (Продвинутое управление мышью и скроллом)
-        // Энкодер: Скрол по словам и типа скрол влево-вправо
+        // Энкодер: Ctrl+Right / Ctrl+Left (переход по словам).
         nav3_layer {
             display-name = "nav3_layer";
             bindings = <
@@ -1272,7 +1300,7 @@
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
         // Слой 12: Навигация 2 без подсветки (Временный слой для навигации при зажатии lang_nav2)
-        // Энкодер: Скрол по словам и типа скрол влево-вправо
+        // Энкодер: Ctrl+Right / Ctrl+Left (переход по словам).
         nav2nolight_layer {
             display-name = "nav2nolight_layer";
             bindings = <
@@ -1283,7 +1311,9 @@
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
-        // Слой 13: Управление одной левой рукой (С включением визуального RGB-профиля)
+        // Слой 13: Управление одной левой рукой.
+        // Сам слой постоянный RGB-профиль не выбирает; временная ON/OFF-индикация
+        // выполняется только макросами tog13_on/tog13_off через ws2812_lsync 1/0.
         // Энкодер: Громкость (Volume Up / Down)
         lefthand_layer {
             display-name = "lefthand_layer";
@@ -1295,8 +1325,8 @@
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
-        // Слой 14: Управление одной левой рукой (Без изменения RGB-подсветки)
-        // Энкодер: Скрол по словам и типа скрол влево-вправо
+        // Слой 14: Управление одной левой рукой без вызова ws2812_lsync.
+        // Энкодер: Ctrl+Right / Ctrl+Left (переход по словам).
         lefthandnolight_layer {
             display-name = "lefthandnolight_layer";
             bindings = <
@@ -1307,9 +1337,9 @@
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
-        // Слой 15: Цифры без подсветки (Вызывается при зажатии правой клавиши большого пальца)
-        // Удержание правого мизинца -> переход в Копию символов (слой 16)
-        // Энкодер: Скрол по словам и типа скрол влево-вправо
+        // Слой 15: Цифры без persistent-подсветки; вызывается hold-частью thumb_num_sym_fn 15 0.
+        // На правой крайней клавише: &bspc_to_layer_ht 16 BSPC -> hold слой 16, tap BSPC.
+        // Энкодер: Ctrl+Right / Ctrl+Left (переход по словам).
         numbnolight_layer {
             display-name = "numbnolight_layer";
             bindings = <
@@ -1320,9 +1350,9 @@
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
-        // Слой 16: Копия символов без подсветки (Для перехода из слоя 15 Цифр)
-        // Активируется удержанием правого мизинца на слое 15. 16 > 15, поэтому работает.
-        // Энкодер: Скрол по словам и типа скрол влево-вправо
+        // Слой 16: Копия символов без persistent-подсветки.
+        // Вызывается hold-частью &bspc_to_layer_ht 16 BSPC на слое 15.
+        // Энкодер: Ctrl+Right / Ctrl+Left (переход по словам).
         symbnolightcopy_layer {
             display-name = "symbnolightcopy_layer";
             bindings = <
@@ -1333,9 +1363,9 @@
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
-        // Слой 17: Символы без подсветки (Вызывается при зажатии левой клавиши большого пальца)
-        // Удержание левого мизинца -> переход в Копию цифр (слой 18)
-        // Энкодер: Скрол по словам и типа скрол влево-вправо
+        // Слой 17: Символы без persistent-подсветки; вызывается hold-частью symb_win_td 17 0.
+        // На левой крайней клавише: &bspc_to_numb_ht 18 FSLH -> hold слой 18, tap '/'.
+        // Энкодер: Ctrl+Right / Ctrl+Left (переход по словам).
         symbnolight_layer {
             display-name = "symbnolight_layer";
             bindings = <
@@ -1346,9 +1376,9 @@
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
-        // Слой 18: Копия цифр без подсветки (Для перехода из слоя 17 Символов)
-        // Активируется удержанием левого мизинца на слое 17. 18 > 17, поэтому работает.
-        // Энкодер: Скрол по словам и типа скрол влево-вправо
+        // Слой 18: Копия цифр без persistent-подсветки.
+        // Вызывается hold-частью &bspc_to_numb_ht 18 FSLH на слое 17 (и также доступен из слоя 16).
+        // Энкодер: Ctrl+Right / Ctrl+Left (переход по словам).
         numbnolightcopy_layer {
             display-name = "numbnolightcopy_layer";
             bindings = <
