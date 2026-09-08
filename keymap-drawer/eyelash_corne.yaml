@@ -248,9 +248,9 @@ layers:
   service_layer:
   - $$mdi:keyboard-esc$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - '&ws2812_wdg 8'
+  - '&ws2812_wdg 6'
+  - '&ws2812_wdg 7'
   - '&studio_unlock'
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:bluetooth-off$$
