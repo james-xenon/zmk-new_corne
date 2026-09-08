@@ -270,15 +270,15 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:brightness-5$$
   - $$mdi:brightness-7$$
-  - '&ws2812_wdg 6'
-  - '&ws2812_wdg 7'
-  - '&ws2812_wdg 8'
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - BT CLR ALL
   - RGB HUD
   - RGB HUI
   - RGB SAD
   - RGB SAI
+  - BT CLR ALL
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - OUT USB
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
