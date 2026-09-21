@@ -61,7 +61,7 @@ layers:
   - $$mdi:mouse-left-click-outline$$
   - $$mdi:arrow-up-bold$$
   - $$mdi:mouse-right-click-outline$$
-  - '&macro_qmark_uni'
+  - '&macro_comma_uni'
   - PG UP
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -90,7 +90,7 @@ layers:
   - '&msc MOVE_Y(-150)'
   - $$mdi:mouse-scroll-wheel$$
   - '&msc MOVE_Y(150)'
-  - '&macro_dot_uni'
+  - '&macro_qmark_uni'
   - PG DN
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -198,10 +198,10 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   fn_layer:
   - $$mdi:keyboard-esc$$
-  - F1
-  - F2
-  - F3
-  - F4
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - F9
+  - F5
   - '&mkp MB5'
   - {t: '$$mdi:menu-up$$', s: '$$mdi:mouse$$'}
   - F10
@@ -211,9 +211,9 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:apple-keyboard-shift$$
-  - F5
-  - F12
-  - F10
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - F1
   - F11
   - '&mkp MB4'
   - {t: '$$mdi:menu-left$$', s: '$$mdi:mouse$$'}
