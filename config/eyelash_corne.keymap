@@ -113,6 +113,13 @@
             tap-ms = <0>;
             bindings = <&ws2812_wdg 8>;
         };
+        //Макрос для 14 слоя TAB
+        alt_tab_sticky: alt_tab_sticky {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <20>;
+            bindings =<&sk LALT>, <&kp TAB>;
+        };
         // Вспомогательный макрос для одиночного срабатывания комбо R+T:
         // Быстро отправляет буквы R и T подряд без задержки
         macro_combo_rt: macro_combo_rt {
@@ -260,6 +267,15 @@
             bindings =
                 <&macro_press &kp DQT>,
                 <&macro_release &kp DQT>;
+        };
+        //Поведение для 14 слоя TAB
+        alt_tab_ht: alt_tab_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <0>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <150>;
+            bindings =
+                <&kp TAB>, <&alt_tab_sticky>;
         };
         // ~ через Alt+Code (126 = ~)
         macro_tilde_uni: macro_tilde_uni {
@@ -446,15 +462,6 @@
                 <&macro_tap &kp KP_N3>,
                 <&macro_tap &kp KP_N7>,
                 <&macro_release &kp LALT>;
-        };
-        // Hold-Tap tab_esc_ht:
-        // Удержание = Esc, Быстрый тап = TAB (таймаут 150 мс, приоритет удержания)
-        tab_esc_ht: tab_esc_ht {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <150>;
-            bindings = <&kp>, <&kp>;
         };
         // Hold-Tap symb_win_td (Левая клавиша большого пальца):
         // Удержание -> Слой 17 (Символы без подсветки)
@@ -997,7 +1004,7 @@
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&kp ESC>;
-            layers = <0 6 7 11 12 13>;
+            layers = <0 6 7 11 12 13 14>;
         };
         // Комбо Q + W (позиции 1, 2):
         // На слое 13 вызывает tog13_off_td; двойное срабатывание tap-dance
@@ -1190,7 +1197,7 @@
             display-name = "numb_layer";
             bindings = <
 &kp PG_UP      &macro_comma_uni         &kp N9  &kp N8  &kp N7  &mkp MB5                                            &msc SCRL_UP                       &kp HOME          &kp N7  &kp N8  &kp N9  &macro_comma_uni         &kp PG_UP
-&kp LSHIFT     &kp N0                   &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &macro_qmark_uni  &kp N4  &kp N5  &kp N6  &kp N0                   &kp BSPC
+&kp LSHIFT     &kp N0                   &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &macro_semi_uni   &kp N4  &kp N5  &kp N6  &kp N0                   &kp BSPC
 &kp PG_DN      &dot_lshft_ht LSHFT 0    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END           &kp N1  &kp N2  &kp N3  &dot_lshft_ht LSHFT 0    &kp PG_DN
                                                 &trans  &trans  &trans                                                                                 &trans            &trans  &trans
             >;
@@ -1280,7 +1287,7 @@
         nav3_layer {
             display-name = "nav3_layer";
             bindings = <
-&kp ESC &none   &none   &none   &none   &none                          &kp UP                   &kp HOME           &mkp LCLK            &mmv MOVE_UP    &mkp RCLK          &macro_qmark_uni   &kp PG_UP
+&kp ESC &none   &none   &none   &none   &none                          &kp UP                   &kp HOME           &mkp LCLK            &mmv MOVE_UP    &mkp RCLK          &macro_comma_uni   &kp PG_UP
 &trans  &none   &none   &none   &none   &none                &kp LEFT  &kp ENTER  &kp RIGHT     &msc MOVE_X(-150)  &mmv MOVE_LEFT       &mmv MOVE_DOWN  &mmv MOVE_RIGHT    &msc MOVE_X(150)   &kp BSPC
 &trans  &none   &none   &none   &none   &none   &kp C_MUTE             &kp DOWN                 &kp END            &msc MOVE_Y(-150)    &mkp MCLK       &msc MOVE_Y(150)   &macro_dot_uni     &kp PG_DN
                         &trans  &trans  &trans                                                  &trans             &trans               &trans
@@ -1318,10 +1325,10 @@
         lefthand_layer {
             display-name = "lefthand_layer";
             bindings = <
-&kp TAB              &kp HOME    &kp ENTER            &kp UP              &kp SPC          &msc MOVE_Y(150)                              &kp UP                  &trans  &trans  &trans  &trans  &trans  &trans
-&kp LSHFT            &kp END     &kp LEFT             &kp DOWN            &kp RIGHT        &msc MOVE_Y(-150)                   &kp LEFT  &kp ENTER  &kp RIGHT    &trans  &trans  &trans  &trans  &trans  &trans
-&kp LCTRL            &kp EXCL    &macro_qmark_uni     &macro_comma_uni    &macro_dot_uni   &macro_slash_uni    &kp C_MUTE                &kp DOWN                &trans  &trans  &trans  &trans  &trans  &trans
-                                                      &trans              &trans           &trans                                                                &trans  &trans  &trans
+&kp TAB         &kp HOME      &kp ENTER            &kp UP          &kp SPC            &mkp MB5                                      &kp UP                  &trans  &trans  &trans  &trans  &trans  &trans
+&kp LSHFT       &kp END       &kp LEFT             &kp DOWN        &kp RIGHT          &mkp MB4                            &kp LEFT  &kp ENTER  &kp RIGHT    &trans  &trans  &trans  &trans  &trans  &trans
+&kp LCTRL       &kp LC(R)     &kp LC(LS(TAB))      &kp LC(R)       &kp LC(TAB)        &kp LC(W)    &kp C_MUTE                       &kp DOWN                &trans  &trans  &trans  &trans  &trans  &trans
+                                                   &trans          &trans             &trans                                                                &trans  &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
@@ -1330,10 +1337,10 @@
         lefthandnolight_layer {
             display-name = "lefthandnolight_layer";
             bindings = <
-&tab_esc_ht ESC TAB  &kp HOME    &kp ENTER            &kp UP              &kp SPC           &msc MOVE_Y(150)                              &kp UP                  &trans  &trans  &trans  &trans  &trans  &trans
-&kp LSHFT            &kp END     &kp LEFT             &kp DOWN            &kp RIGHT         &msc MOVE_Y(-150)                   &kp LEFT  &kp ENTER  &kp RIGHT    &trans  &trans  &trans  &trans  &trans  &trans
-&kp LCTRL            &kp EXCL    &macro_qmark_uni     &macro_comma_uni    &macro_dot_uni    &macro_slash_uni    &kp C_MUTE                &kp DOWN                &trans  &trans  &trans  &trans  &trans  &trans
-                                                      &trans              &trans            &trans                                                                &trans  &trans  &trans
+&alt_tab_ht     &kp HOME      &kp ENTER            &kp UP          &kp SPC            &mkp MB5                                      &kp UP                  &trans  &trans  &trans  &trans  &trans  &trans
+&kp LSHFT       &kp END       &kp LEFT             &kp DOWN        &kp RIGHT          &mkp MB4                            &kp LEFT  &kp ENTER  &kp RIGHT    &trans  &trans  &trans  &trans  &trans  &trans
+&kp LCTRL       &kp LC(R)     &kp LC(LS(TAB))      &kp LC(R)       &kp LC(TAB)        &kp LC(W)    &kp C_MUTE                       &kp DOWN                &trans  &trans  &trans  &trans  &trans  &trans
+                                                   &trans          &trans             &trans                                                                &trans  &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
@@ -1344,7 +1351,7 @@
             display-name = "numbnolight_layer";
             bindings = <
 &kp PG_UP   &macro_comma_uni         &kp N9  &kp N8  &kp N7  &mkp MB5                                            &msc SCRL_UP                       &kp HOME           &kp N7  &kp N8  &kp N9  &macro_comma_uni         &kp PG_UP
-&kp BSPC    &kp N0                   &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &macro_qmark_uni   &kp N4  &kp N5  &kp N6  &kp N0                   &bspc_to_layer_ht 16 BSPC
+&kp BSPC    &kp N0                   &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &macro_semi_uni    &kp N4  &kp N5  &kp N6  &kp N0                   &bspc_to_layer_ht 16 BSPC
 &kp PG_DN   &dot_lshft_ht LSHFT 0    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END            &kp N1  &kp N2  &kp N3  &dot_lshft_ht LSHFT 0    &kp PG_DN
                                              &trans  &trans  &trans                                                                                 &kp ENTER          &trans  &trans
             >;
@@ -1383,7 +1390,7 @@
             display-name = "numbnolightcopy_layer";
             bindings = <
 &kp PG_UP   &macro_comma_uni         &kp N9  &kp N8  &kp N7  &mkp MB5                                            &msc SCRL_UP                       &kp HOME           &kp N7  &kp N8  &kp N9  &macro_comma_uni         &kp PG_UP
-&kp BSPC    &kp N0                   &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &macro_qmark_uni   &kp N4  &kp N5  &kp N6  &kp N0                   &kp BSPC
+&kp BSPC    &kp N0                   &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &macro_semi_uni    &kp N4  &kp N5  &kp N6  &kp N0                   &kp BSPC
 &kp PG_DN   &dot_lshft_ht LSHFT 0    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END            &kp N1  &kp N2  &kp N3  &dot_lshft_ht LSHFT 0    &kp PG_DN
                                              &trans  &trans  &trans                                                                                 &kp ENTER          &trans  &trans
             >;
