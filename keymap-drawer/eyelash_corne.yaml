@@ -278,7 +278,7 @@ layers:
   - SLEEP
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - WAKE
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - OUT USB
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
