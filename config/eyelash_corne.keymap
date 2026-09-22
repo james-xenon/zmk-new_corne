@@ -270,12 +270,11 @@
         };
         //Поведение для 14 слоя TAB
         alt_tab_ht: alt_tab_ht {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <0>;
-            flavor = "hold-preferred";
+         compatible = "zmk,behavior-hold-tap";
+         #binding-cells = <2>;
+         flavor = "hold-preferred";
             tapping-term-ms = <150>;
-            bindings =
-                <&kp TAB>, <&alt_tab_sticky>;
+            bindings = <&kp TAB>, <&alt_tab_sticky>;
         };
         // ~ через Alt+Code (126 = ~)
         macro_tilde_uni: macro_tilde_uni {
