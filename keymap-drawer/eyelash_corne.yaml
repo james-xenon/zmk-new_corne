@@ -687,7 +687,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   lefthandnolight_layer:
-  - '&alt_tab_ht TAB'
+  - {t: '&alt_tab TAB', h: alt tab}
   - HOME
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-up-bold$$
