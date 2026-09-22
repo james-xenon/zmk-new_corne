@@ -710,11 +710,11 @@ layers:
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-right-bold$$
   - AC SEARCH
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - Gui+$$mdi:arrow-left-bold$$
+  - Gui+$$mdi:arrow-right-bold$$
   - Gui+E
   - PAUSE BREAK
-  - SCROLL LOCK
+  - SLCK
   - $$mdi:apple-keyboard-control$$
   - Ctl+Sft+$$mdi:keyboard-tab$$
   - Ctl+Sft+$$mdi:keyboard-tab$$
@@ -724,8 +724,8 @@ layers:
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
   - AC BOOKMARKS
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - Gui+$$mdi:arrow-up-bold$$
+  - Gui+$$mdi:arrow-down-bold$$
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - NUM LOCK
