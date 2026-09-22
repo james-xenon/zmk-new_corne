@@ -170,7 +170,7 @@ layers:
   - $$mdi:pan-left$$
   - $$mdi:mouse-left-click-outline$$
   - $$mdi:pan-right$$
-  - '&macro_qmark_uni'
+  - '&macro_semi_uni'
   - {t: '4', s: $}
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
@@ -502,7 +502,7 @@ layers:
   - $$mdi:mouse-left-click-outline$$
   - {t: '$$mdi:menu-up$$', s: '$$mdi:mouse$$'}
   - $$mdi:mouse-right-click-outline$$
-  - '&macro_qmark_uni'
+  - '&macro_comma_uni'
   - PG UP
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -643,7 +643,7 @@ layers:
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-up-bold$$
   - SPC
-  - '&msc MOVE_Y(150)'
+  - '&mkp MB5'
   - $$mdi:arrow-up-bold$$
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -656,7 +656,7 @@ layers:
   - $$mdi:arrow-left-bold$$
   - $$mdi:arrow-down-bold$$
   - $$mdi:arrow-right-bold$$
-  - '&msc MOVE_Y(-150)'
+  - '&mkp MB4'
   - $$mdi:arrow-left-bold$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-right-bold$$
@@ -667,11 +667,11 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:apple-keyboard-control$$
-  - '!'
-  - '&macro_qmark_uni'
-  - '&macro_comma_uni'
-  - '&macro_dot_uni'
-  - '&macro_slash_uni'
+  - Ctl+R
+  - Ctl+Sft+$$mdi:keyboard-tab$$
+  - Ctl+R
+  - Ctl+$$mdi:keyboard-tab$$
+  - Ctl+W
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
   - {t: '$$mdi:transfer$$', type: trans}
@@ -687,12 +687,12 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   lefthandnolight_layer:
-  - {t: '$$mdi:keyboard-tab$$', h: '$$mdi:keyboard-esc$$'}
+  - '&alt_tab_ht'
   - HOME
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-up-bold$$
   - SPC
-  - '&msc MOVE_Y(150)'
+  - '&mkp MB5'
   - $$mdi:arrow-up-bold$$
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -705,7 +705,7 @@ layers:
   - $$mdi:arrow-left-bold$$
   - $$mdi:arrow-down-bold$$
   - $$mdi:arrow-right-bold$$
-  - '&msc MOVE_Y(-150)'
+  - '&mkp MB4'
   - $$mdi:arrow-left-bold$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-right-bold$$
@@ -716,11 +716,11 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:apple-keyboard-control$$
-  - '!'
-  - '&macro_qmark_uni'
-  - '&macro_comma_uni'
-  - '&macro_dot_uni'
-  - '&macro_slash_uni'
+  - Ctl+R
+  - Ctl+Sft+$$mdi:keyboard-tab$$
+  - Ctl+R
+  - Ctl+$$mdi:keyboard-tab$$
+  - Ctl+W
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
   - {t: '$$mdi:transfer$$', type: trans}
@@ -758,7 +758,7 @@ layers:
   - $$mdi:pan-left$$
   - $$mdi:mouse-left-click-outline$$
   - $$mdi:pan-right$$
-  - '&macro_qmark_uni'
+  - '&macro_semi_uni'
   - {t: '4', s: $}
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
@@ -905,7 +905,7 @@ layers:
   - $$mdi:pan-left$$
   - $$mdi:mouse-left-click-outline$$
   - $$mdi:pan-right$$
-  - '&macro_qmark_uni'
+  - '&macro_semi_uni'
   - {t: '4', s: $}
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
@@ -943,7 +943,7 @@ combos:
   l: [default_layer]
 - p: [0, 1]
   k: $$mdi:keyboard-esc$$
-  l: [default_layer, nav2_layer, gaming1_layer, speedtype, nav2nolight_layer, lefthand_layer]
+  l: [default_layer, nav2_layer, gaming1_layer, speedtype, nav2nolight_layer, lefthand_layer, lefthandnolight_layer]
 - p: [1, 2]
   k: '&tog13_off_td'
   l: [lefthand_layer]
