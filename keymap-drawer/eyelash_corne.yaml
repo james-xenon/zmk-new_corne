@@ -709,9 +709,9 @@ layers:
   - $$mdi:arrow-left-bold$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-right-bold$$
-  - AC SEARCH
-  - Gui+ARROW LEFT
-  - Gui+ARROW RIGHT
+  - {t: '$$mdi:transfer$$', type: trans}
+  - Gui+$$mdi:arrow-left-bold$$
+  - Gui+$$mdi:arrow-right-bold$$
   - Gui+E
   - PAUSE BREAK
   - SCROLL LOCK
