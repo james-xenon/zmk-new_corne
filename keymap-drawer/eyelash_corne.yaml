@@ -699,7 +699,7 @@ layers:
   - {t: D, h: '$$mdi:apple-keyboard-command$$'}
   - Gui+L
   - INS
-  - PRINTSCREEN
+  - $$mdi:printer-outline$$
   - {t: '$$mdi:apple-keyboard-shift$$', type: held alternate}
   - END
   - $$mdi:arrow-left-bold$$
@@ -728,7 +728,7 @@ layers:
   - Gui+$$mdi:arrow-down-bold$$
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - NUM LOCK
+  - KP NUM
   - {type: held}
   - {type: held alternate}
   - {t: '$$mdi:transfer$$', type: trans}
