@@ -259,7 +259,7 @@ layers:
   - {h: '2', s: '$$mdi:bluetooth-connect$$'}
   - {h: '3', s: '$$mdi:bluetooth-connect$$'}
   - {h: '4', s: '$$mdi:bluetooth-connect$$'}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - SYSTEM POWER
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - '&ws2812_wdg 5'
@@ -275,10 +275,10 @@ layers:
   - RGB SAD
   - RGB SAI
   - BT CLR ALL
+  - SLEEP
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - WAKE
   - OUT USB
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -667,7 +667,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:apple-keyboard-control$$
-  - Ctl+R
+  - Ctl+Sft+$$mdi:keyboard-tab$$
   - Ctl+Sft+$$mdi:keyboard-tab$$
   - Ctl+R
   - Ctl+$$mdi:keyboard-tab$$
@@ -694,12 +694,12 @@ layers:
   - SPC
   - '&mkp MB5'
   - $$mdi:arrow-up-bold$$
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - AC HOME
+  - Gui+$$mdi:keyboard-tab$$
+  - {t: D, h: '$$mdi:apple-keyboard-command$$'}
+  - Gui+L
+  - INS
+  - PRINTSCREEN
   - {t: '$$mdi:apple-keyboard-shift$$', type: held alternate}
   - END
   - $$mdi:arrow-left-bold$$
@@ -709,26 +709,26 @@ layers:
   - $$mdi:arrow-left-bold$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-right-bold$$
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - AC SEARCH
+  - Gui+$$mdi:arrow-left-bold$$
+  - Gui+$$mdi:arrow-right-bold$$
+  - Gui+E
+  - PAUSE BREAK
+  - SCROLL LOCK
   - $$mdi:apple-keyboard-control$$
-  - Ctl+R
+  - Ctl+Sft+$$mdi:keyboard-tab$$
   - Ctl+Sft+$$mdi:keyboard-tab$$
   - Ctl+R
   - Ctl+$$mdi:keyboard-tab$$
   - Ctl+W
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
+  - AC BOOKMARKS
+  - Gui+$$mdi:arrow-up-bold$$
+  - Gui+$$mdi:arrow-down-bold$$
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - NUM LOCK
   - {type: held}
   - {type: held alternate}
   - {t: '$$mdi:transfer$$', type: trans}
