@@ -269,6 +269,13 @@
             bindings =
         <&macro_press &kp LALT>, <&macro_tap &kp TAB>, <&macro_release &kp LALT>;
         };
+        alt_tab_ht: alt_tab_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <150>;
+            bindings = <&kp>, <&alt_tab>;
+        };
         // ~ через Alt+Code (126 = ~)
         macro_tilde_uni: macro_tilde_uni {
             compatible = "zmk,behavior-macro";
