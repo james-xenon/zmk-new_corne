@@ -278,7 +278,7 @@ layers:
   - SLEEP
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - WAKE
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - OUT USB
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -723,7 +723,7 @@ layers:
   - Ctl+W
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
-  - AC BOOKMARKS
+  - {t: '$$mdi:transfer$$', type: trans}
   - Gui+$$mdi:arrow-up-bold$$
   - Gui+$$mdi:arrow-down-bold$$
   - {t: '$$mdi:transfer$$', type: trans}
