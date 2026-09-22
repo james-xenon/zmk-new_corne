@@ -267,10 +267,15 @@
             #binding-cells = <0>;
             tap-ms = <20>;
             bindings =
-        <&macro_press &kp LALT>,
-        <&macro_tap &kp TAB>,
-        <&macro_release &kp LALT>;
-};
+        <&macro_press &kp LALT>, <&macro_tap &kp TAB>, <&macro_release &kp LALT>;
+        };
+        alt_tab_ht: alt_tab_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <150>;
+            bindings = <&kp>, <&alt_tab>;
+        };
         // ~ через Alt+Code (126 = ~)
         macro_tilde_uni: macro_tilde_uni {
             compatible = "zmk,behavior-macro";
@@ -1331,9 +1336,9 @@
         lefthandnolight_layer {
             display-name = "lefthandnolight_layer";
             bindings = <
-&alt_tab      &kp HOME            &kp ENTER            &kp UP          &kp SPC            &mkp MB5                                      &kp UP                  &kp C_AC_HOME        &kp LG(TAB)   &kp LG(D)      &kp LG(L)  &kp INS          &kp PRINTSCREEN
+&alt_tab      &kp HOME            &kp ENTER            &kp UP          &kp SPC            &mkp MB5                                      &kp UP                  &kp C_AC_HOME        &kp LG(TAB)   &kp LG(D)      &kp LG(L)     &kp INS          &kp PRINTSCREEN
 &kp LSHFT     &kp END             &kp LEFT             &kp DOWN        &kp RIGHT          &mkp MB4                            &kp LEFT  &kp ENTER  &kp RIGHT    &kp C_AC_SEARCH      &kp LG(LEFT)  &kp LG(RIGHT)  &kp LG(E)     &kp PAUSE_BREAK  &kp SCROLL_LOCK
-&kp LCTRL     &kp LC(LS(TAB))     &kp LC(LS(TAB))      &kp LC(R)       &kp LC(TAB)        &kp LC(W)    &kp C_MUTE                       &kp DOWN                &kp C_AC_BOOKMARKS   &kp LG(UP)    &kp LG(DOWN)  &trans      &trans           &kp NUM_LOCK
+&kp LCTRL     &kp LC(LS(TAB))     &kp LC(LS(TAB))      &kp LC(R)       &kp LC(TAB)        &kp LC(W)    &kp C_MUTE                       &kp DOWN                &kp C_AC_BOOKMARKS   &kp LG(UP)    &kp LG(DOWN)   &trans        &trans           &kp NUM_LOCK
                                                        &trans          &trans             &trans                                                                &trans  &trans         &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
