@@ -1220,7 +1220,7 @@
             bindings = <
 &kp ESC              &none         &ws2812_wdg 8    &ws2812_wdg 6     &ws2812_wdg 7     &studio_unlock                        &trans              &bt BT_CLR        &none             &bt BT_SEL 0        &bt BT_SEL 1       &bt BT_SEL 2     &bt BT_SEL 3
 &kp C_POWER          &none         &none            &ws2812_wdg 5     &ws2812_wdg 2     &out OUT_BLE                  &trans  &trans  &trans      &kp C_BRI_UP      &kp C_BRI_DN      &rgb_ug RGB_HUD     &rgb_ug RGB_HUI    &rgb_ug RGB_SAD  &rgb_ug RGB_SAI
-&bt BT_CLR_ALL       &kp C_SLEEP   &none            &none             &none             &out OUT_USB    &trans                &trans              &rgb_ug RGB_EFR   &rgb_ug RGB_EFF   &rgb_ug RGB_SPI     &rgb_ug RGB_SPD    &rgb_ug RGB_BRI  &rgb_ug RGB_BRD
+&bt BT_CLR_ALL       &kp C_SLEEP   &none            &none             &kp C_WAKE        &out OUT_USB    &trans                &trans              &rgb_ug RGB_EFR   &rgb_ug RGB_EFF   &rgb_ug RGB_SPI     &rgb_ug RGB_SPD    &rgb_ug RGB_BRI  &rgb_ug RGB_BRD
                                                     &trans            &trans            &trans                                                    &rgb_ug RGB_ON    &trans            &rgb_ug RGB_OFF
     >;
     sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -1330,7 +1330,7 @@
             display-name = "lefthandnolight_layer";
             bindings = <
 &alt_tab      &kp HOME            &kp ENTER            &kp UP          &kp SPC            &mkp MB5                                      &kp UP                  &kp C_AC_HOME        &kp LG(TAB)   &kp LG(D)      &kp LG(L)     &kp INS          &kp PRINTSCREEN
-&kp LSHFT     &kp END             &kp LEFT             &kp DOWN        &kp RIGHT          &mkp MB4                            &kp LEFT  &kp ENTER  &kp RIGHT    &kp C_AC_SEARCH      &kp LG(LEFT)  &kp LG(RIGHT)  &kp LG(E)     &kp PAUSE_BREAK  &kp SCROLL_LOCK
+&kp LSHFT     &kp END             &kp LEFT             &kp DOWN        &kp RIGHT          &mkp MB4                            &kp LEFT  &kp ENTER  &kp RIGHT    &kp C_AC_FIND        &kp LG(LEFT)  &kp LG(RIGHT)  &kp LG(E)     &kp PAUSE_BREAK  &kp SCROLL_LOCK
 &kp LCTRL     &kp LC(LS(TAB))     &kp LC(LS(TAB))      &kp LC(R)       &kp LC(TAB)        &kp LC(W)    &kp C_MUTE                       &kp DOWN                &kp C_AC_BOOKMARKS   &kp LG(UP)    &kp LG(DOWN)   &trans        &trans           &kp NUM_LOCK
                                                        &trans          &trans             &trans                                                                &trans  &trans         &trans
             >;
