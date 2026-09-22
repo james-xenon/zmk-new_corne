@@ -113,13 +113,6 @@
             tap-ms = <0>;
             bindings = <&ws2812_wdg 8>;
         };
-        //Макрос для 14 слоя TAB
-        alt_tab_sticky: alt_tab_sticky {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <20>;
-            bindings =<&sk LALT>, <&kp TAB>;
-        };
         // Вспомогательный макрос для одиночного срабатывания комбо R+T:
         // Быстро отправляет буквы R и T подряд без задержки
         macro_combo_rt: macro_combo_rt {
@@ -269,12 +262,19 @@
                 <&macro_release &kp DQT>;
         };
         //Поведение для 14 слоя TAB
+        alt_tab: alt_tab {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <20>;
+            tap-ms = <20>;
+            bindings =<&macro_press &kp LALT>, <&macro_tap &kp TAB>, <&macro_release &kp LALT>;
+        };
         alt_tab_ht: alt_tab_ht {
             compatible = "zmk,behavior-hold-tap";
-             #binding-cells = <0>;
+            #binding-cells = <0>;
             flavor = "hold-preferred";
             tapping-term-ms = <150>;
-            bindings = <&alt_tab_sticky &kp TAB>;
+            bindings = <&kp TAB>, <&alt_tab>;
         };
         // ~ через Alt+Code (126 = ~)
         macro_tilde_uni: macro_tilde_uni {
