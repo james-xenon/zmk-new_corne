@@ -271,10 +271,10 @@
         };
         alt_tab_ht: alt_tab_ht {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <0>;
+            #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <150>;
-            bindings = <&kp TAB>, <&alt_tab>;
+            bindings = <&kp>, <&alt_tab>;
         };
         // ~ через Alt+Code (126 = ~)
         macro_tilde_uni: macro_tilde_uni {
@@ -1336,10 +1336,10 @@
         lefthandnolight_layer {
             display-name = "lefthandnolight_layer";
             bindings = <
-&alt_tab_ht     &kp HOME      &kp ENTER            &kp UP          &kp SPC            &mkp MB5                                      &kp UP                  &trans  &trans  &trans  &trans  &trans  &trans
-&kp LSHFT       &kp END       &kp LEFT             &kp DOWN        &kp RIGHT          &mkp MB4                            &kp LEFT  &kp ENTER  &kp RIGHT    &trans  &trans  &trans  &trans  &trans  &trans
-&kp LCTRL       &kp LC(R)     &kp LC(LS(TAB))      &kp LC(R)       &kp LC(TAB)        &kp LC(W)    &kp C_MUTE                       &kp DOWN                &trans  &trans  &trans  &trans  &trans  &trans
-                                                   &trans          &trans             &trans                                                                &trans  &trans  &trans
+&alt_tab_ht TAB     &kp HOME      &kp ENTER            &kp UP          &kp SPC            &mkp MB5                                      &kp UP                  &trans  &trans  &trans  &trans  &trans  &trans
+&kp LSHFT           &kp END       &kp LEFT             &kp DOWN        &kp RIGHT          &mkp MB4                            &kp LEFT  &kp ENTER  &kp RIGHT    &trans  &trans  &trans  &trans  &trans  &trans
+&kp LCTRL           &kp LC(R)     &kp LC(LS(TAB))      &kp LC(R)       &kp LC(TAB)        &kp LC(W)    &kp C_MUTE                       &kp DOWN                &trans  &trans  &trans  &trans  &trans  &trans
+                                                       &trans          &trans             &trans                                                                &trans  &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
