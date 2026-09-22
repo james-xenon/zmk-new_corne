@@ -1219,7 +1219,7 @@
             display-name = "service_layer";
             bindings = <
 &kp ESC              &none         &ws2812_wdg 8    &ws2812_wdg 6     &ws2812_wdg 7     &studio_unlock                        &trans              &bt BT_CLR        &none             &bt BT_SEL 0        &bt BT_SEL 1       &bt BT_SEL 2     &bt BT_SEL 3
-&kp K_POWER          &none         &none            &ws2812_wdg 5     &ws2812_wdg 2     &out OUT_BLE                  &trans  &trans  &trans      &kp C_BRI_UP      &kp C_BRI_DN      &rgb_ug RGB_HUD     &rgb_ug RGB_HUI    &rgb_ug RGB_SAD  &rgb_ug RGB_SAI
+&none                &none         &none            &ws2812_wdg 5     &ws2812_wdg 2     &out OUT_BLE                  &trans  &trans  &trans      &kp C_BRI_UP      &kp C_BRI_DN      &rgb_ug RGB_HUD     &rgb_ug RGB_HUI    &rgb_ug RGB_SAD  &rgb_ug RGB_SAI
 &bt BT_CLR_ALL       &kp K_SLEEP   &none            &none             &none             &out OUT_USB    &trans                &trans              &rgb_ug RGB_EFR   &rgb_ug RGB_EFF   &rgb_ug RGB_SPI     &rgb_ug RGB_SPD    &rgb_ug RGB_BRI  &rgb_ug RGB_BRD
                                                     &trans            &trans            &trans                                                    &rgb_ug RGB_ON    &trans            &rgb_ug RGB_OFF
     >;
@@ -1317,10 +1317,10 @@
         lefthand_layer {
             display-name = "lefthand_layer";
             bindings = <
-&kp TAB         &kp HOME            &kp ENTER            &kp UP          &kp SPC            &mkp MB5                                      &kp UP                  &trans  &trans  &trans  &trans  &trans  &trans
-&kp LSHFT       &kp END             &kp LEFT             &kp DOWN        &kp RIGHT          &mkp MB4                            &kp LEFT  &kp ENTER  &kp RIGHT    &trans  &trans  &trans  &trans  &trans  &trans
-&kp LCTRL       &kp LC(LS(TAB))     &kp LC(LS(TAB))      &kp LC(R)       &kp LC(TAB)        &kp LC(W)    &kp C_MUTE                       &kp DOWN                &trans  &trans  &trans  &trans  &trans  &trans
-                                                         &trans          &trans             &trans                                                                &trans  &trans  &trans
+&kp TAB       &kp HOME            &kp ENTER            &kp UP          &kp SPC            &mkp MB5                                      &kp UP                  &kp C_AC_HOME        &kp LG(LEFT)    &kp LG(RIGHT)   &trans         &kp INS            &kp PSCRN
+&kp LSHFT     &kp END             &kp LEFT             &kp DOWN        &kp RIGHT          &mkp MB4                            &kp LEFT  &kp ENTER  &kp RIGHT    &kp C_AC_SEARCH      &kp LG(D)       &kp LG(E)       &kp LG(TAB)    &kp PAUSE_BREAK    &kp SLCK
+&kp LCTRL     &kp LC(LS(TAB))     &kp LC(LS(TAB))      &kp LC(R)       &kp LC(TAB)        &kp LC(W)    &kp C_MUTE                       &kp DOWN                &kp C_AC_FAVORITES   &kp LG(UP)      &kp LG(DOWN)    &trans         &kp LG(L)          &kp KP_NUM
+                                                       &trans          &trans             &trans                                                                &trans               &trans          &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
@@ -1329,10 +1329,10 @@
         lefthandnolight_layer {
             display-name = "lefthandnolight_layer";
             bindings = <
-&alt_tab      &kp HOME            &kp ENTER            &kp UP          &kp SPC            &mkp MB5                                      &kp UP                  &kp C_AC_HOME        &kp LG(TAB)   &kp LG(D)      &kp LG(L)     &kp INS          &kp PSCRN
-&kp LSHFT     &kp END             &kp LEFT             &kp DOWN        &kp RIGHT          &mkp MB4                            &kp LEFT  &kp ENTER  &kp RIGHT    &kp C_AC_SEARCH      &kp LG(LEFT)  &kp LG(RIGHT)  &kp LG(E)     &kp PAUSE_BREAK  &kp SLCK
-&kp LCTRL     &kp LC(LS(TAB))     &kp LC(LS(TAB))      &kp LC(R)       &kp LC(TAB)        &kp LC(W)    &kp C_MUTE                       &kp DOWN                &kp C_AC_BOOKMARKS   &kp LG(UP)    &kp LG(DOWN)   &trans        &trans           &kp KP_NUM
-                                                       &trans          &trans             &trans                                                                &trans  &trans         &trans
+&alt_tab      &kp HOME            &kp ENTER            &kp UP          &kp SPC            &mkp MB5                                      &kp UP                  &kp C_AC_HOME        &kp LG(LEFT)    &kp LG(RIGHT)   &trans         &kp INS            &kp PSCRN
+&kp LSHFT     &kp END             &kp LEFT             &kp DOWN        &kp RIGHT          &mkp MB4                            &kp LEFT  &kp ENTER  &kp RIGHT    &kp C_AC_SEARCH      &kp LG(D)       &kp LG(E)       &kp LG(TAB)    &kp PAUSE_BREAK    &kp SLCK
+&kp LCTRL     &kp LC(LS(TAB))     &kp LC(LS(TAB))      &kp LC(R)       &kp LC(TAB)        &kp LC(W)    &kp C_MUTE                       &kp DOWN                &kp C_AC_FAVORITES   &kp LG(UP)      &kp LG(DOWN)    &trans         &kp LG(L)          &kp KP_NUM
+                                                       &trans          &trans             &trans                                                                &trans               &trans          &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
@@ -1342,10 +1342,10 @@
         numbnolight_layer {
             display-name = "numbnolight_layer";
             bindings = <
-&kp PG_UP   &macro_comma_uni         &kp N9  &kp N8  &kp N7  &mkp MB5                                            &msc SCRL_UP                       &kp HOME           &kp N7  &kp N8  &kp N9  &macro_comma_uni         &kp PG_UP
-&kp BSPC    &kp N0                   &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &macro_semi_uni    &kp N4  &kp N5  &kp N6  &kp N0                   &bspc_to_layer_ht 16 BSPC
-&kp PG_DN   &dot_lshft_ht LSHFT 0    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     &kp END            &kp N1  &kp N2  &kp N3  &dot_lshft_ht LSHFT 0    &kp PG_DN
-                                             &trans  &trans  &trans                                                                                 &kp ENTER          &trans  &trans
+&kp PG_UP   &macro_comma_uni         &kp N9  &kp N8  &kp N7  &mkp MB5                                            &msc SCRL_UP                       KP_PLUS     &kp N7  &kp N8  &kp N9  KP_MULTIPLY    &none
+&kp BSPC    &kp N0                   &kp N6  &kp N5  &kp N4  &mkp MB4                          &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    KP_MINUS    &kp N4  &kp N5  &kp N6  &kp N0         &bspc_to_layer_ht 16 BSPC
+&kp PG_DN   &dot_lshft_ht LSHFT 0    &kp N3  &kp N2  &kp N1  &kp C_AL_CALCULATOR    &trans                       &msc SCRL_DOWN                     KP_EQUAL    &kp N1  &kp N2  &kp N3  KP_DIVIDE      KP_ENTER
+                                             &trans  &trans  &trans                                                                                 &kp ENTER   &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
