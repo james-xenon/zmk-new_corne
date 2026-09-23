@@ -51,8 +51,8 @@ layers:
   - {t: '&win_space', h: nav2nolight_layer}
   nav1_layer:
   - $$mdi:keyboard-esc$$
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - Ctl+Alt+$$mdi:backspace-reverse-outline$$
+  - Gui+$$mdi:keyboard-esc$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -64,8 +64,8 @@ layers:
   - '&macro_comma_uni'
   - PG UP
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - Ctl+$$mdi:keyboard-tab$$
+  - Gui++
   - {t: '$$mdi:minus-circle-outline$$', type: held}
   - {t: '$$mdi:minus-circle-outline$$', type: held}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -79,8 +79,8 @@ layers:
   - '&msc MOVE_X(150)'
   - {t: '$$mdi:backspace$$', type: backspace}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - Ctl+Sft+$$mdi:keyboard-tab$$
+  - {t: Gui+-, s: Gui+_}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -259,7 +259,7 @@ layers:
   - {h: '2', s: '$$mdi:bluetooth-connect$$'}
   - {h: '3', s: '$$mdi:bluetooth-connect$$'}
   - {h: '4', s: '$$mdi:bluetooth-connect$$'}
-  - PWR
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - '&ws2812_wdg 5'
@@ -275,10 +275,10 @@ layers:
   - RGB SAD
   - RGB SAI
   - BT CLR ALL
-  - SLEEP
+  - Alt+F4
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - Gui+Ctl+$$mdi:arrow-left-bold$$
+  - Gui+Ctl+$$mdi:arrow-right-bold$$
   - OUT USB
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -645,10 +645,10 @@ layers:
   - SPC
   - '&mkp MB5'
   - $$mdi:arrow-up-bold$$
-  - AC HOME
+  - {t: Gui+;, s: 'Gui+:'}
   - Gui+$$mdi:arrow-up-bold$$
   - Gui+$$mdi:arrow-down-bold$$
-  - MENU
+  - {t: C, h: '$$mdi:apple-keyboard-command$$'}
   - INS
   - $$mdi:printer-outline$$
   - $$mdi:apple-keyboard-shift$$
@@ -674,11 +674,11 @@ layers:
   - Ctl+W
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
-  - AL TASK MANAGER
+  - Ctl+Sft+$$mdi:keyboard-esc$$
   - Gui+$$mdi:arrow-left-bold$$
   - Gui+$$mdi:arrow-right-bold$$
-  - LOCK
-  - Gui+L
+  - Gui+H
+  - Ctl+P
   - KP NUM
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -694,10 +694,10 @@ layers:
   - SPC
   - '&mkp MB5'
   - $$mdi:arrow-up-bold$$
-  - AC HOME
+  - {t: Gui+;, s: 'Gui+:'}
   - Gui+$$mdi:arrow-up-bold$$
   - Gui+$$mdi:arrow-down-bold$$
-  - MENU
+  - {t: C, h: '$$mdi:apple-keyboard-command$$'}
   - INS
   - $$mdi:printer-outline$$
   - {t: '$$mdi:apple-keyboard-shift$$', type: held alternate}
@@ -723,10 +723,10 @@ layers:
   - Ctl+W
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
-  - AL TASK MANAGER
+  - Ctl+Sft+$$mdi:keyboard-esc$$
   - Gui+$$mdi:arrow-left-bold$$
   - Gui+$$mdi:arrow-right-bold$$
-  - LOCK
+  - Gui+H
   - Gui+L
   - KP NUM
   - {type: held}
