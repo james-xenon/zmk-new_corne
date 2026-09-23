@@ -1188,10 +1188,10 @@
         numb_layer {
             display-name = "numb_layer";
             bindings = <
-&kp C_AL_CALCULATOR    &KP_MULTIPLY                     &kp N9  &kp N8  &kp N7  &KP_PLUS                                     &msc SCRL_UP                       &KP_PLUS    &kp N7  &kp N8  &kp N9  &KP_MULTIPLY                     &kp C_AL_CALCULATOR
-&kp LSHIFT             &kp N0                           &kp N6  &kp N5  &kp N4  &KP_MINUS                  &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &KP_MINUS   &kp N4  &kp N5  &kp N6  &kp N0                           &kp BSPC
-&KP_ENTER              &div_lshft_ht LSHFT KP_DIVIDE    &kp N3  &kp N2  &kp N1  &KP_EQUAL    &trans                          &msc SCRL_DOWN                     &KP_EQUAL   &kp N1  &kp N2  &kp N3  &div_lshft_ht LSHFT KP_DIVIDE    &KP_ENTER
-                                                                &trans  &trans  &trans                                                                          &trans      &trans  &trans
+&kp C_AL_CALCULATOR    &kp KP_MULTIPLY                     &kp N9  &kp N8  &kp N7  &kp KP_PLUS                                     &msc SCRL_UP                       &kp KP_PLUS    &kp N7  &kp N8  &kp N9  &kp KP_MULTIPLY                  &kp C_AL_CALCULATOR
+&kp LSHIFT             &kp N0                              &kp N6  &kp N5  &kp N4  &kp KP_MINUS                  &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &kp KP_MINUS   &kp N4  &kp N5  &kp N6  &kp N0                           &kp BSPC
+&kp KP_ENTER              &div_lshft_ht LSHFT KP_DIVIDE    &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                          &msc SCRL_DOWN                     &kp KP_EQUAL   &kp N1  &kp N2  &kp N3  &div_lshft_ht LSHFT KP_DIVIDE    &kp KP_ENTER
+                                                                   &trans  &trans  &trans                                                                             &trans         &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
