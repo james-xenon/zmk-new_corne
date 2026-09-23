@@ -737,47 +737,47 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   numbnolight_layer:
   - AL CALCULATOR
-  - '&KP_MULTIPLY'
+  - KP MULTIPLY
   - {t: '9', s: (}
   - {t: '8', s: '*'}
   - {t: '7', s: '&'}
-  - '&KP_PLUS'
+  - KP PLUS
   - $$mdi:pan-up$$
-  - '&KP_PLUS'
+  - KP PLUS
   - {t: '7', s: '&'}
   - {t: '8', s: '*'}
   - {t: '9', s: (}
-  - '&KP_MULTIPLY'
+  - KP MULTIPLY
   - AL CALCULATOR
   - {t: '$$mdi:backspace$$', type: backspace}
   - {t: '0', s: )}
   - {t: '6', s: ^}
   - {t: '5', s: '%'}
   - {t: '4', s: $}
-  - '&KP_MINUS'
+  - KP MINUS
   - $$mdi:pan-left$$
   - $$mdi:mouse-left-click-outline$$
   - $$mdi:pan-right$$
-  - '&KP_MINUS'
+  - KP MINUS
   - {t: '4', s: $}
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', h: symbnolightcopy_layer}
-  - '&KP_ENTER'
+  - KP ENTER
   - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '3', s: '#'}
   - {t: '2', s: '@'}
   - {t: '1', s: '!'}
-  - '&KP_EQUAL'
+  - KP EQUAL
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:pan-down$$
-  - '&KP_EQUAL'
+  - KP EQUAL
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
   - {t: '3', s: '#'}
   - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
-  - '&KP_ENTER'
+  - KP ENTER
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -884,47 +884,47 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   numbnolightcopy_layer:
   - AL CALCULATOR
-  - '&KP_MULTIPLY'
+  - KP MULTIPLY
   - {t: '9', s: (}
   - {t: '8', s: '*'}
   - {t: '7', s: '&'}
-  - '&KP_PLUS'
+  - KP PLUS
   - $$mdi:pan-up$$
-  - '&KP_PLUS'
+  - KP PLUS
   - {t: '7', s: '&'}
   - {t: '8', s: '*'}
   - {t: '9', s: (}
-  - '&KP_MULTIPLY'
+  - KP MULTIPLY
   - AL CALCULATOR
   - {t: '$$mdi:backspace$$', type: held}
   - {t: '0', s: )}
   - {t: '6', s: ^}
   - {t: '5', s: '%'}
   - {t: '4', s: $}
-  - '&KP_MINUS'
+  - KP MINUS
   - $$mdi:pan-left$$
   - $$mdi:mouse-left-click-outline$$
   - $$mdi:pan-right$$
-  - '&KP_MINUS'
+  - KP MINUS
   - {t: '4', s: $}
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', type: held}
-  - '&KP_ENTER'
+  - KP ENTER
   - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '3', s: '#'}
   - {t: '2', s: '@'}
   - {t: '1', s: '!'}
-  - '&KP_EQUAL'
+  - KP EQUAL
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:pan-down$$
-  - '&KP_EQUAL'
+  - KP EQUAL
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
   - {t: '3', s: '#'}
   - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
-  - '&KP_ENTER'
+  - KP ENTER
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held alternate}
   - {t: '$$mdi:transfer$$', type: trans}
