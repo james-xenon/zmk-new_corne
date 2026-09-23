@@ -268,8 +268,8 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - $$mdi:brightness-5$$
   - $$mdi:brightness-7$$
+  - $$mdi:brightness-5$$
   - RGB HUD
   - RGB HUI
   - RGB SAD
@@ -284,10 +284,10 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - RGB EFR
   - RGB EFF
-  - RGB SPI
   - RGB SPD
-  - RGB BRI
+  - RGB SPI
   - RGB BRD
+  - RGB BRI
   - {type: held}
   - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -646,9 +646,9 @@ layers:
   - '&mkp MB5'
   - $$mdi:arrow-up-bold$$
   - AC HOME
-  - Gui+$$mdi:arrow-left-bold$$
-  - Gui+$$mdi:arrow-right-bold$$
-  - {t: '$$mdi:transfer$$', type: trans}
+  - Gui+$$mdi:arrow-up-bold$$
+  - Gui+$$mdi:arrow-down-bold$$
+  - MENU
   - INS
   - $$mdi:printer-outline$$
   - $$mdi:apple-keyboard-shift$$
@@ -674,10 +674,10 @@ layers:
   - Ctl+W
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
-  - AC FAVORITES
-  - Gui+$$mdi:arrow-up-bold$$
-  - Gui+$$mdi:arrow-down-bold$$
-  - {t: '$$mdi:transfer$$', type: trans}
+  - AL TASK MANAGER
+  - Gui+$$mdi:arrow-left-bold$$
+  - Gui+$$mdi:arrow-right-bold$$
+  - LOCK
   - Gui+L
   - KP NUM
   - {t: '$$mdi:transfer$$', type: trans}
@@ -695,9 +695,9 @@ layers:
   - '&mkp MB5'
   - $$mdi:arrow-up-bold$$
   - AC HOME
-  - Gui+$$mdi:arrow-left-bold$$
-  - Gui+$$mdi:arrow-right-bold$$
-  - {t: '$$mdi:transfer$$', type: trans}
+  - Gui+$$mdi:arrow-up-bold$$
+  - Gui+$$mdi:arrow-down-bold$$
+  - MENU
   - INS
   - $$mdi:printer-outline$$
   - {t: '$$mdi:apple-keyboard-shift$$', type: held alternate}
@@ -723,10 +723,10 @@ layers:
   - Ctl+W
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
-  - AC FAVORITES
-  - Gui+$$mdi:arrow-up-bold$$
-  - Gui+$$mdi:arrow-down-bold$$
-  - {t: '$$mdi:transfer$$', type: trans}
+  - AL TASK MANAGER
+  - Gui+$$mdi:arrow-left-bold$$
+  - Gui+$$mdi:arrow-right-bold$$
+  - LOCK
   - Gui+L
   - KP NUM
   - {type: held}
