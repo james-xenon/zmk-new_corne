@@ -126,6 +126,10 @@ jobs:
           test -f "${GITHUB_WORKSPACE}/patches/patch_battery_vddh.py"
           test -f "${{ env.base_dir }}/zmk/app/src/battery.c"
 
+          # Restore the clean ZMK battery.c in case the Actions cache
+          # contains a battery.c modified by an older battery patch.
+          git -C "${{ env.base_dir }}/zmk" restore --source=HEAD -- app/src/battery.c
+
           python3 "${GITHUB_WORKSPACE}/patches/patch_battery_vddh.py" \
               "${{ env.base_dir }}/zmk/app/src/battery.c"
 
