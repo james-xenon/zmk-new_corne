@@ -1219,8 +1219,8 @@
             display-name = "service_layer";
             bindings = <
 &kp ESC              &none         &ws2812_wdg 8    &ws2812_wdg 6     &ws2812_wdg 7     &studio_unlock                        &trans              &bt BT_CLR        &none             &bt BT_SEL 0        &bt BT_SEL 1       &bt BT_SEL 2     &bt BT_SEL 3
-&kp K_PWR            &none         &none            &ws2812_wdg 5     &ws2812_wdg 2     &out OUT_BLE                  &trans  &trans  &trans      &kp C_BRI_UP      &kp C_BRI_DN      &rgb_ug RGB_HUD     &rgb_ug RGB_HUI    &rgb_ug RGB_SAD  &rgb_ug RGB_SAI
-&bt BT_CLR_ALL       &kp K_SLEEP   &none            &none             &none             &out OUT_USB    &trans                &trans              &rgb_ug RGB_EFR   &rgb_ug RGB_EFF   &rgb_ug RGB_SPI     &rgb_ug RGB_SPD    &rgb_ug RGB_BRI  &rgb_ug RGB_BRD
+&kp C_PWR            &none         &none            &ws2812_wdg 5     &ws2812_wdg 2     &out OUT_BLE                  &trans  &trans  &trans      &kp C_BRI_DN      &kp C_BRI_UP      &rgb_ug RGB_HUD     &rgb_ug RGB_HUI    &rgb_ug RGB_SAD  &rgb_ug RGB_SAI
+&bt BT_CLR_ALL       &kp C_SLEEP   &none            &none             &none             &out OUT_USB    &trans                &trans              &rgb_ug RGB_EFR   &rgb_ug RGB_EFF   &rgb_ug RGB_SPD     &rgb_ug RGB_SPI    &rgb_ug RGB_BRD  &rgb_ug RGB_BRI
                                                     &trans            &trans            &trans                                                    &rgb_ug RGB_ON    &trans            &rgb_ug RGB_OFF
     >;
     sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -1317,10 +1317,10 @@
         lefthand_layer {
             display-name = "lefthand_layer";
             bindings = <
-&kp TAB       &kp HOME            &kp ENTER            &kp UP          &kp SPC            &mkp MB5                                      &kp UP                  &kp C_AC_HOME        &kp LG(LEFT)    &kp LG(RIGHT)   &trans         &kp INS            &kp PSCRN
-&kp LSHFT     &kp END             &kp LEFT             &kp DOWN        &kp RIGHT          &mkp MB4                            &kp LEFT  &kp ENTER  &kp RIGHT    &kp C_AC_SEARCH      &kp LG(D)       &kp LG(E)       &kp LG(TAB)    &kp PAUSE_BREAK    &kp SLCK
-&kp LCTRL     &kp LC(LS(T))       &kp LC(LS(TAB))      &kp LC(R)       &kp LC(TAB)        &kp LC(W)    &kp C_MUTE                       &kp DOWN                &kp C_AC_FAVORITES   &kp LG(UP)      &kp LG(DOWN)    &trans         &kp LG(L)          &kp KP_NUM
-                                                       &trans          &trans             &trans                                                                &trans               &trans          &trans
+&kp TAB       &kp HOME            &kp ENTER            &kp UP          &kp SPC            &mkp MB5                                      &kp UP                  &kp C_AC_HOME           &kp LG(UP)      &kp LG(DOWN)    &kp K_MENU     &kp INS            &kp PSCRN
+&kp LSHFT     &kp END             &kp LEFT             &kp DOWN        &kp RIGHT          &mkp MB4                            &kp LEFT  &kp ENTER  &kp RIGHT    &kp C_AC_SEARCH         &kp LG(D)       &kp LG(E)       &kp LG(TAB)    &kp PAUSE_BREAK    &kp SLCK
+&kp LCTRL     &kp LC(LS(T))       &kp LC(LS(TAB))      &kp LC(R)       &kp LC(TAB)        &kp LC(W)    &kp C_MUTE                       &kp DOWN                &kp C_AL_TASK_MANAGER   &kp LG(LEFT)    &kp LG(RIGHT)   &kp K_LOCK     &kp LG(L)          &kp KP_NUM
+                                                       &trans          &trans             &trans                                                                &trans                  &trans          &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
@@ -1329,10 +1329,10 @@
         lefthandnolight_layer {
             display-name = "lefthandnolight_layer";
             bindings = <
-&alt_tab      &kp HOME            &kp ENTER            &kp UP          &kp SPC            &mkp MB5                                      &kp UP                  &kp C_AC_HOME        &kp LG(LEFT)    &kp LG(RIGHT)   &trans         &kp INS            &kp PSCRN
-&kp LSHFT     &kp END             &kp LEFT             &kp DOWN        &kp RIGHT          &mkp MB4                            &kp LEFT  &kp ENTER  &kp RIGHT    &kp C_AC_SEARCH      &kp LG(D)       &kp LG(E)       &kp LG(TAB)    &kp PAUSE_BREAK    &kp SLCK
-&kp LCTRL     &kp LC(LS(T))       &kp LC(LS(TAB))      &kp LC(R)       &kp LC(TAB)        &kp LC(W)    &kp C_MUTE                       &kp DOWN                &kp C_AC_FAVORITES   &kp LG(UP)      &kp LG(DOWN)    &trans         &kp LG(L)          &kp KP_NUM
-                                                       &trans          &trans             &trans                                                                &trans               &trans          &trans
+&alt_tab      &kp HOME            &kp ENTER            &kp UP          &kp SPC            &mkp MB5                                      &kp UP                  &kp C_AC_HOME           &kp LG(UP)      &kp LG(DOWN)    &kp K_MENU     &kp INS            &kp PSCRN
+&kp LSHFT     &kp END             &kp LEFT             &kp DOWN        &kp RIGHT          &mkp MB4                            &kp LEFT  &kp ENTER  &kp RIGHT    &kp C_AC_SEARCH         &kp LG(D)       &kp LG(E)       &kp LG(TAB)    &kp PAUSE_BREAK    &kp SLCK
+&kp LCTRL     &kp LC(LS(T))       &kp LC(LS(TAB))      &kp LC(R)       &kp LC(TAB)        &kp LC(W)    &kp C_MUTE                       &kp DOWN                &kp C_AL_TASK_MANAGER   &kp LG(LEFT)    &kp LG(RIGHT)   &kp K_LOCK     &kp LG(L)          &kp KP_NUM
+                                                       &trans          &trans             &trans                                                                &trans                  &trans          &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
