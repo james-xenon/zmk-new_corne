@@ -86,7 +86,7 @@ jobs:
             ${{ env.base_dir }}/zephyr/
             ${{ env.base_dir }}/bootloader/
             ${{ env.base_dir }}/zmk/
-          key: ${{ runner.os }}-build-${{ env.cache_name }}-${{ hashFiles('**/west.yml', '**/build.yaml', 'patches/rgb_underglow.c') }}
+          key: ${{ runner.os }}-build-${{ env.cache_name }}-${{ hashFiles('**/west.yml', '**/build.yaml', 'patches/rgb_underglow.c', 'patches/patch_battery_vddh.py') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache_name }}-
             ${{ runner.os }}-build-
@@ -117,6 +117,24 @@ jobs:
               "${{ env.base_dir }}/zmk/app/src/rgb_underglow.c"
 
           echo "RGB16 patch verification passed."
+
+      - name: Apply VDDH battery charging workaround
+        shell: sh -e {0}
+        run: |
+          set -eu
+
+          test -f "${GITHUB_WORKSPACE}/patches/patch_battery_vddh.py"
+          test -f "${{ env.base_dir }}/zmk/app/src/battery.c"
+
+          python3 "${GITHUB_WORKSPACE}/patches/patch_battery_vddh.py" \
+              "${{ env.base_dir }}/zmk/app/src/battery.c"
+
+          grep -q "zmk_battery_hold_while_vbus" \
+              "${{ env.base_dir }}/zmk/app/src/battery.c"
+          grep -q "zmk_battery_accept_vddh_sample" \
+              "${{ env.base_dir }}/zmk/app/src/battery.c"
+
+          echo "VDDH battery workaround verification passed."
 
       - name: West Zephyr export
         working-directory: ${{ env.base_dir }}
