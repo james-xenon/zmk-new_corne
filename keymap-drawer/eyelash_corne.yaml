@@ -148,48 +148,48 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   numb_layer:
-  - PG UP
-  - '&macro_comma_uni'
+  - AL CALCULATOR
+  - '&KP_MULTIPLY'
   - {t: '9', s: (}
   - {t: '8', s: '*'}
   - {t: '7', s: '&'}
-  - '&mkp MB5'
+  - '&KP_PLUS'
   - $$mdi:pan-up$$
-  - HOME
+  - '&KP_PLUS'
   - {t: '7', s: '&'}
   - {t: '8', s: '*'}
   - {t: '9', s: (}
-  - '&macro_comma_uni'
-  - PG UP
+  - '&KP_MULTIPLY'
+  - AL CALCULATOR
   - $$mdi:apple-keyboard-shift$$
   - {t: '0', s: )}
   - {t: '6', s: ^}
   - {t: '5', s: '%'}
   - {t: '4', s: $}
-  - '&mkp MB4'
+  - '&KP_MINUS'
   - $$mdi:pan-left$$
   - $$mdi:mouse-left-click-outline$$
   - $$mdi:pan-right$$
-  - '&macro_semi_uni'
+  - '&KP_MINUS'
   - {t: '4', s: $}
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', type: backspace}
-  - PG DN
-  - {t: '&macro_dot_uni', h: '$$mdi:apple-keyboard-shift$$'}
+  - '&KP_ENTER'
+  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '3', s: '#'}
   - {t: '2', s: '@'}
   - {t: '1', s: '!'}
-  - AL CALCULATOR
+  - '&KP_EQUAL'
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:pan-down$$
-  - END
+  - '&KP_EQUAL'
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
   - {t: '3', s: '#'}
-  - {t: '&macro_dot_uni', h: '$$mdi:apple-keyboard-shift$$'}
-  - PG DN
+  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
+  - '&KP_ENTER'
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -259,7 +259,7 @@ layers:
   - {h: '2', s: '$$mdi:bluetooth-connect$$'}
   - {h: '3', s: '$$mdi:bluetooth-connect$$'}
   - {h: '4', s: '$$mdi:bluetooth-connect$$'}
-  - POWER
+  - PWR
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - '&ws2812_wdg 5'
@@ -645,12 +645,12 @@ layers:
   - SPC
   - '&mkp MB5'
   - $$mdi:arrow-up-bold$$
+  - AC HOME
+  - Gui+$$mdi:arrow-left-bold$$
+  - Gui+$$mdi:arrow-right-bold$$
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - INS
+  - $$mdi:printer-outline$$
   - $$mdi:apple-keyboard-shift$$
   - END
   - $$mdi:arrow-left-bold$$
@@ -660,26 +660,26 @@ layers:
   - $$mdi:arrow-left-bold$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-right-bold$$
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - AC SEARCH
+  - {t: D, h: '$$mdi:apple-keyboard-command$$'}
+  - Gui+E
+  - Gui+$$mdi:keyboard-tab$$
+  - PAUSE BREAK
+  - SLCK
   - $$mdi:apple-keyboard-control$$
-  - Ctl+Sft+$$mdi:keyboard-tab$$
+  - Ctl+Sft+T
   - Ctl+Sft+$$mdi:keyboard-tab$$
   - Ctl+R
   - Ctl+$$mdi:keyboard-tab$$
   - Ctl+W
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
+  - AC FAVORITES
+  - Gui+$$mdi:arrow-up-bold$$
+  - Gui+$$mdi:arrow-down-bold$$
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - Gui+L
+  - KP NUM
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -695,9 +695,9 @@ layers:
   - '&mkp MB5'
   - $$mdi:arrow-up-bold$$
   - AC HOME
-  - Gui+$$mdi:keyboard-tab$$
-  - {t: D, h: '$$mdi:apple-keyboard-command$$'}
-  - Gui+L
+  - Gui+$$mdi:arrow-left-bold$$
+  - Gui+$$mdi:arrow-right-bold$$
+  - {t: '$$mdi:transfer$$', type: trans}
   - INS
   - $$mdi:printer-outline$$
   - {t: '$$mdi:apple-keyboard-shift$$', type: held alternate}
@@ -710,24 +710,24 @@ layers:
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-right-bold$$
   - AC SEARCH
-  - Gui+$$mdi:arrow-left-bold$$
-  - Gui+$$mdi:arrow-right-bold$$
+  - {t: D, h: '$$mdi:apple-keyboard-command$$'}
   - Gui+E
+  - Gui+$$mdi:keyboard-tab$$
   - PAUSE BREAK
   - SLCK
   - $$mdi:apple-keyboard-control$$
-  - Ctl+Sft+$$mdi:keyboard-tab$$
+  - Ctl+Sft+T
   - Ctl+Sft+$$mdi:keyboard-tab$$
   - Ctl+R
   - Ctl+$$mdi:keyboard-tab$$
   - Ctl+W
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
-  - AC BOOKMARKS
+  - AC FAVORITES
   - Gui+$$mdi:arrow-up-bold$$
   - Gui+$$mdi:arrow-down-bold$$
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - Gui+L
   - KP NUM
   - {type: held}
   - {type: held alternate}
@@ -736,48 +736,48 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   numbnolight_layer:
-  - PG UP
-  - '&macro_comma_uni'
+  - AL CALCULATOR
+  - '&KP_MULTIPLY'
   - {t: '9', s: (}
   - {t: '8', s: '*'}
   - {t: '7', s: '&'}
-  - '&mkp MB5'
+  - '&KP_PLUS'
   - $$mdi:pan-up$$
-  - HOME
+  - '&KP_PLUS'
   - {t: '7', s: '&'}
   - {t: '8', s: '*'}
   - {t: '9', s: (}
-  - '&macro_comma_uni'
-  - PG UP
+  - '&KP_MULTIPLY'
+  - AL CALCULATOR
   - {t: '$$mdi:backspace$$', type: backspace}
   - {t: '0', s: )}
   - {t: '6', s: ^}
   - {t: '5', s: '%'}
   - {t: '4', s: $}
-  - '&mkp MB4'
+  - '&KP_MINUS'
   - $$mdi:pan-left$$
   - $$mdi:mouse-left-click-outline$$
   - $$mdi:pan-right$$
-  - '&macro_semi_uni'
+  - '&KP_MINUS'
   - {t: '4', s: $}
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', h: symbnolightcopy_layer}
-  - PG DN
-  - {t: '&macro_dot_uni', h: '$$mdi:apple-keyboard-shift$$'}
+  - '&KP_ENTER'
+  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '3', s: '#'}
   - {t: '2', s: '@'}
   - {t: '1', s: '!'}
-  - AL CALCULATOR
+  - '&KP_EQUAL'
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:pan-down$$
-  - END
+  - '&KP_EQUAL'
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
   - {t: '3', s: '#'}
-  - {t: '&macro_dot_uni', h: '$$mdi:apple-keyboard-shift$$'}
-  - PG DN
+  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
+  - '&KP_ENTER'
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -883,48 +883,48 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   numbnolightcopy_layer:
-  - PG UP
-  - '&macro_comma_uni'
+  - AL CALCULATOR
+  - '&KP_MULTIPLY'
   - {t: '9', s: (}
   - {t: '8', s: '*'}
   - {t: '7', s: '&'}
-  - '&mkp MB5'
+  - '&KP_PLUS'
   - $$mdi:pan-up$$
-  - HOME
+  - '&KP_PLUS'
   - {t: '7', s: '&'}
   - {t: '8', s: '*'}
   - {t: '9', s: (}
-  - '&macro_comma_uni'
-  - PG UP
+  - '&KP_MULTIPLY'
+  - AL CALCULATOR
   - {t: '$$mdi:backspace$$', type: held}
   - {t: '0', s: )}
   - {t: '6', s: ^}
   - {t: '5', s: '%'}
   - {t: '4', s: $}
-  - '&mkp MB4'
+  - '&KP_MINUS'
   - $$mdi:pan-left$$
   - $$mdi:mouse-left-click-outline$$
   - $$mdi:pan-right$$
-  - '&macro_semi_uni'
+  - '&KP_MINUS'
   - {t: '4', s: $}
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', type: held}
-  - PG DN
-  - {t: '&macro_dot_uni', h: '$$mdi:apple-keyboard-shift$$'}
+  - '&KP_ENTER'
+  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '3', s: '#'}
   - {t: '2', s: '@'}
   - {t: '1', s: '!'}
-  - AL CALCULATOR
+  - '&KP_EQUAL'
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:pan-down$$
-  - END
+  - '&KP_EQUAL'
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
   - {t: '3', s: '#'}
-  - {t: '&macro_dot_uni', h: '$$mdi:apple-keyboard-shift$$'}
-  - PG DN
+  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
+  - '&KP_ENTER'
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held alternate}
   - {t: '$$mdi:transfer$$', type: trans}
