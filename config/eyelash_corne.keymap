@@ -1164,10 +1164,10 @@
         nav1_layer {
             display-name = "nav1_layer";
             bindings = <
-&kp ESC  &kp LC(LA(DEL))  &kp LG(ESC)     &none  &none  &none                               &mmv MOVE_UP                       &kp HOME           &mkp LCLK          &kp UP     &mkp RCLK            &macro_comma_uni   &kp PG_UP
-&trans   &kp LC(TAB)      &kp LG(PLUS)    &none  &none  &none               &mmv MOVE_LEFT  &mkp LCLK      &mmv MOVE_RIGHT     &msc MOVE_X(-150)  &kp LEFT           &kp DOWN   &kp RIGHT            &msc MOVE_X(150)   &kp BSPC
-&trans   &kp LC(LS(TAB))  &kp LG(MINUS)   &none  &none  &none       &trans                  &mmv MOVE_DOWN                     &kp END            &msc MOVE_Y(-150)  &mkp MCLK  &msc MOVE_Y(150)     &macro_qmark_uni   &kp PG_DN
-                                          &trans &trans &trans                                                                 &trans             &trans             &trans
+&kp ESC  &kp LC(LA(DEL))  &kp LG(ESC)        &none  &none  &none                               &mmv MOVE_UP                       &kp HOME           &mkp LCLK          &kp UP     &mkp RCLK            &macro_comma_uni   &kp PG_UP
+&trans   &kp LC(TAB)      &kp LG(KP_PLUS)    &none  &none  &none               &mmv MOVE_LEFT  &mkp LCLK      &mmv MOVE_RIGHT     &msc MOVE_X(-150)  &kp LEFT           &kp DOWN   &kp RIGHT            &msc MOVE_X(150)   &kp BSPC
+&trans   &kp LC(LS(TAB))  &kp LG(KP_MINUS)   &none  &none  &none       &trans                  &mmv MOVE_DOWN                     &kp END            &msc MOVE_Y(-150)  &mkp MCLK  &msc MOVE_Y(150)     &macro_qmark_uni   &kp PG_DN
+                                             &trans &trans &trans                                                                 &trans             &trans             &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
@@ -1190,7 +1190,7 @@
             bindings = <
 &kp C_AL_CALCULATOR    &kp KP_MULTIPLY                     &kp N9  &kp N8  &kp N7  &kp KP_PLUS                                     &msc SCRL_UP                       &kp KP_PLUS    &kp N7  &kp N8  &kp N9  &kp KP_MULTIPLY                  &kp C_AL_CALCULATOR
 &kp LSHIFT             &kp N0                              &kp N6  &kp N5  &kp N4  &kp KP_MINUS                  &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &kp KP_MINUS   &kp N4  &kp N5  &kp N6  &kp N0                           &kp BSPC
-&kp KP_ENTER              &div_lshft_ht LSHFT KP_DIVIDE    &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                          &msc SCRL_DOWN                     &kp KP_EQUAL   &kp N1  &kp N2  &kp N3  &div_lshft_ht LSHFT KP_DIVIDE    &kp KP_ENTER
+&kp KP_ENTER           &div_lshft_ht LSHFT KP_DIVIDE       &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                          &msc SCRL_DOWN                     &kp KP_EQUAL   &kp N1  &kp N2  &kp N3  &div_lshft_ht LSHFT KP_DIVIDE    &kp KP_ENTER
                                                                    &trans  &trans  &trans                                                                             &trans         &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -1279,10 +1279,10 @@
         nav3_layer {
             display-name = "nav3_layer";
             bindings = <
-&kp ESC &none   &none   &none   &none   &none                          &kp UP                   &kp HOME           &mkp LCLK            &mmv MOVE_UP    &mkp RCLK          &macro_comma_uni   &kp PG_UP
-&trans  &none   &none   &none   &none   &none                &kp LEFT  &kp ENTER  &kp RIGHT     &msc MOVE_X(-150)  &mmv MOVE_LEFT       &mmv MOVE_DOWN  &mmv MOVE_RIGHT    &msc MOVE_X(150)   &kp BSPC
-&trans  &none   &none   &none   &none   &none   &kp C_MUTE             &kp DOWN                 &kp END            &msc MOVE_Y(-150)    &mkp MCLK       &msc MOVE_Y(150)   &macro_dot_uni     &kp PG_DN
-                        &trans  &trans  &trans                                                  &trans             &trans               &trans
+&kp ESC &kp LC(LA(DEL))  &kp LG(ESC)        &none   &none   &none                          &kp UP                   &kp HOME           &mkp LCLK            &mmv MOVE_UP    &mkp RCLK          &macro_comma_uni   &kp PG_UP
+&trans  &kp LC(TAB)      &kp LG(KP_PLUS)    &none   &none   &none                &kp LEFT  &kp ENTER  &kp RIGHT     &msc MOVE_X(-150)  &mmv MOVE_LEFT       &mmv MOVE_DOWN  &mmv MOVE_RIGHT    &msc MOVE_X(150)   &kp BSPC
+&trans  &kp LC(LS(TAB))  &kp LG(KP_MINUS)   &none   &none   &none   &kp C_MUTE             &kp DOWN                 &kp END            &msc MOVE_Y(-150)    &mkp MCLK       &msc MOVE_Y(150)   &macro_dot_uni     &kp PG_DN
+                                            &trans  &trans  &trans                                                  &trans             &trans               &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
