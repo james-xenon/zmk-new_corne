@@ -247,14 +247,14 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   service_layer:
   - '&slpall'
-  - '&slpsrc'
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - '&ws2812_wdg 8'
   - '&ws2812_wdg 6'
   - '&ws2812_wdg 7'
   - '&studio_unlock'
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:bluetooth-off$$
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - '&slpsrc'
   - {h: '1', s: '$$mdi:bluetooth-connect$$'}
   - {h: '2', s: '$$mdi:bluetooth-connect$$'}
   - {h: '3', s: '$$mdi:bluetooth-connect$$'}
