@@ -115,7 +115,7 @@
             tap-ms = <0>;
             bindings = <&ws2812_wdg 8>;
         };
-        rgb_timer: rgb_timer {
+        rgb_timer: rgbtmr {
             compatible = "zmk,behavior-rgb-timer";
             #binding-cells = <1>;
         };
