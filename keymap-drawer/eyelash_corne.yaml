@@ -246,7 +246,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   service_layer:
-  - '&soft_off'
+  - '&slpall'
   - '&slpsrc'
   - '&ws2812_wdg 8'
   - '&ws2812_wdg 6'
