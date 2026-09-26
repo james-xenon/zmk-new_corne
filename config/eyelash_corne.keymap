@@ -12,6 +12,7 @@
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/rgb.h>
 #include <behaviors/rgb_timer.dtsi>
+#include <behaviors/sleep_source.dtsi>
 
 // --- НАСТРОЙКИ ОБОРУДОВАНИЯ И ПЕРИФЕРИИ ---
 // Количество адресованных светодиодов WS2812 на одной половине сплит-клавиатуры
@@ -71,6 +72,16 @@
             tap-ms = <20>;    // Длительность tap-события макроса
             bindings = <&kp CAPS>;
         };
+        &kscan0 {
+    wakeup-source;
+        };
+
+        / {
+    soft_off_wakers {
+        compatible = "zmk,soft-off-wakeup-sources";
+        wakeup-sources = <&kscan0>;
+        };
+    };
         // ============================================================
         // ИСТОРИЧЕСКИЕ МАКРОСЫ ws2812_eff_* — ВАЖНО
         // ============================================================
@@ -1233,10 +1244,10 @@
         service_layer {
             display-name = "service_layer";
             bindings = <
-&kp ESC              &none         &ws2812_wdg 8    &ws2812_wdg 6        &ws2812_wdg 7        &studio_unlock                        &trans              &bt BT_CLR        &none             &bt BT_SEL 0        &bt BT_SEL 1       &bt BT_SEL 2     &bt BT_SEL 3
-&rgb_timer 0               &rgb_timer 2         &rgb_timer 1            &ws2812_wdg 5        &ws2812_wdg 2        &out OUT_BLE                  &trans  &trans  &trans      &kp C_BRI_DN      &kp C_BRI_UP      &rgb_ug RGB_HUD     &rgb_ug RGB_HUI    &rgb_ug RGB_SAD  &rgb_ug RGB_SAI
-&bt BT_CLR_ALL       &kp LA(F4)    &none            &kp LG(LC(LEFT))     &kp LG(LC(RIGHT))    &out OUT_USB    &trans                &trans              &rgb_ug RGB_EFR   &rgb_ug RGB_EFF   &rgb_ug RGB_SPD     &rgb_ug RGB_SPI    &rgb_ug RGB_BRD  &rgb_ug RGB_BRI
-                                                    &trans               &trans               &trans                                                    &rgb_ug RGB_ON    &trans            &rgb_ug RGB_OFF
+&soft_off          &slpsrc        &ws2812_wdg 8    &ws2812_wdg 6        &ws2812_wdg 7        &studio_unlock                        &trans              &bt BT_CLR        &none             &bt BT_SEL 0        &bt BT_SEL 1       &bt BT_SEL 2     &bt BT_SEL 3
+&rgb_timer 0       &rgb_timer 2   &rgb_timer 1     &ws2812_wdg 5        &ws2812_wdg 2        &out OUT_BLE                  &trans  &trans  &trans      &kp C_BRI_DN      &kp C_BRI_UP      &rgb_ug RGB_HUD     &rgb_ug RGB_HUI    &rgb_ug RGB_SAD  &rgb_ug RGB_SAI
+&bt BT_CLR_ALL     &kp LA(F4)     &none            &kp LG(LC(LEFT))     &kp LG(LC(RIGHT))    &out OUT_USB    &trans                &trans              &rgb_ug RGB_EFR   &rgb_ug RGB_EFF   &rgb_ug RGB_SPD     &rgb_ug RGB_SPI    &rgb_ug RGB_BRD  &rgb_ug RGB_BRI
+                                                   &trans               &trans               &trans                                                    &rgb_ug RGB_ON    &trans            &rgb_ug RGB_OFF
     >;
     sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
 };
