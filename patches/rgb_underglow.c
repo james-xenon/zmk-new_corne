@@ -176,6 +176,10 @@ static bool smoothed_pixels_initialized;
 
 /* IMPORTANT: do not add fields here. This exact state layout is stored in settings. */
 static struct rgb_underglow_state state;
+
+/* Temporary renderer suspension used by the WS2812 widget idle timer.
+ * Unlike zmk_rgb_underglow_off(), this does not modify state.on or settings. */
+static bool overlay_suspended;
 #if IS_ENABLED(CONFIG_ZMK_RGB_UNDERGLOW_EXT_POWER)
 static const struct device *const ext_power = DEVICE_DT_GET(DT_INST(0, zmk_ext_power_generic));
 #endif
@@ -1137,7 +1141,7 @@ static void zmk_rgb_underglow_tick(struct k_work *work) {
 K_WORK_DEFINE(underglow_tick_work, zmk_rgb_underglow_tick);
 
 static void zmk_rgb_underglow_tick_handler(struct k_timer *timer) {
-    if (!state.on) {
+    if (!state.on || overlay_suspended) {
         return;
     }
 
@@ -1281,6 +1285,41 @@ int zmk_rgb_underglow_off(void) {
 
     return zmk_rgb_underglow_save_state();
 }
+int zmk_rgb_underglow_overlay_suspend(void) {
+    if (!led_strip) {
+        return -ENODEV;
+    }
+
+    if (overlay_suspended) {
+        return 0;
+    }
+
+    overlay_suspended = true;
+    k_timer_stop(&underglow_tick);
+
+    /* Reuse the normal black-frame worker, but keep state.on unchanged and
+     * do not save anything to settings. */
+    k_work_submit_to_queue(zmk_workqueue_lowprio_work_q(), &underglow_off_work);
+    return 0;
+}
+
+int zmk_rgb_underglow_overlay_resume(void) {
+    if (!led_strip) {
+        return -ENODEV;
+    }
+
+    if (!overlay_suspended) {
+        return 0;
+    }
+
+    overlay_suspended = false;
+    if (state.on) {
+        k_timer_start(&underglow_tick, K_NO_WAIT, K_MSEC(50));
+    }
+
+    return 0;
+}
+
 int zmk_rgb_underglow_calc_effect(int direction) {
     const int count = sizeof(eyelash_effect_cycle_order) / sizeof(eyelash_effect_cycle_order[0]);
     int current_index = 0;
