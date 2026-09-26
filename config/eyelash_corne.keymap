@@ -45,6 +45,13 @@
         zmk,ws2812-widget = &led_strip;
     };
 
+    // Soft Off: разрешить пробуждение любой клавишей матрицы.
+    // kscan0 уже имеет wakeup-source в eyelash_corne.dtsi.
+    soft_off_wakers {
+        compatible = "zmk,soft-off-wakeup-sources";
+        wakeup-sources = <&kscan0>;
+    };
+
     // --- ПОВЕДЕНИЯ КЛАВИШ (BEHAVIORS) ---
     behaviors {
         // ============================================================
@@ -72,16 +79,6 @@
             tap-ms = <20>;    // Длительность tap-события макроса
             bindings = <&kp CAPS>;
         };
-        &kscan0 {
-    wakeup-source;
-        };
-
-        / {
-    soft_off_wakers {
-        compatible = "zmk,soft-off-wakeup-sources";
-        wakeup-sources = <&kscan0>;
-        };
-    };
         // ============================================================
         // ИСТОРИЧЕСКИЕ МАКРОСЫ ws2812_eff_* — ВАЖНО
         // ============================================================
