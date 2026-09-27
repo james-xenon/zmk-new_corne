@@ -1188,10 +1188,10 @@
         nav1_layer {
             display-name = "nav1_layer";
             bindings = <
-&kp ESC  &kp LC(LA(DEL))  &kp LG(ESC)        &none  &none  &none                               &mmv MOVE_UP                       &kp HOME           &mkp LCLK          &kp UP     &mkp RCLK            &macro_comma_uni   &kp PG_UP
-&trans   &kp LC(TAB)      &kp LG(KP_PLUS)    &none  &none  &none               &mmv MOVE_LEFT  &mkp LCLK      &mmv MOVE_RIGHT     &msc MOVE_X(-150)  &kp LEFT           &kp DOWN   &kp RIGHT            &msc MOVE_X(150)   &kp BSPC
-&trans   &kp LC(LS(TAB))  &kp LG(KP_MINUS)   &none  &none  &none       &trans                  &mmv MOVE_DOWN                     &kp END            &msc MOVE_Y(-150)  &mkp MCLK  &msc MOVE_Y(150)     &macro_qmark_uni   &kp PG_DN
-                                             &trans &trans &trans                                                                 &trans             &trans             &trans
+&kp LC(LA(DEL))  &kp PSCRN         &kp LG(ESC)        &none  &none  &none                               &mmv MOVE_UP                       &kp HOME           &mkp LCLK          &kp UP     &mkp RCLK            &macro_comma_uni   &kp PG_UP
+&trans           &kp PAUSE_BREAK   &kp LG(KP_PLUS)    &none  &none  &none               &mmv MOVE_LEFT  &mkp LCLK      &mmv MOVE_RIGHT     &msc MOVE_X(-150)  &kp LEFT           &kp DOWN   &kp RIGHT            &msc MOVE_X(150)   &kp BSPC
+&trans           &kp INS           &kp LG(KP_MINUS)   &none  &none  &none       &trans                  &mmv MOVE_DOWN                     &kp END            &msc MOVE_Y(-150)  &mkp MCLK  &msc MOVE_Y(150)     &macro_qmark_uni   &kp PG_DN
+                                                      &trans &trans &trans                                                                 &trans             &trans             &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
@@ -1303,10 +1303,10 @@
         nav3_layer {
             display-name = "nav3_layer";
             bindings = <
-&kp ESC &kp LC(LA(DEL))  &kp LG(ESC)        &none   &none   &none                          &kp UP                   &kp HOME           &mkp LCLK            &mmv MOVE_UP    &mkp RCLK          &macro_comma_uni   &kp PG_UP
-&trans  &kp LC(TAB)      &kp LG(KP_PLUS)    &none   &none   &none                &kp LEFT  &kp ENTER  &kp RIGHT     &msc MOVE_X(-150)  &mmv MOVE_LEFT       &mmv MOVE_DOWN  &mmv MOVE_RIGHT    &msc MOVE_X(150)   &kp BSPC
-&trans  &kp LC(LS(TAB))  &kp LG(KP_MINUS)   &none   &none   &none   &kp C_MUTE             &kp DOWN                 &kp END            &msc MOVE_Y(-150)    &mkp MCLK       &msc MOVE_Y(150)   &macro_dot_uni     &kp PG_DN
-                                            &trans  &trans  &trans                                                  &trans             &trans               &trans
+&kp LC(LA(DEL))  &kp PSCRN         &kp LG(ESC)        &none  &none  &none                          &kp UP                   &kp HOME           &mkp LCLK            &mmv MOVE_UP    &mkp RCLK          &macro_comma_uni   &kp PG_UP
+&trans           &kp PAUSE_BREAK   &kp LG(KP_PLUS)    &none  &none  &none                &kp LEFT  &kp ENTER  &kp RIGHT     &msc MOVE_X(-150)  &mmv MOVE_LEFT       &mmv MOVE_DOWN  &mmv MOVE_RIGHT    &msc MOVE_X(150)   &kp BSPC
+&trans           &kp INS           &kp LG(KP_MINUS)   &none  &none  &none   &kp C_MUTE             &kp DOWN                 &kp END            &msc MOVE_Y(-150)    &mkp MCLK       &msc MOVE_Y(150)   &macro_dot_uni     &kp PG_DN
+                                                      &trans &trans &trans                                                  &trans             &trans               &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
@@ -1341,9 +1341,9 @@
         lefthand_layer {
             display-name = "lefthand_layer";
             bindings = <
-&kp TAB       &kp HOME            &kp ENTER            &kp UP          &kp SPC            &mkp MB5                                      &kp UP                  &kp LG(SEMI)            &kp LG(UP)      &kp LG(DOWN)    &kp LG(C)      &kp INS            &kp PSCRN
-&kp LSHFT     &kp END             &kp LEFT             &kp DOWN        &kp RIGHT          &mkp MB4                            &kp LEFT  &kp ENTER  &kp RIGHT    &kp C_AC_SEARCH         &kp LG(D)       &kp LG(E)       &kp LG(TAB)    &kp PAUSE_BREAK    &kp SLCK
-&kp LCTRL     &kp LC(LS(T))       &kp LC(LS(TAB))      &kp LC(R)       &kp LC(TAB)        &kp LC(W)    &kp C_MUTE                       &kp DOWN                &kp LC(LS(ESC))         &kp LG(LEFT)    &kp LG(RIGHT)   &kp LG(H)      &kp LC(P)          &kp KP_NUM
+&kp TAB       &kp HOME            &kp ENTER            &kp UP          &kp SPC            &mkp MB5                                      &kp UP                  &kp LG(SEMI)            &kp LG(UP)      &kp LG(DOWN)     &kp LG(C)      &kp LG(TAB)        &kp KP_NUM
+&kp LSHFT     &kp END             &kp LEFT             &kp DOWN        &kp RIGHT          &mkp MB4                            &kp LEFT  &kp ENTER  &kp RIGHT    &kp C_AC_SEARCH         &kp F2          &kp LC(LS(N))    &kp LC(P)      &kp LC(LS(ESC))    &kp SLCK
+&kp LCTRL     &kp LC(LS(T))       &kp LC(LS(TAB))      &kp LC(R)       &kp LC(TAB)        &kp LC(W)    &kp C_MUTE                       &kp DOWN                &kp LG(E)               &kp LG(LEFT)    &kp LG(RIGHT)    &kp LG(H)      &kp LG(L)          &kp LG(D)
                                                        &trans          &trans             &trans                                                                &trans                  &trans          &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -1353,9 +1353,9 @@
         lefthandnolight_layer {
             display-name = "lefthandnolight_layer";
             bindings = <
-&alt_tab      &kp HOME            &kp ENTER            &kp UP          &kp SPC            &mkp MB5                                      &kp UP                  &kp LG(SEMI)            &kp LG(UP)      &kp LG(DOWN)    &kp LG(C)      &kp INS            &kp PSCRN
-&kp LSHFT     &kp END             &kp LEFT             &kp DOWN        &kp RIGHT          &mkp MB4                            &kp LEFT  &kp ENTER  &kp RIGHT    &kp C_AC_SEARCH         &kp LG(D)       &kp LG(E)       &kp LG(TAB)    &kp PAUSE_BREAK    &kp SLCK
-&kp LCTRL     &kp LC(LS(T))       &kp LC(LS(TAB))      &kp LC(R)       &kp LC(TAB)        &kp LC(W)    &kp C_MUTE                       &kp DOWN                &kp LC(LS(ESC))         &kp LG(LEFT)    &kp LG(RIGHT)   &kp LG(H)      &kp LG(L)          &kp KP_NUM
+&alt_tab      &kp HOME            &kp ENTER            &kp UP          &kp SPC            &mkp MB5                                      &kp UP                  &kp LG(SEMI)            &kp LG(UP)      &kp LG(DOWN)     &kp LG(C)      &kp LG(TAB)        &kp KP_NUM
+&kp LSHFT     &kp END             &kp LEFT             &kp DOWN        &kp RIGHT          &mkp MB4                            &kp LEFT  &kp ENTER  &kp RIGHT    &kp C_AC_SEARCH         &kp F2          &kp LC(LS(N))    &kp LC(P)      &kp LC(LS(ESC))    &kp SLCK
+&kp LCTRL     &kp LC(LS(T))       &kp LC(LS(TAB))      &kp LC(R)       &kp LC(TAB)        &kp LC(W)    &kp C_MUTE                       &kp DOWN                &kp LG(E)               &kp LG(LEFT)    &kp LG(RIGHT)    &kp LG(H)      &kp LG(L)          &kp LG(D)
                                                        &trans          &trans             &trans                                                                &trans                  &trans          &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
