@@ -50,8 +50,8 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', h: numbnolight_layer}
   - {t: '&win_space', h: nav2nolight_layer}
   nav1_layer:
-  - $$mdi:keyboard-esc$$
   - Ctl+Alt+$$mdi:backspace-reverse-outline$$
+  - $$mdi:printer-outline$$
   - Gui+$$mdi:keyboard-esc$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -64,7 +64,7 @@ layers:
   - '&macro_comma_uni'
   - PG UP
   - {t: '$$mdi:transfer$$', type: trans}
-  - Ctl+$$mdi:keyboard-tab$$
+  - PAUSE BREAK
   - Gui+KP PLUS
   - {t: '$$mdi:minus-circle-outline$$', type: held}
   - {t: '$$mdi:minus-circle-outline$$', type: held}
@@ -79,7 +79,7 @@ layers:
   - '&msc MOVE_X(150)'
   - {t: '$$mdi:backspace$$', type: backspace}
   - {t: '$$mdi:transfer$$', type: trans}
-  - Ctl+Sft+$$mdi:keyboard-tab$$
+  - INS
   - Gui+KP MINUS
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -491,8 +491,8 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   nav3_layer:
-  - $$mdi:keyboard-esc$$
   - Ctl+Alt+$$mdi:backspace-reverse-outline$$
+  - $$mdi:printer-outline$$
   - Gui+$$mdi:keyboard-esc$$
   - {t: '$$mdi:minus-circle-outline$$', type: held}
   - {t: '$$mdi:minus-circle-outline$$', type: held}
@@ -505,7 +505,7 @@ layers:
   - '&macro_comma_uni'
   - PG UP
   - {t: '$$mdi:transfer$$', type: trans}
-  - Ctl+$$mdi:keyboard-tab$$
+  - PAUSE BREAK
   - Gui+KP PLUS
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -520,7 +520,7 @@ layers:
   - '&msc MOVE_X(150)'
   - {t: '$$mdi:backspace$$', type: backspace}
   - {t: '$$mdi:transfer$$', type: trans}
-  - Ctl+Sft+$$mdi:keyboard-tab$$
+  - INS
   - Gui+KP MINUS
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -649,8 +649,8 @@ layers:
   - Gui+$$mdi:arrow-up-bold$$
   - Gui+$$mdi:arrow-down-bold$$
   - {t: C, h: '$$mdi:apple-keyboard-command$$'}
-  - INS
-  - $$mdi:printer-outline$$
+  - Gui+$$mdi:keyboard-tab$$
+  - KP NUM
   - $$mdi:apple-keyboard-shift$$
   - END
   - $$mdi:arrow-left-bold$$
@@ -661,10 +661,10 @@ layers:
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-right-bold$$
   - AC SEARCH
-  - {t: D, h: '$$mdi:apple-keyboard-command$$'}
-  - Gui+E
-  - Gui+$$mdi:keyboard-tab$$
-  - PAUSE BREAK
+  - F2
+  - Ctl+Sft+N
+  - Ctl+P
+  - Ctl+Sft+$$mdi:keyboard-esc$$
   - SLCK
   - $$mdi:apple-keyboard-control$$
   - Ctl+Sft+T
@@ -674,12 +674,12 @@ layers:
   - Ctl+W
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
-  - Ctl+Sft+$$mdi:keyboard-esc$$
+  - Gui+E
   - Gui+$$mdi:arrow-left-bold$$
   - Gui+$$mdi:arrow-right-bold$$
   - Gui+H
-  - Ctl+P
-  - KP NUM
+  - Gui+L
+  - {t: D, h: '$$mdi:apple-keyboard-command$$'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -698,8 +698,8 @@ layers:
   - Gui+$$mdi:arrow-up-bold$$
   - Gui+$$mdi:arrow-down-bold$$
   - {t: C, h: '$$mdi:apple-keyboard-command$$'}
-  - INS
-  - $$mdi:printer-outline$$
+  - Gui+$$mdi:keyboard-tab$$
+  - KP NUM
   - {t: '$$mdi:apple-keyboard-shift$$', type: held alternate}
   - END
   - $$mdi:arrow-left-bold$$
@@ -710,10 +710,10 @@ layers:
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-right-bold$$
   - AC SEARCH
-  - {t: D, h: '$$mdi:apple-keyboard-command$$'}
-  - Gui+E
-  - Gui+$$mdi:keyboard-tab$$
-  - PAUSE BREAK
+  - F2
+  - Ctl+Sft+N
+  - Ctl+P
+  - Ctl+Sft+$$mdi:keyboard-esc$$
   - SLCK
   - $$mdi:apple-keyboard-control$$
   - Ctl+Sft+T
@@ -723,12 +723,12 @@ layers:
   - Ctl+W
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
-  - Ctl+Sft+$$mdi:keyboard-esc$$
+  - Gui+E
   - Gui+$$mdi:arrow-left-bold$$
   - Gui+$$mdi:arrow-right-bold$$
   - Gui+H
   - Gui+L
-  - KP NUM
+  - {t: D, h: '$$mdi:apple-keyboard-command$$'}
   - {type: held}
   - {type: held alternate}
   - {t: '$$mdi:transfer$$', type: trans}
