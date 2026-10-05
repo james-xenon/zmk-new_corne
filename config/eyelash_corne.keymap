@@ -373,6 +373,21 @@
                 <&macro_tap &kp KP_N6>,
                 <&macro_release &kp LALT>;
         };
+        // Ё через Alt+Code (01105 = строчная ё)
+        macro_yo_uni: macro_yo_uni {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <5>;
+            tap-ms = <5>;
+            bindings =
+                <&macro_press &kp LALT>,
+                <&macro_tap &kp KP_N0>,
+                <&macro_tap &kp KP_N1>,
+                <&macro_tap &kp KP_N1>,
+                <&macro_tap &kp KP_N0>,
+                <&macro_tap &kp KP_N5>,
+                <&macro_release &kp LALT>;
+        };
         // ° через Alt+Code (0176 = °)
         macro_degree_uni: macro_degree_uni {
             compatible = "zmk,behavior-macro";
@@ -597,6 +612,19 @@
             tap-ms = <0>;
             bindings = <&macro_param_1to1 &macro_press &kp 0>,
                        <&macro_param_1to1 &macro_release &kp 0>;
+        };
+        // Hold-Tap t_yo_ht (Клавиша T):
+        // Тап -> Символ T
+        // Удержание -> Макрос ё (через Alt-Code)
+        // Параметры идентичны edit_ht / b_alt_ht для единообразия ощущений.
+        t_yo_ht: t_yo_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";           // Приоритет букве T при быстром наборе
+            tapping-term-ms = <220>;            // Окно решения (мс), как у edit_ht
+            quick-tap-ms = <150>;               // Защита от дабл-тапа, как у edit_ht
+            require-prior-idle-ms = <150>;      // ЗАЩИТА ОТ ЛОЖНЫХ ХОЛДОВ ПОСЛЕ СОСЕДЕЙ (R, Y)
+            bindings = <&macro_yo_uni>, <&kp>;  // Холд -> макрос ё, Тап -> параметр (T)
         };
         // Hold-Tap edit_ht (Клавиши редактирования левой руки: A, S, F, Z, X, C, V):
         // Тап -> Обычный символ
@@ -1176,7 +1204,7 @@
         default_layer {
             display-name = "default_layer";
             bindings = <
-&kp TAB                  &kp Q             &kp W             &kp E               &kp R              &kp T                                    &kp UP                &media_ht C_PP Y    &media_ht C_PREV U      &media_ht C_NEXT I  &media_ht C_STOP O  &kp P               &lbkt_screenshot 0 LBKT
+&kp TAB                  &kp Q             &kp W             &kp E               &kp R              &t_yo_ht T                               &kp UP                &media_ht C_PP Y    &media_ht C_PREV U      &media_ht C_NEXT I  &media_ht C_STOP O  &kp P               &lbkt_screenshot 0 LBKT
 &kp LSHIFT               &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D               &edit_ht LC(F) F   &kp G                          &kp LEFT  &kp SPC   &kp RIGHT   &kp H               &kp J                   &kp K               &kp L               &semi_fn_ht 4 SEMI  &mt LSHFT SQT
 &kp LCTRL                &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C    &edit_ht LC(V) V   &b_alt_ht LALT B   &kp C_MUTE            &kp DOWN              &n_alt_ht LALT N    &kp M                   &kp COMMA           &kp DOT             &kp FSLH            &kp ESC
                                                              &lefthand_ht 14 0   &symb_win_td 17 0  &kp SPC                                                        &kp ENTER           &thumb_num_sym_fn 15 0  &lang_nav2 12 0
@@ -1255,10 +1283,10 @@
         nav2_layer {
             display-name = "nav2_layer";
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans                      &trans              &trans  &trans  &trans     &kp ESC    &kp DEL   &kp BSPC
-&trans  &trans  &trans  &trans  &trans  &trans              &trans  &trans  &trans      &trans  &trans  &trans     &kp ENTER  &kp UP    &kp SPC
-&trans  &trans  &trans  &trans  &trans  &trans  &trans              &trans              &trans  &trans  &kp LSHFT  &kp LEFT   &kp DOWN  &kp RIGHT
-                        &trans  &trans  &trans                                          &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                      &trans              &trans  &kp HOME  &kp PG_UP     &kp ESC    &kp DEL   &kp BSPC
+&trans  &trans  &trans  &trans  &trans  &trans              &trans  &trans  &trans      &trans  &kp END   &kp PG_DN     &kp ENTER  &kp UP    &kp SPC
+&trans  &trans  &trans  &trans  &trans  &trans  &trans              &trans              &trans  &trans    &kp LSHFT     &kp LEFT   &kp DOWN  &kp RIGHT
+                        &trans  &trans  &trans                                          &trans  &trans   &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
@@ -1267,7 +1295,7 @@
         gaming1_layer {
             display-name = "gaming1_layer";
             bindings = <
-&kp TAB    &kp Q  &kp W  &kp E                 &kp R   &kp T                            &kp UP                  &kp Y      &kp U   &kp I      &kp O    &kp P     &kp BSPC
+&kp TAB    &kp Q  &kp W  &kp E                 &kp R   &t_yo_ht T                       &kp UP                  &kp Y      &kp U   &kp I      &kp O    &kp P     &kp BSPC
 &kp LSHFT  &kp A  &kp S  &kp D                 &kp F   &kp G                  &kp LEFT  &kp ENTER  &kp RIGHT    &kp H      &kp J   &kp K      &kp L    &kp SEMI  &kp LSHFT
 &kp LCTRL  &kp Z  &kp X  &kp C                 &kp V   &kp B      &kp C_MUTE            &kp DOWN                &kp N      &kp M   &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
                          &gaming_mo9_alt 9 0   &mo 8   &kp SPACE                                                &kp ENTER  &none   &none
@@ -1315,7 +1343,7 @@
         speedtype {
             display-name = "speedtype";
             bindings = <
-&kp TAB    &kp Q  &kp W  &kp E      &kp R              &kp T                               &kp UP                 &kp Y      &kp U                   &kp I              &kp O       &kp P     &kp LBKT
+&kp TAB    &kp Q  &kp W  &kp E      &kp R              &t_yo_ht T                          &kp UP                 &kp Y      &kp U                   &kp I              &kp O       &kp P     &kp LBKT
 &kp LSHFT  &kp A  &kp S  &kp D      &kp F              &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT   &kp H      &kp J                   &kp K              &kp L       &kp SEMI  &kp SQT
 &kp LCTRL  &kp Z  &kp X  &kp C      &kp V              &kp B      &kp C_MUTE               &kp DOWN               &kp N      &kp M                   &kp COMMA          &kp DOT     &kp FSLH  &kp ESC
                          &kp RALT   &symb_win_td 17 0  &kp SPC                                                    &kp ENTER  &thumb_num_sym_fn 15 0  &lang_nav2 12 0
@@ -1327,10 +1355,10 @@
         nav2nolight_layer {
             display-name = "nav2nolight_layer";
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans                      &trans              &trans  &trans  &trans     &kp ESC    &kp DEL   &kp BSPC
-&trans  &trans  &trans  &trans  &trans  &trans              &trans  &trans  &trans      &trans  &trans  &trans     &kp ENTER  &kp UP    &kp SPC
-&trans  &trans  &trans  &trans  &trans  &trans  &trans              &trans              &trans  &trans  &kp LSHFT  &kp LEFT   &kp DOWN  &kp RIGHT
-                        &trans  &trans  &trans                                          &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                      &trans              &trans  &kp HOME  &kp PG_UP  &kp ESC    &kp DEL   &kp BSPC
+&trans  &trans  &trans  &trans  &trans  &trans              &trans  &trans  &trans      &trans  &kp END   &kp PG_DN  &kp ENTER  &kp UP    &kp SPC
+&trans  &trans  &trans  &trans  &trans  &trans  &trans              &trans              &trans  &trans    &kp LSHFT  &kp LEFT   &kp DOWN  &kp RIGHT
+                        &trans  &trans  &trans                                          &trans  &trans    &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
