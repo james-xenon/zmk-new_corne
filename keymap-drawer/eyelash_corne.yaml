@@ -6,7 +6,7 @@ layers:
   - W
   - E
   - R
-  - T
+  - '&t_yo_ht T'
   - $$mdi:arrow-up-bold$$
   - {t: Y, h: '$$mdi:play-pause$$'}
   - {t: U, h: '$$mdi:skip-previous$$'}
@@ -303,8 +303,8 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - HOME
+  - PG UP
   - $$mdi:keyboard-esc$$
   - $$mdi:backspace-reverse-outline$$
   - {t: '$$mdi:backspace$$', type: backspace}
@@ -318,8 +318,8 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - END
+  - PG DN
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-up-bold$$
   - SPC
@@ -349,7 +349,7 @@ layers:
   - W
   - E
   - R
-  - T
+  - '&t_yo_ht T'
   - $$mdi:arrow-up-bold$$
   - Y
   - U
@@ -545,7 +545,7 @@ layers:
   - W
   - E
   - R
-  - T
+  - '&t_yo_ht T'
   - $$mdi:arrow-up-bold$$
   - Y
   - U
@@ -597,8 +597,8 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - HOME
+  - PG UP
   - $$mdi:keyboard-esc$$
   - $$mdi:backspace-reverse-outline$$
   - {t: '$$mdi:backspace$$', type: backspace}
@@ -612,8 +612,8 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - END
+  - PG DN
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-up-bold$$
   - SPC
