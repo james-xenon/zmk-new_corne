@@ -25,10 +25,18 @@
         init-delay-ms = <50>;
     };
 
+    left_encoder: encoder_left {
+        compatible = "alps,ec11";
+        a-gpios = <&gpio1 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&gpio1 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <24>;
+        status = "okay";
+    };
+
     sensors {
         compatible = "zmk,keymap-sensors";
         triggers-per-rotation = <24>;
-        sensors = <&qdec0>;
+        sensors = <&left_encoder>;
     };
 
     kscan0: kscan {
@@ -128,12 +136,7 @@
 };
 
 &qdec0 {
-    status = "okay";
-    pinctrl-0 = <&qdec_default>;
-    pinctrl-1 = <&qdec_sleep>;
-    pinctrl-names = "default", "sleep";
-    led-pre = <0>;
-    steps = <12>;
+    status = "disabled";
 };
 
 nice_view_spi: &spi0 {
