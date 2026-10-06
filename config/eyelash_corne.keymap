@@ -610,12 +610,12 @@
         // Удержание -> Тильда ~ (на случай удержания)
         t_tilde_ht: t_tilde_ht {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <0>;
+            #binding-cells = <2>; // Обязательно 2 для hold-tap!
             flavor = "tap-preferred";           
             tapping-term-ms = <220>;            
             quick-tap-ms = <150>;               
             require-prior-idle-ms = <150>;      
-            bindings = <&kp T>, <&macro_tilde_direct>;
+            bindings = <&kp>, <&macro_tilde_direct>; // kp принимает код клавиши, макрос - нет
         };
         // Hold-Tap edit_ht (Клавиши редактирования левой руки: A, S, F, Z, X, C, V):
         // Тап -> Обычный символ
@@ -1286,7 +1286,7 @@
         gaming1_layer {
             display-name = "gaming1_layer";
             bindings = <
-&kp TAB    &kp Q  &kp W  &kp E                 &kp R   &t_tilde_ht                      &kp UP                  &kp Y      &kp U   &kp I      &kp O    &kp P     &kp BSPC
+&kp TAB    &kp Q  &kp W  &kp E                 &kp R   &t_tilde_ht T 0                  &kp UP                  &kp Y      &kp U   &kp I      &kp O    &kp P     &kp BSPC
 &kp LSHFT  &kp A  &kp S  &kp D                 &kp F   &kp G                  &kp LEFT  &kp ENTER  &kp RIGHT    &kp H      &kp J   &kp K      &kp L    &kp SEMI  &kp LSHFT
 &kp LCTRL  &kp Z  &kp X  &kp C                 &kp V   &kp B      &kp C_MUTE            &kp DOWN                &kp N      &kp M   &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
                          &gaming_mo9_alt 9 0   &mo 8   &kp SPACE                                                &kp ENTER  &none   &none
@@ -1334,7 +1334,7 @@
         speedtype {
             display-name = "speedtype";
             bindings = <
-&kp TAB    &kp Q  &kp W  &kp E      &kp R              &t_tilde_ht                         &kp UP                 &kp Y      &kp U                   &kp I              &kp O       &kp P     &kp LBKT
+&kp TAB    &kp Q  &kp W  &kp E      &kp R              &t_tilde_ht T 0                     &kp UP                 &kp Y      &kp U                   &kp I              &kp O       &kp P     &kp LBKT
 &kp LSHFT  &kp A  &kp S  &kp D      &kp F              &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT   &kp H      &kp J                   &kp K              &kp L       &kp SEMI  &kp SQT
 &kp LCTRL  &kp Z  &kp X  &kp C      &kp V              &kp B      &kp C_MUTE               &kp DOWN               &kp N      &kp M                   &kp COMMA          &kp DOT     &kp FSLH  &kp ESC
                          &kp RALT   &symb_win_td 17 0  &kp SPC                                                    &kp ENTER  &thumb_num_sym_fn 15 0  &lang_nav2 12 0
