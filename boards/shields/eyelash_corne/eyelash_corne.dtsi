@@ -25,12 +25,6 @@
         init-delay-ms = <50>;
     };
 
-    sensors {
-        compatible = "zmk,keymap-sensors";
-        triggers-per-rotation = <24>;
-        sensors = <&left_encoder>;
-    };
-
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         wakeup-source;

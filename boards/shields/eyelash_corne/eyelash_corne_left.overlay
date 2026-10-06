@@ -8,6 +8,12 @@
         steps = <80>;
         status = "okay";
     };
+
+    sensors {
+        compatible = "zmk,keymap-sensors";
+        triggers-per-rotation = <24>;
+        sensors = <&left_encoder>;
+    };
 };
 
 &qdec0 {

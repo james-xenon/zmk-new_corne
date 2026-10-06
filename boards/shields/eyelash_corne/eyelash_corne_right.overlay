@@ -1,21 +1,12 @@
 /*
- * Copyright (c) 2024 The ZMK Contributors
- * SPDX-License-Identifier: MIT
- */
+*
+* Copyright (c) 2024 The ZMK Contributors
+* SPDX-License-Identifier: MIT
+*
+*/
 
 #include "eyelash_corne.dtsi"
 
 &default_transform {
     col-offset = <7>;
-};
-
-/* Отключаем или переопределяем блок sensors для правой стороны, так как там нет энкодера */
-/ {
-    sensors {
-        compatible = "zmk,keymap-sensors";
-        status = "disabled";
-        /* Если вместо энкодера используется что-то другое, что обрабатывается через ZMK, 
-           здесь можно настроить соответствующие триггеры, либо просто отключить блок `sensors`, 
-           если для джойстика используется отдельный драйвер (например, pointer/input). */
-    };
 };
