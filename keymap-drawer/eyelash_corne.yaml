@@ -349,7 +349,7 @@ layers:
   - W
   - E
   - R
-  - '&t_tilde_ht'
+  - {t: '&macro_tilde_direct', h: T}
   - $$mdi:arrow-up-bold$$
   - Y
   - U
@@ -545,7 +545,7 @@ layers:
   - W
   - E
   - R
-  - '&t_tilde_ht'
+  - {t: '&macro_tilde_direct', h: T}
   - $$mdi:arrow-up-bold$$
   - Y
   - U
