@@ -373,21 +373,6 @@
                 <&macro_tap &kp KP_N6>,
                 <&macro_release &kp LALT>;
         };
-        // Ё через Alt+Code (01105 = строчная ё)
-        macro_yo_uni: macro_yo_uni {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <5>;
-            tap-ms = <5>;
-            bindings =
-                <&macro_press &kp LALT>,
-                <&macro_tap &kp KP_N0>,
-                <&macro_tap &kp KP_N1>,
-                <&macro_tap &kp KP_N1>,
-                <&macro_tap &kp KP_N0>,
-                <&macro_tap &kp KP_N5>,
-                <&macro_release &kp LALT>;
-        };
         // ° через Alt+Code (0176 = °)
         macro_degree_uni: macro_degree_uni {
             compatible = "zmk,behavior-macro";
@@ -613,18 +598,17 @@
             bindings = <&macro_param_1to1 &macro_press &kp 0>,
                        <&macro_param_1to1 &macro_release &kp 0>;
         };
-        // Hold-Tap t_yo_ht (Клавиша T):
+        // Hold-Tap t_tilde_ht (Клавиша T):
         // Тап -> Символ T
-        // Удержание -> Макрос ё (через Alt-Code)
-        // Параметры идентичны edit_ht / b_alt_ht для единообразия ощущений.
+        // Удержание -> Тильда ~ (работает везде: Win, Android, Linux)
         t_yo_ht: t_yo_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "tap-preferred";           // Приоритет букве T при быстром наборе
-            tapping-term-ms = <220>;            // Окно решения (мс), как у edit_ht
-            quick-tap-ms = <150>;               // Защита от дабл-тапа, как у edit_ht
-            require-prior-idle-ms = <150>;      // ЗАЩИТА ОТ ЛОЖНЫХ ХОЛДОВ ПОСЛЕ СОСЕДЕЙ (R, Y)
-            bindings = <&macro_yo_uni>, <&kp>;  // Холд -> макрос ё, Тап -> параметр (T)
+            flavor = "tap-preferred";           
+            tapping-term-ms = <220>;            
+            quick-tap-ms = <150>;               
+            require-prior-idle-ms = <150>;      
+            bindings = <&kp LS(GRAVE)>, <&kp>;  // Холд -> Shift+Grave (~), Тап -> параметр (T)
         };
         // Hold-Tap edit_ht (Клавиши редактирования левой руки: A, S, F, Z, X, C, V):
         // Тап -> Обычный символ
