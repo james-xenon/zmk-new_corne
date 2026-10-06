@@ -6,7 +6,7 @@ layers:
   - W
   - E
   - R
-  - {t: T, h: '&macro_tilde_direct'}
+  - '&t_tilde_ht'
   - $$mdi:arrow-up-bold$$
   - {t: Y, h: '$$mdi:play-pause$$'}
   - {t: U, h: '$$mdi:skip-previous$$'}
@@ -349,7 +349,7 @@ layers:
   - W
   - E
   - R
-  - {t: T, h: '&macro_tilde_direct'}
+  - '&t_tilde_ht'
   - $$mdi:arrow-up-bold$$
   - Y
   - U
@@ -545,7 +545,7 @@ layers:
   - W
   - E
   - R
-  - {t: T, h: '&macro_tilde_direct'}
+  - '&t_tilde_ht'
   - $$mdi:arrow-up-bold$$
   - Y
   - U
