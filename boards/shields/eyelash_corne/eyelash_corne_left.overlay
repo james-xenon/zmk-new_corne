@@ -1,9 +1,1 @@
 #include "eyelash_corne.dtsi"
-&qdec0 {
-    status = "okay";
-    pinctrl-0 = <&qdec_default>;
-    pinctrl-1 = <&qdec_sleep>;
-    pinctrl-names = "default", "sleep";
-    led-pre = <0>;
-    steps = <24>;
-};
