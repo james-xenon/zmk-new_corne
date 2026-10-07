@@ -137,6 +137,43 @@
             compatible = "zmk,behavior-rgb-timeout";
             #binding-cells = <1>;
         };
+                // --- НОВЫЕ ПОВЕДЕНИЯ ДЛЯ ПРОГРАММНОГО ЭНКОДЕРА (EC11) ---
+        // Математика: 1 клик = 4 импульса. Чтобы получить 1 действие на клик:
+        // steps должен быть равен 4 * triggers_per_rotation.
+        // При tpr=24 -> steps=96.
+        
+        enc_vol_up: enc_vol_up {
+            compatible = "zmk,behavior-sensor-rotate";
+            sensor-binding = <&enc0 1>; // Ссылка на наш новый software encoder
+            steps = <96>;               // КРИТИЧНО: 96 для стабильности EC11
+            triggers-per-rotation = <24>;
+            bindings = <&kp C_VOLUME_UP>;
+        };
+
+        enc_vol_down: enc_vol_down {
+            compatible = "zmk,behavior-sensor-rotate";
+            sensor-binding = <&enc0 -1>; // Инвертированное направление
+            steps = <96>;
+            triggers-per-rotation = <24>;
+            bindings = <&kp C_VOLUME_DOWN>;
+        };
+        
+        // Для слоев навигации (Ctrl+Left/Right)
+        enc_nav_right: enc_nav_right {
+            compatible = "zmk,behavior-sensor-rotate";
+            sensor-binding = <&enc0 1>;
+            steps = <96>;
+            triggers-per-rotation = <24>;
+            bindings = <&kp LC(RIGHT)>;
+        };
+
+        enc_nav_left: enc_nav_left {
+            compatible = "zmk,behavior-sensor-rotate";
+            sensor-binding = <&enc0 -1>;
+            steps = <96>;
+            triggers-per-rotation = <24>;
+            bindings = <&kp LC(LEFT)>;
+        };
         // Вспомогательный макрос для одиночного срабатывания комбо R+T:
         // Быстро отправляет буквы R и T подряд без задержки
         macro_combo_rt: macro_combo_rt {
@@ -1200,7 +1237,7 @@
 &kp LCTRL                &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C    &edit_ht LC(V) V   &b_alt_ht LALT B   &kp C_MUTE            &kp DOWN              &n_alt_ht LALT N    &kp M                   &kp COMMA           &kp DOT             &kp FSLH            &kp ESC
                                                              &lefthand_ht 14 0   &symb_win_td 17 0  &kp SPC                                                        &kp ENTER           &thumb_num_sym_fn 15 0  &lang_nav2 12 0
             >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+            sensor-bindings = <&enc_vol_up &enc_vol_down>;
         };
         // Слой 1: Навигация 1 (Управление курсором мыши, кликами, стрелками и Home/End)
         // Энкодер: Ctrl+Right / Ctrl+Left (переход по словам).
@@ -1212,7 +1249,7 @@
 &trans           &kp INS           &kp LG(KP_MINUS)   &none  &none  &none       &trans                  &mmv MOVE_DOWN                     &kp END            &msc MOVE_Y(-150)  &mkp MCLK  &msc MOVE_Y(150)     &macro_qmark_uni   &kp PG_DN
                                                       &trans &trans &trans                                                                 &trans             &trans             &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&enc_nav_right &enc_nav_left>;
         };
         // Слой 2: Символы. В текущем widget.c это persistent-слой правой половины.
         // Энкодер: Громкость (Volume Up / Down)
@@ -1224,7 +1261,7 @@
 &dqt_pipe_ht PIPE 0             &percent_amp_ht PRCNT AMPS    &equal_tilde_ht TILDE EQUAL    &plus_gt_ht GT PLUS            &minus_lt_ht LT MINUS   &under_lshft_ht LSHFT UNDER     &trans                 &kp DOWN               &under_lshft_ht LSHFT UNDER   &minus_lt_ht LT MINUS        &plus_gt_ht GT PLUS          &equal_tilde_ht TILDE EQUAL  &percent_amp_ht PRCNT AMPS    &dqt_pipe_ht PIPE 0
                                                                                              &trans                         &trans                  &kp SPC                                                                       &kp ENTER                     &trans                       &trans
             >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+            sensor-bindings = <&enc_vol_up &enc_vol_down>;
         };
         // Слой 3: Цифры/Numpad. В текущем widget.c это persistent-слой левой половины.
         // Энкодер: Громкость (Volume Up / Down)
@@ -1236,7 +1273,7 @@
 &kp KP_ENTER           &div_lshft_ht LSHFT KP_DIVIDE       &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                          &msc SCRL_DOWN                     &kp KP_EQUAL   &kp N1  &kp N2  &kp N3  &div_lshft_ht LSHFT KP_DIVIDE    &kp KP_ENTER
                                                                    &trans  &trans  &trans                                                                             &trans         &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+            sensor-bindings = <&enc_vol_up &enc_vol_down>;
         };
         // Слой 4: Функциональный блок (Клавиши F1-F12 и управление мышью)
         // Энкодер: Ctrl+Right / Ctrl+Left (переход по словам).
@@ -1248,7 +1285,7 @@
 &kp LCTRL                   &none   &none    &none     &none    &kp C_AL_CALCULATOR  &trans                       &mmv MOVE_DOWN                     &kp F12   &kp F1  &kp F2  &kp F3  &none  &none
                                              &trans    &trans   &trans                                                                               &trans  &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&enc_nav_right &enc_nav_left>;
         };
         // Слой 5: Сервисный (Bluetooth, выход USB/BLE, ZMK Studio, RGB underglow, WS2812 widget).
         // Реальные underglow-эффекты: RGB_EFR = предыдущий, RGB_EFF = следующий.
@@ -1266,7 +1303,7 @@
 &bt BT_CLR_ALL     &kp LA(F4)     &none            &kp LG(LC(LEFT))     &kp LG(LC(RIGHT))    &out OUT_USB    &trans                &trans              &rgb_ug RGB_EFR   &rgb_ug RGB_EFF   &rgb_ug RGB_SPD     &rgb_ug RGB_SPI    &rgb_ug RGB_BRD  &rgb_ug RGB_BRI
                                                    &trans               &trans               &trans                                                    &rgb_ug RGB_ON    &trans            &rgb_ug RGB_OFF
     >;
-    sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+    sensor-bindings = <&enc_vol_up &enc_vol_down>;
 };
 
         // Слой 6: Навигация 2 (Фиксируемый слой навигации: стрелки, Enter, Delete, Backspace)
@@ -1279,7 +1316,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans  &trans              &trans              &trans  &trans    &kp LSHFT     &kp LEFT   &kp DOWN  &kp RIGHT
                         &trans  &trans  &trans                                          &trans  &trans   &trans
             >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+            sensor-bindings = <&enc_vol_up &enc_vol_down>;
         };
         // Слой 7: Игровой 1 (Оптимизированная раскладка WASD с прямым доступом к Shift/Ctrl)
         // Энкодер: Громкость (Volume Up / Down)
@@ -1291,7 +1328,7 @@
 &kp LCTRL  &kp Z  &kp X  &kp C                 &kp V   &kp B      &kp C_MUTE            &kp DOWN                &kp N      &kp M   &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
                          &gaming_mo9_alt 9 0   &mo 8   &kp SPACE                                                &kp ENTER  &none   &none
             >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+            sensor-bindings = <&enc_vol_up &enc_vol_down>;
         };
         // Слой 8: Игровой 2 (Игровой слой для цифр и F-клавиш)
         // Энкодер: Громкость (Volume Up / Down)
@@ -1303,7 +1340,7 @@
 &kp LCTRL                     &kp N7   &none    &kp N8   &kp N9  &none       &kp C_MUTE               &kp DOWN               &kp F12       &kp F1     &kp F2  &kp F3  &none    &kp ESC
                                                 &none    &none   &kp SPACE                                                   &kp ENTER     &none      &none
             >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+            sensor-bindings = <&enc_vol_up &enc_vol_down>;
         };
         // Слой 9: Игровой 3 (Альтернативная игровая раскладка под правую руку/доп. действия)
         // Энкодер: Громкость (Volume Up / Down)
@@ -1315,7 +1352,7 @@
 &kp LCTRL  &kp M  &none  &kp N  &kp COMMA  &kp DOT   &kp C_MUTE            &kp DOWN               &kp F12       &kp F1  &kp F2  &kp F3  &none    &kp ESC
                          &mo 9  &none      &kp SPACE                                              &kp ENTER     &none   &none
             >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+            sensor-bindings = <&enc_vol_up &enc_vol_down>;
         };
         // Слой 10: Навигация 3 (Продвинутое управление мышью и скроллом)
         // Энкодер: Ctrl+Right / Ctrl+Left (переход по словам).
@@ -1327,7 +1364,7 @@
 &trans           &kp INS           &kp LG(KP_MINUS)   &none  &none  &none   &kp C_MUTE             &kp DOWN                 &kp END            &msc MOVE_Y(-150)    &mkp MCLK       &msc MOVE_Y(150)   &macro_dot_uni     &kp PG_DN
                                                       &trans &trans &trans                                                  &trans             &trans               &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&enc_nav_right &enc_nav_left>;
         };
         // Слой 11: Speedtype (Чистая печать без модификаторов hold-tap на основной буквенной зоне)
         // Энкодер: Громкость (Volume Up / Down)
@@ -1339,7 +1376,7 @@
 &kp LCTRL  &kp Z  &kp X  &kp C      &kp V              &kp B      &kp C_MUTE               &kp DOWN               &kp N      &kp M                   &kp COMMA          &kp DOT     &kp FSLH  &kp ESC
                          &kp RALT   &symb_win_td 17 0  &kp SPC                                                    &kp ENTER  &thumb_num_sym_fn 15 0  &lang_nav2 12 0
             >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+            sensor-bindings = <&enc_vol_up &enc_vol_down>;
         };
         // Слой 12: Навигация 2 без подсветки (Временный слой для навигации при зажатии lang_nav2)
         // Энкодер: Ctrl+Right / Ctrl+Left (переход по словам).
@@ -1351,7 +1388,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans  &trans              &trans              &trans  &trans    &kp LSHFT  &kp LEFT   &kp DOWN  &kp RIGHT
                         &trans  &trans  &trans                                          &trans  &trans    &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&enc_nav_right &enc_nav_left>;
         };
         // Слой 13: Управление одной левой рукой.
         // Сам слой постоянный RGB-профиль не выбирает; временная ON/OFF-индикация
@@ -1365,7 +1402,7 @@
 &kp LCTRL     &kp LC(LS(T))       &kp LC(LS(TAB))      &kp LC(R)       &kp LC(TAB)        &kp LC(W)    &kp C_MUTE                       &kp DOWN                &kp LG(E)               &kp LG(LEFT)    &kp LG(RIGHT)    &kp LG(H)      &kp LG(L)          &kp LG(D)
                                                        &trans          &trans             &trans                                                                &trans                  &trans          &trans
             >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+            sensor-bindings = <&enc_vol_up &enc_vol_down>;
         };
         // Слой 14: Управление одной левой рукой без вызова ws2812_lsync.
         // Энкодер: Ctrl+Right / Ctrl+Left (переход по словам).
@@ -1377,7 +1414,7 @@
 &kp LCTRL     &kp LC(LS(T))       &kp LC(LS(TAB))      &kp LC(R)       &kp LC(TAB)        &kp LC(W)    &kp C_MUTE                       &kp DOWN                &kp LG(E)               &kp LG(LEFT)    &kp LG(RIGHT)    &kp LG(H)      &kp LG(L)          &kp LG(D)
                                                        &trans          &trans             &trans                                                                &trans                  &trans          &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&enc_nav_right &enc_nav_left>;
         };
         // Слой 15: Цифры без persistent-подсветки; вызывается hold-частью thumb_num_sym_fn 15 0.
         // На правой крайней клавише: &bspc_to_layer_ht 16 BSPC -> hold слой 16, tap BSPC.
@@ -1390,7 +1427,7 @@
 &kp KP_ENTER          &div_lshft_ht LSHFT KP_DIVIDE    &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                                 &msc SCRL_DOWN                    &kp KP_EQUAL    &kp N1  &kp N2  &kp N3  &div_lshft_ht LSHFT KP_DIVIDE    &kp KP_ENTER
                                                                &trans  &trans  &trans                                                                                   &kp ENTER       &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&enc_nav_right &enc_nav_left>;
         };
         // Слой 16: Копия символов без persistent-подсветки.
         // Вызывается hold-частью &bspc_to_layer_ht 16 BSPC на слое 15.
@@ -1403,7 +1440,7 @@
 &dqt_pipe_ht PIPE 0             &percent_amp_ht PRCNT AMPS    &equal_tilde_ht TILDE EQUAL    &plus_gt_ht GT PLUS            &minus_lt_ht LT MINUS   &under_lshft_ht LSHFT UNDER     &trans                 &kp DOWN               &under_lshft_ht LSHFT UNDER   &minus_lt_ht LT MINUS        &plus_gt_ht GT PLUS          &equal_tilde_ht TILDE EQUAL  &percent_amp_ht PRCNT AMPS    &dqt_pipe_ht PIPE 0
                                                                                              &trans                         &trans                  &kp SPC                                                                       &kp ENTER                     &trans                       &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&enc_nav_right &enc_nav_left>;
         };
         // Слой 17: Символы без persistent-подсветки; вызывается hold-частью symb_win_td 17 0.
         // На левой крайней клавише: &bspc_to_numb_ht 18 FSLH -> hold слой 18, tap '/'.
@@ -1416,7 +1453,7 @@
 &dqt_pipe_ht PIPE 0             &percent_amp_ht PRCNT AMPS    &equal_tilde_ht TILDE EQUAL    &plus_gt_ht GT PLUS            &minus_lt_ht LT MINUS   &under_lshft_ht LSHFT UNDER     &trans                 &kp DOWN               &under_lshft_ht LSHFT UNDER   &minus_lt_ht LT MINUS        &plus_gt_ht GT PLUS          &equal_tilde_ht TILDE EQUAL  &percent_amp_ht PRCNT AMPS    &dqt_pipe_ht PIPE 0
                                                                                              &trans                         &trans                  &kp SPC                                                                       &kp ENTER                     &trans                       &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&enc_nav_right &enc_nav_left>;
         };
         // Слой 18: Копия цифр без persistent-подсветки.
         // Вызывается hold-частью &bspc_to_numb_ht 18 FSLH на слое 17 (и также доступен из слоя 16).
@@ -1429,7 +1466,7 @@
 &kp KP_ENTER          &div_lshft_ht LSHFT KP_DIVIDE    &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                           &msc SCRL_DOWN                     &kp KP_EQUAL   &kp N1  &kp N2  &kp N3  &div_lshft_ht LSHFT KP_DIVIDE    &kp KP_ENTER
                                                                &trans  &trans  &trans                                                                              &kp ENTER      &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&enc_nav_right &enc_nav_left>;
         };
     };
 };
