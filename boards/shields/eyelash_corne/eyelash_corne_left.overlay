@@ -1,48 +1,10 @@
-/*
- * Config Overlay for New Corne
- * Switching from Hardware QDEC to Software EC11 for stability
- */
-
 #include "eyelash_corne.dtsi"
 
-/* 
- * 1. ОПРЕДЕЛЯЕМ ПРОГРАММНЫЙ ЭНКОДЕР (EC11)
- * Мы создаем новый узел 'enc0' внутри корневого узла '/'.
- * ZMK автоматически подхватит его, если он указан в списке sensors 
- * (см. предыдущий шаг с изменением main .dtsi или добавлением сюда override списка sensors).
- */
-/ {
-    /* Переопределяем список сенсоров, чтобы убрать qdec0 и добавить enc0 */
-    /delete-node/ &sensors; /* Удаляем старый узел sensors, если он был определен в base dtsi */
-    
-    sensors: sensors {
-        compatible = "zmk,keymap-sensors";
-        triggers-per-rotation = <24>; /* Глобальное значение по умолчанию */
-        
-        /* ВАЖНО: Теперь мы слушаем только наш новый software encoder */
-        sensors = <&enc0>;
-    };
-
-    /* Само определение энкодера */
-    enc0: encoder_0 {
-        compatible = "zmk,input-encoder";
-        status = "okay";
-        #input-cells = <1>;
-        
-        /* Пины A и B. 
-           В твоем старом конфиге QDEC использовал P1.10 (A) и P1.14 (B).
-           Для EC11 порядок важен. Если направление будет неверным, просто поменяй их местами.
-        */
-        input-bindings = <&gpio1 10 GPIO_ACTIVE_HIGH>,
-                         <&gpio1 14 GPIO_ACTIVE_HIGH>;
-    };
-};
-
-/* 
- * 2. ОТКЛЮЧАЕМ СТАРЫЙ HARDWARE QDEC
- * Хотя выше мы удалили ссылку на него в sensors, лучше явно выключить устройство,
- * чтобы драйвер nRF52 не пытался инициализировать периферию QDEC и не занимал прерывания.
- */
 &qdec0 {
-    status = "disabled";
+    status = "okay";
+    pinctrl-0 = <&qdec_default>;
+    pinctrl-1 = <&qdec_sleep>;
+    pinctrl-names = "default", "sleep";
+    led-pre = <0>;
+    steps = <48>;
 };
