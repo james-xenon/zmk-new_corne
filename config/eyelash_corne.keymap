@@ -137,13 +137,14 @@
             compatible = "zmk,behavior-rgb-timeout";
             #binding-cells = <1>;
         };
-                // --- НОВЫЕ ПОВЕДЕНИЯ ДЛЯ ПРОГРАММНОГО ЭНКОДЕРА (EC11) ---
+        // --- НОВЫЕ ПОВЕДЕНИЯ ДЛЯ ПРОГРАММНОГО ЭНКОДЕРА (EC11) ---
         // Математика: 1 клик = 4 импульса. Чтобы получить 1 действие на клик:
         // steps должен быть равен 4 * triggers_per_rotation.
         // При tpr=24 -> steps=96.
         
         enc_vol_up: enc_vol_up {
             compatible = "zmk,behavior-sensor-rotate";
+            #binding-cells = <0>;
             sensor-binding = <&enc0 1>; // Ссылка на наш новый software encoder
             steps = <96>;               // КРИТИЧНО: 96 для стабильности EC11
             triggers-per-rotation = <24>;
@@ -152,6 +153,7 @@
 
         enc_vol_down: enc_vol_down {
             compatible = "zmk,behavior-sensor-rotate";
+            #binding-cells = <0>;
             sensor-binding = <&enc0 -1>; // Инвертированное направление
             steps = <96>;
             triggers-per-rotation = <24>;
@@ -161,6 +163,7 @@
         // Для слоев навигации (Ctrl+Left/Right)
         enc_nav_right: enc_nav_right {
             compatible = "zmk,behavior-sensor-rotate";
+            #binding-cells = <0>;
             sensor-binding = <&enc0 1>;
             steps = <96>;
             triggers-per-rotation = <24>;
@@ -169,6 +172,7 @@
 
         enc_nav_left: enc_nav_left {
             compatible = "zmk,behavior-sensor-rotate";
+            #binding-cells = <0>;
             sensor-binding = <&enc0 -1>;
             steps = <96>;
             triggers-per-rotation = <24>;
