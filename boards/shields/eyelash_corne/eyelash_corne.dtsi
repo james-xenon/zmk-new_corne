@@ -25,6 +25,12 @@
         init-delay-ms = <50>;
     };
 
+    sensors {
+        compatible = "zmk,keymap-sensors";
+        triggers-per-rotation = <24>;
+        sensors = <&qdec0>;
+    };
+
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         wakeup-source;
@@ -105,6 +111,29 @@
             low-power-enable;
         };
     };
+    qdec_default: qdec_default {
+        group1 {
+            psels = <NRF_PSEL(QDEC_A, 1, 10)>,
+                    <NRF_PSEL(QDEC_B, 1, 14)>;
+            bias-pull-up;
+        };
+    };
+    qdec_sleep: qdec_sleep {
+        group1 {
+            psels = <NRF_PSEL(QDEC_A, 1, 10)>,
+                    <NRF_PSEL(QDEC_B, 1, 14)>;
+            low-power-enable;
+        };
+    };
+};
+
+&qdec0 {
+    status = "okay";
+    pinctrl-0 = <&qdec_default>;
+    pinctrl-1 = <&qdec_sleep>;
+    pinctrl-names = "default", "sleep";
+    led-pre = <0>;
+    steps = <48>;
 };
 
 nice_view_spi: &spi0 {
