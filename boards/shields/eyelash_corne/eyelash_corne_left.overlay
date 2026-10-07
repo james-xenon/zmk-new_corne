@@ -7,6 +7,5 @@
     pinctrl-names = "default", "sleep";
     led-pre = <0>;
     steps = <24>;
-    sample-period = <128>;
     enable-dbnc;
 };
