@@ -247,7 +247,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   service_layer:
   - '&slpall'
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - '&tog_std_sym'
   - '&ws2812_wdg 8'
   - '&ws2812_wdg 6'
   - '&ws2812_wdg 7'
@@ -931,6 +931,251 @@ layers:
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
+  symb_router_layer:
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '&symb_win_tap_dance', h: symbnolight_std_layer}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', h: numbnolight_std_layer}
+  - {t: '$$mdi:transfer$$', type: trans}
+  symb_std_layer:
+  - {t: '#', h: $}
+  - {t: ), h: '}'}
+  - {t: (, h: '{'}
+  - {t: '*', h: ^}
+  - {t: '?', h: '&'}
+  - {t: '!', h: '~'}
+  - $$mdi:arrow-up-bold$$
+  - {t: '!', h: '~'}
+  - {t: '?', h: '&'}
+  - {t: '*', h: ^}
+  - {t: (, h: '{'}
+  - {t: ), h: '}'}
+  - {t: '#', h: $}
+  - {t: /, h: symbnolight_std_layer, s: '?'}
+  - {t: ;, h: '`', s: ':'}
+  - {t: ',', h: '&macro_degree_uni', s: <}
+  - {t: ., h: '[', s: '>'}
+  - {t: ']', h: '''', s: '}'}
+  - {t: ':', h: '@'}
+  - $$mdi:arrow-left-bold$$
+  - SPC
+  - $$mdi:arrow-right-bold$$
+  - {t: ':', h: '@'}
+  - {t: ']', h: '''', s: '}'}
+  - {t: ., h: '[', s: '>'}
+  - {t: ',', h: '&macro_degree_uni', s: <}
+  - {t: ;, h: '`', s: ':'}
+  - {t: /, h: \, s: '?'}
+  - {t: '%', h: '|'}
+  - '"'
+  - {t: '=', s: +}
+  - {t: +, h: '>'}
+  - {t: '-', h: <, s: _}
+  - {t: _, h: '&macro_emdash_uni'}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:arrow-down-bold$$
+  - {t: _, h: '&macro_emdash_uni'}
+  - {t: '-', h: <, s: _}
+  - {t: +, h: '>'}
+  - {t: '=', s: +}
+  - '"'
+  - {t: '%', h: '|'}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - SPC
+  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  symbnolight_std_layer:
+  - {t: '#', h: $}
+  - {t: ), h: '}'}
+  - {t: (, h: '{'}
+  - {t: '*', h: ^}
+  - {t: '?', h: '&'}
+  - {t: '!', h: '~'}
+  - $$mdi:arrow-up-bold$$
+  - {t: '!', h: '~'}
+  - {t: '?', h: '&'}
+  - {t: '*', h: ^}
+  - {t: (, h: '{'}
+  - {t: ), h: '}'}
+  - {t: '#', h: $}
+  - {t: /, h: numbnolightcopy_layer, s: '?', type: held alternate}
+  - {t: ;, h: '`', s: ':'}
+  - {t: ',', h: '&macro_degree_uni', s: <}
+  - {t: ., h: '[', s: '>'}
+  - {t: ']', h: '''', s: '}'}
+  - {t: ':', h: '@'}
+  - $$mdi:arrow-left-bold$$
+  - SPC
+  - $$mdi:arrow-right-bold$$
+  - {t: ':', h: '@'}
+  - {t: ']', h: '''', s: '}'}
+  - {t: ., h: '[', s: '>'}
+  - {t: ',', h: '&macro_degree_uni', s: <}
+  - {t: ;, h: '`', s: ':'}
+  - {t: /, h: \, s: '?'}
+  - {t: '%', h: '|'}
+  - '"'
+  - {t: '=', s: +}
+  - {t: +, h: '>'}
+  - {t: '-', h: <, s: _}
+  - {t: _, h: '&macro_emdash_uni'}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:arrow-down-bold$$
+  - {t: _, h: '&macro_emdash_uni'}
+  - {t: '-', h: <, s: _}
+  - {t: +, h: '>'}
+  - {t: '=', s: +}
+  - '"'
+  - {t: '%', h: '|'}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
+  - SPC
+  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  symbnolightcopy_std_layer:
+  - {t: '#', h: $}
+  - {t: ), h: '}'}
+  - {t: (, h: '{'}
+  - {t: '*', h: ^}
+  - {t: '?', h: '&'}
+  - {t: '!', h: '~'}
+  - $$mdi:arrow-up-bold$$
+  - {t: '!', h: '~'}
+  - {t: '?', h: '&'}
+  - {t: '*', h: ^}
+  - {t: (, h: '{'}
+  - {t: ), h: '}'}
+  - {t: '#', h: $}
+  - {t: /, h: numbnolightcopy_layer, s: '?'}
+  - {t: ;, h: '`', s: ':'}
+  - {t: ',', h: '&macro_degree_uni', s: <}
+  - {t: ., h: '[', s: '>'}
+  - {t: ']', h: '''', s: '}'}
+  - {t: ':', h: '@'}
+  - $$mdi:arrow-left-bold$$
+  - SPC
+  - $$mdi:arrow-right-bold$$
+  - {t: ':', h: '@'}
+  - {t: ']', h: '''', s: '}'}
+  - {t: ., h: '[', s: '>'}
+  - {t: ',', h: '&macro_degree_uni', s: <}
+  - {t: ;, h: '`', s: ':'}
+  - {t: /, h: \, s: '?'}
+  - {t: '%', h: '|'}
+  - '"'
+  - {t: '=', s: +}
+  - {t: +, h: '>'}
+  - {t: '-', h: <, s: _}
+  - {t: _, h: '&macro_emdash_uni'}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:arrow-down-bold$$
+  - {t: _, h: '&macro_emdash_uni'}
+  - {t: '-', h: <, s: _}
+  - {t: +, h: '>'}
+  - {t: '=', s: +}
+  - '"'
+  - {t: '%', h: '|'}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - SPC
+  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  numbnolight_std_layer:
+  - AL CALCULATOR
+  - KP MULTIPLY
+  - {t: '9', s: (}
+  - {t: '8', s: '*'}
+  - {t: '7', s: '&'}
+  - KP PLUS
+  - $$mdi:pan-up$$
+  - KP PLUS
+  - {t: '7', s: '&'}
+  - {t: '8', s: '*'}
+  - {t: '9', s: (}
+  - KP MULTIPLY
+  - AL CALCULATOR
+  - {t: '$$mdi:backspace$$', type: backspace}
+  - {t: '0', s: )}
+  - {t: '6', s: ^}
+  - {t: '5', s: '%'}
+  - {t: '4', s: $}
+  - KP MINUS
+  - $$mdi:pan-left$$
+  - $$mdi:mouse-left-click-outline$$
+  - $$mdi:pan-right$$
+  - KP MINUS
+  - {t: '4', s: $}
+  - {t: '5', s: '%'}
+  - {t: '6', s: ^}
+  - {t: '0', s: )}
+  - {t: '$$mdi:backspace$$', h: symbnolightcopy_std_layer}
+  - KP ENTER
+  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: '3', s: '#'}
+  - {t: '2', s: '@'}
+  - {t: '1', s: '!'}
+  - KP EQUAL
+  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:pan-down$$
+  - KP EQUAL
+  - {t: '1', s: '!'}
+  - {t: '2', s: '@'}
+  - {t: '3', s: '#'}
+  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
+  - KP ENTER
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {type: held}
+  - {t: '$$mdi:transfer$$', type: trans}
 combos:
 - p: [4, 5]
   k: '&combo_rt_caps_td'
@@ -965,26 +1210,33 @@ combos:
 - p: [23, 24]
   k: {t: '$$mdi:backspace$$', type: backspace}
   l: [default_layer, nav1_layer, symb_layer, numb_layer, fn_layer, service_layer, nav2_layer, speedtype, numbnolight_layer, symbnolightcopy_layer, symbnolight_layer,
-    numbnolightcopy_layer]
+    numbnolightcopy_layer, symb_router_layer, symb_std_layer, symbnolight_std_layer, symbnolightcopy_std_layer, numbnolight_std_layer]
 - p: [24, 25]
   k: $$mdi:backspace-reverse-outline$$
   l: [default_layer, nav1_layer, symb_layer, numb_layer, fn_layer, service_layer, nav2_layer, speedtype, numbnolight_layer, symbnolightcopy_layer, symbnolight_layer,
-    numbnolightcopy_layer]
+    numbnolightcopy_layer, symb_router_layer, symb_std_layer, symbnolight_std_layer, symbnolightcopy_std_layer, numbnolight_std_layer]
 - p: [16, 17]
   k: {t: '$$mdi:backspace$$', type: backspace}
-  l: [symb_layer, numb_layer, nav2_layer, lefthand_layer, lefthandnolight_layer, numbnolight_layer, symbnolightcopy_layer, symbnolight_layer, numbnolightcopy_layer]
+  l: [symb_layer, numb_layer, nav2_layer, lefthand_layer, lefthandnolight_layer, numbnolight_layer, symbnolightcopy_layer, symbnolight_layer, numbnolightcopy_layer,
+    symb_std_layer, symbnolight_std_layer, symbnolightcopy_std_layer, numbnolight_std_layer]
 - p: [15, 16]
   k: $$mdi:backspace-reverse-outline$$
-  l: [symb_layer, numb_layer, nav2_layer, lefthand_layer, lefthandnolight_layer, numbnolight_layer, symbnolightcopy_layer, symbnolight_layer, numbnolightcopy_layer]
+  l: [symb_layer, numb_layer, nav2_layer, lefthand_layer, lefthandnolight_layer, numbnolight_layer, symbnolightcopy_layer, symbnolight_layer, numbnolightcopy_layer,
+    symb_std_layer, symbnolight_std_layer, symbnolightcopy_std_layer, numbnolight_std_layer]
 - p: [18, 43]
   k: '&thumb_e_numb_td'
-  l: [default_layer, numb_layer]
+  l: [default_layer, numb_layer, symb_router_layer, symb_std_layer, symbnolight_std_layer, symbnolightcopy_std_layer, numbnolight_std_layer]
 - p: [22, 46]
   k: '&thumb_i_symb_td'
-  l: [default_layer, symb_layer]
+  l: [default_layer, symb_layer, numb_layer, nav2_layer, gaming1_layer, speedtype, nav2nolight_layer, lefthand_layer, lefthandnolight_layer, numbnolight_layer, symbnolightcopy_layer,
+    symbnolight_layer, numbnolightcopy_layer]
+- p: [22, 46]
+  k: '&thumb_i_symb_td_std'
+  l: [symb_router_layer, symb_std_layer, symbnolight_std_layer, symbnolightcopy_std_layer, numbnolight_std_layer]
 - p: [9, 10, 11, 12]
   k: '&reset_l0_green_flash'
-  l: [default_layer, symb_layer, numb_layer, nav2_layer, gaming1_layer, speedtype, lefthand_layer]
+  l: [default_layer, symb_layer, numb_layer, nav2_layer, gaming1_layer, speedtype, lefthand_layer, symb_std_layer, symbnolight_std_layer, symbnolightcopy_std_layer,
+    numbnolight_std_layer]
 - p: [29, 30, 31]
   k: {t: '$$mdi:keyboard-return$$', type: enter}
   l: [gaming1_layer]
