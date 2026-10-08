@@ -993,13 +993,6 @@
         // ДОБАВЛЕНО: английские символьные hold-tap и кнопка swap
         // ============================================================
 
-        // Swapper behavior.
-        // Меняет содержимое двух слоёв местами в рантайме.
-        eng_swapper: eng_swapper {
-            compatible = "zmk,behavior-swapper";
-            #binding-cells = <2>;
-        };
-
         // Универсальный hold-tap для английских символов:
         // hold = &kp <param1>
         // tap  = &kp <param2>
@@ -1043,14 +1036,10 @@
         };
 
         // ============================================================
-        // Кнопка swap:
-        // Одно нажатие меняет:
-        //   слой 2  <-> слой 19
-        //   слой 16 <-> слой 20
-        // Повторное нажатие возвращает обратно.
-        //
-        // Эту кнопку ты вставляешь в раскладку самостоятельно, например:
-        //   &symb_eng_swap_toggle
+        // Кнопка переключения режима символов:
+        // Одно нажатие — включить kp-режим (слои 19, 20, 21 поверх 2, 16, 17).
+        // Повторное нажатие — выключить.
+        // Вставь &symb_eng_swap_toggle в сервисный слой (слой 5) на &none.
         // ============================================================
         symb_eng_swap_toggle: symb_eng_swap_toggle {
             compatible = "zmk,behavior-macro";
@@ -1058,8 +1047,9 @@
             wait-ms = <0>;
             tap-ms = <0>;
             bindings =
-                <&eng_swapper 2 19>,
-                <&eng_swapper 16 20>;
+                <&tog 19>,
+                <&tog 20>,
+                <&tog 21>;
         };
     };
     // --- КОМБИНАЦИИ КЛАВИШ (COMBOS) ---
@@ -1334,7 +1324,7 @@
         service_layer {
             display-name = "service_layer";
             bindings = <
-&slpall            &tog 1         &ws2812_wdg 8    &ws2812_wdg 6        &ws2812_wdg 7        &studio_unlock                        &trans              &bt BT_CLR        &slpsrc           &bt BT_SEL 0        &bt BT_SEL 1       &bt BT_SEL 2     &bt BT_SEL 3
+&slpall            &symb_eng_swap_toggle  &ws2812_wdg 8    &ws2812_wdg 6        &ws2812_wdg 7        &studio_unlock                        &trans              &bt BT_CLR        &slpsrc           &bt BT_SEL 0        &bt BT_SEL 1       &bt BT_SEL 2     &bt BT_SEL 3
 &rgb_timer 0       &rgb_timer 2   &rgb_timer 1     &ws2812_wdg 5        &ws2812_wdg 2        &out OUT_BLE                  &trans  &trans  &trans      &kp C_BRI_DN      &kp C_BRI_UP      &rgb_ug RGB_HUD     &rgb_ug RGB_HUI    &rgb_ug RGB_SAD  &rgb_ug RGB_SAI
 &bt BT_CLR_ALL     &kp LA(F4)     &none            &kp LG(LC(LEFT))     &kp LG(LC(RIGHT))    &out OUT_USB    &trans                &trans              &rgb_ug RGB_EFR   &rgb_ug RGB_EFF   &rgb_ug RGB_SPD     &rgb_ug RGB_SPI    &rgb_ug RGB_BRD  &rgb_ug RGB_BRI
                                                    &trans               &trans               &trans                                                    &rgb_ug RGB_ON    &trans            &rgb_ug RGB_OFF
@@ -1521,7 +1511,7 @@
             display-name = "symb_layer_eng";
             bindings = <
 &eng_ht LS(N4) LS(N3)       &eng_ht LS(RBKT) LS(N0)       &eng_ht LS(LBKT) LS(N9)        &eng_ht LS(N6) LS(N8)    &eng_ht LS(N7) LS(FSLH)       &eng_ht LS(GRAVE) LS(N1)                              &kp UP                 &eng_ht LS(GRAVE) LS(N1)     &eng_ht LS(N7) LS(FSLH)            &eng_ht LS(N6) LS(N8)  &eng_ht LS(LBKT) LS(N9)      &eng_ht LS(RBKT) LS(N0)       &eng_ht LS(N4) LS(N3)
-&bspc_to_numb_ht 16 FSLH        &eng_ht GRAVE SEMI             &eng_comma_degree_ht 0 COMMA      &eng_ht LBKT DOT          &eng_ht SQT RBKT   &eng_ht LS(N2) LS(SEMI)                        &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht LS(N2) LS(SEMI)         &eng_ht SQT RBKT        &eng_ht LBKT DOT        &eng_comma_degree_ht 0 COMMA    &eng_ht GRAVE SEMI             &eng_ht BSLH FSLH
+&bspc_to_numb_ht 21 FSLH        &eng_ht GRAVE SEMI             &eng_comma_degree_ht 0 COMMA      &eng_ht LBKT DOT          &eng_ht SQT RBKT   &eng_ht LS(N2) LS(SEMI)                        &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht LS(N2) LS(SEMI)         &eng_ht SQT RBKT        &eng_ht LBKT DOT        &eng_comma_degree_ht 0 COMMA    &eng_ht GRAVE SEMI             &eng_ht BSLH FSLH
 &eng_ht LS(BSLH) LS(N5)             &eng_ht_none_kp 0 LS(SQT)    &eng_ht_none_kp 0 EQUAL    &eng_ht LS(DOT) LS(EQUAL)            &eng_ht LS(COMMA) MINUS   &eng_under_emdash_ht 0 LS(MINUS)     &trans                 &kp DOWN               &eng_under_emdash_ht 0 LS(MINUS)   &eng_ht LS(COMMA) MINUS        &eng_ht LS(DOT) LS(EQUAL)          &eng_ht_none_kp 0 EQUAL  &eng_ht_none_kp 0 LS(SQT)    &eng_ht LS(BSLH) LS(N5)
                                                                                              &trans                         &trans                  &kp SPC                                                                       &kp ENTER                     &trans                       &trans
             >;
@@ -1538,6 +1528,23 @@
         // ============================================================
         symbnolight_eng_copy_layer {
             display-name = "symbnolight_eng_copy_layer";
+            bindings = <
+&eng_ht LS(N4) LS(N3)       &eng_ht LS(RBKT) LS(N0)       &eng_ht LS(LBKT) LS(N9)        &eng_ht LS(N6) LS(N8)    &eng_ht LS(N7) LS(FSLH)       &eng_ht LS(GRAVE) LS(N1)                              &kp UP                 &eng_ht LS(GRAVE) LS(N1)     &eng_ht LS(N7) LS(FSLH)            &eng_ht LS(N6) LS(N8)  &eng_ht LS(LBKT) LS(N9)      &eng_ht LS(RBKT) LS(N0)       &eng_ht LS(N4) LS(N3)
+&bspc_to_numb_ht 18 FSLH        &eng_ht GRAVE SEMI             &eng_comma_degree_ht 0 COMMA      &eng_ht LBKT DOT          &eng_ht SQT RBKT   &eng_ht LS(N2) LS(SEMI)                        &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht LS(N2) LS(SEMI)         &eng_ht SQT RBKT        &eng_ht LBKT DOT        &eng_comma_degree_ht 0 COMMA    &eng_ht GRAVE SEMI             &eng_ht BSLH FSLH
+&eng_ht LS(BSLH) LS(N5)             &eng_ht_none_kp 0 LS(SQT)    &eng_ht_none_kp 0 EQUAL    &eng_ht LS(DOT) LS(EQUAL)            &eng_ht LS(COMMA) MINUS   &eng_under_emdash_ht 0 LS(MINUS)     &trans                 &kp DOWN               &eng_under_emdash_ht 0 LS(MINUS)   &eng_ht LS(COMMA) MINUS        &eng_ht LS(DOT) LS(EQUAL)          &eng_ht_none_kp 0 EQUAL  &eng_ht_none_kp 0 LS(SQT)    &eng_ht LS(BSLH) LS(N5)
+                                                                                             &trans                         &trans                  &kp SPC                                                                       &kp ENTER                     &trans                       &trans
+            >;
+            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+        };
+
+        // ============================================================
+        // Слой 21: английский аналог symbnolight_layer (слой 17).
+        // Вызывается hold-частью symb_win_td когда активен kp-режим.
+        // На левой крайней клавише: hold слой 18 (цифры), tap '/'.
+        // Энкодер: Ctrl+Right / Ctrl+Left.
+        // ============================================================
+        symbnolight_eng_layer {
+            display-name = "symbnolight_eng";
             bindings = <
 &eng_ht LS(N4) LS(N3)       &eng_ht LS(RBKT) LS(N0)       &eng_ht LS(LBKT) LS(N9)        &eng_ht LS(N6) LS(N8)    &eng_ht LS(N7) LS(FSLH)       &eng_ht LS(GRAVE) LS(N1)                              &kp UP                 &eng_ht LS(GRAVE) LS(N1)     &eng_ht LS(N7) LS(FSLH)            &eng_ht LS(N6) LS(N8)  &eng_ht LS(LBKT) LS(N9)      &eng_ht LS(RBKT) LS(N0)       &eng_ht LS(N4) LS(N3)
 &bspc_to_numb_ht 18 FSLH        &eng_ht GRAVE SEMI             &eng_comma_degree_ht 0 COMMA      &eng_ht LBKT DOT          &eng_ht SQT RBKT   &eng_ht LS(N2) LS(SEMI)                        &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht LS(N2) LS(SEMI)         &eng_ht SQT RBKT        &eng_ht LBKT DOT        &eng_comma_degree_ht 0 COMMA    &eng_ht GRAVE SEMI             &eng_ht BSLH FSLH
