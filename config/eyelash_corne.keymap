@@ -506,6 +506,16 @@
             tapping-term-ms = <500>;
             bindings = <&none>, <&kp LGUI>;
         };
+        // symb_win_td для kp-режима: hold → слой 20 (eng-копия слоя 16)
+        symb_win_td_kp: symb_win_td_kp {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <300>;
+            bindings = <&mo>, <&symb_win_tap_dance>;
+        };
+
         // Hold-Tap thumb_num_sym_fn:
         // Удержание -> Слой 15 (Цифры)
         // Тап -> &none
@@ -1046,10 +1056,7 @@
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <0>;
-            bindings =
-                <&tog 19>,
-                <&tog 20>,
-                <&tog 21>;
+            bindings = <&tog 22>;
         };
     };
     // --- КОМБИНАЦИИ КЛАВИШ (COMBOS) ---
@@ -1552,6 +1559,26 @@
                                                                                              &trans                         &trans                  &kp SPC                                                                       &kp ENTER                     &trans                       &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+        };
+
+        // ============================================================
+        // Слой 22: kp-режим символов (overlay).
+        // Активируется &symb_eng_swap_toggle (сервисный слой, кнопка 2).
+        // Переопределяет только thumb-кнопки символьных слоёв:
+        //   - symb_win_td → ведёт на слой 20 (eng-копия слоя 16)
+        //   - bspc_to_layer_ht → ведёт на слой 20 вместо 16
+        // Все остальные клавиши &trans — работают как обычно.
+        // Выход: повторное нажатие &symb_eng_swap_toggle.
+        // ============================================================
+        kp_mode_layer {
+            display-name = "kp_mode";
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans                      &trans              &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans              &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &bspc_to_layer_ht 20 BSPC
+&trans  &trans  &trans  &trans  &trans  &trans  &trans              &trans              &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &symb_win_td_kp 20 0  &trans                                          &trans  &trans  &trans
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
     };
 };
