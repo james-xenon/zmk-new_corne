@@ -1079,54 +1079,54 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   kp_mode:
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:keyboard-tab$$
+  - Q
+  - W
+  - E
+  - R
+  - {t: T, h: '`'}
+  - $$mdi:arrow-up-bold$$
+  - {t: Y, h: '$$mdi:play-pause$$'}
+  - {t: U, h: '$$mdi:skip-previous$$'}
+  - {t: I, h: '$$mdi:skip-next$$'}
+  - {t: O, h: STOP}
+  - P
+  - {t: '[', h: '&screenshot_win_shift_s', s: '{'}
+  - $$mdi:apple-keyboard-shift$$
+  - {t: A, h: '&kp_once LC(A)'}
+  - {t: S, h: '&kp_once LC(S)'}
+  - D
+  - {t: F, h: '&kp_once LC(F)'}
+  - G
+  - $$mdi:arrow-left-bold$$
+  - SPC
+  - $$mdi:arrow-right-bold$$
+  - H
+  - J
+  - K
+  - L
+  - {t: ;, h: fn_layer, s: ':'}
   - {t: '$$mdi:backspace$$', h: symbnolight_eng_copy_layer}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:apple-keyboard-control$$
+  - {t: Z, h: '&kp_once LC(Z)'}
+  - {t: X, h: '&kp_once LC(X)'}
+  - {t: C, h: '&kp_once LC(C)'}
+  - {t: V, h: '&kp_once LC(V)'}
+  - {t: B, h: '$$mdi:apple-keyboard-option$$'}
+  - $$mdi:volume-off$$
+  - $$mdi:arrow-down-bold$$
+  - {t: N, h: '$$mdi:apple-keyboard-option$$'}
+  - M
+  - {t: ',', s: <}
+  - {t: ., s: '>'}
+  - {t: /, s: '?'}
+  - $$mdi:keyboard-esc$$
+  - {t: '&lh_td', h: lefthandnolight_layer}
   - {t: '&symb_win_tap_dance', h: symbnolight_eng_copy_layer}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - SPC
+  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: '$$mdi:minus-circle-outline$$', h: numbnolight_layer}
+  - {t: '&win_space', h: nav2nolight_layer}
 combos:
 - p: [4, 5]
   k: '&combo_rt_caps_td'
@@ -1179,9 +1179,15 @@ combos:
   l: [default_layer, numb_layer, kp_mode]
 - p: [22, 46]
   k: '&thumb_i_symb_td'
-  l: [default_layer, symb_layer, symb_layer_eng, kp_mode]
+  l: [default_layer, symb_layer, symb_layer_eng]
+- p: [22, 46]
+  k: '&thumb_i_symb_td_kp'
+  l: [kp_mode]
 - p: [9, 10, 11, 12]
   k: '&reset_l0_green_flash'
+  l: [default_layer, symb_layer, numb_layer, nav2_layer, gaming1_layer, speedtype, lefthand_layer, symb_layer_eng, kp_mode]
+- p: [37, 38, 39, 40]
+  k: '&reset_l22_green_flash'
   l: [default_layer, symb_layer, numb_layer, nav2_layer, gaming1_layer, speedtype, lefthand_layer, symb_layer_eng, kp_mode]
 - p: [29, 30, 31]
   k: {t: '$$mdi:keyboard-return$$', type: enter}
