@@ -72,11 +72,11 @@ layers:
   - {t: '$$mdi:menu-left$$', s: '$$mdi:mouse$$'}
   - $$mdi:mouse-left-click-outline$$
   - {t: '$$mdi:menu-right$$', s: '$$mdi:mouse$$'}
-  - '&msc SCRL_X(-150)'
+  - '&msc MOVE_X(-150)'
   - $$mdi:arrow-left-bold$$
   - $$mdi:arrow-down-bold$$
   - $$mdi:arrow-right-bold$$
-  - '&msc SCRL_X(150)'
+  - '&msc MOVE_X(150)'
   - {t: '$$mdi:backspace$$', type: backspace}
   - {t: '$$mdi:transfer$$', type: trans}
   - INS
@@ -87,9 +87,9 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:menu-down$$', s: '$$mdi:mouse$$'}
   - END
-  - '&msc SCRL_Y(-150)'
+  - '&msc MOVE_Y(-150)'
   - $$mdi:mouse-scroll-wheel$$
-  - '&msc SCRL_Y(150)'
+  - '&msc MOVE_Y(150)'
   - '&macro_qmark_uni'
   - PG DN
   - {t: '$$mdi:transfer$$', type: trans}
@@ -154,7 +154,7 @@ layers:
   - {t: '8', s: '*'}
   - {t: '7', s: '&'}
   - KP PLUS
-  - $$mdi:pan-up$$
+  - '&msc MOVE_UP'
   - KP PLUS
   - {t: '7', s: '&'}
   - {t: '8', s: '*'}
@@ -167,9 +167,9 @@ layers:
   - {t: '5', s: '%'}
   - {t: '4', s: $}
   - KP MINUS
-  - $$mdi:pan-left$$
+  - '&msc MOVE_LEFT'
   - $$mdi:mouse-left-click-outline$$
-  - $$mdi:pan-right$$
+  - '&msc MOVE_RIGHT'
   - KP MINUS
   - {t: '4', s: $}
   - {t: '5', s: '%'}
@@ -183,7 +183,7 @@ layers:
   - {t: '1', s: '!'}
   - KP EQUAL
   - {t: '$$mdi:transfer$$', type: trans}
-  - $$mdi:pan-down$$
+  - '&msc MOVE_DOWN'
   - KP EQUAL
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
@@ -513,11 +513,11 @@ layers:
   - $$mdi:arrow-left-bold$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-right-bold$$
-  - '&msc SCRL_X(-150)'
+  - '&msc MOVE_X(-150)'
   - {t: '$$mdi:menu-left$$', s: '$$mdi:mouse$$'}
   - {t: '$$mdi:menu-down$$', s: '$$mdi:mouse$$'}
   - {t: '$$mdi:menu-right$$', s: '$$mdi:mouse$$'}
-  - '&msc SCRL_X(150)'
+  - '&msc MOVE_X(150)'
   - {t: '$$mdi:backspace$$', type: backspace}
   - {t: '$$mdi:transfer$$', type: trans}
   - INS
@@ -528,9 +528,9 @@ layers:
   - $$mdi:volume-off$$
   - $$mdi:arrow-down-bold$$
   - END
-  - '&msc SCRL_Y(-150)'
+  - '&msc MOVE_Y(-150)'
   - $$mdi:mouse-scroll-wheel$$
-  - '&msc SCRL_Y(150)'
+  - '&msc MOVE_Y(150)'
   - '&macro_dot_uni'
   - PG DN
   - {t: '$$mdi:transfer$$', type: trans}
@@ -742,7 +742,7 @@ layers:
   - {t: '8', s: '*'}
   - {t: '7', s: '&'}
   - KP PLUS
-  - $$mdi:pan-up$$
+  - '&msc MOVE_UP'
   - KP PLUS
   - {t: '7', s: '&'}
   - {t: '8', s: '*'}
@@ -755,9 +755,9 @@ layers:
   - {t: '5', s: '%'}
   - {t: '4', s: $}
   - KP MINUS
-  - $$mdi:pan-left$$
+  - '&msc MOVE_LEFT'
   - $$mdi:mouse-left-click-outline$$
-  - $$mdi:pan-right$$
+  - '&msc MOVE_RIGHT'
   - KP MINUS
   - {t: '4', s: $}
   - {t: '5', s: '%'}
@@ -771,7 +771,7 @@ layers:
   - {t: '1', s: '!'}
   - KP EQUAL
   - {t: '$$mdi:transfer$$', type: trans}
-  - $$mdi:pan-down$$
+  - '&msc MOVE_DOWN'
   - KP EQUAL
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
@@ -889,7 +889,7 @@ layers:
   - {t: '8', s: '*'}
   - {t: '7', s: '&'}
   - KP PLUS
-  - $$mdi:pan-up$$
+  - '&msc MOVE_UP'
   - KP PLUS
   - {t: '7', s: '&'}
   - {t: '8', s: '*'}
@@ -902,9 +902,9 @@ layers:
   - {t: '5', s: '%'}
   - {t: '4', s: $}
   - KP MINUS
-  - $$mdi:pan-left$$
+  - '&msc MOVE_LEFT'
   - $$mdi:mouse-left-click-outline$$
-  - $$mdi:pan-right$$
+  - '&msc MOVE_RIGHT'
   - KP MINUS
   - {t: '4', s: $}
   - {t: '5', s: '%'}
@@ -918,7 +918,7 @@ layers:
   - {t: '1', s: '!'}
   - KP EQUAL
   - {t: '$$mdi:transfer$$', type: trans}
-  - $$mdi:pan-down$$
+  - '&msc MOVE_DOWN'
   - KP EQUAL
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
@@ -1134,7 +1134,7 @@ layers:
   - {t: '8', s: '*'}
   - {t: '7', s: '&'}
   - KP PLUS
-  - $$mdi:pan-up$$
+  - '&msc MOVE_UP'
   - KP PLUS
   - {t: '7', s: '&'}
   - {t: '8', s: '*'}
@@ -1147,9 +1147,9 @@ layers:
   - {t: '5', s: '%'}
   - {t: '4', s: $}
   - KP MINUS
-  - $$mdi:pan-left$$
+  - '&msc MOVE_LEFT'
   - $$mdi:mouse-left-click-outline$$
-  - $$mdi:pan-right$$
+  - '&msc MOVE_RIGHT'
   - KP MINUS
   - {t: '4', s: $}
   - {t: '5', s: '%'}
@@ -1163,7 +1163,7 @@ layers:
   - {t: '1', s: '!'}
   - KP EQUAL
   - {t: '$$mdi:transfer$$', type: trans}
-  - $$mdi:pan-down$$
+  - '&msc MOVE_DOWN'
   - KP EQUAL
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
@@ -1183,7 +1183,7 @@ layers:
   - {t: '8', s: '*'}
   - {t: '7', s: '&'}
   - KP PLUS
-  - $$mdi:pan-up$$
+  - '&msc MOVE_UP'
   - KP PLUS
   - {t: '7', s: '&'}
   - {t: '8', s: '*'}
@@ -1196,9 +1196,9 @@ layers:
   - {t: '5', s: '%'}
   - {t: '4', s: $}
   - KP MINUS
-  - $$mdi:pan-left$$
+  - '&msc MOVE_LEFT'
   - $$mdi:mouse-left-click-outline$$
-  - $$mdi:pan-right$$
+  - '&msc MOVE_RIGHT'
   - KP MINUS
   - {t: '4', s: $}
   - {t: '5', s: '%'}
@@ -1212,7 +1212,7 @@ layers:
   - {t: '1', s: '!'}
   - KP EQUAL
   - {t: '$$mdi:transfer$$', type: trans}
-  - $$mdi:pan-down$$
+  - '&msc MOVE_DOWN'
   - KP EQUAL
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
