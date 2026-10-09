@@ -966,6 +966,14 @@
             tapping-term-ms = <300>;
             bindings = <&none>, <&tog 2>;
         };
+
+        // kp-режим: двойной тап tog 19 вместо tog 2
+        thumb_i_symb_td_kp: thumb_i_symb_td_kp {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&none>, <&tog 19>;
+        };
         // МАКРОС ПЕРЕХОДА НА СЛОЙ 0 + РУЧНАЯ WS2812-ИНДИКАЦИЯ
         // Сначала выполняется &to 0, затем &ws2812_wdg 0.
         // &ws2812_wdg 0 вызывает ws2812_indicate_layer(); её цвет задаётся
@@ -977,6 +985,18 @@
             tap-ms = <20>;
             bindings =
                 <&to 0>,
+                <&ws2812_wdg 0>;
+        };
+
+        // Аналог reset_l0_green_flash для kp-режима:
+        // Переключает на слой 22 (kp_mode) + зелёная вспышка подсветки.
+        reset_l22_green_flash: reset_l22_green_flash {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <20>;
+            tap-ms = <20>;
+            bindings =
+                <&to 22>,
                 <&ws2812_wdg 0>;
         };
         // Hold-Tap div_lshft_ht: тап=DIVIDE, холд=Left Shift
@@ -1234,7 +1254,16 @@
             require-prior-idle-ms = <100>;
             key-positions = <22 46>;
             bindings = <&thumb_i_symb_td>;
-            layers = <0 2 19 22>;
+            layers = <0 2 19>;
+        };
+
+        // kp-режим: то же комбо но tog 19 вместо tog 2
+        combo_right_thumb_i_symb_kp {
+            timeout-ms = <200>;
+            require-prior-idle-ms = <100>;
+            key-positions = <22 46>;
+            bindings = <&thumb_i_symb_td_kp>;
+            layers = <22>;
         };
         // Комбо I + O + P + [ (позиции 9,10,11,12):
         // &to 0, затем ручная WS2812-индикация через &ws2812_wdg 0.
@@ -1243,6 +1272,17 @@
             require-prior-idle-ms = <250>;
             key-positions = <9 10 11 12>;
             bindings = <&reset_l0_green_flash>;
+            layers = <0 2 3 6 7 11 13 19 22>;
+        };
+
+        // Комбо COMMA + DOT + FSLH + ESC (клавиши 37, 38, 39, 40):
+        // Сброс на слой 22 (kp-режим) + зелёная вспышка подсветки.
+        // Аналог combo_iop_lbkt_reset но для kp-режима.
+        combo_comma_dot_fslh_esc_reset22 {
+            timeout-ms = <100>;
+            require-prior-idle-ms = <250>;
+            key-positions = <37 38 39 40>;
+            bindings = <&reset_l22_green_flash>;
             layers = <0 2 3 6 7 11 13 19 22>;
         };
         // Комбо Z + X + C (Клавиши 29, 30, 31):
@@ -1570,13 +1610,16 @@
         // Все остальные клавиши &trans — работают как обычно.
         // Выход: повторное нажатие &symb_eng_swap_toggle.
         // ============================================================
+        // Слой 22: kp-режим (полная копия слоя 0).
+        // symb_win_td → symb_win_td_kp (ведёт на слой 20 вместо 16).
+        // Все остальные функции идентичны слою 0.
         kp_mode_layer {
             display-name = "kp_mode";
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans                      &trans              &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans              &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &bspc_to_layer_ht 20 BSPC
-&trans  &trans  &trans  &trans  &trans  &trans  &trans              &trans              &trans  &trans  &trans  &trans  &trans  &trans
-                        &trans  &symb_win_td_kp 20 0  &trans                                          &trans  &trans  &trans
+&kp TAB                  &kp Q             &kp W             &kp E               &kp R              &t_yo_ht GRAVE T                         &kp UP                &media_ht C_PP Y    &media_ht C_PREV U      &media_ht C_NEXT I  &media_ht C_STOP O  &kp P               &lbkt_screenshot 0 LBKT
+&kp LSHIFT               &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D               &edit_ht LC(F) F   &kp G                          &kp LEFT  &kp SPC   &kp RIGHT   &kp H               &kp J                   &kp K               &kp L               &semi_fn_ht 4 SEMI  &bspc_to_layer_ht 20 BSPC
+&kp LCTRL                &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C    &edit_ht LC(V) V   &b_alt_ht LALT B   &kp C_MUTE            &kp DOWN              &n_alt_ht LALT N    &kp M                   &kp COMMA           &kp DOT             &kp FSLH            &kp ESC
+                                                             &lefthand_ht 14 0   &symb_win_td_kp 20 0  &kp SPC                                                     &kp ENTER           &thumb_num_sym_fn 15 0  &lang_nav2 12 0
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
