@@ -530,7 +530,7 @@
         // Hold-Tap symb_win_td (Левая клавиша большого пальца):
         // Удержание -> слой, переданный первым параметром.
         // В слое 0 обычно: &symb_win_td 16 0
-        // В kp-слое 22:    &symb_win_td 20 0
+        // В kp-слое 22:    &symb_win_td 24 0
         // Одиночный тап -> ничего (none)
         // Двойной тап (окно 500 мс) -> Win (LGUI) через symb_win_tap_dance
         symb_win_td: symb_win_td {
@@ -552,7 +552,7 @@
         };
 
         // Оставлено для совместимости/истории.
-        // Фактически можно использовать обычный symb_win_td с параметром 20.
+        // Фактически можно использовать обычный symb_win_td с параметром 24.
         symb_win_td_kp: symb_win_td_kp {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -1093,19 +1093,23 @@
         };
 
         // Аналог reset_l0_green_flash для kp-режима:
-        // Переключает на слой 22 (kp_mode) + зелёная вспышка подсветки.
+        // Принудительно включает связку слоёв 0 + 22:
+        // 1) &to 0 выключает все остальные слои, включая 22;
+        // 2) &tog 22 гарантированно включает kp-overlay поверх 0;
+        // 3) &ws2812_wdg 0 даёт зелёную индикацию.
         reset_l22_green_flash: reset_l22_green_flash {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <20>;
             tap-ms = <20>;
             bindings =
-                <&to 22>,
+                <&to 0>,
+                <&tog 22>,
                 <&ws2812_wdg 0>;
         };
 
         // Hold-Tap div_lshft_ht: тап=DIVIDE, холд=Left Shift
-        // Используется в numb-слоях (3, 15, 18, 23, 24)
+        // Используется в numb-слоях (3, 15, 18, 23, 26)
         div_lshft_ht: div_lshft_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -1126,7 +1130,7 @@
         };
 
         // ============================================================
-        // Английские символьные hold-tap и кнопка swap/kp-режима
+        // ДОБАВЛЕНО: английские символьные hold-tap и кнопка swap
         // ============================================================
 
         // Универсальный hold-tap для английских символов:
@@ -1152,7 +1156,7 @@
         };
 
         // Hold = ° через Alt-code, tap = обычный &kp <param2>
-        // Оставлено на случай, если понадобится градус в английском слое.
+        // Градус без Alt нормально не делается, поэтому оставлен Alt-code.
         eng_comma_degree_ht: eng_comma_degree_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -1175,8 +1179,8 @@
         // Кнопка переключения kp-режима:
         // Одно нажатие — включить слой 22.
         // Повторное нажатие — выключить.
-        // Слой 22 является копией слоя 0, но переводит на английские
-        // символьные/цифровые слои 20/23 вместо 16/15.
+        // Слой 22 является прозрачным overlay поверх слоя 0 и переводит
+        // большие пальцы на английские слои 23/24 вместо 15/16.
         // ============================================================
         symb_eng_swap_toggle: symb_eng_swap_toggle {
             compatible = "zmk,behavior-macro";
@@ -1321,7 +1325,7 @@
             require-prior-idle-ms = <100>;
             key-positions = <23 24>;
             bindings = <&kp BSPC>;
-            layers = <0 1 2 3 4 5 6 11 15 16 17 18 19 20 21 22 23 24>;
+            layers = <0 1 2 3 4 5 6 11 15 16 17 18 19 22 23 24 25 26>;
         };
 
         // Комбо K + L (Клавиши 24, 25):
@@ -1332,7 +1336,7 @@
             require-prior-idle-ms = <100>;
             key-positions = <24 25>;
             bindings = <&kp DEL>;
-            layers = <0 1 2 3 4 5 6 11 15 16 17 18 19 20 21 22 23 24>;
+            layers = <0 1 2 3 4 5 6 11 15 16 17 18 19 22 23 24 25 26>;
         };
 
         // Комбо D + F (Клавиши 16, 17):
@@ -1342,7 +1346,7 @@
             require-prior-idle-ms = <100>;
             key-positions = <16 17>;
             bindings = <&kp BSPC>;
-            layers = <2 3 6 13 14 15 16 17 18 19 20 21 23 24>;
+            layers = <2 3 6 13 14 15 16 17 18 19 23 24 25 26>;
         };
 
         // Комбо S + D (Клавиши 15, 16):
@@ -1352,7 +1356,7 @@
             require-prior-idle-ms = <100>;
             key-positions = <15 16>;
             bindings = <&kp DEL>;
-            layers = <2 3 6 13 14 15 16 17 18 19 20 21 23 24>;
+            layers = <2 3 6 13 14 15 16 17 18 19 23 24 25 26>;
         };
 
         // Комбо G + левый большой палец (позиции 18, 43):
@@ -1386,16 +1390,7 @@
             require-prior-idle-ms = <100>;
             key-positions = <22 46>;
             bindings = <&thumb_i_symb_eng_td>;
-            layers = <19>;
-        };
-
-        // kp-режим: то же комбо, но tog 19 вместо tog 2
-        combo_right_thumb_i_symb_kp {
-            timeout-ms = <200>;
-            require-prior-idle-ms = <100>;
-            key-positions = <22 46>;
-            bindings = <&thumb_i_symb_td_kp>;
-            layers = <22>;
+            layers = <19 22>;
         };
 
         // Комбо I + O + P + [ (позиции 9,10,11,12):
@@ -1405,7 +1400,7 @@
             require-prior-idle-ms = <250>;
             key-positions = <9 10 11 12>;
             bindings = <&reset_l0_green_flash>;
-            layers = <0 2 3 6 7 11 13 19 22>;
+            layers = <0 2 3 6 7 11 13 19 22 23 24 25 26>;
         };
 
         // Комбо COMMA + DOT + FSLH + ESC (клавиши 38, 39, 40, 41):
@@ -1416,7 +1411,7 @@
             require-prior-idle-ms = <250>;
             key-positions = <38 39 40 41>;
             bindings = <&reset_l22_green_flash>;
-            layers = <0 2 3 6 7 11 13 19 20 21 22 23 24>;
+            layers = <0 2 3 6 7 11 13 19 22 23 24 25 26>;
         };
 
         // Комбо Z + X + C (Клавиши 29, 30, 31):
@@ -1479,9 +1474,9 @@
         numb_layer {
             display-name = "numb_layer";
             bindings = <
-&kp C_AL_CALCULATOR    &kp KP_MULTIPLY                     &kp N9  &kp N8  &kp N7  &kp KP_PLUS                                     &msc MOVE_UP                       &kp KP_PLUS    &kp N7  &kp N8  &kp N9  &kp KP_MULTIPLY                  &kp C_AL_CALCULATOR
-&kp LSHIFT             &kp N0                              &kp N6  &kp N5  &kp N4  &kp KP_MINUS                  &msc MOVE_LEFT    &mkp LCLK       &msc MOVE_RIGHT    &kp KP_MINUS   &kp N4  &kp N5  &kp N6  &kp N0                           &kp BSPC
-&kp KP_ENTER           &div_lshft_ht LSHFT KP_DIVIDE       &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                          &msc MOVE_DOWN                     &kp KP_EQUAL   &kp N1  &kp N2  &kp N3  &div_lshft_ht LSHFT KP_DIVIDE    &kp KP_ENTER
+&kp C_AL_CALCULATOR    &kp KP_MULTIPLY                     &kp N9  &kp N8  &kp N7  &kp KP_PLUS                                     &msc SCRL_UP                       &kp KP_PLUS    &kp N7  &kp N8  &kp N9  &kp KP_MULTIPLY                  &kp C_AL_CALCULATOR
+&kp LSHIFT             &kp N0                              &kp N6  &kp N5  &kp N4  &kp KP_MINUS                  &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &kp KP_MINUS   &kp N4  &kp N5  &kp N6  &kp N0                           &kp BSPC
+&kp KP_ENTER           &div_lshft_ht LSHFT KP_DIVIDE       &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                          &msc SCRL_DOWN                     &kp KP_EQUAL   &kp N1  &kp N2  &kp N3  &div_lshft_ht LSHFT KP_DIVIDE    &kp KP_ENTER
                                                                    &trans  &trans  &trans                                                                             &trans         &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -1644,9 +1639,9 @@
         numbnolight_layer {
             display-name = "numbnolight_layer";
             bindings = <
-&kp C_AL_CALCULATOR   &kp KP_MULTIPLY                  &kp N9  &kp N8  &kp N7  &kp KP_PLUS                                            &msc MOVE_UP                      &kp KP_PLUS     &kp N7  &kp N8  &kp N9  &kp KP_MULTIPLY                  &kp C_AL_CALCULATOR
-&kp BSPC              &kp N0                           &kp N6  &kp N5  &kp N4  &kp KP_MINUS                          &msc MOVE_LEFT   &mkp LCLK       &msc MOVE_RIGHT   &kp KP_MINUS    &kp N4  &kp N5  &kp N6  &kp N0                           &bspc_to_layer_ht 16 BSPC
-&kp KP_ENTER          &div_lshft_ht LSHFT KP_DIVIDE    &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                                 &msc MOVE_DOWN                    &kp KP_EQUAL    &kp N1  &kp N2  &kp N3  &div_lshft_ht LSHFT KP_DIVIDE    &kp KP_ENTER
+&kp C_AL_CALCULATOR   &kp KP_MULTIPLY                  &kp N9  &kp N8  &kp N7  &kp KP_PLUS                                            &msc SCRL_UP                      &kp KP_PLUS     &kp N7  &kp N8  &kp N9  &kp KP_MULTIPLY                  &kp C_AL_CALCULATOR
+&kp BSPC              &kp N0                           &kp N6  &kp N5  &kp N4  &kp KP_MINUS                          &msc SCRL_LEFT   &mkp LCLK       &msc SCRL_RIGHT   &kp KP_MINUS    &kp N4  &kp N5  &kp N6  &kp N0                           &bspc_to_layer_ht 16 BSPC
+&kp KP_ENTER          &div_lshft_ht LSHFT KP_DIVIDE    &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                                 &msc SCRL_DOWN                    &kp KP_EQUAL    &kp N1  &kp N2  &kp N3  &div_lshft_ht LSHFT KP_DIVIDE    &kp KP_ENTER
                                                                &trans  &trans  &trans                                                                                   &kp ENTER       &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
@@ -1688,25 +1683,20 @@
         numbnolightcopy_layer {
             display-name = "numbnolightcopy_layer";
             bindings = <
-&kp C_AL_CALCULATOR   &kp KP_MULTIPLY                  &kp N9  &kp N8  &kp N7  &kp KP_PLUS                                      &msc MOVE_UP                       &kp KP_PLUS    &kp N7  &kp N8  &kp N9  &kp KP_MULTIPLY                  &kp C_AL_CALCULATOR
-&kp BSPC              &kp N0                           &kp N6  &kp N5  &kp N4  &kp KP_MINUS                   &msc MOVE_LEFT    &mkp LCLK       &msc MOVE_RIGHT    &kp KP_MINUS   &kp N4  &kp N5  &kp N6  &kp N0                           &kp BSPC
-&kp KP_ENTER          &div_lshft_ht LSHFT KP_DIVIDE    &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                           &msc MOVE_DOWN                     &kp KP_EQUAL   &kp N1  &kp N2  &kp N3  &div_lshft_ht LSHFT KP_DIVIDE    &kp KP_ENTER
+&kp C_AL_CALCULATOR   &kp KP_MULTIPLY                  &kp N9  &kp N8  &kp N7  &kp KP_PLUS                                      &msc SCRL_UP                       &kp KP_PLUS    &kp N7  &kp N8  &kp N9  &kp KP_MULTIPLY                  &kp C_AL_CALCULATOR
+&kp BSPC              &kp N0                           &kp N6  &kp N5  &kp N4  &kp KP_MINUS                   &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &kp KP_MINUS   &kp N4  &kp N5  &kp N6  &kp N0                           &kp BSPC
+&kp KP_ENTER          &div_lshft_ht LSHFT KP_DIVIDE    &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                           &msc SCRL_DOWN                     &kp KP_EQUAL   &kp N1  &kp N2  &kp N3  &div_lshft_ht LSHFT KP_DIVIDE    &kp KP_ENTER
                                                                &trans  &trans  &trans                                                                              &kp ENTER      &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
         // ============================================================
-        // Слой 19: английский аналог symb_layer, то есть слоя 2.
-        //
-        // Это отдельный persistent-аналог, а не автоматическая замена слоя 2.
-        // Переключается комбо H + правый большой палец на слое 19.
-        //
-        //Hold/Tap соответствуют оригинальному слою 2, но используют
-        // английские прямые коды вместо Alt-code, где это возможно.
+        // Слой 19: английский persistent символьный слой.
+        // Аналог слоя 2, но без Alt-code там, где символ есть в EN.
         //
         // Левая крайняя клавиша второго ряда:
-        //   hold -> слой 21 (английский symbnolight)
+        //   hold -> слой 25
         //   tap  -> /
         //
         // Энкодер: громкость, как у исходного слоя 2.
@@ -1714,96 +1704,80 @@
         symb_layer_eng {
             display-name = "symb_layer_eng";
             bindings = <
-&eng_ht LS(N4) LS(N3)       &eng_ht RBRC LS(N0)         &eng_ht LBRC LS(N9)        &eng_ht CARET LS(N8)     &eng_ht AMPS LS(N5)         &eng_ht LS(GRAVE) LS(N1)                              &kp UP                 &eng_ht LS(GRAVE) LS(N1)     &eng_ht AMPS LS(N5)            &eng_ht CARET LS(N8)  &eng_ht LBRC LS(N9)      &eng_ht RBRC LS(N0)       &eng_ht LS(N4) LS(N3)
-&bspc_to_numb_ht 21 FSLH    &eng_ht GRAVE SEMI          &eng_ht LBRC COMMA         &eng_ht LBKT DOT           &eng_ht SQT RBKT            &eng_ht AT COLON                         &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht AT COLON          &eng_ht SQT RBKT        &eng_ht LBKT DOT        &eng_ht LBRC COMMA        &eng_ht GRAVE SEMI             &eng_ht BSLH FSLH
-&eng_ht PIPE LS(N5)         &eng_ht_none_kp 0 DQT       &eng_ht_none_kp 0 EQUAL    &eng_ht LS(DOT) PLUS       &eng_ht LS(COMMA) MINUS   &eng_under_emdash_ht 0 UNDER     &trans                 &kp DOWN               &eng_under_emdash_ht 0 UNDER   &eng_ht LS(COMMA) MINUS        &eng_ht LS(DOT) PLUS          &eng_ht_none_kp 0 EQUAL  &eng_ht_none_kp 0 DQT    &eng_ht PIPE LS(N5)
+&eng_ht LS(N4) HASH          &eng_ht LS(RBKT) LS(N0)      &eng_ht LS(LBKT) LS(N9)       &eng_ht LS(N6) LS(N8)       &eng_ht LS(N7) LS(FSLH)      &eng_ht LS(GRAVE) LS(N1)                              &kp UP                 &eng_ht LS(GRAVE) LS(N1)      &eng_ht LS(N7) LS(FSLH)           &eng_ht LS(N6) LS(N8)   &eng_ht LS(LBKT) LS(N9)     &eng_ht LS(RBKT) LS(N0)      &eng_ht LS(N4) HASH
+&bspc_to_numb_ht 25 FSLH     &eng_ht GRAVE SEMI           &eng_comma_degree_ht 0 COMMA  &eng_ht LBKT DOT              &eng_ht SQT RBKT              &eng_ht LS(N2) LS(SEMI)                        &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht LS(N2) LS(SEMI)         &eng_ht SQT RBKT           &eng_ht LBKT DOT              &eng_comma_degree_ht 0 COMMA  &eng_ht GRAVE SEMI              &eng_ht BSLH FSLH
+&eng_ht LS(BSLH) LS(N5)      &eng_ht_none_kp 0 LS(SQT)    &eng_ht_none_kp 0 EQUAL       &eng_ht LS(DOT) LS(EQUAL)     &eng_ht LS(COMMA) MINUS       &eng_under_emdash_ht 0 UNDER      &trans                 &kp DOWN               &eng_under_emdash_ht 0 UNDER      &eng_ht LS(COMMA) MINUS         &eng_ht LS(DOT) LS(EQUAL)       &eng_ht_none_kp 0 EQUAL       &eng_ht_none_kp 0 LS(SQT)     &eng_ht LS(BSLH) LS(N5)
                                                                                              &trans                         &trans                  &kp SPC                                                                       &kp ENTER                     &trans                       &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         // ============================================================
-        // Слой 20: английский аналог symbnolightcopy_layer, то есть слоя 16.
-        //
-        // Вызывается из kp-слоя 22:
-        //   &symb_win_td 20 0
-        //
-        // Также вызывается из английского цифрового слоя 23:
-        //   &bspc_to_layer_ht 20 BSPC
-        //
-        // Левая крайняя клавиша второго ряда:
-        //   hold -> слой 24 (английский numbnolightcopy)
-        //   tap  -> /
-        //
-        // Энкодер: Ctrl+Right / Ctrl+Left, как у исходного слоя 16.
+        // Слой 20: служебная прозрачная заглушка.
+        // Нужна только чтобы сохранить слой kp_mode на индексе 22.
+        // Не используется в комбо и переходах.
         // ============================================================
-        symbnolight_eng_copy_layer {
-            display-name = "symbnolight_eng_copy_layer";
+        placeholder_layer_20 {
+            display-name = "placeholder_layer_20";
             bindings = <
-&eng_ht LS(N4) LS(N3)       &eng_ht RBRC LS(N0)         &eng_ht LBRC LS(N9)        &eng_ht CARET LS(N8)     &eng_ht AMPS LS(N5)         &eng_ht LS(GRAVE) LS(N1)                              &kp UP                 &eng_ht LS(GRAVE) LS(N1)     &eng_ht AMPS LS(N5)            &eng_ht CARET LS(N8)  &eng_ht LBRC LS(N9)      &eng_ht RBRC LS(N0)       &eng_ht LS(N4) LS(N3)
-&bspc_to_numb_ht 24 FSLH    &eng_ht GRAVE SEMI          &eng_ht LBRC COMMA         &eng_ht LBKT DOT           &eng_ht SQT RBKT            &eng_ht AT COLON                         &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht AT COLON          &eng_ht SQT RBKT        &eng_ht LBKT DOT        &eng_ht LBRC COMMA        &eng_ht GRAVE SEMI             &eng_ht BSLH FSLH
-&eng_ht PIPE LS(N5)         &eng_ht_none_kp 0 DQT       &eng_ht_none_kp 0 EQUAL    &eng_ht LS(DOT) PLUS       &eng_ht LS(COMMA) MINUS   &eng_under_emdash_ht 0 UNDER     &trans                 &kp DOWN               &eng_under_emdash_ht 0 UNDER   &eng_ht LS(COMMA) MINUS        &eng_ht LS(DOT) PLUS          &eng_ht_none_kp 0 EQUAL  &eng_ht_none_kp 0 DQT    &eng_ht PIPE LS(N5)
-                                                                                             &trans                         &trans                  &kp SPC                                                                       &kp ENTER                     &trans                       &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         // ============================================================
-        // Слой 21: английский аналог symbnolight_layer (слой 17).
-        //
-        // Вызывается из постоянного английского символьного слоя 19:
-        //   &bspc_to_numb_ht 21 FSLH
-        //
-        // Левая крайняя клавиша второго ряда:
-        //   hold -> слой 24 (английский numbnolightcopy)
-        //   tap  -> /
-        //
-        // Энкодер: Ctrl+Right / Ctrl+Left.
+        // Слой 21: служебная прозрачная заглушка.
+        // Нужна только чтобы сохранить слой kp_mode на индексе 22.
+        // Не используется в комбо и переходах.
         // ============================================================
-        symbnolight_eng_layer {
-            display-name = "symbnolight_eng";
+        placeholder_layer_21 {
+            display-name = "placeholder_layer_21";
             bindings = <
-&eng_ht LS(N4) LS(N3)       &eng_ht RBRC LS(N0)         &eng_ht LBRC LS(N9)        &eng_ht CARET LS(N8)     &eng_ht AMPS LS(N5)         &eng_ht LS(GRAVE) LS(N1)                              &kp UP                 &eng_ht LS(GRAVE) LS(N1)     &eng_ht AMPS LS(N5)            &eng_ht CARET LS(N8)  &eng_ht LBRC LS(N9)      &eng_ht RBRC LS(N0)       &eng_ht LS(N4) LS(N3)
-&bspc_to_numb_ht 24 FSLH    &eng_ht GRAVE SEMI          &eng_ht LBRC COMMA         &eng_ht LBKT DOT           &eng_ht SQT RBKT            &eng_ht AT COLON                         &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht AT COLON          &eng_ht SQT RBKT        &eng_ht LBKT DOT        &eng_ht LBRC COMMA        &eng_ht GRAVE SEMI             &eng_ht BSLH FSLH
-&eng_ht PIPE LS(N5)         &eng_ht_none_kp 0 DQT       &eng_ht_none_kp 0 EQUAL    &eng_ht LS(DOT) PLUS       &eng_ht LS(COMMA) MINUS   &eng_under_emdash_ht 0 UNDER     &trans                 &kp DOWN               &eng_under_emdash_ht 0 UNDER   &eng_ht LS(COMMA) MINUS        &eng_ht LS(DOT) PLUS          &eng_ht_none_kp 0 EQUAL  &eng_ht_none_kp 0 DQT    &eng_ht PIPE LS(N5)
-                                                                                             &trans                         &trans                  &kp SPC                                                                       &kp ENTER                     &trans                       &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         // ============================================================
-        // Слой 22: kp-режим.
+        // Слой 22: kp overlay.
         //
-        // Это полная функциональная копия слоя 0 по расположению клавиш.
-        // Отличие только в целевых слоях для больших пальцев:
-        //   - symb_win_td ведёт на 20 вместо 16;
-        //   - thumb_num_sym_fn ведёт на 23 вместо 15.
+        // Это НЕ полная копия слоя 0, а прозрачный слой поверх 0.
+        // Все клавиши &trans берутся из слоя 0.
+        // Переопределены только большие пальцы:
+        //   - символы -> слой 24;
+        //   - цифры   -> слой 23.
         //
-        // Правая крайняя клавиша второго ряда оставлена как в слое 0:
-        //   &mt LSHFT SQT
-        //
-        // Активируется/деактивируется &symb_eng_swap_toggle.
-        // Сброс на этот слой: COMMA + DOT + FSLH + ESC.
+        // Такой подход позволяет:
+        //   - работать комбо слоя 22;
+        //   - переходить на нижние слои через &mo/&tog;
+        //   - сохранять поведение слоя 0.
         // ============================================================
         kp_mode_layer {
             display-name = "kp_mode";
             bindings = <
-&kp TAB                  &kp Q             &kp W             &kp E               &kp R              &t_yo_ht GRAVE T                         &kp UP                &media_ht C_PP Y    &media_ht C_PREV U      &media_ht C_NEXT I  &media_ht C_STOP O  &kp P               &lbkt_screenshot 0 LBKT
-&kp LSHIFT               &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D               &edit_ht LC(F) F   &kp G                          &kp LEFT  &kp SPC   &kp RIGHT   &kp H               &kp J                   &kp K               &kp L               &semi_fn_ht 4 SEMI  &mt LSHFT SQT
-&kp LCTRL                &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C    &edit_ht LC(V) V   &b_alt_ht LALT B   &kp C_MUTE            &kp DOWN              &n_alt_ht LALT N    &kp M                   &kp COMMA           &kp DOT             &kp FSLH            &kp ESC
-                                                             &lefthand_ht 14 0   &symb_win_td 20 0  &kp SPC                                                        &kp ENTER           &thumb_num_sym_fn 23 0  &lang_nav2 12 0
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &symb_win_td 24 0 &trans &trans &thumb_num_sym_fn 23 0 &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         // ============================================================
-        // Слой 23: английский аналог numbnolight_layer, то есть слоя 15.
+        // Слой 23: английские цифры no-light.
+        // Аналог слоя 15.
         //
         // Вызывается из kp-слоя 22:
         //   &thumb_num_sym_fn 23 0
         //
         // Правая крайняя клавиша второго ряда:
-        //   hold -> слой 20 (английский symbnolightcopy)
+        //   hold -> слой 24
         //   tap  -> BSPC
         //
         // Энкодер: Ctrl+Right / Ctrl+Left.
@@ -1811,19 +1785,67 @@
         numbnolight_eng_layer {
             display-name = "numbnolight_eng_layer";
             bindings = <
-&kp C_AL_CALCULATOR   &kp KP_MULTIPLY                  &kp N9  &kp N8  &kp N7  &kp KP_PLUS                                            &msc MOVE_UP                      &kp KP_PLUS     &kp N7  &kp N8  &kp N9  &kp KP_MULTIPLY                  &kp C_AL_CALCULATOR
-&kp BSPC              &kp N0                           &kp N6  &kp N5  &kp N4  &kp KP_MINUS                          &msc MOVE_LEFT   &mkp LCLK       &msc MOVE_RIGHT   &kp KP_MINUS    &kp N4  &kp N5  &kp N6  &kp N0                           &bspc_to_layer_ht 20 BSPC
-&kp KP_ENTER          &div_lshft_ht LSHFT KP_DIVIDE    &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                                 &msc MOVE_DOWN                    &kp KP_EQUAL    &kp N1  &kp N2  &kp N3  &div_lshft_ht LSHFT KP_DIVIDE    &kp KP_ENTER
+&kp C_AL_CALCULATOR   &kp KP_MULTIPLY                  &kp N9  &kp N8  &kp N7  &kp KP_PLUS                                            &msc SCRL_UP                      &kp KP_PLUS     &kp N7  &kp N8  &kp N9  &kp KP_MULTIPLY                  &kp C_AL_CALCULATOR
+&kp BSPC              &kp N0                           &kp N6  &kp N5  &kp N4  &kp KP_MINUS                          &msc SCRL_LEFT   &mkp LCLK       &msc SCRL_RIGHT   &kp KP_MINUS    &kp N4  &kp N5  &kp N6  &kp N0                           &bspc_to_layer_ht 24 BSPC
+&kp KP_ENTER          &div_lshft_ht LSHFT KP_DIVIDE    &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                                 &msc SCRL_DOWN                    &kp KP_EQUAL    &kp N1  &kp N2  &kp N3  &div_lshft_ht LSHFT KP_DIVIDE    &kp KP_ENTER
                                                                &trans  &trans  &trans                                                                                   &kp ENTER       &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
         // ============================================================
-        // Слой 24: английский аналог numbnolightcopy_layer, то есть слоя 18.
+        // Слой 24: английские символы no-light copy.
+        // Аналог слоя 16.
         //
-        // Вызывается из английских символьных слоёв 20/21:
-        //   &bspc_to_numb_ht 24 FSLH
+        // Вызывается из kp-слоя 22 и из английского цифрового слоя 23.
+        //
+        // Левая крайняя клавиша второго ряда:
+        //   hold -> слой 26
+        //   tap  -> /
+        //
+        // Энкодер: Ctrl+Right / Ctrl+Left.
+        // ============================================================
+        symbnolight_eng_copy_layer {
+            display-name = "symbnolight_eng_copy_layer";
+            bindings = <
+&eng_ht LS(N4) HASH          &eng_ht LS(RBKT) LS(N0)      &eng_ht LS(LBKT) LS(N9)       &eng_ht LS(N6) LS(N8)       &eng_ht LS(N7) LS(FSLH)      &eng_ht LS(GRAVE) LS(N1)                              &kp UP                 &eng_ht LS(GRAVE) LS(N1)      &eng_ht LS(N7) LS(FSLH)           &eng_ht LS(N6) LS(N8)   &eng_ht LS(LBKT) LS(N9)     &eng_ht LS(RBKT) LS(N0)      &eng_ht LS(N4) HASH
+&bspc_to_numb_ht 26 FSLH     &eng_ht GRAVE SEMI           &eng_comma_degree_ht 0 COMMA  &eng_ht LBKT DOT              &eng_ht SQT RBKT              &eng_ht LS(N2) LS(SEMI)                        &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht LS(N2) LS(SEMI)         &eng_ht SQT RBKT           &eng_ht LBKT DOT              &eng_comma_degree_ht 0 COMMA  &eng_ht GRAVE SEMI              &eng_ht BSLH FSLH
+&eng_ht LS(BSLH) LS(N5)      &eng_ht_none_kp 0 LS(SQT)    &eng_ht_none_kp 0 EQUAL       &eng_ht LS(DOT) LS(EQUAL)     &eng_ht LS(COMMA) MINUS       &eng_under_emdash_ht 0 UNDER      &trans                 &kp DOWN               &eng_under_emdash_ht 0 UNDER      &eng_ht LS(COMMA) MINUS         &eng_ht LS(DOT) LS(EQUAL)       &eng_ht_none_kp 0 EQUAL       &eng_ht_none_kp 0 LS(SQT)     &eng_ht LS(BSLH) LS(N5)
+                                                                                             &trans                         &trans                  &kp SPC                                                                       &kp ENTER                     &trans                       &trans
+            >;
+            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+        };
+
+        // ============================================================
+        // Слой 25: английские символы no-light.
+        // Аналог слоя 17.
+        //
+        // Вызывается из persistent английского слоя 19:
+        //   &bspc_to_numb_ht 25 FSLH
+        //
+        // Левая крайняя клавиша второго ряда:
+        //   hold -> слой 26
+        //   tap  -> /
+        //
+        // Энкодер: Ctrl+Right / Ctrl+Left.
+        // ============================================================
+        symbnolight_eng_layer {
+            display-name = "symbnolight_eng_layer";
+            bindings = <
+&eng_ht LS(N4) HASH          &eng_ht LS(RBKT) LS(N0)      &eng_ht LS(LBKT) LS(N9)       &eng_ht LS(N6) LS(N8)       &eng_ht LS(N7) LS(FSLH)      &eng_ht LS(GRAVE) LS(N1)                              &kp UP                 &eng_ht LS(GRAVE) LS(N1)      &eng_ht LS(N7) LS(FSLH)           &eng_ht LS(N6) LS(N8)   &eng_ht LS(LBKT) LS(N9)     &eng_ht LS(RBKT) LS(N0)      &eng_ht LS(N4) HASH
+&bspc_to_numb_ht 26 FSLH     &eng_ht GRAVE SEMI           &eng_comma_degree_ht 0 COMMA  &eng_ht LBKT DOT              &eng_ht SQT RBKT              &eng_ht LS(N2) LS(SEMI)                        &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht LS(N2) LS(SEMI)         &eng_ht SQT RBKT           &eng_ht LBKT DOT              &eng_comma_degree_ht 0 COMMA  &eng_ht GRAVE SEMI              &eng_ht BSLH FSLH
+&eng_ht LS(BSLH) LS(N5)      &eng_ht_none_kp 0 LS(SQT)    &eng_ht_none_kp 0 EQUAL       &eng_ht LS(DOT) LS(EQUAL)     &eng_ht LS(COMMA) MINUS       &eng_under_emdash_ht 0 UNDER      &trans                 &kp DOWN               &eng_under_emdash_ht 0 UNDER      &eng_ht LS(COMMA) MINUS         &eng_ht LS(DOT) LS(EQUAL)       &eng_ht_none_kp 0 EQUAL       &eng_ht_none_kp 0 LS(SQT)     &eng_ht LS(BSLH) LS(N5)
+                                                                                             &trans                         &trans                  &kp SPC                                                                       &kp ENTER                     &trans                       &trans
+            >;
+            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+        };
+
+        // ============================================================
+        // Слой 26: английские цифры no-light copy.
+        // Аналог слоя 18.
+        //
+        // Вызывается из английских символьных слоёв 24/25:
+        //   &bspc_to_numb_ht 26 FSLH
         //
         // Это временной цифровой слой, поэтому правая крайняя клавиша
         // второго ряда оставлена как обычный BSPC, по аналогии со слоем 18.
@@ -1833,9 +1855,9 @@
         numbnolight_eng_copy_layer {
             display-name = "numbnolight_eng_copy_layer";
             bindings = <
-&kp C_AL_CALCULATOR   &kp KP_MULTIPLY                  &kp N9  &kp N8  &kp N7  &kp KP_PLUS                                      &msc MOVE_UP                       &kp KP_PLUS    &kp N7  &kp N8  &kp N9  &kp KP_MULTIPLY                  &kp C_AL_CALCULATOR
-&kp BSPC              &kp N0                           &kp N6  &kp N5  &kp N4  &kp KP_MINUS                   &msc MOVE_LEFT    &mkp LCLK       &msc MOVE_RIGHT    &kp KP_MINUS   &kp N4  &kp N5  &kp N6  &kp N0                           &kp BSPC
-&kp KP_ENTER          &div_lshft_ht LSHFT KP_DIVIDE    &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                           &msc MOVE_DOWN                     &kp KP_EQUAL   &kp N1  &kp N2  &kp N3  &div_lshft_ht LSHFT KP_DIVIDE    &kp KP_ENTER
+&kp C_AL_CALCULATOR   &kp KP_MULTIPLY                  &kp N9  &kp N8  &kp N7  &kp KP_PLUS                                      &msc SCRL_UP                       &kp KP_PLUS    &kp N7  &kp N8  &kp N9  &kp KP_MULTIPLY                  &kp C_AL_CALCULATOR
+&kp BSPC              &kp N0                           &kp N6  &kp N5  &kp N4  &kp KP_MINUS                   &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &kp KP_MINUS   &kp N4  &kp N5  &kp N6  &kp N0                           &kp BSPC
+&kp KP_ENTER          &div_lshft_ht LSHFT KP_DIVIDE    &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                           &msc SCRL_DOWN                     &kp KP_EQUAL   &kp N1  &kp N2  &kp N3  &div_lshft_ht LSHFT KP_DIVIDE    &kp KP_ENTER
                                                                &trans  &trans  &trans                                                                              &kp ENTER      &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
