@@ -1383,7 +1383,7 @@
         // Энкодер: Громкость (Volume Up / Down)
         nav2_layer {
             display-name = "nav2_layer";
-            bindings = <
+            bindings = <f
 &trans  &trans  &trans  &trans  &trans  &trans                      &trans              &trans  &kp HOME  &kp PG_UP     &kp ESC    &kp DEL   &kp BSPC
 &trans  &trans  &trans  &trans  &trans  &trans              &trans  &trans  &trans      &trans  &kp END   &kp PG_DN     &kp ENTER  &kp UP    &kp SPC
 &trans  &trans  &trans  &trans  &trans  &trans  &trans              &trans              &trans  &trans    &kp LSHFT     &kp LEFT   &kp DOWN  &kp RIGHT
