@@ -1,5 +1,6 @@
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 1200
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 25
+
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 #include <behaviors.dtsi>
@@ -14,6 +15,81 @@
 #include <behaviors/rgb_timer.dtsi>
 #include <behaviors/sleep_source.dtsi>
 #include <behaviors/sleep_all.dtsi>
+
+// ============================================================
+// НОВЫЙ ПОРЯДОК СЛОЁВ
+//
+// 0  — базовый слой
+// 1  — KP_MODE: полная копия слоя 0, но большие пальцы ведут
+//      на английские слои без Alt.
+//
+// Дальше слои отсортированы по категориям:
+//
+// 2  — символы Alt persistent
+// 3  — цифры Alt persistent
+// 4  — Fn
+// 5  — Service
+//
+// 6  — Nav1
+// 7  — Nav2
+// 8  — Nav2 no-light
+// 9  — Nav3
+//
+// 10 — Gaming1
+// 11 — Gaming2
+// 12 — Gaming3
+//
+// 13 — Speedtype
+//
+// 14 — Lefthand
+// 15 — Lefthand no-light
+//
+// 16 — Num no-light Alt
+// 17 — Symb no-light copy Alt
+// 18 — Symb no-light Alt
+// 19 — Num no-light copy Alt
+//
+// 20 — English symb persistent (без Alt)
+// 21 — English num no-light
+// 22 — English symb no-light copy
+// 23 — English symb no-light
+// 24 — English num no-light copy
+//
+// Все лишние placeholder-слои и высокие копии nav/gaming удалены.
+// ============================================================
+
+#define BASE_LAYER                    0
+#define KP_MODE_LAYER                 1
+
+#define SYMB_LAYER                    2
+#define NUMB_LAYER                    3
+#define FN_LAYER                      4
+#define SERVICE_LAYER                 5
+
+#define NAV1_LAYER                    6
+#define NAV2_LAYER                    7
+#define NAV2_NOLIGHT_LAYER            8
+#define NAV3_LAYER                    9
+
+#define GAMING1_LAYER                 10
+#define GAMING2_LAYER                 11
+#define GAMING3_LAYER                 12
+
+#define SPEEDTYPE_LAYER               13
+
+#define LEFTHAND_LAYER                14
+#define LEFTHAND_NOLIGHT_LAYER        15
+
+#define NUMB_NOLIGHT_LAYER            16
+#define SYMB_NOLIGHT_COPY_LAYER       17
+#define SYMB_NOLIGHT_LAYER            18
+#define NUMB_NOLIGHT_COPY_LAYER       19
+
+#define SYMB_ENG_LAYER                20
+#define NUMB_ENG_NOLIGHT_LAYER        21
+#define SYMB_ENG_NOLIGHT_COPY_LAYER   22
+#define SYMB_ENG_NOLIGHT_LAYER        23
+#define NUMB_ENG_NOLIGHT_COPY_LAYER   24
 
 // --- НАСТРОЙКИ ОБОРУДОВАНИЯ И ПЕРИФЕРИИ ---
 // Количество адресованных светодиодов WS2812 на одной половине сплит-клавиатуры
@@ -307,7 +383,7 @@
                 <&macro_release &kp DQT>;
         };
 
-        // Поведение для 14 слоя TAB
+        // Поведение для слоя Lefthand no-light: TAB через Alt+Tab
         alt_tab: alt_tab {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -529,8 +605,8 @@
 
         // Hold-Tap symb_win_td (Левая клавиша большого пальца):
         // Удержание -> слой, переданный первым параметром.
-        // В слое 0 обычно: &symb_win_td 16 0
-        // В kp-слое 22:    &symb_win_td 24 0
+        // В слое 0:      &symb_win_td SYMB_NOLIGHT_COPY_LAYER 0
+        // В KP_MODE:     &symb_win_td SYMB_ENG_NOLIGHT_COPY_LAYER 0
         // Одиночный тап -> ничего (none)
         // Двойной тап (окно 500 мс) -> Win (LGUI) через symb_win_tap_dance
         symb_win_td: symb_win_td {
@@ -551,20 +627,10 @@
             bindings = <&none>, <&kp LGUI>;
         };
 
-        // Оставлено для совместимости/истории.
-        // Фактически можно использовать обычный symb_win_td с параметром 24.
-        symb_win_td_kp: symb_win_td_kp {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <300>;
-            bindings = <&mo>, <&symb_win_tap_dance>;
-        };
-
         // Hold-Tap thumb_num_sym_fn:
         // Удержание -> слой, переданный первым параметром.
-        // В слое 0:  &thumb_num_sym_fn 15 0
+        // В слое 0:      &thumb_num_sym_fn NUMB_NOLIGHT_LAYER 0
+        // В KP_MODE:     &thumb_num_sym_fn NUMB_ENG_NOLIGHT_LAYER 0
         // Тап -> &none
         thumb_num_sym_fn: thumb_num_sym_fn {
             compatible = "zmk,behavior-hold-tap";
@@ -574,22 +640,8 @@
             bindings = <&mo>, <&none>;
         };
 
-        // Hold-Tap thumb_num_sym_fn_kp:
-        // Используется только на слое 22.
-        // Удержание -> английский цифровой слой 23.
-        // Тап -> none.
-        // Увеличенное tapping-term-ms, чтобы двойное нажатие
-        // H + правый большой палец корректно попадало в combo/tap-dance.
-        thumb_num_sym_fn_kp: thumb_num_sym_fn_kp {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <250>;
-            bindings = <&mo>, <&none>;
-        };
-
         // Hold-Tap lefthand_ht (Крайняя левая клавиша большого пальца):
-        // Удержание -> Слой 14 (Управление левой рукой без подсветки)
+        // Удержание -> Слой LEFTHAND_NOLIGHT_LAYER
         // Одиночный тап -> ничего (через lh_td: 1 тап = none)
         // Двойной тап (окно 500 мс) -> &kp LALT (Left Alt)
         lefthand_ht: lefthand_ht {
@@ -610,8 +662,8 @@
             bindings = <&none>, <&kp LALT>;
         };
 
-        // Hold-Tap gaming_mo9_alt (Слой 7, левая клавиша большого пальца):
-        // Удержание -> Временный Слой 9
+        // Hold-Tap gaming_mo9_alt (Слой Gaming1, левая клавиша большого пальца):
+        // Удержание -> Временный Слой Gaming3
         // Одиночный тап -> ничего (через gaming_mo9_td: 1 тап = none)
         // Двойной тап (окно 500 мс) -> kp LALT
         gaming_mo9_alt: gaming_mo9_alt {
@@ -632,8 +684,8 @@
             bindings = <&none>, <&kp LALT>;
         };
 
-        // Hold-Tap gaming_shft_mo14 (LSHFT в слое 8 gaming2_layer):
-        // Удержание -> Временный Слой 14 (Управление левой рукой без подсветки)
+        // Hold-Tap gaming_shft_mo14 (LSHFT в слое Gaming2):
+        // Удержание -> Временный Слой LEFTHAND_NOLIGHT_LAYER
         // Тап -> &kp LSHFT (обычный Shift)
         gaming_shft_mo14: gaming_shft_mo14 {
             compatible = "zmk,behavior-hold-tap";
@@ -644,7 +696,7 @@
         };
 
         // Hold-Tap lang_nav2 (Клавиша переключения языка):
-        // Удержание -> Временный Слой 12 (Навигация 2 без подсветки)
+        // Удержание -> Временный Слой NAV2_NOLIGHT_LAYER
         // Одиночный тап -> Макрос Win+Space (смена языка в ОС)
         // Таймаут удержания: 220 мс, быстрое повторное нажатие: 150 мс
         lang_nav2: lang_nav2 {
@@ -657,21 +709,21 @@
         };
 
         // Tap Dance nav2_double_tap:
-        // 1 тап = &trans; 2 тапа в пределах 300 мс -> &tog 6 (переключить фиксированный слой 6)
+        // 1 тап = &trans; 2 тапа в пределах 300 мс -> &tog NAV2_LAYER
         nav2_double_tap: nav2_double_tap {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
-            bindings = <&trans>, <&tog 6>;
+            bindings = <&trans>, <&tog NAV2_LAYER>;
         };
 
         // Tap Dance speedtype_double_tap:
-        // 1 тап = &trans; 2 тапа в пределах 300 мс -> &tog 11 (переключить слой 11 Speedtype)
+        // 1 тап = &trans; 2 тапа в пределах 300 мс -> &tog SPEEDTYPE_LAYER
         speedtype_double_tap: speedtype_double_tap {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
-            bindings = <&trans>, <&tog 11>;
+            bindings = <&trans>, <&tog SPEEDTYPE_LAYER>;
         };
 
         // Параметрический макрос kp_once:
@@ -683,8 +735,8 @@
             wait-ms = <0>;
             tap-ms = <0>;
             bindings =
-                <&macro_press &kp 0>,
-                <&macro_release &kp 0>;
+                <&macro_param_1to1 &macro_press &kp 0>,
+                <&macro_param_1to1 &macro_release &kp 0>;
         };
 
         // Hold-Tap (Клавиша T):
@@ -758,20 +810,9 @@
         };
 
         // Универсальный Hold-Tap: hold = &mo <param1>, tap = &kp <param2>.
-        // В текущем keymap используется на слое 15:
-        // &bspc_to_layer_ht 16 BSPC -> hold: временный слой 16, tap: Backspace.
+        // Используется, например, в слое NUMB_NOLIGHT_LAYER:
+        // &bspc_to_layer_ht SYMB_NOLIGHT_COPY_LAYER BSPC
         bspc_to_layer_ht: bspc_to_layer_ht {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <200>;
-            bindings = <&mo>, <&kp>;
-        };
-
-        // Универсальный Hold-Tap bspc_to_symb_ht:
-        // hold = &mo <param1>, tap = &kp <param2>.
-        // В текущих bindings ниже этот behavior не используется; оставлен как заготовка.
-        bspc_to_symb_ht: bspc_to_symb_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
@@ -791,7 +832,7 @@
         };
 
         // -------------------------------------------------------
-        // behaviors для символьных раскладок (слои 2, 16 и 17)
+        // behaviors для символьных раскладок (слои с Alt-code)
         // Используются зеркально на обеих сторонах символьных слоёв
         // -------------------------------------------------------
 
@@ -961,7 +1002,7 @@
 
         // Hold-Tap semi_fn_ht (Клавиша точки с запятой):
         // Тап -> Символ ; (точка с запятой)
-        // Удержание -> Переход на Слой 4 (Fn-клавиши)
+        // Удержание -> Переход на Слой FN_LAYER
         // Hold срабатывает ТОЛЬКО при касании позиций правой руки (26-35, 38-41)
         semi_fn_ht: semi_fn_ht {
             compatible = "zmk,behavior-hold-tap";
@@ -1013,7 +1054,7 @@
         };
 
         // Макрос tog13_on:
-        // Выполняет &tog 13 и затем &ws2812_lsync 1.
+        // Выполняет &tog LEFTHAND_LAYER и затем &ws2812_lsync 1.
         // В текущем layer-sync драйвере param1=1 означает временную индикацию "layer ON";
         // это НЕ отдельный постоянный RGB-профиль и не выбор underglow-эффекта.
         tog13_on: tog13_on {
@@ -1021,11 +1062,11 @@
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <0>;
-            bindings = <&tog 13>, <&ws2812_lsync 1>;
+            bindings = <&tog LEFTHAND_LAYER>, <&ws2812_lsync 1>;
         };
 
         // Макрос tog13_off:
-        // Выполняет &tog 13 и затем &ws2812_lsync 0.
+        // Выполняет &tog LEFTHAND_LAYER и затем &ws2812_lsync 0.
         // В текущем layer-sync драйвере param1=0 означает временную индикацию "layer OFF";
         // после неё widget.c восстанавливает статическое состояние/underglow.
         tog13_off: tog13_off {
@@ -1033,11 +1074,11 @@
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <0>;
-            bindings = <&tog 13>, <&ws2812_lsync 0>;
+            bindings = <&tog LEFTHAND_LAYER>, <&ws2812_lsync 0>;
         };
 
         // Tap Dance tog13_on_td:
-        // 1 тап = &trans, двойной тап -> tog13_on: toggle слоя 13 + временная ON-индикация
+        // 1 тап = &trans, двойной тап -> tog13_on: toggle слоя Lefthand + временная ON-индикация
         tog13_on_td: tog13_on_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -1046,7 +1087,7 @@
         };
 
         // Tap Dance tog13_off_td:
-        // 1 тап = &trans, двойной тап -> tog13_off: toggle слоя 13 + временная OFF-индикация
+        // 1 тап = &trans, двойной тап -> tog13_off: toggle слоя Lefthand + временная OFF-индикация
         tog13_off_td: tog13_off_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -1056,43 +1097,35 @@
 
         // Tap Dance thumb_e_numb_td:
         // Используется в комбо: левый большой палец (pos 43) + G (pos 18).
-        // Имя behavior сохранено историческое; фактическая привязка комбо: <18 43>.
+        // Второе срабатывание переключает persistent слой NUMB_LAYER.
         thumb_e_numb_td: thumb_e_numb_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
-            bindings = <&none>, <&tog 3>;
+            bindings = <&none>, <&tog NUMB_LAYER>;
         };
 
         // Tap Dance thumb_i_symb_td:
-        // 1 тап = none (ничего), двойной тап -> Переключение фиксированного режима Слоя 2 (Символы)
+        // 1 тап = none (ничего), двойной тап -> Переключение persistent слоя SYMB_LAYER (символы Alt)
         // Используется в комбо: правый большой палец (pos 46) + H (pos 22).
-        // Имя behavior сохранено историческое; фактическая привязка комбо: <22 46>.
         thumb_i_symb_td: thumb_i_symb_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
-            bindings = <&none>, <&tog 2>;
+            bindings = <&none>, <&tog SYMB_LAYER>;
         };
 
-        // kp-режим: двойной тап tog 19 вместо tog 2
-        thumb_i_symb_td_kp: thumb_i_symb_td_kp {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <300>;
-            bindings = <&none>, <&tog 19>;
-        };
-
-        // Английский persistent-слой: двойной тап tog 19
+        // Tap Dance для KP_MODE / English persistent:
+        // 1 тап = none, двойной тап -> &tog SYMB_ENG_LAYER
         thumb_i_symb_eng_td: thumb_i_symb_eng_td {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
-            bindings = <&none>, <&tog 19>;
+            bindings = <&none>, <&tog SYMB_ENG_LAYER>;
         };
 
         // МАКРОС ПЕРЕХОДА НА СЛОЙ 0 + РУЧНАЯ WS2812-ИНДИКАЦИЯ
-        // Сначала выполняется &to 0, затем &ws2812_wdg 0.
+        // Сначала выполняется &to BASE_LAYER, затем &ws2812_wdg 0.
         // &ws2812_wdg 0 вызывает ws2812_indicate_layer(); её цвет задаётся
         // CONFIG_WS2812_WIDGET_LAYER_COLOR_MANUAL (в текущем дизайне это зелёное подтверждение).
         reset_l0_green_flash: reset_l0_green_flash {
@@ -1101,28 +1134,28 @@
             wait-ms = <20>;
             tap-ms = <20>;
             bindings =
-                <&to 0>,
+                <&to BASE_LAYER>,
                 <&ws2812_wdg 0>;
         };
 
-        // Аналог reset_l0_green_flash для kp-режима.
-        // Принудительно включает связку слоёв 0 + 22:
-        // 1) &to 0 выключает все остальные слои, включая 22;
-        // 2) &tog 22 гарантированно включает kp-overlay поверх 0;
+        // Аналог reset_l0_green_flash для KP_MODE.
+        // Принудительно включает связку слоёв 0 + KP_MODE:
+        // 1) &to BASE_LAYER выключает все остальные слои, включая KP_MODE;
+        // 2) &tog KP_MODE_LAYER гарантированно включает режим поверх 0;
         // 3) &ws2812_wdg 0 даёт зелёную индикацию.
-        reset_l22_green_flash: reset_l22_green_flash {
+        reset_kp_mode_green_flash: reset_kp_mode_green_flash {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <20>;
             tap-ms = <20>;
             bindings =
-                <&to 0>,
-                <&tog 22>,
+                <&to BASE_LAYER>,
+                <&tog KP_MODE_LAYER>,
                 <&ws2812_wdg 0>;
         };
 
         // Hold-Tap div_lshft_ht: тап=DIVIDE, холд=Left Shift
-        // Используется в numb-слоях (3, 15, 18, 23, 26)
+        // Используется в numb-слоях
         div_lshft_ht: div_lshft_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -1131,19 +1164,8 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Tap Dance gaming3_alt_td:
-        // Добавлено для слоя gaming3_layer (&mo 9).
-        // 1 тап = none (чтобы не прерывать удержание слоя),
-        // 2 тапа (окно 300 мс) = LALT (Alt).
-        gaming3_alt_td: gaming3_alt_td {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <300>;
-            bindings = <&none>, <&kp LALT>;
-        };
-
         // ============================================================
-        // ДОБАВЛЕНО: английские символьные hold-tap и кнопка swap
+        // Английские символьные hold-tap и кнопка swap
         // ============================================================
 
         // Универсальный hold-tap для английских символов:
@@ -1189,18 +1211,18 @@
         };
 
         // ============================================================
-        // Кнопка переключения kp-режима:
-        // Одно нажатие — включить слой 22.
+        // Кнопка переключения KP_MODE:
+        // Одно нажатие — включить слой 1.
         // Повторное нажатие — выключить.
-        // Слой 22 является прозрачным overlay поверх слоя 0 и переводит
-        // большие пальцы на английские слои 23/24 вместо 15/16.
+        // Слой 1 является копией слоя 0 и переводит
+        // большие пальцы на английские слои без Alt.
         // ============================================================
         symb_eng_swap_toggle: symb_eng_swap_toggle {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <0>;
-            bindings = <&tog 22>;
+            bindings = <&tog KP_MODE_LAYER>;
         };
     };
 
@@ -1209,7 +1231,7 @@
         compatible = "zmk,combos";
 
         // ============================================================
-        // Комбо R + T (позиции 4, 5), активно на слоях 0 и 11.
+        // Комбо R + T (позиции 4, 5), активно на слоях BASE, SPEEDTYPE, KP_MODE.
         // timeout-ms=80: R и T должны образовать комбо в пределах 80 мс.
         // require-prior-idle-ms=150 подавляет комбо сразу после недавнего ввода.
         //
@@ -1225,30 +1247,29 @@
             require-prior-idle-ms = <150>;
             key-positions = <4 5>;
             bindings = <&combo_rt_caps_td>;
-            layers = <0 11 22>;
+            layers = <BASE_LAYER SPEEDTYPE_LAYER KP_MODE_LAYER>;
         };
 
         // Комбо W + E + R + T (Клавиши 2, 3, 4, 5)
-        // Включение / выключение игрового режима (Слой 7 Gaming 1).
-        // Работает на слоях 0 и 7. Окно срабатывания: 100 мс, простой: 250 мс.
+        // Включение / выключение игрового режима (Gaming1).
+        // Работает на BASE, GAMING1 и KP_MODE.
         combo_wert_gaming_toggle {
             timeout-ms = <100>;
             require-prior-idle-ms = <250>;
             key-positions = <2 3 4 5>;
-            bindings = <&tog 7>;
-            layers = <0 7 22>;
+            bindings = <&tog GAMING1_LAYER>;
+            layers = <BASE_LAYER GAMING1_LAYER KP_MODE_LAYER>;
         };
 
         // Комбо Q + W (позиции 1, 2):
-        // На слое 0 вызывает tog13_on_td; двойное срабатывание tap-dance
-        // делает toggle слоя 13 и временную WS2812 ON-индикацию.
-        // timeout-ms=80, require-prior-idle-ms=150.
+        // На BASE/KP_MODE вызывает tog13_on_td; двойное срабатывание tap-dance
+        // делает toggle слоя Lefthand и временную WS2812 ON-индикацию.
         combo_qw_tog13_on {
             timeout-ms = <80>;
             require-prior-idle-ms = <150>;
             key-positions = <1 2>;
             bindings = <&tog13_on_td>;
-            layers = <0 22>;
+            layers = <BASE_LAYER KP_MODE_LAYER>;
         };
 
         // Комбо Tab + Q:
@@ -1258,117 +1279,143 @@
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&kp ESC>;
-            layers = <0 6 7 11 12 13 14 22>;
+            layers = <
+                BASE_LAYER
+                NAV2_LAYER
+                GAMING1_LAYER
+                SPEEDTYPE_LAYER
+                NAV2_NOLIGHT_LAYER
+                LEFTHAND_LAYER
+                LEFTHAND_NOLIGHT_LAYER
+                KP_MODE_LAYER
+            >;
         };
 
         // Комбо Q + W (позиции 1, 2):
-        // На слое 13 вызывает tog13_off_td; двойное срабатывание tap-dance
-        // делает toggle слоя 13 и временную WS2812 OFF-индикацию.
-        // timeout-ms=80, require-prior-idle-ms=150.
+        // На слое Lefthand вызывает tog13_off_td; двойное срабатывание tap-dance
+        // делает toggle слоя Lefthand и временную WS2812 OFF-индикацию.
         combo_qw_tog13_off {
             timeout-ms = <80>;
             require-prior-idle-ms = <150>;
             key-positions = <1 2>;
             bindings = <&tog13_off_td>;
-            layers = <13>;
+            layers = <LEFTHAND_LAYER>;
         };
 
-        // Комбо E + R для обычных слоёв:
-        // активирует обычный nav3 слой 10.
+        // Комбо E + R:
+        // Временная активация Nav3.
+        // Активно на BASE, SPEEDTYPE, KP_MODE.
         combo_er_nav3 {
             timeout-ms = <80>;
             require-prior-idle-ms = <150>;
             key-positions = <3 4>;
-            bindings = <&mo 10>;
-            layers = <0 11>;
-        };
-
-        // Комбо E + R для kp-режима:
-        // активирует nav3-слой 27, который выше 22.
-        // Поэтому JK/KL, разрешённые на 22, в этом состоянии не срабатывают.
-        combo_er_nav3_kp {
-            timeout-ms = <80>;
-            require-prior-idle-ms = <150>;
-            key-positions = <3 4>;
-            bindings = <&mo 27>;
-            layers = <22>;
+            bindings = <&mo NAV3_LAYER>;
+            layers = <BASE_LAYER SPEEDTYPE_LAYER KP_MODE_LAYER>;
         };
 
         // Комбо позиций 27 + 41:
         // Вызывает speedtype_double_tap; второе срабатывание tap-dance
-        // переключает фиксированный слой 11 (&tog 11).
-        // Активно на слоях 0 и 11; timeout-ms=80, require-prior-idle-ms=150.
+        // переключает фиксированный слой Speedtype.
         combo_sqt_esc_speedtype {
             timeout-ms = <80>;
             require-prior-idle-ms = <150>;
             key-positions = <27 41>;
             bindings = <&speedtype_double_tap>;
-            layers = <0 11 22>;
+            layers = <BASE_LAYER SPEEDTYPE_LAYER KP_MODE_LAYER>;
         };
 
-        // Комбо D + F для обычных слоёв:
-        // активирует обычный nav1 слой 1.
+        // Комбо D + F:
+        // Временная активация Nav1.
+        // Активно на BASE, SPEEDTYPE, KP_MODE.
         combo_fd_nav {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
             key-positions = <16 17>;
-            bindings = <&mo 1>;
-            layers = <0 11>;
-        };
-
-        // Комбо D + F для kp-режима:
-        // активирует nav1-слой 28, который выше 22.
-        combo_fd_nav_kp {
-            timeout-ms = <50>;
-            require-prior-idle-ms = <100>;
-            key-positions = <16 17>;
-            bindings = <&mo 28>;
-            layers = <22>;
+            bindings = <&mo NAV1_LAYER>;
+            layers = <BASE_LAYER SPEEDTYPE_LAYER KP_MODE_LAYER>;
         };
 
         // Комбо двух нижних левых клавиш (Клавиши 42, 43):
-        // Временная активация слоя 5 (&mo 5): Bluetooth, USB/BLE output, RGB, ZMK Studio.
-        // Работает на слое 0. Окно срабатывания: 50 мс, простой: 100 мс.
+        // Временная активация Service слоя: Bluetooth, USB/BLE output, RGB, ZMK Studio.
         combo_service {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
             key-positions = <42 43>;
-            bindings = <&mo 5>;
-            layers = <0 22>;
+            bindings = <&mo SERVICE_LAYER>;
+            layers = <BASE_LAYER KP_MODE_LAYER>;
         };
 
         // Комбо Y + U (позиции 7, 8):
         // Вызывает nav2_double_tap; второе срабатывание tap-dance
-        // переключает фиксированный слой 6 (&tog 6).
-        // Активно на слоях 0 и 6; timeout-ms=80, require-prior-idle-ms=150.
+        // переключает фиксированный слой Nav2.
         combo_yu_nav2_double_tap {
             timeout-ms = <80>;
             require-prior-idle-ms = <150>;
             key-positions = <7 8>;
             bindings = <&nav2_double_tap>;
-            layers = <0 6 22>;
+            layers = <BASE_LAYER NAV2_LAYER KP_MODE_LAYER>;
         };
 
         // Комбо J + K (Клавиши 23, 24):
         // Нажатие клавиши BSPC (Backspace).
-        // Работает на основных и вспомогательных слоях. Окно срабатывания: 50 мс.
+        // Работает на основных и вспомогательных слоях, включая KP_MODE.
+        // Не работает внутри Nav3, чтобы не мешать управлению курсором.
         combo_jk_backspace {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
             key-positions = <23 24>;
             bindings = <&kp BSPC>;
-            layers = <0 1 2 3 4 5 6 11 15 16 17 18 19 22 23 24 25 26>;
+            layers = <
+                BASE_LAYER
+                NAV1_LAYER
+                SYMB_LAYER
+                NUMB_LAYER
+                FN_LAYER
+                SERVICE_LAYER
+                NAV2_LAYER
+                SPEEDTYPE_LAYER
+                NUMB_NOLIGHT_LAYER
+                SYMB_NOLIGHT_COPY_LAYER
+                SYMB_NOLIGHT_LAYER
+                NUMB_NOLIGHT_COPY_LAYER
+                SYMB_ENG_LAYER
+                KP_MODE_LAYER
+                NUMB_ENG_NOLIGHT_LAYER
+                SYMB_ENG_NOLIGHT_COPY_LAYER
+                SYMB_ENG_NOLIGHT_LAYER
+                NUMB_ENG_NOLIGHT_COPY_LAYER
+            >;
         };
 
         // Комбо K + L (Клавиши 24, 25):
         // Нажатие клавиши DEL (Delete).
-        // Работает на основных и вспомогательных слоях. Окно срабатывания: 50 мс.
+        // Работает на основных и вспомогательных слоях, включая KP_MODE.
+        // Не работает внутри Nav3.
         combo_kl_delete {
             timeout-ms = <50>;
             require-prior-idle-ms = <100>;
             key-positions = <24 25>;
             bindings = <&kp DEL>;
-            layers = <0 1 2 3 4 5 6 11 15 16 17 18 19 22 23 24 25 26>;
+            layers = <
+                BASE_LAYER
+                NAV1_LAYER
+                SYMB_LAYER
+                NUMB_LAYER
+                FN_LAYER
+                SERVICE_LAYER
+                NAV2_LAYER
+                SPEEDTYPE_LAYER
+                NUMB_NOLIGHT_LAYER
+                SYMB_NOLIGHT_COPY_LAYER
+                SYMB_NOLIGHT_LAYER
+                NUMB_NOLIGHT_COPY_LAYER
+                SYMB_ENG_LAYER
+                KP_MODE_LAYER
+                NUMB_ENG_NOLIGHT_LAYER
+                SYMB_ENG_NOLIGHT_COPY_LAYER
+                SYMB_ENG_NOLIGHT_LAYER
+                NUMB_ENG_NOLIGHT_COPY_LAYER
+            >;
         };
 
         // Комбо D + F (Клавиши 16, 17):
@@ -1378,7 +1425,22 @@
             require-prior-idle-ms = <100>;
             key-positions = <16 17>;
             bindings = <&kp BSPC>;
-            layers = <2 3 6 13 14 15 16 17 18 19 23 24 25 26>;
+            layers = <
+                SYMB_LAYER
+                NUMB_LAYER
+                NAV2_LAYER
+                LEFTHAND_LAYER
+                LEFTHAND_NOLIGHT_LAYER
+                NUMB_NOLIGHT_LAYER
+                SYMB_NOLIGHT_COPY_LAYER
+                SYMB_NOLIGHT_LAYER
+                NUMB_NOLIGHT_COPY_LAYER
+                SYMB_ENG_LAYER
+                NUMB_ENG_NOLIGHT_LAYER
+                SYMB_ENG_NOLIGHT_COPY_LAYER
+                SYMB_ENG_NOLIGHT_LAYER
+                NUMB_ENG_NOLIGHT_COPY_LAYER
+            >;
         };
 
         // Комбо S + D (Клавиши 15, 16):
@@ -1388,72 +1450,111 @@
             require-prior-idle-ms = <100>;
             key-positions = <15 16>;
             bindings = <&kp DEL>;
-            layers = <2 3 6 13 14 15 16 17 18 19 23 24 25 26>;
+            layers = <
+                SYMB_LAYER
+                NUMB_LAYER
+                NAV2_LAYER
+                LEFTHAND_LAYER
+                LEFTHAND_NOLIGHT_LAYER
+                NUMB_NOLIGHT_LAYER
+                SYMB_NOLIGHT_COPY_LAYER
+                SYMB_NOLIGHT_LAYER
+                NUMB_NOLIGHT_COPY_LAYER
+                SYMB_ENG_LAYER
+                NUMB_ENG_NOLIGHT_LAYER
+                SYMB_ENG_NOLIGHT_COPY_LAYER
+                SYMB_ENG_NOLIGHT_LAYER
+                NUMB_ENG_NOLIGHT_COPY_LAYER
+            >;
         };
 
         // Комбо G + левый большой палец (позиции 18, 43):
-        // Второе срабатывание thumb_e_numb_td переключает фиксированный слой 3 (&tog 3).
-        // Для слоя 3 widget.c задаёт persistent-цвет левой половины.
-        // Активно на слоях 0 и 3; timeout-ms=200, require-prior-idle-ms=100.
+        // Второе срабатывание thumb_e_numb_td переключает фиксированный слой NUMB_LAYER.
         combo_left_thumb_e_numb {
             timeout-ms = <200>;
             require-prior-idle-ms = <100>;
             key-positions = <18 43>;
             bindings = <&thumb_e_numb_td>;
-            layers = <0 3 22>;
+            layers = <BASE_LAYER NUMB_LAYER KP_MODE_LAYER>;
         };
 
         // Комбо H + правый большой палец (позиции 22, 46):
-        // Русский persistent-символьный слой 2.
+        // Русский persistent-символьный слой SYMB_LAYER.
         combo_right_thumb_i_symb {
             timeout-ms = <200>;
             require-prior-idle-ms = <100>;
             key-positions = <22 46>;
             bindings = <&thumb_i_symb_td>;
-            layers = <0 2>;
+            layers = <BASE_LAYER SYMB_LAYER>;
         };
 
         // Комбо H + правый большой палец (позиции 22, 46):
-        // Английский persistent-символьный слой 19.
-        // Работает и на самом слое 19, и в kp-режиме на слое 22.
+        // Английский persistent-символьный слой SYMB_ENG_LAYER.
+        // Работает в KP_MODE и на самом английском persistent-слое.
         combo_right_thumb_i_symb_eng {
             timeout-ms = <200>;
             require-prior-idle-ms = <100>;
             key-positions = <22 46>;
             bindings = <&thumb_i_symb_eng_td>;
-            layers = <19 22>;
+            layers = <KP_MODE_LAYER SYMB_ENG_LAYER>;
         };
 
         // Комбо I + O + P + [ (позиции 9,10,11,12):
-        // &to 0, затем ручная WS2812-индикация через &ws2812_wdg 0.
+        // &to BASE_LAYER, затем ручная WS2812-индикация через &ws2812_wdg 0.
         combo_iop_lbkt_reset {
             timeout-ms = <100>;
             require-prior-idle-ms = <250>;
             key-positions = <9 10 11 12>;
             bindings = <&reset_l0_green_flash>;
-            layers = <0 2 3 6 7 11 13 19 22 23 24 25 26>;
+            layers = <
+                BASE_LAYER
+                SYMB_LAYER
+                NUMB_LAYER
+                NAV2_LAYER
+                GAMING1_LAYER
+                SPEEDTYPE_LAYER
+                LEFTHAND_LAYER
+                SYMB_ENG_LAYER
+                KP_MODE_LAYER
+                NUMB_ENG_NOLIGHT_LAYER
+                SYMB_ENG_NOLIGHT_COPY_LAYER
+                SYMB_ENG_NOLIGHT_LAYER
+                NUMB_ENG_NOLIGHT_COPY_LAYER
+            >;
         };
 
         // Комбо COMMA + DOT + FSLH + ESC (клавиши 38, 39, 40, 41):
-        // Сброс на слой 22 (kp-режим) + зелёная вспышка подсветки.
-        // Аналог combo_iop_lbkt_reset, но для kp-режима.
-        combo_comma_dot_fslh_esc_reset22 {
+        // Сброс на KP_MODE + зелёная вспышка подсветки.
+        combo_comma_dot_fslh_esc_reset_kp {
             timeout-ms = <100>;
             require-prior-idle-ms = <250>;
             key-positions = <38 39 40 41>;
-            bindings = <&reset_l22_green_flash>;
-            layers = <0 2 3 6 7 11 13 19 22 23 24 25 26>;
+            bindings = <&reset_kp_mode_green_flash>;
+            layers = <
+                BASE_LAYER
+                SYMB_LAYER
+                NUMB_LAYER
+                NAV2_LAYER
+                GAMING1_LAYER
+                SPEEDTYPE_LAYER
+                LEFTHAND_LAYER
+                SYMB_ENG_LAYER
+                KP_MODE_LAYER
+                NUMB_ENG_NOLIGHT_LAYER
+                SYMB_ENG_NOLIGHT_COPY_LAYER
+                SYMB_ENG_NOLIGHT_LAYER
+                NUMB_ENG_NOLIGHT_COPY_LAYER
+            >;
         };
 
         // Комбо Z + X + C (Клавиши 29, 30, 31):
-        // Нажатие Enter в игровом слое 7.
-        // Окно срабатывания: 80 мс, простой: 50 мс.
+        // Нажатие Enter в игровом слое Gaming1.
         combo_zxc_enter_gaming {
             timeout-ms = <80>;
             require-prior-idle-ms = <50>;
             key-positions = <29 30 31>;
             bindings = <&kp ENTER>;
-            layers = <7>;
+            layers = <GAMING1_LAYER>;
         };
     };
 
@@ -1461,47 +1562,66 @@
     keymap {
         compatible = "zmk,keymap";
 
+        // ============================================================
         // Слой 0: Основной слой (QWERTY / Базовая печать)
         // Энкодер: Громкость (Volume Up / Down)
+        // ============================================================
         default_layer {
             display-name = "default_layer";
             bindings = <
 &kp TAB                  &kp Q             &kp W             &kp E               &kp R              &t_yo_ht GRAVE T                         &kp UP                &media_ht C_PP Y    &media_ht C_PREV U      &media_ht C_NEXT I  &media_ht C_STOP O  &kp P               &lbkt_screenshot 0 LBKT
-&kp LSHIFT               &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D               &edit_ht LC(F) F   &kp G                          &kp LEFT  &kp SPC   &kp RIGHT   &kp H               &kp J                   &kp K               &kp L               &semi_fn_ht 4 SEMI  &mt LSHFT SQT
+&kp LSHIFT               &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D               &edit_ht LC(F) F   &kp G                          &kp LEFT  &kp SPC   &kp RIGHT   &kp H               &kp J                   &kp K               &kp L               &semi_fn_ht FN_LAYER SEMI  &mt LSHFT SQT
 &kp LCTRL                &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C    &edit_ht LC(V) V   &b_alt_ht LALT B   &kp C_MUTE            &kp DOWN              &n_alt_ht LALT N    &kp M                   &kp COMMA           &kp DOT             &kp FSLH            &kp ESC
-                                                             &lefthand_ht 14 0   &symb_win_td 16 0  &kp SPC                                                        &kp ENTER           &thumb_num_sym_fn 15 0  &lang_nav2 12 0
+                                                             &lefthand_ht LEFTHAND_NOLIGHT_LAYER 0   &symb_win_td SYMB_NOLIGHT_COPY_LAYER 0  &kp SPC                                                        &kp ENTER           &thumb_num_sym_fn NUMB_NOLIGHT_LAYER 0  &lang_nav2 NAV2_NOLIGHT_LAYER 0
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        // Слой 1: Навигация 1 (Управление курсором мыши, кликами, стрелками и Home/End)
-        // Энкодер: Ctrl+Right / Ctrl+Left (переход по словам).
-        nav1_layer {
-            display-name = "nav1_layer";
+        // ============================================================
+        // Слой 1: KP_MODE.
+        //
+        // Это полная копия слоя 0 по всем функциям,
+        // кроме переходов больших пальцев на символьные/цифровые слои.
+        //
+        // В этом режиме:
+        //   - левый большой палец символов ведёт на English symb no-light copy;
+        //   - правый большой палец цифр ведёт на English num no-light.
+        //
+        // Все комбо и поведения, которые должны работать как на слое 0,
+        // явно разрешены на KP_MODE_LAYER в блоке combos.
+        // ============================================================
+        kp_mode_layer {
+            display-name = "kp_mode_layer";
             bindings = <
-&kp LC(LA(DEL))  &kp PSCRN         &kp LG(ESC)        &none  &none  &none                               &mmv MOVE_UP                       &kp HOME           &mkp LCLK          &kp UP     &mkp RCLK            &macro_comma_uni   &kp PG_UP
-&trans           &kp PAUSE_BREAK   &kp LG(KP_PLUS)    &none  &none  &none               &mmv MOVE_LEFT  &mkp LCLK      &mmv MOVE_RIGHT     &msc MOVE_X(-150)  &kp LEFT           &kp DOWN   &kp RIGHT            &msc MOVE_X(150)   &kp BSPC
-&trans           &kp INS           &kp LG(KP_MINUS)   &none  &none  &none       &trans                  &mmv MOVE_DOWN                     &kp END            &msc MOVE_Y(-150)  &mkp MCLK  &msc MOVE_Y(150)     &macro_qmark_uni   &kp PG_DN
-                                                      &trans &trans &trans                                                                 &trans             &trans             &trans
+&kp TAB                  &kp Q             &kp W             &kp E               &kp R              &t_yo_ht GRAVE T                         &kp UP                &media_ht C_PP Y    &media_ht C_PREV U      &media_ht C_NEXT I  &media_ht C_STOP O  &kp P               &lbkt_screenshot 0 LBKT
+&kp LSHIFT               &edit_ht LC(A) A  &edit_ht LC(S) S  &kp D               &edit_ht LC(F) F   &kp G                          &kp LEFT  &kp SPC   &kp RIGHT   &kp H               &kp J                   &kp K               &kp L               &semi_fn_ht FN_LAYER SEMI  &mt LSHFT SQT
+&kp LCTRL                &edit_ht LC(Z) Z  &edit_ht LC(X) X  &edit_ht LC(C) C    &edit_ht LC(V) V   &b_alt_ht LALT B   &kp C_MUTE            &kp DOWN              &n_alt_ht LALT N    &kp M                   &kp COMMA           &kp DOT             &kp FSLH            &kp ESC
+                                                             &lefthand_ht LEFTHAND_NOLIGHT_LAYER 0   &symb_win_td SYMB_ENG_NOLIGHT_COPY_LAYER 0  &kp SPC                                                        &kp ENTER           &thumb_num_sym_fn NUMB_ENG_NOLIGHT_LAYER 0  &lang_nav2 NAV2_NOLIGHT_LAYER 0
             >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        // Слой 2: Символы. В текущем widget.c это persistent-слой правой половины.
+        // ============================================================
+        // Слой 2: Символы Alt persistent.
+        // В текущем widget.c это persistent-слой правой половины.
         // Энкодер: Громкость (Volume Up / Down)
+        // ============================================================
         symb_layer {
             display-name = "symb_layer";
             bindings = <
 &hash_dollar_ht DLLR HASH       &rpar_rbrc_ht RBRC RPAR       &lpar_lbrc_ht LBRC LPAR        &astrk_caret_ht CARET ASTRK    &qmark_dqt_ht 0 0       &excl_tilde_ht TILDE EXCL                              &kp UP                 &excl_tilde_ht TILDE EXCL     &qmark_dqt_ht 0 0            &astrk_caret_ht CARET ASTRK  &lpar_lbrc_ht LBRC LPAR      &rpar_rbrc_ht RBRC RPAR       &hash_dollar_ht DLLR HASH
-&bspc_to_numb_ht 17 FSLH        &semi_rbrc_ht 0 0             &comma_lbrc_ht LBRC COMMA      &dot_lbkt_ht LBKT DOT          &rbkt_sqt_ht SQT RBKT   &colon_at_ht AT COLON                        &kp LEFT  &kp SPC   &kp RIGHT    &colon_at_ht AT COLON         &rbkt_sqt_ht SQT RBKT        &dot_lbkt_ht LBKT DOT        &comma_lbrc_ht LBRC COMMA    &semi_rbrc_ht 0 0             &slash_bslh_ht BSLH SLASH
+&bspc_to_numb_ht SYMB_NOLIGHT_LAYER FSLH        &semi_rbrc_ht 0 0             &comma_lbrc_ht LBRC COMMA      &dot_lbkt_ht LBKT DOT          &rbkt_sqt_ht SQT RBKT   &colon_at_ht AT COLON                        &kp LEFT  &kp SPC   &kp RIGHT    &colon_at_ht AT COLON         &rbkt_sqt_ht SQT RBKT        &dot_lbkt_ht LBKT DOT        &comma_lbrc_ht LBRC COMMA    &semi_rbrc_ht 0 0             &slash_bslh_ht BSLH SLASH
 &dqt_pipe_ht PIPE 0             &percent_amp_ht PRCNT AMPS    &equal_tilde_ht TILDE EQUAL    &plus_gt_ht GT PLUS            &minus_lt_ht LT MINUS   &under_lshft_ht LSHFT UNDER     &trans                 &kp DOWN               &under_lshft_ht LSHFT UNDER   &minus_lt_ht LT MINUS        &plus_gt_ht GT PLUS          &equal_tilde_ht TILDE EQUAL  &percent_amp_ht PRCNT AMPS    &dqt_pipe_ht PIPE 0
                                                                                              &trans                         &trans                  &kp SPC                                                                       &kp ENTER                     &trans                       &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        // Слой 3: Цифры/Numpad. В текущем widget.c это persistent-слой левой половины.
+        // ============================================================
+        // Слой 3: Цифры/Numpad Alt persistent.
+        // В текущем widget.c это persistent-слой левой половины.
         // Энкодер: Громкость (Volume Up / Down)
+        // ============================================================
         numb_layer {
             display-name = "numb_layer";
             bindings = <
@@ -1513,8 +1633,10 @@
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
+        // ============================================================
         // Слой 4: Функциональный блок (Клавиши F1-F12 и управление мышью)
         // Энкодер: Ctrl+Right / Ctrl+Left (переход по словам).
+        // ============================================================
         fn_layer {
             display-name = "fn_layer";
             bindings = <
@@ -1526,6 +1648,7 @@
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
+        // ============================================================
         // Слой 5: Сервисный (Bluetooth, выход USB/BLE, ZMK Studio, RGB underglow, WS2812 widget).
         // Реальные underglow-эффекты: RGB_EFR = предыдущий, RGB_EFF = следующий.
         // RGB_HUD/HUI = hue, RGB_SAD/SAI = saturation, RGB_SPI/SPD = speed,
@@ -1534,6 +1657,7 @@
         // Кнопки &ws2812_wdg 6/7/8 сохранены исторически и в текущем драйвере
         // все попадают в default/manual layer indication — это НЕ next/prev/off эффектов.
         // Энкодер: Громкость (Volume Up / Down)
+        // ============================================================
         service_layer {
             display-name = "service_layer";
             bindings = <
@@ -1545,8 +1669,25 @@
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        // Слой 6: Навигация 2 (Фиксируемый слой навигации: стрелки, Enter, Delete, Backspace)
+        // ============================================================
+        // Слой 6: Навигация 1 (Управление курсором мыши, кликами, стрелками и Home/End)
+        // Энкодер: Ctrl+Right / Ctrl+Left (переход по словам).
+        // ============================================================
+        nav1_layer {
+            display-name = "nav1_layer";
+            bindings = <
+&kp LC(LA(DEL))  &kp PSCRN         &kp LG(ESC)        &none  &none  &none                               &mmv MOVE_UP                       &kp HOME           &mkp LCLK          &kp UP     &mkp RCLK            &macro_comma_uni   &kp PG_UP
+&trans           &kp PAUSE_BREAK   &kp LG(KP_PLUS)    &none  &none  &none               &mmv MOVE_LEFT  &mkp LCLK      &mmv MOVE_RIGHT     &msc MOVE_X(-150)  &kp LEFT           &kp DOWN   &kp RIGHT            &msc MOVE_X(150)   &kp BSPC
+&trans           &kp INS           &kp LG(KP_MINUS)   &none  &none  &none       &trans                  &mmv MOVE_DOWN                     &kp END            &msc MOVE_Y(-150)  &mkp MCLK  &msc MOVE_Y(150)     &macro_qmark_uni   &kp PG_DN
+                                                      &trans &trans &trans                                                                 &trans             &trans             &trans
+            >;
+            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+        };
+
+        // ============================================================
+        // Слой 7: Навигация 2 (Фиксируемый слой навигации: стрелки, Enter, Delete, Backspace)
         // Энкодер: Громкость (Volume Up / Down)
+        // ============================================================
         nav2_layer {
             display-name = "nav2_layer";
             bindings = <
@@ -1558,73 +1699,10 @@
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        // Слой 7: Игровой 1 (Оптимизированная раскладка WASD с прямым доступом к Shift/Ctrl)
-        // Энкодер: Громкость (Volume Up / Down)
-        gaming1_layer {
-            display-name = "gaming1_layer";
-            bindings = <
-&kp TAB    &kp Q  &kp W  &kp E                 &kp R   &t_yo_ht GRAVE T                 &kp UP                  &kp Y      &kp U   &kp I      &kp O    &kp P     &kp BSPC
-&kp LSHFT  &kp A  &kp S  &kp D                 &kp F   &kp G                  &kp LEFT  &kp ENTER  &kp RIGHT    &kp H      &kp J   &kp K      &kp L    &kp SEMI  &kp LSHFT
-&kp LCTRL  &kp Z  &kp X  &kp C                 &kp V   &kp B      &kp C_MUTE            &kp DOWN                &kp N      &kp M   &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
-                         &gaming_mo9_alt 9 0   &mo 8   &kp SPACE                                                &kp ENTER  &none   &none
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
-
-        // Слой 8: Игровой 2 (Игровой слой для цифр и F-клавиш)
-        // Энкодер: Громкость (Volume Up / Down)
-        gaming2_layer {
-            display-name = "gaming2_layer";
-            bindings = <
-&kp ESC                       &kp N1   &none    &kp N2   &kp N3  &none                                &kp UP                 &kp F10       &kp F7     &kp F8  &kp F9  &none    &kp BSPC
-&gaming_shft_mo14 14 LSHFT    &kp N4   &none    &kp N5   &kp N6  &kp N0                    &kp LEFT   &kp ENTER  &kp RIGHT   &kp F11       &kp F4     &kp F5  &kp F6  &none    &kp LSHFT
-&kp LCTRL                     &kp N7   &none    &kp N8   &kp N9  &none       &kp C_MUTE               &kp DOWN               &kp F12       &kp F1     &kp F2  &kp F3  &none    &kp ESC
-                                                &none    &none   &kp SPACE                                                   &kp ENTER     &none      &none
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
-
-        // Слой 9: Игровой 3 (Альтернативная игровая раскладка под правую руку/доп. действия)
-        // Энкодер: Громкость (Volume Up / Down)
-        gaming3_layer {
-            display-name = "gaming3_layer";
-            bindings = <
-&kp ESC    &kp Y  &kp U  &kp I  &kp O      &kp P                           &kp UP                 &kp F10       &kp F7  &kp F8  &kp F9  &none    &kp BSPC
-&kp LSHFT  &kp H  &kp J  &kp K  &kp L      &none                &kp LEFT   &kp ENTER  &kp RIGHT   &kp F11       &kp F4  &kp F5  &kp F6  &none    &kp LSHFT
-&kp LCTRL  &kp M  &none  &kp N  &kp COMMA  &kp DOT   &kp C_MUTE            &kp DOWN               &kp F12       &kp F1  &kp F2  &kp F3  &none    &kp ESC
-                         &mo 9  &none      &kp SPACE                                              &kp ENTER     &none   &none
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
-
-        // Слой 10: Навигация 3 (Продвинутое управление мышью и скроллом)
+        // ============================================================
+        // Слой 8: Навигация 2 без подсветки (Временный слой для навигации при зажатии lang_nav2)
         // Энкодер: Ctrl+Right / Ctrl+Left (переход по словам).
-        nav3_layer {
-            display-name = "nav3_layer";
-            bindings = <
-&kp LC(LA(DEL))  &kp PSCRN         &kp LG(ESC)        &none  &none  &none                          &kp UP                   &kp HOME           &mkp LCLK            &mmv MOVE_UP    &mkp RCLK          &macro_comma_uni   &kp PG_UP
-&trans           &kp PAUSE_BREAK   &kp LG(KP_PLUS)    &none  &none  &none                &kp LEFT  &kp ENTER  &kp RIGHT     &msc MOVE_X(-150)  &mmv MOVE_LEFT       &mmv MOVE_DOWN  &mmv MOVE_RIGHT    &msc MOVE_X(150)   &kp BSPC
-&trans           &kp INS           &kp LG(KP_MINUS)   &none  &none  &none   &kp C_MUTE             &kp DOWN                 &kp END            &msc MOVE_Y(-150)    &mkp MCLK       &msc MOVE_Y(150)   &macro_dot_uni     &kp PG_DN
-                                                      &trans &trans &trans                                                  &trans             &trans               &trans
-            >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
-        };
-
-        // Слой 11: Speedtype (Чистая печать без модификаторов hold-tap на основной буквенной зоне)
-        // Энкодер: Громкость (Volume Up / Down)
-        speedtype {
-            display-name = "speedtype";
-            bindings = <
-&kp TAB    &kp Q  &kp W  &kp E      &kp R              &t_yo_ht GRAVE T                    &kp UP                 &kp Y      &kp U                   &kp I              &kp O       &kp P     &kp LBKT
-&kp LSHFT  &kp A  &kp S  &kp D      &kp F              &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT   &kp H      &kp J                   &kp K              &kp L       &kp SEMI  &kp SQT
-&kp LCTRL  &kp Z  &kp X  &kp C      &kp V              &kp B      &kp C_MUTE               &kp DOWN               &kp N      &kp M                   &kp COMMA          &kp DOT     &kp FSLH  &kp ESC
-                         &kp RALT   &symb_win_td 16 0  &kp SPC                                                    &kp ENTER  &thumb_num_sym_fn 15 0  &lang_nav2 12 0
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
-
-        // Слой 12: Навигация 2 без подсветки (Временный слой для навигации при зажатии lang_nav2)
-        // Энкодер: Ctrl+Right / Ctrl+Left (переход по словам).
+        // ============================================================
         nav2nolight_layer {
             display-name = "nav2nolight_layer";
             bindings = <
@@ -1636,10 +1714,87 @@
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
-        // Слой 13: Управление одной левой рукой.
+        // ============================================================
+        // Слой 9: Навигация 3 (Продвинутое управление мышью и скроллом)
+        // Энкодер: Ctrl+Right / Ctrl+Left (переход по словам).
+        // ============================================================
+        nav3_layer {
+            display-name = "nav3_layer";
+            bindings = <
+&kp LC(LA(DEL))  &kp PSCRN         &kp LG(ESC)        &none  &none  &none                          &kp UP                   &kp HOME           &mkp LCLK            &mmv MOVE_UP    &mkp RCLK          &macro_comma_uni   &kp PG_UP
+&trans           &kp PAUSE_BREAK   &kp LG(KP_PLUS)    &none  &none  &none                &kp LEFT  &kp ENTER  &kp RIGHT     &msc MOVE_X(-150)  &mmv MOVE_LEFT       &mmv MOVE_DOWN  &mmv MOVE_RIGHT    &msc MOVE_X(150)   &kp BSPC
+&trans           &kp INS           &kp LG(KP_MINUS)   &none  &none  &none   &kp C_MUTE             &kp DOWN                 &kp END            &msc MOVE_Y(-150)    &mkp MCLK       &msc MOVE_Y(150)   &macro_dot_uni     &kp PG_DN
+                                                      &trans &trans &trans                                                  &trans             &trans               &trans
+            >;
+            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
+        };
+
+        // ============================================================
+        // Слой 10: Игровой 1 (Оптимизированная раскладка WASD с прямым доступом к Shift/Ctrl)
+        // Энкодер: Громкость (Volume Up / Down)
+        // ============================================================
+        gaming1_layer {
+            display-name = "gaming1_layer";
+            bindings = <
+&kp TAB    &kp Q  &kp W  &kp E                 &kp R   &t_yo_ht GRAVE T                 &kp UP                  &kp Y      &kp U   &kp I      &kp O    &kp P     &kp BSPC
+&kp LSHFT  &kp A  &kp S  &kp D                 &kp F   &kp G                  &kp LEFT  &kp ENTER  &kp RIGHT    &kp H      &kp J   &kp K      &kp L    &kp SEMI  &kp LSHFT
+&kp LCTRL  &kp Z  &kp X  &kp C                 &kp V   &kp B      &kp C_MUTE            &kp DOWN                &kp N      &kp M   &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
+                         &gaming_mo9_alt GAMING3_LAYER 0   &mo GAMING2_LAYER   &kp SPACE                                                &kp ENTER  &none   &none
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
+        // ============================================================
+        // Слой 11: Игровой 2 (Игровой слой для цифр и F-клавиш)
+        // Энкодер: Громкость (Volume Up / Down)
+        // ============================================================
+        gaming2_layer {
+            display-name = "gaming2_layer";
+            bindings = <
+&kp ESC                       &kp N1   &none    &kp N2   &kp N3  &none                                &kp UP                 &kp F10       &kp F7     &kp F8  &kp F9  &none    &kp BSPC
+&gaming_shft_mo14 LEFTHAND_NOLIGHT_LAYER LSHFT    &kp N4   &none    &kp N5   &kp N6  &kp N0                    &kp LEFT   &kp ENTER  &kp RIGHT   &kp F11       &kp F4     &kp F5  &kp F6  &none    &kp LSHFT
+&kp LCTRL                     &kp N7   &none    &kp N8   &kp N9  &none       &kp C_MUTE               &kp DOWN               &kp F12       &kp F1     &kp F2  &kp F3  &none    &kp ESC
+                                                &none    &none   &kp SPACE                                                   &kp ENTER     &none      &none
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
+        // ============================================================
+        // Слой 12: Игровой 3 (Альтернативная игровая раскладка под правую руку/доп. действия)
+        // Энкодер: Громкость (Volume Up / Down)
+        // ============================================================
+        gaming3_layer {
+            display-name = "gaming3_layer";
+            bindings = <
+&kp ESC    &kp Y  &kp U  &kp I  &kp O      &kp P                           &kp UP                 &kp F10       &kp F7  &kp F8  &kp F9  &none    &kp BSPC
+&kp LSHFT  &kp H  &kp J  &kp K  &kp L      &none                &kp LEFT   &kp ENTER  &kp RIGHT   &kp F11       &kp F4  &kp F5  &kp F6  &none    &kp LSHFT
+&kp LCTRL  &kp M  &none  &kp N  &kp COMMA  &kp DOT   &kp C_MUTE            &kp DOWN               &kp F12       &kp F1  &kp F2  &kp F3  &none    &kp ESC
+                         &mo GAMING3_LAYER  &none      &kp SPACE                                              &kp ENTER     &none   &none
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
+        // ============================================================
+        // Слой 13: Speedtype (Чистая печать без модификаторов hold-tap на основной буквенной зоне)
+        // Энкодер: Громкость (Volume Up / Down)
+        // ============================================================
+        speedtype {
+            display-name = "speedtype";
+            bindings = <
+&kp TAB    &kp Q  &kp W  &kp E      &kp R              &t_yo_ht GRAVE T                    &kp UP                 &kp Y      &kp U                   &kp I              &kp O       &kp P     &kp LBKT
+&kp LSHFT  &kp A  &kp S  &kp D      &kp F              &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT   &kp H      &kp J                   &kp K              &kp L       &kp SEMI  &kp SQT
+&kp LCTRL  &kp Z  &kp X  &kp C      &kp V              &kp B      &kp C_MUTE               &kp DOWN               &kp N      &kp M                   &kp COMMA          &kp DOT     &kp FSLH  &kp ESC
+                         &kp RALT   &symb_win_td SYMB_NOLIGHT_COPY_LAYER 0  &kp SPC                                                    &kp ENTER  &thumb_num_sym_fn NUMB_NOLIGHT_LAYER 0  &lang_nav2 NAV2_NOLIGHT_LAYER 0
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
+        // ============================================================
+        // Слой 14: Управление одной левой рукой.
         // Сам слой постоянный RGB-профиль не выбирает; временная ON/OFF-индикация
         // выполняется только макросами tog13_on/tog13_off через ws2812_lsync 1/0.
         // Энкодер: Громкость (Volume Up / Down)
+        // ============================================================
         lefthand_layer {
             display-name = "lefthand_layer";
             bindings = <
@@ -1651,8 +1806,10 @@
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        // Слой 14: Управление одной левой рукой без вызова ws2812_lsync.
+        // ============================================================
+        // Слой 15: Управление одной левой рукой без вызова ws2812_lsync.
         // Энкодер: Ctrl+Right / Ctrl+Left (переход по словам).
+        // ============================================================
         lefthandnolight_layer {
             display-name = "lefthandnolight_layer";
             bindings = <
@@ -1664,53 +1821,68 @@
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
-        // Слой 15: Цифры без persistent-подсветки; вызывается hold-частью thumb_num_sym_fn 15 0.
-        // На правой крайней клавише второго ряда: &bspc_to_layer_ht 16 BSPC -> hold слой 16, tap BSPC.
+        // ============================================================
+        // Слой 16: Цифры Alt без persistent-подсветки.
+        // Вызывается hold-частью thumb_num_sym_fn NUMB_NOLIGHT_LAYER 0.
+        // На правой крайней клавише второго ряда:
+        //   hold -> SYMB_NOLIGHT_COPY_LAYER
+        //   tap  -> BSPC
         // Энкодер: Ctrl+Right / Ctrl+Left (переход по словам).
+        // ============================================================
         numbnolight_layer {
             display-name = "numbnolight_layer";
             bindings = <
 &kp C_AL_CALCULATOR   &kp KP_MULTIPLY                  &kp N9  &kp N8  &kp N7  &kp KP_PLUS                                            &msc SCRL_UP                      &kp KP_PLUS     &kp N7  &kp N8  &kp N9  &kp KP_MULTIPLY                  &kp C_AL_CALCULATOR
-&kp BSPC              &kp N0                           &kp N6  &kp N5  &kp N4  &kp KP_MINUS                          &msc SCRL_LEFT   &mkp LCLK       &msc SCRL_RIGHT   &kp KP_MINUS    &kp N4  &kp N5  &kp N6  &kp N0                           &bspc_to_layer_ht 16 BSPC
+&kp BSPC              &kp N0                           &kp N6  &kp N5  &kp N4  &kp KP_MINUS                          &msc SCRL_LEFT   &mkp LCLK       &msc SCRL_RIGHT   &kp KP_MINUS    &kp N4  &kp N5  &kp N6  &kp N0                           &bspc_to_layer_ht SYMB_NOLIGHT_COPY_LAYER BSPC
 &kp KP_ENTER          &div_lshft_ht LSHFT KP_DIVIDE    &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                                 &msc SCRL_DOWN                    &kp KP_EQUAL    &kp N1  &kp N2  &kp N3  &div_lshft_ht LSHFT KP_DIVIDE    &kp KP_ENTER
                                                                &trans  &trans  &trans                                                                                   &kp ENTER       &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
-        // Слой 16: Копия символов без persistent-подсветки.
-        // Вызывается hold-частью &bspc_to_layer_ht 16 BSPC на слое 15.
-        // На левой крайней клавише второго ряда: &bspc_to_numb_ht 18 FSLH -> hold слой 18, tap '/'.
+        // ============================================================
+        // Слой 17: Копия символов Alt без persistent-подсветки.
+        // Вызывается hold-частью &bspc_to_layer_ht SYMB_NOLIGHT_COPY_LAYER BSPC на слое 16.
+        // На левой крайней клавише второго ряда:
+        //   hold -> NUMB_NOLIGHT_COPY_LAYER
+        //   tap  -> /
         // Энкодер: Ctrl+Right / Ctrl+Left (переход по словам).
+        // ============================================================
         symbnolightcopy_layer {
             display-name = "symbnolightcopy_layer";
             bindings = <
 &hash_dollar_ht DLLR HASH       &rpar_rbrc_ht RBRC RPAR       &lpar_lbrc_ht LBRC LPAR        &astrk_caret_ht CARET ASTRK    &qmark_dqt_ht 0 0       &excl_tilde_ht TILDE EXCL                              &kp UP                 &excl_tilde_ht TILDE EXCL     &qmark_dqt_ht 0 0            &astrk_caret_ht CARET ASTRK  &lpar_lbrc_ht LBRC LPAR      &rpar_rbrc_ht RBRC RPAR       &hash_dollar_ht DLLR HASH
-&bspc_to_numb_ht 18 FSLH        &semi_rbrc_ht 0 0             &comma_lbrc_ht LBRC COMMA      &dot_lbkt_ht LBKT DOT          &rbkt_sqt_ht SQT RBKT   &colon_at_ht AT COLON                        &kp LEFT  &kp SPC   &kp RIGHT    &colon_at_ht AT COLON         &rbkt_sqt_ht SQT RBKT        &dot_lbkt_ht LBKT DOT        &comma_lbrc_ht LBRC COMMA    &semi_rbrc_ht 0 0             &slash_bslh_ht BSLH SLASH
+&bspc_to_numb_ht NUMB_NOLIGHT_COPY_LAYER FSLH        &semi_rbrc_ht 0 0             &comma_lbrc_ht LBRC COMMA      &dot_lbkt_ht LBKT DOT          &rbkt_sqt_ht SQT RBKT   &colon_at_ht AT COLON                        &kp LEFT  &kp SPC   &kp RIGHT    &colon_at_ht AT COLON         &rbkt_sqt_ht SQT RBKT        &dot_lbkt_ht LBKT DOT        &comma_lbrc_ht LBRC COMMA    &semi_rbrc_ht 0 0             &slash_bslh_ht BSLH SLASH
 &dqt_pipe_ht PIPE 0             &percent_amp_ht PRCNT AMPS    &equal_tilde_ht TILDE EQUAL    &plus_gt_ht GT PLUS            &minus_lt_ht LT MINUS   &under_lshft_ht LSHFT UNDER     &trans                 &kp DOWN               &under_lshft_ht LSHFT UNDER   &minus_lt_ht LT MINUS        &plus_gt_ht GT PLUS          &equal_tilde_ht TILDE EQUAL  &percent_amp_ht PRCNT AMPS    &dqt_pipe_ht PIPE 0
                                                                                              &trans                         &trans                  &kp SPC                                                                       &kp ENTER                     &trans                       &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
-        // Слой 17: Символы без persistent-подсветки.
-        // Может вызываться hold-частью symb_win_td 17 0.
-        // На левой крайней клавише второго ряда: &bspc_to_numb_ht 18 FSLH -> hold слой 18, tap '/'.
+        // ============================================================
+        // Слой 18: Символы Alt без persistent-подсветки.
+        // Может вызываться hold-частью symb_win_td SYMB_NOLIGHT_LAYER 0.
+        // На левой крайней клавише второго ряда:
+        //   hold -> NUMB_NOLIGHT_COPY_LAYER
+        //   tap  -> /
         // Энкодер: Ctrl+Right / Ctrl+Left (переход по словам).
+        // ============================================================
         symbnolight_layer {
             display-name = "symbnolight_layer";
             bindings = <
 &hash_dollar_ht DLLR HASH       &rpar_rbrc_ht RBRC RPAR       &lpar_lbrc_ht LBRC LPAR        &astrk_caret_ht CARET ASTRK    &qmark_dqt_ht 0 0       &excl_tilde_ht TILDE EXCL                              &kp UP                 &excl_tilde_ht TILDE EXCL     &qmark_dqt_ht 0 0            &astrk_caret_ht CARET ASTRK  &lpar_lbrc_ht LBRC LPAR      &rpar_rbrc_ht RBRC RPAR       &hash_dollar_ht DLLR HASH
-&bspc_to_numb_ht 18 FSLH        &semi_rbrc_ht 0 0             &comma_lbrc_ht LBRC COMMA      &dot_lbkt_ht LBKT DOT          &rbkt_sqt_ht SQT RBKT   &colon_at_ht AT COLON                        &kp LEFT  &kp SPC   &kp RIGHT    &colon_at_ht AT COLON         &rbkt_sqt_ht SQT RBKT        &dot_lbkt_ht LBKT DOT        &comma_lbrc_ht LBRC COMMA    &semi_rbrc_ht 0 0             &slash_bslh_ht BSLH SLASH
+&bspc_to_numb_ht NUMB_NOLIGHT_COPY_LAYER FSLH        &semi_rbrc_ht 0 0             &comma_lbrc_ht LBRC COMMA      &dot_lbkt_ht LBKT DOT          &rbkt_sqt_ht SQT RBKT   &colon_at_ht AT COLON                        &kp LEFT  &kp SPC   &kp RIGHT    &colon_at_ht AT COLON         &rbkt_sqt_ht SQT RBKT        &dot_lbkt_ht LBKT DOT        &comma_lbrc_ht LBRC COMMA    &semi_rbrc_ht 0 0             &slash_bslh_ht BSLH SLASH
 &dqt_pipe_ht PIPE 0             &percent_amp_ht PRCNT AMPS    &equal_tilde_ht TILDE EQUAL    &plus_gt_ht GT PLUS            &minus_lt_ht LT MINUS   &under_lshft_ht LSHFT UNDER     &trans                 &kp DOWN               &under_lshft_ht LSHFT UNDER   &minus_lt_ht LT MINUS        &plus_gt_ht GT PLUS          &equal_tilde_ht TILDE EQUAL  &percent_amp_ht PRCNT AMPS    &dqt_pipe_ht PIPE 0
                                                                                              &trans                         &trans                  &kp SPC                                                                       &kp ENTER                     &trans                       &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
-        // Слой 18: Копия цифр без persistent-подсветки.
-        // Вызывается hold-частью &bspc_to_numb_ht 18 FSLH на слоях 16/17.
+        // ============================================================
+        // Слой 19: Копия цифр Alt без persistent-подсветки.
+        // Вызывается hold-частью &bspc_to_numb_ht NUMB_NOLIGHT_COPY_LAYER FSLH на слоях 17/18.
         // Энкодер: Ctrl+Right / Ctrl+Left (переход по словам).
+        // ============================================================
         numbnolightcopy_layer {
             display-name = "numbnolightcopy_layer";
             bindings = <
@@ -1723,11 +1895,11 @@
         };
 
         // ============================================================
-        // Слой 19: английский persistent символьный слой.
+        // Слой 20: английский persistent символьный слой (без Alt).
         // Аналог слоя 2, но без Alt-code там, где символ есть в EN.
         //
         // Левая крайняя клавиша второго ряда:
-        //   hold -> слой 25
+        //   hold -> SYMB_ENG_NOLIGHT_LAYER
         //   tap  -> /
         //
         // Энкодер: громкость, как у исходного слоя 2.
@@ -1736,83 +1908,22 @@
             display-name = "symb_layer_eng";
             bindings = <
 &eng_ht LS(N4) LS(N3)       &eng_ht LS(RBKT) LS(N0)       &eng_ht LS(LBKT) LS(N9)        &eng_ht LS(N6) LS(N8)       &eng_ht LS(N7) LS(FSLH)      &eng_ht LS(GRAVE) LS(N1)                              &kp UP                 &eng_ht LS(GRAVE) LS(N1)      &eng_ht LS(N7) LS(FSLH)           &eng_ht LS(N6) LS(N8)   &eng_ht LS(LBKT) LS(N9)     &eng_ht LS(RBKT) LS(N0)      &eng_ht LS(N4) LS(N3)
-&bspc_to_numb_ht 25 FSLH    &eng_ht GRAVE SEMI            &eng_comma_degree_ht 0 COMMA   &eng_ht LBKT DOT              &eng_ht SQT RBKT              &eng_ht LS(N2) LS(SEMI)                        &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht LS(N2) LS(SEMI)         &eng_ht SQT RBKT           &eng_ht LBKT DOT              &eng_comma_degree_ht 0 COMMA  &eng_ht GRAVE SEMI              &eng_ht BSLH FSLH
-&eng_ht LS(N5) LS(BSLH)     &eng_ht_none_kp 0 LS(SQT)     &eng_ht_none_kp 0 EQUAL         &eng_ht LS(DOT) LS(EQUAL)     &eng_ht LS(COMMA) MINUS       &eng_under_emdash_ht 0 UNDER      &trans                 &kp DOWN               &eng_under_emdash_ht 0 UNDER      &eng_ht LS(COMMA) MINUS         &eng_ht LS(DOT) LS(EQUAL)       &eng_ht_none_kp 0 EQUAL       &eng_ht_none_kp 0 LS(SQT)     &eng_ht LS(N5) LS(BSLH)
+&bspc_to_numb_ht SYMB_ENG_NOLIGHT_LAYER FSLH    &eng_ht GRAVE SEMI            &eng_comma_degree_ht 0 COMMA   &eng_ht LBKT DOT              &eng_ht SQT RBKT              &eng_ht LS(N2) LS(SEMI)                        &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht LS(N2) LS(SEMI)         &eng_ht SQT RBKT           &eng_ht LBKT DOT              &eng_comma_degree_ht 0 COMMA  &eng_ht GRAVE SEMI              &eng_ht BSLH FSLH
+&eng_ht LS(BSLH) LS(N5)     &eng_ht_none_kp 0 LS(SQT)     &eng_ht_none_kp 0 EQUAL         &eng_ht LS(DOT) LS(EQUAL)     &eng_ht LS(COMMA) MINUS       &eng_under_emdash_ht 0 UNDER      &trans                 &kp DOWN               &eng_under_emdash_ht 0 UNDER      &eng_ht LS(COMMA) MINUS         &eng_ht LS(DOT) LS(EQUAL)       &eng_ht_none_kp 0 EQUAL       &eng_ht_none_kp 0 LS(SQT)     &eng_ht LS(BSLH) LS(N5)
                                                                                              &trans                         &trans                  &kp SPC                                                                       &kp ENTER                     &trans                       &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         // ============================================================
-        // Слой 20: служебная прозрачная заглушка.
-        // Нужна только чтобы сохранить слой kp_mode на индексе 22.
-        // Не используется в комбо и переходах.
-        // ============================================================
-        placeholder_layer_20 {
-            display-name = "placeholder_layer_20";
-            bindings = <
-&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
-
-        // ============================================================
-        // Слой 21: служебная прозрачная заглушка.
-        // Нужна только чтобы сохранить слой kp_mode на индексе 22.
-        // Не используется в комбо и переходах.
-        // ============================================================
-        placeholder_layer_21 {
-            display-name = "placeholder_layer_21";
-            bindings = <
-&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
-
-        // ============================================================
-        // Слой 22: kp overlay.
+        // Слой 21: английские цифры no-light.
+        // Аналог слоя 16.
         //
-        // Это НЕ полная копия слоя 0, а прозрачный слой поверх 0.
-        // Все клавиши &trans берутся из слоя 0.
-        // Переопределены только большие пальцы:
-        //   - символы -> слой 24;
-        //   - цифры   -> слой 23.
-        //
-        // Правый большой палец использует thumb_num_sym_fn_kp,
-        // чтобы двойное нажатие H + правый большой палец
-        // корректно переключало английский persistent-слой 19.
-        //
-        // Такой подход позволяет:
-        //   - работать комбо слоя 22;
-        //   - переходить на нижние слои через &mo/&tog;
-        //   - сохранять поведение слоя 0.
-        // ============================================================
-        kp_mode_layer {
-            display-name = "kp_mode";
-            bindings = <
-&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-&trans &symb_win_td 24 0 &trans &trans &thumb_num_sym_fn_kp 23 0 &trans
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
-
-        // ============================================================
-        // Слой 23: английские цифры no-light.
-        // Аналог слоя 15.
-        //
-        // Вызывается из kp-слоя 22:
-        //   &thumb_num_sym_fn_kp 23 0
+        // Вызывается из KP_MODE:
+        //   &thumb_num_sym_fn NUMB_ENG_NOLIGHT_LAYER 0
         //
         // Правая крайняя клавиша второго ряда:
-        //   hold -> слой 24
+        //   hold -> SYMB_ENG_NOLIGHT_COPY_LAYER
         //   tap  -> BSPC
         //
         // Энкодер: Ctrl+Right / Ctrl+Left.
@@ -1821,7 +1932,7 @@
             display-name = "numbnolight_eng_layer";
             bindings = <
 &kp C_AL_CALCULATOR   &kp KP_MULTIPLY                  &kp N9  &kp N8  &kp N7  &kp KP_PLUS                                            &msc SCRL_UP                      &kp KP_PLUS     &kp N7  &kp N8  &kp N9  &kp KP_MULTIPLY                  &kp C_AL_CALCULATOR
-&kp BSPC              &kp N0                           &kp N6  &kp N5  &kp N4  &kp KP_MINUS                          &msc SCRL_LEFT   &mkp LCLK       &msc SCRL_RIGHT   &kp KP_MINUS    &kp N4  &kp N5  &kp N6  &kp N0                           &bspc_to_layer_ht 24 BSPC
+&kp BSPC              &kp N0                           &kp N6  &kp N5  &kp N4  &kp KP_MINUS                          &msc SCRL_LEFT   &mkp LCLK       &msc SCRL_RIGHT   &kp KP_MINUS    &kp N4  &kp N5  &kp N6  &kp N0                           &bspc_to_layer_ht SYMB_ENG_NOLIGHT_COPY_LAYER BSPC
 &kp KP_ENTER          &div_lshft_ht LSHFT KP_DIVIDE    &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                                 &msc SCRL_DOWN                    &kp KP_EQUAL    &kp N1  &kp N2  &kp N3  &div_lshft_ht LSHFT KP_DIVIDE    &kp KP_ENTER
                                                                &trans  &trans  &trans                                                                                   &kp ENTER       &trans  &trans
             >;
@@ -1829,13 +1940,13 @@
         };
 
         // ============================================================
-        // Слой 24: английские символы no-light copy.
-        // Аналог слоя 16.
+        // Слой 22: английские символы no-light copy.
+        // Аналог слоя 17.
         //
-        // Вызывается из kp-слоя 22 и из английского цифрового слоя 23.
+        // Вызывается из KP_MODE и из английского цифрового слоя 21.
         //
         // Левая крайняя клавиша второго ряда:
-        //   hold -> слой 26
+        //   hold -> NUMB_ENG_NOLIGHT_COPY_LAYER
         //   tap  -> /
         //
         // Энкодер: Ctrl+Right / Ctrl+Left.
@@ -1844,22 +1955,22 @@
             display-name = "symbnolight_eng_copy_layer";
             bindings = <
 &eng_ht LS(N4) LS(N3)       &eng_ht LS(RBKT) LS(N0)       &eng_ht LS(LBKT) LS(N9)        &eng_ht LS(N6) LS(N8)       &eng_ht LS(N7) LS(FSLH)      &eng_ht LS(GRAVE) LS(N1)                              &kp UP                 &eng_ht LS(GRAVE) LS(N1)      &eng_ht LS(N7) LS(FSLH)           &eng_ht LS(N6) LS(N8)   &eng_ht LS(LBKT) LS(N9)     &eng_ht LS(RBKT) LS(N0)      &eng_ht LS(N4) LS(N3)
-&bspc_to_numb_ht 26 FSLH    &eng_ht GRAVE SEMI            &eng_comma_degree_ht 0 COMMA   &eng_ht LBKT DOT              &eng_ht SQT RBKT              &eng_ht LS(N2) LS(SEMI)                        &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht LS(N2) LS(SEMI)         &eng_ht SQT RBKT           &eng_ht LBKT DOT              &eng_comma_degree_ht 0 COMMA  &eng_ht GRAVE SEMI              &eng_ht BSLH FSLH
-&eng_ht LS(N5) LS(BSLH)     &eng_ht_none_kp 0 LS(SQT)     &eng_ht_none_kp 0 EQUAL         &eng_ht LS(DOT) LS(EQUAL)     &eng_ht LS(COMMA) MINUS       &eng_under_emdash_ht 0 UNDER      &trans                 &kp DOWN               &eng_under_emdash_ht 0 UNDER      &eng_ht LS(COMMA) MINUS         &eng_ht LS(DOT) LS(EQUAL)       &eng_ht_none_kp 0 EQUAL       &eng_ht_none_kp 0 LS(SQT)     &eng_ht LS(N5) LS(BSLH)
+&bspc_to_numb_ht NUMB_ENG_NOLIGHT_COPY_LAYER FSLH    &eng_ht GRAVE SEMI            &eng_comma_degree_ht 0 COMMA   &eng_ht LBKT DOT              &eng_ht SQT RBKT              &eng_ht LS(N2) LS(SEMI)                        &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht LS(N2) LS(SEMI)         &eng_ht SQT RBKT           &eng_ht LBKT DOT              &eng_comma_degree_ht 0 COMMA  &eng_ht GRAVE SEMI              &eng_ht BSLH FSLH
+&eng_ht LS(BSLH) LS(N5)     &eng_ht_none_kp 0 LS(SQT)     &eng_ht_none_kp 0 EQUAL         &eng_ht LS(DOT) LS(EQUAL)     &eng_ht LS(COMMA) MINUS       &eng_under_emdash_ht 0 UNDER      &trans                 &kp DOWN               &eng_under_emdash_ht 0 UNDER      &eng_ht LS(COMMA) MINUS         &eng_ht LS(DOT) LS(EQUAL)       &eng_ht_none_kp 0 EQUAL       &eng_ht_none_kp 0 LS(SQT)     &eng_ht LS(BSLH) LS(N5)
                                                                                              &trans                         &trans                  &kp SPC                                                                       &kp ENTER                     &trans                       &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
         // ============================================================
-        // Слой 25: английские символы no-light.
-        // Аналог слоя 17.
+        // Слой 23: английские символы no-light.
+        // Аналог слоя 18.
         //
-        // Вызывается из persistent английского слоя 19:
-        //   &bspc_to_numb_ht 25 FSLH
+        // Вызывается из persistent английского слоя 20:
+        //   &bspc_to_numb_ht SYMB_ENG_NOLIGHT_LAYER FSLH
         //
         // Левая крайняя клавиша второго ряда:
-        //   hold -> слой 26
+        //   hold -> NUMB_ENG_NOLIGHT_COPY_LAYER
         //   tap  -> /
         //
         // Энкодер: Ctrl+Right / Ctrl+Left.
@@ -1868,22 +1979,22 @@
             display-name = "symbnolight_eng_layer";
             bindings = <
 &eng_ht LS(N4) LS(N3)       &eng_ht LS(RBKT) LS(N0)       &eng_ht LS(LBKT) LS(N9)        &eng_ht LS(N6) LS(N8)       &eng_ht LS(N7) LS(FSLH)      &eng_ht LS(GRAVE) LS(N1)                              &kp UP                 &eng_ht LS(GRAVE) LS(N1)      &eng_ht LS(N7) LS(FSLH)           &eng_ht LS(N6) LS(N8)   &eng_ht LS(LBKT) LS(N9)     &eng_ht LS(RBKT) LS(N0)      &eng_ht LS(N4) LS(N3)
-&bspc_to_numb_ht 26 FSLH    &eng_ht GRAVE SEMI            &eng_comma_degree_ht 0 COMMA   &eng_ht LBKT DOT              &eng_ht SQT RBKT              &eng_ht LS(N2) LS(SEMI)                        &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht LS(N2) LS(SEMI)         &eng_ht SQT RBKT           &eng_ht LBKT DOT              &eng_comma_degree_ht 0 COMMA  &eng_ht GRAVE SEMI              &eng_ht BSLH FSLH
-&eng_ht LS(N5) LS(BSLH)     &eng_ht_none_kp 0 LS(SQT)     &eng_ht_none_kp 0 EQUAL         &eng_ht LS(DOT) LS(EQUAL)     &eng_ht LS(COMMA) MINUS       &eng_under_emdash_ht 0 UNDER      &trans                 &kp DOWN               &eng_under_emdash_ht 0 UNDER      &eng_ht LS(COMMA) MINUS         &eng_ht LS(DOT) LS(EQUAL)       &eng_ht_none_kp 0 EQUAL       &eng_ht_none_kp 0 LS(SQT)     &eng_ht LS(N5) LS(BSLH)
+&bspc_to_numb_ht NUMB_ENG_NOLIGHT_COPY_LAYER FSLH    &eng_ht GRAVE SEMI            &eng_comma_degree_ht 0 COMMA   &eng_ht LBKT DOT              &eng_ht SQT RBKT              &eng_ht LS(N2) LS(SEMI)                        &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht LS(N2) LS(SEMI)         &eng_ht SQT RBKT           &eng_ht LBKT DOT              &eng_comma_degree_ht 0 COMMA  &eng_ht GRAVE SEMI              &eng_ht BSLH FSLH
+&eng_ht LS(BSLH) LS(N5)     &eng_ht_none_kp 0 LS(SQT)     &eng_ht_none_kp 0 EQUAL         &eng_ht LS(DOT) LS(EQUAL)     &eng_ht LS(COMMA) MINUS       &eng_under_emdash_ht 0 UNDER      &trans                 &kp DOWN               &eng_under_emdash_ht 0 UNDER      &eng_ht LS(COMMA) MINUS         &eng_ht LS(DOT) LS(EQUAL)       &eng_ht_none_kp 0 EQUAL       &eng_ht_none_kp 0 LS(SQT)     &eng_ht LS(BSLH) LS(N5)
                                                                                              &trans                         &trans                  &kp SPC                                                                       &kp ENTER                     &trans                       &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
         // ============================================================
-        // Слой 26: английские цифры no-light copy.
-        // Аналог слоя 18.
+        // Слой 24: английские цифры no-light copy.
+        // Аналог слоя 19.
         //
-        // Вызывается из английских символьных слоёв 24/25:
-        //   &bspc_to_numb_ht 26 FSLH
+        // Вызывается из английских символьных слоёв 22/23:
+        //   &bspc_to_numb_ht NUMB_ENG_NOLIGHT_COPY_LAYER FSLH
         //
         // Это временной цифровой слой, поэтому правая крайняя клавиша
-        // второго ряда оставлена как обычный BSPC, по аналогии со слоем 18.
+        // второго ряда оставлена как обычный BSPC, по аналогии со слоем 19.
         //
         // Энкодер: Ctrl+Right / Ctrl+Left.
         // ============================================================
@@ -1894,50 +2005,6 @@
 &kp BSPC              &kp N0                           &kp N6  &kp N5  &kp N4  &kp KP_MINUS                   &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &kp KP_MINUS   &kp N4  &kp N5  &kp N6  &kp N0                           &kp BSPC
 &kp KP_ENTER          &div_lshft_ht LSHFT KP_DIVIDE    &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                           &msc SCRL_DOWN                     &kp KP_EQUAL   &kp N1  &kp N2  &kp N3  &div_lshft_ht LSHFT KP_DIVIDE    &kp KP_ENTER
                                                                &trans  &trans  &trans                                                                              &kp ENTER      &trans  &trans
-            >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
-        };
-
-        // ============================================================
-        // Слой 27: высокий аналог nav3_layer для kp-режима.
-        //
-        // Вызывается из слоя 22 комбо E + R:
-        //   &mo 27
-        //
-        // Так как 27 > 22, при удержании этого слоя верхним активным
-        // становится 27, и комбо JK/KL, разрешённые на 22, не срабатывают.
-        //
-        // Энкодер: Ctrl+Right / Ctrl+Left.
-        // ============================================================
-        nav3_kp_layer {
-            display-name = "nav3_kp_layer";
-            bindings = <
-&kp LC(LA(DEL))  &kp PSCRN         &kp LG(ESC)        &none  &none  &none                          &kp UP                   &kp HOME           &mkp LCLK            &mmv MOVE_UP    &mkp RCLK          &macro_comma_uni   &kp PG_UP
-&trans           &kp PAUSE_BREAK   &kp LG(KP_PLUS)    &none  &none  &none                &kp LEFT  &kp ENTER  &kp RIGHT     &msc MOVE_X(-150)  &mmv MOVE_LEFT       &mmv MOVE_DOWN  &mmv MOVE_RIGHT    &msc MOVE_X(150)   &kp BSPC
-&trans           &kp INS           &kp LG(KP_MINUS)   &none  &none  &none   &kp C_MUTE             &kp DOWN                 &kp END            &msc MOVE_Y(-150)    &mkp MCLK       &msc MOVE_Y(150)   &macro_dot_uni     &kp PG_DN
-                                                      &trans &trans &trans                                                  &trans             &trans               &trans
-            >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
-        };
-
-        // ============================================================
-        // Слой 28: высокий аналог nav1_layer для kp-режима.
-        //
-        // Вызывается из слоя 22 комбо D + F:
-        //   &mo 28
-        //
-        // Так как 28 > 22, при удержании этого слоя верхним активным
-        // становится 28, и комбо JK/KL, разрешённые на 22, не срабатывают.
-        //
-        // Энкодер: Ctrl+Right / Ctrl+Left.
-        // ============================================================
-        nav1_kp_layer {
-            display-name = "nav1_kp_layer";
-            bindings = <
-&kp LC(LA(DEL))  &kp PSCRN         &kp LG(ESC)        &none  &none  &none                               &mmv MOVE_UP                       &kp HOME           &mkp LCLK          &kp UP     &mkp RCLK            &macro_comma_uni   &kp PG_UP
-&trans           &kp PAUSE_BREAK   &kp LG(KP_PLUS)    &none  &none  &none               &mmv MOVE_LEFT  &mkp LCLK      &mmv MOVE_RIGHT     &msc MOVE_X(-150)  &kp LEFT           &kp DOWN   &kp RIGHT            &msc MOVE_X(150)   &kp BSPC
-&trans           &kp INS           &kp LG(KP_MINUS)   &none  &none  &none       &trans                  &mmv MOVE_DOWN                     &kp END            &msc MOVE_Y(-150)  &mkp MCLK  &msc MOVE_Y(150)     &macro_qmark_uni   &kp PG_DN
-                                                      &trans &trans &trans                                                                 &trans             &trans             &trans
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
