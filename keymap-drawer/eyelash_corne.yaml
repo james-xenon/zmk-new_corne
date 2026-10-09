@@ -1130,57 +1130,59 @@ layers:
 combos:
 - p: [4, 5]
   k: '&combo_rt_caps_td'
-  l: [default_layer, speedtype]
+  l: [default_layer, speedtype, kp_mode]
 - p: [2, 3, 4, 5]
   k: {t: gaming1_layer, h: toggle}
-  l: [default_layer, gaming1_layer]
+  l: [default_layer, gaming1_layer, kp_mode]
 - p: [1, 2]
   k: '&tog13_on_td'
-  l: [default_layer]
+  l: [default_layer, kp_mode]
 - p: [0, 1]
   k: $$mdi:keyboard-esc$$
-  l: [default_layer, nav2_layer, gaming1_layer, speedtype, nav2nolight_layer, lefthand_layer, lefthandnolight_layer]
+  l: [default_layer, nav2_layer, gaming1_layer, speedtype, nav2nolight_layer, lefthand_layer, lefthandnolight_layer, kp_mode]
 - p: [1, 2]
   k: '&tog13_off_td'
   l: [lefthand_layer]
 - p: [3, 4]
   k: nav3_layer
-  l: [default_layer, speedtype]
+  l: [default_layer, speedtype, kp_mode]
 - p: [27, 41]
   k: '&speedtype_double_tap'
-  l: [default_layer, speedtype]
+  l: [default_layer, speedtype, kp_mode]
 - p: [16, 17]
   k: nav1_layer
-  l: [default_layer, speedtype]
+  l: [default_layer, speedtype, kp_mode]
 - p: [42, 43]
   k: service_layer
-  l: [default_layer]
+  l: [default_layer, kp_mode]
 - p: [7, 8]
   k: '&nav2_double_tap'
-  l: [default_layer, nav2_layer]
+  l: [default_layer, nav2_layer, kp_mode]
 - p: [23, 24]
   k: {t: '$$mdi:backspace$$', type: backspace}
   l: [default_layer, nav1_layer, symb_layer, numb_layer, fn_layer, service_layer, nav2_layer, speedtype, numbnolight_layer, symbnolightcopy_layer, symbnolight_layer,
-    numbnolightcopy_layer]
+    numbnolightcopy_layer, symb_layer_eng, symbnolight_eng_copy_layer, symbnolight_eng, kp_mode]
 - p: [24, 25]
   k: $$mdi:backspace-reverse-outline$$
   l: [default_layer, nav1_layer, symb_layer, numb_layer, fn_layer, service_layer, nav2_layer, speedtype, numbnolight_layer, symbnolightcopy_layer, symbnolight_layer,
-    numbnolightcopy_layer]
+    numbnolightcopy_layer, symb_layer_eng, symbnolight_eng_copy_layer, symbnolight_eng, kp_mode]
 - p: [16, 17]
   k: {t: '$$mdi:backspace$$', type: backspace}
-  l: [symb_layer, numb_layer, nav2_layer, lefthand_layer, lefthandnolight_layer, numbnolight_layer, symbnolightcopy_layer, symbnolight_layer, numbnolightcopy_layer]
+  l: [symb_layer, numb_layer, nav2_layer, lefthand_layer, lefthandnolight_layer, numbnolight_layer, symbnolightcopy_layer, symbnolight_layer, numbnolightcopy_layer,
+    symb_layer_eng, symbnolight_eng_copy_layer, symbnolight_eng]
 - p: [15, 16]
   k: $$mdi:backspace-reverse-outline$$
-  l: [symb_layer, numb_layer, nav2_layer, lefthand_layer, lefthandnolight_layer, numbnolight_layer, symbnolightcopy_layer, symbnolight_layer, numbnolightcopy_layer]
+  l: [symb_layer, numb_layer, nav2_layer, lefthand_layer, lefthandnolight_layer, numbnolight_layer, symbnolightcopy_layer, symbnolight_layer, numbnolightcopy_layer,
+    symb_layer_eng, symbnolight_eng_copy_layer, symbnolight_eng]
 - p: [18, 43]
   k: '&thumb_e_numb_td'
-  l: [default_layer, numb_layer]
+  l: [default_layer, numb_layer, kp_mode]
 - p: [22, 46]
   k: '&thumb_i_symb_td'
-  l: [default_layer, symb_layer]
+  l: [default_layer, symb_layer, symb_layer_eng, kp_mode]
 - p: [9, 10, 11, 12]
   k: '&reset_l0_green_flash'
-  l: [default_layer, symb_layer, numb_layer, nav2_layer, gaming1_layer, speedtype, lefthand_layer]
+  l: [default_layer, symb_layer, numb_layer, nav2_layer, gaming1_layer, speedtype, lefthand_layer, symb_layer_eng, kp_mode]
 - p: [29, 30, 31]
   k: {t: '$$mdi:keyboard-return$$', type: enter}
   l: [gaming1_layer]
