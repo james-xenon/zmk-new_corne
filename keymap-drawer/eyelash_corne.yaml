@@ -147,6 +147,55 @@ layers:
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', h: numbnolight_layer}
   - {t: '&win_space', h: nav2nolight_layer}
+  symb_layer_eng:
+  - {t: Sft+3, h: Sft+4, s: Sft+#}
+  - {t: Sft+0, h: 'Sft+]', s: Sft+)}
+  - {t: Sft+9, h: 'Sft+[', s: Sft+(}
+  - {t: Sft+8, h: Sft+6, s: Sft+*}
+  - {t: Sft+/, h: Sft+7, s: 'Sft+?'}
+  - {t: Sft+1, h: Sft+`, s: Sft+!}
+  - $$mdi:arrow-up-bold$$
+  - {t: Sft+1, h: Sft+`, s: Sft+!}
+  - {t: Sft+/, h: Sft+7, s: 'Sft+?'}
+  - {t: Sft+8, h: Sft+6, s: Sft+*}
+  - {t: Sft+9, h: 'Sft+[', s: Sft+(}
+  - {t: Sft+0, h: 'Sft+]', s: Sft+)}
+  - {t: Sft+3, h: Sft+4, s: Sft+#}
+  - {t: /, h: symbnolight_eng_layer, s: '?'}
+  - {t: ;, h: '`', s: ':'}
+  - {t: ',', h: '&macro_degree_uni', s: <}
+  - {t: ., h: '[', s: '>'}
+  - {t: ']', h: '''', s: '}'}
+  - {t: Sft+;, h: Sft+2, s: 'Sft+:'}
+  - $$mdi:arrow-left-bold$$
+  - SPC
+  - $$mdi:arrow-right-bold$$
+  - {t: Sft+;, h: Sft+2, s: 'Sft+:'}
+  - {t: ']', h: '''', s: '}'}
+  - {t: ., h: '[', s: '>'}
+  - {t: ',', h: '&macro_degree_uni', s: <}
+  - {t: ;, h: '`', s: ':'}
+  - {t: \, h: numbnolight_eng_layer, s: '|'}
+  - {t: Sft+5, h: Sft+\, s: Sft+%}
+  - {t: Sft+', h: '$$mdi:minus-circle-outline$$', s: Sft+"}
+  - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
+  - {t: Sft+=, h: Sft+., s: Sft++}
+  - {t: '-', h: 'Sft+,', s: _}
+  - {t: _, h: '&macro_emdash_uni'}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - $$mdi:arrow-down-bold$$
+  - {t: _, h: '&macro_emdash_uni'}
+  - {t: '-', h: 'Sft+,', s: _}
+  - {t: Sft+=, h: Sft+., s: Sft++}
+  - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
+  - {t: Sft+', h: '$$mdi:minus-circle-outline$$', s: Sft+"}
+  - {t: Sft+5, h: Sft+\, s: Sft+%}
+  - {t: '&lh_td', h: lefthandnolight_layer}
+  - {t: '&symb_win_tap_dance', h: symbnolight_eng_layer}
+  - SPC
+  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: '$$mdi:minus-circle-outline$$', h: numbnolight_eng_layer}
+  - {t: '&win_space', h: nav2nolight_layer}
   numb_layer:
   - AL CALCULATOR
   - KP MULTIPLY
@@ -343,55 +392,6 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  symb_layer_eng:
-  - {t: Sft+3, h: Sft+4, s: Sft+#}
-  - {t: Sft+0, h: 'Sft+]', s: Sft+)}
-  - {t: Sft+9, h: 'Sft+[', s: Sft+(}
-  - {t: Sft+8, h: Sft+6, s: Sft+*}
-  - {t: Sft+/, h: Sft+7, s: 'Sft+?'}
-  - {t: Sft+1, h: Sft+`, s: Sft+!}
-  - $$mdi:arrow-up-bold$$
-  - {t: Sft+1, h: Sft+`, s: Sft+!}
-  - {t: Sft+/, h: Sft+7, s: 'Sft+?'}
-  - {t: Sft+8, h: Sft+6, s: Sft+*}
-  - {t: Sft+9, h: 'Sft+[', s: Sft+(}
-  - {t: Sft+0, h: 'Sft+]', s: Sft+)}
-  - {t: Sft+3, h: Sft+4, s: Sft+#}
-  - {t: /, h: numbnolight_eng_layer, s: '?'}
-  - {t: ;, h: '`', s: ':'}
-  - {t: ',', h: '&macro_degree_uni', s: <}
-  - {t: ., h: '[', s: '>'}
-  - {t: ']', h: '''', s: '}'}
-  - {t: Sft+;, h: Sft+2, s: 'Sft+:'}
-  - $$mdi:arrow-left-bold$$
-  - SPC
-  - $$mdi:arrow-right-bold$$
-  - {t: Sft+;, h: Sft+2, s: 'Sft+:'}
-  - {t: ']', h: '''', s: '}'}
-  - {t: ., h: '[', s: '>'}
-  - {t: ',', h: '&macro_degree_uni', s: <}
-  - {t: ;, h: '`', s: ':'}
-  - {t: \, h: numbnolight_eng_layer, s: '|'}
-  - {t: Sft+5, h: Sft+\, s: Sft+%}
-  - {t: Sft+', h: '$$mdi:minus-circle-outline$$', s: Sft+"}
-  - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
-  - {t: Sft+=, h: Sft+., s: Sft++}
-  - {t: '-', h: 'Sft+,', s: _}
-  - {t: _, h: '&macro_emdash_uni'}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - $$mdi:arrow-down-bold$$
-  - {t: _, h: '&macro_emdash_uni'}
-  - {t: '-', h: 'Sft+,', s: _}
-  - {t: Sft+=, h: Sft+., s: Sft++}
-  - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
-  - {t: Sft+', h: '$$mdi:minus-circle-outline$$', s: Sft+"}
-  - {t: Sft+5, h: Sft+\, s: Sft+%}
-  - {t: '&lh_td', h: lefthandnolight_layer}
-  - {t: '&symb_win_tap_dance', h: symbnolight_eng_layer}
-  - SPC
-  - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '$$mdi:minus-circle-outline$$', h: numbnolight_eng_layer}
-  - {t: '&win_space', h: nav2nolight_layer}
   numbnolight_eng_layer:
   - AL CALCULATOR
   - KP MULTIPLY
@@ -406,7 +406,7 @@ layers:
   - {t: '9', s: (}
   - KP MULTIPLY
   - AL CALCULATOR
-  - {t: '$$mdi:backspace$$', h: symbnolight_eng_layer, type: held alternate}
+  - {t: '$$mdi:backspace$$', h: symbnolight_eng_layer}
   - {t: '0', s: )}
   - {t: '6', s: ^}
   - {t: '5', s: '%'}
@@ -1083,8 +1083,11 @@ combos:
   k: '&combo_rt_caps_td'
   l: [default_layer, kp_mode_layer, speedtype, symb_layer, numb_layer, symb_layer_eng]
 - p: [2, 3, 4, 5]
-  k: {t: gaming1_layer, h: toggle}
-  l: [default_layer, kp_mode_layer, speedtype, symb_layer, numb_layer, symb_layer_eng, gaming1_layer]
+  k: '&gaming_enter'
+  l: [default_layer, kp_mode_layer]
+- p: [2, 3, 4, 5]
+  k: '&gaming_exit'
+  l: [gaming1_layer]
 - p: [1, 2]
   k: '&tog13_on_td'
   l: [default_layer, kp_mode_layer]
@@ -1098,8 +1101,11 @@ combos:
   k: nav3_layer
   l: [default_layer, kp_mode_layer, speedtype]
 - p: [27, 41]
-  k: '&speedtype_double_tap'
-  l: [default_layer, kp_mode_layer, speedtype, symb_layer, numb_layer, symb_layer_eng]
+  k: '&speedtype_enter'
+  l: [default_layer, kp_mode_layer]
+- p: [27, 41]
+  k: '&speedtype_exit'
+  l: [speedtype]
 - p: [16, 17]
   k: nav1_layer
   l: [default_layer, kp_mode_layer, speedtype]
@@ -1107,8 +1113,11 @@ combos:
   k: service_layer
   l: [default_layer, kp_mode_layer, speedtype, symb_layer, numb_layer, symb_layer_eng]
 - p: [7, 8]
-  k: '&nav2_double_tap'
-  l: [default_layer, kp_mode_layer, nav2_layer, symb_layer_eng, speedtype]
+  k: '&nav2_enter'
+  l: [default_layer, kp_mode_layer]
+- p: [7, 8]
+  k: '&nav2_exit'
+  l: [nav2_layer]
 - p: [23, 24]
   k: {t: '$$mdi:backspace$$', type: backspace}
   l: [default_layer, kp_mode_layer, symb_layer, numb_layer, numbnolight_layer, symbnolight_layer, numbnolightcopy_layer, symb_layer_eng, numbnolight_eng_layer, symbnolight_eng_layer,
@@ -1129,8 +1138,11 @@ combos:
   k: '&thumb_e_numb_td'
   l: [default_layer, numb_layer, kp_mode_layer]
 - p: [22, 46]
-  k: '&thumb_i_symb_eng_td'
-  l: [default_layer, kp_mode_layer, symb_layer_eng, speedtype]
+  k: '&cyan_enter'
+  l: [default_layer, kp_mode_layer]
+- p: [22, 46]
+  k: '&cyan_exit'
+  l: [symb_layer_eng]
 - p: [25, 46]
   k: '&thumb_i_symb_td'
   l: [default_layer, symb_layer, kp_mode_layer, symb_layer_eng]
