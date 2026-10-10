@@ -1104,8 +1104,8 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">/</text>
-<a href="#symbnolight_layer">
-<text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">symbnolig…</tspan></text>
+<a href="#numbnolightcopy_layer">
+<text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">numbnolig…</tspan></text>
 </a><text x="0" y="-24" class="key shifted">?</text>
 </g>
 <g transform="translate(84, 105)" class="key keypos-14">
@@ -5374,13 +5374,13 @@ rect.held, rect.combo.held {
 <text x="0" y="-4" class="key tap">#</text>
 <text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_do…</tspan></text>
 </g>
-<g transform="translate(28, 105)" class="key held alternate keypos-13">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key held alternate side"/>
-<rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key held alternate"/>
-<text x="0" y="-4" class="key held alternate tap">/</text>
+<g transform="translate(28, 105)" class="key keypos-13">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
+<rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
+<text x="0" y="-4" class="key tap">/</text>
 <a href="#numbnolightcopy_layer">
-<text x="0" y="24" class="key held alternate hold layer-activator"><tspan style="font-size: 60%">numbnolig…</tspan></text>
-</a><text x="0" y="-24" class="key held alternate shifted">?</text>
+<text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">numbnolig…</tspan></text>
+</a><text x="0" y="-24" class="key shifted">?</text>
 </g>
 <g transform="translate(84, 105)" class="key keypos-14">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -5783,10 +5783,10 @@ rect.held, rect.combo.held {
 <text x="0" y="-4" class="key tap">0</text>
 <text x="0" y="-24" class="key shifted">)</text>
 </g>
-<g transform="translate(952, 105)" class="key held keypos-27">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key held side"/>
-<rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key held"/>
-<use href="#mdi:backspace" xlink:href="#mdi:backspace" x="-9" y="-13" height="18" width="18.0" class="key held tap glyph mdi:backspace"/>
+<g transform="translate(952, 105)" class="key held alternate keypos-27">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key held alternate side"/>
+<rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key held alternate"/>
+<use href="#mdi:backspace" xlink:href="#mdi:backspace" x="-9" y="-13" height="18" width="18.0" class="key held alternate tap glyph mdi:backspace"/>
 </g>
 <g transform="translate(28, 161)" class="key keypos-28">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -5883,9 +5883,9 @@ rect.held, rect.combo.held {
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key trans"/>
 <use href="#mdi:transfer" xlink:href="#mdi:transfer" x="-9" y="-13" height="18" width="18.0" class="key trans tap glyph mdi:transfer"/>
 </g>
-<g transform="translate(285, 209) rotate(12.0)" class="key held keypos-43">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key held side"/>
-<rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key held"/>
+<g transform="translate(285, 209) rotate(12.0)" class="key held alternate keypos-43">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key held alternate side"/>
+<rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key held alternate"/>
 </g>
 <g transform="translate(348, 226) rotate(24.0)" class="key trans keypos-44">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans side"/>
@@ -5897,9 +5897,9 @@ rect.held, rect.combo.held {
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key enter"/>
 <use href="#mdi:keyboard-return" xlink:href="#mdi:keyboard-return" x="-9" y="-13" height="18" width="18.0" class="key enter tap glyph mdi:keyboard-return"/>
 </g>
-<g transform="translate(695, 209) rotate(-12.0)" class="key held keypos-46">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key held side"/>
-<rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key held"/>
+<g transform="translate(695, 209) rotate(-12.0)" class="key held alternate keypos-46">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key held alternate side"/>
+<rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key held alternate"/>
 </g>
 <g transform="translate(756, 203)" class="key trans keypos-47">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans side"/>
@@ -6020,8 +6020,8 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">/</text>
-<a href="#symbnolight_eng_layer">
-<text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">symbnolig…</tspan></text>
+<a href="#numbnolightcopy_layer">
+<text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">numbnolig…</tspan></text>
 </a><text x="0" y="-24" class="key shifted">?</text>
 </g>
 <g transform="translate(84, 105)" class="key keypos-14">
@@ -6112,9 +6112,10 @@ rect.held, rect.combo.held {
 <g transform="translate(952, 105)" class="key keypos-27">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap">/</text>
-<text x="0" y="24" class="key hold">\</text>
-<text x="0" y="-24" class="key shifted">?</text>
+<text x="0" y="-4" class="key tap">\</text>
+<a href="#numbnolightcopy_layer">
+<text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">numbnolig…</tspan></text>
+</a><text x="0" y="-24" class="key shifted">|</text>
 </g>
 <g transform="translate(28, 161)" class="key keypos-28">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -6707,13 +6708,13 @@ rect.held, rect.combo.held {
 <text x="0" y="24" class="key hold">Sft+4</text>
 <text x="0" y="-24" class="key shifted">Sft+#</text>
 </g>
-<g transform="translate(28, 105)" class="key held alternate keypos-13">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key held alternate side"/>
-<rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key held alternate"/>
-<text x="0" y="-4" class="key held alternate tap">/</text>
+<g transform="translate(28, 105)" class="key keypos-13">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
+<rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
+<text x="0" y="-4" class="key tap">/</text>
 <a href="#numbnolightcopy_layer">
-<text x="0" y="24" class="key held alternate hold layer-activator"><tspan style="font-size: 60%">numbnolig…</tspan></text>
-</a><text x="0" y="-24" class="key held alternate shifted">?</text>
+<text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">numbnolig…</tspan></text>
+</a><text x="0" y="-24" class="key shifted">?</text>
 </g>
 <g transform="translate(84, 105)" class="key keypos-14">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -6803,9 +6804,10 @@ rect.held, rect.combo.held {
 <g transform="translate(952, 105)" class="key held alternate keypos-27">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key held alternate side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key held alternate"/>
-<text x="0" y="-4" class="key held alternate tap">/</text>
-<text x="0" y="24" class="key held alternate hold">\</text>
-<text x="0" y="-24" class="key held alternate shifted">?</text>
+<text x="0" y="-4" class="key held alternate tap">\</text>
+<a href="#numbnolightcopy_layer">
+<text x="0" y="24" class="key held alternate hold layer-activator"><tspan style="font-size: 60%">numbnolig…</tspan></text>
+</a><text x="0" y="-24" class="key held alternate shifted">|</text>
 </g>
 <g transform="translate(28, 161)" class="key keypos-28">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
