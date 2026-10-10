@@ -161,7 +161,7 @@ layers:
   - {t: '9', s: (}
   - KP MULTIPLY
   - AL CALCULATOR
-  - $$mdi:apple-keyboard-shift$$
+  - {t: '$$mdi:apple-keyboard-shift$$', h: symbnolight_layer}
   - {t: '0', s: )}
   - {t: '6', s: ^}
   - {t: '5', s: '%'}
@@ -175,7 +175,7 @@ layers:
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
   - {t: '0', s: )}
-  - {t: '$$mdi:backspace$$', type: backspace}
+  - {t: '$$mdi:backspace$$', h: symbnolight_layer}
   - KP ENTER
   - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '3', s: '#'}
@@ -210,7 +210,7 @@ layers:
   - {t: '9', s: (}
   - KP MULTIPLY
   - AL CALCULATOR
-  - {t: '$$mdi:backspace$$', type: backspace}
+  - {t: '$$mdi:backspace$$', h: symbnolight_layer}
   - {t: '0', s: )}
   - {t: '6', s: ^}
   - {t: '5', s: '%'}
@@ -259,7 +259,7 @@ layers:
   - {t: (, h: '&macro_lbrc_uni LBRC'}
   - {t: ), h: '&macro_rbrc_uni RBRC'}
   - {t: '#', h: '&macro_dollar_uni DLLR'}
-  - {t: /, h: numbnolightcopy_layer, s: '?'}
+  - {t: /, h: numbnolightcopy_layer, s: '?', type: held alternate}
   - {t: '&macro_semi_uni', h: '&macro_grave_uni'}
   - {t: '&macro_comma_uni COMMA', h: '&macro_degree_uni LBRC'}
   - {t: '&macro_dot_uni DOT', h: '&macro_lbkt_uni LBKT'}
@@ -288,12 +288,12 @@ layers:
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
   - {t: '&macro_dqt_uni AMPS', h: '$$mdi:minus-circle-outline$$'}
   - {t: '&macro_percent_uni', h: '&macro_pipe_uni PIPE'}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: held}
+  - {t: '&lh_td', h: lefthandnolight_layer}
+  - {t: '&symb_win_tap_dance', h: symbnolight_layer, type: held}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', h: numbnolight_layer, type: held alternate}
+  - {t: '&win_space', h: nav2nolight_layer}
   numbnolightcopy_layer:
   - AL CALCULATOR
   - KP MULTIPLY
@@ -308,7 +308,7 @@ layers:
   - {t: '9', s: (}
   - KP MULTIPLY
   - AL CALCULATOR
-  - {t: '$$mdi:backspace$$', type: held}
+  - {t: '$$mdi:backspace$$', h: symbnolight_layer, type: held}
   - {t: '0', s: )}
   - {t: '6', s: ^}
   - {t: '5', s: '%'}
@@ -322,7 +322,7 @@ layers:
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
   - {t: '0', s: )}
-  - {t: '$$mdi:backspace$$', type: held alternate}
+  - {t: '$$mdi:backspace$$', h: symbnolight_layer, type: held alternate}
   - KP ENTER
   - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '3', s: '#'}
@@ -357,7 +357,7 @@ layers:
   - {t: Sft+9, h: 'Sft+[', s: Sft+(}
   - {t: Sft+0, h: 'Sft+]', s: Sft+)}
   - {t: Sft+3, h: Sft+4, s: Sft+#}
-  - {t: /, h: symbnolight_eng_layer, s: '?'}
+  - {t: /, h: numbnolight_eng_layer, s: '?'}
   - {t: ;, h: '`', s: ':'}
   - {t: ',', h: '&macro_degree_uni', s: <}
   - {t: ., h: '[', s: '>'}
@@ -406,7 +406,7 @@ layers:
   - {t: '9', s: (}
   - KP MULTIPLY
   - AL CALCULATOR
-  - {t: '$$mdi:backspace$$', type: backspace}
+  - {t: '$$mdi:backspace$$', h: symbnolight_eng_layer, type: held alternate}
   - {t: '0', s: )}
   - {t: '6', s: ^}
   - {t: '5', s: '%'}
@@ -435,12 +435,12 @@ layers:
   - {t: '3', s: '#'}
   - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
   - KP ENTER
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '&lh_td', h: lefthandnolight_layer}
+  - {t: '&symb_win_tap_dance', h: symbnolight_eng_layer}
+  - SPC
+  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: '$$mdi:minus-circle-outline$$', h: numbnolight_eng_layer, type: held alternate}
+  - {t: '&win_space', h: nav2nolight_layer}
   symbnolight_eng_layer:
   - {t: Sft+3, h: Sft+4, s: Sft+#}
   - {t: Sft+0, h: 'Sft+]', s: Sft+)}
@@ -484,12 +484,12 @@ layers:
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
   - {t: Sft+', h: '$$mdi:minus-circle-outline$$', s: Sft+"}
   - {t: Sft+5, h: Sft+\, s: Sft+%}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: held}
+  - {t: '&lh_td', h: lefthandnolight_layer}
+  - {t: '&symb_win_tap_dance', h: symbnolight_eng_layer, type: held}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', h: numbnolight_eng_layer, type: held alternate}
+  - {t: '&win_space', h: nav2nolight_layer}
   fn_layer:
   - $$mdi:keyboard-esc$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -542,9 +542,9 @@ layers:
   service_layer:
   - '&slpall'
   - '&symb_eng_swap_toggle'
-  - '&ws2812_wdg 2'
-  - '&ws2812_wdg 3'
-  - '&ws2812_wdg 4'
+  - '&ws2812_wdg 8'
+  - '&ws2812_wdg 6'
+  - '&ws2812_wdg 7'
   - '&studio_unlock'
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:bluetooth-off$$
@@ -557,7 +557,7 @@ layers:
   - '&rgb_timer_custom 2'
   - '&rgb_timer_custom 1'
   - '&ws2812_wdg 5'
-  - '&ws2812_wdg 1'
+  - '&ws2812_wdg 2'
   - OUT BLE
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -700,7 +700,7 @@ layers:
   - $$mdi:keyboard-esc$$
   - $$mdi:backspace-reverse-outline$$
   - {t: '$$mdi:backspace$$', type: backspace}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -714,7 +714,7 @@ layers:
   - PG DN
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-up-bold$$
-  - SPC
+  - {t: SPC, type: held alternate}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -730,10 +730,10 @@ layers:
   - $$mdi:arrow-down-bold$$
   - $$mdi:arrow-right-bold$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
   - {t: '$$mdi:minus-circle-outline$$', type: held}
   nav3_layer:
   - Ctl+Alt+$$mdi:backspace-reverse-outline$$
@@ -1057,7 +1057,7 @@ layers:
   - Ctl+Sft+N
   - Ctl+P
   - Ctl+Sft+$$mdi:keyboard-esc$$
-  - SLCK
+  - {t: SLCK, type: held alternate}
   - $$mdi:apple-keyboard-control$$
   - Ctl+Sft+T
   - Ctl+Sft+$$mdi:keyboard-tab$$
@@ -1076,7 +1076,7 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
 combos:
 - p: [4, 5]
@@ -1096,19 +1096,19 @@ combos:
   l: [lefthand_layer]
 - p: [3, 4]
   k: nav3_layer
-  l: [default_layer, kp_mode_layer, speedtype, symb_layer, numb_layer, symb_layer_eng]
+  l: [default_layer, kp_mode_layer, speedtype]
 - p: [27, 41]
   k: '&speedtype_double_tap'
   l: [default_layer, kp_mode_layer, speedtype, symb_layer, numb_layer, symb_layer_eng]
 - p: [16, 17]
   k: nav1_layer
-  l: [default_layer, kp_mode_layer, speedtype, symb_layer, numb_layer, symb_layer_eng]
+  l: [default_layer, kp_mode_layer, speedtype]
 - p: [42, 43]
   k: service_layer
   l: [default_layer, kp_mode_layer, speedtype, symb_layer, numb_layer, symb_layer_eng]
 - p: [7, 8]
   k: '&nav2_double_tap'
-  l: [default_layer, nav2_layer, kp_mode_layer]
+  l: [default_layer, kp_mode_layer, nav2_layer, symb_layer_eng, speedtype]
 - p: [23, 24]
   k: {t: '$$mdi:backspace$$', type: backspace}
   l: [default_layer, kp_mode_layer, symb_layer, numb_layer, numbnolight_layer, symbnolight_layer, numbnolightcopy_layer, symb_layer_eng, numbnolight_eng_layer, symbnolight_eng_layer,
@@ -1130,10 +1130,10 @@ combos:
   l: [default_layer, numb_layer, kp_mode_layer]
 - p: [22, 46]
   k: '&thumb_i_symb_eng_td'
-  l: [kp_mode_layer, symb_layer_eng, speedtype]
-- p: [22, 46]
+  l: [default_layer, kp_mode_layer, symb_layer_eng, speedtype]
+- p: [25, 46]
   k: '&thumb_i_symb_td'
-  l: [default_layer, symb_layer]
+  l: [default_layer, symb_layer, kp_mode_layer, symb_layer_eng]
 - p: [9, 10, 11, 12]
   k: '&reset_l0_green_flash'
   l: [default_layer, kp_mode_layer, symb_layer, numb_layer, numbnolight_layer, symbnolight_layer, numbnolightcopy_layer, symb_layer_eng, numbnolight_eng_layer, symbnolight_eng_layer,
