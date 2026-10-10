@@ -112,7 +112,7 @@ layers:
   - {t: (, h: '&macro_lbrc_uni LBRC'}
   - {t: ), h: '&macro_rbrc_uni RBRC'}
   - {t: '#', h: '&macro_dollar_uni DLLR'}
-  - {t: /, h: symbnolight_layer, s: '?'}
+  - {t: /, h: numbnolightcopy_layer, s: '?'}
   - {t: '&macro_semi_uni', h: '&macro_grave_uni'}
   - {t: '&macro_comma_uni COMMA', h: '&macro_degree_uni LBRC'}
   - {t: '&macro_dot_uni DOT', h: '&macro_lbkt_uni LBKT'}
@@ -847,7 +847,7 @@ layers:
   - {t: (, h: '&macro_lbrc_uni LBRC'}
   - {t: ), h: '&macro_rbrc_uni RBRC'}
   - {t: '#', h: '&macro_dollar_uni DLLR'}
-  - {t: /, h: numbnolightcopy_layer, s: '?', type: held alternate}
+  - {t: /, h: numbnolightcopy_layer, s: '?'}
   - {t: '&macro_semi_uni', h: '&macro_grave_uni'}
   - {t: '&macro_comma_uni COMMA', h: '&macro_degree_uni LBRC'}
   - {t: '&macro_dot_uni DOT', h: '&macro_lbkt_uni LBKT'}
@@ -910,7 +910,7 @@ layers:
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
   - {t: '0', s: )}
-  - {t: '$$mdi:backspace$$', type: held}
+  - {t: '$$mdi:backspace$$', type: held alternate}
   - KP ENTER
   - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '3', s: '#'}
@@ -926,10 +926,10 @@ layers:
   - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
   - KP ENTER
   - {t: '$$mdi:transfer$$', type: trans}
-  - {type: held}
+  - {type: held alternate}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {type: held}
+  - {type: held alternate}
   - {t: '$$mdi:transfer$$', type: trans}
   symb_layer_eng:
   - {t: Sft+3, h: Sft+4, s: Sft+#}
@@ -945,7 +945,7 @@ layers:
   - {t: Sft+9, h: 'Sft+[', s: Sft+(}
   - {t: Sft+0, h: 'Sft+]', s: Sft+)}
   - {t: Sft+3, h: Sft+4, s: Sft+#}
-  - {t: /, h: symbnolight_eng_layer, s: '?'}
+  - {t: /, h: numbnolightcopy_layer, s: '?'}
   - {t: ;, h: '`', s: ':'}
   - {t: ',', h: '&macro_degree_uni', s: <}
   - {t: ., h: '[', s: '>'}
@@ -959,7 +959,7 @@ layers:
   - {t: ., h: '[', s: '>'}
   - {t: ',', h: '&macro_degree_uni', s: <}
   - {t: ;, h: '`', s: ':'}
-  - {t: /, h: \, s: '?'}
+  - {t: \, h: numbnolightcopy_layer, s: '|'}
   - {t: Sft+5, h: Sft+\, s: Sft+%}
   - {t: Sft+', h: '$$mdi:minus-circle-outline$$', s: Sft+"}
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
@@ -1043,7 +1043,7 @@ layers:
   - {t: Sft+9, h: 'Sft+[', s: Sft+(}
   - {t: Sft+0, h: 'Sft+]', s: Sft+)}
   - {t: Sft+3, h: Sft+4, s: Sft+#}
-  - {t: /, h: numbnolightcopy_layer, s: '?', type: held alternate}
+  - {t: /, h: numbnolightcopy_layer, s: '?'}
   - {t: ;, h: '`', s: ':'}
   - {t: ',', h: '&macro_degree_uni', s: <}
   - {t: ., h: '[', s: '>'}
@@ -1057,7 +1057,7 @@ layers:
   - {t: ., h: '[', s: '>'}
   - {t: ',', h: '&macro_degree_uni', s: <}
   - {t: ;, h: '`', s: ':'}
-  - {t: /, h: \, s: '?', type: held alternate}
+  - {t: \, h: numbnolightcopy_layer, s: '|', type: held alternate}
   - {t: Sft+5, h: Sft+\, s: Sft+%}
   - {t: Sft+', h: '$$mdi:minus-circle-outline$$', s: Sft+"}
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
