@@ -1478,11 +1478,12 @@
         // ============================================================
         // Слой 2: SYMB — русские символы через Alt, persistent.
         // ============================================================
+        // Правка: левая крайняя клавиша 2-го ряда — удержание ведёт на цифры (NUMB_NOLIGHT_COPY_LAYER).
         symb_layer {
             display-name = "symb_layer";
             bindings = <
 &hash_dollar_ht DLLR HASH       &rpar_rbrc_ht RBRC RPAR       &lpar_lbrc_ht LBRC LPAR        &astrk_caret_ht CARET ASTRK    &qmark_dqt_ht 0 0       &excl_tilde_ht TILDE EXCL                              &kp UP                 &excl_tilde_ht TILDE EXCL     &qmark_dqt_ht 0 0            &astrk_caret_ht CARET ASTRK  &lpar_lbrc_ht LBRC LPAR      &rpar_rbrc_ht RBRC RPAR       &hash_dollar_ht DLLR HASH
-&bspc_to_numb_ht SYMB_NOLIGHT_LAYER FSLH        &semi_rbrc_ht 0 0             &comma_lbrc_ht LBRC COMMA      &dot_lbkt_ht LBKT DOT          &rbkt_sqt_ht SQT RBKT   &colon_at_ht AT COLON                        &kp LEFT  &kp SPC   &kp RIGHT    &colon_at_ht AT COLON         &rbkt_sqt_ht SQT RBKT        &dot_lbkt_ht LBKT DOT        &comma_lbrc_ht LBRC COMMA    &semi_rbrc_ht 0 0             &slash_bslh_ht BSLH SLASH
+&bspc_to_numb_ht NUMB_NOLIGHT_COPY_LAYER FSLH   &semi_rbrc_ht 0 0             &comma_lbrc_ht LBRC COMMA      &dot_lbkt_ht LBKT DOT          &rbkt_sqt_ht SQT RBKT   &colon_at_ht AT COLON                        &kp LEFT  &kp SPC   &kp RIGHT    &colon_at_ht AT COLON         &rbkt_sqt_ht SQT RBKT        &dot_lbkt_ht LBKT DOT        &comma_lbrc_ht LBRC COMMA    &semi_rbrc_ht 0 0             &slash_bslh_ht BSLH SLASH
 &dqt_pipe_ht PIPE 0             &percent_amp_ht PRCNT AMPS    &equal_tilde_ht TILDE EQUAL    &plus_gt_ht GT PLUS            &minus_lt_ht LT MINUS   &under_lshft_ht LSHFT UNDER     &trans                 &kp DOWN               &under_lshft_ht LSHFT UNDER   &minus_lt_ht LT MINUS        &plus_gt_ht GT PLUS          &equal_tilde_ht TILDE EQUAL  &percent_amp_ht PRCNT AMPS    &dqt_pipe_ht PIPE 0
                                                                                              &trans                         &trans                  &kp SPC                                                                       &kp ENTER                     &trans                       &trans
             >;
@@ -1720,11 +1721,12 @@
         // ============================================================
         // Слой 19: SYMB English persistent без Alt.
         // ============================================================
+        // Правка: обе крайние клавиши 2-го ряда — удержание ведёт на цифры; слева тап "/", справа тап "\".
         symb_layer_eng {
             display-name = "symb_layer_eng";
             bindings = <
 &eng_ht LS(N4) LS(N3)       &eng_ht LS(RBKT) LS(N0)       &eng_ht LS(LBKT) LS(N9)        &eng_ht LS(N6) LS(N8)       &eng_ht LS(N7) LS(FSLH)      &eng_ht LS(GRAVE) LS(N1)                              &kp UP                 &eng_ht LS(GRAVE) LS(N1)      &eng_ht LS(N7) LS(FSLH)           &eng_ht LS(N6) LS(N8)   &eng_ht LS(LBKT) LS(N9)     &eng_ht LS(RBKT) LS(N0)      &eng_ht LS(N4) LS(N3)
-&bspc_to_numb_ht SYMB_ENG_NOLIGHT_LAYER FSLH    &eng_ht GRAVE SEMI            &eng_comma_degree_ht 0 COMMA   &eng_ht LBKT DOT              &eng_ht SQT RBKT              &eng_ht LS(N2) LS(SEMI)                        &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht LS(N2) LS(SEMI)         &eng_ht SQT RBKT           &eng_ht LBKT DOT              &eng_comma_degree_ht 0 COMMA  &eng_ht GRAVE SEMI              &eng_ht BSLH FSLH
+&bspc_to_numb_ht NUMB_NOLIGHT_COPY_LAYER FSLH   &eng_ht GRAVE SEMI            &eng_comma_degree_ht 0 COMMA   &eng_ht LBKT DOT              &eng_ht SQT RBKT              &eng_ht LS(N2) LS(SEMI)                        &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht LS(N2) LS(SEMI)         &eng_ht SQT RBKT           &eng_ht LBKT DOT              &eng_comma_degree_ht 0 COMMA  &eng_ht GRAVE SEMI              &bspc_to_numb_ht NUMB_NOLIGHT_COPY_LAYER BSLH
 &eng_ht LS(BSLH) LS(N5)     &eng_ht_none_kp 0 LS(SQT)     &eng_ht_none_kp 0 EQUAL         &eng_ht LS(DOT) LS(EQUAL)     &eng_ht LS(COMMA) MINUS       &eng_under_emdash_ht 0 UNDER      &trans                 &kp DOWN               &eng_under_emdash_ht 0 UNDER      &eng_ht LS(COMMA) MINUS         &eng_ht LS(DOT) LS(EQUAL)       &eng_ht_none_kp 0 EQUAL       &eng_ht_none_kp 0 LS(SQT)     &eng_ht LS(BSLH) LS(N5)
                                                                                              &trans                         &trans                  &kp SPC                                                                       &kp ENTER                     &trans                       &trans
             >;
@@ -1749,11 +1751,12 @@
         // Слой 21: SYMB English no-light.
         // Объединённый слой вместо прежних copy/no-light дублей.
         // ============================================================
+        // Правка: правая крайняя клавиша 2-го ряда — удержание ведёт на цифры, тап "\" (как в SYMB_ENG).
         symbnolight_eng_layer {
             display-name = "symbnolight_eng_layer";
             bindings = <
 &eng_ht LS(N4) LS(N3)       &eng_ht LS(RBKT) LS(N0)       &eng_ht LS(LBKT) LS(N9)        &eng_ht LS(N6) LS(N8)       &eng_ht LS(N7) LS(FSLH)      &eng_ht LS(GRAVE) LS(N1)                              &kp UP                 &eng_ht LS(GRAVE) LS(N1)      &eng_ht LS(N7) LS(FSLH)           &eng_ht LS(N6) LS(N8)   &eng_ht LS(LBKT) LS(N9)     &eng_ht LS(RBKT) LS(N0)      &eng_ht LS(N4) LS(N3)
-&bspc_to_numb_ht NUMB_NOLIGHT_COPY_LAYER FSLH    &eng_ht GRAVE SEMI            &eng_comma_degree_ht 0 COMMA   &eng_ht LBKT DOT              &eng_ht SQT RBKT              &eng_ht LS(N2) LS(SEMI)                        &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht LS(N2) LS(SEMI)         &eng_ht SQT RBKT           &eng_ht LBKT DOT              &eng_comma_degree_ht 0 COMMA  &eng_ht GRAVE SEMI              &eng_ht BSLH FSLH
+&bspc_to_numb_ht NUMB_NOLIGHT_COPY_LAYER FSLH    &eng_ht GRAVE SEMI            &eng_comma_degree_ht 0 COMMA   &eng_ht LBKT DOT              &eng_ht SQT RBKT              &eng_ht LS(N2) LS(SEMI)                        &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht LS(N2) LS(SEMI)         &eng_ht SQT RBKT           &eng_ht LBKT DOT              &eng_comma_degree_ht 0 COMMA  &eng_ht GRAVE SEMI              &bspc_to_numb_ht NUMB_NOLIGHT_COPY_LAYER BSLH
 &eng_ht LS(BSLH) LS(N5)     &eng_ht_none_kp 0 LS(SQT)     &eng_ht_none_kp 0 EQUAL         &eng_ht LS(DOT) LS(EQUAL)     &eng_ht LS(COMMA) MINUS       &eng_under_emdash_ht 0 UNDER      &trans                 &kp DOWN               &eng_under_emdash_ht 0 UNDER      &eng_ht LS(COMMA) MINUS         &eng_ht LS(DOT) LS(EQUAL)       &eng_ht_none_kp 0 EQUAL       &eng_ht_none_kp 0 LS(SQT)     &eng_ht LS(BSLH) LS(N5)
                                                                                              &trans                         &trans                  &kp SPC                                                                       &kp ENTER                     &trans                       &trans
             >;
