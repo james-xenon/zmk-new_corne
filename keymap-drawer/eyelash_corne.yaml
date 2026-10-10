@@ -28,7 +28,7 @@ layers:
   - K
   - L
   - {t: ;, h: fn_layer, s: ':'}
-  - {t: '''', h: '$$mdi:apple-keyboard-shift$$', s: '"'}
+  - {t: '''', h: numbnolight_layer, s: '"'}
   - $$mdi:apple-keyboard-control$$
   - {t: Z, h: '&kp_once LC(Z)'}
   - {t: X, h: '&kp_once LC(X)'}
@@ -77,7 +77,7 @@ layers:
   - K
   - L
   - {t: ;, h: fn_layer, s: ':'}
-  - {t: '''', h: '$$mdi:apple-keyboard-shift$$', s: '"'}
+  - {t: '''', h: numbnolight_eng_layer, s: '"'}
   - $$mdi:apple-keyboard-control$$
   - {t: Z, h: '&kp_once LC(Z)'}
   - {t: X, h: '&kp_once LC(X)'}
@@ -133,7 +133,7 @@ layers:
   - {t: +, h: '&macro_gt_uni GT'}
   - {t: '-', h: '&macro_lt_uni LT', s: _}
   - {t: _, h: '&macro_emdash_uni LSHFT'}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:arrow-down-bold$$
   - {t: _, h: '&macro_emdash_uni LSHFT'}
   - {t: '-', h: '&macro_lt_uni LT', s: _}
@@ -141,12 +141,12 @@ layers:
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
   - {t: '&macro_dqt_uni AMPS', h: '$$mdi:minus-circle-outline$$'}
   - {t: '&macro_percent_uni', h: '&macro_pipe_uni PIPE'}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '&lh_td', h: lefthandnolight_layer}
+  - {t: '&symb_win_tap_dance', h: symbnolight_layer}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', h: numbnolight_layer}
+  - {t: '&win_space', h: nav2nolight_layer}
   numb_layer:
   - AL CALCULATOR
   - KP MULTIPLY
@@ -182,7 +182,7 @@ layers:
   - {t: '2', s: '@'}
   - {t: '1', s: '!'}
   - KP EQUAL
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:pan-down$$
   - KP EQUAL
   - {t: '1', s: '!'}
@@ -190,12 +190,306 @@ layers:
   - {t: '3', s: '#'}
   - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
   - KP ENTER
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  numbnolight_layer:
+  - AL CALCULATOR
+  - KP MULTIPLY
+  - {t: '9', s: (}
+  - {t: '8', s: '*'}
+  - {t: '7', s: '&'}
+  - KP PLUS
+  - $$mdi:pan-up$$
+  - KP PLUS
+  - {t: '7', s: '&'}
+  - {t: '8', s: '*'}
+  - {t: '9', s: (}
+  - KP MULTIPLY
+  - AL CALCULATOR
+  - {t: '$$mdi:backspace$$', type: backspace}
+  - {t: '0', s: )}
+  - {t: '6', s: ^}
+  - {t: '5', s: '%'}
+  - {t: '4', s: $}
+  - KP MINUS
+  - $$mdi:pan-left$$
+  - $$mdi:mouse-left-click-outline$$
+  - $$mdi:pan-right$$
+  - KP MINUS
+  - {t: '4', s: $}
+  - {t: '5', s: '%'}
+  - {t: '6', s: ^}
+  - {t: '0', s: )}
+  - {t: '$$mdi:backspace$$', h: symbnolight_layer, type: held}
+  - KP ENTER
+  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: '3', s: '#'}
+  - {t: '2', s: '@'}
+  - {t: '1', s: '!'}
+  - KP EQUAL
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - $$mdi:pan-down$$
+  - KP EQUAL
+  - {t: '1', s: '!'}
+  - {t: '2', s: '@'}
+  - {t: '3', s: '#'}
+  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
+  - KP ENTER
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  symbnolight_layer:
+  - {t: '#', h: '&macro_dollar_uni DLLR'}
+  - {t: ), h: '&macro_rbrc_uni RBRC'}
+  - {t: (, h: '&macro_lbrc_uni LBRC'}
+  - {t: '*', h: '&macro_caret_uni CARET'}
+  - {t: '&macro_qmark_uni', h: '&macro_amp_uni'}
+  - {t: '!', h: '&macro_tilde_uni TILDE'}
+  - $$mdi:arrow-up-bold$$
+  - {t: '!', h: '&macro_tilde_uni TILDE'}
+  - {t: '&macro_qmark_uni', h: '&macro_amp_uni'}
+  - {t: '*', h: '&macro_caret_uni CARET'}
+  - {t: (, h: '&macro_lbrc_uni LBRC'}
+  - {t: ), h: '&macro_rbrc_uni RBRC'}
+  - {t: '#', h: '&macro_dollar_uni DLLR'}
+  - {t: /, h: numbnolightcopy_layer, s: '?'}
+  - {t: '&macro_semi_uni', h: '&macro_grave_uni'}
+  - {t: '&macro_comma_uni COMMA', h: '&macro_degree_uni LBRC'}
+  - {t: '&macro_dot_uni DOT', h: '&macro_lbkt_uni LBKT'}
+  - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
+  - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
+  - $$mdi:arrow-left-bold$$
+  - SPC
+  - $$mdi:arrow-right-bold$$
+  - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
+  - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
+  - {t: '&macro_dot_uni DOT', h: '&macro_lbkt_uni LBKT'}
+  - {t: '&macro_comma_uni COMMA', h: '&macro_degree_uni LBRC'}
+  - {t: '&macro_semi_uni', h: '&macro_grave_uni'}
+  - {t: '&macro_slash_uni SLASH', h: \, type: held alternate}
+  - {t: '&macro_percent_uni', h: '&macro_pipe_uni PIPE'}
+  - {t: '&macro_dqt_uni AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
+  - {t: +, h: '&macro_gt_uni GT'}
+  - {t: '-', h: '&macro_lt_uni LT', s: _}
+  - {t: _, h: '&macro_emdash_uni LSHFT'}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - $$mdi:arrow-down-bold$$
+  - {t: _, h: '&macro_emdash_uni LSHFT'}
+  - {t: '-', h: '&macro_lt_uni LT', s: _}
+  - {t: +, h: '&macro_gt_uni GT'}
+  - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
+  - {t: '&macro_dqt_uni AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: '&macro_percent_uni', h: '&macro_pipe_uni PIPE'}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: held}
+  - SPC
+  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  numbnolightcopy_layer:
+  - AL CALCULATOR
+  - KP MULTIPLY
+  - {t: '9', s: (}
+  - {t: '8', s: '*'}
+  - {t: '7', s: '&'}
+  - KP PLUS
+  - $$mdi:pan-up$$
+  - KP PLUS
+  - {t: '7', s: '&'}
+  - {t: '8', s: '*'}
+  - {t: '9', s: (}
+  - KP MULTIPLY
+  - AL CALCULATOR
+  - {t: '$$mdi:backspace$$', type: held}
+  - {t: '0', s: )}
+  - {t: '6', s: ^}
+  - {t: '5', s: '%'}
+  - {t: '4', s: $}
+  - KP MINUS
+  - $$mdi:pan-left$$
+  - $$mdi:mouse-left-click-outline$$
+  - $$mdi:pan-right$$
+  - KP MINUS
+  - {t: '4', s: $}
+  - {t: '5', s: '%'}
+  - {t: '6', s: ^}
+  - {t: '0', s: )}
+  - {t: '$$mdi:backspace$$', type: held alternate}
+  - KP ENTER
+  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: '3', s: '#'}
+  - {t: '2', s: '@'}
+  - {t: '1', s: '!'}
+  - KP EQUAL
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - $$mdi:pan-down$$
+  - KP EQUAL
+  - {t: '1', s: '!'}
+  - {t: '2', s: '@'}
+  - {t: '3', s: '#'}
+  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
+  - KP ENTER
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  symb_layer_eng:
+  - {t: Sft+3, h: Sft+4, s: Sft+#}
+  - {t: Sft+0, h: 'Sft+]', s: Sft+)}
+  - {t: Sft+9, h: 'Sft+[', s: Sft+(}
+  - {t: Sft+8, h: Sft+6, s: Sft+*}
+  - {t: Sft+/, h: Sft+7, s: 'Sft+?'}
+  - {t: Sft+1, h: Sft+`, s: Sft+!}
+  - $$mdi:arrow-up-bold$$
+  - {t: Sft+1, h: Sft+`, s: Sft+!}
+  - {t: Sft+/, h: Sft+7, s: 'Sft+?'}
+  - {t: Sft+8, h: Sft+6, s: Sft+*}
+  - {t: Sft+9, h: 'Sft+[', s: Sft+(}
+  - {t: Sft+0, h: 'Sft+]', s: Sft+)}
+  - {t: Sft+3, h: Sft+4, s: Sft+#}
+  - {t: /, h: symbnolight_eng_layer, s: '?'}
+  - {t: ;, h: '`', s: ':'}
+  - {t: ',', h: '&macro_degree_uni', s: <}
+  - {t: ., h: '[', s: '>'}
+  - {t: ']', h: '''', s: '}'}
+  - {t: Sft+;, h: Sft+2, s: 'Sft+:'}
+  - $$mdi:arrow-left-bold$$
+  - SPC
+  - $$mdi:arrow-right-bold$$
+  - {t: Sft+;, h: Sft+2, s: 'Sft+:'}
+  - {t: ']', h: '''', s: '}'}
+  - {t: ., h: '[', s: '>'}
+  - {t: ',', h: '&macro_degree_uni', s: <}
+  - {t: ;, h: '`', s: ':'}
+  - {t: \, h: numbnolight_eng_layer, s: '|'}
+  - {t: Sft+5, h: Sft+\, s: Sft+%}
+  - {t: Sft+', h: '$$mdi:minus-circle-outline$$', s: Sft+"}
+  - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
+  - {t: Sft+=, h: Sft+., s: Sft++}
+  - {t: '-', h: 'Sft+,', s: _}
+  - {t: _, h: '&macro_emdash_uni'}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - $$mdi:arrow-down-bold$$
+  - {t: _, h: '&macro_emdash_uni'}
+  - {t: '-', h: 'Sft+,', s: _}
+  - {t: Sft+=, h: Sft+., s: Sft++}
+  - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
+  - {t: Sft+', h: '$$mdi:minus-circle-outline$$', s: Sft+"}
+  - {t: Sft+5, h: Sft+\, s: Sft+%}
+  - {t: '&lh_td', h: lefthandnolight_layer}
+  - {t: '&symb_win_tap_dance', h: symbnolight_eng_layer}
+  - SPC
+  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: '$$mdi:minus-circle-outline$$', h: numbnolight_eng_layer}
+  - {t: '&win_space', h: nav2nolight_layer}
+  numbnolight_eng_layer:
+  - AL CALCULATOR
+  - KP MULTIPLY
+  - {t: '9', s: (}
+  - {t: '8', s: '*'}
+  - {t: '7', s: '&'}
+  - KP PLUS
+  - $$mdi:pan-up$$
+  - KP PLUS
+  - {t: '7', s: '&'}
+  - {t: '8', s: '*'}
+  - {t: '9', s: (}
+  - KP MULTIPLY
+  - AL CALCULATOR
+  - {t: '$$mdi:backspace$$', type: backspace}
+  - {t: '0', s: )}
+  - {t: '6', s: ^}
+  - {t: '5', s: '%'}
+  - {t: '4', s: $}
+  - KP MINUS
+  - $$mdi:pan-left$$
+  - $$mdi:mouse-left-click-outline$$
+  - $$mdi:pan-right$$
+  - KP MINUS
+  - {t: '4', s: $}
+  - {t: '5', s: '%'}
+  - {t: '6', s: ^}
+  - {t: '0', s: )}
+  - {t: '$$mdi:backspace$$', h: symbnolight_eng_layer, type: held}
+  - KP ENTER
+  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: '3', s: '#'}
+  - {t: '2', s: '@'}
+  - {t: '1', s: '!'}
+  - KP EQUAL
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - $$mdi:pan-down$$
+  - KP EQUAL
+  - {t: '1', s: '!'}
+  - {t: '2', s: '@'}
+  - {t: '3', s: '#'}
+  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
+  - KP ENTER
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  symbnolight_eng_layer:
+  - {t: Sft+3, h: Sft+4, s: Sft+#}
+  - {t: Sft+0, h: 'Sft+]', s: Sft+)}
+  - {t: Sft+9, h: 'Sft+[', s: Sft+(}
+  - {t: Sft+8, h: Sft+6, s: Sft+*}
+  - {t: Sft+/, h: Sft+7, s: 'Sft+?'}
+  - {t: Sft+1, h: Sft+`, s: Sft+!}
+  - $$mdi:arrow-up-bold$$
+  - {t: Sft+1, h: Sft+`, s: Sft+!}
+  - {t: Sft+/, h: Sft+7, s: 'Sft+?'}
+  - {t: Sft+8, h: Sft+6, s: Sft+*}
+  - {t: Sft+9, h: 'Sft+[', s: Sft+(}
+  - {t: Sft+0, h: 'Sft+]', s: Sft+)}
+  - {t: Sft+3, h: Sft+4, s: Sft+#}
+  - {t: /, h: numbnolight_eng_layer, s: '?', type: held alternate}
+  - {t: ;, h: '`', s: ':'}
+  - {t: ',', h: '&macro_degree_uni', s: <}
+  - {t: ., h: '[', s: '>'}
+  - {t: ']', h: '''', s: '}'}
+  - {t: Sft+;, h: Sft+2, s: 'Sft+:'}
+  - $$mdi:arrow-left-bold$$
+  - SPC
+  - $$mdi:arrow-right-bold$$
+  - {t: Sft+;, h: Sft+2, s: 'Sft+:'}
+  - {t: ']', h: '''', s: '}'}
+  - {t: ., h: '[', s: '>'}
+  - {t: ',', h: '&macro_degree_uni', s: <}
+  - {t: ;, h: '`', s: ':'}
+  - {t: \, h: numbnolight_eng_layer, s: '|', type: held alternate}
+  - {t: Sft+5, h: Sft+\, s: Sft+%}
+  - {t: Sft+', h: '$$mdi:minus-circle-outline$$', s: Sft+"}
+  - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
+  - {t: Sft+=, h: Sft+., s: Sft++}
+  - {t: '-', h: 'Sft+,', s: _}
+  - {t: _, h: '&macro_emdash_uni'}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - $$mdi:arrow-down-bold$$
+  - {t: _, h: '&macro_emdash_uni'}
+  - {t: '-', h: 'Sft+,', s: _}
+  - {t: Sft+=, h: Sft+., s: Sft++}
+  - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
+  - {t: Sft+', h: '$$mdi:minus-circle-outline$$', s: Sft+"}
+  - {t: Sft+5, h: Sft+\, s: Sft+%}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: held}
+  - SPC
+  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   fn_layer:
   - $$mdi:keyboard-esc$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -231,7 +525,7 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - AL CALCULATOR
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:menu-down$$', s: '$$mdi:mouse$$'}
   - F12
   - F1
@@ -239,20 +533,20 @@ layers:
   - F3
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   service_layer:
   - '&slpall'
   - '&symb_eng_swap_toggle'
-  - '&ws2812_wdg 8'
-  - '&ws2812_wdg 6'
-  - '&ws2812_wdg 7'
+  - '&ws2812_wdg 2'
+  - '&ws2812_wdg 3'
+  - '&ws2812_wdg 4'
   - '&studio_unlock'
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:bluetooth-off$$
   - '&slpsrc'
   - {h: '1', s: '$$mdi:bluetooth-connect$$'}
@@ -263,11 +557,11 @@ layers:
   - '&rgb_timer_custom 2'
   - '&rgb_timer_custom 1'
   - '&ws2812_wdg 5'
-  - '&ws2812_wdg 2'
+  - '&ws2812_wdg 1'
   - OUT BLE
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:brightness-7$$
   - $$mdi:brightness-5$$
   - RGB HUD
@@ -280,19 +574,19 @@ layers:
   - Gui+Ctl+$$mdi:arrow-left-bold$$
   - Gui+Ctl+$$mdi:arrow-right-bold$$
   - OUT USB
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - RGB EFR
   - RGB EFF
   - RGB SPD
   - RGB SPI
   - RGB BRD
   - RGB BRI
-  - {type: held}
-  - {type: held}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: held}
+  - {t: '$$mdi:minus-circle-outline$$', type: held}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - RGB ON
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - RGB OFF
   nav1_layer:
   - Ctl+Alt+$$mdi:backspace-reverse-outline$$
@@ -308,7 +602,7 @@ layers:
   - $$mdi:mouse-right-click-outline$$
   - '&macro_comma_uni'
   - PG UP
-  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:apple-keyboard-shift$$
   - PAUSE BREAK
   - Gui+KP PLUS
   - {t: '$$mdi:minus-circle-outline$$', type: held}
@@ -323,13 +617,13 @@ layers:
   - $$mdi:arrow-right-bold$$
   - '&msc MOVE_X(150)'
   - {t: '$$mdi:backspace$$', type: backspace}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:apple-keyboard-control$$
   - INS
   - Gui+KP MINUS
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:menu-down$$', s: '$$mdi:mouse$$'}
   - END
   - '&msc MOVE_Y(-150)'
@@ -337,110 +631,110 @@ layers:
   - '&msc MOVE_Y(150)'
   - '&macro_qmark_uni'
   - PG DN
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   nav2_layer:
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - HOME
   - PG UP
   - $$mdi:keyboard-esc$$
   - $$mdi:backspace-reverse-outline$$
   - {t: '$$mdi:backspace$$', type: backspace}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - END
   - PG DN
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-up-bold$$
   - SPC
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:apple-keyboard-shift$$
   - $$mdi:arrow-left-bold$$
   - $$mdi:arrow-down-bold$$
   - $$mdi:arrow-right-bold$$
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   nav2nolight_layer:
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - HOME
   - PG UP
   - $$mdi:keyboard-esc$$
   - $$mdi:backspace-reverse-outline$$
   - {t: '$$mdi:backspace$$', type: backspace}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - END
   - PG DN
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:arrow-up-bold$$
   - SPC
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:apple-keyboard-shift$$
   - $$mdi:arrow-left-bold$$
   - $$mdi:arrow-down-bold$$
   - $$mdi:arrow-right-bold$$
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {type: held}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: held}
   nav3_layer:
   - Ctl+Alt+$$mdi:backspace-reverse-outline$$
   - $$mdi:printer-outline$$
@@ -455,7 +749,7 @@ layers:
   - $$mdi:mouse-right-click-outline$$
   - '&macro_comma_uni'
   - PG UP
-  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:apple-keyboard-shift$$
   - PAUSE BREAK
   - Gui+KP PLUS
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -470,7 +764,7 @@ layers:
   - {t: '$$mdi:menu-right$$', s: '$$mdi:mouse$$'}
   - '&msc MOVE_X(150)'
   - {t: '$$mdi:backspace$$', type: backspace}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:apple-keyboard-control$$
   - INS
   - Gui+KP MINUS
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -484,12 +778,12 @@ layers:
   - '&msc MOVE_Y(150)'
   - '&macro_dot_uni'
   - PG DN
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   gaming1_layer:
   - $$mdi:keyboard-tab$$
   - Q
@@ -729,12 +1023,12 @@ layers:
   - Gui+H
   - Gui+L
   - {t: D, h: '$$mdi:apple-keyboard-command$$'}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   lefthandnolight_layer:
   - '&alt_tab'
   - HOME
@@ -778,353 +1072,59 @@ layers:
   - Gui+H
   - Gui+L
   - {t: D, h: '$$mdi:apple-keyboard-command$$'}
-  - {type: held}
-  - {type: held alternate}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  numbnolight_layer:
-  - AL CALCULATOR
-  - KP MULTIPLY
-  - {t: '9', s: (}
-  - {t: '8', s: '*'}
-  - {t: '7', s: '&'}
-  - KP PLUS
-  - $$mdi:pan-up$$
-  - KP PLUS
-  - {t: '7', s: '&'}
-  - {t: '8', s: '*'}
-  - {t: '9', s: (}
-  - KP MULTIPLY
-  - AL CALCULATOR
-  - {t: '$$mdi:backspace$$', type: backspace}
-  - {t: '0', s: )}
-  - {t: '6', s: ^}
-  - {t: '5', s: '%'}
-  - {t: '4', s: $}
-  - KP MINUS
-  - $$mdi:pan-left$$
-  - $$mdi:mouse-left-click-outline$$
-  - $$mdi:pan-right$$
-  - KP MINUS
-  - {t: '4', s: $}
-  - {t: '5', s: '%'}
-  - {t: '6', s: ^}
-  - {t: '0', s: )}
-  - {t: '$$mdi:backspace$$', h: symbnolight_layer}
-  - KP ENTER
-  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
-  - {t: '3', s: '#'}
-  - {t: '2', s: '@'}
-  - {t: '1', s: '!'}
-  - KP EQUAL
-  - {t: '$$mdi:transfer$$', type: trans}
-  - $$mdi:pan-down$$
-  - KP EQUAL
-  - {t: '1', s: '!'}
-  - {t: '2', s: '@'}
-  - {t: '3', s: '#'}
-  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
-  - KP ENTER
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {type: held}
-  - {t: '$$mdi:transfer$$', type: trans}
-  symbnolight_layer:
-  - {t: '#', h: '&macro_dollar_uni DLLR'}
-  - {t: ), h: '&macro_rbrc_uni RBRC'}
-  - {t: (, h: '&macro_lbrc_uni LBRC'}
-  - {t: '*', h: '&macro_caret_uni CARET'}
-  - {t: '&macro_qmark_uni', h: '&macro_amp_uni'}
-  - {t: '!', h: '&macro_tilde_uni TILDE'}
-  - $$mdi:arrow-up-bold$$
-  - {t: '!', h: '&macro_tilde_uni TILDE'}
-  - {t: '&macro_qmark_uni', h: '&macro_amp_uni'}
-  - {t: '*', h: '&macro_caret_uni CARET'}
-  - {t: (, h: '&macro_lbrc_uni LBRC'}
-  - {t: ), h: '&macro_rbrc_uni RBRC'}
-  - {t: '#', h: '&macro_dollar_uni DLLR'}
-  - {t: /, h: numbnolightcopy_layer, s: '?'}
-  - {t: '&macro_semi_uni', h: '&macro_grave_uni'}
-  - {t: '&macro_comma_uni COMMA', h: '&macro_degree_uni LBRC'}
-  - {t: '&macro_dot_uni DOT', h: '&macro_lbkt_uni LBKT'}
-  - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
-  - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
-  - $$mdi:arrow-left-bold$$
-  - SPC
-  - $$mdi:arrow-right-bold$$
-  - {t: '&macro_colon_uni COLON', h: '&macro_at_uni AT'}
-  - {t: ']', h: '&macro_sqt_uni SQT', s: '}'}
-  - {t: '&macro_dot_uni DOT', h: '&macro_lbkt_uni LBKT'}
-  - {t: '&macro_comma_uni COMMA', h: '&macro_degree_uni LBRC'}
-  - {t: '&macro_semi_uni', h: '&macro_grave_uni'}
-  - {t: '&macro_slash_uni SLASH', h: \, type: held alternate}
-  - {t: '&macro_percent_uni', h: '&macro_pipe_uni PIPE'}
-  - {t: '&macro_dqt_uni AMPS', h: '$$mdi:minus-circle-outline$$'}
-  - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
-  - {t: +, h: '&macro_gt_uni GT'}
-  - {t: '-', h: '&macro_lt_uni LT', s: _}
-  - {t: _, h: '&macro_emdash_uni LSHFT'}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - $$mdi:arrow-down-bold$$
-  - {t: _, h: '&macro_emdash_uni LSHFT'}
-  - {t: '-', h: '&macro_lt_uni LT', s: _}
-  - {t: +, h: '&macro_gt_uni GT'}
-  - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
-  - {t: '&macro_dqt_uni AMPS', h: '$$mdi:minus-circle-outline$$'}
-  - {t: '&macro_percent_uni', h: '&macro_pipe_uni PIPE'}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {type: held}
-  - SPC
-  - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {type: held alternate}
-  - {t: '$$mdi:transfer$$', type: trans}
-  numbnolightcopy_layer:
-  - AL CALCULATOR
-  - KP MULTIPLY
-  - {t: '9', s: (}
-  - {t: '8', s: '*'}
-  - {t: '7', s: '&'}
-  - KP PLUS
-  - $$mdi:pan-up$$
-  - KP PLUS
-  - {t: '7', s: '&'}
-  - {t: '8', s: '*'}
-  - {t: '9', s: (}
-  - KP MULTIPLY
-  - AL CALCULATOR
-  - {t: '$$mdi:backspace$$', type: held}
-  - {t: '0', s: )}
-  - {t: '6', s: ^}
-  - {t: '5', s: '%'}
-  - {t: '4', s: $}
-  - KP MINUS
-  - $$mdi:pan-left$$
-  - $$mdi:mouse-left-click-outline$$
-  - $$mdi:pan-right$$
-  - KP MINUS
-  - {t: '4', s: $}
-  - {t: '5', s: '%'}
-  - {t: '6', s: ^}
-  - {t: '0', s: )}
-  - {t: '$$mdi:backspace$$', type: held alternate}
-  - KP ENTER
-  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
-  - {t: '3', s: '#'}
-  - {t: '2', s: '@'}
-  - {t: '1', s: '!'}
-  - KP EQUAL
-  - {t: '$$mdi:transfer$$', type: trans}
-  - $$mdi:pan-down$$
-  - KP EQUAL
-  - {t: '1', s: '!'}
-  - {t: '2', s: '@'}
-  - {t: '3', s: '#'}
-  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
-  - KP ENTER
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {type: held alternate}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {type: held alternate}
-  - {t: '$$mdi:transfer$$', type: trans}
-  symb_layer_eng:
-  - {t: Sft+3, h: Sft+4, s: Sft+#}
-  - {t: Sft+0, h: 'Sft+]', s: Sft+)}
-  - {t: Sft+9, h: 'Sft+[', s: Sft+(}
-  - {t: Sft+8, h: Sft+6, s: Sft+*}
-  - {t: Sft+/, h: Sft+7, s: 'Sft+?'}
-  - {t: Sft+1, h: Sft+`, s: Sft+!}
-  - $$mdi:arrow-up-bold$$
-  - {t: Sft+1, h: Sft+`, s: Sft+!}
-  - {t: Sft+/, h: Sft+7, s: 'Sft+?'}
-  - {t: Sft+8, h: Sft+6, s: Sft+*}
-  - {t: Sft+9, h: 'Sft+[', s: Sft+(}
-  - {t: Sft+0, h: 'Sft+]', s: Sft+)}
-  - {t: Sft+3, h: Sft+4, s: Sft+#}
-  - {t: /, h: numbnolightcopy_layer, s: '?'}
-  - {t: ;, h: '`', s: ':'}
-  - {t: ',', h: '&macro_degree_uni', s: <}
-  - {t: ., h: '[', s: '>'}
-  - {t: ']', h: '''', s: '}'}
-  - {t: Sft+;, h: Sft+2, s: 'Sft+:'}
-  - $$mdi:arrow-left-bold$$
-  - SPC
-  - $$mdi:arrow-right-bold$$
-  - {t: Sft+;, h: Sft+2, s: 'Sft+:'}
-  - {t: ']', h: '''', s: '}'}
-  - {t: ., h: '[', s: '>'}
-  - {t: ',', h: '&macro_degree_uni', s: <}
-  - {t: ;, h: '`', s: ':'}
-  - {t: \, h: numbnolightcopy_layer, s: '|'}
-  - {t: Sft+5, h: Sft+\, s: Sft+%}
-  - {t: Sft+', h: '$$mdi:minus-circle-outline$$', s: Sft+"}
-  - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
-  - {t: Sft+=, h: Sft+., s: Sft++}
-  - {t: '-', h: 'Sft+,', s: _}
-  - {t: _, h: '&macro_emdash_uni'}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - $$mdi:arrow-down-bold$$
-  - {t: _, h: '&macro_emdash_uni'}
-  - {t: '-', h: 'Sft+,', s: _}
-  - {t: Sft+=, h: Sft+., s: Sft++}
-  - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
-  - {t: Sft+', h: '$$mdi:minus-circle-outline$$', s: Sft+"}
-  - {t: Sft+5, h: Sft+\, s: Sft+%}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - SPC
-  - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  numbnolight_eng_layer:
-  - AL CALCULATOR
-  - KP MULTIPLY
-  - {t: '9', s: (}
-  - {t: '8', s: '*'}
-  - {t: '7', s: '&'}
-  - KP PLUS
-  - $$mdi:pan-up$$
-  - KP PLUS
-  - {t: '7', s: '&'}
-  - {t: '8', s: '*'}
-  - {t: '9', s: (}
-  - KP MULTIPLY
-  - AL CALCULATOR
-  - {t: '$$mdi:backspace$$', type: backspace}
-  - {t: '0', s: )}
-  - {t: '6', s: ^}
-  - {t: '5', s: '%'}
-  - {t: '4', s: $}
-  - KP MINUS
-  - $$mdi:pan-left$$
-  - $$mdi:mouse-left-click-outline$$
-  - $$mdi:pan-right$$
-  - KP MINUS
-  - {t: '4', s: $}
-  - {t: '5', s: '%'}
-  - {t: '6', s: ^}
-  - {t: '0', s: )}
-  - {t: '$$mdi:backspace$$', h: symbnolight_eng_layer}
-  - KP ENTER
-  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
-  - {t: '3', s: '#'}
-  - {t: '2', s: '@'}
-  - {t: '1', s: '!'}
-  - KP EQUAL
-  - {t: '$$mdi:transfer$$', type: trans}
-  - $$mdi:pan-down$$
-  - KP EQUAL
-  - {t: '1', s: '!'}
-  - {t: '2', s: '@'}
-  - {t: '3', s: '#'}
-  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
-  - KP ENTER
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {type: held}
-  - {t: '$$mdi:transfer$$', type: trans}
-  symbnolight_eng_layer:
-  - {t: Sft+3, h: Sft+4, s: Sft+#}
-  - {t: Sft+0, h: 'Sft+]', s: Sft+)}
-  - {t: Sft+9, h: 'Sft+[', s: Sft+(}
-  - {t: Sft+8, h: Sft+6, s: Sft+*}
-  - {t: Sft+/, h: Sft+7, s: 'Sft+?'}
-  - {t: Sft+1, h: Sft+`, s: Sft+!}
-  - $$mdi:arrow-up-bold$$
-  - {t: Sft+1, h: Sft+`, s: Sft+!}
-  - {t: Sft+/, h: Sft+7, s: 'Sft+?'}
-  - {t: Sft+8, h: Sft+6, s: Sft+*}
-  - {t: Sft+9, h: 'Sft+[', s: Sft+(}
-  - {t: Sft+0, h: 'Sft+]', s: Sft+)}
-  - {t: Sft+3, h: Sft+4, s: Sft+#}
-  - {t: /, h: numbnolightcopy_layer, s: '?'}
-  - {t: ;, h: '`', s: ':'}
-  - {t: ',', h: '&macro_degree_uni', s: <}
-  - {t: ., h: '[', s: '>'}
-  - {t: ']', h: '''', s: '}'}
-  - {t: Sft+;, h: Sft+2, s: 'Sft+:'}
-  - $$mdi:arrow-left-bold$$
-  - SPC
-  - $$mdi:arrow-right-bold$$
-  - {t: Sft+;, h: Sft+2, s: 'Sft+:'}
-  - {t: ']', h: '''', s: '}'}
-  - {t: ., h: '[', s: '>'}
-  - {t: ',', h: '&macro_degree_uni', s: <}
-  - {t: ;, h: '`', s: ':'}
-  - {t: \, h: numbnolightcopy_layer, s: '|', type: held alternate}
-  - {t: Sft+5, h: Sft+\, s: Sft+%}
-  - {t: Sft+', h: '$$mdi:minus-circle-outline$$', s: Sft+"}
-  - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
-  - {t: Sft+=, h: Sft+., s: Sft++}
-  - {t: '-', h: 'Sft+,', s: _}
-  - {t: _, h: '&macro_emdash_uni'}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - $$mdi:arrow-down-bold$$
-  - {t: _, h: '&macro_emdash_uni'}
-  - {t: '-', h: 'Sft+,', s: _}
-  - {t: Sft+=, h: Sft+., s: Sft++}
-  - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
-  - {t: Sft+', h: '$$mdi:minus-circle-outline$$', s: Sft+"}
-  - {t: Sft+5, h: Sft+\, s: Sft+%}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {type: held}
-  - SPC
-  - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {type: held alternate}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:minus-circle-outline$$', type: held}
+  - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
 combos:
 - p: [4, 5]
   k: '&combo_rt_caps_td'
-  l: [default_layer, speedtype, kp_mode_layer]
+  l: [default_layer, kp_mode_layer, speedtype, symb_layer, numb_layer, symb_layer_eng]
 - p: [2, 3, 4, 5]
   k: {t: gaming1_layer, h: toggle}
-  l: [default_layer, gaming1_layer, speedtype, kp_mode_layer, symb_layer_eng]
+  l: [default_layer, kp_mode_layer, speedtype, symb_layer, numb_layer, symb_layer_eng, gaming1_layer]
 - p: [1, 2]
   k: '&tog13_on_td'
   l: [default_layer, kp_mode_layer]
 - p: [0, 1]
   k: $$mdi:keyboard-esc$$
-  l: [default_layer, nav2_layer, gaming1_layer, speedtype, nav2nolight_layer, lefthand_layer, lefthandnolight_layer, kp_mode_layer]
+  l: [default_layer, kp_mode_layer, nav2_layer, nav2nolight_layer, gaming1_layer, speedtype, lefthand_layer, lefthandnolight_layer, symb_layer, numb_layer, symb_layer_eng]
 - p: [1, 2]
   k: '&tog13_off_td'
   l: [lefthand_layer]
 - p: [3, 4]
   k: nav3_layer
-  l: [default_layer, speedtype, kp_mode_layer]
+  l: [default_layer, kp_mode_layer, speedtype, symb_layer, numb_layer, symb_layer_eng]
 - p: [27, 41]
   k: '&speedtype_double_tap'
-  l: [default_layer, speedtype, kp_mode_layer, symb_layer_eng]
+  l: [default_layer, kp_mode_layer, speedtype, symb_layer, numb_layer, symb_layer_eng]
 - p: [16, 17]
   k: nav1_layer
-  l: [default_layer, speedtype, kp_mode_layer]
+  l: [default_layer, kp_mode_layer, speedtype, symb_layer, numb_layer, symb_layer_eng]
 - p: [42, 43]
   k: service_layer
-  l: [default_layer, kp_mode_layer, speedtype, symb_layer_eng]
+  l: [default_layer, kp_mode_layer, speedtype, symb_layer, numb_layer, symb_layer_eng]
 - p: [7, 8]
   k: '&nav2_double_tap'
   l: [default_layer, nav2_layer, kp_mode_layer]
 - p: [23, 24]
   k: {t: '$$mdi:backspace$$', type: backspace}
-  l: [default_layer, symb_layer, numb_layer, fn_layer, service_layer, nav2_layer, speedtype, numbnolight_layer, symbnolight_layer, numbnolightcopy_layer, symb_layer_eng,
-    kp_mode_layer, numbnolight_eng_layer, symbnolight_eng_layer]
+  l: [default_layer, kp_mode_layer, symb_layer, numb_layer, numbnolight_layer, symbnolight_layer, numbnolightcopy_layer, symb_layer_eng, numbnolight_eng_layer, symbnolight_eng_layer,
+    fn_layer, service_layer, nav2_layer, speedtype]
 - p: [24, 25]
   k: $$mdi:backspace-reverse-outline$$
-  l: [default_layer, symb_layer, numb_layer, fn_layer, service_layer, nav2_layer, speedtype, numbnolight_layer, symbnolight_layer, numbnolightcopy_layer, symb_layer_eng,
-    kp_mode_layer, numbnolight_eng_layer, symbnolight_eng_layer]
+  l: [default_layer, kp_mode_layer, symb_layer, numb_layer, numbnolight_layer, symbnolight_layer, numbnolightcopy_layer, symb_layer_eng, numbnolight_eng_layer, symbnolight_eng_layer,
+    fn_layer, service_layer, nav2_layer, speedtype]
 - p: [16, 17]
   k: {t: '$$mdi:backspace$$', type: backspace}
-  l: [symb_layer, numb_layer, nav2_layer, lefthand_layer, lefthandnolight_layer, numbnolight_layer, symbnolight_layer, numbnolightcopy_layer, symb_layer_eng, numbnolight_eng_layer,
-    symbnolight_eng_layer]
+  l: [symb_layer, numb_layer, numbnolight_layer, symbnolight_layer, numbnolightcopy_layer, symb_layer_eng, numbnolight_eng_layer, symbnolight_eng_layer, nav2_layer,
+    lefthand_layer, lefthandnolight_layer]
 - p: [15, 16]
   k: $$mdi:backspace-reverse-outline$$
-  l: [symb_layer, numb_layer, nav2_layer, lefthand_layer, lefthandnolight_layer, numbnolight_layer, symbnolight_layer, numbnolightcopy_layer, symb_layer_eng, numbnolight_eng_layer,
-    symbnolight_eng_layer]
+  l: [symb_layer, numb_layer, numbnolight_layer, symbnolight_layer, numbnolightcopy_layer, symb_layer_eng, numbnolight_eng_layer, symbnolight_eng_layer, nav2_layer,
+    lefthand_layer, lefthandnolight_layer]
 - p: [18, 43]
   k: '&thumb_e_numb_td'
   l: [default_layer, numb_layer, kp_mode_layer]
@@ -1136,10 +1136,12 @@ combos:
   l: [default_layer, symb_layer]
 - p: [9, 10, 11, 12]
   k: '&reset_l0_green_flash'
-  l: [default_layer, symb_layer, numb_layer, nav2_layer, gaming1_layer, speedtype, lefthand_layer, symb_layer_eng, kp_mode_layer, numbnolight_eng_layer, symbnolight_eng_layer]
+  l: [default_layer, kp_mode_layer, symb_layer, numb_layer, numbnolight_layer, symbnolight_layer, numbnolightcopy_layer, symb_layer_eng, numbnolight_eng_layer, symbnolight_eng_layer,
+    nav2_layer, gaming1_layer, speedtype, lefthand_layer]
 - p: [38, 39, 40, 41]
   k: '&reset_kp_mode_green_flash'
-  l: [default_layer, symb_layer, numb_layer, nav2_layer, gaming1_layer, speedtype, lefthand_layer, symb_layer_eng, kp_mode_layer, numbnolight_eng_layer, symbnolight_eng_layer]
+  l: [default_layer, kp_mode_layer, symb_layer, numb_layer, numbnolight_layer, symbnolight_layer, numbnolightcopy_layer, symb_layer_eng, numbnolight_eng_layer, symbnolight_eng_layer,
+    nav2_layer, gaming1_layer, speedtype, lefthand_layer]
 - p: [29, 30, 31]
   k: {t: '$$mdi:keyboard-return$$', type: enter}
   l: [gaming1_layer]
