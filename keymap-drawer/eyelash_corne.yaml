@@ -126,7 +126,7 @@ layers:
   - {t: '&macro_dot_uni DOT', h: '&macro_lbkt_uni LBKT'}
   - {t: '&macro_comma_uni COMMA', h: '&macro_degree_uni LBRC'}
   - {t: '&macro_semi_uni', h: '&macro_grave_uni'}
-  - {t: '&macro_slash_uni SLASH', h: \}
+  - {t: '&macro_slash_uni', h: numbnolight_layer}
   - {t: '&macro_percent_uni', h: '&macro_pipe_uni PIPE'}
   - {t: '&macro_dqt_uni AMPS', h: '$$mdi:minus-circle-outline$$'}
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
@@ -224,7 +224,7 @@ layers:
   - {t: '5', s: '%'}
   - {t: '6', s: ^}
   - {t: '0', s: )}
-  - {t: '$$mdi:backspace$$', h: symbnolight_layer}
+  - {t: '$$mdi:backspace$$', h: symbnolight_layer, type: held alternate}
   - KP ENTER
   - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '3', s: '#'}
