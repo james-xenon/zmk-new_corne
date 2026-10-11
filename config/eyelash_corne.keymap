@@ -744,6 +744,7 @@
         // Hold-Tap (Клавиша T):
         // Тап -> Тильда ~ (через Grave, работает везде)
         // Удержание -> Тильда ~ (на случай удержания)
+        // Hold отправляется ОДИН раз через kp_once (без автоповтора при удержании).
         t_yo_ht: t_yo_ht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -751,7 +752,7 @@
             tapping-term-ms = <220>;
             quick-tap-ms = <150>;
             require-prior-idle-ms = <150>;
-            bindings = <&kp>, <&kp>; // Оба слота принимают параметры
+            bindings = <&kp_once>, <&kp>; // Оба слота принимают параметры
         };
 
         // Hold-Tap edit_ht (Клавиши редактирования левой руки: A, S, F, Z, X, C, V):
@@ -1217,7 +1218,7 @@
             bindings = <&none>, <&kp>;
         };
 
-        // Legacy Alt-code hold. В Android-слоях больше НЕ используется.
+        // Alt-code hold (для символа нет кейкода без Alt). Используется в слоях 7 и 9.
         // Hold = ° через Alt-code, tap = обычный &kp <param2>
         eng_comma_degree_ht: eng_comma_degree_ht {
             compatible = "zmk,behavior-hold-tap";
@@ -1227,7 +1228,7 @@
             bindings = <&macro_degree_uni>, <&kp>;
         };
 
-        // Legacy Alt-code hold. В Android-слоях больше НЕ используется.
+        // Alt-code hold (для символа нет кейкода без Alt). Используется в слоях 7 и 9.
         // Hold = — через Alt-code, tap = обычный &kp <param2>
         eng_under_emdash_ht: eng_under_emdash_ht {
             compatible = "zmk,behavior-hold-tap";
@@ -1764,14 +1765,14 @@
         // Большие пальцы закреплены явно на английские no-light слои,
         // чтобы из циан-слоя не проваливаться в русские Alt-слои.
         //
-        // Alt-code в этом слое НЕ используется.
+        // Alt-code только в hold ° и — (для них нет кейкода без Alt).
         // ============================================================
         symb_layer_eng {
             display-name = "symb_layer_eng";
             bindings = <
 &eng_ht LS(N4) LS(N3)       &eng_ht LS(RBKT) LS(N0)       &eng_ht LS(LBKT) LS(N9)        &eng_ht LS(N6) LS(N8)       &eng_ht LS(N7) LS(FSLH)      &eng_ht LS(GRAVE) LS(N1)                              &kp UP                 &eng_ht LS(GRAVE) LS(N1)      &eng_ht LS(N7) LS(FSLH)           &eng_ht LS(N6) LS(N8)   &eng_ht LS(LBKT) LS(N9)     &eng_ht LS(RBKT) LS(N0)      &eng_ht LS(N4) LS(N3)
-&bspc_to_layer_ht NUMB_ENG_NOLIGHT_LAYER FSLH  &eng_ht GRAVE SEMI            &eng_ht_none_kp 0 COMMA   &eng_ht LBKT DOT              &eng_ht SQT RBKT              &eng_ht LS(N2) LS(SEMI)                        &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht LS(N2) LS(SEMI)         &eng_ht SQT RBKT           &eng_ht LBKT DOT              &eng_ht_none_kp 0 COMMA  &eng_ht GRAVE SEMI              &bspc_to_layer_ht NUMB_ENG_NOLIGHT_LAYER BSLH
-&eng_ht LS(BSLH) LS(N5)     &eng_ht_none_kp 0 LS(SQT)     &eng_ht_none_kp 0 EQUAL         &eng_ht LS(DOT) LS(EQUAL)     &eng_ht LS(COMMA) MINUS       &eng_ht_none_kp 0 UNDER      &none                  &kp DOWN               &eng_ht_none_kp 0 UNDER      &eng_ht LS(COMMA) MINUS         &eng_ht LS(DOT) LS(EQUAL)       &eng_ht_none_kp 0 EQUAL       &eng_ht_none_kp 0 LS(SQT)     &eng_ht LS(BSLH) LS(N5)
+&bspc_to_layer_ht NUMB_ENG_NOLIGHT_LAYER FSLH  &eng_ht GRAVE SEMI            &eng_comma_degree_ht 0 COMMA   &eng_ht LBKT DOT              &eng_ht SQT RBKT              &eng_ht LS(N2) LS(SEMI)                        &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht LS(N2) LS(SEMI)         &eng_ht SQT RBKT           &eng_ht LBKT DOT              &eng_comma_degree_ht 0 COMMA  &eng_ht GRAVE SEMI              &bspc_to_layer_ht NUMB_ENG_NOLIGHT_LAYER BSLH
+&eng_ht LS(BSLH) LS(N5)     &eng_ht_none_kp 0 LS(SQT)     &eng_ht_none_kp 0 EQUAL         &eng_ht LS(DOT) LS(EQUAL)     &eng_ht LS(COMMA) MINUS       &eng_under_emdash_ht 0 UNDER      &none                  &kp DOWN               &eng_under_emdash_ht 0 UNDER      &eng_ht LS(COMMA) MINUS         &eng_ht LS(DOT) LS(EQUAL)       &eng_ht_none_kp 0 EQUAL       &eng_ht_none_kp 0 LS(SQT)     &eng_ht LS(BSLH) LS(N5)
                                                              &lefthand_ht LEFTHAND_NOLIGHT_LAYER 0   &symb_win_td SYMB_ENG_NOLIGHT_LAYER 0  &kp SPC                                                        &kp ENTER           &thumb_num_sym_fn NUMB_ENG_NOLIGHT_LAYER 0  &lang_nav2 NAV2_NOLIGHT_LAYER 0
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -1803,14 +1804,14 @@
         // Правый большой палец по удержанию тоже ведёт в цифры,
         // чтобы из английского символического слоя был переход в цифры.
         //
-        // Alt-code в этом слое НЕ используется.
+        // Alt-code только в hold ° и — (для них нет кейкода без Alt).
         // ============================================================
         symbnolight_eng_layer {
             display-name = "symbnolight_eng_layer";
             bindings = <
 &eng_ht LS(N4) LS(N3)       &eng_ht LS(RBKT) LS(N0)       &eng_ht LS(LBKT) LS(N9)        &eng_ht LS(N6) LS(N8)       &eng_ht LS(N7) LS(FSLH)      &eng_ht LS(GRAVE) LS(N1)                              &kp UP                 &eng_ht LS(GRAVE) LS(N1)      &eng_ht LS(N7) LS(FSLH)           &eng_ht LS(N6) LS(N8)   &eng_ht LS(LBKT) LS(N9)     &eng_ht LS(RBKT) LS(N0)      &eng_ht LS(N4) LS(N3)
-&bspc_to_layer_ht NUMB_ENG_NOLIGHT_COPY_LAYER FSLH   &eng_ht GRAVE SEMI            &eng_ht_none_kp 0 COMMA   &eng_ht LBKT DOT              &eng_ht SQT RBKT              &eng_ht LS(N2) LS(SEMI)                        &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht LS(N2) LS(SEMI)         &eng_ht SQT RBKT           &eng_ht LBKT DOT              &eng_ht_none_kp 0 COMMA  &eng_ht GRAVE SEMI              &bspc_to_layer_ht NUMB_ENG_NOLIGHT_COPY_LAYER BSLH
-&eng_ht LS(BSLH) LS(N5)     &eng_ht_none_kp 0 LS(SQT)     &eng_ht_none_kp 0 EQUAL         &eng_ht LS(DOT) LS(EQUAL)     &eng_ht LS(COMMA) MINUS       &eng_ht_none_kp 0 UNDER      &none                  &kp DOWN               &eng_ht_none_kp 0 UNDER      &eng_ht LS(COMMA) MINUS         &eng_ht LS(DOT) LS(EQUAL)       &eng_ht_none_kp 0 EQUAL       &eng_ht_none_kp 0 LS(SQT)     &eng_ht LS(BSLH) LS(N5)
+&bspc_to_layer_ht NUMB_ENG_NOLIGHT_COPY_LAYER FSLH   &eng_ht GRAVE SEMI            &eng_comma_degree_ht 0 COMMA   &eng_ht LBKT DOT              &eng_ht SQT RBKT              &eng_ht LS(N2) LS(SEMI)                        &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht LS(N2) LS(SEMI)         &eng_ht SQT RBKT           &eng_ht LBKT DOT              &eng_comma_degree_ht 0 COMMA  &eng_ht GRAVE SEMI              &bspc_to_layer_ht NUMB_ENG_NOLIGHT_COPY_LAYER BSLH
+&eng_ht LS(BSLH) LS(N5)     &eng_ht_none_kp 0 LS(SQT)     &eng_ht_none_kp 0 EQUAL         &eng_ht LS(DOT) LS(EQUAL)     &eng_ht LS(COMMA) MINUS       &eng_under_emdash_ht 0 UNDER      &none                  &kp DOWN               &eng_under_emdash_ht 0 UNDER      &eng_ht LS(COMMA) MINUS         &eng_ht LS(DOT) LS(EQUAL)       &eng_ht_none_kp 0 EQUAL       &eng_ht_none_kp 0 LS(SQT)     &eng_ht LS(BSLH) LS(N5)
                                                              &lefthand_ht LEFTHAND_NOLIGHT_LAYER 0   &symb_win_td SYMB_ENG_NOLIGHT_LAYER 0  &kp SPC                                                        &kp ENTER           &thumb_num_sym_fn NUMB_ENG_NOLIGHT_COPY_LAYER 0  &lang_nav2 NAV2_NOLIGHT_LAYER 0
             >;
             sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
