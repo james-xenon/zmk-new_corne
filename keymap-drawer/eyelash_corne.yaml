@@ -6,7 +6,7 @@ layers:
   - W
   - E
   - R
-  - {t: T, h: '`'}
+  - {t: T, h: '&kp_once GRAVE'}
   - $$mdi:arrow-up-bold$$
   - {t: Y, h: '$$mdi:play-pause$$'}
   - {t: U, h: '$$mdi:skip-previous$$'}
@@ -55,7 +55,7 @@ layers:
   - W
   - E
   - R
-  - {t: T, h: '`'}
+  - {t: T, h: '&kp_once GRAVE'}
   - $$mdi:arrow-up-bold$$
   - {t: Y, h: '$$mdi:play-pause$$'}
   - {t: U, h: '$$mdi:skip-previous$$'}
@@ -359,7 +359,7 @@ layers:
   - {t: Sft+3, h: Sft+4, s: Sft+#}
   - {t: /, h: numbnolight_eng_layer, s: '?'}
   - {t: ;, h: '`', s: ':'}
-  - {t: ',', h: '$$mdi:minus-circle-outline$$', s: <}
+  - {t: ',', h: '&macro_degree_uni', s: <}
   - {t: ., h: '[', s: '>'}
   - {t: ']', h: '''', s: '}'}
   - {t: Sft+;, h: Sft+2, s: 'Sft+:'}
@@ -369,7 +369,7 @@ layers:
   - {t: Sft+;, h: Sft+2, s: 'Sft+:'}
   - {t: ']', h: '''', s: '}'}
   - {t: ., h: '[', s: '>'}
-  - {t: ',', h: '$$mdi:minus-circle-outline$$', s: <}
+  - {t: ',', h: '&macro_degree_uni', s: <}
   - {t: ;, h: '`', s: ':'}
   - {t: \, h: numbnolight_eng_layer, s: '|'}
   - {t: Sft+5, h: Sft+\, s: Sft+%}
@@ -377,10 +377,10 @@ layers:
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
   - {t: Sft+=, h: Sft+., s: Sft++}
   - {t: '-', h: 'Sft+,', s: _}
-  - {t: _, h: '$$mdi:minus-circle-outline$$'}
+  - {t: _, h: '&macro_emdash_uni'}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:arrow-down-bold$$
-  - {t: _, h: '$$mdi:minus-circle-outline$$'}
+  - {t: _, h: '&macro_emdash_uni'}
   - {t: '-', h: 'Sft+,', s: _}
   - {t: Sft+=, h: Sft+., s: Sft++}
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
@@ -457,7 +457,7 @@ layers:
   - {t: Sft+3, h: Sft+4, s: Sft+#}
   - {t: /, h: numbnolight_eng_copy_layer, s: '?', type: held alternate}
   - {t: ;, h: '`', s: ':'}
-  - {t: ',', h: '$$mdi:minus-circle-outline$$', s: <}
+  - {t: ',', h: '&macro_degree_uni', s: <}
   - {t: ., h: '[', s: '>'}
   - {t: ']', h: '''', s: '}'}
   - {t: Sft+;, h: Sft+2, s: 'Sft+:'}
@@ -467,7 +467,7 @@ layers:
   - {t: Sft+;, h: Sft+2, s: 'Sft+:'}
   - {t: ']', h: '''', s: '}'}
   - {t: ., h: '[', s: '>'}
-  - {t: ',', h: '$$mdi:minus-circle-outline$$', s: <}
+  - {t: ',', h: '&macro_degree_uni', s: <}
   - {t: ;, h: '`', s: ':'}
   - {t: \, h: numbnolight_eng_copy_layer, s: '|', type: held alternate}
   - {t: Sft+5, h: Sft+\, s: Sft+%}
@@ -475,10 +475,10 @@ layers:
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
   - {t: Sft+=, h: Sft+., s: Sft++}
   - {t: '-', h: 'Sft+,', s: _}
-  - {t: _, h: '$$mdi:minus-circle-outline$$'}
+  - {t: _, h: '&macro_emdash_uni'}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:arrow-down-bold$$
-  - {t: _, h: '$$mdi:minus-circle-outline$$'}
+  - {t: _, h: '&macro_emdash_uni'}
   - {t: '-', h: 'Sft+,', s: _}
   - {t: Sft+=, h: Sft+., s: Sft++}
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
@@ -790,7 +790,7 @@ layers:
   - W
   - E
   - R
-  - {t: T, h: '`'}
+  - {t: T, h: '&kp_once GRAVE'}
   - $$mdi:arrow-up-bold$$
   - Y
   - U
@@ -937,7 +937,7 @@ layers:
   - W
   - E
   - R
-  - {t: T, h: '`'}
+  - {t: T, h: '&kp_once GRAVE'}
   - $$mdi:arrow-up-bold$$
   - Y
   - U
