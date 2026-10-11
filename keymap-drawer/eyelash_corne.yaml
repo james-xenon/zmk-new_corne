@@ -77,7 +77,7 @@ layers:
   - K
   - L
   - {t: ;, h: fn_layer, s: ':'}
-  - {t: '''', h: '$$mdi:apple-keyboard-shift$$', s: '"'}
+  - {t: '''', h: numbnolight_eng_layer, s: '"'}
   - $$mdi:apple-keyboard-control$$
   - {t: Z, h: '&kp_once LC(Z)'}
   - {t: X, h: '&kp_once LC(X)'}
@@ -392,55 +392,6 @@ layers:
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', h: numbnolight_eng_layer}
   - {t: '&win_space', h: nav2nolight_layer}
-  numbnolight_eng_layer:
-  - AL CALCULATOR
-  - KP MULTIPLY
-  - {t: '9', s: (}
-  - {t: '8', s: '*'}
-  - {t: '7', s: '&'}
-  - KP PLUS
-  - $$mdi:pan-up$$
-  - KP PLUS
-  - {t: '7', s: '&'}
-  - {t: '8', s: '*'}
-  - {t: '9', s: (}
-  - KP MULTIPLY
-  - AL CALCULATOR
-  - {t: '$$mdi:backspace$$', h: symbnolight_eng_layer, type: held alternate}
-  - {t: '0', s: )}
-  - {t: '6', s: ^}
-  - {t: '5', s: '%'}
-  - {t: '4', s: $}
-  - KP MINUS
-  - $$mdi:pan-left$$
-  - $$mdi:mouse-left-click-outline$$
-  - $$mdi:pan-right$$
-  - KP MINUS
-  - {t: '4', s: $}
-  - {t: '5', s: '%'}
-  - {t: '6', s: ^}
-  - {t: '0', s: )}
-  - {t: '$$mdi:backspace$$', h: symbnolight_eng_layer, type: held alternate}
-  - KP ENTER
-  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
-  - {t: '3', s: '#'}
-  - {t: '2', s: '@'}
-  - {t: '1', s: '!'}
-  - KP EQUAL
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - $$mdi:pan-down$$
-  - KP EQUAL
-  - {t: '1', s: '!'}
-  - {t: '2', s: '@'}
-  - {t: '3', s: '#'}
-  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
-  - KP ENTER
-  - {t: '&lh_td', h: lefthandnolight_layer}
-  - {t: '&symb_win_tap_dance', h: symbnolight_eng_layer}
-  - SPC
-  - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '$$mdi:minus-circle-outline$$', h: numbnolight_eng_layer, type: held}
-  - {t: '&win_space', h: nav2nolight_layer}
   symbnolight_eng_layer:
   - {t: Sft+3, h: Sft+4, s: Sft+#}
   - {t: Sft+0, h: 'Sft+]', s: Sft+)}
@@ -455,7 +406,7 @@ layers:
   - {t: Sft+9, h: 'Sft+[', s: Sft+(}
   - {t: Sft+0, h: 'Sft+]', s: Sft+)}
   - {t: Sft+3, h: Sft+4, s: Sft+#}
-  - {t: /, h: numbnolight_eng_layer, s: '?', type: held alternate}
+  - {t: /, h: numbnolight_eng_layer, s: '?'}
   - {t: ;, h: '`', s: ':'}
   - {t: ',', h: '$$mdi:minus-circle-outline$$', s: <}
   - {t: ., h: '[', s: '>'}
@@ -469,7 +420,7 @@ layers:
   - {t: ., h: '[', s: '>'}
   - {t: ',', h: '$$mdi:minus-circle-outline$$', s: <}
   - {t: ;, h: '`', s: ':'}
-  - {t: \, h: numbnolight_eng_layer, s: '|', type: held alternate}
+  - {t: \, h: numbnolight_eng_layer, s: '|'}
   - {t: Sft+5, h: Sft+\, s: Sft+%}
   - {t: Sft+', h: '$$mdi:minus-circle-outline$$', s: Sft+"}
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
@@ -488,7 +439,56 @@ layers:
   - {t: '&symb_win_tap_dance', h: symbnolight_eng_layer, type: held}
   - SPC
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '$$mdi:minus-circle-outline$$', h: numbnolight_eng_layer, type: held alternate}
+  - {t: '$$mdi:minus-circle-outline$$', h: numbnolight_eng_layer}
+  - {t: '&win_space', h: nav2nolight_layer}
+  numbnolight_eng_layer:
+  - AL CALCULATOR
+  - KP MULTIPLY
+  - {t: '9', s: (}
+  - {t: '8', s: '*'}
+  - {t: '7', s: '&'}
+  - KP PLUS
+  - $$mdi:pan-up$$
+  - KP PLUS
+  - {t: '7', s: '&'}
+  - {t: '8', s: '*'}
+  - {t: '9', s: (}
+  - KP MULTIPLY
+  - AL CALCULATOR
+  - {t: '$$mdi:backspace$$', type: held alternate}
+  - {t: '0', s: )}
+  - {t: '6', s: ^}
+  - {t: '5', s: '%'}
+  - {t: '4', s: $}
+  - KP MINUS
+  - $$mdi:pan-left$$
+  - $$mdi:mouse-left-click-outline$$
+  - $$mdi:pan-right$$
+  - KP MINUS
+  - {t: '4', s: $}
+  - {t: '5', s: '%'}
+  - {t: '6', s: ^}
+  - {t: '0', s: )}
+  - {t: '$$mdi:backspace$$', type: held}
+  - KP ENTER
+  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: '3', s: '#'}
+  - {t: '2', s: '@'}
+  - {t: '1', s: '!'}
+  - KP EQUAL
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - $$mdi:pan-down$$
+  - KP EQUAL
+  - {t: '1', s: '!'}
+  - {t: '2', s: '@'}
+  - {t: '3', s: '#'}
+  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
+  - KP ENTER
+  - {t: '&lh_td', h: lefthandnolight_layer}
+  - {t: '&symb_win_tap_dance', type: held alternate}
+  - SPC
+  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
   - {t: '&win_space', h: nav2nolight_layer}
   fn_layer:
   - $$mdi:keyboard-esc$$
@@ -1099,7 +1099,7 @@ combos:
   l: [default_layer, kp_mode_layer, speedtype]
 - p: [27, 41]
   k: '&speedtype_double_tap'
-  l: [default_layer, kp_mode_layer, speedtype, symb_layer, numb_layer, symb_layer_eng]
+  l: [default_layer, speedtype]
 - p: [16, 17]
   k: nav1_layer
   l: [default_layer, kp_mode_layer, speedtype]
