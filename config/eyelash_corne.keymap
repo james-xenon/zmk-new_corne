@@ -1537,6 +1537,7 @@
 				LEFTHAND_LAYER
 			>;
 		};
+    };
 
 	// --- РАСКЛАДКИ И СЛОИ (KEYMAP) ---
 	keymap {
