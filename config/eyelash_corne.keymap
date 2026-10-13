@@ -1400,7 +1400,7 @@
 				NAV2_LAYER
                 NAV2_NOLIGHT_LAYER
 				SPEEDTYPE_LAYER
-                LEFTHANDT_LAYER
+                LEFTHAND_LAYER
                 LEFTHAND_NOLIGHT_LAYER
 			>;
 		};
