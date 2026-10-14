@@ -1103,11 +1103,10 @@ rect.held, rect.combo.held {
 <g transform="translate(28, 105)" class="key keypos-13">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap">/</text>
+<text x="0" y="-4" class="key tap"><tspan style="font-size: 60%">&amp;macro_sl…</tspan></text>
 <a href="#symbnolight_layer">
 <text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">symbnolig…</tspan></text>
-</a><text x="0" y="-24" class="key shifted">?</text>
-</g>
+</a></g>
 <g transform="translate(84, 105)" class="key keypos-14">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
@@ -1216,7 +1215,7 @@ rect.held, rect.combo.held {
 <text x="0" y="-4" class="key tap">
 <tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_dq…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">AMPS</tspan>
 </text>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:minus-circle-outline"/>
+<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_bs…</tspan></text>
 </g>
 <g transform="translate(140, 147)" class="key keypos-30">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -1286,7 +1285,7 @@ rect.held, rect.combo.held {
 <text x="0" y="-4" class="key tap">
 <tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_dq…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">AMPS</tspan>
 </text>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:minus-circle-outline"/>
+<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_bs…</tspan></text>
 </g>
 <g transform="translate(952, 161)" class="key keypos-41">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -2114,11 +2113,10 @@ rect.held, rect.combo.held {
 <g transform="translate(28, 105)" class="key held alternate keypos-13">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key held alternate side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key held alternate"/>
-<text x="0" y="-4" class="key held alternate tap">/</text>
+<text x="0" y="-4" class="key held alternate tap"><tspan style="font-size: 60%">&amp;macro_sl…</tspan></text>
 <a href="#numbnolightcopy_layer">
 <text x="0" y="24" class="key held alternate hold layer-activator"><tspan style="font-size: 60%">numbnolig…</tspan></text>
-</a><text x="0" y="-24" class="key held alternate shifted">?</text>
-</g>
+</a></g>
 <g transform="translate(84, 105)" class="key keypos-14">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
@@ -2211,11 +2209,10 @@ rect.held, rect.combo.held {
 <g transform="translate(952, 105)" class="key held alternate keypos-27">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key held alternate side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key held alternate"/>
-<text x="0" y="-4" class="key held alternate tap">\</text>
+<text x="0" y="-4" class="key held alternate tap"><tspan style="font-size: 60%">&amp;macro_sl…</tspan></text>
 <a href="#numbnolightcopy_layer">
 <text x="0" y="24" class="key held alternate hold layer-activator"><tspan style="font-size: 60%">numbnolig…</tspan></text>
-</a><text x="0" y="-24" class="key held alternate shifted">|</text>
-</g>
+</a></g>
 <g transform="translate(28, 161)" class="key keypos-28">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
@@ -2228,7 +2225,7 @@ rect.held, rect.combo.held {
 <text x="0" y="-4" class="key tap">
 <tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_dq…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">AMPS</tspan>
 </text>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:minus-circle-outline"/>
+<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_bs…</tspan></text>
 </g>
 <g transform="translate(140, 147)" class="key keypos-30">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -2298,7 +2295,7 @@ rect.held, rect.combo.held {
 <text x="0" y="-4" class="key tap">
 <tspan x="0" dy="-0.9em" style="font-size: 60%">&amp;macro_dq…</tspan><tspan x="0" dy="1.2em" style="font-size: 60%">AMPS</tspan>
 </text>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:minus-circle-outline"/>
+<text x="0" y="24" class="key hold"><tspan style="font-size: 60%">&amp;macro_bs…</tspan></text>
 </g>
 <g transform="translate(952, 161)" class="key keypos-41">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -2857,10 +2854,10 @@ rect.held, rect.combo.held {
 <g transform="translate(952, 105)" class="key keypos-27">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
-<text x="0" y="-4" class="key tap">\</text>
+<text x="0" y="-4" class="key tap">/</text>
 <a href="#numbnolight_2_layer">
 <text x="0" y="24" class="key hold layer-activator"><tspan style="font-size: 60%">numbnolig…</tspan></text>
-</a><text x="0" y="-24" class="key shifted">|</text>
+</a><text x="0" y="-24" class="key shifted">?</text>
 </g>
 <g transform="translate(28, 161)" class="key keypos-28">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -2873,7 +2870,7 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">Sft+&#x27;</text>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:minus-circle-outline"/>
+<text x="0" y="24" class="key hold">\</text>
 <text x="0" y="-24" class="key shifted">Sft+&quot;</text>
 </g>
 <g transform="translate(140, 147)" class="key keypos-30">
@@ -2944,7 +2941,7 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">Sft+&#x27;</text>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:minus-circle-outline"/>
+<text x="0" y="24" class="key hold">\</text>
 <text x="0" y="-24" class="key shifted">Sft+&quot;</text>
 </g>
 <g transform="translate(952, 161)" class="key keypos-41">
@@ -3552,10 +3549,10 @@ rect.held, rect.combo.held {
 <g transform="translate(952, 105)" class="key held alternate keypos-27">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key held alternate side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key held alternate"/>
-<text x="0" y="-4" class="key held alternate tap">\</text>
+<text x="0" y="-4" class="key held alternate tap">/</text>
 <a href="#numbnolight_copy_2_layer">
 <text x="0" y="24" class="key held alternate hold layer-activator"><tspan style="font-size: 60%">numbnolig…</tspan></text>
-</a><text x="0" y="-24" class="key held alternate shifted">|</text>
+</a><text x="0" y="-24" class="key held alternate shifted">?</text>
 </g>
 <g transform="translate(28, 161)" class="key keypos-28">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -3568,7 +3565,7 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">Sft+&#x27;</text>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:minus-circle-outline"/>
+<text x="0" y="24" class="key hold">\</text>
 <text x="0" y="-24" class="key shifted">Sft+&quot;</text>
 </g>
 <g transform="translate(140, 147)" class="key keypos-30">
@@ -3639,7 +3636,7 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <text x="0" y="-4" class="key tap">Sft+&#x27;</text>
-<use href="#mdi:minus-circle-outline" xlink:href="#mdi:minus-circle-outline" x="-8" y="9" height="15" width="15.0" class="key hold glyph mdi:minus-circle-outline"/>
+<text x="0" y="24" class="key hold">\</text>
 <text x="0" y="-24" class="key shifted">Sft+&quot;</text>
 </g>
 <g transform="translate(952, 161)" class="key keypos-41">

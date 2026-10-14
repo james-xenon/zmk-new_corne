@@ -112,7 +112,7 @@ layers:
   - {t: (, h: '&macro_lbrc_uni LBRC'}
   - {t: ), h: '&macro_rbrc_uni RBRC'}
   - {t: '#', h: '&macro_dollar_uni DLLR'}
-  - {t: /, h: symbnolight_layer, s: '?'}
+  - {t: '&macro_slash_uni', h: symbnolight_layer}
   - {t: '&macro_semi_uni', h: '&macro_grave_uni'}
   - {t: '&macro_comma_uni COMMA', h: '&macro_degree_uni LBRC'}
   - {t: '&macro_dot_uni DOT', h: '&macro_lbkt_uni LBKT'}
@@ -128,7 +128,7 @@ layers:
   - {t: '&macro_semi_uni', h: '&macro_grave_uni'}
   - {t: '&macro_slash_uni', h: numbnolight_layer}
   - {t: '&macro_percent_uni', h: '&macro_pipe_uni PIPE'}
-  - {t: '&macro_dqt_uni AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: '&macro_dqt_uni AMPS', h: '&macro_bslh_uni PRCNT'}
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
   - {t: +, h: '&macro_gt_uni GT'}
   - {t: '-', h: '&macro_lt_uni LT', s: _}
@@ -139,7 +139,7 @@ layers:
   - {t: '-', h: '&macro_lt_uni LT', s: _}
   - {t: +, h: '&macro_gt_uni GT'}
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
-  - {t: '&macro_dqt_uni AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: '&macro_dqt_uni AMPS', h: '&macro_bslh_uni PRCNT'}
   - {t: '&macro_percent_uni', h: '&macro_pipe_uni PIPE'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -259,7 +259,7 @@ layers:
   - {t: (, h: '&macro_lbrc_uni LBRC'}
   - {t: ), h: '&macro_rbrc_uni RBRC'}
   - {t: '#', h: '&macro_dollar_uni DLLR'}
-  - {t: /, h: numbnolightcopy_layer, s: '?', type: held alternate}
+  - {t: '&macro_slash_uni', h: numbnolightcopy_layer, type: held alternate}
   - {t: '&macro_semi_uni', h: '&macro_grave_uni'}
   - {t: '&macro_comma_uni COMMA', h: '&macro_degree_uni LBRC'}
   - {t: '&macro_dot_uni DOT', h: '&macro_lbkt_uni LBKT'}
@@ -273,9 +273,9 @@ layers:
   - {t: '&macro_dot_uni DOT', h: '&macro_lbkt_uni LBKT'}
   - {t: '&macro_comma_uni COMMA', h: '&macro_degree_uni LBRC'}
   - {t: '&macro_semi_uni', h: '&macro_grave_uni'}
-  - {t: \, h: numbnolightcopy_layer, s: '|', type: held alternate}
+  - {t: '&macro_slash_uni', h: numbnolightcopy_layer, type: held alternate}
   - {t: '&macro_percent_uni', h: '&macro_pipe_uni PIPE'}
-  - {t: '&macro_dqt_uni AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: '&macro_dqt_uni AMPS', h: '&macro_bslh_uni PRCNT'}
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
   - {t: +, h: '&macro_gt_uni GT'}
   - {t: '-', h: '&macro_lt_uni LT', s: _}
@@ -286,7 +286,7 @@ layers:
   - {t: '-', h: '&macro_lt_uni LT', s: _}
   - {t: +, h: '&macro_gt_uni GT'}
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
-  - {t: '&macro_dqt_uni AMPS', h: '$$mdi:minus-circle-outline$$'}
+  - {t: '&macro_dqt_uni AMPS', h: '&macro_bslh_uni PRCNT'}
   - {t: '&macro_percent_uni', h: '&macro_pipe_uni PIPE'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
@@ -371,9 +371,9 @@ layers:
   - {t: ., h: '[', s: '>'}
   - {t: ',', h: '&macro_degree_uni', s: <}
   - {t: ;, h: '`', s: ':'}
-  - {t: \, h: numbnolight_2_layer, s: '|'}
+  - {t: /, h: numbnolight_2_layer, s: '?'}
   - {t: Sft+5, h: Sft+\, s: Sft+%}
-  - {t: Sft+', h: '$$mdi:minus-circle-outline$$', s: Sft+"}
+  - {t: Sft+', h: \, s: Sft+"}
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
   - {t: Sft+=, h: Sft+., s: Sft++}
   - {t: '-', h: 'Sft+,', s: _}
@@ -384,7 +384,7 @@ layers:
   - {t: '-', h: 'Sft+,', s: _}
   - {t: Sft+=, h: Sft+., s: Sft++}
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
-  - {t: Sft+', h: '$$mdi:minus-circle-outline$$', s: Sft+"}
+  - {t: Sft+', h: \, s: Sft+"}
   - {t: Sft+5, h: Sft+\, s: Sft+%}
   - {t: '&lh_td', h: lefthandnolight_layer}
   - {t: '&symb_win_tap_dance', h: symbnolight_2_layer}
@@ -469,9 +469,9 @@ layers:
   - {t: ., h: '[', s: '>'}
   - {t: ',', h: '&macro_degree_uni', s: <}
   - {t: ;, h: '`', s: ':'}
-  - {t: \, h: numbnolight_copy_2_layer, s: '|', type: held alternate}
+  - {t: /, h: numbnolight_copy_2_layer, s: '?', type: held alternate}
   - {t: Sft+5, h: Sft+\, s: Sft+%}
-  - {t: Sft+', h: '$$mdi:minus-circle-outline$$', s: Sft+"}
+  - {t: Sft+', h: \, s: Sft+"}
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
   - {t: Sft+=, h: Sft+., s: Sft++}
   - {t: '-', h: 'Sft+,', s: _}
@@ -482,7 +482,7 @@ layers:
   - {t: '-', h: 'Sft+,', s: _}
   - {t: Sft+=, h: Sft+., s: Sft++}
   - {t: '=', h: '$$mdi:minus-circle-outline$$', s: +}
-  - {t: Sft+', h: '$$mdi:minus-circle-outline$$', s: Sft+"}
+  - {t: Sft+', h: \, s: Sft+"}
   - {t: Sft+5, h: Sft+\, s: Sft+%}
   - {t: '&lh_td', h: lefthandnolight_layer}
   - {t: '&symb_win_tap_dance', h: symbnolight_2_layer, type: held}
