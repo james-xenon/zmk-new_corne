@@ -270,7 +270,7 @@
 				<&macro_release &kp LALT>;
 		};
 
-		// Обратный слэш через Alt+Code (092 на цифровом блоке).
+		// Обратный слэш через Alt+Code (092 на NumPad = \).
 		macro_bslh_uni: macro_bslh_uni {
 			compatible = "zmk,behavior-macro";
 			#binding-cells = <0>;
@@ -904,8 +904,8 @@
 		};
 
 		// Hold-Tap slash_to_numb_ht:
-		// Тап -> / через Alt-code
-		// Холд -> временный слой цифр NUMB_NOLIGHT_LAYER
+		// Тап -> / через Alt-code; hold -> &mo <param1>.
+		// Целевой слой задаётся отдельно на каждой клавише.
 		slash_to_numb_ht: slash_to_numb_ht {
 			compatible = "zmk,behavior-hold-tap";
 			#binding-cells = <2>;
@@ -950,7 +950,7 @@
 			bindings = <&none>, <&kp>;
 		};
 
-		// Hold-Tap percent_amp_ht: tap остаётся Alt-code для двойной кавычки; hold = обратный слэш через Alt-code.
+		// Hold-Tap percent_amp_ht: hold=\ (Alt-code), tap=" (Alt-code).
 		percent_amp_ht: percent_amp_ht {
 			compatible = "zmk,behavior-hold-tap";
 			#binding-cells = <2>;
@@ -1582,7 +1582,8 @@
 		};
 
 		// Слой 2: SYMB — русские символы через Alt, persistent.
-		// Крайние клавиши второго ряда: tap -> / через Alt-code; существующие hold-переходы сохранены.
+		// Левая крайняя клавиша второго ряда:
+		//   hold -> SYMB_NOLIGHT_LAYER, tap  -> /
 		symb_layer {
 			display-name = "symb_layer";
 			bindings = <
@@ -1620,7 +1621,7 @@
 		};
 
 		// Слой 5: SYMB no-light Alt.
-		// Крайние клавиши второго ряда: tap -> / через Alt-code; hold-переходы в NUMB_NOLIGHT_COPY_LAYER сохранены.
+		// Крайние клавиши второго ряда по удержанию ведут на NUMB_NOLIGHT_COPY_LAYER.
 		symbnolight_layer {
 			display-name = "symbnolight_layer";
 			bindings = <
@@ -1645,9 +1646,11 @@
 		};
 
 		// Слой 7: SYMB English persistent без Alt (циан).
-		// Крайние клавиши второго ряда симметричны: tap -> / обычным HID-кодом; hold -> NUMB_ENG_NOLIGHT_LAYER.
-		// На парных клавишах с двойной кавычкой hold вводит обратный слэш обычным английским HID-кодом.
-		// Alt-code используется для ° и — (для них нет прямого кейкода).
+		// Левая крайняя клавиша второго ряда: hold -> NUMB_ENG_NOLIGHT_LAYER
+		// Правая крайняя клавиша второго ряда:
+		//   hold -> NUMB_ENG_NOLIGHT_LAYER
+		//   tap  -> BSLH
+		// Alt-code только в hold ° и — (для них нет кейкода без Alt).
 		symb_2_layer {
 			display-name = "symb_2_layer";
 			bindings = <
@@ -1673,7 +1676,7 @@
 		};
 
 		// Слой 9: SYMB English no-light main.
-		// Крайние клавиши второго ряда: tap -> / обычным HID-кодом; hold-переходы в NUMB_ENG_NOLIGHT_COPY_LAYER сохранены.
+		// Крайние клавиши второго ряда по удержанию ведут на NUMB_ENG_NOLIGHT_COPY_LAYER.
 		// Правый большой палец по удержанию тоже ведёт в цифры, чтобы из английского символического слоя был переход в цифры.
 		// Alt-code только в hold ° и — (для них нет кейкода без Alt).
 		symbnolight_2_layer {
