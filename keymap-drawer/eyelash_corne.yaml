@@ -161,7 +161,7 @@ layers:
   - {t: '9', s: (}
   - KP MULTIPLY
   - AL CALCULATOR
-  - $$mdi:apple-keyboard-shift$$
+  - {t: '$$mdi:backspace$$', h: symbnolight_layer}
   - {t: '0', s: )}
   - {t: '6', s: ^}
   - {t: '5', s: '%'}
