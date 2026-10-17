@@ -86,7 +86,7 @@ jobs:
             ${{ env.base_dir }}/zephyr/
             ${{ env.base_dir }}/bootloader/
             ${{ env.base_dir }}/zmk/
-          key: ${{ runner.os }}-build-${{ env.cache_name }}-${{ hashFiles('**/west.yml', '**/build.yaml', 'patches/rgb_underglow.c', 'patches/patch_battery_vddh.py', 'patches/patch_qdec_sampling.py') }}
+          key: ${{ runner.os }}-build-${{ env.cache_name }}-${{ hashFiles('**/west.yml', '**/build.yaml', 'patches/rgb_underglow.c', 'patches/patch_battery_vddh.py', 'patches/patch_qdec_raw_ticks.py') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache_name }}-
             ${{ runner.os }}-build-
@@ -115,27 +115,33 @@ jobs:
         working-directory: ${{ env.base_dir }}
         run: west update --fetch-opt=--filter=tree:0
 
-      - name: Apply QDEC sampling-rate fix
+      - name: Apply QDEC raw-tick mapping fix
         shell: sh -e {0}
         run: |
           set -eu
           zephyr_dir="${{ env.base_dir }}/zephyr"
           driver_file="$zephyr_dir/drivers/sensor/qdec_nrfx/qdec_nrfx.c"
-          patch_script="${GITHUB_WORKSPACE}/patches/patch_qdec_sampling.py"
+          patch_script="${GITHUB_WORKSPACE}/patches/patch_qdec_raw_ticks.py"
+          zmk_sensor_behavior="${{ env.base_dir }}/zmk/app/src/behaviors/behavior_sensor_rotate_common.c"
 
           test -f "$patch_script"
           test -f "$driver_file"
+          test -f "$zmk_sensor_behavior"
 
-          # Remove any cached modifications from the previous debounce attempt.
+          # Reset any cached experiment first, then apply only the raw-tick mapping.
           git -C "$zephyr_dir" restore --source=HEAD -- \
             dts/bindings/sensor/nordic,nrf-qdec.yaml \
             drivers/sensor/qdec_nrfx/qdec_nrfx.c
 
           python3 "$patch_script" "$zephyr_dir"
 
-          grep -Fq '.sampleper = NRF_QDEC_SAMPLEPER_256US,' "$driver_file"
-          grep -Fq '.reportper = NRF_QDEC_REPORTPER_40,' "$driver_file"
-          echo "QDEC verified: 256 us sampling, REPORTPER remains 40 samples (10.24 ms/report)."
+          # The raw-tick mapping intentionally uses the compatibility path in the
+          # pinned ZMK v0.3.0 handler. Fail rather than silently build incompatible code.
+          grep -Fq 'if (value.val1 == 0)' "$zmk_sensor_behavior"
+          grep -Fq 'triggers = value.val2;' "$zmk_sensor_behavior"
+          grep -Fq 'val->val1 = 0;' "$driver_file"
+          grep -Fq 'val->val2 = acc;' "$driver_file"
+          echo "QDEC fix verified: each valid accumulated hardware count is passed as a signed sensor tick."
 
       - name: Apply RGB16 underglow patch
         shell: sh -e {0}
@@ -193,16 +199,22 @@ jobs:
             ${{ env.extra_cmake_args }} \
             ${{ matrix.cmake-args }}
 
-      - name: Verify QDEC sampling-rate patch
+      - name: Verify QDEC raw-tick mapping fix
         if: ${{ !cancelled() }}
         shell: sh -e {0}
         run: |
           set -eu
           driver_file="${{ env.base_dir }}/zephyr/drivers/sensor/qdec_nrfx/qdec_nrfx.c"
-          grep -Fq '.sampleper = NRF_QDEC_SAMPLEPER_256US,' "$driver_file"
-          grep -Fq '.reportper = NRF_QDEC_REPORTPER_40,' "$driver_file"
-          echo "QDEC sampling-rate patch verified in the Zephyr source used for this build."
-
+          zmk_sensor_behavior="${{ env.base_dir }}/zmk/app/src/behaviors/behavior_sensor_rotate_common.c"
+          grep -Fq 'val->val1 = 0;' "$driver_file"
+          grep -Fq 'val->val2 = acc;' "$driver_file"
+          grep -Fq 'if (value.val1 == 0)' "$zmk_sensor_behavior"
+          grep -Fq 'triggers = value.val2;' "$zmk_sensor_behavior"
+          if grep -Fq '.sampleper = NRF_QDEC_SAMPLEPER_256US,' "$driver_file"; then
+            echo "ERROR: obsolete SAMPLEPER experiment is still present." >&2
+            exit 1
+          fi
+          echo "QDEC raw-tick mapping verified in the Zephyr source used for this build."
       - name: ${{ env.display_name }} Kconfig file
         if: ${{ !cancelled() }}
         run: |
