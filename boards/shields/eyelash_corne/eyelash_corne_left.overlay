@@ -7,4 +7,5 @@
     pinctrl-names = "default", "sleep";
     led-pre = <0>;
     steps = <24>;
+    debounce-filter;
 };

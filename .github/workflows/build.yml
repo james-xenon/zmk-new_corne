@@ -86,11 +86,26 @@ jobs:
             ${{ env.base_dir }}/zephyr/
             ${{ env.base_dir }}/bootloader/
             ${{ env.base_dir }}/zmk/
-          key: ${{ runner.os }}-build-${{ env.cache_name }}-${{ hashFiles('**/west.yml', '**/build.yaml', 'patches/rgb_underglow.c', 'patches/patch_battery_vddh.py') }}
+          key: ${{ runner.os }}-build-${{ env.cache_name }}-${{ hashFiles('**/west.yml', '**/build.yaml', 'patches/rgb_underglow.c', 'patches/patch_battery_vddh.py', 'patches/patch_qdec_hardware_debounce.py') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache_name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+
+      - name: Restore cached QDEC files before West Update
+        shell: sh -e {0}
+        run: |
+          set -eu
+          zephyr_dir="${{ env.base_dir }}/zephyr"
+          if git -C "$zephyr_dir" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+            for relative_path in \
+              dts/bindings/sensor/nordic,nrf-qdec.yaml \
+              drivers/sensor/qdec_nrfx/qdec_nrfx.c; do
+              if git -C "$zephyr_dir" ls-files --error-unmatch "$relative_path" >/dev/null 2>&1; then
+                git -C "$zephyr_dir" restore --source=HEAD -- "$relative_path"
+              fi
+            done
+          fi
 
       - name: West Init
         working-directory: ${{ env.base_dir }}
@@ -99,6 +114,30 @@ jobs:
       - name: West Update
         working-directory: ${{ env.base_dir }}
         run: west update --fetch-opt=--filter=tree:0
+
+      - name: Apply QDEC hardware debounce fix
+        shell: sh -e {0}
+        run: |
+          set -eu
+          zephyr_dir="${{ env.base_dir }}/zephyr"
+          patch_script="${GITHUB_WORKSPACE}/patches/patch_qdec_hardware_debounce.py"
+          binding_file="$zephyr_dir/dts/bindings/sensor/nordic,nrf-qdec.yaml"
+          driver_file="$zephyr_dir/drivers/sensor/qdec_nrfx/qdec_nrfx.c"
+
+          test -f "$patch_script"
+          test -f "$binding_file"
+          test -f "$driver_file"
+
+          # Restore the pinned dependency's clean files so cached runs stay repeatable.
+          git -C "$zephyr_dir" restore --source=HEAD -- \
+            dts/bindings/sensor/nordic,nrf-qdec.yaml \
+            drivers/sensor/qdec_nrfx/qdec_nrfx.c
+
+          python3 "$patch_script" "$zephyr_dir"
+
+          grep -Fq 'debounce-filter:' "$binding_file"
+          grep -Fq '.dbfen = DT_NODE_HAS_PROP(QDEC(idx), debounce_filter),' "$driver_file"
+          echo "QDEC hardware debounce patch applied and verified."
 
       - name: Apply RGB16 underglow patch
         shell: sh -e {0}
@@ -155,6 +194,16 @@ jobs:
             -DZMK_CONFIG=${{ env.base_dir }}/config \
             ${{ env.extra_cmake_args }} \
             ${{ matrix.cmake-args }}
+
+      - name: Verify QDEC hardware debounce on left half
+        if: ${{ contains(matrix.shield, 'eyelash_corne_left') && !cancelled() }}
+        shell: sh -e {0}
+        run: |
+          set -eu
+          dts_file="${{ env.build_dir }}/zephyr/zephyr.dts"
+          test -f "$dts_file"
+          grep -Fq 'debounce-filter;' "$dts_file"
+          echo "QDEC hardware debounce is present in the left-half final devicetree."
 
       - name: ${{ env.display_name }} Kconfig file
         if: ${{ !cancelled() }}
