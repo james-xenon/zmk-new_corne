@@ -86,13 +86,13 @@ jobs:
             ${{ env.base_dir }}/zephyr/
             ${{ env.base_dir }}/bootloader/
             ${{ env.base_dir }}/zmk/
-          key: ${{ runner.os }}-build-${{ env.cache_name }}-${{ hashFiles('**/west.yml', '**/build.yaml', 'patches/rgb_underglow.c', 'patches/patch_battery_vddh.py', 'patches/patch_qdec_hardware_debounce.py') }}
+          key: ${{ runner.os }}-build-${{ env.cache_name }}-${{ hashFiles('**/west.yml', '**/build.yaml', 'patches/rgb_underglow.c', 'patches/patch_battery_vddh.py', 'patches/patch_qdec_sampling.py') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache_name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      - name: Restore cached QDEC files before West Update
+      - name: Restore cached QDEC files before West Update (remove previous debounce experiment)
         shell: sh -e {0}
         run: |
           set -eu
@@ -115,29 +115,27 @@ jobs:
         working-directory: ${{ env.base_dir }}
         run: west update --fetch-opt=--filter=tree:0
 
-      - name: Apply QDEC hardware debounce fix
+      - name: Apply QDEC sampling-rate fix
         shell: sh -e {0}
         run: |
           set -eu
           zephyr_dir="${{ env.base_dir }}/zephyr"
-          patch_script="${GITHUB_WORKSPACE}/patches/patch_qdec_hardware_debounce.py"
-          binding_file="$zephyr_dir/dts/bindings/sensor/nordic,nrf-qdec.yaml"
           driver_file="$zephyr_dir/drivers/sensor/qdec_nrfx/qdec_nrfx.c"
+          patch_script="${GITHUB_WORKSPACE}/patches/patch_qdec_sampling.py"
 
           test -f "$patch_script"
-          test -f "$binding_file"
           test -f "$driver_file"
 
-          # Restore the pinned dependency's clean files so cached runs stay repeatable.
+          # Remove any cached modifications from the previous debounce attempt.
           git -C "$zephyr_dir" restore --source=HEAD -- \
             dts/bindings/sensor/nordic,nrf-qdec.yaml \
             drivers/sensor/qdec_nrfx/qdec_nrfx.c
 
           python3 "$patch_script" "$zephyr_dir"
 
-          grep -Fq 'debounce-filter:' "$binding_file"
-          grep -Fq '.dbfen = DT_NODE_HAS_PROP(QDEC(idx), debounce_filter),' "$driver_file"
-          echo "QDEC hardware debounce patch applied and verified."
+          grep -Fq '.sampleper = NRF_QDEC_SAMPLEPER_256US,' "$driver_file"
+          grep -Fq '.reportper = NRF_QDEC_REPORTPER_40,' "$driver_file"
+          echo "QDEC verified: 256 us sampling, REPORTPER remains 40 samples (10.24 ms/report)."
 
       - name: Apply RGB16 underglow patch
         shell: sh -e {0}
@@ -195,15 +193,15 @@ jobs:
             ${{ env.extra_cmake_args }} \
             ${{ matrix.cmake-args }}
 
-      - name: Verify QDEC hardware debounce on left half
-        if: ${{ contains(matrix.shield, 'eyelash_corne_left') && !cancelled() }}
+      - name: Verify QDEC sampling-rate patch
+        if: ${{ !cancelled() }}
         shell: sh -e {0}
         run: |
           set -eu
-          dts_file="${{ env.build_dir }}/zephyr/zephyr.dts"
-          test -f "$dts_file"
-          grep -Fq 'debounce-filter;' "$dts_file"
-          echo "QDEC hardware debounce is present in the left-half final devicetree."
+          driver_file="${{ env.base_dir }}/zephyr/drivers/sensor/qdec_nrfx/qdec_nrfx.c"
+          grep -Fq '.sampleper = NRF_QDEC_SAMPLEPER_256US,' "$driver_file"
+          grep -Fq '.reportper = NRF_QDEC_REPORTPER_40,' "$driver_file"
+          echo "QDEC sampling-rate patch verified in the Zephyr source used for this build."
 
       - name: ${{ env.display_name }} Kconfig file
         if: ${{ !cancelled() }}
