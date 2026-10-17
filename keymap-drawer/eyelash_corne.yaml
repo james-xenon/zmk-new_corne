@@ -790,7 +790,7 @@ layers:
   - W
   - E
   - R
-  - {t: T, h: '&kp_once GRAVE'}
+  - T
   - $$mdi:arrow-up-bold$$
   - Y
   - U
@@ -1162,11 +1162,11 @@ combos:
 - p: [23, 24]
   k: {t: '$$mdi:backspace$$', type: backspace}
   l: [default_1_layer, default_2_layer, symb_layer, numb_layer, numbnolight_layer, symbnolight_layer, numbnolightcopy_layer, symb_2_layer, lefthand_layer, lefthandnolight_layer,
-    numbnolight_2_layer, symbnolight_2_layer, numbnolight_copy_2_layer, nav_2_layer, nav2nolight_layer, speedtype_layer]
+    numbnolight_2_layer, symbnolight_2_layer, numbnolight_copy_2_layer, nav_1_layer, nav_2_layer, nav2nolight_layer, speedtype_layer]
 - p: [24, 25]
   k: $$mdi:backspace-reverse-outline$$
   l: [default_1_layer, default_2_layer, symb_layer, numb_layer, numbnolight_layer, symbnolight_layer, numbnolightcopy_layer, symb_2_layer, numbnolight_2_layer, numbnolight_copy_2_layer,
-    symbnolight_2_layer, nav_2_layer, nav2nolight_layer, speedtype_layer, lefthand_layer, lefthandnolight_layer]
+    symbnolight_2_layer, nav_1_layer, nav_2_layer, nav2nolight_layer, speedtype_layer, lefthand_layer, lefthandnolight_layer]
 - p: [16, 17]
   k: {t: '$$mdi:backspace$$', type: backspace}
   l: [symb_layer, numb_layer, numbnolight_layer, symbnolight_layer, numbnolightcopy_layer, symb_2_layer, numbnolight_2_layer, symbnolight_2_layer, nav_2_layer, nav2nolight_layer,
