@@ -86,17 +86,18 @@ jobs:
             ${{ env.base_dir }}/zephyr/
             ${{ env.base_dir }}/bootloader/
             ${{ env.base_dir }}/zmk/
-          key: ${{ runner.os }}-build-${{ env.cache_name }}-${{ hashFiles('**/west.yml', '**/build.yaml', 'patches/rgb_underglow.c', 'patches/patch_battery_vddh.py', 'patches/patch_qdec_raw_ticks.py') }}
+          key: ${{ runner.os }}-build-${{ env.cache_name }}-${{ hashFiles('**/west.yml', '**/build.yaml', 'patches/rgb_underglow.c', 'patches/patch_battery_vddh.py', 'patches/patch_qdec_sample_fifo.py', 'patches/patch_zmk_sensor_fifo.py') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache_name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      - name: Restore cached QDEC files before West Update (remove previous debounce experiment)
+      - name: Restore cached sensor/QDEC sources before West Update
         shell: sh -e {0}
         run: |
           set -eu
           zephyr_dir="${{ env.base_dir }}/zephyr"
+          zmk_dir="${{ env.base_dir }}/zmk"
           if git -C "$zephyr_dir" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
             for relative_path in \
               dts/bindings/sensor/nordic,nrf-qdec.yaml \
@@ -105,6 +106,9 @@ jobs:
                 git -C "$zephyr_dir" restore --source=HEAD -- "$relative_path"
               fi
             done
+          fi
+          if git -C "$zmk_dir" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+            git -C "$zmk_dir" restore --source=HEAD -- app/src/sensors.c
           fi
 
       - name: West Init
@@ -115,33 +119,33 @@ jobs:
         working-directory: ${{ env.base_dir }}
         run: west update --fetch-opt=--filter=tree:0
 
-      - name: Apply QDEC raw-tick mapping fix
+      - name: Apply QDEC per-sample FIFO fix
         shell: sh -e {0}
         run: |
           set -eu
           zephyr_dir="${{ env.base_dir }}/zephyr"
+          zmk_dir="${{ env.base_dir }}/zmk"
           driver_file="$zephyr_dir/drivers/sensor/qdec_nrfx/qdec_nrfx.c"
-          patch_script="${GITHUB_WORKSPACE}/patches/patch_qdec_raw_ticks.py"
-          zmk_sensor_behavior="${{ env.base_dir }}/zmk/app/src/behaviors/behavior_sensor_rotate_common.c"
+          zmk_sensors="$zmk_dir/app/src/sensors.c"
 
-          test -f "$patch_script"
+          test -f "${GITHUB_WORKSPACE}/patches/patch_qdec_sample_fifo.py"
+          test -f "${GITHUB_WORKSPACE}/patches/patch_zmk_sensor_fifo.py"
           test -f "$driver_file"
-          test -f "$zmk_sensor_behavior"
+          test -f "$zmk_sensors"
 
-          # Reset any cached experiment first, then apply only the raw-tick mapping.
-          git -C "$zephyr_dir" restore --source=HEAD -- \
-            dts/bindings/sensor/nordic,nrf-qdec.yaml \
-            drivers/sensor/qdec_nrfx/qdec_nrfx.c
+          # Drop any earlier experiment from the restored dependency checkout/cache.
+          git -C "$zephyr_dir" restore --source=HEAD -- drivers/sensor/qdec_nrfx/qdec_nrfx.c
+          git -C "$zmk_dir" restore --source=HEAD -- app/src/sensors.c
 
-          python3 "$patch_script" "$zephyr_dir"
+          python3 "${GITHUB_WORKSPACE}/patches/patch_qdec_sample_fifo.py" "$zephyr_dir"
+          python3 "${GITHUB_WORKSPACE}/patches/patch_zmk_sensor_fifo.py" "$zmk_dir"
 
-          # The raw-tick mapping intentionally uses the compatibility path in the
-          # pinned ZMK v0.3.0 handler. Fail rather than silently build incompatible code.
-          grep -Fq 'if (value.val1 == 0)' "$zmk_sensor_behavior"
-          grep -Fq 'triggers = value.val2;' "$zmk_sensor_behavior"
-          grep -Fq 'val->val1 = 0;' "$driver_file"
-          grep -Fq 'val->val2 = acc;' "$driver_file"
-          echo "QDEC fix verified: each valid accumulated hardware count is passed as a signed sensor tick."
+          grep -Fq 'QDEC_SAMPLE_FIFO_PATCH_V1' "$driver_file"
+          grep -Fq '.sample_inten = true,' "$driver_file"
+          grep -Fq '.reportper_inten = false,' "$driver_file"
+          grep -Fq 'ZMK_SENSOR_TRIGGER_FIFO_PATCH_V1' "$zmk_sensors"
+          grep -Fq 'k_msgq_put(&pending_sensor_indices, &queued_index, K_NO_WAIT)' "$zmk_sensors"
+          echo "QDEC per-sample FIFO patch verified in Zephyr and ZMK sources."
 
       - name: Apply RGB16 underglow patch
         shell: sh -e {0}
@@ -199,22 +203,24 @@ jobs:
             ${{ env.extra_cmake_args }} \
             ${{ matrix.cmake-args }}
 
-      - name: Verify QDEC raw-tick mapping fix
+      - name: Verify QDEC per-sample FIFO fix
         if: ${{ !cancelled() }}
         shell: sh -e {0}
         run: |
           set -eu
           driver_file="${{ env.base_dir }}/zephyr/drivers/sensor/qdec_nrfx/qdec_nrfx.c"
-          zmk_sensor_behavior="${{ env.base_dir }}/zmk/app/src/behaviors/behavior_sensor_rotate_common.c"
-          grep -Fq 'val->val1 = 0;' "$driver_file"
-          grep -Fq 'val->val2 = acc;' "$driver_file"
-          grep -Fq 'if (value.val1 == 0)' "$zmk_sensor_behavior"
-          grep -Fq 'triggers = value.val2;' "$zmk_sensor_behavior"
-          if grep -Fq '.sampleper = NRF_QDEC_SAMPLEPER_256US,' "$driver_file"; then
-            echo "ERROR: obsolete SAMPLEPER experiment is still present." >&2
+          zmk_sensors="${{ env.base_dir }}/zmk/app/src/sensors.c"
+          grep -Fq 'QDEC_SAMPLE_FIFO_PATCH_V1' "$driver_file"
+          grep -Fq 'data->tick_queue[data->tick_tail]' "$driver_file"
+          grep -Fq '.sample_inten = true,' "$driver_file"
+          grep -Fq '.reportper_inten = false,' "$driver_file"
+          grep -Fq 'ZMK_SENSOR_TRIGGER_FIFO_PATCH_V1' "$zmk_sensors"
+          grep -Fq 'while (k_msgq_get(&pending_sensor_indices, &sensor_index, K_NO_WAIT) == 0)' "$zmk_sensors"
+          if grep -Fq 'val->val1 = 0;' "$driver_file" && grep -Fq 'val->val2 = acc;' "$driver_file"; then
+            echo "ERROR: obsolete raw-tick experiment is still present." >&2
             exit 1
           fi
-          echo "QDEC raw-tick mapping verified in the Zephyr source used for this build."
+          echo "QDEC sample FIFO and ZMK notification FIFO verified."
       - name: ${{ env.display_name }} Kconfig file
         if: ${{ !cancelled() }}
         run: |
