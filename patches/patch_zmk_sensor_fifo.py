@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
-"""Replace ZMK v0.3.0's coalescing sensor pending bitset with a FIFO."""
+"""Patch pinned Zephyr nRF QDEC to deliver each valid sample as a queued sensor tick."""
 from __future__ import annotations
 
+import re
 import sys
 from pathlib import Path
 
-SENSORS_REL = Path("app/src/sensors.c")
-MARKER = "ZMK_SENSOR_TRIGGER_FIFO_PATCH_V1"
+DRIVER_REL = Path("drivers/sensor/qdec_nrfx/qdec_nrfx.c")
+MARKER = "QDEC_SAMPLE_FIFO_PATCH_V1"
 QUEUE_SIZE = 128
 
 
 def fail(message: str) -> "NoReturn":
-    raise SystemExit(f"ZMK sensor FIFO patch: ERROR: {message}")
+    raise SystemExit(f"QDEC sample FIFO patch: ERROR: {message}")
 
 
 def replace_region(text: str, start_marker: str, end_marker: str, replacement: str) -> str:
@@ -24,102 +25,210 @@ def replace_region(text: str, start_marker: str, end_marker: str, replacement: s
 
 def main() -> None:
     if len(sys.argv) != 2:
-        fail("usage: python3 patch_zmk_sensor_fifo.py /path/to/zmk")
+        fail("usage: python3 patch_qdec_sample_fifo.py /path/to/zephyr")
 
-    zmk = Path(sys.argv[1]).resolve()
-    source = zmk / SENSORS_REL
-    if not source.is_file():
-        fail(f"source not found: {source}")
+    zephyr = Path(sys.argv[1]).resolve()
+    driver = zephyr / DRIVER_REL
+    if not driver.is_file():
+        fail(f"driver not found: {driver}")
 
-    text = source.read_text(encoding="utf-8")
+    text = driver.read_text(encoding="utf-8")
     if MARKER in text:
         verify(text)
-        print("ZMK sensor FIFO patch already applied.")
+        print("QDEC sample FIFO patch already applied.")
         return
 
-    if "static ATOMIC_DEFINE(pending_sensors, ZMK_KEYMAP_SENSORS_LEN);" not in text:
-        fail("expected v0.3.0 pending_sensors bitset not found; no changes made")
-    if "static void run_sensors_data_trigger(struct k_work *work)" not in text:
-        fail("expected v0.3.0 sensor work handler not found; no changes made")
+    # The patch is intentionally pinned to the qdec_nrfx layout in Zephyr 3.5.0+zmk-fixes.
+    if "static int qdec_nrfx_sample_fetch(" not in text or "static int qdec_nrfx_channel_get(" not in text:
+        fail("unexpected qdec_nrfx.c structure; no changes made")
+    if "case NRF_QDEC_EVENT_SAMPLERDY:" not in text or "NRF_QDEC_SAMPLEPER_2048US" not in text:
+        fail("expected nRF QDEC event/configuration code not found; no changes made")
 
-    # Ensure the message-queue API is declared.
-    if "#include <zephyr/kernel.h>" not in text:
-        include_anchor = "#include <zephyr/init.h>"
-        if text.count(include_anchor) != 1:
-            fail("cannot insert Zephyr kernel include safely")
-        text = text.replace(include_anchor, include_anchor + "\n#include <zephyr/kernel.h>", 1)
+    # Replace the data structure and remove the old report-accumulator helper.
+    data_struct = f'''/* {MARKER}: preserve ordered QDEC sample values until ZMK consumes them. */
+#define QDEC_TICK_QUEUE_SIZE {QUEUE_SIZE}
+struct qdec_nrfx_data {{
+    int8_t tick_queue[QDEC_TICK_QUEUE_SIZE];
+    uint16_t tick_head;
+    uint16_t tick_tail;
+    uint16_t tick_count;
+    int32_t fetched_tick;
+    sensor_trigger_handler_t data_ready_handler;
+    const struct sensor_trigger *data_ready_trigger;
+}};
 
-    text = text.replace(
-        "static ATOMIC_DEFINE(pending_sensors, ZMK_KEYMAP_SENSORS_LEN);",
-        f"/* {MARKER}: preserve one notification per QDEC sample rather than coalescing a bit. */\n"
-        f"#define ZMK_SENSOR_TRIGGER_QUEUE_SIZE {QUEUE_SIZE}\n"
-        "K_MSGQ_DEFINE(pending_sensor_indices, sizeof(uint8_t), ZMK_SENSOR_TRIGGER_QUEUE_SIZE, 1);",
-        1,
-    )
+'''
+    text = replace_region(text, "struct qdec_nrfx_data {", "struct qdec_nrfx_config {", data_struct)
 
-    new_handlers = f'''static void run_sensors_data_trigger(struct k_work *work)
+    # The old helper only accumulated periodic reports; per-sample FIFO no longer uses it.
+    text = replace_region(text, "static void accumulate(", "static int qdec_nrfx_sample_fetch(", "")
+
+    sample_fetch = f'''static int qdec_nrfx_sample_fetch(const struct device *dev,
+                                  enum sensor_channel chan)
 {{
-    uint8_t sensor_index;
+    struct qdec_nrfx_data *data = dev->data;
+    unsigned int key;
 
-    /* Drain every queued interrupt notification; do not merge opposite ticks. */
-    while (k_msgq_get(&pending_sensor_indices, &sensor_index, K_NO_WAIT) == 0) {{
-        if (sensor_index >= ARRAY_SIZE(sensors)) {{
-            LOG_ERR("Invalid queued sensor index %u", sensor_index);
-            continue;
-        }}
-        trigger_sensor_data_for_position(sensor_index);
+    if ((chan != SENSOR_CHAN_ALL) && (chan != SENSOR_CHAN_ROTATION)) {{
+        return -ENOTSUP;
     }}
+
+    key = irq_lock();
+    if (data->tick_count == 0) {{
+        irq_unlock(key);
+        return -EAGAIN;
+    }}
+
+    data->fetched_tick = data->tick_queue[data->tick_tail];
+    data->tick_tail = (data->tick_tail + 1) & (QDEC_TICK_QUEUE_SIZE - 1);
+    data->tick_count--;
+    irq_unlock(key);
+
+    return 0;
 }}
 
-K_WORK_DEFINE(sensor_data_work, run_sensors_data_trigger);
-static void zmk_sensors_trigger_handler(const struct device *dev,
-                                        const struct sensor_trigger *trigger)
-{{
-    const struct sensors_item_cfg *test_item =
-        CONTAINER_OF(trigger, struct sensors_item_cfg, trigger);
-    int sensor_index = test_item - sensors;
+'''
+    text = replace_region(text, "static int qdec_nrfx_sample_fetch(", "static int qdec_nrfx_channel_get(", sample_fetch)
 
-    if (sensor_index < 0 || sensor_index >= ARRAY_SIZE(sensors)) {{
-        LOG_ERR("Invalid sensor item triggered our callback (%d)", sensor_index);
-        return;
+    channel_get = '''static int qdec_nrfx_channel_get(const struct device *dev,
+                                 enum sensor_channel chan,
+                                 struct sensor_value *val)
+{
+    const struct qdec_nrfx_config *config = dev->config;
+    struct qdec_nrfx_data *data = dev->data;
+    int32_t tick;
+
+    if (chan != SENSOR_CHAN_ROTATION) {
+        return -ENOTSUP;
+    }
+
+    tick = data->fetched_tick;
+    val->val1 = (tick * FULL_ANGLE) / config->steps;
+    val->val2 = (tick * FULL_ANGLE) - (val->val1 * config->steps);
+    if (val->val2 != 0) {
+        val->val2 *= 1000000;
+        val->val2 /= config->steps;
+    }
+
+    return 0;
+}
+
+'''
+    text = replace_region(text, "static int qdec_nrfx_channel_get(", "static int qdec_nrfx_trigger_set(", channel_get)
+
+    event_handler = f'''static bool qdec_nrfx_queue_tick(struct qdec_nrfx_data *data, int8_t tick)
+{{
+    bool queued = false;
+    unsigned int key = irq_lock();
+
+    if (data->tick_count < QDEC_TICK_QUEUE_SIZE) {{
+        data->tick_queue[data->tick_head] = tick;
+        data->tick_head = (data->tick_head + 1) & (QDEC_TICK_QUEUE_SIZE - 1);
+        data->tick_count++;
+        queued = true;
     }}
-    if (k_is_in_isr()) {{
-        uint8_t queued_index = (uint8_t)sensor_index;
-        if (k_msgq_put(&pending_sensor_indices, &queued_index, K_NO_WAIT) != 0) {{
-            LOG_ERR("Sensor trigger FIFO full; notification dropped");
-            return;
+
+    irq_unlock(key);
+    return queued;
+}}
+
+static void qdec_nrfx_event_handler(nrfx_qdec_event_t event, void *p_context)
+{{
+    const struct device *dev = p_context;
+    struct qdec_nrfx_data *dev_data = dev->data;
+    const struct qdec_nrfx_config *config = dev->config;
+    sensor_trigger_handler_t handler;
+    const struct sensor_trigger *trig;
+    unsigned int key;
+    int32_t discarded_acc;
+    uint32_t discarded_accdbl;
+
+    switch (event.type) {{
+    case NRF_QDEC_EVENT_SAMPLERDY:
+        /*
+         * Do not let the hardware ACC register collapse opposite movements
+         * between REPORTPER events. The SAMPLE register already contains this
+         * individual quadrature sample (-1, 0, +1, or an invalid double step).
+         * Clear hardware accumulators each sample; consume valid +/-1 samples
+         * through the software FIFO, one ZMK sensor event per sample.
+         */
+        nrfx_qdec_accumulators_read(&config->qdec, &discarded_acc, &discarded_accdbl);
+
+        if ((event.data.sample.value != -1) && (event.data.sample.value != 1)) {{
+            break;
         }}
-        k_work_submit(&sensor_data_work);
-    }} else {{
-        trigger_sensor_data_for_position(sensor_index);
+
+        if (!qdec_nrfx_queue_tick(dev_data, event.data.sample.value)) {{
+            LOG_ERR("QDEC sample FIFO full; sample dropped");
+            break;
+        }}
+
+        key = irq_lock();
+        handler = dev_data->data_ready_handler;
+        trig = dev_data->data_ready_trigger;
+        irq_unlock(key);
+
+        if (handler) {{
+            handler(dev, trig);
+        }}
+        break;
+
+    case NRF_QDEC_EVENT_REPORTRDY:
+        /* Report interrupts are disabled in this configuration. */
+        break;
+
+    case NRF_QDEC_EVENT_ACCOF:
+        /* Accumulators are cleared on each SAMPLE event; this should not occur. */
+        LOG_ERR("Unexpected QDEC accumulator overflow");
+        break;
+
+    default:
+        LOG_ERR("unhandled event (0x%x)", event.type);
+        break;
     }}
 }}
 
 '''
-    text = replace_region(
-        text,
-        "static void run_sensors_data_trigger(struct k_work *work)",
-        "static void zmk_sensors_init_item(uint8_t i)",
-        new_handlers,
+    text = replace_region(text, "static void qdec_nrfx_event_handler(", "static void qdec_nrfx_gpio_ctrl(", event_handler)
+
+    # Use per-sample IRQ notifications, not the aggregated report interrupt.
+    old_config = ".reportper_inten = true,"
+    if text.count(old_config) != 1:
+        fail("expected exactly one .reportper_inten = true in QDEC config")
+    text = text.replace(
+        old_config,
+        ".sample_inten = true, " + "\\\n\t\t\t.reportper_inten = false,",
+        1,
     )
 
-    source.write_text(text, encoding="utf-8", newline="\n")
+    driver.write_text(text, encoding="utf-8", newline="\n")
     verify(text)
-    print("ZMK sensor FIFO patch applied and verified.")
+    print("QDEC sample FIFO patch applied and verified.")
 
 
 def verify(text: str) -> None:
     required = [
         MARKER,
-        "K_MSGQ_DEFINE(pending_sensor_indices, sizeof(uint8_t), ZMK_SENSOR_TRIGGER_QUEUE_SIZE, 1);",
-        "while (k_msgq_get(&pending_sensor_indices, &sensor_index, K_NO_WAIT) == 0)",
-        "k_msgq_put(&pending_sensor_indices, &queued_index, K_NO_WAIT)",
+        ".sample_inten = true,",
+        ".reportper_inten = false,",
+        "event.data.sample.value != -1",
+        "event.data.sample.value != 1",
+        "QDEC_TICK_QUEUE_SIZE 128",
+        "data->fetched_tick = data->tick_queue[data->tick_tail];",
     ]
     for item in required:
         if item not in text:
             fail(f"verification failed: missing {item!r}")
-    if "ATOMIC_DEFINE(pending_sensors" in text or "atomic_test_and_clear_bit(pending_sensors" in text:
-        fail("old coalescing pending_sensors bitset remains")
+    # Keep both designated fields inside SENSOR_NRFX_QDEC_DEVICE's continued macro.
+    if not re.search(
+        r"\.sample_inten\s*=\s*true,[ \t]*\\\r?\n[ \t]*\.reportper_inten\s*=\s*false,",
+        text,
+    ):
+        fail("sample/report interrupt fields are not joined by a C preprocessor line continuation")
+    if ".reportper_inten = true," in text:
+        fail("aggregated report interrupt remains enabled")
+    if "val->val1 = 0;" in text and "val->val2 = acc;" in text:
+        fail("old raw-tick mapping remains; expected per-sample angular conversion")
 
 
 if __name__ == "__main__":
