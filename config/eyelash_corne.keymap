@@ -705,7 +705,7 @@
 			flavor = "tap-preferred";
 			tapping-term-ms = <220>;
 			quick-tap-ms = <150>;
-			require-prior-idle-ms = <150>;
+			// require-prior-idle-ms = <150>;
 			bindings = <&kp_once>, <&kp>; // Оба слота принимают параметры
 		};
 
