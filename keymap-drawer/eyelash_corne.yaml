@@ -543,8 +543,8 @@ layers:
   - '&slpall'
   - '&symb_eng_swap_toggle'
   - '&ws2812_wdg 8'
-  - '&ws2812_wdg 6'
-  - '&ws2812_wdg 7'
+  - '&repeat_ws2812_brightness_down'
+  - '&repeat_ws2812_brightness_up'
   - '&studio_unlock'
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:bluetooth-off$$
@@ -554,8 +554,8 @@ layers:
   - {h: '3', s: '$$mdi:bluetooth-connect$$'}
   - {h: '4', s: '$$mdi:bluetooth-connect$$'}
   - '&rgb_timer_custom'
-  - '&rgb_timer_custom 2'
-  - '&rgb_timer_custom 1'
+  - '&repeat_rgb_timeout_down'
+  - '&repeat_rgb_timeout_up'
   - '&ws2812_wdg 5'
   - '&ws2812_wdg 2'
   - OUT BLE
@@ -564,10 +564,10 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:brightness-7$$
   - $$mdi:brightness-5$$
-  - RGB HUD
-  - RGB HUI
-  - RGB SAD
-  - RGB SAI
+  - '&repeat_rgb_hud'
+  - '&repeat_rgb_hui'
+  - '&repeat_rgb_sad'
+  - '&repeat_rgb_sai'
   - BT CLR ALL
   - Alt+F4
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -578,10 +578,10 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - RGB EFR
   - RGB EFF
-  - RGB SPD
-  - RGB SPI
-  - RGB BRD
-  - RGB BRI
+  - '&repeat_rgb_spd'
+  - '&repeat_rgb_spi'
+  - '&repeat_rgb_brd'
+  - '&repeat_rgb_bri'
   - {t: '$$mdi:minus-circle-outline$$', type: held}
   - {t: '$$mdi:minus-circle-outline$$', type: held}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
