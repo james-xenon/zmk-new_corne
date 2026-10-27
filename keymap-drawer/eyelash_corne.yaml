@@ -45,7 +45,7 @@ layers:
   - $$mdi:keyboard-esc$$
   - {t: '&lh_td', h: lefthandnolight_layer}
   - {t: '&symb_win_tap_dance', h: symbnolight_layer}
-  - SPC
+  - $$mdi:keyboard-space$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', h: numbnolight_layer}
   - {t: '&win_space', h: nav2nolight_layer}
@@ -94,7 +94,7 @@ layers:
   - $$mdi:keyboard-esc$$
   - {t: '&lh_td', h: lefthandnolight_layer}
   - {t: '&symb_win_tap_dance', h: symbnolight_2_layer}
-  - SPC
+  - $$mdi:keyboard-space$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', h: numbnolight_2_layer}
   - {t: '&win_space', h: nav2nolight_layer}
@@ -143,7 +143,7 @@ layers:
   - {t: '&macro_percent_uni', h: '&macro_pipe_uni PIPE'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - SPC
+  - $$mdi:keyboard-space$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -192,8 +192,8 @@ layers:
   - KP ENTER
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:keyboard-space$$
+  - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   numbnolight_layer:
@@ -241,7 +241,7 @@ layers:
   - KP ENTER
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:keyboard-space$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -290,7 +290,7 @@ layers:
   - {t: '&macro_percent_uni', h: '&macro_pipe_uni PIPE'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
-  - SPC
+  - $$mdi:keyboard-space$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {type: held alternate}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -339,7 +339,7 @@ layers:
   - KP ENTER
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:keyboard-space$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -388,7 +388,7 @@ layers:
   - {t: Sft+5, h: Sft+\, s: Sft+%}
   - {t: '&lh_td', h: lefthandnolight_layer}
   - {t: '&symb_win_tap_dance', h: symbnolight_2_layer}
-  - SPC
+  - $$mdi:keyboard-space$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', h: numbnolight_2_layer}
   - {t: '&win_space', h: nav2nolight_layer}
@@ -437,7 +437,7 @@ layers:
   - KP ENTER
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:keyboard-space$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -486,7 +486,7 @@ layers:
   - {t: Sft+5, h: Sft+\, s: Sft+%}
   - {t: '&lh_td', h: lefthandnolight_layer}
   - {t: '&symb_win_tap_dance', h: symbnolight_2_layer, type: held}
-  - SPC
+  - $$mdi:keyboard-space$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', h: numbnolight_copy_2_layer, type: held alternate}
   - {t: '&win_space', h: nav2nolight_layer}
@@ -535,8 +535,8 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - $$mdi:keyboard-space$$
+  - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   service_layer:
@@ -556,7 +556,7 @@ layers:
   - '&rgb_timer_custom'
   - '&repeat_rgb_timeout_down'
   - '&repeat_rgb_timeout_up'
-  - '&ws2812_wdg 5'
+  - '&ws2812_wdg 1'
   - '&ws2812_wdg 2'
   - OUT BLE
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -570,14 +570,14 @@ layers:
   - '&repeat_rgb_sai'
   - BT CLR ALL
   - Alt+F4
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - Gui+Ctl+$$mdi:arrow-left-bold$$
   - Gui+Ctl+$$mdi:arrow-right-bold$$
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - OUT USB
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - RGB EFR
-  - RGB EFF
+  - '&repeat_rgb_efr'
+  - '&repeat_rgb_eff'
   - '&repeat_rgb_spd'
   - '&repeat_rgb_spi'
   - '&repeat_rgb_brd'
@@ -633,8 +633,8 @@ layers:
   - PG DN
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - $$mdi:keyboard-space$$
+  - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   nav_2_layer:
@@ -682,8 +682,8 @@ layers:
   - $$mdi:arrow-right-bold$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - $$mdi:keyboard-space$$
+  - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   nav2nolight_layer:
@@ -731,8 +731,8 @@ layers:
   - $$mdi:arrow-right-bold$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - $$mdi:keyboard-space$$
+  - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
   - {t: '$$mdi:minus-circle-outline$$', type: held}
   nav_3_layer:
@@ -780,8 +780,8 @@ layers:
   - PG DN
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - $$mdi:keyboard-space$$
+  - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   gaming1_layer:
@@ -976,7 +976,7 @@ layers:
   - $$mdi:keyboard-esc$$
   - $$mdi:apple-keyboard-option$$
   - {t: '$$mdi:transfer$$', type: trans}
-  - SPC
+  - $$mdi:keyboard-space$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -1025,8 +1025,8 @@ layers:
   - {t: D, h: '$$mdi:apple-keyboard-command$$'}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - $$mdi:keyboard-space$$
+  - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   lefthandnolight_layer:
@@ -1074,8 +1074,8 @@ layers:
   - {t: D, h: '$$mdi:apple-keyboard-command$$'}
   - {t: '$$mdi:minus-circle-outline$$', type: held}
   - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - $$mdi:keyboard-space$$
+  - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   numbnolight_copy_2_layer:
@@ -1123,7 +1123,7 @@ layers:
   - KP ENTER
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:keyboard-space$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
