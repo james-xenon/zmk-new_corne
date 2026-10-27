@@ -106,20 +106,20 @@
 		// ============================================================
 		// МАКРОСЫ ws2812_eff_*
 		// ============================================================
-		// Имена этих трёх behavior остались от старой версии драйвера.
-		// В ТЕКУЩЕМ behavior_ws2812_widget.c отдельные команды эффектов
-		// для param1 = 6 / 7 / 8 НЕ реализованы.
-		//
-		// Текущая таблица &ws2812_wdg:
+		// Справка по параметрам текущего zmk-ws2812-driver/main:
 		//   0 = ручная индикация слоя;
-		//   1 = батарея локальной половины;
-		//   2 = toggle временных WS2812-индикаций;
-		//   3 = принудительно включить временные индикации;
-		//   4 = принудительно выключить временные индикации;
-		//   5 = индикация батареи обеих половин.
+		//   1 = индикация батареи локальной половины;
+		//   2 = переключение временных WS2812-индикаций;
+		//   3 = включение временных индикаций;
+		//   4 = выключение временных индикаций;
+		//   5 = индикация батареи обеих половин;
+		//   6 = уменьшение яркости виджетов WS2812 на 10%;
+		//   7 = увеличение яркости виджетов WS2812 на 10%;
+		//   8 = сброс яркости виджетов WS2812 на 50%;
+		//   9 = оранжевая индикация слоя.
 		// ============================================================
 
-		// Имя "next": фактически &ws2812_wdg 6 -> default/manual layer indication.
+		// Историческое имя "next" сохранено; &ws2812_wdg 6 уменьшает яркость виджетов.
 		ws2812_eff_next: ws2812_eff_next {
 			compatible = "zmk,behavior-macro";
 			#binding-cells = <0>;
@@ -128,7 +128,7 @@
 			bindings = <&ws2812_wdg 6>;
 		};
 
-		// Имя "prev": фактически &ws2812_wdg 7 -> default/manual layer indication.
+		// Историческое имя "prev" сохранено; &ws2812_wdg 7 увеличивает яркость виджетов.
 		ws2812_eff_prev: ws2812_eff_prev {
 			compatible = "zmk,behavior-macro";
 			#binding-cells = <0>;
@@ -137,7 +137,7 @@
 			bindings = <&ws2812_wdg 7>;
 		};
 
-		// Имя "off": фактически &ws2812_wdg 8 -> default/manual layer indication.
+		// Историческое имя "off" сохранено; &ws2812_wdg 8 сбрасывает яркость виджетов на 50%.
 		ws2812_eff_off: ws2812_eff_off {
 			compatible = "zmk,behavior-macro";
 			#binding-cells = <0>;
@@ -160,6 +160,114 @@
 		rgb_timeout_down: rgb_timeout_down {
 			compatible = "zmk,behavior-rgb-timeout";
 			#binding-cells = <1>;
+		};
+
+		// Автоповтор: действие сразу, повтор через 450 мс, затем каждые 300 мс.
+		repeat_rgb_hud: repeat_rgb_hud {
+			compatible = "zmk,behavior-auto-repeat";
+			#binding-cells = <0>;
+			bindings = <&rgb_ug RGB_HUD>;
+			delay-ms = <450>;
+			interval-ms = <300>;
+		};
+
+		// Автоповтор: действие сразу, повтор через 450 мс, затем каждые 300 мс.
+		repeat_rgb_hui: repeat_rgb_hui {
+			compatible = "zmk,behavior-auto-repeat";
+			#binding-cells = <0>;
+			bindings = <&rgb_ug RGB_HUI>;
+			delay-ms = <450>;
+			interval-ms = <300>;
+		};
+
+		// Автоповтор: действие сразу, повтор через 450 мс, затем каждые 300 мс.
+		repeat_rgb_sad: repeat_rgb_sad {
+			compatible = "zmk,behavior-auto-repeat";
+			#binding-cells = <0>;
+			bindings = <&rgb_ug RGB_SAD>;
+			delay-ms = <450>;
+			interval-ms = <300>;
+		};
+
+		// Автоповтор: действие сразу, повтор через 450 мс, затем каждые 300 мс.
+		repeat_rgb_sai: repeat_rgb_sai {
+			compatible = "zmk,behavior-auto-repeat";
+			#binding-cells = <0>;
+			bindings = <&rgb_ug RGB_SAI>;
+			delay-ms = <450>;
+			interval-ms = <300>;
+		};
+
+		// Автоповтор: действие сразу, повтор через 450 мс, затем каждые 300 мс.
+		repeat_rgb_spd: repeat_rgb_spd {
+			compatible = "zmk,behavior-auto-repeat";
+			#binding-cells = <0>;
+			bindings = <&rgb_ug RGB_SPD>;
+			delay-ms = <450>;
+			interval-ms = <300>;
+		};
+
+		// Автоповтор: действие сразу, повтор через 450 мс, затем каждые 300 мс.
+		repeat_rgb_spi: repeat_rgb_spi {
+			compatible = "zmk,behavior-auto-repeat";
+			#binding-cells = <0>;
+			bindings = <&rgb_ug RGB_SPI>;
+			delay-ms = <450>;
+			interval-ms = <300>;
+		};
+
+		// Автоповтор: действие сразу, повтор через 450 мс, затем каждые 300 мс.
+		repeat_rgb_brd: repeat_rgb_brd {
+			compatible = "zmk,behavior-auto-repeat";
+			#binding-cells = <0>;
+			bindings = <&rgb_ug RGB_BRD>;
+			delay-ms = <450>;
+			interval-ms = <300>;
+		};
+
+		// Автоповтор: действие сразу, повтор через 450 мс, затем каждые 300 мс.
+		repeat_rgb_bri: repeat_rgb_bri {
+			compatible = "zmk,behavior-auto-repeat";
+			#binding-cells = <0>;
+			bindings = <&rgb_ug RGB_BRI>;
+			delay-ms = <450>;
+			interval-ms = <300>;
+		};
+
+		// Автоповтор: действие сразу, повтор через 450 мс, затем каждые 300 мс.
+		repeat_rgb_timeout_down: repeat_rgb_timeout_down {
+			compatible = "zmk,behavior-auto-repeat";
+			#binding-cells = <0>;
+			bindings = <&rgb_timer_custom 2>;
+			delay-ms = <450>;
+			interval-ms = <300>;
+		};
+
+		// Автоповтор: действие сразу, повтор через 450 мс, затем каждые 300 мс.
+		repeat_rgb_timeout_up: repeat_rgb_timeout_up {
+			compatible = "zmk,behavior-auto-repeat";
+			#binding-cells = <0>;
+			bindings = <&rgb_timer_custom 1>;
+			delay-ms = <450>;
+			interval-ms = <300>;
+		};
+
+		// Автоповтор: действие сразу, повтор через 450 мс, затем каждые 300 мс.
+		repeat_ws2812_brightness_down: repeat_ws2812_brightness_down {
+			compatible = "zmk,behavior-auto-repeat";
+			#binding-cells = <0>;
+			bindings = <&ws2812_wdg 6>;
+			delay-ms = <450>;
+			interval-ms = <300>;
+		};
+
+		// Автоповтор: действие сразу, повтор через 450 мс, затем каждые 300 мс.
+		repeat_ws2812_brightness_up: repeat_ws2812_brightness_up {
+			compatible = "zmk,behavior-auto-repeat";
+			#binding-cells = <0>;
+			bindings = <&ws2812_wdg 7>;
+			delay-ms = <450>;
+			interval-ms = <300>;
 		};
 
 		// Вспомогательный макрос для одиночного срабатывания комбо R+T:
@@ -1709,9 +1817,9 @@
 		service_layer {
 			display-name = "service_layer";
 			bindings = <
-				&slpall               &symb_eng_swap_toggle   &ws2812_wdg 8           &ws2812_wdg 6        &ws2812_wdg 7        &studio_unlock                     &none               &bt BT_CLR        &slpsrc           &bt BT_SEL 0        &bt BT_SEL 1       &bt BT_SEL 2     &bt BT_SEL 3
-				&rgb_timer_custom 0   &rgb_timer_custom 2     &rgb_timer_custom 1     &ws2812_wdg 5        &ws2812_wdg 2        &out OUT_BLE               &none   &none   &none       &kp C_BRI_DN      &kp C_BRI_UP      &rgb_ug RGB_HUD     &rgb_ug RGB_HUI    &rgb_ug RGB_SAD  &rgb_ug RGB_SAI
-				&bt BT_CLR_ALL        &kp LA(F4)              &none                   &kp LG(LC(LEFT))     &kp LG(LC(RIGHT))    &out OUT_USB    &none              &none               &rgb_ug RGB_EFR   &rgb_ug RGB_EFF   &rgb_ug RGB_SPD     &rgb_ug RGB_SPI    &rgb_ug RGB_BRD  &rgb_ug RGB_BRI
+				&slpall               &symb_eng_swap_toggle   &ws2812_wdg 8           &repeat_ws2812_brightness_down        &repeat_ws2812_brightness_up        &studio_unlock                     &none               &bt BT_CLR        &slpsrc           &bt BT_SEL 0        &bt BT_SEL 1       &bt BT_SEL 2     &bt BT_SEL 3
+				&rgb_timer_custom 0   &repeat_rgb_timeout_down     &repeat_rgb_timeout_up     &ws2812_wdg 5        &ws2812_wdg 2        &out OUT_BLE               &none   &none   &none       &kp C_BRI_DN      &kp C_BRI_UP      &repeat_rgb_hud     &repeat_rgb_hui    &repeat_rgb_sad  &repeat_rgb_sai
+				&bt BT_CLR_ALL        &kp LA(F4)              &none                   &kp LG(LC(LEFT))     &kp LG(LC(RIGHT))    &out OUT_USB    &none              &none               &rgb_ug RGB_EFR   &rgb_ug RGB_EFF   &repeat_rgb_spd     &repeat_rgb_spi    &repeat_rgb_brd  &repeat_rgb_bri
 				                                                                      &none                &none                &none                                                  &rgb_ug RGB_ON    &none             &rgb_ug RGB_OFF
 			>;
 			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;

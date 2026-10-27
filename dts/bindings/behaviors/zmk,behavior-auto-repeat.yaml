@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: MIT
+
+description: Repeats a nested ZMK behavior while the key is held.
+compatible: "zmk,behavior-auto-repeat"
+
+include: zero_param.yaml
+
+properties:
+  bindings:
+    type: phandle-array
+    required: true
+  delay-ms:
+    type: int
+    required: true
+  interval-ms:
+    type: int
+    required: true
