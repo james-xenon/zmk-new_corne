@@ -5,7 +5,7 @@
  *
  * Eyelash Corne smooth RGB36 extension:
  * - existing effect IDs 0..15 are preserved for saved-settings compatibility
- * - effects 16..35 add new ambient, motion, particle, and themed animations
+ * - effects 16..36 add new ambient, motion, particle, and themed animations
  * - all rendered frames pass through a common temporal smoothing layer
  * - RGB_EFF/RGB_EFR use a separate logical cycle order without renumbering IDs
  * - rgb_underglow_state layout is intentionally unchanged for settings compatibility
@@ -99,7 +99,7 @@ enum rgb_underglow_effect {
     UNDERGLOW_EFFECT_GALAXY,
     UNDERGLOW_EFFECT_SHIMMER,
     UNDERGLOW_EFFECT_NORTHERN_LIGHTS,
-
+    UNDERGLOW_EFFECT_COLUMN_PULSE,
     UNDERGLOW_EFFECT_NUMBER
 };
 
@@ -109,11 +109,9 @@ enum rgb_underglow_effect {
  * logically grouped: base/color -> ambient -> motion -> particles/themes.
  */
 static const uint8_t eyelash_effect_cycle_order[] = {
-    UNDERGLOW_EFFECT_SOLID,
     UNDERGLOW_EFFECT_BREATHE,
     UNDERGLOW_EFFECT_SPECTRUM,
     UNDERGLOW_EFFECT_SWIRL,
-    UNDERGLOW_EFFECT_COLUMN_RAINBOW,
     UNDERGLOW_EFFECT_RAINBOW_WAVE,
     UNDERGLOW_EFFECT_MOVING_GRADIENT,
     UNDERGLOW_EFFECT_PASTEL_FLOW,
@@ -125,7 +123,7 @@ static const uint8_t eyelash_effect_cycle_order[] = {
     UNDERGLOW_EFFECT_PLASMA,
     UNDERGLOW_EFFECT_PULSE_WAVE,
     UNDERGLOW_EFFECT_SHIMMER,
-
+    UNDERGLOW_EFFECT_COLUMN_PULSE,
     UNDERGLOW_EFFECT_SCANNER,
     UNDERGLOW_EFFECT_DUAL_SCANNER,
     UNDERGLOW_EFFECT_CENTER_OUT,
@@ -138,7 +136,6 @@ static const uint8_t eyelash_effect_cycle_order[] = {
     UNDERGLOW_EFFECT_ALTERNATING,
     UNDERGLOW_EFFECT_MATRIX,
     UNDERGLOW_EFFECT_SOFT_RAIN,
-
     UNDERGLOW_EFFECT_SPARKLE,
     UNDERGLOW_EFFECT_TWINKLE,
     UNDERGLOW_EFFECT_FIREFLIES,
@@ -147,6 +144,8 @@ static const uint8_t eyelash_effect_cycle_order[] = {
     UNDERGLOW_EFFECT_EMBERS,
     UNDERGLOW_EFFECT_GALAXY,
     UNDERGLOW_EFFECT_NORTHERN_LIGHTS,
+    UNDERGLOW_EFFECT_SOLID,
+    UNDERGLOW_EFFECT_COLUMN_RAINBOW,
 };
 
 struct rgb_underglow_state {
@@ -316,6 +315,18 @@ static struct led_rgb eyelash_effect_rgb(int hue, uint8_t saturation,
     return hsb_to_rgb(hsb_scale_zero_max(hsb));
 }
 
+/* Palette-relative hue controls: preserve the designed palette at HUE_START,
+ * while HUI/HUD rotate every hue in the palette by the same amount. */
+static int eyelash_palette_hue(int base_hue) {
+    return eyelash_wrap_hue(base_hue + (int)state.color.h -
+                            (int)CONFIG_ZMK_RGB_UNDERGLOW_HUE_START);
+}
+
+/* Let SAT controls desaturate a palette without destroying relative hue offsets. */
+static uint8_t eyelash_palette_saturation(uint8_t designed_saturation) {
+    return (uint8_t)(((uint16_t)MIN(designed_saturation, SAT_MAX) * state.color.s) / SAT_MAX);
+}
+
 static uint8_t eyelash_smooth_channel(uint8_t current, uint8_t target) {
     if (current == target) {
         return current;
@@ -381,7 +392,7 @@ static void zmk_rgb_underglow_effect_solid(void) {
 static void zmk_rgb_underglow_effect_breathe(void) {
     for (int i = 0; i < STRIP_NUM_PIXELS; i++) {
         struct zmk_led_hsb hsb = state.color;
-        hsb.b = abs(state.animation_step - 1200) / 12;
+        hsb.b = (uint8_t)(((uint16_t)state.color.b * abs(state.animation_step - 1200)) / 1200U);
         pixels[i] = hsb_to_rgb(hsb_scale_zero_max(hsb));
     }
 
@@ -587,11 +598,18 @@ static void zmk_rgb_underglow_effect_fire(void) {
         const uint32_t seed = col * 0x165667b1U + row * 0x27d4eb2dU;
         const uint8_t pct =
             eyelash_interpolated_random_level(seed, state.animation_step, 14U, 42U, 100U);
-        const uint32_t hue_rnd =
-            eyelash_hash32(seed + (state.animation_step / 14U) * 0x9e3779b9U);
-        const int hue = 4 + (int)(hue_rnd % 40U);
+        const uint16_t flame_frame = state.animation_step / 14U;
+        const uint8_t hue_frac = (uint8_t)(((state.animation_step % 14U) * 100U) / 14U);
+        const uint32_t hue_rnd0 = eyelash_hash32(seed + flame_frame * 0x9e3779b9U);
+        const uint32_t hue_rnd1 = eyelash_hash32(seed + (flame_frame + 1U) * 0x9e3779b9U);
+        const int jitter0 = (int)(hue_rnd0 % 11U) - 5;
+        const int jitter1 = (int)(hue_rnd1 % 11U) - 5;
+        const int jitter = jitter0 + ((jitter1 - jitter0) * hue_frac) / 100;
+        /* Brighter/hotter flame trends toward yellow; cooler areas stay red-orange. */
+        const int thermal_hue = 4 + (((int)pct - 42) * 34) / 58;
+        const int hue = eyelash_palette_hue(thermal_hue + jitter);
 
-        pixels[i] = eyelash_effect_rgb(hue, 100U, pct);
+        pixels[i] = eyelash_effect_rgb(hue, eyelash_palette_saturation(100U), pct);
     }
 
     state.animation_step =
@@ -614,7 +632,7 @@ static void zmk_rgb_underglow_effect_matrix(void) {
             pct = 6U + (uint8_t)(((uint32_t)94U * (tail - behind)) / tail);
         }
 
-        pixels[i] = eyelash_effect_rgb(120, 100, pct);
+        pixels[i] = eyelash_effect_rgb(eyelash_palette_hue(120), state.color.s, pct);
     }
 
     state.animation_step =
@@ -627,7 +645,7 @@ static void zmk_rgb_underglow_effect_matrix(void) {
 
 /* 16: Low-saturation pastel color flow. */
 static void zmk_rgb_underglow_effect_pastel_flow(void) {
-    const uint8_t sat = MIN(state.color.s, 48U);
+    const uint8_t sat = (uint8_t)(((uint16_t)state.color.s * 48U) / SAT_MAX);
 
     for (int i = 0; i < STRIP_NUM_PIXELS; i++) {
         const uint8_t col = eyelash_logical_column(i);
@@ -649,9 +667,9 @@ static void zmk_rgb_underglow_effect_ocean(void) {
         const uint8_t row = eyelash_logical_row(i);
         const uint8_t wave =
             eyelash_triangle_percent(state.animation_step + col * 22U + row * 37U, 240U);
-        const int hue = 175 + (int)((wave * 55U) / 100U);
+        const int hue = eyelash_palette_hue(175 + (int)((wave * 55U) / 100U));
         const uint8_t pct = 28U + (uint8_t)((wave * 72U) / 100U);
-        pixels[i] = eyelash_effect_rgb(hue, 88U, pct);
+        pixels[i] = eyelash_effect_rgb(hue, eyelash_palette_saturation(88U), pct);
     }
 
     state.animation_step = (state.animation_step + state.animation_speed) % 240U;
@@ -662,11 +680,11 @@ static void zmk_rgb_underglow_effect_sunset(void) {
     for (int i = 0; i < STRIP_NUM_PIXELS; i++) {
         const uint8_t col = eyelash_logical_column(i);
         const uint8_t row = eyelash_logical_row(i);
-        const int hue = 330 + (55 * col) / (EYELASH_LOGICAL_COLUMNS - 1U) + row * 3;
+        const int hue = eyelash_palette_hue(330 + (55 * col) / (EYELASH_LOGICAL_COLUMNS - 1U) + row * 3);
         const uint8_t wave =
             eyelash_triangle_percent(state.animation_step + col * 8U, 260U);
         const uint8_t pct = 62U + (uint8_t)((wave * 38U) / 100U);
-        pixels[i] = eyelash_effect_rgb(hue, 92U, pct);
+        pixels[i] = eyelash_effect_rgb(hue, eyelash_palette_saturation(92U), pct);
     }
 
     state.animation_step = (state.animation_step + state.animation_speed) % 260U;
@@ -682,9 +700,9 @@ static void zmk_rgb_underglow_effect_lava(void) {
         const uint8_t wave2 =
             eyelash_triangle_percent(state.animation_step * 2U + col * 13U, 170U);
         const uint8_t mix = (uint8_t)(((uint16_t)wave1 + wave2) / 2U);
-        const int hue = 2 + (int)((mix * 42U) / 100U);
+        const int hue = eyelash_palette_hue(2 + (int)((mix * 42U) / 100U));
         const uint8_t pct = 30U + (uint8_t)((mix * 70U) / 100U);
-        pixels[i] = eyelash_effect_rgb(hue, 100U, pct);
+        pixels[i] = eyelash_effect_rgb(hue, eyelash_palette_saturation(100U), pct);
     }
 
     state.animation_step = (state.animation_step + state.animation_speed) % 600U;
@@ -697,9 +715,9 @@ static void zmk_rgb_underglow_effect_forest(void) {
         const uint8_t row = eyelash_logical_row(i);
         const uint8_t wave =
             eyelash_triangle_percent(state.animation_step + col * 31U + row * 47U, 300U);
-        const int hue = 92 + (int)((wave * 48U) / 100U);
+        const int hue = eyelash_palette_hue(92 + (int)((wave * 48U) / 100U));
         const uint8_t pct = 22U + (uint8_t)((wave * 68U) / 100U);
-        pixels[i] = eyelash_effect_rgb(hue, 90U, pct);
+        pixels[i] = eyelash_effect_rgb(hue, eyelash_palette_saturation(90U), pct);
     }
 
     state.animation_step = (state.animation_step + state.animation_speed) % 300U;
@@ -717,7 +735,7 @@ static void zmk_rgb_underglow_effect_plasma(void) {
         const uint8_t mix = (uint8_t)(((uint16_t)a + b) / 2U);
         const int hue = state.color.h + (int)((mix * 240U) / 100U);
         const uint8_t pct = 45U + (uint8_t)((mix * 55U) / 100U);
-        pixels[i] = eyelash_effect_rgb(hue, MAX(state.color.s, 70U), pct);
+        pixels[i] = eyelash_effect_rgb(hue, state.color.s, pct);
     }
 
     state.animation_step = (state.animation_step + state.animation_speed) % 1000U;
@@ -885,8 +903,8 @@ static void zmk_rgb_underglow_effect_fireflies(void) {
         const uint8_t a = ((r0 & 0x1FU) < 5U) ? (uint8_t)(55U + ((r0 >> 8) % 46U)) : 3U;
         const uint8_t b = ((r1 & 0x1FU) < 5U) ? (uint8_t)(55U + ((r1 >> 8) % 46U)) : 3U;
         const uint8_t pct = eyelash_lerp_u8(a, b, frac);
-        const int hue = 70 + (int)((r0 >> 16) % 55U);
-        pixels[i] = eyelash_effect_rgb(hue, 92U, pct);
+        const int hue = eyelash_palette_hue(70 + (int)((r0 >> 16) % 55U));
+        pixels[i] = eyelash_effect_rgb(hue, eyelash_palette_saturation(92U), pct);
     }
 
     state.animation_step =
@@ -901,8 +919,8 @@ static void zmk_rgb_underglow_effect_candle(void) {
             eyelash_interpolated_random_level(seed, state.animation_step, 24U, 52U, 88U);
         const uint32_t r =
             eyelash_hash32(seed + (state.animation_step / 24U) * 0x27d4eb2dU);
-        const int hue = 24 + (int)(r % 14U);
-        pixels[i] = eyelash_effect_rgb(hue, 88U, pct);
+        const int hue = eyelash_palette_hue(24 + (int)(r % 14U));
+        pixels[i] = eyelash_effect_rgb(hue, eyelash_palette_saturation(88U), pct);
     }
 
     state.animation_step =
@@ -923,8 +941,8 @@ static void zmk_rgb_underglow_effect_embers(void) {
         const uint8_t a = ((r0 & 0x0FU) < 4U) ? (uint8_t)(50U + ((r0 >> 8) % 51U)) : 8U;
         const uint8_t b = ((r1 & 0x0FU) < 4U) ? (uint8_t)(50U + ((r1 >> 8) % 51U)) : 8U;
         const uint8_t pct = eyelash_lerp_u8(a, b, frac);
-        const int hue = 2 + (int)((r0 >> 16) % 32U);
-        pixels[i] = eyelash_effect_rgb(hue, 100U, pct);
+        const int hue = eyelash_palette_hue(2 + (int)((r0 >> 16) % 32U));
+        pixels[i] = eyelash_effect_rgb(hue, eyelash_palette_saturation(100U), pct);
     }
 
     state.animation_step =
@@ -950,8 +968,8 @@ static void zmk_rgb_underglow_effect_soft_rain(void) {
             pct = 10U + (uint8_t)((90U * (sub * 2U - behind)) / (sub * 2U));
         }
 
-        const int hue = 185 + col * 4;
-        pixels[i] = eyelash_effect_rgb(hue, 82U, pct);
+        const int hue = eyelash_palette_hue(185 + col * 4);
+        pixels[i] = eyelash_effect_rgb(hue, eyelash_palette_saturation(82U), pct);
     }
 
     state.animation_step =
@@ -976,8 +994,8 @@ static void zmk_rgb_underglow_effect_galaxy(void) {
         const uint8_t b = ((r1 & 0x1FU) < 4U) ? (uint8_t)(60U + ((r1 >> 8) % 41U))
                                              : (uint8_t)(15U + ((col + row) % 12U));
         const uint8_t pct = eyelash_lerp_u8(a, b, frac);
-        const int hue = 225 + (int)((r0 >> 16) % 70U);
-        pixels[i] = eyelash_effect_rgb(hue, 82U, pct);
+        const int hue = eyelash_palette_hue(225 + (int)((r0 >> 16) % 70U));
+        pixels[i] = eyelash_effect_rgb(hue, eyelash_palette_saturation(82U), pct);
     }
 
     state.animation_step =
@@ -1009,12 +1027,28 @@ static void zmk_rgb_underglow_effect_northern_lights(void) {
         const uint8_t wave2 =
             eyelash_triangle_percent(state.animation_step * 2U + col * 11U, 210U);
         const uint8_t mix = (uint8_t)(((uint16_t)wave1 + wave2) / 2U);
-        const int hue = 115 + (int)((mix * 95U) / 100U);
+        const int hue = eyelash_palette_hue(115 + (int)((mix * 95U) / 100U));
         const uint8_t pct = 24U + (uint8_t)((mix * 76U) / 100U);
-        pixels[i] = eyelash_effect_rgb(hue, 90U, pct);
+        pixels[i] = eyelash_effect_rgb(hue, eyelash_palette_saturation(90U), pct);
     }
 
     state.animation_step = (state.animation_step + state.animation_speed) % 1000U;
+}
+
+/* 36: Seven smooth column pulses with phase offsets; one column is a visual group. */
+static void zmk_rgb_underglow_effect_column_pulse(void) {
+    const uint16_t period = 280U;
+    const uint16_t phase_step = period / EYELASH_LOGICAL_COLUMNS;
+
+    for (int i = 0; i < STRIP_NUM_PIXELS; i++) {
+        const uint8_t col = eyelash_logical_column(i);
+        const uint16_t phase = (state.animation_step + col * phase_step) % period;
+        const uint8_t wave = eyelash_triangle_percent(phase, period);
+        const uint8_t pct = 6U + (uint8_t)((wave * 94U) / 100U);
+        pixels[i] = eyelash_effect_rgb(state.color.h, state.color.s, pct);
+    }
+
+    state.animation_step = (state.animation_step + state.animation_speed * 2U) % period;
 }
 
 static void zmk_rgb_underglow_tick(struct k_work *work) {
@@ -1126,6 +1160,9 @@ static void zmk_rgb_underglow_tick(struct k_work *work) {
         break;
     case UNDERGLOW_EFFECT_NORTHERN_LIGHTS:
         zmk_rgb_underglow_effect_northern_lights();
+        break;
+    case UNDERGLOW_EFFECT_COLUMN_PULSE:
+        zmk_rgb_underglow_effect_column_pulse();
         break;
     default:
         zmk_rgb_underglow_effect_solid();
