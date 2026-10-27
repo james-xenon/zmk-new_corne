@@ -1,3 +1,2 @@
 # SPDX-License-Identifier: MIT
-zephyr_library()
-zephyr_library_sources(src/behavior_auto_repeat.c)
+target_sources(app PRIVATE src/behavior_auto_repeat.c)
