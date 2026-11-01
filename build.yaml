@@ -7,7 +7,14 @@ include:
   - board: nice_nano_v2
     shield: eyelash_corne_left nice_view
     snippet: studio-rpc-usb-uart
-    cmake-args: -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_STUDIO_LOCKING=n
+    cmake-args: >-
+      -DCONFIG_ZMK_STUDIO=y
+      -DCONFIG_ZMK_STUDIO_LOCKING=n
+      -DCONFIG_ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_FETCHING=y
+      -DCONFIG_ZMK_SPLIT_BLE_CENTRAL_POSITION_QUEUE_SIZE=20
+      -DCONFIG_ZMK_SPLIT_BLE_CENTRAL_SPLIT_RUN_QUEUE_SIZE=16
+      -DCONFIG_ZMK_SPLIT_BLE_PREF_LATENCY=7
+      -DCONFIG_ZMK_POINTING_SMOOTH_SCROLLING=y
     artifact-name: eyelash_corne_studio_left
 
   - board: nice_nano_v2

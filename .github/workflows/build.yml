@@ -86,7 +86,7 @@ jobs:
             ${{ env.base_dir }}/zephyr/
             ${{ env.base_dir }}/bootloader/
             ${{ env.base_dir }}/zmk/
-          key: ${{ runner.os }}-build-${{ env.cache_name }}-${{ hashFiles('**/west.yml', '**/build.yaml', 'patches/rgb_underglow.c', 'patches/patch_battery_vddh.py', 'patches/patch_qdec_sample_fifo.py', 'patches/patch_zmk_sensor_fifo.py') }}
+          key: ${{ runner.os }}-build-${{ env.cache_name }}-${{ hashFiles('**/west.yml', '**/build.yaml', '**/*.conf', 'patches/rgb_underglow.c', 'patches/patch_battery_vddh.py', 'patches/patch_qdec_sample_fifo.py', 'patches/patch_zmk_sensor_fifo.py', 'patches/patch_firmware_power.py') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache_name }}-
             ${{ runner.os }}-build-
@@ -177,6 +177,7 @@ jobs:
           # contains a battery.c modified by an older battery patch.
           git -C "${{ env.base_dir }}/zmk" restore --source=HEAD -- app/src/battery.c
 
+          rm -f "${{ env.base_dir }}/zmk/app/src/battery.c.before_vddh_patch.bak"
           python3 "${GITHUB_WORKSPACE}/patches/patch_battery_vddh.py" \
               "${{ env.base_dir }}/zmk/app/src/battery.c"
 
@@ -186,6 +187,38 @@ jobs:
               "${{ env.base_dir }}/zmk/app/src/battery.c"
 
           echo "VDDH battery workaround verification passed."
+
+      - name: Apply SAADC, SPIM3 and WS2812 idle-power fixes
+        shell: sh -e {0}
+        run: |
+          set -eu
+          zephyr_dir="${{ env.base_dir }}/zephyr"
+          hal_nordic_dir="${{ env.base_dir }}/modules/hal/nordic"
+          widget_module="${{ env.base_dir }}/zmk-ws2812-driver"
+          saadc_file="$zephyr_dir/drivers/adc/adc_nrfx_saadc.c"
+          spim_file="$hal_nordic_dir/nrfx/drivers/src/nrfx_spim.c"
+          widget_file="$widget_module/src/widget.c"
+
+          test -f "${GITHUB_WORKSPACE}/patches/patch_firmware_power.py"
+          test -f "$saadc_file"
+          test -f "$spim_file"
+          test -f "$widget_file"
+
+          # Reset cached dependency sources before applying deterministic patches.
+          git -C "$zephyr_dir" restore --source=HEAD -- drivers/adc/adc_nrfx_saadc.c
+          git -C "$hal_nordic_dir" restore --source=HEAD -- nrfx/drivers/src/nrfx_spim.c
+          git -C "$widget_module" restore --source=HEAD -- src/widget.c
+          rm -f "$saadc_file.before_power_patch.bak" \
+                "$spim_file.before_power_patch.bak" \
+                "$widget_file.before_power_patch.bak"
+
+          python3 "${GITHUB_WORKSPACE}/patches/patch_firmware_power.py" \
+            "$saadc_file" "$spim_file" "$widget_file"
+
+          grep -Fq 'ZMK_SAADC_LOW_POWER_STOP_SEQUENCE_V1' "$saadc_file"
+          grep -Fq 'ZMK_SPIM3_ANOMALY_195_AFTER_EACH_DISABLE_V1' "$spim_file"
+          grep -Fq 'ZMK_WS2812_IDLE_EXT_POWER_PATCH_V1' "$widget_file"
+          echo "SAADC, SPIM3 Anomaly 195 and WS2812 idle-power fixes verified."
 
       - name: West Zephyr export
         working-directory: ${{ env.base_dir }}
