@@ -149,7 +149,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   numb_layer:
   - AL CALCULATOR
-  - KP MULTIPLY
+  - {t: '&macro_comma_uni COMMA', h: KP MULTIPLY}
   - {t: '9', s: (}
   - {t: '8', s: '*'}
   - {t: '7', s: '&'}
@@ -159,7 +159,7 @@ layers:
   - {t: '7', s: '&'}
   - {t: '8', s: '*'}
   - {t: '9', s: (}
-  - KP MULTIPLY
+  - {t: '&macro_comma_uni COMMA', h: KP MULTIPLY}
   - AL CALCULATOR
   - {t: '$$mdi:backspace$$', h: symbnolight_layer}
   - {t: '0', s: )}
@@ -176,8 +176,8 @@ layers:
   - {t: '6', s: ^}
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', type: backspace}
-  - KP ENTER
-  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: KP ENTER, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: '&macro_dot_uni DOT', h: KP DIVIDE}
   - {t: '3', s: '#'}
   - {t: '2', s: '@'}
   - {t: '1', s: '!'}
@@ -188,8 +188,8 @@ layers:
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
   - {t: '3', s: '#'}
-  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
-  - KP ENTER
+  - {t: '&macro_dot_uni DOT', h: KP DIVIDE}
+  - {t: KP ENTER, h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:keyboard-space$$
@@ -198,7 +198,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   numbnolight_layer:
   - AL CALCULATOR
-  - KP MULTIPLY
+  - {t: '&macro_comma_uni COMMA', h: KP MULTIPLY}
   - {t: '9', s: (}
   - {t: '8', s: '*'}
   - {t: '7', s: '&'}
@@ -208,7 +208,7 @@ layers:
   - {t: '7', s: '&'}
   - {t: '8', s: '*'}
   - {t: '9', s: (}
-  - KP MULTIPLY
+  - {t: '&macro_comma_uni COMMA', h: KP MULTIPLY}
   - AL CALCULATOR
   - {t: '$$mdi:backspace$$', h: symbnolight_layer}
   - {t: '0', s: )}
@@ -225,8 +225,8 @@ layers:
   - {t: '6', s: ^}
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', h: symbnolight_layer, type: held alternate}
-  - KP ENTER
-  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: KP ENTER, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: '&macro_dot_uni DOT', h: KP DIVIDE}
   - {t: '3', s: '#'}
   - {t: '2', s: '@'}
   - {t: '1', s: '!'}
@@ -237,8 +237,8 @@ layers:
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
   - {t: '3', s: '#'}
-  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
-  - KP ENTER
+  - {t: '&macro_dot_uni DOT', h: KP DIVIDE}
+  - {t: KP ENTER, h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:keyboard-space$$
@@ -296,7 +296,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   numbnolightcopy_layer:
   - AL CALCULATOR
-  - KP MULTIPLY
+  - {t: '&macro_comma_uni COMMA', h: KP MULTIPLY}
   - {t: '9', s: (}
   - {t: '8', s: '*'}
   - {t: '7', s: '&'}
@@ -306,7 +306,7 @@ layers:
   - {t: '7', s: '&'}
   - {t: '8', s: '*'}
   - {t: '9', s: (}
-  - KP MULTIPLY
+  - {t: '&macro_comma_uni COMMA', h: KP MULTIPLY}
   - AL CALCULATOR
   - {t: '$$mdi:backspace$$', type: held}
   - {t: '0', s: )}
@@ -323,8 +323,8 @@ layers:
   - {t: '6', s: ^}
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', type: held}
-  - KP ENTER
-  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: KP ENTER, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: '&macro_dot_uni DOT', h: KP DIVIDE}
   - {t: '3', s: '#'}
   - {t: '2', s: '@'}
   - {t: '1', s: '!'}
@@ -335,8 +335,8 @@ layers:
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
   - {t: '3', s: '#'}
-  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
-  - KP ENTER
+  - {t: '&macro_dot_uni DOT', h: KP DIVIDE}
+  - {t: KP ENTER, h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
   - $$mdi:keyboard-space$$
@@ -394,7 +394,7 @@ layers:
   - {t: '&win_space', h: nav2nolight_layer}
   numbnolight_2_layer:
   - AL CALCULATOR
-  - KP MULTIPLY
+  - {t: ',', h: KP MULTIPLY, s: <}
   - {t: '9', s: (}
   - {t: '8', s: '*'}
   - {t: '7', s: '&'}
@@ -404,7 +404,7 @@ layers:
   - {t: '7', s: '&'}
   - {t: '8', s: '*'}
   - {t: '9', s: (}
-  - KP MULTIPLY
+  - {t: ',', h: KP MULTIPLY, s: <}
   - AL CALCULATOR
   - {t: '$$mdi:backspace$$', h: symbnolight_2_layer, type: held alternate}
   - {t: '0', s: )}
@@ -421,8 +421,8 @@ layers:
   - {t: '6', s: ^}
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', h: symbnolight_2_layer, type: held alternate}
-  - KP ENTER
-  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: KP ENTER, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: ., h: KP DIVIDE, s: '>'}
   - {t: '3', s: '#'}
   - {t: '2', s: '@'}
   - {t: '1', s: '!'}
@@ -433,8 +433,8 @@ layers:
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
   - {t: '3', s: '#'}
-  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
-  - KP ENTER
+  - {t: ., h: KP DIVIDE, s: '>'}
+  - {t: KP ENTER, h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:keyboard-space$$
@@ -1080,7 +1080,7 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   numbnolight_copy_2_layer:
   - AL CALCULATOR
-  - KP MULTIPLY
+  - {t: ',', h: KP MULTIPLY, s: <}
   - {t: '9', s: (}
   - {t: '8', s: '*'}
   - {t: '7', s: '&'}
@@ -1090,7 +1090,7 @@ layers:
   - {t: '7', s: '&'}
   - {t: '8', s: '*'}
   - {t: '9', s: (}
-  - KP MULTIPLY
+  - {t: ',', h: KP MULTIPLY, s: <}
   - AL CALCULATOR
   - {t: '$$mdi:backspace$$', type: held}
   - {t: '0', s: )}
@@ -1107,8 +1107,8 @@ layers:
   - {t: '6', s: ^}
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', type: held}
-  - KP ENTER
-  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: KP ENTER, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: ., h: KP DIVIDE, s: '>'}
   - {t: '3', s: '#'}
   - {t: '2', s: '@'}
   - {t: '1', s: '!'}
@@ -1119,8 +1119,8 @@ layers:
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
   - {t: '3', s: '#'}
-  - {t: KP DIVIDE, h: '$$mdi:apple-keyboard-shift$$'}
-  - KP ENTER
+  - {t: ., h: KP DIVIDE, s: '>'}
+  - {t: KP ENTER, h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
   - $$mdi:keyboard-space$$
