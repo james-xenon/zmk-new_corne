@@ -17,6 +17,7 @@ layout.  It fails closed if the source differs or if an older V1 patch is found.
 from __future__ import annotations
 
 import os
+import re
 import sys
 import tempfile
 from pathlib import Path
@@ -32,6 +33,49 @@ def require_once(source: str, anchor: str, description: str) -> None:
             f"battery patch: expected exactly one {description} anchor, found {count}; "
             "no file changed"
         )
+
+
+def find_soc_get_anchor(source: str) -> str:
+    """Return the SOC channel_get call and its rc-error block.
+
+    Match the actual C operation, not the LOG_DBG wording or exact indentation.
+    Those diagnostics are not part of the sensor API and can differ between
+    compatible ZMK v0.3.0 source trees.
+    """
+    lines = source.splitlines(keepends=True)
+    call_re = re.compile(
+        r"^[ \t]*rc\s*=\s*sensor_channel_get\s*\(\s*battery\s*,\s*"
+        r"SENSOR_CHAN_GAUGE_STATE_OF_CHARGE\s*,\s*&state_of_charge\s*\)\s*;\s*$"
+    )
+    matches = [i for i, line in enumerate(lines) if call_re.match(line.rstrip("\r\n"))]
+    if len(matches) != 1:
+        raise SystemExit(
+            "battery patch: expected exactly one STATE_OF_CHARGE channel_get call, "
+            f"found {len(matches)}; no file changed"
+        )
+
+    start = matches[0]
+    block_start = start + 1
+    while block_start < len(lines) and not lines[block_start].strip():
+        block_start += 1
+    if block_start >= len(lines) or not re.search(
+        r"\bif\s*\(\s*rc\s*!=\s*0\s*\)\s*\{", lines[block_start]
+    ):
+        raise SystemExit(
+            "battery patch: STATE_OF_CHARGE channel_get is not followed by the "
+            "expected rc error check; no file changed"
+        )
+
+    depth = 0
+    for end in range(block_start, min(len(lines), block_start + 16)):
+        depth += lines[end].count("{") - lines[end].count("}")
+        if depth == 0:
+            return "".join(lines[start : end + 1])
+
+    raise SystemExit(
+        "battery patch: could not find the end of the STATE_OF_CHARGE rc error "
+        "block; no file changed"
+    )
 
 
 def main() -> int:
@@ -61,13 +105,7 @@ def main() -> int:
         "\n"
         "    rc = sensor_sample_fetch_chan(battery, SENSOR_CHAN_GAUGE_STATE_OF_CHARGE);\n"
     )
-    soc_get_anchor = (
-        "    rc = sensor_channel_get(battery, SENSOR_CHAN_GAUGE_STATE_OF_CHARGE, &state_of_charge);\n"
-        "    if (rc != 0) {\n"
-        '        LOG_DBG("Failed to get battery state of charge: %d", rc);\n'
-        "        return rc;\n"
-        "    }\n"
-    )
+    soc_get_anchor = find_soc_get_anchor(source)
     listener_anchor = (
         "static int battery_event_listener(const zmk_event_t *eh) {\n"
         "\n"
