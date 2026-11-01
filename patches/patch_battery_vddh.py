@@ -68,12 +68,8 @@ def main() -> int:
         "\n"
         "    rc = sensor_sample_fetch_chan(battery, SENSOR_CHAN_GAUGE_STATE_OF_CHARGE);\n"
     )
-    soc_get_anchor = (
-        "    rc = sensor_channel_get(battery, SENSOR_CHAN_GAUGE_STATE_OF_CHARGE, &state_of_charge);\n"
-        "    if (rc != 0) {\n"
-        '        LOG_DBG("Failed to get battery state of charge: %d", rc);\n'
-        "        return rc;\n"
-        "    }\n"
+    soc_mode_end_anchor = (
+        "#elif IS_ENABLED(CONFIG_ZMK_BATTERY_REPORTING_FETCH_MODE_LITHIUM_VOLTAGE)\n"
     )
     listener_anchor = (
         "static int battery_event_listener(const zmk_event_t *eh) {\n"
@@ -85,7 +81,7 @@ def main() -> int:
 
     require_once(source, "#include <zephyr/drivers/sensor.h>\n", "sensor include")
     require_once(source, soc_fetch_anchor, "STATE_OF_CHARGE fetch")
-    require_once(source, soc_get_anchor, "STATE_OF_CHARGE channel_get")
+    require_once(source, soc_mode_end_anchor, "STATE_OF_CHARGE mode end")
     require_once(source, listener_anchor, "battery event listener")
     require_once(source, subscription_anchor, "activity subscription")
     require_once(source, init_anchor, "battery initialization")
@@ -279,7 +275,7 @@ static bool zmk_battery_accept_vddh_sample(int32_t measured_mv) {
     # ------------------------------------------------------------------
     # Read GAUGE_VOLTAGE from the same sample and gate publication.
     # ------------------------------------------------------------------
-    voltage_block = soc_get_anchor + r'''
+    voltage_block = r'''
     struct sensor_value voltage;
     rc = sensor_channel_get(battery, SENSOR_CHAN_GAUGE_VOLTAGE, &voltage);
     if (rc != 0) {
@@ -292,7 +288,7 @@ static bool zmk_battery_accept_vddh_sample(int32_t measured_mv) {
         return 0;
     }
 '''
-    source = source.replace(soc_get_anchor, voltage_block, 1)
+    source = source.replace(soc_mode_end_anchor, voltage_block + soc_mode_end_anchor, 1)
 
     # ------------------------------------------------------------------
     # USB connection events on the central half.  The disconnect event does
