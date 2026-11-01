@@ -1271,6 +1271,24 @@
 			bindings = <&kp>, <&kp>;
 		};
 
+		// Hold-Tap div_dot_ht: тап=. (Alt-code), холд=KP_DIVIDE
+		div_dot_ht: div_dot_ht {
+			compatible = "zmk,behavior-hold-tap";
+			#binding-cells = <2>;
+			flavor = "hold-preferred";
+			tapping-term-ms = <200>;
+			bindings = <&kp>, <&macro_dot_uni>;
+		};
+
+		// Hold-Tap mul_comma_ht: тап=, (Alt-code), холд=KP_MULTIPLY
+		mul_comma_ht: mul_comma_ht {
+			compatible = "zmk,behavior-hold-tap";
+			#binding-cells = <2>;
+			flavor = "hold-preferred";
+			tapping-term-ms = <200>;
+			bindings = <&kp>, <&macro_comma_uni>;
+		};
+
 		// ============================================================
 		// Английские символьные hold-tap
 		// ============================================================
@@ -1726,10 +1744,10 @@
 		numb_layer {
 			display-name = "numb_layer";
 			bindings = <
-				&kp C_AL_CALCULATOR                         &kp KP_MULTIPLY                     &kp N9  &kp N8  &kp N7  &kp KP_PLUS                                     &msc SCRL_UP                       &kp KP_PLUS    &kp N7  &kp N8  &kp N9  &kp KP_MULTIPLY                  &kp C_AL_CALCULATOR
-				&bspc_to_layer_ht SYMB_NOLIGHT_LAYER BSPC   &kp N0                              &kp N6  &kp N5  &kp N4  &kp KP_MINUS                  &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &kp KP_MINUS   &kp N4  &kp N5  &kp N6  &kp N0                           &kp BSPC
-				&kp KP_ENTER                                &div_lshft_ht LSHFT KP_DIVIDE       &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                          &msc SCRL_DOWN                     &kp KP_EQUAL   &kp N1  &kp N2  &kp N3  &div_lshft_ht LSHFT KP_DIVIDE    &kp KP_ENTER
-				                                                                                        &trans  &trans  &kp SPACE                                                                          &kp ENTER      &trans  &trans
+				&kp C_AL_CALCULATOR                         &mul_comma_ht KP_MULTIPLY COMMA   &kp N9  &kp N8  &kp N7  &kp KP_PLUS                                     &msc SCRL_UP                       &kp KP_PLUS    &kp N7  &kp N8  &kp N9  &mul_comma_ht KP_MULTIPLY COMMA   &kp C_AL_CALCULATOR
+				&bspc_to_layer_ht SYMB_NOLIGHT_LAYER BSPC   &kp N0                            &kp N6  &kp N5  &kp N4  &kp KP_MINUS                  &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &kp KP_MINUS   &kp N4  &kp N5  &kp N6  &kp N0                            &kp BSPC
+				&div_lshft_ht LSHFT KP_ENTER                &div_dot_ht KP_DIVIDE DOT         &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                          &msc SCRL_DOWN                     &kp KP_EQUAL   &kp N1  &kp N2  &kp N3  &div_dot_ht KP_DIVIDE DOT         &div_lshft_ht LSHFT KP_ENTER
+				                                                                                      &trans  &trans  &kp SPACE                                                                          &kp ENTER      &trans  &trans
 			>;
 			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
 		};
@@ -1739,10 +1757,10 @@
 		numbnolight_layer {
 			display-name = "numbnolight_layer";
 			bindings = <
-				&kp C_AL_CALCULATOR                       &kp KP_MULTIPLY                  &kp N9  &kp N8  &kp N7  &kp KP_PLUS                                  &msc SCRL_UP                      &kp KP_PLUS     &kp N7  &kp N8  &kp N9  &kp KP_MULTIPLY                  &kp C_AL_CALCULATOR
-				&bspc_to_layer_ht SYMB_NOLIGHT_LAYER BSPC &kp N0                           &kp N6  &kp N5  &kp N4  &kp KP_MINUS                &msc SCRL_LEFT   &mkp LCLK       &msc SCRL_RIGHT   &kp KP_MINUS    &kp N4  &kp N5  &kp N6  &kp N0                           &bspc_to_layer_ht SYMB_NOLIGHT_LAYER BSPC
-				&kp KP_ENTER                              &div_lshft_ht LSHFT KP_DIVIDE    &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                       &msc SCRL_DOWN                    &kp KP_EQUAL    &kp N1  &kp N2  &kp N3  &div_lshft_ht LSHFT KP_DIVIDE    &kp KP_ENTER
-				                                                                                   &trans  &trans  &kp SPACE                                                                      &kp ENTER       &trans  &trans
+				&kp C_AL_CALCULATOR                          &mul_comma_ht KP_MULTIPLY COMMA    &kp N9  &kp N8  &kp N7  &kp KP_PLUS                                  &msc SCRL_UP                      &kp KP_PLUS     &kp N7  &kp N8  &kp N9  &mul_comma_ht KP_MULTIPLY COMMA    &kp C_AL_CALCULATOR
+				&bspc_to_layer_ht SYMB_NOLIGHT_LAYER BSPC    &kp N0                             &kp N6  &kp N5  &kp N4  &kp KP_MINUS                &msc SCRL_LEFT   &mkp LCLK       &msc SCRL_RIGHT   &kp KP_MINUS    &kp N4  &kp N5  &kp N6  &kp N0                             &bspc_to_layer_ht SYMB_NOLIGHT_LAYER BSPC
+				&div_lshft_ht LSHFT KP_ENTER                 &div_dot_ht KP_DIVIDE DOT          &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                       &msc SCRL_DOWN                    &kp KP_EQUAL    &kp N1  &kp N2  &kp N3  &div_dot_ht KP_DIVIDE DOT          &div_lshft_ht LSHFT KP_ENTER
+				                                                                                        &trans  &trans  &kp SPACE                                                                      &kp ENTER       &trans  &trans
 			>;
 			sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
 		};
@@ -1764,10 +1782,10 @@
 		numbnolightcopy_layer {
 			display-name = "numbnolightcopy_layer";
 			bindings = <
-				&kp C_AL_CALCULATOR   &kp KP_MULTIPLY                  &kp N9  &kp N8  &kp N7  &kp KP_PLUS                                      &msc SCRL_UP                       &kp KP_PLUS    &kp N7  &kp N8  &kp N9  &kp KP_MULTIPLY                  &kp C_AL_CALCULATOR
-				&kp BSPC              &kp N0                           &kp N6  &kp N5  &kp N4  &kp KP_MINUS                   &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &kp KP_MINUS   &kp N4  &kp N5  &kp N6  &kp N0                           &kp BSPC
-				&kp KP_ENTER          &div_lshft_ht LSHFT KP_DIVIDE    &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                           &msc SCRL_DOWN                     &kp KP_EQUAL   &kp N1  &kp N2  &kp N3  &div_lshft_ht LSHFT KP_DIVIDE    &kp KP_ENTER
-				                                                               &trans  &trans  &kp SPACE                                                                           &kp ENTER      &trans  &trans
+				&kp C_AL_CALCULATOR             &mul_comma_ht KP_MULTIPLY COMMA  &kp N9  &kp N8  &kp N7  &kp KP_PLUS                                      &msc SCRL_UP                       &kp KP_PLUS    &kp N7  &kp N8  &kp N9  &mul_comma_ht KP_MULTIPLY COMMA   &kp C_AL_CALCULATOR
+				&kp BSPC                        &kp N0                           &kp N6  &kp N5  &kp N4  &kp KP_MINUS                   &msc SCRL_LEFT    &mkp LCLK       &msc SCRL_RIGHT    &kp KP_MINUS   &kp N4  &kp N5  &kp N6  &kp N0                            &kp BSPC
+				&div_lshft_ht LSHFT KP_ENTER    &div_dot_ht KP_DIVIDE DOT        &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                           &msc SCRL_DOWN                     &kp KP_EQUAL   &kp N1  &kp N2  &kp N3  &div_dot_ht KP_DIVIDE DOT         &div_lshft_ht LSHFT KP_ENTER
+				                                                                         &trans  &trans  &kp SPACE                                                                           &kp ENTER      &trans  &trans
 			>;
 			sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
 		};
@@ -1794,10 +1812,10 @@
 		numbnolight_2_layer {
 			display-name = "numbnolight_2_layer";
 			bindings = <
-				&kp C_AL_CALCULATOR                             &kp KP_MULTIPLY                  &kp N9  &kp N8  &kp N7  &kp KP_PLUS                                     &msc SCRL_UP                      &kp KP_PLUS     &kp N7  &kp N8  &kp N9  &kp KP_MULTIPLY                  &kp C_AL_CALCULATOR
-				&bspc_to_layer_ht SYMB_ENG_NOLIGHT_LAYER BSPC   &kp N0                           &kp N6  &kp N5  &kp N4  &kp KP_MINUS                   &msc SCRL_LEFT   &mkp LCLK       &msc SCRL_RIGHT   &kp KP_MINUS    &kp N4  &kp N5  &kp N6  &kp N0                           &bspc_to_layer_ht SYMB_ENG_NOLIGHT_LAYER BSPC
-				&kp KP_ENTER                                    &div_lshft_ht LSHFT KP_DIVIDE    &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                          &msc SCRL_DOWN                    &kp KP_EQUAL    &kp N1  &kp N2  &kp N3  &div_lshft_ht LSHFT KP_DIVIDE    &kp KP_ENTER
-				                                                                                         &trans  &trans  &kp SPACE                                                                         &kp ENTER       &trans  &trans
+				&kp C_AL_CALCULATOR                             &eng_ht KP_MULTIPLY COMMA   &kp N9  &kp N8  &kp N7  &kp KP_PLUS                                     &msc SCRL_UP                      &kp KP_PLUS     &kp N7  &kp N8  &kp N9  &eng_ht KP_MULTIPLY COMMA   &kp C_AL_CALCULATOR
+				&bspc_to_layer_ht SYMB_ENG_NOLIGHT_LAYER BSPC   &kp N0                      &kp N6  &kp N5  &kp N4  &kp KP_MINUS                   &msc SCRL_LEFT   &mkp LCLK       &msc SCRL_RIGHT   &kp KP_MINUS    &kp N4  &kp N5  &kp N6  &kp N0                      &bspc_to_layer_ht SYMB_ENG_NOLIGHT_LAYER BSPC
+				&div_lshft_ht LSHFT KP_ENTER                    &eng_ht KP_DIVIDE DOT       &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                          &msc SCRL_DOWN                    &kp KP_EQUAL    &kp N1  &kp N2  &kp N3  &eng_ht KP_DIVIDE DOT       &div_lshft_ht LSHFT KP_ENTER
+				                                                                                    &trans  &trans  &kp SPACE                                                                         &kp ENTER       &trans  &trans
 			>;
 			sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
 		};
@@ -1969,10 +1987,10 @@
 		numbnolight_copy_2_layer {
 			display-name = "numbnolight_copy_2_layer";
 			bindings = <
-				&kp C_AL_CALCULATOR   &kp KP_MULTIPLY                  &kp N9  &kp N8  &kp N7  &kp KP_PLUS                                 &msc SCRL_UP                      &kp KP_PLUS     &kp N7  &kp N8  &kp N9  &kp KP_MULTIPLY                  &kp C_AL_CALCULATOR
-				&kp BSPC              &kp N0                           &kp N6  &kp N5  &kp N4  &kp KP_MINUS               &msc SCRL_LEFT   &mkp LCLK       &msc SCRL_RIGHT   &kp KP_MINUS    &kp N4  &kp N5  &kp N6  &kp N0                           &kp BSPC
-				&kp KP_ENTER          &div_lshft_ht LSHFT KP_DIVIDE    &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                      &msc SCRL_DOWN                    &kp KP_EQUAL    &kp N1  &kp N2  &kp N3  &div_lshft_ht LSHFT KP_DIVIDE    &kp KP_ENTER
-				                                                               &trans  &trans  &kp SPACE                                                                     &kp ENTER       &trans  &trans
+				&kp C_AL_CALCULATOR               &eng_ht KP_MULTIPLY COMMA    &kp N9  &kp N8  &kp N7  &kp KP_PLUS                                 &msc SCRL_UP                      &kp KP_PLUS     &kp N7  &kp N8  &kp N9  &eng_ht KP_MULTIPLY COMMA   &kp C_AL_CALCULATOR
+				&kp BSPC                          &kp N0                       &kp N6  &kp N5  &kp N4  &kp KP_MINUS               &msc SCRL_LEFT   &mkp LCLK       &msc SCRL_RIGHT   &kp KP_MINUS    &kp N4  &kp N5  &kp N6  &kp N0                      &kp BSPC
+				&div_lshft_ht LSHFT KP_ENTER      &eng_ht KP_DIVIDE DOT        &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                      &msc SCRL_DOWN                    &kp KP_EQUAL    &kp N1  &kp N2  &kp N3  &eng_ht KP_DIVIDE DOT       &div_lshft_ht LSHFT KP_ENTER
+				                                                                           &trans  &trans  &kp SPACE                                                                 &kp ENTER       &trans  &trans
 			>;
 			sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
 		};
