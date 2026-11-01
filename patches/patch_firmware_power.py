@@ -2,14 +2,16 @@
 """Apply narrow power fixes to this Corne's pinned ZMK/Zephyr modules.
 
 Targets:
-  1) Zephyr v3.5.0+zmk-fixes SAADC STOP/disable sequence.
+  1) Zephyr v3.5.0+zmk-fixes SAADC STOP/disable sequence, including clearing
+     the pending IRQ through the nrfx glue API provided by this Zephyr tree.
   2) The manifest-pinned hal_nordic nrfx_spim.c Anomaly 195 workaround
      after every SPIM3 disable, not only at nrfx_spim_uninit().
-  3) james-xenon/zmk-ws2812-driver main: turn the widget-owned external LED
-     rail back off after the widget blanks its strip on idle.
+  3) james-xenon/zmk-ws2812-driver main: restore the widget-owned external LED
+     rail state after the widget blanks its strip on idle.
 
-The script is deliberately fail-closed and idempotent. It checks all three
-files before writing any of them and preserves byte-for-byte backups.
+The script is fail-closed and idempotent. It validates all three sources before
+writing any, keeps byte-for-byte backups, and migrates the previously generated
+SAADC patch that called the unavailable irq_clear_pending() symbol.
 """
 from __future__ import annotations
 
@@ -21,6 +23,18 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
+SAADC_PATCH_MARKER = b"ZMK_SAADC_LOW_POWER_STOP_SEQUENCE_V1"
+SAADC_IRQ_MARKER = b"ZMK_SAADC_IRQ_PENDING_CLEAR_V2"
+SAADC_INCLUDE_ANCHOR = b"#include <zephyr/irq.h>\n"
+SAADC_GLUE_INCLUDE = b"#include <nrfx_glue.h>\n"
+SAADC_STOP_ANCHOR = (
+    b"\t\tnrf_saadc_task_trigger(NRF_SAADC, NRF_SAADC_TASK_STOP);\n"
+    b"\t\tnrf_saadc_disable(NRF_SAADC);"
+)
+SAADC_OLD_IRQ_CLEAR = b"irq_clear_pending(DT_INST_IRQN(0));"
+SAADC_NEW_IRQ_CLEAR = b"NRFX_IRQ_PENDING_CLEAR(DT_INST_IRQN(0));"
+
+
 @dataclass
 class Change:
     path: Path
@@ -29,31 +43,89 @@ class Change:
     marker: bytes
 
 
+def _patch_saadc(path: Path) -> Change:
+    if not path.is_file():
+        raise RuntimeError(f"file not found: {path}")
+
+    original = path.read_bytes()
+    updated = original
+
+    # The first published version inserted the correct STOPPED-event clear,
+    # but used irq_clear_pending(), which is not implemented by the pinned
+    # Zephyr v3.5.0 kernel. Migrate that version in place as well as patching
+    # a pristine source tree.
+    if SAADC_PATCH_MARKER in updated:
+        if SAADC_OLD_IRQ_CLEAR in updated:
+            if updated.count(SAADC_OLD_IRQ_CLEAR) != 1:
+                raise RuntimeError(
+                    f"{path}: expected one legacy irq_clear_pending() call"
+                )
+            updated = updated.replace(SAADC_OLD_IRQ_CLEAR, SAADC_NEW_IRQ_CLEAR, 1)
+        elif SAADC_NEW_IRQ_CLEAR not in updated:
+            raise RuntimeError(
+                f"{path}: SAADC patch marker exists but IRQ-clear call is unknown"
+            )
+    else:
+        count = updated.count(SAADC_STOP_ANCHOR)
+        if count != 1:
+            raise RuntimeError(
+                f"{path}: expected exactly one SAADC STOP/disable anchor, found {count}"
+            )
+        replacement = (
+            b"\t\tnrf_saadc_task_trigger(NRF_SAADC, NRF_SAADC_TASK_STOP);\n"
+            b"\t\t/* ZMK_SAADC_LOW_POWER_STOP_SEQUENCE_V1\n"
+            b"\t\t * Clear STOPPED and the latched NVIC pending bit before disabling\n"
+            b"\t\t * the SAADC analog core. Use the IRQ-clear API from nrfx_glue.\n"
+            b"\t\t */\n"
+            b"\t\tnrf_saadc_event_clear(NRF_SAADC, NRF_SAADC_EVENT_STOPPED);\n"
+            b"\t\t/* ZMK_SAADC_IRQ_PENDING_CLEAR_V2 */\n"
+            b"\t\tNRFX_IRQ_PENDING_CLEAR(DT_INST_IRQN(0));\n"
+            b"\t\tnrf_saadc_disable(NRF_SAADC);"
+        )
+        updated = updated.replace(SAADC_STOP_ANCHOR, replacement, 1)
+
+    if SAADC_GLUE_INCLUDE not in updated:
+        count = updated.count(SAADC_INCLUDE_ANCHOR)
+        if count != 1:
+            raise RuntimeError(
+                f"{path}: expected one <zephyr/irq.h> include anchor, found {count}"
+            )
+        updated = updated.replace(
+            SAADC_INCLUDE_ANCHOR,
+            SAADC_INCLUDE_ANCHOR + SAADC_GLUE_INCLUDE,
+            1,
+        )
+
+    if SAADC_NEW_IRQ_CLEAR not in updated:
+        raise RuntimeError(f"{path}: NRFX IRQ pending-clear call was not installed")
+    if SAADC_OLD_IRQ_CLEAR in updated:
+        raise RuntimeError(f"{path}: obsolete irq_clear_pending() call remains")
+    if SAADC_IRQ_MARKER not in updated:
+        # Preserve the existing workflow's V1 marker check, while adding a
+        # second marker that identifies the fixed Zephyr IRQ-glue call.
+        updated = updated.replace(
+            SAADC_NEW_IRQ_CLEAR,
+            b"/* " + SAADC_IRQ_MARKER + b" */\n\t\t" + SAADC_NEW_IRQ_CLEAR,
+            1,
+        )
+
+    return Change(path, original, updated, SAADC_PATCH_MARKER)
+
+
 def build_changes(paths: list[Path]) -> list[Change]:
     if len(paths) != 3:
         raise ValueError("exactly three source paths are required")
 
     saadc_path, spim_path, widget_path = paths
+    changes: list[Change] = []
+    errors: list[str] = []
+
+    try:
+        changes.append(_patch_saadc(saadc_path))
+    except (OSError, RuntimeError) as exc:
+        errors.append(str(exc))
+
     specs = [
-        (
-            saadc_path,
-            b"ZMK_SAADC_LOW_POWER_STOP_SEQUENCE_V1",
-            (
-                b"\t\tnrf_saadc_task_trigger(NRF_SAADC, NRF_SAADC_TASK_STOP);\n"
-                b"\t\tnrf_saadc_disable(NRF_SAADC);"
-            ),
-            (
-                b"\t\tnrf_saadc_task_trigger(NRF_SAADC, NRF_SAADC_TASK_STOP);\n"
-                b"\t\t/* ZMK_SAADC_LOW_POWER_STOP_SEQUENCE_V1\n"
-                b"\t\t * Match the corrected nrfx shutdown sequence: clear STOPPED and\n"
-                b"\t\t * the pending IRQ before disabling the SAADC analog core.\n"
-                b"\t\t */\n"
-                b"\t\tnrf_saadc_event_clear(NRF_SAADC, NRF_SAADC_EVENT_STOPPED);\n"
-                b"\t\tirq_clear_pending(DT_INST_IRQN(0));\n"
-                b"\t\tnrf_saadc_disable(NRF_SAADC);"
-            ),
-            "Zephyr SAADC STOP followed directly by disable",
-        ),
         (
             spim_path,
             b"ZMK_SPIM3_ANOMALY_195_AFTER_EACH_DISABLE_V1",
@@ -96,10 +168,7 @@ def build_changes(paths: list[Path]) -> list[Change]:
         ),
     ]
 
-    changes: list[Change] = []
-    errors: list[str] = []
-
-    # Read and validate all three files before any file is written.
+    # Validate the remaining two source files before writing any of them.
     for path, marker, anchor, replacement, description in specs:
         if not path.is_file():
             errors.append(f"file not found: {path}")
@@ -112,13 +181,6 @@ def build_changes(paths: list[Path]) -> list[Change]:
         if count != 1:
             errors.append(
                 f"{path}: expected exactly one {description} anchor, found {count}"
-            )
-            continue
-        backup = path.with_name(path.name + ".before_power_patch.bak")
-        if backup.exists():
-            errors.append(
-                f"{path}: backup already exists ({backup}); restore the clean source "
-                "or move the backup aside before applying"
             )
             continue
         updated = original.replace(anchor, replacement, 1)
@@ -171,7 +233,7 @@ def main() -> int:
     for change in pending:
         backup = change.path.with_name(change.path.name + ".before_power_patch.bak")
         if backup.exists():
-            raise RuntimeError(f"backup appeared during validation: {backup}; no source changed")
+            raise RuntimeError(f"backup already exists: {backup}; no source changed")
         backups.append((backup, change.original))
 
     created_backups: list[Path] = []
@@ -183,7 +245,7 @@ def main() -> int:
             mode = stat.S_IMODE(change.path.stat().st_mode)
             atomic_write(change.path, change.updated, mode)
     except Exception:
-        # Restore originals if a later write fails; leave backups for diagnosis.
+        # Restore originals if a later write fails; retain backups for diagnosis.
         for change in pending:
             if change.path.exists() and change.path.read_bytes() != change.original:
                 atomic_write(change.path, change.original, stat.S_IMODE(change.path.stat().st_mode))
@@ -193,6 +255,7 @@ def main() -> int:
         print(f"Patched: {change.path}")
         print(f"Backup:  {change.path.name}.before_power_patch.bak")
     print("All three firmware power patches applied successfully.")
+    print("SAADC IRQ clearing uses NRFX_IRQ_PENDING_CLEAR from the pinned Zephyr nrfx_glue.h.")
     return 0
 
 
