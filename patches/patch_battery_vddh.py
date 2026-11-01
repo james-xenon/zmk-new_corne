@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Apply the ZMK v0.3.0 Eyelash/nice!nano VDDH battery patch.
 
-The patch keeps ZMK's STATE_OF_CHARGE reporting mode.  It obtains GAUGE_VOLTAGE
+The patch keeps ZMK's STATE_OF_CHARGE reporting mode. It obtains GAUGE_VOLTAGE
 from the same VDDH sensor sample and uses that voltage only to decide when a
-post-USB reading is stable enough to publish.
+post-USB reading is stable enough to publish. Readings continue to update while
+USB is connected (a temporary 100% indication is accepted). After USB removal,
+the last value is held until two adjacent samples are stable.
 
 USB history is detected without polling while the battery timer is stopped:
 - central half: ZMK USB connection events;
@@ -17,13 +19,15 @@ layout.  It fails closed if the source differs or if an older V1 patch is found.
 from __future__ import annotations
 
 import os
-import re
 import sys
 import tempfile
 from pathlib import Path
 
-PATCH_MARKER = "ZMK_VDDH_STATE_OF_CHARGE_PATCH_V2"
-OLD_PATCH_MARKER = "ZMK_VDDH_STATE_OF_CHARGE_PATCH_V1"
+PATCH_MARKER = "ZMK_VDDH_STATE_OF_CHARGE_PATCH_V3"
+OLD_PATCH_MARKERS = (
+    "ZMK_VDDH_STATE_OF_CHARGE_PATCH_V1",
+    "ZMK_VDDH_STATE_OF_CHARGE_PATCH_V2",
+)
 
 
 def require_once(source: str, anchor: str, description: str) -> None:
@@ -33,49 +37,6 @@ def require_once(source: str, anchor: str, description: str) -> None:
             f"battery patch: expected exactly one {description} anchor, found {count}; "
             "no file changed"
         )
-
-
-def find_soc_get_anchor(source: str) -> str:
-    """Return the SOC channel_get call and its rc-error block.
-
-    Match the actual C operation, not the LOG_DBG wording or exact indentation.
-    Those diagnostics are not part of the sensor API and can differ between
-    compatible ZMK v0.3.0 source trees.
-    """
-    lines = source.splitlines(keepends=True)
-    call_re = re.compile(
-        r"^[ \t]*rc\s*=\s*sensor_channel_get\s*\(\s*battery\s*,\s*"
-        r"SENSOR_CHAN_GAUGE_STATE_OF_CHARGE\s*,\s*&state_of_charge\s*\)\s*;\s*$"
-    )
-    matches = [i for i, line in enumerate(lines) if call_re.match(line.rstrip("\r\n"))]
-    if len(matches) != 1:
-        raise SystemExit(
-            "battery patch: expected exactly one STATE_OF_CHARGE channel_get call, "
-            f"found {len(matches)}; no file changed"
-        )
-
-    start = matches[0]
-    block_start = start + 1
-    while block_start < len(lines) and not lines[block_start].strip():
-        block_start += 1
-    if block_start >= len(lines) or not re.search(
-        r"\bif\s*\(\s*rc\s*!=\s*0\s*\)\s*\{", lines[block_start]
-    ):
-        raise SystemExit(
-            "battery patch: STATE_OF_CHARGE channel_get is not followed by the "
-            "expected rc error check; no file changed"
-        )
-
-    depth = 0
-    for end in range(block_start, min(len(lines), block_start + 16)):
-        depth += lines[end].count("{") - lines[end].count("}")
-        if depth == 0:
-            return "".join(lines[start : end + 1])
-
-    raise SystemExit(
-        "battery patch: could not find the end of the STATE_OF_CHARGE rc error "
-        "block; no file changed"
-    )
 
 
 def main() -> int:
@@ -89,13 +50,15 @@ def main() -> int:
     source = path.read_text(encoding="utf-8")
 
     if PATCH_MARKER in source:
-        print(f"VDDH state-of-charge stabilization patch V2 already applied: {path}")
+        print(f"VDDH state-of-charge stabilization patch V3 already applied: {path}")
         return 0
 
-    if OLD_PATCH_MARKER in source:
+    found_old_marker = next((marker for marker in OLD_PATCH_MARKERS if marker in source), None)
+    if found_old_marker:
         raise SystemExit(
-            "battery patch: V1 patch marker found. Restore the original unpatched "
-            "ZMK v0.3.0 app/src/battery.c from backup before applying V2; no file changed"
+            f"battery patch: old patch marker {found_old_marker} found. Restore the original "
+            "unpatched ZMK v0.3.0 app/src/battery.c from the Actions checkout/backup "
+            "before applying V3; no file changed"
         )
 
     # This patch is specifically for the STATE_OF_CHARGE mode plus the VDDH
@@ -105,7 +68,13 @@ def main() -> int:
         "\n"
         "    rc = sensor_sample_fetch_chan(battery, SENSOR_CHAN_GAUGE_STATE_OF_CHARGE);\n"
     )
-    soc_get_anchor = find_soc_get_anchor(source)
+    soc_get_anchor = (
+        "    rc = sensor_channel_get(battery, SENSOR_CHAN_GAUGE_STATE_OF_CHARGE, &state_of_charge);\n"
+        "    if (rc != 0) {\n"
+        '        LOG_DBG("Failed to get battery state of charge: %d", rc);\n'
+        "        return rc;\n"
+        "    }\n"
+    )
     listener_anchor = (
         "static int battery_event_listener(const zmk_event_t *eh) {\n"
         "\n"
@@ -147,15 +116,14 @@ def main() -> int:
 
     state_block = r'''static uint8_t last_state_of_charge = 0;
 
-/* ZMK_VDDH_STATE_OF_CHARGE_PATCH_V2
+/* ZMK_VDDH_STATE_OF_CHARGE_PATCH_V3
  * Eyelash/nice!nano VDDH battery stabilization.
  *
- * The battery sensor's STATE_OF_CHARGE and GAUGE_VOLTAGE values come from the
- * same VDDH ADC sample.  VBUS makes VDDH unsuitable as a LiPo measurement.
- * After USB removal, keep the last published percentage until three adjacent
- * voltage samples differ by no more than 15 mV.  Fail open after 15 minutes.
+ * Publish the VDDH-derived value even while USB is connected; a temporary
+ * 100% indication is accepted. After VBUS removal, keep the last published
+ * percentage until two adjacent voltage samples differ by no more than 15 mV.
+ * Fail open after 2 minutes so a noisy sensor cannot freeze the value forever.
  */
-static bool battery_has_valid_sample;
 static bool battery_vbus_was_present;
 static bool battery_post_charge_settling;
 static int64_t battery_settle_started_at;
@@ -163,8 +131,8 @@ static int32_t battery_settle_prev_mv;
 static uint8_t battery_settle_stable_samples;
 
 #define ZMK_VDDH_SETTLE_DELTA_MV 15
-#define ZMK_VDDH_SETTLE_STABLE_SAMPLES 3
-#define ZMK_VDDH_SETTLE_MAX_MS (15 * 60 * 1000)
+#define ZMK_VDDH_SETTLE_STABLE_SAMPLES 2
+#define ZMK_VDDH_SETTLE_MAX_MS (2 * 60 * 1000)
 
 static void zmk_battery_mark_vbus_present(void) {
     if (!battery_vbus_was_present) {
@@ -216,12 +184,13 @@ static void zmk_battery_capture_vbus_history(void) {
 }
 
 static bool zmk_battery_hold_while_vbus(void) {
+    /* Keep the historical helper name for the build workflow's source check.
+     * It now only captures USB history; it never suppresses a battery sample.
+     */
     zmk_battery_capture_vbus_history();
 
     if (zmk_battery_vbus_present()) {
         zmk_battery_mark_vbus_present();
-        /* At USB-connected boot, allow one reading to initialize the value. */
-        return battery_has_valid_sample;
     }
 
     return false;
@@ -238,10 +207,8 @@ static bool zmk_battery_accept_vddh_sample(int32_t measured_mv) {
 
     if (vbus_present) {
         zmk_battery_mark_vbus_present();
-        /* Do not publish VDDH-derived values while charging, except for the
-         * first reading after a USB-connected boot when no trusted value exists.
-         */
-        return !battery_has_valid_sample;
+        /* User accepts the VDDH value while charging, including a possible 100%. */
+        return true;
     }
 
     if (battery_vbus_was_present) {
@@ -293,14 +260,14 @@ static bool zmk_battery_accept_vddh_sample(int32_t measured_mv) {
     source = source.replace(state_anchor, state_block, 1)
 
     # ------------------------------------------------------------------
-    # Hold the last percentage before fetching while VBUS is present.
+    # Capture USB state before fetching.  The sample itself is not held while VBUS is present.
     # ------------------------------------------------------------------
     source = source.replace(
         soc_fetch_anchor,
         soc_fetch_anchor.replace(
             "    rc = sensor_sample_fetch_chan(battery, SENSOR_CHAN_GAUGE_STATE_OF_CHARGE);\n",
             "    if (zmk_battery_hold_while_vbus()) {\n"
-            '        LOG_DBG("Holding battery level while USB is connected");\n'
+            '        LOG_DBG("Battery sample deferred by VBUS hook");\n'
             "        return 0;\n"
             "    }\n\n"
             "    rc = sensor_sample_fetch_chan(battery, SENSOR_CHAN_GAUGE_STATE_OF_CHARGE);\n",
@@ -324,7 +291,6 @@ static bool zmk_battery_accept_vddh_sample(int32_t measured_mv) {
     if (!zmk_battery_accept_vddh_sample(measured_mv)) {
         return 0;
     }
-    battery_has_valid_sample = true;
 '''
     source = source.replace(soc_get_anchor, voltage_block, 1)
 
@@ -376,7 +342,8 @@ static bool zmk_battery_accept_vddh_sample(int32_t measured_mv) {
         "zmk_battery_capture_vbus_history",
         "NRF_POWER_RESETREAS_VBUS_MASK",
         "ZMK_SUBSCRIPTION(battery, zmk_usb_conn_state_changed);",
-        "ZMK_VDDH_SETTLE_STABLE_SAMPLES 3",
+        "ZMK_VDDH_SETTLE_STABLE_SAMPLES 2",
+        "/* User accepts the VDDH value while charging, including a possible 100%. */",
     ):
         if required not in source:
             raise SystemExit(
@@ -408,7 +375,7 @@ static bool zmk_battery_accept_vddh_sample(int32_t measured_mv) {
         # Keep the backup for recovery if the final write failed.
         raise
 
-    print(f"VDDH state-of-charge stabilization patch V2 applied: {path}")
+    print(f"VDDH state-of-charge stabilization patch V3 applied: {path}")
     print(f"Original battery.c backup: {backup}")
     return 0
 
