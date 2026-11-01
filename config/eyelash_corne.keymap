@@ -1836,7 +1836,7 @@
 			bindings = <
 				&slpall               &symb_eng_swap_toggle       &ws2812_wdg 8             &repeat_ws2812_brightness_down   &repeat_ws2812_brightness_up    &studio_unlock                      &none               &bt BT_CLR        &slpsrc           &bt BT_SEL 0        &bt BT_SEL 1       &bt BT_SEL 2     &bt BT_SEL 3
 				&rgb_timer_custom 0   &repeat_rgb_timeout_down    &repeat_rgb_timeout_up    &ws2812_wdg 1                    &ws2812_wdg 2                   &out OUT_BLE                &none   &none   &none       &kp C_BRI_DN      &kp C_BRI_UP      &repeat_rgb_hud     &repeat_rgb_hui    &repeat_rgb_sad  &repeat_rgb_sai
-				&bt BT_CLR_ALL        &kp LA(F4)                  &kp LG(LC(LEFT))          &kp LG(LC(RIGHT))                &none                           &out OUT_USB     &none              &none               &repeat_rgb_efr   &repeat_rgb_eff   &repeat_rgb_spd     &repeat_rgb_spi    &repeat_rgb_brd  &repeat_rgb_bri
+				&bt BT_CLR_ALL        &kp LA(F4)                  &kp LG(LC(LEFT))          &kp LG(LC(RIGHT))                &ws2812_wdg 10                  &out OUT_USB     &none              &none               &repeat_rgb_efr   &repeat_rgb_eff   &repeat_rgb_spd     &repeat_rgb_spi    &repeat_rgb_brd  &repeat_rgb_bri
 				                                                                            &none                            &none                           &none                                                   &rgb_ug RGB_ON    &none             &rgb_ug RGB_OFF
 			>;
 			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
