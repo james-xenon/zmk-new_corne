@@ -726,13 +726,13 @@
 		// был бы перекрыт активным Speedtype. Эти два behavior принудительно выключают/
 		// включают SPEEDTYPE_LAYER, не меняя порядок существующих слоёв.
 		layer_on: layer_on {
-			compatible = "zmk,behavior-layer-toggle";
+			compatible = "zmk,behavior-toggle-layer";
 			#binding-cells = <1>;
 			toggle-mode = "on";
 		};
 
 		layer_off: layer_off {
-			compatible = "zmk,behavior-layer-toggle";
+			compatible = "zmk,behavior-toggle-layer";
 			#binding-cells = <1>;
 			toggle-mode = "off";
 		};
