@@ -86,7 +86,7 @@ jobs:
             ${{ env.base_dir }}/zephyr/
             ${{ env.base_dir }}/bootloader/
             ${{ env.base_dir }}/zmk/
-          key: ${{ runner.os }}-build-${{ env.cache_name }}-${{ hashFiles('**/west.yml', '**/build.yaml', '**/*.conf', 'patches/rgb_underglow.c', 'patches/patch_battery_vddh.py', 'patches/patch_qdec_sample_fifo.py', 'patches/patch_zmk_sensor_fifo.py', 'patches/patch_firmware_power.py') }}
+          key: ${{ runner.os }}-build-${{ env.cache_name }}-${{ hashFiles('**/west.yml', '**/build.yaml', '**/*.conf', 'patches/patch_zmk_sensor_fifo.py', 'patches/patch_firmware_power.py') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache_name }}-
             ${{ runner.os }}-build-
@@ -108,7 +108,7 @@ jobs:
             done
           fi
           if git -C "$zmk_dir" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-            git -C "$zmk_dir" restore --source=HEAD -- app/src/sensors.c
+            git -C "$zmk_dir" restore --source=HEAD -- app/src/sensors.c app/src/battery.c
           fi
 
       - name: West Init
@@ -164,29 +164,6 @@ jobs:
               "${{ env.base_dir }}/zmk/app/src/rgb_underglow.c"
 
           echo "RGB16 patch verification passed."
-
-      - name: Apply VDDH battery charging workaround
-        shell: sh -e {0}
-        run: |
-          set -eu
-
-          test -f "${GITHUB_WORKSPACE}/patches/patch_battery_vddh.py"
-          test -f "${{ env.base_dir }}/zmk/app/src/battery.c"
-
-          # Restore the clean ZMK battery.c in case the Actions cache
-          # contains a battery.c modified by an older battery patch.
-          git -C "${{ env.base_dir }}/zmk" restore --source=HEAD -- app/src/battery.c
-
-          rm -f "${{ env.base_dir }}/zmk/app/src/battery.c.before_vddh_patch.bak"
-          python3 "${GITHUB_WORKSPACE}/patches/patch_battery_vddh.py" \
-              "${{ env.base_dir }}/zmk/app/src/battery.c"
-
-          grep -q "zmk_battery_hold_while_vbus" \
-              "${{ env.base_dir }}/zmk/app/src/battery.c"
-          grep -q "zmk_battery_accept_vddh_sample" \
-              "${{ env.base_dir }}/zmk/app/src/battery.c"
-
-          echo "VDDH battery workaround verification passed."
 
       - name: Apply SAADC, SPIM3 and WS2812 idle-power fixes
         shell: sh -e {0}
