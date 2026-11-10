@@ -2063,10 +2063,10 @@
 		fn_layer {
 			display-name = "fn_layer";
 			bindings = <
-				&kp ESC       &none   &none    &kp F9    &kp F5    &mkp MB5                                          &mmv MOVE_UP                       &kp F10    &kp F7  &kp F8  &kp F9  &none  &none
-				&kp LSHIFT    &none   &none    &kp F1    &kp F11   &mkp MB4                        &mmv MOVE_LEFT    &mkp LCLK       &mmv MOVE_RIGHT    &kp F11    &kp F4  &kp F5  &kp F6  &none  &none
-				&kp LCTRL     &none   &none    &none     &kp LALT  &kp C_AL_CALCULATOR  &none                        &mmv MOVE_DOWN                     &kp F12    &kp F1  &kp F2  &kp F3  &none  &none
-				                               &none     &none     &kp SPACE                                                                            &kp ENTER  &none   &none
+				&kp ESC       &none   &none    &kp F9    &kp F5    &mkp MB5                                          &mmv MOVE_UP                       &kp F10    &kp F7  &kp F8     &kp F9  &none  &none
+				&kp LSHIFT    &none   &none    &kp F1    &kp F11   &mkp MB4                        &mmv MOVE_LEFT    &mkp LCLK       &mmv MOVE_RIGHT    &kp F11    &kp F4  &kp F5     &kp F6  &none  &none
+				&kp LCTRL     &none   &none    &none     &none     &kp C_AL_CALCULATOR  &none                        &mmv MOVE_DOWN                     &kp F12    &kp F1  &kp F2     &kp F3  &none  &none
+				                               &kp RALT  LEFT_GUI  &kp SPACE                                                                            &kp ENTER  &none   &lang_only
 			>;
 			sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
 		};
