@@ -636,7 +636,7 @@ layers:
   - $$mdi:keyboard-space$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - '&lang_only'
   nav_2_layer:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -685,7 +685,7 @@ layers:
   - $$mdi:keyboard-space$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - '&lang_only'
   nav2nolight_layer:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -783,7 +783,7 @@ layers:
   - $$mdi:keyboard-space$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - '&lang_only'
   gaming1_layer:
   - $$mdi:keyboard-tab$$
   - Q
@@ -828,11 +828,11 @@ layers:
   - {t: /, s: '?'}
   - $$mdi:keyboard-esc$$
   - {t: '&gaming_mo9_td', h: gaming3_layer}
-  - gaming2_layer
+  - {t: '&gaming_mo2_td', h: gaming2_layer}
   - $$mdi:keyboard-space$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - '&lang_only'
   gaming2_layer:
   - $$mdi:keyboard-esc$$
   - {t: '1', s: '!'}
@@ -881,7 +881,7 @@ layers:
   - $$mdi:keyboard-space$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - '&lang_only'
   gaming3_layer:
   - $$mdi:keyboard-esc$$
   - Y
@@ -925,12 +925,12 @@ layers:
   - F3
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:keyboard-esc$$
-  - {t: gaming3_layer, type: held}
+  - {t: '$$mdi:minus-circle-outline$$', type: held}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:keyboard-space$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - '&lang_only'
   speedtype_layer:
   - $$mdi:keyboard-tab$$
   - Q
@@ -978,8 +978,8 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:keyboard-space$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - '&speed_num_ht'
+  - {t: '&win_space', h: nav2nolight_layer}
   lefthand_layer:
   - $$mdi:keyboard-tab$$
   - HOME
@@ -1149,7 +1149,7 @@ combos:
   l: [default_1_layer, default_2_layer, speedtype_layer]
 - p: [27, 41]
   k: '&speedtype_double_tap'
-  l: [default_1_layer, default_2_layer, speedtype_layer]
+  l: [default_1_layer, default_2_layer, speedtype_layer, gaming1_layer]
 - p: [16, 17]
   k: nav_1_layer
   l: [default_1_layer, default_2_layer, speedtype_layer]
