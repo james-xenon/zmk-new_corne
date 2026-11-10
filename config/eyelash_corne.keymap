@@ -764,6 +764,150 @@
 			bindings = <&speed_num_hold>, <&none>;
 		};
 
+		// Gaming -> NUMB_NOLIGHT_LAYER (Alt-ветка символов).
+		// Во всех трёх gaming-слоях клавиша рядом с переключением языка:
+		// tap = ничего, hold = NUMB_NOLIGHT_LAYER.
+		// GAMING2/GAMING3 работают поверх GAMING1, поэтому для них временно
+		// выключаются оба активных gaming-слоя, иначе слой 4 был бы перекрыт.
+		gaming1_num_hold: gaming1_num_hold {
+			compatible = "zmk,behavior-macro";
+			#binding-cells = <0>;
+			wait-ms = <0>;
+			tap-ms = <0>;
+			bindings =
+				<&macro_tap &layer_off GAMING1_LAYER>,
+				<&macro_press &mo NUMB_NOLIGHT_LAYER>,
+				<&macro_pause_for_release>,
+				<&macro_release &mo NUMB_NOLIGHT_LAYER>,
+				<&macro_tap &layer_on GAMING1_LAYER>;
+		};
+
+		gaming1_num_ht: gaming1_num_ht {
+			compatible = "zmk,behavior-hold-tap";
+			#binding-cells = <2>;
+			flavor = "tap-preferred";
+			tapping-term-ms = <80>;
+			bindings = <&gaming1_num_hold>, <&none>;
+		};
+
+		gaming2_num_hold: gaming2_num_hold {
+			compatible = "zmk,behavior-macro";
+			#binding-cells = <0>;
+			wait-ms = <0>;
+			tap-ms = <0>;
+			bindings =
+				<&macro_tap &layer_off GAMING2_LAYER>,
+				<&macro_tap &layer_off GAMING1_LAYER>,
+				<&macro_press &mo NUMB_NOLIGHT_LAYER>,
+				<&macro_pause_for_release>,
+				<&macro_release &mo NUMB_NOLIGHT_LAYER>,
+				<&macro_tap &layer_on GAMING1_LAYER>,
+				<&macro_tap &layer_on GAMING2_LAYER>;
+		};
+
+		gaming2_num_ht: gaming2_num_ht {
+			compatible = "zmk,behavior-hold-tap";
+			#binding-cells = <2>;
+			flavor = "tap-preferred";
+			tapping-term-ms = <80>;
+			bindings = <&gaming2_num_hold>, <&none>;
+		};
+
+		gaming3_num_hold: gaming3_num_hold {
+			compatible = "zmk,behavior-macro";
+			#binding-cells = <0>;
+			wait-ms = <0>;
+			tap-ms = <0>;
+			bindings =
+				<&macro_tap &layer_off GAMING3_LAYER>,
+				<&macro_tap &layer_off GAMING1_LAYER>,
+				<&macro_press &mo NUMB_NOLIGHT_LAYER>,
+				<&macro_pause_for_release>,
+				<&macro_release &mo NUMB_NOLIGHT_LAYER>,
+				<&macro_tap &layer_on GAMING1_LAYER>,
+				<&macro_tap &layer_on GAMING3_LAYER>;
+		};
+
+		gaming3_num_ht: gaming3_num_ht {
+			compatible = "zmk,behavior-hold-tap";
+			#binding-cells = <2>;
+			flavor = "tap-preferred";
+			tapping-term-ms = <80>;
+			bindings = <&gaming3_num_hold>, <&none>;
+		};
+
+		// LEFTHAND -> NUMB_NOLIGHT_LAYER (Alt-ветка символов).
+		// Клавиша рядом с переключением языка: tap = ничего, hold = NUMB_NOLIGHT_LAYER.
+		// На удержании текущий LEFTHAND-слой временно выключается, чтобы нижний слой 4 стал видимым.
+		lefthand_num_hold: lefthand_num_hold {
+			compatible = "zmk,behavior-macro";
+			#binding-cells = <0>;
+			wait-ms = <0>;
+			tap-ms = <0>;
+			bindings =
+				<&macro_tap &layer_off LEFTHAND_LAYER>,
+				<&macro_press &mo NUMB_NOLIGHT_LAYER>,
+				<&macro_pause_for_release>,
+				<&macro_release &mo NUMB_NOLIGHT_LAYER>,
+				<&macro_tap &layer_on LEFTHAND_LAYER>;
+		};
+
+		lefthand_num_ht: lefthand_num_ht {
+			compatible = "zmk,behavior-hold-tap";
+			#binding-cells = <2>;
+			flavor = "tap-preferred";
+			tapping-term-ms = <80>;
+			bindings = <&lefthand_num_hold>, <&none>;
+		};
+
+		lefthand_nolight_num_hold: lefthand_nolight_num_hold {
+			compatible = "zmk,behavior-macro";
+			#binding-cells = <0>;
+			wait-ms = <0>;
+			tap-ms = <0>;
+			bindings =
+				<&macro_tap &layer_off LEFTHAND_NOLIGHT_LAYER>,
+				<&macro_press &mo NUMB_NOLIGHT_LAYER>,
+				<&macro_pause_for_release>,
+				<&macro_release &mo NUMB_NOLIGHT_LAYER>,
+				<&macro_tap &layer_on LEFTHAND_NOLIGHT_LAYER>;
+		};
+
+		lefthand_nolight_num_ht: lefthand_nolight_num_ht {
+			compatible = "zmk,behavior-hold-tap";
+			#binding-cells = <2>;
+			flavor = "tap-preferred";
+			tapping-term-ms = <80>;
+			bindings = <&lefthand_nolight_num_hold>, <&none>;
+		};
+
+		// Speedtype -> SYMB_LAYER без перестановки слоёв.
+		// На удержании временно выключаем SPEEDTYPE_LAYER, включаем SYMB_LAYER,
+		// а после отпускания возвращаем SPEEDTYPE_LAYER.
+		speed_symb_hold: speed_symb_hold {
+			compatible = "zmk,behavior-macro";
+			#binding-cells = <0>;
+			wait-ms = <0>;
+			tap-ms = <0>;
+			bindings =
+				<&macro_tap &layer_off SPEEDTYPE_LAYER>,
+				<&macro_press &mo SYMB_LAYER>,
+				<&macro_pause_for_release>,
+				<&macro_release &mo SYMB_LAYER>,
+				<&macro_tap &layer_on SPEEDTYPE_LAYER>;
+		};
+
+		// Средняя клавиша большого пальца в SPEEDTYPE:
+		// удержание = SYMB_LAYER, 1 тап = ничего, 2 тапа = Win (LGUI).
+		speed_symb_win_ht: speed_symb_win_ht {
+			compatible = "zmk,behavior-hold-tap";
+			#binding-cells = <2>;
+			flavor = "tap-preferred";
+			tapping-term-ms = <200>;
+			quick-tap-ms = <300>;
+			bindings = <&speed_symb_hold>, <&symb_win_tap_dance>;
+		};
+
 		// Hold-Tap lefthand_ht (Крайняя левая клавиша большого пальца):
 		// Удержание -> Слой LEFTHAND_NOLIGHT_LAYER
 		// Одиночный тап -> ничего (через lh_td: 1 тап = none)
@@ -1372,6 +1516,17 @@
 			bindings = <&kp>, <&kp>;
 		};
 
+		// Английские символьные слои 7 и 9:
+		// hold = одиночный tap указанного символа через kp_once (без автоповтора)
+		// tap  = обычный &kp <param2>
+		eng_sym_ht: eng_sym_ht {
+			compatible = "zmk,behavior-hold-tap";
+			#binding-cells = <2>;
+			flavor = "hold-preferred";
+			tapping-term-ms = <200>;
+			bindings = <&kp_once>, <&kp>;
+		};
+
 		// Универсальный hold-tap:
 		// hold = none
 		// tap  = &kp <param2>
@@ -1806,7 +1961,7 @@
 				&dqt_pipe_ht PIPE 0                       &percent_amp_ht PRCNT AMPS    &equal_tilde_ht TILDE EQUAL    &plus_gt_ht GT PLUS            &minus_lt_ht LT MINUS   &under_lshft_ht LSHFT UNDER     &trans                 &kp DOWN               &under_lshft_ht LSHFT UNDER   &minus_lt_ht LT MINUS        &plus_gt_ht GT PLUS          &equal_tilde_ht TILDE EQUAL  &percent_amp_ht PRCNT AMPS    &dqt_pipe_ht PIPE 0
 				                                                                                                       &trans                         &trans                  &kp SPACE                                                                     &kp ENTER                     &trans                       &trans
 			>;
-			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+			sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
 		};
 
 		// Слой 3: NUMB — русские цифры/Numpad, persistent.
@@ -1818,7 +1973,7 @@
 				&div_lshft_ht LSHFT KP_ENTER                &div_dot_ht KP_DIVIDE DOT         &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                          &msc SCRL_DOWN                     &kp KP_EQUAL   &kp N1  &kp N2  &kp N3  &div_dot_ht KP_DIVIDE DOT         &div_lshft_ht LSHFT KP_ENTER
 				                                                                                      &trans  &trans  &kp SPACE                                                                          &kp ENTER      &trans  &trans
 			>;
-			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+			sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
 		};
 
 		// Слой 4: NUMB no-light Alt.
@@ -1868,12 +2023,12 @@
 		symb_2_layer {
 			display-name = "symb_2_layer";
 			bindings = <
-				&eng_ht LS(N4) LS(N3)                          &eng_ht LS(RBKT) LS(N0)       &eng_ht LS(LBKT) LS(N9)        &eng_ht LS(N6) LS(N8)                   &eng_ht LS(N7) LS(FSLH)                &eng_ht LS(GRAVE) LS(N1)                              &kp UP                 &eng_ht LS(GRAVE) LS(N1)        &eng_ht LS(N7) LS(FSLH)                      &eng_ht LS(N6) LS(N8)             &eng_ht LS(LBKT) LS(N9)       &eng_ht LS(RBKT) LS(N0)       &eng_ht LS(N4) LS(N3)
-				&bspc_to_layer_ht NUMB_ENG_NOLIGHT_LAYER FSLH  &eng_ht GRAVE SEMI            &eng_comma_degree_ht 0 COMMA   &eng_ht LBKT DOT                        &eng_ht SQT RBKT                       &eng_ht LS(N2) LS(SEMI)                     &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht LS(N2) LS(SEMI)         &eng_ht SQT RBKT                             &eng_ht LBKT DOT                  &eng_comma_degree_ht 0 COMMA  &eng_ht GRAVE SEMI            &bspc_to_layer_ht NUMB_ENG_NOLIGHT_LAYER FSLH
-				&eng_ht LS(BSLH) LS(N5)                        &eng_ht BSLH LS(SQT)          &eng_ht_none_kp 0 EQUAL        &eng_ht LS(DOT) LS(EQUAL)               &eng_ht LS(COMMA) MINUS                &eng_under_emdash_ht 0 UNDER      &none               &kp DOWN               &eng_under_emdash_ht 0 UNDER    &eng_ht LS(COMMA) MINUS                      &eng_ht LS(DOT) LS(EQUAL)         &eng_ht_none_kp 0 EQUAL       &eng_ht BSLH LS(SQT)     &eng_ht LS(BSLH) LS(N5)
-				                                                                                                            &lefthand_ht LEFTHAND_NOLIGHT_LAYER 0   &symb_win_td SYMB_ENG_NOLIGHT_LAYER 0  &kp SPACE                                                                    &kp ENTER                       &thumb_num_sym_fn NUMB_ENG_NOLIGHT_LAYER 0   &lang_nav2 NAV2_NOLIGHT_LAYER 0
+				&eng_sym_ht LS(N4) LS(N3)                          &eng_sym_ht LS(RBKT) LS(N0)       &eng_sym_ht LS(LBKT) LS(N9)    &eng_sym_ht LS(N6) LS(N8)                   &eng_sym_ht LS(N7) LS(FSLH)                &eng_sym_ht LS(GRAVE) LS(N1)                          &kp UP                 &eng_sym_ht LS(GRAVE) LS(N1)    &eng_sym_ht LS(N7) LS(FSLH)                      &eng_sym_ht LS(N6) LS(N8)             &eng_sym_ht LS(LBKT) LS(N9)       &eng_sym_ht LS(RBKT) LS(N0)    &eng_sym_ht LS(N4) LS(N3)
+				&bspc_to_layer_ht NUMB_ENG_NOLIGHT_LAYER FSLH      &eng_sym_ht GRAVE SEMI            &eng_comma_degree_ht 0 COMMA   &eng_sym_ht LBKT DOT                        &eng_sym_ht SQT RBKT                       &eng_sym_ht LS(N2) LS(SEMI)                 &kp LEFT  &kp SPC   &kp RIGHT    &eng_sym_ht LS(N2) LS(SEMI)     &eng_sym_ht SQT RBKT                             &eng_sym_ht LBKT DOT                  &eng_comma_degree_ht 0 COMMA      &eng_sym_ht GRAVE SEMI         &bspc_to_layer_ht NUMB_ENG_NOLIGHT_LAYER FSLH
+				&eng_sym_ht LS(BSLH) LS(N5)                        &eng_sym_ht BSLH LS(SQT)          &eng_ht_none_kp 0 EQUAL        &eng_sym_ht LS(DOT) LS(EQUAL)               &eng_sym_ht LS(COMMA) MINUS                &eng_under_emdash_ht 0 UNDER      &none               &kp DOWN               &eng_under_emdash_ht 0 UNDER    &eng_sym_ht LS(COMMA) MINUS                      &eng_sym_ht LS(DOT) LS(EQUAL)         &eng_ht_none_kp 0 EQUAL           &eng_sym_ht BSLH LS(SQT)       &eng_sym_ht LS(BSLH) LS(N5)
+				                                                                                                                    &lefthand_ht LEFTHAND_NOLIGHT_LAYER 0       &symb_win_td SYMB_ENG_NOLIGHT_LAYER 0      &kp SPACE                                                                    &kp ENTER                       &thumb_num_sym_fn NUMB_ENG_NOLIGHT_LAYER 0       &lang_nav2 NAV2_NOLIGHT_LAYER 0
 			>;
-			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+			sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
 		};
 
 		// Слой 8: NUMB English no-light main.
@@ -1896,10 +2051,10 @@
 		symbnolight_2_layer {
 			display-name = "symbnolight_2_layer";
 			bindings = <
-				&eng_ht LS(N4) LS(N3)                                &eng_ht LS(RBKT) LS(N0)       &eng_ht LS(LBKT) LS(N9)        &eng_ht LS(N6) LS(N8)                   &eng_ht LS(N7) LS(FSLH)                &eng_ht LS(GRAVE) LS(N1)                              &kp UP                 &eng_ht LS(GRAVE) LS(N1)        &eng_ht LS(N7) LS(FSLH)                            &eng_ht LS(N6) LS(N8)             &eng_ht LS(LBKT) LS(N9)       &eng_ht LS(RBKT) LS(N0)       &eng_ht LS(N4) LS(N3)
-				&bspc_to_layer_ht NUMB_ENG_NOLIGHT_COPY_LAYER FSLH   &eng_ht GRAVE SEMI            &eng_comma_degree_ht 0 COMMA   &eng_ht LBKT DOT                        &eng_ht SQT RBKT                       &eng_ht LS(N2) LS(SEMI)                     &kp LEFT  &kp SPC   &kp RIGHT    &eng_ht LS(N2) LS(SEMI)         &eng_ht SQT RBKT                                   &eng_ht LBKT DOT                  &eng_comma_degree_ht 0 COMMA  &eng_ht GRAVE SEMI            &bspc_to_layer_ht NUMB_ENG_NOLIGHT_COPY_LAYER FSLH
-				&eng_ht LS(BSLH) LS(N5)                              &eng_ht BSLH LS(SQT)          &eng_ht_none_kp 0 EQUAL        &eng_ht LS(DOT) LS(EQUAL)               &eng_ht LS(COMMA) MINUS                &eng_under_emdash_ht 0 UNDER   &none                  &kp DOWN               &eng_under_emdash_ht 0 UNDER    &eng_ht LS(COMMA) MINUS                            &eng_ht LS(DOT) LS(EQUAL)         &eng_ht_none_kp 0 EQUAL       &eng_ht BSLH LS(SQT)     &eng_ht LS(BSLH) LS(N5)
-				                                                                                                                  &lefthand_ht LEFTHAND_NOLIGHT_LAYER 0   &symb_win_td SYMB_ENG_NOLIGHT_LAYER 0  &kp SPACE                                                                    &kp ENTER                       &thumb_num_sym_fn NUMB_ENG_NOLIGHT_COPY_LAYER 0    &lang_nav2 NAV2_NOLIGHT_LAYER 0
+				&eng_sym_ht LS(N4) LS(N3)                             &eng_sym_ht LS(RBKT) LS(N0)       &eng_sym_ht LS(LBKT) LS(N9)    &eng_sym_ht LS(N6) LS(N8)                &eng_sym_ht LS(N7) LS(FSLH)                &eng_sym_ht LS(GRAVE) LS(N1)                       &kp UP                 &eng_sym_ht LS(GRAVE) LS(N1)    &eng_sym_ht LS(N7) LS(FSLH)                        &eng_sym_ht LS(N6) LS(N8)             &eng_sym_ht LS(LBKT) LS(N9)     &eng_sym_ht LS(RBKT) LS(N0)    &eng_sym_ht LS(N4) LS(N3)
+				&bspc_to_layer_ht NUMB_ENG_NOLIGHT_COPY_LAYER FSLH    &eng_sym_ht GRAVE SEMI            &eng_comma_degree_ht 0 COMMA   &eng_sym_ht LBKT DOT                     &eng_sym_ht SQT RBKT                       &eng_sym_ht LS(N2) LS(SEMI)              &kp LEFT  &kp SPC   &kp RIGHT    &eng_sym_ht LS(N2) LS(SEMI)     &eng_sym_ht SQT RBKT                               &eng_sym_ht LBKT DOT                  &eng_comma_degree_ht 0 COMMA    &eng_sym_ht GRAVE SEMI         &bspc_to_layer_ht NUMB_ENG_NOLIGHT_COPY_LAYER FSLH
+				&eng_sym_ht LS(BSLH) LS(N5)                           &eng_sym_ht BSLH LS(SQT)          &eng_ht_none_kp 0 EQUAL        &eng_sym_ht LS(DOT) LS(EQUAL)            &eng_sym_ht LS(COMMA) MINUS                &eng_under_emdash_ht 0 UNDER   &none               &kp DOWN               &eng_under_emdash_ht 0 UNDER    &eng_sym_ht LS(COMMA) MINUS                        &eng_sym_ht LS(DOT) LS(EQUAL)         &eng_ht_none_kp 0 EQUAL         &eng_sym_ht BSLH LS(SQT)       &eng_sym_ht LS(BSLH) LS(N5)
+				                                                                                                                       &lefthand_ht LEFTHAND_NOLIGHT_LAYER 0    &symb_win_td SYMB_ENG_NOLIGHT_LAYER 0      &kp SPACE                                                                 &kp ENTER                       &thumb_num_sym_fn NUMB_ENG_NOLIGHT_COPY_LAYER 0    &lang_nav2 NAV2_NOLIGHT_LAYER 0
 			>;
 			sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
 		};
@@ -1908,10 +2063,10 @@
 		fn_layer {
 			display-name = "fn_layer";
 			bindings = <
-				&kp ESC       &none   &none    &kp F9    &kp F5   &mkp MB5                                          &mmv MOVE_UP                       &kp F10    &kp F7  &kp F8  &kp F9  &none  &none
-				&kp LSHIFT    &none   &none    &kp F1    &kp F11  &mkp MB4                        &mmv MOVE_LEFT    &mkp LCLK       &mmv MOVE_RIGHT    &kp F11    &kp F4  &kp F5  &kp F6  &none  &none
-				&kp LCTRL     &none   &none    &none     &none    &kp C_AL_CALCULATOR  &none                        &mmv MOVE_DOWN                     &kp F12    &kp F1  &kp F2  &kp F3  &none  &none
-				                               &none     &none    &kp SPACE                                                                            &kp ENTER  &none   &none
+				&kp ESC       &none   &none    &kp F9    &kp F5    &mkp MB5                                          &mmv MOVE_UP                       &kp F10    &kp F7  &kp F8  &kp F9  &none  &none
+				&kp LSHIFT    &none   &none    &kp F1    &kp F11   &mkp MB4                        &mmv MOVE_LEFT    &mkp LCLK       &mmv MOVE_RIGHT    &kp F11    &kp F4  &kp F5  &kp F6  &none  &none
+				&kp LCTRL     &none   &none    &none     &kp LALT  &kp C_AL_CALCULATOR  &none                        &mmv MOVE_DOWN                     &kp F12    &kp F1  &kp F2  &kp F3  &none  &none
+				                               &none     &none     &kp SPACE                                                                            &kp ENTER  &none   &none
 			>;
 			sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
 		};
@@ -1981,10 +2136,10 @@
 		gaming_1_layer {
 			display-name = "gaming1_layer";
 			bindings = <
-				&kp TAB    &kp Q  &kp W  &kp E                                &kp R                             &kp T                             &kp UP                  &kp Y      &kp U  &kp I       &kp O    &kp P     &kp BSPC
-				&kp LSHFT  &kp A  &kp S  &kp D                                &kp F                             &kp G                   &kp LEFT  &kp ENTER  &kp RIGHT    &kp H      &kp J  &kp K       &kp L    &kp SEMI  &kp LSHFT
-				&kp LCTRL  &kp Z  &kp X  &kp C                                &kp V                             &kp B      &kp C_MUTE             &kp DOWN                &kp N      &kp M  &kp COMMA   &kp DOT  &kp FSLH  &kp ESC
-				                         &gaming_mo9_alt GAMING3_LAYER 0      &gaming_mo2_win GAMING2_LAYER 0   &kp SPACE                                                 &kp ENTER  &none  &lang_only
+				&kp TAB    &kp Q  &kp W  &kp E                                &kp R                             &kp T                             &kp UP                  &kp Y      &kp U                &kp I        &kp O     &kp P     &kp BSPC
+				&kp LSHFT  &kp A  &kp S  &kp D                                &kp F                             &kp G                   &kp LEFT  &kp ENTER  &kp RIGHT    &kp H      &kp J                &kp K        &kp L     &kp SEMI  &kp LSHFT
+				&kp LCTRL  &kp Z  &kp X  &kp C                                &kp V                             &kp B      &kp C_MUTE             &kp DOWN                &kp N      &kp M                &kp COMMA    &kp DOT   &kp FSLH  &kp ESC
+				                         &gaming_mo9_alt GAMING3_LAYER 0      &gaming_mo2_win GAMING2_LAYER 0   &kp SPACE                                                 &kp ENTER  &gaming1_num_ht 0 0  &lang_only
 			>;
 			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
 		};
@@ -1993,34 +2148,34 @@
 		gaming_2_layer {
 			display-name = "gaming2_layer";
 			bindings = <
-				&kp ESC                                           &kp N1   &none    &kp N2   &kp N3  &none                                &kp UP                 &kp F10       &kp F7  &kp F8      &kp F9  &none    &kp BSPC
-				&gaming_shft_mo21 LEFTHAND_NOLIGHT_LAYER LSHFT    &kp N4   &none    &kp N5   &kp N6  &kp N0                    &kp LEFT   &kp ENTER  &kp RIGHT   &kp F11       &kp F4  &kp F5      &kp F6  &none    &kp LSHFT
-				&kp LCTRL                                         &kp N7   &none    &kp N8   &kp N9  &none       &kp C_MUTE               &kp DOWN               &kp F12       &kp F1  &kp F2      &kp F3  &none    &kp ESC
-				                                                                    &none    &none   &kp SPACE                                                   &kp ENTER     &none   &lang_only
+				&kp ESC                                           &kp N1   &none    &kp N2   &kp N3  &none                                &kp UP                 &kp F10       &kp F7                &kp F8      &kp F9  &none    &kp BSPC
+				&gaming_shft_mo21 LEFTHAND_NOLIGHT_LAYER LSHFT    &kp N4   &none    &kp N5   &kp N6  &kp N0                    &kp LEFT   &kp ENTER  &kp RIGHT   &kp F11       &kp F4                &kp F5      &kp F6  &none    &kp LSHFT
+				&kp LCTRL                                         &kp N7   &none    &kp N8   &kp N9  &none       &kp C_MUTE               &kp DOWN               &kp F12       &kp F1                &kp F2      &kp F3  &none    &kp ESC
+				                                                                    &none    &none   &kp SPACE                                                   &kp ENTER     &gaming2_num_ht 0 0   &lang_only
 			>;
-			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+			sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
 		};
 
 		// Слой 18: gaming_3
 		gaming_3_layer {
 			display-name = "gaming3_layer";
 			bindings = <
-				&kp ESC    &kp Y  &kp U  &kp I   &kp O      &kp P                           &kp UP                 &kp F10       &kp F7  &kp F8      &kp F9  &none    &kp BSPC
-				&kp LSHFT  &kp H  &kp J  &kp K   &kp L      &none                &kp LEFT   &kp ENTER  &kp RIGHT   &kp F11       &kp F4  &kp F5      &kp F6  &none    &kp LSHFT
-				&kp LCTRL  &kp M  &none  &kp N   &kp COMMA  &kp DOT   &kp C_MUTE            &kp DOWN               &kp F12       &kp F1  &kp F2      &kp F3  &none    &kp ESC
-				                         &none   &none      &kp SPACE                                              &kp ENTER     &none   &lang_only
+				&kp ESC    &kp Y  &kp U  &kp I   &kp O      &kp P                           &kp UP                 &kp F10       &kp F7                &kp F8      &kp F9  &none    &kp BSPC
+				&kp LSHFT  &kp H  &kp J  &kp K   &kp L      &none                &kp LEFT   &kp ENTER  &kp RIGHT   &kp F11       &kp F4                &kp F5      &kp F6  &none    &kp LSHFT
+				&kp LCTRL  &kp M  &none  &kp N   &kp COMMA  &kp DOT   &kp C_MUTE            &kp DOWN               &kp F12       &kp F1                &kp F2      &kp F3  &none    &kp ESC
+				                         &none   &none      &kp SPACE                                              &kp ENTER     &gaming3_num_ht 0 0   &lang_only
 			>;
-			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+			sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
 		};
 
 		// Слой 19: SPEEDTYPE.
 		speedtype_layer {
 			display-name = "speedtype_layer";
 			bindings = <
-				&kp TAB    &kp Q  &kp W  &kp E      &kp R    &t_yo_ht GRAVE T                           &kp UP                 &kp Y      &kp U            &kp I                            &kp O     &kp P     &kp LBKT
-				&kp LSHFT  &kp A  &kp S  &kp D      &kp F    &kp G                            &kp LEFT  &kp ENTER  &kp RIGHT   &kp H      &kp J            &kp K                            &kp L     &kp SEMI  &kp SQT
-				&kp LCTRL  &kp Z  &kp X  &kp C      &kp V    &kp B             &kp C_MUTE               &kp DOWN               &kp N      &kp M            &kp COMMA                        &kp DOT   &kp FSLH  &kp ESC
-				                         &kp RALT   &trans   &kp SPACE                                                         &kp ENTER  &speed_num_ht 0 0  &lang_nav2 NAV2_NOLIGHT_LAYER 0
+				&kp TAB    &kp Q  &kp W  &kp E      &kp R                    &t_yo_ht GRAVE T                           &kp UP                 &kp Y      &kp U              &kp I                            &kp O     &kp P     &kp LBKT
+				&kp LSHFT  &kp A  &kp S  &kp D      &kp F                    &kp G                            &kp LEFT  &kp ENTER  &kp RIGHT   &kp H      &kp J              &kp K                            &kp L     &kp SEMI  &kp SQT
+				&kp LCTRL  &kp Z  &kp X  &kp C      &kp V                    &kp B             &kp C_MUTE               &kp DOWN               &kp N      &kp M              &kp COMMA                        &kp DOT   &kp FSLH  &kp ESC
+				                         &kp RALT   &speed_symb_win_ht 0 0   &kp SPACE                                                         &kp ENTER  &speed_num_ht 0 0  &lang_nav2 NAV2_NOLIGHT_LAYER 0
 			>;
 			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
 		};
@@ -2029,10 +2184,10 @@
 		lefthand_layer {
 			display-name = "lefthand_layer";
 			bindings = <
-				&kp TAB     &kp HOME        &kp ENTER         &kp UP       &kp SPC            &mkp MB5                             &kp UP                  &kp LG(SEMI)       &kp LG(UP)      &kp LG(DOWN)     &kp LG(C)      &kp LG(TAB)        &kp KP_NUM
-				&kp LSHFT   &kp END         &kp LEFT          &kp DOWN     &kp RIGHT          &mkp MB4                   &kp LEFT  &kp ENTER  &kp RIGHT    &kp C_AC_SEARCH    &kp F2          &kp LC(LS(N))    &kp LC(P)      &kp LC(LS(ESC))    &kp SLCK
-				&kp LCTRL   &kp LC(LS(T))   &kp LC(LS(TAB))   &kp LC(R)    &kp LC(TAB)        &kp LC(W)    &kp C_MUTE              &kp DOWN                &kp LG(E)          &kp LG(LEFT)    &kp LG(RIGHT)    &kp LG(H)      &kp LG(L)          &kp LG(D)
-				                                              &none        &none              &kp SPACE                                                    &kp ENTER          &none           &none
+				&kp TAB     &kp HOME        &kp ENTER         &kp UP       &kp SPC            &mkp MB5                             &kp UP                  &kp LG(SEMI)       &kp LG(UP)             &kp LG(DOWN)     &kp LG(C)      &kp LG(TAB)        &kp KP_NUM
+				&kp LSHFT   &kp END         &kp LEFT          &kp DOWN     &kp RIGHT          &mkp MB4                   &kp LEFT  &kp ENTER  &kp RIGHT    &kp C_AC_SEARCH    &kp F2                 &kp LC(LS(N))    &kp LC(P)      &kp LC(LS(ESC))    &kp SLCK
+				&kp LCTRL   &kp LC(LS(T))   &kp LC(LS(TAB))   &kp LC(R)    &kp LC(TAB)        &kp LC(W)    &kp C_MUTE              &kp DOWN                &kp LG(E)          &kp LG(LEFT)           &kp LG(RIGHT)    &kp LG(H)      &kp LG(L)          &kp LG(D)
+				                                              &none        &none              &kp SPACE                                                    &kp ENTER          &lefthand_num_ht 0 0   &lang_only
 			>;
 			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
 		};
@@ -2041,10 +2196,10 @@
 		lefthandnolight_layer {
 			display-name = "lefthandnolight_layer";
 			bindings = <
-				&alt_tab     &kp HOME       &kp ENTER         &kp UP       &kp SPC      &mkp MB5                             &kp UP                  &kp LG(SEMI)       &kp LG(UP)      &kp LG(DOWN)     &kp LG(C)      &kp LG(TAB)        &kp KP_NUM
-				&kp LSHFT    &kp END        &kp LEFT          &kp DOWN     &kp RIGHT    &mkp MB4                   &kp LEFT  &kp ENTER  &kp RIGHT    &kp C_AC_SEARCH    &kp F2          &kp LC(LS(N))    &kp LC(P)      &kp LC(LS(ESC))    &kp SLCK
-				&kp LCTRL    &kp LC(LS(T))  &kp LC(LS(TAB))   &kp LC(R)    &kp LC(TAB)  &kp LC(W)    &kp C_MUTE              &kp DOWN                &kp LG(E)          &kp LG(LEFT)    &kp LG(RIGHT)    &kp LG(H)      &kp LG(L)          &kp LG(D)
-				                                              &none        &none        &kp SPACE                                                    &kp ENTER          &none           &none
+				&alt_tab     &kp HOME       &kp ENTER         &kp UP       &kp SPC      &mkp MB5                             &kp UP                  &kp LG(SEMI)       &kp LG(UP)                     &kp LG(DOWN)     &kp LG(C)      &kp LG(TAB)        &kp KP_NUM
+				&kp LSHFT    &kp END        &kp LEFT          &kp DOWN     &kp RIGHT    &mkp MB4                   &kp LEFT  &kp ENTER  &kp RIGHT    &kp C_AC_SEARCH    &kp F2                         &kp LC(LS(N))    &kp LC(P)      &kp LC(LS(ESC))    &kp SLCK
+				&kp LCTRL    &kp LC(LS(T))  &kp LC(LS(TAB))   &kp LC(R)    &kp LC(TAB)  &kp LC(W)    &kp C_MUTE              &kp DOWN                &kp LG(E)          &kp LG(LEFT)                   &kp LG(RIGHT)    &kp LG(H)      &kp LG(L)          &kp LG(D)
+				                                              &none        &none        &kp SPACE                                                    &kp ENTER          &lefthand_nolight_num_ht 0 0   &lang_only
 			>;
 			sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
 		};
@@ -2056,10 +2211,10 @@
 		numbnolight_copy_2_layer {
 			display-name = "numbnolight_copy_2_layer";
 			bindings = <
-				&kp C_AL_CALCULATOR               &eng_ht KP_MULTIPLY COMMA    &kp N9  &kp N8  &kp N7  &kp KP_PLUS                                 &msc SCRL_UP                      &kp KP_PLUS     &kp N7  &kp N8  &kp N9  &eng_ht KP_MULTIPLY COMMA   &kp C_AL_CALCULATOR
-				&kp BSPC                          &kp N0                       &kp N6  &kp N5  &kp N4  &kp KP_MINUS               &msc SCRL_LEFT   &mkp LCLK       &msc SCRL_RIGHT   &kp KP_MINUS    &kp N4  &kp N5  &kp N6  &kp N0                      &kp BSPC
-				&div_lshft_ht LSHFT KP_ENTER      &eng_ht KP_DIVIDE DOT        &kp N3  &kp N2  &kp N1  &kp KP_EQUAL    &trans                      &msc SCRL_DOWN                    &kp KP_EQUAL    &kp N1  &kp N2  &kp N3  &eng_ht KP_DIVIDE DOT       &div_lshft_ht LSHFT KP_ENTER
-				                                                                           &trans  &trans  &kp SPACE                                                                 &kp ENTER       &trans  &trans
+				&kp C_AL_CALCULATOR               &eng_ht KP_MULTIPLY COMMA    &kp N9  &kp N8    &kp N7  &kp KP_PLUS                                 &msc SCRL_UP                      &kp KP_PLUS     &kp N7  &kp N8     &kp N9  &eng_ht KP_MULTIPLY COMMA   &kp C_AL_CALCULATOR
+				&kp BSPC                          &kp N0                       &kp N6  &kp N5    &kp N4  &kp KP_MINUS               &msc SCRL_LEFT   &mkp LCLK       &msc SCRL_RIGHT   &kp KP_MINUS    &kp N4  &kp N5     &kp N6  &kp N0                      &kp BSPC
+				&div_lshft_ht LSHFT KP_ENTER      &eng_ht KP_DIVIDE DOT        &kp N3  &kp N2    &kp N1  &kp KP_EQUAL    &trans                      &msc SCRL_DOWN                    &kp KP_EQUAL    &kp N1  &kp N2     &kp N3  &eng_ht KP_DIVIDE DOT       &div_lshft_ht LSHFT KP_ENTER
+				                                                                       &kp RALT  &trans  &kp SPACE                                                                     &kp ENTER       &trans  &lang_only
 			>;
 			sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
 		};
