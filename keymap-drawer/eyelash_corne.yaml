@@ -978,7 +978,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:keyboard-space$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - '&speed_num_ht'
+  - {t: '$$mdi:minus-circle-outline$$', h: '&speed_num_hold'}
   - {t: '&win_space', h: nav2nolight_layer}
   lefthand_layer:
   - $$mdi:keyboard-tab$$
