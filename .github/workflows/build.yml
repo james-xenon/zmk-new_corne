@@ -152,6 +152,7 @@ jobs:
           echo "Left-half QDEC per-sample FIFO patch verified."
 
       - name: Apply RGB16 underglow patch
+        if: ${{ contains(matrix.shield, 'eyelash_corne') }}
         shell: sh -e {0}
         run: |
           set -eu
@@ -170,6 +171,7 @@ jobs:
           echo "RGB16 patch verification passed."
 
       - name: Apply SAADC, SPIM3 and WS2812 idle-power fixes
+        if: ${{ contains(matrix.shield, 'eyelash_corne') }}
         shell: sh -e {0}
         run: |
           set -eu
@@ -185,6 +187,10 @@ jobs:
           test -f "$spim_file"
           test -f "$widget_file"
 
+          # The widget source is intentionally pinned in config/west.yml.
+          # Fail clearly if the manifest and this deterministic patch ever diverge.
+          test "$(git -C "$widget_module" rev-parse --short=7 HEAD)" = "a8674a9"
+
           # Reset cached dependency sources before applying deterministic patches.
           git -C "$zephyr_dir" restore --source=HEAD -- drivers/adc/adc_nrfx_saadc.c
           git -C "$hal_nordic_dir" restore --source=HEAD -- nrfx/drivers/src/nrfx_spim.c
@@ -198,10 +204,10 @@ jobs:
 
           grep -Fq 'ZMK_SAADC_LOW_POWER_STOP_SEQUENCE_V1' "$saadc_file"
           grep -Fq 'ZMK_SPIM3_ANOMALY_195_AFTER_EACH_DISABLE_V1' "$spim_file"
-          grep -Fq 'ZMK_WS2812_IDLE_EXT_POWER_PATCH_V2' "$widget_file"
+          grep -Fq 'ZMK_WS2812_IDLE_EXT_POWER_PATCH_V3' "$widget_file"
           grep -Fq 'ws2812_idle_ext_power_prepare_wake' "$widget_file"
           grep -Fq 'ws2812_ext_power_disable_if_unused' "$widget_file"
-          echo "SAADC, SPIM3 Anomaly 195 and WS2812 idle-power V2 fixes verified."
+          echo "SAADC, SPIM3 Anomaly 195 and WS2812 idle-power V3 fixes verified."
 
       - name: West Zephyr export
         working-directory: ${{ env.base_dir }}

@@ -11,9 +11,11 @@ manifest:
       revision: v0.3.0
       import: app/west.yml
 
+    # Pin the exact widget revision validated by the power patch.
+    # Do not track main here: text patches must build against deterministic source.
     - name: zmk-ws2812-driver
       remote: james-xenon
-      revision: main
+      revision: a8674a9
 
   self:
     path: config
