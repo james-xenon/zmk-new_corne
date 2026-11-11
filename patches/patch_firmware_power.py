@@ -1,17 +1,19 @@
 #!/usr/bin/env python3
-"""Apply narrow power fixes to this Corne's pinned ZMK/Zephyr modules.
+"""Apply narrow low-power fixes to this Corne's pinned ZMK/Zephyr modules.
 
 Targets:
   1) Zephyr v3.5.0+zmk-fixes SAADC STOP/disable sequence, including clearing
-     the pending IRQ through the nrfx glue API provided by this Zephyr tree.
+     the pending IRQ through nrfx_glue.
   2) The manifest-pinned hal_nordic nrfx_spim.c Anomaly 195 workaround
-     after every SPIM3 disable, not only at nrfx_spim_uninit().
-  3) james-xenon/zmk-ws2812-driver main: restore the widget-owned external LED
-     rail state after the widget blanks its strip on idle.
+     after every SPIM3 disable.
+  3) james-xenon/zmk-ws2812-driver: power the WS2812 rail down while the
+     widget's idle display is blank, restore the rail before wake redraw, and
+     turn the rail off after boot when neither underglow nor static widget
+     lighting needs it.
 
-The script is fail-closed and idempotent. It validates all three sources before
-writing any, keeps byte-for-byte backups, and migrates the previously generated
-SAADC patch that called the unavailable irq_clear_pending() symbol.
+The script is fail-closed and idempotent. It validates all source anchors before
+writing any file, creates byte-for-byte backups, and refuses to stack the new
+WS2812 V2 patch on top of the older V1 patch.
 """
 from __future__ import annotations
 
@@ -34,6 +36,11 @@ SAADC_STOP_ANCHOR = (
 SAADC_OLD_IRQ_CLEAR = b"irq_clear_pending(DT_INST_IRQN(0));"
 SAADC_NEW_IRQ_CLEAR = b"NRFX_IRQ_PENDING_CLEAR(DT_INST_IRQN(0));"
 
+SPIM_PATCH_MARKER = b"ZMK_SPIM3_ANOMALY_195_AFTER_EACH_DISABLE_V1"
+
+WIDGET_PATCH_MARKER = b"ZMK_WS2812_IDLE_EXT_POWER_PATCH_V2"
+WIDGET_OLD_PATCH_MARKER = b"ZMK_WS2812_IDLE_EXT_POWER_PATCH_V1"
+
 
 @dataclass
 class Change:
@@ -43,6 +50,14 @@ class Change:
     marker: bytes
 
 
+def _require_once(source: bytes, anchor: bytes, path: Path, description: str) -> None:
+    count = source.count(anchor)
+    if count != 1:
+        raise RuntimeError(
+            f"{path}: expected exactly one {description} anchor, found {count}"
+        )
+
+
 def _patch_saadc(path: Path) -> Change:
     if not path.is_file():
         raise RuntimeError(f"file not found: {path}")
@@ -50,10 +65,6 @@ def _patch_saadc(path: Path) -> Change:
     original = path.read_bytes()
     updated = original
 
-    # The first published version inserted the correct STOPPED-event clear,
-    # but used irq_clear_pending(), which is not implemented by the pinned
-    # Zephyr v3.5.0 kernel. Migrate that version in place as well as patching
-    # a pristine source tree.
     if SAADC_PATCH_MARKER in updated:
         if SAADC_OLD_IRQ_CLEAR in updated:
             if updated.count(SAADC_OLD_IRQ_CLEAR) != 1:
@@ -66,11 +77,7 @@ def _patch_saadc(path: Path) -> Change:
                 f"{path}: SAADC patch marker exists but IRQ-clear call is unknown"
             )
     else:
-        count = updated.count(SAADC_STOP_ANCHOR)
-        if count != 1:
-            raise RuntimeError(
-                f"{path}: expected exactly one SAADC STOP/disable anchor, found {count}"
-            )
+        _require_once(updated, SAADC_STOP_ANCHOR, path, "SAADC STOP/disable")
         replacement = (
             b"\t\tnrf_saadc_task_trigger(NRF_SAADC, NRF_SAADC_TASK_STOP);\n"
             b"\t\t/* ZMK_SAADC_LOW_POWER_STOP_SEQUENCE_V1\n"
@@ -85,11 +92,7 @@ def _patch_saadc(path: Path) -> Change:
         updated = updated.replace(SAADC_STOP_ANCHOR, replacement, 1)
 
     if SAADC_GLUE_INCLUDE not in updated:
-        count = updated.count(SAADC_INCLUDE_ANCHOR)
-        if count != 1:
-            raise RuntimeError(
-                f"{path}: expected one <zephyr/irq.h> include anchor, found {count}"
-            )
+        _require_once(updated, SAADC_INCLUDE_ANCHOR, path, "<zephyr/irq.h> include")
         updated = updated.replace(
             SAADC_INCLUDE_ANCHOR,
             SAADC_INCLUDE_ANCHOR + SAADC_GLUE_INCLUDE,
@@ -101,8 +104,6 @@ def _patch_saadc(path: Path) -> Change:
     if SAADC_OLD_IRQ_CLEAR in updated:
         raise RuntimeError(f"{path}: obsolete irq_clear_pending() call remains")
     if SAADC_IRQ_MARKER not in updated:
-        # Preserve the existing workflow's V1 marker check, while adding a
-        # second marker that identifies the fixed Zephyr IRQ-glue call.
         updated = updated.replace(
             SAADC_NEW_IRQ_CLEAR,
             b"/* " + SAADC_IRQ_MARKER + b" */\n\t\t" + SAADC_NEW_IRQ_CLEAR,
@@ -112,6 +113,210 @@ def _patch_saadc(path: Path) -> Change:
     return Change(path, original, updated, SAADC_PATCH_MARKER)
 
 
+def _patch_spim(path: Path) -> Change:
+    if not path.is_file():
+        raise RuntimeError(f"file not found: {path}")
+
+    original = path.read_bytes()
+    if SPIM_PATCH_MARKER in original:
+        return Change(path, original, original, SPIM_PATCH_MARKER)
+
+    anchor = (
+        b"        nrfy_spim_disable(p_spim);\n"
+        b"    }"
+    )
+    replacement = (
+        b"        nrfy_spim_disable(p_spim);\n"
+        b"#if NRFX_CHECK(USE_WORKAROUND_FOR_ANOMALY_195)\n"
+        b"        /* ZMK_SPIM3_ANOMALY_195_AFTER_EACH_DISABLE_V1 */\n"
+        b"        if (p_spim == NRF_SPIM3) {\n"
+        b"            *(volatile uint32_t *)0x4002F004 = 1;\n"
+        b"        }\n"
+        b"#endif\n"
+        b"    }"
+    )
+    _require_once(original, anchor, path, "nrfx SPIM disable block")
+    updated = original.replace(anchor, replacement, 1)
+
+    if SPIM_PATCH_MARKER not in updated:
+        raise RuntimeError(f"{path}: SPIM3 patch marker was not installed")
+
+    return Change(path, original, updated, SPIM_PATCH_MARKER)
+
+
+def _patch_widget(path: Path) -> Change:
+    if not path.is_file():
+        raise RuntimeError(f"file not found: {path}")
+
+    original = path.read_bytes()
+
+    if WIDGET_PATCH_MARKER in original:
+        return Change(path, original, original, WIDGET_PATCH_MARKER)
+
+    if WIDGET_OLD_PATCH_MARKER in original:
+        raise RuntimeError(
+            f"{path}: old WS2812 idle-power V1 patch is already present. "
+            "Restore the pristine zmk-ws2812-driver src/widget.c before applying V2."
+        )
+
+    helper_anchor = (
+        b"/* -------------------------------------------------------------------------\n"
+        b"Persistent/static state\n"
+        b"------------------------------------------------------------------------- */\n"
+    )
+    helper_block = r"""/* ZMK_WS2812_IDLE_EXT_POWER_PATCH_V2
+ * Black WS2812 pixels are not the same thing as an unpowered LED rail.
+ * The Eyelash EXT_POWER output feeds the RGB rail, so:
+ *   - blanking for idle also removes rail power;
+ *   - wake powers the rail only if underglow or static widget lighting needs it;
+ *   - boot with no visible lighting leaves the rail physically off.
+ */
+static bool ws2812_lighting_needs_ext_power(void) {
+	if (static_lighting_needed()) {
+		return true;
+	}
+
+#if IS_ENABLED(CONFIG_ZMK_RGB_UNDERGLOW)
+	bool underglow_on = false;
+	if (zmk_rgb_underglow_get_state(&underglow_on) == 0 && underglow_on) {
+		return true;
+	}
+#endif
+
+	return false;
+}
+
+/* Return true when it is safe/useful to write a WS2812 frame.
+ * Without controllable EXT_POWER preserve the original widget behavior.
+ */
+static bool ws2812_ext_power_prepare(bool need_power) {
+#if IS_ENABLED(CONFIG_WS2812_WIDGET_USE_EXT_POWER) && IS_ENABLED(CONFIG_ZMK_EXT_POWER)
+	const struct device *ext_power = get_ext_power_device();
+	if (ext_power == NULL) {
+		LOG_WRN("EXT_POWER device not found");
+		return true;
+	}
+
+	bool is_on = ext_power_get(ext_power) > 0;
+
+	if (!need_power) {
+		if (is_on) {
+			int rc = ext_power_disable(ext_power);
+			if (rc != 0) {
+				LOG_WRN("Failed to disable unused WS2812 EXT_POWER: %d", rc);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	if (!is_on) {
+		int rc = ext_power_enable(ext_power);
+		if (rc != 0) {
+			LOG_WRN("Failed to enable WS2812 EXT_POWER: %d", rc);
+			return false;
+		}
+		k_sleep(K_MSEC(CONFIG_WS2812_WIDGET_EXT_POWER_STARTUP_DELAY_MS));
+	}
+
+	return true;
+#else
+	ARG_UNUSED(need_power);
+	return true;
+#endif
+}
+
+static void ws2812_idle_ext_power_suspend(void) {
+	(void)ws2812_ext_power_prepare(false);
+}
+
+static bool ws2812_idle_ext_power_prepare_wake(void) {
+	return ws2812_ext_power_prepare(ws2812_lighting_needs_ext_power());
+}
+
+static void ws2812_ext_power_disable_if_unused(void) {
+	if (!ws2812_lighting_needs_ext_power()) {
+		(void)ws2812_ext_power_prepare(false);
+	}
+}
+
+""".encode("utf-8") + helper_anchor
+
+    idle_black_anchor = (
+        b"\t\t\tled_strip_update_rgb(led_strip, output_pixels, WS2812_NUM_PIXELS);\n"
+        b"\t\t}\n"
+        b"\t} else {\n"
+    )
+    idle_black_replacement = (
+        b"\t\t\tled_strip_update_rgb(led_strip, output_pixels, WS2812_NUM_PIXELS);\n"
+        b"\t\t\tws2812_idle_ext_power_suspend();\n"
+        b"\t\t}\n"
+        b"\t} else {\n"
+    )
+
+    wake_anchor = (
+        b"\t\tif (idle_display_off) {\n"
+        b"\t\t\tidle_display_off = false;\n"
+        b"\t\t\tif (idle_underglow_suspended) {\n"
+        b"\t\t\t\tidle_underglow_suspended = false;\n"
+        b"\t\t\t\trestore_underglow_if_needed(true);\n"
+        b"\t\t\t} else {\n"
+    )
+    wake_replacement = (
+        b"\t\tif (idle_display_off) {\n"
+        b"\t\t\tidle_display_off = false;\n"
+        b"\t\t\tbool ext_power_ready = ws2812_idle_ext_power_prepare_wake();\n"
+        b"\t\t\tif (idle_underglow_suspended) {\n"
+        b"\t\t\t\tidle_underglow_suspended = false;\n"
+        b"\t\t\t\tif (ext_power_ready) {\n"
+        b"\t\t\t\t\trestore_underglow_if_needed(true);\n"
+        b"\t\t\t\t}\n"
+        b"\t\t\t} else if (ext_power_ready) {\n"
+    )
+
+    startup_anchor = (
+        b"\t} else {\n"
+        b"\t\t/* User config has underglow OFF on start; this guarantees the widget\n"
+        b"\t\t * itself starts from a known black frame without changing ZMK state. */\n"
+        b"\t\tset_all_pixels((struct led_rgb){0, 0, 0});\n"
+        b"\t}\n"
+    )
+    startup_replacement = (
+        b"\t} else {\n"
+        b"\t\t/* User config has underglow OFF on start; this guarantees the widget\n"
+        b"\t\t * itself starts from a known black frame without changing ZMK state. */\n"
+        b"\t\tset_all_pixels((struct led_rgb){0, 0, 0});\n"
+        b"\t\tws2812_ext_power_disable_if_unused();\n"
+        b"\t}\n"
+    )
+
+    for anchor, description in (
+        (helper_anchor, "WS2812 persistent/static section"),
+        (idle_black_anchor, "WS2812 idle black-frame block"),
+        (wake_anchor, "WS2812 idle wake block"),
+        (startup_anchor, "WS2812 startup black-frame block"),
+    ):
+        _require_once(original, anchor, path, description)
+
+    updated = original
+    updated = updated.replace(helper_anchor, helper_block, 1)
+    updated = updated.replace(idle_black_anchor, idle_black_replacement, 1)
+    updated = updated.replace(wake_anchor, wake_replacement, 1)
+    updated = updated.replace(startup_anchor, startup_replacement, 1)
+
+    required = (
+        WIDGET_PATCH_MARKER,
+        b"ws2812_lighting_needs_ext_power",
+        b"ws2812_idle_ext_power_suspend();",
+        b"ws2812_idle_ext_power_prepare_wake();",
+        b"ws2812_ext_power_disable_if_unused();",
+    )
+    for marker in required:
+        if marker not in updated:
+            raise RuntimeError(f"{path}: WS2812 V2 validation failed: {marker!r}")
+
+    return Change(path, original, updated, WIDGET_PATCH_MARKER)
+
 def build_changes(paths: list[Path]) -> list[Change]:
     if len(paths) != 3:
         raise ValueError("exactly three source paths are required")
@@ -120,74 +325,15 @@ def build_changes(paths: list[Path]) -> list[Change]:
     changes: list[Change] = []
     errors: list[str] = []
 
-    try:
-        changes.append(_patch_saadc(saadc_path))
-    except (OSError, RuntimeError) as exc:
-        errors.append(str(exc))
-
-    specs = [
-        (
-            spim_path,
-            b"ZMK_SPIM3_ANOMALY_195_AFTER_EACH_DISABLE_V1",
-            (
-                b"        nrfy_spim_disable(p_spim);\n"
-                b"    }"
-            ),
-            (
-                b"        nrfy_spim_disable(p_spim);\n"
-                b"#if NRFX_CHECK(USE_WORKAROUND_FOR_ANOMALY_195)\n"
-                b"        /* ZMK_SPIM3_ANOMALY_195_AFTER_EACH_DISABLE_V1 */\n"
-                b"        if (p_spim == NRF_SPIM3) {\n"
-                b"            *(volatile uint32_t *)0x4002F004 = 1;\n"
-                b"        }\n"
-                b"#endif\n"
-                b"    }"
-            ),
-            "nrfx SPIM disable block",
-        ),
-        (
-            widget_path,
-            b"ZMK_WS2812_IDLE_EXT_POWER_PATCH_V1",
-            (
-                b"\t\t\tled_strip_update_rgb(led_strip, output_pixels, WS2812_NUM_PIXELS);\n"
-                b"\t\t}"
-            ),
-            (
-                b"\t\t\tled_strip_update_rgb(led_strip, output_pixels, WS2812_NUM_PIXELS);\n"
-                b"\t\t\t/* ZMK_WS2812_IDLE_EXT_POWER_PATCH_V1\n"
-                b"\t\t\t * The frame is now black. Return the external LED rail to its\n"
-                b"\t\t\t * pre-widget state; the ACTIVE path powers it before redraw.\n"
-                b"\t\t\t */\n"
-                b"\t\t\tif (normal_state_saved) {\n"
-                b"\t\t\t\trestore_ext_power_if_needed(normal_ext_power_was_on,\n"
-                b"\t\t\t\t\t\t\t    normal_underglow_was_on);\n"
-                b"\t\t\t}\n"
-                b"\t\t}"
-            ),
-            "WS2812 idle blank-frame block",
-        ),
-    ]
-
-    # Validate the remaining two source files before writing any of them.
-    for path, marker, anchor, replacement, description in specs:
-        if not path.is_file():
-            errors.append(f"file not found: {path}")
-            continue
-        original = path.read_bytes()
-        if marker in original:
-            changes.append(Change(path, original, original, marker))
-            continue
-        count = original.count(anchor)
-        if count != 1:
-            errors.append(
-                f"{path}: expected exactly one {description} anchor, found {count}"
-            )
-            continue
-        updated = original.replace(anchor, replacement, 1)
-        if marker not in updated:
-            errors.append(f"{path}: internal validation failed for marker {marker.decode()}")
-            continue
-        changes.append(Change(path, original, updated, marker))
+    for patcher, path in (
+        (_patch_saadc, saadc_path),
+        (_patch_spim, spim_path),
+        (_patch_widget, widget_path),
+    ):
+        try:
+            changes.append(patcher(path))
+        except (OSError, RuntimeError) as exc:
+            errors.append(str(exc))
 
     if errors:
         raise RuntimeError("No files changed:\n- " + "\n- ".join(errors))
@@ -225,10 +371,9 @@ def main() -> int:
     pending = [change for change in changes if change.updated != change.original]
 
     if not pending:
-        print("SAADC, SPIM3 Anomaly 195 and WS2812 idle-power patches are already applied.")
+        print("SAADC, SPIM3 and WS2812 idle-power V2 patches are already applied.")
         return 0
 
-    # Create every backup before replacing any source file.
     backups: list[tuple[Path, bytes]] = []
     for change in pending:
         backup = change.path.with_name(change.path.name + ".before_power_patch.bak")
@@ -236,26 +381,30 @@ def main() -> int:
             raise RuntimeError(f"backup already exists: {backup}; no source changed")
         backups.append((backup, change.original))
 
-    created_backups: list[Path] = []
     try:
         for backup, original in backups:
             backup.write_bytes(original)
-            created_backups.append(backup)
         for change in pending:
             mode = stat.S_IMODE(change.path.stat().st_mode)
             atomic_write(change.path, change.updated, mode)
     except Exception:
-        # Restore originals if a later write fails; retain backups for diagnosis.
         for change in pending:
             if change.path.exists() and change.path.read_bytes() != change.original:
-                atomic_write(change.path, change.original, stat.S_IMODE(change.path.stat().st_mode))
+                atomic_write(
+                    change.path,
+                    change.original,
+                    stat.S_IMODE(change.path.stat().st_mode),
+                )
         raise
 
     for change in pending:
         print(f"Patched: {change.path}")
         print(f"Backup:  {change.path.name}.before_power_patch.bak")
-    print("All three firmware power patches applied successfully.")
-    print("SAADC IRQ clearing uses NRFX_IRQ_PENDING_CLEAR from the pinned Zephyr nrfx_glue.h.")
+
+    print("All firmware power patches applied successfully.")
+    print("SAADC IRQ clearing uses NRFX_IRQ_PENDING_CLEAR.")
+    print("SPIM3 Anomaly 195 workaround runs after every SPIM3 disable.")
+    print("WS2812 V2 removes rail power during idle and restores it before wake redraw.")
     return 0
 
 

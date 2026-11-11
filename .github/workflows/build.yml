@@ -86,18 +86,19 @@ jobs:
             ${{ env.base_dir }}/zephyr/
             ${{ env.base_dir }}/bootloader/
             ${{ env.base_dir }}/zmk/
-          key: ${{ runner.os }}-build-${{ env.cache_name }}-${{ hashFiles('**/west.yml', '**/build.yaml', '**/*.conf', 'patches/patch_zmk_sensor_fifo.py', 'patches/patch_firmware_power.py') }}
+          key: ${{ runner.os }}-build-${{ env.cache_name }}-${{ hashFiles('**/west.yml', '**/build.yaml', '**/*.conf', 'patches/rgb_underglow.c', 'patches/patch_qdec_sample_fifo.py', 'patches/patch_zmk_sensor_fifo.py', 'patches/patch_firmware_power.py') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache_name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      - name: Restore cached sensor/QDEC sources before West Update
+      - name: Restore cached dependency sources before West Update
         shell: sh -e {0}
         run: |
           set -eu
           zephyr_dir="${{ env.base_dir }}/zephyr"
           zmk_dir="${{ env.base_dir }}/zmk"
+
           if git -C "$zephyr_dir" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
             for relative_path in \
               dts/bindings/sensor/nordic,nrf-qdec.yaml \
@@ -107,6 +108,7 @@ jobs:
               fi
             done
           fi
+
           if git -C "$zmk_dir" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
             git -C "$zmk_dir" restore --source=HEAD -- app/src/sensors.c app/src/battery.c
           fi
@@ -119,7 +121,8 @@ jobs:
         working-directory: ${{ env.base_dir }}
         run: west update --fetch-opt=--filter=tree:0
 
-      - name: Apply QDEC per-sample FIFO fix
+      - name: Apply QDEC per-sample FIFO fix (left half only)
+        if: ${{ contains(matrix.shield, 'eyelash_corne_left') }}
         shell: sh -e {0}
         run: |
           set -eu
@@ -133,7 +136,8 @@ jobs:
           test -f "$driver_file"
           test -f "$zmk_sensors"
 
-          # Drop any earlier experiment from the restored dependency checkout/cache.
+          # Preserve the user's per-sample encoder fix, but only in the left build
+          # where the physical encoder exists.
           git -C "$zephyr_dir" restore --source=HEAD -- drivers/sensor/qdec_nrfx/qdec_nrfx.c
           git -C "$zmk_dir" restore --source=HEAD -- app/src/sensors.c
 
@@ -145,7 +149,7 @@ jobs:
           grep -Fq '.reportper_inten = false,' "$driver_file"
           grep -Fq 'ZMK_SENSOR_TRIGGER_FIFO_PATCH_V1' "$zmk_sensors"
           grep -Fq 'k_msgq_put(&pending_sensor_indices, &queued_index, K_NO_WAIT)' "$zmk_sensors"
-          echo "QDEC per-sample FIFO patch verified in Zephyr and ZMK sources."
+          echo "Left-half QDEC per-sample FIFO patch verified."
 
       - name: Apply RGB16 underglow patch
         shell: sh -e {0}
@@ -194,8 +198,10 @@ jobs:
 
           grep -Fq 'ZMK_SAADC_LOW_POWER_STOP_SEQUENCE_V1' "$saadc_file"
           grep -Fq 'ZMK_SPIM3_ANOMALY_195_AFTER_EACH_DISABLE_V1' "$spim_file"
-          grep -Fq 'ZMK_WS2812_IDLE_EXT_POWER_PATCH_V1' "$widget_file"
-          echo "SAADC, SPIM3 Anomaly 195 and WS2812 idle-power fixes verified."
+          grep -Fq 'ZMK_WS2812_IDLE_EXT_POWER_PATCH_V2' "$widget_file"
+          grep -Fq 'ws2812_idle_ext_power_prepare_wake' "$widget_file"
+          grep -Fq 'ws2812_ext_power_disable_if_unused' "$widget_file"
+          echo "SAADC, SPIM3 Anomaly 195 and WS2812 idle-power V2 fixes verified."
 
       - name: West Zephyr export
         working-directory: ${{ env.base_dir }}
@@ -213,24 +219,43 @@ jobs:
             ${{ env.extra_cmake_args }} \
             ${{ matrix.cmake-args }}
 
-      - name: Verify QDEC per-sample FIFO fix
-        if: ${{ !cancelled() }}
+      - name: Verify QDEC per-sample FIFO fix on left
+        if: ${{ !cancelled() && contains(matrix.shield, 'eyelash_corne_left') }}
         shell: sh -e {0}
         run: |
           set -eu
           driver_file="${{ env.base_dir }}/zephyr/drivers/sensor/qdec_nrfx/qdec_nrfx.c"
           zmk_sensors="${{ env.base_dir }}/zmk/app/src/sensors.c"
+
           grep -Fq 'QDEC_SAMPLE_FIFO_PATCH_V1' "$driver_file"
           grep -Fq 'data->tick_queue[data->tick_tail]' "$driver_file"
           grep -Fq '.sample_inten = true,' "$driver_file"
           grep -Fq '.reportper_inten = false,' "$driver_file"
           grep -Fq 'ZMK_SENSOR_TRIGGER_FIFO_PATCH_V1' "$zmk_sensors"
           grep -Fq 'while (k_msgq_get(&pending_sensor_indices, &sensor_index, K_NO_WAIT) == 0)' "$zmk_sensors"
+
           if grep -Fq 'val->val1 = 0;' "$driver_file" && grep -Fq 'val->val2 = acc;' "$driver_file"; then
             echo "ERROR: obsolete raw-tick experiment is still present." >&2
             exit 1
           fi
-          echo "QDEC sample FIFO and ZMK notification FIFO verified."
+
+          echo "Left-half QDEC sample FIFO and ZMK notification FIFO verified."
+
+      - name: Verify QDEC is not compiled on right
+        if: ${{ !cancelled() && contains(matrix.shield, 'eyelash_corne_right') }}
+        shell: sh -e {0}
+        run: |
+          set -eu
+          config_file="${{ env.build_dir }}/zephyr/.config"
+          test -f "$config_file"
+
+          if grep -Fqx 'CONFIG_QDEC_NRFX=y' "$config_file"; then
+            echo "ERROR: QDEC is enabled in the right-half build." >&2
+            exit 1
+          fi
+
+          echo "Right-half QDEC is disabled as expected."
+
       - name: ${{ env.display_name }} Kconfig file
         if: ${{ !cancelled() }}
         run: |
@@ -255,7 +280,6 @@ jobs:
         shell: sh -x {0}
         run: |
           mkdir -p "${{ env.build_dir }}/artifacts"
-
           if [ -f "${{ env.build_dir }}/zephyr/zmk.uf2" ]; then
             cp "${{ env.build_dir }}/zephyr/zmk.uf2" \
                "${{ env.build_dir }}/artifacts/${{ env.artifact_name }}.uf2"

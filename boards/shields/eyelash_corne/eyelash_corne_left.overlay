@@ -1,5 +1,6 @@
 #include "eyelash_corne.dtsi"
 
+/* The hardware encoder exists only on the left/central half. */
 &qdec0 {
     status = "okay";
     pinctrl-0 = <&qdec_default>;
