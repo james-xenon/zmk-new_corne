@@ -204,10 +204,10 @@ jobs:
 
           grep -Fq 'ZMK_SAADC_LOW_POWER_STOP_SEQUENCE_V1' "$saadc_file"
           grep -Fq 'ZMK_SPIM3_ANOMALY_195_AFTER_EACH_DISABLE_V1' "$spim_file"
-          grep -Fq 'ZMK_WS2812_IDLE_EXT_POWER_PATCH_V3' "$widget_file"
+          grep -Fq 'ZMK_WS2812_IDLE_EXT_POWER_PATCH_V4' "$widget_file"
           grep -Fq 'ws2812_idle_ext_power_prepare_wake' "$widget_file"
           grep -Fq 'ws2812_ext_power_disable_if_unused' "$widget_file"
-          echo "SAADC, SPIM3 Anomaly 195 and WS2812 idle-power V3 fixes verified."
+          echo "SAADC, SPIM3 Anomaly 195 and WS2812 idle-power V4 fixes verified."
 
       - name: West Zephyr export
         working-directory: ${{ env.base_dir }}
@@ -226,7 +226,7 @@ jobs:
             ${{ matrix.cmake-args }}
 
       - name: Verify QDEC per-sample FIFO fix on left
-        if: ${{ !cancelled() && contains(matrix.shield, 'eyelash_corne_left') }}
+        if: ${{ success() && contains(matrix.shield, 'eyelash_corne_left') }}
         shell: sh -e {0}
         run: |
           set -eu
@@ -248,7 +248,7 @@ jobs:
           echo "Left-half QDEC sample FIFO and ZMK notification FIFO verified."
 
       - name: Verify QDEC is not compiled on right
-        if: ${{ !cancelled() && contains(matrix.shield, 'eyelash_corne_right') }}
+        if: ${{ success() && contains(matrix.shield, 'eyelash_corne_right') }}
         shell: sh -e {0}
         run: |
           set -eu

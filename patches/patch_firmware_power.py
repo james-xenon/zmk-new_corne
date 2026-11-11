@@ -39,10 +39,11 @@ SAADC_NEW_IRQ_CLEAR = b"NRFX_IRQ_PENDING_CLEAR(DT_INST_IRQN(0));"
 
 SPIM_PATCH_MARKER = b"ZMK_SPIM3_ANOMALY_195_AFTER_EACH_DISABLE_V1"
 
-WIDGET_PATCH_MARKER = b"ZMK_WS2812_IDLE_EXT_POWER_PATCH_V3"
+WIDGET_PATCH_MARKER = b"ZMK_WS2812_IDLE_EXT_POWER_PATCH_V4"
 WIDGET_OLD_PATCH_MARKERS = (
     b"ZMK_WS2812_IDLE_EXT_POWER_PATCH_V1",
     b"ZMK_WS2812_IDLE_EXT_POWER_PATCH_V2",
+    b"ZMK_WS2812_IDLE_EXT_POWER_PATCH_V3",
 )
 
 
@@ -181,7 +182,7 @@ def _patch_widget(path: Path) -> Change:
     )
     _require_once(original, helper_anchor, path, "WS2812 persistent/static section")
 
-    helper_block = r'''/* ZMK_WS2812_IDLE_EXT_POWER_PATCH_V3
+    helper_block = r'''/* ZMK_WS2812_IDLE_EXT_POWER_PATCH_V4
  * The strip can be visually black while its external rail is still powered.
  * This keyboard uses EXT_POWER for that rail, so idle explicitly removes rail
  * power after sending the black frame. Wake restores the rail before the
@@ -283,20 +284,16 @@ static void ws2812_ext_power_disable_if_unused(void) {
         path, "WS2812 idle black-frame block", re.MULTILINE
     )
 
+    # The widget revision is pinned to a8674a9. Replace the complete wake branch
+    # using its structural boundaries instead of matching comments/whitespace line by line.
     wake_pattern = (
-        rb"(?ms)^[ \t]*if \(idle_display_off\) \{\r?\n"
-        rb"[ \t]*idle_display_off = false;\r?\n"
-        rb"[ \t]*if \(idle_underglow_suspended\) \{\r?\n"
-        rb"[ \t]*idle_underglow_suspended = false;\r?\n"
-        rb"[ \t]*restore_underglow_if_needed\(true\);\r?\n"
-        rb"[ \t]*\} else \{\r?\n"
-        rb"[ \t]*/\* pixels\[\] keeps the logical static/indicator state\. Re-apply\r?\n"
-        rb"[ \t]*\* that state when the widget owns the strip\. \*/\r?\n"
-        rb"[ \t]*flush_pixels\(\);\r?\n"
-        rb"[ \t]*\}\r?\n"
-        rb"[ \t]*\}"
+        rb"(?ms)(^[ \t]*\} else \{\r?\n)"
+        rb"[ \t]*if \(idle_display_off\) \{.*?"
+        rb"^[ \t]*\}\r?\n"
+        rb"(?=^[ \t]*\}\r?\n\r?\n[ \t]*ws2812_lighting_unlock\(\);)"
     )
     wake_replacement = (
+        b"\\1"
         b"\t\tif (idle_display_off) {\n"
         b"\t\t\tidle_display_off = false;\n"
         b"\t\t\tbool ext_power_ready = ws2812_idle_ext_power_prepare_wake();\n"
@@ -310,11 +307,11 @@ static void ws2812_ext_power_disable_if_unused(void) {
         b"\t\t\t\t * that state when the widget owns the strip. */\n"
         b"\t\t\t\tflush_pixels();\n"
         b"\t\t\t}\n"
-        b"\t\t}"
+        b"\t\t}\n"
     )
     updated = _regex_sub_once(
         updated, wake_pattern, wake_replacement,
-        path, "WS2812 idle wake block", re.MULTILINE | re.DOTALL
+        path, "WS2812 idle wake branch", re.MULTILINE | re.DOTALL
     )
 
     startup_pattern = (
@@ -337,7 +334,7 @@ static void ws2812_ext_power_disable_if_unused(void) {
     )
     for marker in required:
         if marker not in updated:
-            raise RuntimeError(f"{path}: WS2812 V3 validation failed: {marker!r}")
+            raise RuntimeError(f"{path}: WS2812 V4 validation failed: {marker!r}")
 
     return Change(path, original, updated, WIDGET_PATCH_MARKER)
 
@@ -395,7 +392,7 @@ def main() -> int:
     pending = [change for change in changes if change.updated != change.original]
 
     if not pending:
-        print("SAADC, SPIM3 and WS2812 idle-power V3 patches are already applied.")
+        print("SAADC, SPIM3 and WS2812 idle-power V4 patches are already applied.")
         return 0
 
     backups: list[tuple[Path, bytes]] = []
@@ -428,7 +425,7 @@ def main() -> int:
     print("All firmware power patches applied successfully.")
     print("SAADC IRQ clearing uses NRFX_IRQ_PENDING_CLEAR.")
     print("SPIM3 Anomaly 195 workaround runs after every SPIM3 disable.")
-    print("WS2812 V3 removes rail power during idle and restores it before wake redraw.")
+    print("WS2812 V4 removes rail power during idle and restores it before wake redraw.")
     return 0
 
 
